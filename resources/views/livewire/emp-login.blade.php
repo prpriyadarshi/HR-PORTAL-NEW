@@ -5,7 +5,7 @@
             <div class="logo text-center mb-4">
                 <img src="https://xsilica.com/images/xsilica_broucher_final_modified_05082016-2.png" alt="Company Logo" width="150">
             </div>
-            <form wire:submit.prevent="login" class="login-form-with-shadow">
+            <form wire:submit.prevent="login" class="login-form-with-shadow" style="background-color: white">
                 <div class="logo text-center mb-4">
                     <img src="https://payg.in/assets/img/logo.svg" alt="Company Logo" width="150">
                 </div>
@@ -30,7 +30,7 @@
         <!-- Right Side (Carousel) -->
         <div class="col-md-6 p-0">
             <!-- Carousel -->
-            <div id="demo" class="carousel slide" data-bs-ride="carousel" style="background-color: #fff; aspect-ratio: 16/9;">
+            <div id="demo" class="carousel slide" data-bs-ride="carousel" style="background-color: f0f0f0; aspect-ratio: 16/9;border-radius:10px">
                 <!-- Indicators/dots -->
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
@@ -48,14 +48,14 @@
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="https://xsilicasoftwaresolutions.greythr.com/uas/v1/cms/asset/33373960-635b-4019-9571-da5742815943" alt="Chicago" class="d-block w-100">
+                        <img src="https://xsilicasoftwaresolutions.greythr.com/uas/v1/cms/asset/3d201a29-9bb3-4481-bef5-543565a40a7c" alt="Chicago" class="d-block w-100">
                         <div class="carousel-caption">
                             <h3>Chicago</h3>
                             <p>Thank you, Chicago!</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="https://xsilicasoftwaresolutions.greythr.com/uas/v1/cms/asset/33373960-635b-4019-9571-da5742815943" alt="New York" class="d-block w-100">
+                        <img src="https://xsilicasoftwaresolutions.greythr.com/uas/v1/cms/asset/5fe7bab4-8479-4266-a749-97a7208b7a40" alt="New York" class="d-block w-100">
                         <div class="carousel-caption">
                             <h3>New York</h3>
                             <p>We love the Big Apple!</p>
