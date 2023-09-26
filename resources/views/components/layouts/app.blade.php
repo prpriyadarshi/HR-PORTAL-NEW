@@ -33,11 +33,10 @@
             display: flex;
             align-items: center;
             padding: 10px;
-            background-color: white;
+            background-color:rgb(2, 17, 79) ;
             box-shadow: 2px 4px 4px 4px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
         }
-
         .profile-image {
             height: 32px;
             width: 32px;
@@ -78,7 +77,7 @@
         }
     </style>
 
-    <div class="row">
+    <div class="row" style="height: 600px;background-color: #f0f0f0;">
     <div class="card" style="border-radius:0px;height: auto; width: 20%; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
         <div class="card-body">
             <ul class="nav flex-column">
@@ -91,12 +90,12 @@
                     </div>
 
                     <div class="emp-name">
-                        <h6 style="font-size: 12px;" class="username">Sri Kumar Asapu</h6>
+                        <h6 style="font-size: 12px;color:white" class="username">Sri Kumar Asapu</h6>
                         <a href="{{ route('profile.info') }}" class="nav-item-1" style="text-decoration: none;">View My Info</a>
                     </div>
                     <div>
                         <a href="">
-                            <i style="color: black;" class="fas fa-cog"></i>
+                            <i style="color: white;" class="fas fa-cog"></i>
                         </a>
                     </div>
                 </div>
@@ -165,9 +164,9 @@
         <i style="color: white;" class="fas fa-sign-out-alt"></i>
         </div>
         </div>
-        <div style="margin-top:3%;margin-left:1%">
-        {{$slot}}
-    </div>
+        <div style="margin-top: 3%; margin-left: 1%; height: 540px; overflow-y: auto;">
+    {{$slot}}
+</div>
     </div>
 </div>
 @livewireScripts
