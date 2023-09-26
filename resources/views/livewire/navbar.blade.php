@@ -4,7 +4,7 @@
             display: flex;
             align-items: center;
             padding: 10px;
-            background-color: #f2f2f2;
+            background-color: white;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
@@ -34,7 +34,7 @@
 
         .fas {
             width: 30px;
-            color: black;
+            color: white;
         }
 
         .emp-name {
@@ -45,16 +45,16 @@
             margin-right: 15px;
         }
         .nav-link{
-            color: black;
+            color: white;
         }
     </style>
 
     <div class="row">
-    <div class="card" style="height: auto; width: 20%;">
+    <div class="card" style="border-radius:0px;height: auto; width: 20%; background-color:rgba(2, 17, 79, 0.548)">
         <div class="card-body">
             <ul class="nav flex-column">
                 <div style="margin-bottom: 10px;">
-                    <img height="80" width="210" src="https://pbs.twimg.com/profile_images/1120842984/hrp_negy_400x400.jpg" alt="">
+                    <img  height="80" width="210" src="https://www.thesmbguide.com/images/greytHR-1024x512-20190228.png" alt="">
                 </div>
                 <div class="profile-container">
                     <div>
@@ -63,11 +63,11 @@
 
                     <div class="emp-name">
                         <h6 style="font-size: 12px;" class="username">Sri Kumar Asapu</h6>
-                        <a href="" class="nav-item-1">View My Info</a>
+                        <a href="" class="nav-item-1" style="text-decoration: none;">View My Info</a>
                     </div>
                     <div>
                         <a href="">
-                            <i class="fas fa-cog"></i>
+                            <i style="color: black;" class="fas fa-cog"></i>
                         </a>
                     </div>
                 </div>
