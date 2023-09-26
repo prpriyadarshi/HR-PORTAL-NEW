@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get("/", \App\Livewire\Navbar::class)->name('navbar');
 
  Route::get("/emplogin", \App\Livewire\EmpLogin::class)->name('emplogin');
 
