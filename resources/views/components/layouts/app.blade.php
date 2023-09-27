@@ -82,7 +82,7 @@
         <div class="card-body">
             <ul class="nav flex-column">
                 <div style="margin-bottom: 10px;">
-                    <img  height="80" width="210" src="https://www.thesmbguide.com/images/greytHR-1024x512-20190228.png" alt="">
+                    <img  height="50" width="210" src="https://xsilica.com/images/xsilica_broucher_final_modified_05082016-2.png" alt="">
                 </div>
                 <div class="profile-container">
                     <div>
@@ -101,7 +101,7 @@
                 </div>
 
                 <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle1()">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/Home">
                         <i class="fas fa-home"></i> Home
                     </a>
                 </li>

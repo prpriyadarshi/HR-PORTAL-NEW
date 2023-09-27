@@ -6,15 +6,15 @@
             text-decoration: none;
             color: black;
             cursor: pointer;
-            transition: color 0.3s; 
+            transition: color 0.3s;
         }
 
         .links:hover {
-            color: blue; 
+            color: blue;
         }
     </style>
     <div class="row">
-    <div class="card" style="width: auto; height: 125px; margin-left: 3%;border:1px solid white">
+        <div class="card" style="width: auto; height: 125px; margin-left: 3%;border:1px solid white">
             <div>
                 <a onclick="toggleDetails('personalDetails')" class="links">1. Personal</a>
             </div>
@@ -32,8 +32,9 @@
             </div>
         </div>
 
+        @foreach($employees as $employee)
         {{-- Personal Tab --}}
-        <div class="col" id="personalDetails" style="display: none;" >
+        <div class="col" id="personalDetails" style="display: none;">
             <div class="row" style="border-radius: 5px; height: 250px; width: 600px; background-color: white;margin-left: 5%; margin-bottom: 20px;">
                 <div style="margin-top: 2%">Profile</div>
                 <div class="col">
@@ -42,7 +43,7 @@
                         Location
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        Hyderabad
+                        {{$employee->job_location}}
                     </div>
                 </div>
                 <div class="col">
@@ -50,19 +51,19 @@
                         Name
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        Asapu Sri Kumar Manikanta
+                        {{$employee->first_name}} {{$employee->last_name}}
                     </div>
                     <div style="font-size: 12px; margin-top: 30px; color: grey; margin-left: 15px">
                         Employee ID
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        XSS-0478
+                        {{$employee->emp_id}}
                     </div>
                     <div style="font-size: 12px; margin-top: 30px; color: grey; margin-left: 15px">
                         Primary Contact No
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        6305889568
+                        {{$employee->mobile_number}}
                     </div>
                 </div>
                 <div class="col">
@@ -70,13 +71,7 @@
                         Company E-mail
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        manikanta.asapu@gmail.com
-                    </div>
-                    <div style="font-size: 12px; margin-top: 30px; color: grey; margin-left: 15px">
-                        Extension
-                    </div>
-                    <div style="margin-left: 15px; font-size: 12px">
-                        _____
+                        {{$employee->company_email}}
                     </div>
                 </div>
             </div>
@@ -88,25 +83,29 @@
                         Blood Group
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        ______
+                        {{$employee->blood_group}}
+
                     </div>
                     <div style="margin-top: 20px; font-size: 12px; color: grey; margin-left: 15px">
                         Marital Status
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        _____
+                    {{$employee->marital_status}}
+
                     </div>
                     <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
                         Place Of Birth
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        ______
+                    {{$employee->city}}
+
                     </div>
                     <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
                         Religion
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        _____
+                    {{$employee->religion}}
+
                     </div>
                 </div>
                 <div class="col">
@@ -114,25 +113,22 @@
                         Date Of Birth
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        13-10-2002
-                    </div>
-                    <div style="margin-top: 20px; font-size: 12px; color: grey; margin-left: 15px">
-                        Marriage Date
-                    </div>
-                    <div style="margin-left: 15px; font-size: 12px">
-                        _____
+                    {{$employee->date_of_birth}}
+
                     </div>
                     <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
                         Residential Status
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        ______
+                    {{$employee->job_location}}
+
                     </div>
                     <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
                         Physically Challenged
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        _____
+                    {{$employee->physically_challenge}}
+
                     </div>
                 </div>
                 <div class="col">
@@ -140,69 +136,59 @@
                         Nationality
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        ____
+                    {{$employee->nationality}}
+
                     </div>
                     <div style="margin-top: 20px; font-size: 12px; color: grey; margin-left: 15px">
                         Spouse
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        _____
+                    {{$employee->spouse}}
+
                     </div>
                     <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
                         Father Name
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        Satya Sukumar
+                    {{$employee->father_name}}
+
                     </div>
                     <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
                         International Employee
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        No
+                    {{$employee->inter_emp}}
+
                     </div>
                 </div>
             </div>
 
-            <div class="row" style="border-radius: 5px; height: 250px; width: 600px; background-color: white;margin-left: 5%; margin-bottom: 20px;">
+            <div class="row" style="border-radius: 5px; height: 200px; width: 600px; background-color: white;margin-left: 5%; margin-bottom: 20px;">
                 <div style="margin-top: 2%">Address</div>
                 <div class="col">
                     <div style="font-size: 12px; color: grey; margin-left: 15px">
                         Address
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        ____
+                    {{$employee->address}}
+
                     </div>
                     <div style="margin-top: 20px; font-size: 12px; color: grey; margin-left: 15px">
                         Name
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        _____
-                    </div>
-                    <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
-                        Phone 1
-                    </div>
-                    <div style="margin-left: 15px; font-size: 12px">
-                        _____
-                    </div>
-                    <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
-                        Extension
-                    </div>
-                    <div style="margin-left: 15px; font-size: 12px">
-                        ____
+                    {{$employee->first_name}}
+                    {{$employee->last_name}}
+
                     </div>
                 </div>
                 <div class="col">
                     <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
-                        Phone 2
+                        Mobile
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        ____
-                    </div>
-                    <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
-                        Fax
-                    </div>
-                    <div style="margin-left: 15px; font-size: 12px">
-                        ____
+                    {{$employee->mobile_number}}
+
                     </div>
                 </div>
                 <div class="col">
@@ -210,13 +196,8 @@
                         Email
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        ____
-                    </div>
-                    <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
-                        Mobile No
-                    </div>
-                    <div style="margin-left: 15px; font-size: 12px">
-                        ____
+                    {{$employee->email}}
+
                     </div>
                 </div>
             </div>
@@ -224,7 +205,7 @@
             <div class="row" style="border-radius: 5px; height: 100px; width: 600px; background-color: white;margin-left: 5%; margin-bottom: 20px;">
                 <div style="margin-top: 2%">Education</div>
                 <div class="col" style="margin-left: 15px; font-size: 12px">
-                    <div>
+                <div style="font-size: 12px; color: grey; margin-left: 15px">
                         No Data Found
                     </div>
                 </div>
@@ -232,7 +213,7 @@
         </div>
 
         {{-- Accounts & Statements --}}
-        <div class="col" style="border-radius: 5px;display: none;"  id="accountDetails">
+        <div class="col" style="border-radius: 5px;display: none;" id="accountDetails">
             <div class="row" style="border-radius: 5px; height: 100px; width: 600px; background-color: white;margin-left: 5%; margin-bottom: 20px;">
                 <div style="margin-top: 2%">Bank Account</div>
                 <div class="col">
@@ -240,7 +221,8 @@
                         Bank Name
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        Axis Bank
+                    {{$employee->bank_name}}
+
                     </div>
                 </div>
                 <div class="col">
@@ -248,7 +230,8 @@
                         Bank Account Number
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        922010060268217
+                    {{$employee->account_number}}
+
                     </div>
                 </div>
                 <div class="col">
@@ -256,31 +239,21 @@
                         Bank Branch
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        MADHAPUR
+                    {{$employee->bank_branch}}
+
                     </div>
                 </div>
             </div>
 
-            <div class="row" style="border-radius: 5px; height: 250px; width: 600px; background-color: white;margin-left: 5%; margin-bottom: 20px;">
+            <div class="row" style="border-radius: 5px; height: 100px; width: 600px; background-color: white;margin-left: 5%; margin-bottom: 20px;">
                 <div style="margin-top: 2%">PF Amount</div>
                 <div class="col">
                     <div style="font-size: 12px; color: grey; margin-left: 15px">
                         PF Number
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        ____
-                    </div>
-                    <div style="margin-top: 20px; font-size: 12px; color: grey; margin-left: 15px">
-                        Eligibility
-                    </div>
-                    <div style="margin-left: 15px; font-size: 12px">
-                        Eligible
-                    </div>
-                    <div style="margin-top: 20px; font-size: 12px; color: grey; margin-left: 15px">
-                        KYC Status
-                    </div>
-                    <div style="margin-left: 15px; font-size: 12px">
-                        Not Done, 28 Jan, 2023
+                    {{$employee->pf_no}}
+
                     </div>
                 </div>
                 <div class="col">
@@ -288,21 +261,8 @@
                         UAN
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        101902552073
-                    </div>
-                </div>
-                <div class="col">
-                    <div style="margin-top: 20px; font-size: 12px; color: grey; margin-left: 15px">
-                        PF Join Date
-                    </div>
-                    <div style="margin-left: 15px; font-size: 12px">
-                        —
-                    </div>
-                    <div style="margin-top: 20px; font-size: 12px; color: grey; margin-left: 15px">
-                        KYC Document
-                    </div>
-                    <div style="margin-left: 15px; font-size: 12px">
-                        —
+                    {{$employee->pan_no}}
+
                     </div>
                 </div>
             </div>
@@ -311,7 +271,7 @@
                 <div style="margin-top: 2%">Others IDS</div>
                 <div class="col">
                     <div style="margin-left: 15px; font-size: 12px">
-                        —
+                    ___
                     </div>
                 </div>
                 <div class="col">
@@ -323,7 +283,7 @@
         </div>
 
         {{-- Family --}}
-        <div class="col" style="border-radius: 5px;display: none;"  id="familyDetails">
+        <div class="col" style="border-radius: 5px;display: none;" id="familyDetails">
             <div class="row" style="border-radius: 5px; height: 180px; width: 600px; background-color: white;margin-left: 5%; margin-bottom: 20px;">
                 <div style="margin-top: 2%">Father</div>
                 <div class="col">
@@ -331,13 +291,15 @@
                         Name
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        Sukumar
+                    {{$employee->father_name}}
+
                     </div>
                     <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
                         Gender
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        Male
+                    {{$employee->gender}}
+
                     </div>
                 </div>
                 <div class="col">
@@ -345,13 +307,15 @@
                         Date of Birth
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        ____
+                    {{$employee->parent_dob}}
+
                     </div>
                     <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
                         Nationality
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        ____
+                    {{$employee->nationality}}
+
                     </div>
                 </div>
                 <div class="col">
@@ -359,7 +323,8 @@
                         Blood Group
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        ____
+                    {{$employee->parent_bld_group}}
+
                     </div>
                 </div>
             </div>
@@ -384,23 +349,12 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div style="font-size: 12px; color: grey; margin-left: 15px">
-                        Costcenter
-                    </div>
-                    <div style="margin-left: 15px; font-size: 12px">
-                        NA
-                    </div>
-                    <div style="margin-top: 20px; font-size: 12px; color: grey; margin-left: 15px">
-                        Costcenter
-                    </div>
-                    <div style="margin-left: 15px; font-size: 12px">
-                        NA
-                    </div>
                     <div style="margin-top: 20px; font-size: 12px; color: grey; margin-left: 15px">
                         Reporting To
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        GYAN PRABODH DASARI
+                    {{$employee->report_to}}
+
                     </div>
                 </div>
                 <div class="col">
@@ -408,19 +362,15 @@
                         Department
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        Technology
-                    </div>
-                    <div style="margin-top: 20px; font-size: 12px; color: grey; margin-left: 15px">
-                        Grade
-                    </div>
-                    <div style="margin-left: 15px; font-size: 12px">
-                        NA
+                    {{$employee->department}}
+
                     </div>
                     <div style="margin-top: 20px; font-size: 12px; color: grey; margin-left: 15px">
                         Subdepartment
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        Development
+                    {{$employee->Subdepartment}}
+
                     </div>
                 </div>
                 <div class="col">
@@ -428,61 +378,67 @@
                         Designation
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        Software Engineer I
+                    {{$employee->job_title}}
+
                     </div>
                     <div style="margin-top: 20px; font-size: 12px; color: grey; margin-left: 15px">
                         Location
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        MADHAPUR
+                    {{$employee->job_location}}
+
                     </div>
                     <div style="margin-top: 20px; font-size: 12px; color: grey; margin-left: 15px">
                         Date of Join
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        01-05-2022
+                    {{$employee->hire_date}}
                     </div>
                 </div>
             </div>
         </div>
 
         {{-- Assets --}}
-        <div class="col" style="border-radius: 5px;display: none;"id="assetsDetails">
-    <div class="row" style="border-radius: 5px; height: 200px; width: 600px; background-color: white;margin-left: 5%; margin-bottom: 20px;">
-        <div style="margin-top: 2%">Access Card Details</div>
-        <div class="col">
-            <div style="font-size: 12px; color: grey; margin-left: 15px">
-                Card No
-            </div>
-            <div style="margin-left: 15px; font-size: 12px">
-                ____
-            </div>
-            <div style="margin-top: 20px; font-size: 12px; color: grey; margin-left: 15px">
-                PREVIOUS
-            </div>
-            <div style="margin-left: 15px; font-size: 12px">
-                No data Found.
-            </div>
-        </div>
-        <div class="col">
-            <div style="font-size: 12px; color: grey; margin-left: 15px">
-                Validity
-            </div>
-            <div style="margin-left: 15px; font-size: 12px">
-                ____
-            </div>
-        </div>
-    </div>
+        <div class="col" style="border-radius: 5px;display: none;" id="assetsDetails">
+            <div class="row" style="border-radius: 5px; height: 200px; width: 600px; background-color: white;margin-left: 5%; margin-bottom: 20px;">
+                <div style="margin-top: 2%">Access Card Details</div>
+                <div class="col">
+                    <div style="font-size: 12px; color: grey; margin-left: 15px">
+                        Card No
+                    </div>
+                    <div style="margin-left: 15px; font-size: 12px">
+                    {{$employee->adhar_no}}
 
-    <div class="row" style="border-radius: 5px; height: 100px; width: 600px; background-color: white;margin-left: 5%; margin-bottom: 20px;">
-        <div style="margin-top: 2%">Assets</div>
-        <div class="col">
-            <div style="font-size: 12px; color: black; margin-left: 15px">
-                No Data Found
+                    </div>
+                    <div style="margin-top: 20px; font-size: 12px; color: grey; margin-left: 15px">
+                        PREVIOUS
+                    </div>
+                    <div style="margin-left: 15px; font-size: 12px">
+                                       No Data Found 
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div style="font-size: 12px; color: grey; margin-left: 15px">
+                        Validity
+                    </div>
+                    <div style="margin-left: 15px; font-size: 12px">
+                    ____
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="border-radius: 5px; height: 100px; width: 600px; background-color: white;margin-left: 5%; margin-bottom: 20px;">
+                <div style="margin-top: 2%">Assets</div>
+                <div class="col">
+                    <div style="font-size: 12px; color: black; margin-left: 15px">
+                        No Data Found
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+        @endforeach
+
     </div>
 </div>
 <script>
