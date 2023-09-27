@@ -76,13 +76,12 @@
             color: black;
         }
     </style>
-@auth
 <div class="row" style="height: 600px;background-color: #f0f0f0;">
     <div class="card" style="border-radius:0px;height: auto; width: 20%; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
         <div class="card-body">
             <ul class="nav flex-column">
                 <div style="margin-bottom: 10px;">
-                    <img  height="80" width="210" src="https://www.thesmbguide.com/images/greytHR-1024x512-20190228.png" alt="">
+                    <img  height="50" width="210" src="https://xsilica.com/images/xsilica_broucher_final_modified_05082016-2.png" alt="">
                 </div>
                 <div class="profile-container">
                     <div>
@@ -101,12 +100,12 @@
                 </div>
 
                 <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle1()">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/Home">
                         <i class="fas fa-home"></i> Home
                     </a>
                 </li>
                 <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle2()">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/Feeds">
                         <i class="fas fa-rss"></i> Feeds
                     </a>
                 </li>
@@ -166,15 +165,10 @@
         </div>
         </div>
         <div style="margin-top: 3%; margin-left: 1%; height: 540px; overflow-y: auto;">
-
+        {{$slot}}
 </div>
 </div>
 </div>
-{{$slot}}
-@endauth
-    @guest
-    <livewire:emplogin />
-    @endguest
 @livewireScripts
 <script>
         if (localStorage.getItem("pageIcon") && localStorage.getItem("pageTitle")) {
