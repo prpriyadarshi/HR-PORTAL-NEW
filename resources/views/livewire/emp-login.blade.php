@@ -3,27 +3,43 @@
         <!-- Left Side (Login Form) -->
         <div class="col-md-6 p-5">
             <div class="logo text-center mb-4">
-                <img src="https://xsilica.com/images/xsilica_broucher_final_modified_05082016-2.png" alt="Company Logo" width="150">
             </div>
-            <form wire:submit.prevent="login" class="login-form-with-shadow" style="background-color: white">
+            @if(Session::has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{ Session::get('success') }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+            <form wire:submit.prevent="empLogin" class="login-form-with-shadow">
                 <div class="logo text-center mb-4">
                     <img src="https://payg.in/assets/img/logo.svg" alt="Company Logo" width="150">
                 </div>
+                <hr class="bg-white"/>
                 <header _ngcontent-hyf-c110="" class="mb-12 text-center">
-                    <div _ngcontent-hyf-c110="" class="text-12gpx font-bold font-title-poppins-bold opacity-90 text-text-default justify-items-center">Hello there! <span _ngcontent-hyf-c110="" class="font-emoji text-12gpx">👋</span></div></header>
-                <!-- Username Input -->
+                    <div _ngcontent-hyf-c110="" class="text-12gpx font-bold font-title-poppins-bold opacity-90 text-text-default justify-items-center">Hello there! <span _ngcontent-hyf-c110="" class="font-emoji text-12gpx">👋</span>
+					</div></header><br>
+                @if($error)
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>{{ $error }}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                 <div class="form-group">
-                    <label for="username">Login ID</label>
-                    <input type="text" wire:model="username" class="form-control" id="username" required>
+                    <input type="text" class="form-control" placeholder="Employee ID" wire:model="form.emp_id"  />
+                    @error("form.emp_id")  <p class="pt-2 px-1 text-danger">{{
+                        str_replace('form.emp id', 'Employee ID', $message) }}</p>  @enderror
                 </div>
-                <!-- Password Input -->
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" wire:model="password" class="form-control" id="password" required>
+                    <input type="password" class="form-control" placeholder="Password" wire:model="form.password"  />
+                    @error("form.password")  <p class="pt-2 px-1 text-danger">{{
+                    str_replace('form.password', 'Password', $message) }}</p>  @enderror
                 </div>
-                <!-- Login Button -->
-                <div class="form-group text-center">
-                    <button type="submit" class="btn btn-primary">Login</button>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary btn-block" value="Login" />
                 </div>
             </form>
         </div>
@@ -81,6 +97,10 @@
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
             padding: 20px;
             border-radius: 10px;
+            background-color: "white";
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 15%;
         }
     </style>
     @livewireScripts
