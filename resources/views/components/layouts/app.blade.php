@@ -106,7 +106,7 @@
                     </a>
                 </li>
                 <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle2()">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/Feeds">
                         <i class="fas fa-rss"></i> Feeds
                     </a>
                 </li>
