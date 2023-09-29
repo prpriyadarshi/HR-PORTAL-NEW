@@ -14,7 +14,7 @@
             @endif
             <form wire:submit.prevent="empLogin" class="login-form-with-shadow">
                 <div class="logo text-center mb-4">
-                    <img src="https://payg.in/assets/img/logo.svg" alt="Company Logo" width="150">
+                    <img src="https://www.attuneglobal.net/images/logo.jpg" alt="Company Logo" width="150">
                 </div>
                 <hr class="bg-white"/>
                 <header _ngcontent-hyf-c110="" class="mb-12 text-center">

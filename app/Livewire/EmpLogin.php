@@ -20,7 +20,7 @@ class EmpLogin extends Component
         if (Auth::guard('emp')->attempt($this->form))
         {
             session()->flash('Success', "You are Loggedin Successfully!");
-            return redirect()->to('/Home');
+            return redirect(route('profile.info'));
         }
         else
         {

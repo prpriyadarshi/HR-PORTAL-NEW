@@ -27,148 +27,152 @@
     <livewire:styles />
 </head>
 <body>
+@guest
+    <livewire:emplogin/>
+@else
 <div>
-<style>
-        .profile-container {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            background-color:rgb(2, 17, 79) ;
-            box-shadow: 2px 4px 4px 4px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-        }
-        .profile-image {
-            height: 32px;
-            width: 32px;
-            background-color: green;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
+    <style>
+            .profile-container {
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                background-color:rgb(2, 17, 79) ;
+                box-shadow: 2px 4px 4px 4px rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
+            }
+            .profile-image {
+                height: 32px;
+                width: 32px;
+                background-color: green;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
 
-        .username {
-            font-size: 16px;
-            margin: 0;
-        }
+            .username {
+                font-size: 16px;
+                margin: 0;
+            }
 
-        .nav-item {
-            font-size: 14px;
-            margin-bottom: 5px;
-            border-radius: 5px;
-        }
+            .nav-item {
+                font-size: 14px;
+                margin-bottom: 5px;
+                border-radius: 5px;
+            }
 
-        .nav-item-1 {
-            font-size: 12px;
-        }
+            .nav-item-1 {
+                font-size: 12px;
+            }
 
-        .fas {
-            width: 30px;
-            color: black;
-        }
+            .fas {
+                width: 30px;
+                color: black;
+            }
 
-        .emp-name {
-            margin-right: 20px;
-        }
+            .emp-name {
+                margin-right: 20px;
+            }
 
-        .profile-image {
-            margin-right: 15px;
-        }
-        .nav-link{
-            color: black;
-        }
-    </style>
-<div class="row" style="height: 600px;background-color: #f0f0f0;">
-    <div class="card" style="border-radius:0px;height: auto; width: 20%; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-        <div class="card-body">
-            <ul class="nav flex-column">
-                <div style="margin-bottom: 10px;">
-                    <img  height="50" width="210" src="https://xsilica.com/images/xsilica_broucher_final_modified_05082016-2.png" alt="">
-                </div>
-                <div class="profile-container">
-                    <div>
-                        <img  class="profile-image" src="https://mlwfc8l8ikil.i.optimole.com/jr6wDGA-tSMksOQ4/w:374/h:535/q:90/https://nationaltranslationservices.com.au/wp-content/uploads/2020/07/bottom-banner-2.png">
+            .profile-image {
+                margin-right: 15px;
+            }
+            .nav-link{
+                color: black;
+            }
+        </style>
+    <div class="row" style="height: 600px;background-color: #f0f0f0;">
+        <div class="card" style="border-radius:0px;height: auto; width: 20%; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            <div class="card-body">
+                <ul class="nav flex-column">
+                    <div style="margin-bottom: 10px;">
+                        <img  height="50" width="210" src="https://xsilica.com/images/xsilica_broucher_final_modified_05082016-2.png" alt="">
+                    </div>
+                    <div class="profile-container">
+                        <div>
+                            <img  class="profile-image" src="https://mlwfc8l8ikil.i.optimole.com/jr6wDGA-tSMksOQ4/w:374/h:535/q:90/https://nationaltranslationservices.com.au/wp-content/uploads/2020/07/bottom-banner-2.png">
+                        </div>
+
+                        <div class="emp-name">
+                            <h6 style="font-size: 12px;color:white" class="username">Sri Kumar Asapu</h6>
+                        <a href="{{ route('profile.info') }}" class="nav-item-1" style="text-decoration: none;" onclick="changePageTitle()">View My Info</a>
+                        </div>
+                        <div>
+                            <a href="">
+                                <i style="color: white;" class="fas fa-cog"></i>
+                            </a>
+                        </div>
                     </div>
 
-                    <div class="emp-name">
-                        <h6 style="font-size: 12px;color:white" class="username">Sri Kumar Asapu</h6>
-                    <a href="{{ route('profile.info') }}" class="nav-item-1" style="text-decoration: none;" onclick="changePageTitle()">View My Info</a>
-                    </div>
-                    <div>
-                        <a href="">
-                            <i style="color: white;" class="fas fa-cog"></i>
+                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle1()">
+                        <a class="nav-link" href="/Home">
+                            <i class="fas fa-home"></i> Home
                         </a>
-                    </div>
-                </div>
-
-                <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle1()">
-                    <a class="nav-link" href="/Home">
-                        <i class="fas fa-home"></i> Home
-                    </a>
-                </li>
-                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle2()">
-                    <a class="nav-link" href="/Feeds">
-                        <i class="fas fa-rss"></i> Feeds
-                    </a>
-                </li>
-                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle3()">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-tasks"></i> To do
-                    </a>
-                </li>
-                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle4()">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-money-bill-wave"></i> Salary
-                    </a>
-                </li>
-                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle5()">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-file-alt"></i> Leave
-                    </a>
-                </li>
-                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle6()">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-clock"></i> Attendance
-                    </a>
-                </li>
-                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle7()">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-folder"></i> Document Center
-                    </a>
-                </li>
-                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle8()">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-users"></i> People
-                    </a>
-                </li>
-                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle9()">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-headset"></i> Helpdesk
-                    </a>
-                </li>
-                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle10()">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-user-friends"></i> Workflow Delegates
-                    </a>
-                </li>
-            </ul>
+                    </li>
+                    <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle2()">
+                        <a class="nav-link" href="/Feeds">
+                            <i class="fas fa-rss"></i> Feeds
+                        </a>
+                    </li>
+                    <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle3()">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-tasks"></i> To do
+                        </a>
+                    </li>
+                    <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle4()">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-money-bill-wave"></i> Salary
+                        </a>
+                    </li>
+                    <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle5()">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-file-alt"></i> Leave
+                        </a>
+                    </li>
+                    <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle6()">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-clock"></i> Attendance
+                        </a>
+                    </li>
+                    <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle7()">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-folder"></i> Document Center
+                        </a>
+                    </li>
+                    <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle8()">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-users"></i> People
+                        </a>
+                    </li>
+                    <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle9()">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-headset"></i> Helpdesk
+                        </a>
+                    </li>
+                    <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle10()">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-user-friends"></i> Workflow Delegates
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
+        <div class="col" style="height: 60px; width: 100%; background-color:rgb(2, 17, 79)">
+        <div class="col" style="display: flex; align-items: center; margin-top:2%;justify-content: start;">
+        <i style="margin-bottom: 5px; color: white" id="pageIcon"></i>
+        <h6 style="color: white; width: 200px; margin-right: 60%;" id="pageTitle">Home</h6>
+            <h6 style="color: grey; margin-right: 20px;margin-top:5px;width:100px">Quick Links</h6>
+            <div class="notification-icon" style="margin-right: 10px;">
+                <i style="color: white;" class="fas fa-bell"></i>
+            </div>
+            <div class="notification-icon">
+            <i style="color: white;" class="fas fa-sign-out-alt"></i>
+            </div>
+            </div>
+            <div style="margin-top: 3%; margin-left: 1%; height: 540px; overflow-y: auto;">
+            {{$slot}}
     </div>
-    <div class="col" style="height: 60px; width: 100%; background-color:rgb(2, 17, 79)">
-    <div class="col" style="display: flex; align-items: center; margin-top:2%;justify-content: start;">
-    <i style="margin-bottom: 5px; color: white" id="pageIcon"></i>
-    <h6 style="color: white; width: 200px; margin-right: 60%;" id="pageTitle">Home</h6>
-        <h6 style="color: grey; margin-right: 20px;margin-top:5px;width:100px">Quick Links</h6>
-        <div class="notification-icon" style="margin-right: 10px;">
-            <i style="color: white;" class="fas fa-bell"></i>
-        </div>
-        <div class="notification-icon">
-        <i style="color: white;" class="fas fa-sign-out-alt"></i>
-        </div>
-        </div>
-        <div style="margin-top: 3%; margin-left: 1%; height: 540px; overflow-y: auto;">
-        {{$slot}}
-</div>
-</div>
-</div>
+    </div>
+    </div>
+@endguest
 @livewireScripts
 <script>
         if (localStorage.getItem("pageIcon") && localStorage.getItem("pageTitle")) {

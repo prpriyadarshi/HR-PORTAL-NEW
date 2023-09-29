@@ -8,8 +8,16 @@ use App\Livewire\ProfileInfo;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/emplogin', EmpLogin::class)->name('emplogin');
-Route::get('/', Dashboard::class);
-Route::get('/Home', Home::class);
-Route::get('/ProfileInfo', ProfileInfo::class)->name('profile.info');
-Route::get('/Feeds', Feeds::class);
+Route::group(['middleware' => 'checkAuth'], function () {
+     Route::get('/emplogin', EmpLogin::class)->name('emplogin');
+});
+
+// Route::get('/emplogin', EmpLogin::class)->name('emplogin');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', Dashboard::class)->name('dash');
+    Route::get('/Home', Home::class)->name('home');
+    Route::get('/ProfileInfo', ProfileInfo::class)->name('profile.info');
+    Route::get('/Feeds', Feeds::class);
+});
+
