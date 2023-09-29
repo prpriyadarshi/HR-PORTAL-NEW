@@ -75,9 +75,9 @@
         
     </style>
 
- <div class="row" style="height: auto;background-color: #f0f0f0;">
+ <div class="row" style="height: auto;width:auto;background-color: #f0f0f0;">
     <div class="card" style="border-radius:0px;height: auto; width: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-        <div class="card-body">
+        <div class="card-body" style="height: auto;width:auto">
             <ul class="nav flex-column">
                 <div style="margin-bottom: 10px;">
                     <img  height="50" width="210" src="https://www.attuneglobal.net/images/logo.jpg" alt="">
@@ -134,7 +134,7 @@
                     </a>
                 </li>
                 <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle8()">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/PeoplesList">
                         <i class="fas fa-users"></i> People
                     </a>
                 </li>
