@@ -15,20 +15,13 @@ class CheckAuth
      */
     public function handle(Request $request, Closure $next): Response
     {
-
-        // if(auth()->user() && auth()->check()){
-        //     session(['user_type' => 'admin']);
-        //      return redirect(route('home'));
-        //  }
-        //  else
-        if (auth('emp')->check()) {
-            session(['user_type' => 'emp']);
-            return redirect(route('home'));
-           }
+        if(auth()->user() && auth()->guard('employee_details')->check()){
+            session(['user_type' => 'employee_details']);
+             return redirect(route('home'));
+         }
       else {
                 session(['user_type' => 'guest']);
-                return $next($request);
-            }
-
+                }
+        return $next($request);
     }
 }

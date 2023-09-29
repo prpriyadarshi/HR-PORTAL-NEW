@@ -65,40 +65,39 @@ return new class extends Migration
                 $table->timestamps();
 
         });
-         // Create a trigger to generate the custom "id"
-    //      DB::unprepared('
-    //      CREATE TRIGGER generate_employee_id BEFORE INSERT ON employee_details FOR EACH ROW
-    //      BEGIN
-    //          DECLARE company_id INT;
-    //          SET company_id = (SELECT MAX(CAST(SUBSTRING_INDEX(id, "-", -1) AS UNSIGNED)) FROM employee_details WHERE SUBSTRING_INDEX(id, "-", 1) = NEW.company_name);
+        DB::unprepared('
+        CREATE PROCEDURE generateEmployeeId()
+        BEGIN
+            DECLARE next_id INT;
+            SET next_id = (SELECT IFNULL(MAX(SUBSTRING_INDEX(emp_id, "-", -1) + 1), 1) FROM employee_details);
+            SET @new_emp_id = CONCAT("PAYG-", LPAD(next_id, 4, "0"));
+        END;
+    ');
 
-    //          IF company_id IS NULL THEN
-    //              SET company_id = 1;
-    //          ELSE
-    //              SET company_id = company_id + 1;
-    //          END IF;
-
-    //          SET NEW.id = CONCAT("PAYG", "-", LPAD(company_id, 4, "0"));
-    //      END
-    //  ');
-
-
+    // Create a trigger to call the stored procedure to set "emp_id" before insert
     DB::unprepared('
-    CREATE TRIGGER generate_employee_id BEFORE INSERT ON employee_details FOR EACH ROW
-    BEGIN
-        DECLARE next_id INT;
-        SET next_id = (SELECT IFNULL(MAX(SUBSTRING_INDEX(emp_id, "-", -1) + 1), 1) FROM employee_details);
-        SET NEW.emp_id = CONCAT("PAYG-", LPAD(next_id, 4, "0"));
-    END
-');
+        CREATE TRIGGER set_employee_id BEFORE INSERT ON employee_details FOR EACH ROW
+        BEGIN
+            IF NEW.emp_id IS NULL THEN
+                CALL generateEmployeeId();
+                SET NEW.emp_id = @new_emp_id;
+            END IF;
+        END;
+    ');
 
+    // Add a unique constraint for mobile_number and alternate_mobile_number
+    DB::unprepared('ALTER TABLE employee_details ADD CONSTRAINT unique_mobile_numbers UNIQUE (mobile_number, alternate_mobile_number)');
+}
 
-     // Add a unique constraint for mobile_number and alternate_mobile_number
-     DB::unprepared('ALTER TABLE employee_details ADD CONSTRAINT unique_mobile_numbers UNIQUE (mobile_number, alternate_mobile_number)');
- }
+/**
+ * Reverse the migrations.
+ */
+public function down(): void
+{
+    // Drop the trigger and stored procedure
+    DB::unprepared('DROP TRIGGER IF EXISTS set_employee_id');
+    DB::unprepared('DROP PROCEDURE IF EXISTS generateEmployeeId');
 
-    public function down(): void
-    {
-        Schema::dropIfExists('employee_details');
-    }
+    Schema::dropIfExists('employee_details');
+}
 };

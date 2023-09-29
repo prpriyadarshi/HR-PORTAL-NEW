@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,9 +15,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/app.js') }}" defer data-turbolinks-track="reload"></script>
-    <!-- Include Alpine.js -->
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@2.x.x/dist/alpine.js" defer></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.x.x/dist/alpine.js" defer></script>
     <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="{{ asset('vendor/livewire/livewire.js') }}"></script>
@@ -75,17 +72,19 @@
         .nav-link{
             color: black;
         }
+        
     </style>
-<div class="row" style="height: 600px;background-color: #f0f0f0;">
-    <div class="card" style="border-radius:0px;height: auto; width: 20%; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+
+ <div class="row" style="height: auto;background-color: #f0f0f0;">
+    <div class="card" style="border-radius:0px;height: auto; width: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
         <div class="card-body">
             <ul class="nav flex-column">
                 <div style="margin-bottom: 10px;">
-                    <img  height="50" width="210" src="https://xsilica.com/images/xsilica_broucher_final_modified_05082016-2.png" alt="">
+                    <img  height="50" width="210" src="https://www.attuneglobal.net/images/logo.jpg" alt="">
                 </div>
                 <div class="profile-container">
                     <div>
-                        <img  class="profile-image" src="https://mlwfc8l8ikil.i.optimole.com/jr6wDGA-tSMksOQ4/w:374/h:535/q:90/https://nationaltranslationservices.com.au/wp-content/uploads/2020/07/bottom-banner-2.png">
+                        <img  class="profile-image" src="https://www.ninjaonlinedating.com/blog/wp-content/uploads/2019/08/SmileModifiedKRAK.jpg">
                     </div>
 
                     <div class="emp-name">
@@ -100,51 +99,51 @@
                 </div>
 
                 <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle1()">
-                    <a class="nav-link" href="/Home">
+                    <a class="nav-link" href="/">
                         <i class="fas fa-home"></i> Home
                     </a>
                 </li>
-                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle2()">
+                <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle2()">
                     <a class="nav-link" href="/Feeds">
                         <i class="fas fa-rss"></i> Feeds
                     </a>
                 </li>
-                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle3()">
+                <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle3()">
                     <a class="nav-link" href="#">
                         <i class="fas fa-tasks"></i> To do
                     </a>
                 </li>
-                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle4()">
+                <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle4()">
                     <a class="nav-link" href="#">
                         <i class="fas fa-money-bill-wave"></i> Salary
                     </a>
                 </li>
-                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle5()">
+                <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5()">
                     <a class="nav-link" href="#">
                         <i class="fas fa-file-alt"></i> Leave
                     </a>
                 </li>
-                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle6()">
+                <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
                     <a class="nav-link" href="#">
                         <i class="fas fa-clock"></i> Attendance
                     </a>
                 </li>
-                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle7()">
+                <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle7()">
                     <a class="nav-link" href="#">
                         <i class="fas fa-folder"></i> Document Center
                     </a>
                 </li>
-                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle8()">
+                <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle8()">
                     <a class="nav-link" href="#">
                         <i class="fas fa-users"></i> People
                     </a>
                 </li>
-                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle9()">
+                <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle9()">
                     <a class="nav-link" href="#">
                         <i class="fas fa-headset"></i> Helpdesk
                     </a>
                 </li>
-                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle10()">
+                <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle10()">
                     <a class="nav-link" href="#">
                         <i class="fas fa-user-friends"></i> Workflow Delegates
                     </a>
@@ -152,7 +151,7 @@
             </ul>
         </div>
     </div>
-    <div class="col" style="height: 60px; width: 100%; background-color:rgb(2, 17, 79)">
+    <div class="col" style="height: 60px; width: auto; background-color:rgb(2, 17, 79)">
     <div class="col" style="display: flex; align-items: center; margin-top:2%;justify-content: start;">
     <i style="margin-bottom: 5px; color: white" id="pageIcon"></i>
     <h6 style="color: white; width: 200px; margin-right: 60%;" id="pageTitle">Home</h6>
@@ -267,7 +266,5 @@
             localStorage.setItem("pageTitle", newTitle);
         }
     </script>
-
 </body>
 </html>
-
