@@ -41,9 +41,9 @@ return [
             'provider' => 'users',
         ],
 
-        'emp' => [
+        'employee_details' => [
             'driver' => 'session',
-            'provider' => 'emp',
+            'provider' => 'employee_details',
         ],
     ],
 
@@ -75,11 +75,10 @@ return [
         //     'table' => 'users',
         // ],
 
-
-        'emp'=>[
-            'driver'=>'eloquent',
-            'model'=>App\Models\EmployeeDetails::class,
-        ],
+            'employee_details' => [
+                'driver' => 'eloquent',
+                'model' => App\Models\EmployeeDetails::class, // Update this to your Employee model
+            ],
     ],
 
     /*
@@ -107,6 +106,12 @@ return [
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,
+        ],
+
+
+        'employee_details' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\EmployeeDetails::class, // Update this to your Employee model
         ],
     ],
 

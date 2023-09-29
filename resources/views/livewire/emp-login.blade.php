@@ -14,7 +14,7 @@
             @endif
             <form wire:submit.prevent="empLogin" class="login-form-with-shadow">
                 <div class="logo text-center mb-4">
-                    <img src="https://payg.in/assets/img/logo.svg" alt="Company Logo" width="150">
+                    <img src="https://www.attuneglobal.net/images/logo.jpg" alt="Company Logo" width="150">
                 </div>
                 <hr class="bg-white"/>
                 <header _ngcontent-hyf-c110="" class="mb-12 text-center">
@@ -33,12 +33,12 @@
                     @error("form.emp_id")  <p class="pt-2 px-1 text-danger">{{
                         str_replace('form.emp id', 'Employee ID', $message) }}</p>  @enderror
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="margin-top: 20px;">
                     <input type="password" class="form-control" placeholder="Password" wire:model="form.password"  />
                     @error("form.password")  <p class="pt-2 px-1 text-danger">{{
                     str_replace('form.password', 'Password', $message) }}</p>  @enderror
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="text-align: center;margin-top:10px">
                     <input type="submit" class="btn btn-primary btn-block" value="Login" />
                 </div>
             </form>
