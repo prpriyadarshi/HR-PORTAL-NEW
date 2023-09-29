@@ -35,10 +35,10 @@
         @foreach($employees as $employee)
         {{-- Personal Tab --}}
         <div class="col" id="personalDetails" style="display: none;">
-            <div class="row" style="border-radius: 5px; height: 250px; width: 600px; background-color: white;margin-left: 5%; margin-bottom: 20px;">
+            <div class="row" style="border-radius: 5px; height: 250px; width: 100%; background-color: white;margin-left: 5%; margin-bottom: 20px;">
                 <div style="margin-top: 2%">Profile</div>
                 <div class="col">
-                    <img style="border-radius: 50%; margin-left: 15px" height="80" width="80" src="https://mlwfc8l8ikil.i.optimole.com/jr6wDGA-tSMksOQ4/w:374/h:535/q:90/https://nationaltranslationservices.com.au/wp-content/uploads/2020/07/bottom-banner-2.png">
+                    <img style="border-radius: 50%; margin-left: 15px" height="80" width="80" src="{{ asset($employee->image) }}">
                     <div style="font-size: 12px; margin-top: 30px; color: grey; margin-left: 15px">
                         Location
                     </div>
@@ -76,7 +76,7 @@
                 </div>
             </div>
 
-            <div class="row" style="border-radius: 5px; height: 250px; width: 600px; background-color: white;margin-left: 5%; margin-bottom: 20px;">
+            <div class="row" style="border-radius: 5px; height: 250px; width: 100%; background-color: white;margin-left: 5%; margin-bottom: 20px;">
                 <div style="margin-top: 2%">Personal</div>
                 <div class="col">
                     <div style="font-size: 12px; color: grey; margin-left: 15px">
@@ -84,28 +84,24 @@
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
                         {{$employee->blood_group}}
-
                     </div>
                     <div style="margin-top: 20px; font-size: 12px; color: grey; margin-left: 15px">
                         Marital Status
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->marital_status}}
-
+                        {{$employee->marital_status}}
                     </div>
                     <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
                         Place Of Birth
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->city}}
-
+                        {{$employee->city}}
                     </div>
                     <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
                         Religion
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->religion}}
-
+                        {{$employee->religion}}
                     </div>
                 </div>
                 <div class="col">
@@ -113,22 +109,19 @@
                         Date Of Birth
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->date_of_birth}}
-
+                        {{$employee->date_of_birth}}
                     </div>
                     <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
                         Residential Status
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->job_location}}
-
+                        {{$employee->job_location}}
                     </div>
                     <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
                         Physically Challenged
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->physically_challenge}}
-
+                        {{$employee->physically_challenge}}
                     </div>
                 </div>
                 <div class="col">
@@ -136,50 +129,43 @@
                         Nationality
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->nationality}}
-
+                        {{$employee->nationality}}
                     </div>
                     <div style="margin-top: 20px; font-size: 12px; color: grey; margin-left: 15px">
                         Spouse
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->spouse}}
-
+                        {{$employee->spouse}}
                     </div>
                     <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
                         Father Name
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->father_name}}
-
+                        {{$employee->father_name}}
                     </div>
                     <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
                         International Employee
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->inter_emp}}
-
+                        {{$employee->inter_emp}}
                     </div>
                 </div>
             </div>
 
-            <div class="row" style="border-radius: 5px; height: 200px; width: 600px; background-color: white;margin-left: 5%; margin-bottom: 20px;">
+            <div class="row" style="border-radius: 5px; height: 200px; width: 100%; background-color: white;margin-left: 5%; margin-bottom: 20px;">
                 <div style="margin-top: 2%">Address</div>
                 <div class="col">
                     <div style="font-size: 12px; color: grey; margin-left: 15px">
                         Address
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->address}}
-
+                        {{$employee->address}}
                     </div>
                     <div style="margin-top: 20px; font-size: 12px; color: grey; margin-left: 15px">
                         Name
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->first_name}}
-                    {{$employee->last_name}}
-
+                        {{$employee->first_name}} {{$employee->last_name}}
                     </div>
                 </div>
                 <div class="col">
@@ -187,8 +173,7 @@
                         Mobile
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->mobile_number}}
-
+                        {{$employee->mobile_number}}
                     </div>
                 </div>
                 <div class="col">
@@ -196,16 +181,15 @@
                         Email
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->email}}
-
+                        {{$employee->email}}
                     </div>
                 </div>
             </div>
 
-            <div class="row" style="border-radius: 5px; height: 100px; width: 600px; background-color: white;margin-left: 5%; margin-bottom: 20px;">
+            <div class="row" style="border-radius: 5px; height: 100px; width: 100%; background-color: white;margin-left: 5%; margin-bottom: 20px;">
                 <div style="margin-top: 2%">Education</div>
                 <div class="col" style="margin-left: 15px; font-size: 12px">
-                <div style="font-size: 12px; color: grey; margin-left: 15px">
+                    <div style="font-size: 12px; color: grey; margin-left: 15px">
                         No Data Found
                     </div>
                 </div>
@@ -214,15 +198,14 @@
 
         {{-- Accounts & Statements --}}
         <div class="col" style="border-radius: 5px;display: none;" id="accountDetails">
-            <div class="row" style="border-radius: 5px; height: 100px; width: 600px; background-color: white;margin-left: 5%; margin-bottom: 20px;">
+            <div class="row" style="border-radius: 5px; height: 100px; width: 100%; background-color: white;margin-left: 5%; margin-bottom: 20px;">
                 <div style="margin-top: 2%">Bank Account</div>
                 <div class="col">
                     <div style="font-size: 12px; color: grey; margin-left: 15px">
                         Bank Name
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->bank_name}}
-
+                        {{$employee->bank_name}}
                     </div>
                 </div>
                 <div class="col">
@@ -230,8 +213,7 @@
                         Bank Account Number
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->account_number}}
-
+                        {{$employee->account_number}}
                     </div>
                 </div>
                 <div class="col">
@@ -239,21 +221,19 @@
                         Bank Branch
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->bank_branch}}
-
+                        {{$employee->bank_branch}}
                     </div>
                 </div>
             </div>
 
-            <div class="row" style="border-radius: 5px; height: 100px; width: 600px; background-color: white;margin-left: 5%; margin-bottom: 20px;">
+            <div class="row" style="border-radius: 5px; height: 100px; width: 100%; background-color: white;margin-left: 5%; margin-bottom: 20px;">
                 <div style="margin-top: 2%">PF Amount</div>
                 <div class="col">
                     <div style="font-size: 12px; color: grey; margin-left: 15px">
                         PF Number
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->pf_no}}
-
+                        {{$employee->pf_no}}
                     </div>
                 </div>
                 <div class="col">
@@ -261,17 +241,16 @@
                         UAN
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->pan_no}}
-
+                        {{$employee->pan_no}}
                     </div>
                 </div>
             </div>
 
-            <div class="row" style="border-radius: 5px; height: 100px; width: 600px; background-color: white;margin-left: 5%; margin-bottom: 20px;">
+            <div class="row" style="border-radius: 5px; height: 100px; width: 100%; background-color: white;margin-left: 5%; margin-bottom: 20px;">
                 <div style="margin-top: 2%">Others IDS</div>
                 <div class="col">
                     <div style="margin-left: 15px; font-size: 12px">
-                    ___
+                        ___
                     </div>
                 </div>
                 <div class="col">
@@ -284,22 +263,20 @@
 
         {{-- Family --}}
         <div class="col" style="border-radius: 5px;display: none;" id="familyDetails">
-            <div class="row" style="border-radius: 5px; height: 180px; width: 600px; background-color: white;margin-left: 5%; margin-bottom: 20px;">
+            <div class="row" style="border-radius: 5px; height: 180px; width: 100%; background-color: white;margin-left: 5%; margin-bottom: 20px;">
                 <div style="margin-top: 2%">Father</div>
                 <div class="col">
                     <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
                         Name
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->father_name}}
-
+                        {{$employee->father_name}}
                     </div>
                     <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
                         Gender
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->gender}}
-
+                        {{$employee->gender}}
                     </div>
                 </div>
                 <div class="col">
@@ -307,15 +284,13 @@
                         Date of Birth
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->parent_dob}}
-
+                        {{$employee->parent_dob}}
                     </div>
                     <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
                         Nationality
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->nationality}}
-
+                        {{$employee->nationality}}
                     </div>
                 </div>
                 <div class="col">
@@ -323,8 +298,7 @@
                         Blood Group
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->parent_bld_group}}
-
+                        {{$employee->parent_bld_group}}
                     </div>
                 </div>
             </div>
@@ -332,7 +306,7 @@
 
         {{-- Employment & Job --}}
         <div class="col" style="border-radius: 5px;display: none;" id="employeeJobDetails">
-            <div class="row" style="border-radius: 5px; height: 250px; width: 600px; background-color: white;margin-left: 5%; margin-bottom: 20px;">
+            <div class="row" style="border-radius: 5px; height: 250px; width: 100%; background-color: white;margin-left: 5%; margin-bottom: 20px;">
                 <div class="row">
                     <div class="col">
                         <div style="margin-top: 2%">Current Position</div>
@@ -353,8 +327,7 @@
                         Reporting To
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->report_to}}
-
+                        {{$employee->report_to}}
                     </div>
                 </div>
                 <div class="col">
@@ -362,15 +335,13 @@
                         Department
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->department}}
-
+                        {{$employee->department}}
                     </div>
                     <div style="margin-top: 20px; font-size: 12px; color: grey; margin-left: 15px">
                         Subdepartment
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->Subdepartment}}
-
+                        {{$employee->Subdepartment}}
                     </div>
                 </div>
                 <div class="col">
@@ -378,21 +349,19 @@
                         Designation
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->job_title}}
-
+                        {{$employee->job_title}}
                     </div>
                     <div style="margin-top: 20px; font-size: 12px; color: grey; margin-left: 15px">
                         Location
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->job_location}}
-
+                        {{$employee->job_location}}
                     </div>
                     <div style="margin-top: 20px; font-size: 12px; color: grey; margin-left: 15px">
                         Date of Join
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->hire_date}}
+                        {{$employee->hire_date}}
                     </div>
                 </div>
             </div>
@@ -400,22 +369,20 @@
 
         {{-- Assets --}}
         <div class="col" style="border-radius: 5px;display: none;" id="assetsDetails">
-            <div class="row" style="border-radius: 5px; height: 200px; width: 600px; background-color: white;margin-left: 5%; margin-bottom: 20px;">
+            <div class="row" style="border-radius: 5px; height: 200px; width: 100%; background-color: white;margin-left: 5%; margin-bottom: 20px;">
                 <div style="margin-top: 2%">Access Card Details</div>
                 <div class="col">
                     <div style="font-size: 12px; color: grey; margin-left: 15px">
                         Card No
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    {{$employee->adhar_no}}
-
+                        {{$employee->adhar_no}}
                     </div>
                     <div style="margin-top: 20px; font-size: 12px; color: grey; margin-left: 15px">
                         PREVIOUS
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                                       No Data Found 
-
+                        No Data Found 
                     </div>
                 </div>
                 <div class="col">
@@ -423,12 +390,12 @@
                         Validity
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                    ____
+                        ____
                     </div>
                 </div>
             </div>
 
-            <div class="row" style="border-radius: 5px; height: 100px; width: 600px; background-color: white;margin-left: 5%; margin-bottom: 20px;">
+            <div class="row" style="border-radius: 5px; height: 100px; width: 100%; background-color: white;margin-left: 5%; margin-bottom: 20px;">
                 <div style="margin-top: 2%">Assets</div>
                 <div class="col">
                     <div style="font-size: 12px; color: black; margin-left: 15px">

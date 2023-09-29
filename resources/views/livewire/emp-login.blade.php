@@ -33,12 +33,12 @@
                     @error("form.emp_id")  <p class="pt-2 px-1 text-danger">{{
                         str_replace('form.emp id', 'Employee ID', $message) }}</p>  @enderror
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="margin-top: 20px;">
                     <input type="password" class="form-control" placeholder="Password" wire:model="form.password"  />
                     @error("form.password")  <p class="pt-2 px-1 text-danger">{{
                     str_replace('form.password', 'Password', $message) }}</p>  @enderror
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="text-align: center;margin-top:10px">
                     <input type="submit" class="btn btn-primary btn-block" value="Login" />
                 </div>
             </form>
