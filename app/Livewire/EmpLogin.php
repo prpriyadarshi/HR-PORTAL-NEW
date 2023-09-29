@@ -13,15 +13,6 @@ class EmpLogin extends Component
     public $error = '';
         public function empLogin()
         {
-<<<<<<< HEAD
-            session()->flash('Success', "You are Loggedin Successfully!");
-            return redirect(route('profile.info'));
-        }
-        else
-        {
-            $this->error = "Employee ID or Password Wrong!!";
-        }
-=======
             $this->validate([
                 "form.emp_id"=> 'required',
                 "form.password"=> "required"
@@ -30,17 +21,13 @@ class EmpLogin extends Component
             {
                 session()->flash('Success', "You are Loggedin Successfully!");
                 return redirect()->route('profile.info');
-            }
-            else    
+            }else
             {
                 $this->error = "Employee ID or Password Wrong!!";
             }
->>>>>>> 6ad1c4bd908b8ec983f4fac3b715ecedc05e59d8
 
         }
-
-
-    public function render()
+ public function render()
     {
         return view('livewire.emp-login');
     }
