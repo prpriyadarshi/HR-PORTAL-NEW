@@ -11,6 +11,13 @@ class PeopleList extends Model
     protected $fillable=[
         'image',
         'name',
-        'emp_id'
+        'emp_id',
+        'contact_details',
+        'category',
+        'location',
+        'other_info',
+        'dob',
+        'doj',
+        'is_starred'
     ];
 }

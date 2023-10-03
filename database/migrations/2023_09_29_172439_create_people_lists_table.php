@@ -16,6 +16,13 @@ return new class extends Migration
             $table->string('image');
             $table->string('emp_id');
             $table->string('name');
+            $table->string('dob');
+            $table->string('doj');
+            $table->string('contact_details');
+            $table->string('category');
+            $table->string('location');
+            $table->boolean('is_starred')->default(false);
+            $table->string('other_info');
             $table->timestamps();
         });
     }
