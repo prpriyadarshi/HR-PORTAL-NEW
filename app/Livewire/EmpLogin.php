@@ -21,16 +21,13 @@ class EmpLogin extends Component
             {
                 session()->flash('Success', "You are Loggedin Successfully!");
                 return redirect()->route('profile.info');
-            }
-            else    
+            }else
             {
                 $this->error = "Employee ID or Password Wrong!!";
             }
 
         }
-
-
-    public function render()
+ public function render()
     {
         return view('livewire.emp-login');
     }
