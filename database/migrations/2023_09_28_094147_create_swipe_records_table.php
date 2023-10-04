@@ -13,15 +13,10 @@ return new class extends Migration
     {
         Schema::create('swipe_records', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('emp_id')->nullable();
+            $table->string('emp_id');
             $table->string('swipe_time');
             $table->string('in_or_out');
             $table->timestamps();
-        
-            $table->foreign('emp_id')
-                ->references('id')
-                ->on('employee_details')
-                ->onDelete('set null'); 
         });     
     }
 

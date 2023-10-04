@@ -17,6 +17,7 @@ class Home extends Component
     {
         $this->signIn = !$this->signIn;
         SwipeRecord::create([
+            'emp_id'=>'PAYG-0003',
             'swipe_time' =>now()->format('H:i:s'),
             'in_or_out' => $this->signIn ? "Sign In" : "Sign Out",
         ]);

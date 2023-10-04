@@ -17,16 +17,19 @@
     @vite(['resources/css/app.css','resources/js/app.js'])
 
     <script src="{{ mix('js/app.js') }}"></script>
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="path/to/your.css">
 
 
 
 <!-- Include Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Include Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
@@ -157,12 +160,18 @@
     </style>
 
 
+ <div class="row" style="height: auto;width:auto;background-color: #f0f0f0;">
+    <div class="card" style="border-radius:0px;height: auto; width: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        <div class="card-body" style="height: auto;width:auto">
+
+
 
  <div class="row" style="height: auto;width:auto;background-color: #f0f0f0;">
 
     <div class="card" style="border-radius:0px;height: auto; width: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
 
         <div class="card-body" style="height: auto;width:auto">
+
 
             <ul class="nav flex-column">
 
@@ -280,7 +289,10 @@
 
                 <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle8()">
 
+                    <a class="nav-link" href="/PeoplesList"
+
                     <a class="nav-link" href="/PeoplesList">
+
 
                         <i class="fas fa-users"></i> People
 
@@ -289,6 +301,9 @@
                 </li>
 
                 <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle9()">
+
+                    <a class="nav-link" href="/HelpDesk">
+
 
                     <a class="nav-link" href="#">
 
@@ -337,7 +352,11 @@
 
         </div>
 
+        <div style="margin-top: 3%; margin-left: 1%; height: 505px; overflow-y: auto;">
+
+
         <div style="margin-top: 3%; margin-left: 1%; height: 540px; overflow-y: auto;">
+
 
         {{$slot}}
 
