@@ -27,11 +27,11 @@ Route::get('/HelpDesk', HelpDesk::class);
 Route::get('/Settings', Settings::class);
 Route::get('/review', Review::class)->name('review');
 Route::get('/task', Task::class)->name('task');
+
 });
 
 
 
-Route::get('/review', Review::class)->name('review');
-Route::get('/task', Task::class)->name('task');
+
 
 
