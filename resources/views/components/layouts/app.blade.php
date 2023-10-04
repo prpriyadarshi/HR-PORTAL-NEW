@@ -162,192 +162,195 @@
 
 
 
-        <div class="row" style="height: auto;width:auto;background-color: #f0f0f0;">
+    @guest
+    <livewire:emplogin/>
+       @else
+       <div class="row" style="height: auto;width:auto;background-color: #f0f0f0;">
 
-            <div class="card" style="border-radius:0px;height: auto; width: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        <div class="card" style="border-radius:0px;height: auto; width: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
 
-                <div class="card-body" style="height: auto;width:auto">
+            <div class="card-body" style="height: auto;width:auto">
 
-                    <ul class="nav flex-column">
+                <ul class="nav flex-column">
 
-                        <div style="margin-bottom: 10px;">
+                    <div style="margin-bottom: 10px;">
 
-                            <img height="50" width="210" src="https://www.attuneglobal.net/images/logo.jpg" alt="">
+                        <img height="50" width="210" src="https://www.attuneglobal.net/images/logo.jpg" alt="">
 
-                        </div>
+                    </div>
 
-                        <div class="profile-container">
+                    <div class="profile-container">
 
-                            <div>
+                        <div>
 
-                                <img class="profile-image" src="https://www.ninjaonlinedating.com/blog/wp-content/uploads/2019/08/SmileModifiedKRAK.jpg">
-
-                            </div>
-
-
-
-                            <div class="emp-name">
-
-                                <h6 style="font-size: 12px;color:white" class="username">Sri Kumar Asapu</h6>
-
-                                <a href="{{ route('profile.info') }}" class="nav-item-1" style="text-decoration: none;" onclick="changePageTitle()">View My Info</a>
-
-                            </div>
-
-                            <div>
-
-                                <a href="/Settings" onclick="changePageTitle11()">
-
-                                    <i style="color: white;" class="fas fa-cog"></i>
-
-                                </a>
-
-                            </div>
+                            <img class="profile-image" src="https://www.ninjaonlinedating.com/blog/wp-content/uploads/2019/08/SmileModifiedKRAK.jpg">
 
                         </div>
 
 
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle1()">
+                        <div class="emp-name">
 
-                            <a class="nav-link" href="/">
+                            <h6 style="font-size: 12px;color:white" class="username">Sri Kumar Asapu</h6>
 
-                                <i class="fas fa-home"></i> Home
+                            <a href="{{ route('profile.info') }}" class="nav-item-1" style="text-decoration: none;" onclick="changePageTitle()">View My Info</a>
 
-                            </a>
+                        </div>
 
-                        </li>
+                        <div>
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle2()">
+                            <a href="/Settings" onclick="changePageTitle11()">
 
-                            <a class="nav-link" href="/Feeds">
-
-                                <i class="fas fa-rss"></i> Feeds
+                                <i style="color: white;" class="fas fa-cog"></i>
 
                             </a>
 
-                        </li>
+                        </div>
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle3()">
-
-                            <a class="nav-link" href="/task">
-
-                                <i class="fas fa-tasks"></i> To do
-
-                            </a>
-
-                        </li>
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle12()">
-
-                            <a class="nav-link" href="/review">
-
-                                <i class="fas fa-tasks"></i> Review
-
-                            </a>
-
-                        </li>
-
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle4()">
-
-                            <a class="nav-link" href="#">
-
-                                <i class="fas fa-money-bill-wave"></i> Salary
-
-                            </a>
-
-                        </li>
-
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5()">
-
-                            <a class="nav-link" href="#">
-
-                                <i class="fas fa-file-alt"></i> Leave
-
-                            </a>
-
-                        </li>
+                    </div>
 
 
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
+                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle1()">
 
-                            <a class="nav-link" href="#">
+                        <a class="nav-link" href="/">
 
-                                <i class="fas fa-clock"></i> Attendance
+                            <i class="fas fa-home"></i> Home
 
-                            </a>
+                        </a>
 
-                        </li>
+                    </li>
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle7()">
+                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle2()">
 
-                            <a class="nav-link" href="#">
+                        <a class="nav-link" href="/Feeds">
 
-                                <i class="fas fa-folder"></i> Document Center
+                            <i class="fas fa-rss"></i> Feeds
 
-                            </a>
+                        </a>
 
-                        </li>
+                    </li>
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle8()">
+                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle3()">
 
-                            <a class="nav-link" href="/PeoplesList">
+                        <a class="nav-link" href="/task">
 
-                                <i class="fas fa-users"></i> People
+                            <i class="fas fa-tasks"></i> To do
 
-                            </a>
+                        </a>
 
-                        </li>
+                    </li>
+                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle12()">
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle9()">
+                        <a class="nav-link" href="/review">
 
-                            <a class="nav-link" href="/HelpDesk">
+                            <i class="fas fa-tasks"></i> Review
 
-                                <i class="fas fa-headset"></i> Helpdesk
+                        </a>
 
-                            </a>
+                    </li>
 
-                        </li>
+                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle4()">
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle10()">
+                        <a class="nav-link" href="#">
 
-                            <a class="nav-link" href="#">
+                            <i class="fas fa-money-bill-wave"></i> Salary
 
-                                <i class="fas fa-user-friends"></i> Workflow Delegates
+                        </a>
 
-                            </a>
+                    </li>
 
-                        </li>
+                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5()">
 
-                    </ul>
+                        <a class="nav-link" href="#">
+
+                            <i class="fas fa-file-alt"></i> Leave
+
+                        </a>
+
+                    </li>
+
+
+
+                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
+
+                        <a class="nav-link" href="#">
+
+                            <i class="fas fa-clock"></i> Attendance
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle7()">
+
+                        <a class="nav-link" href="#">
+
+                            <i class="fas fa-folder"></i> Document Center
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle8()">
+
+                        <a class="nav-link" href="/PeoplesList">
+
+                            <i class="fas fa-users"></i> People
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle9()">
+
+                        <a class="nav-link" href="/HelpDesk">
+
+                            <i class="fas fa-headset"></i> Helpdesk
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle10()">
+
+                        <a class="nav-link" href="#">
+
+                            <i class="fas fa-user-friends"></i> Workflow Delegates
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="col" style="height: 60px; width: auto; background-color:rgb(2, 17, 79)">
+
+            <div class="col" style="display: flex; align-items: center; margin-top:2%;justify-content: start;">
+
+                <i style="margin-bottom: 5px; color: white" id="pageIcon"></i>
+
+                <h6 style="color: white; width: 200px; margin-right: 60%;" id="pageTitle">Home</h6>
+
+                <h6 style="color: grey; margin-right: 20px;margin-top:5px;width:150px">Quick Links</h6>
+
+                <div class="notification-icon" style="margin-right: 10px;">
+
+                    <i style="color: white;" class="fas fa-bell"></i>
+
+                </div>
+
+                <div class="notification-icon">
+
+                    <i style="color: white;" class="fas fa-sign-out-alt"></i>
 
                 </div>
 
             </div>
-
-            <div class="col" style="height: 60px; width: auto; background-color:rgb(2, 17, 79)">
-
-                <div class="col" style="display: flex; align-items: center; margin-top:2%;justify-content: start;">
-
-                    <i style="margin-bottom: 5px; color: white" id="pageIcon"></i>
-
-                    <h6 style="color: white; width: 200px; margin-right: 60%;" id="pageTitle">Home</h6>
-
-                    <h6 style="color: grey; margin-right: 20px;margin-top:5px;width:150px">Quick Links</h6>
-
-                    <div class="notification-icon" style="margin-right: 10px;">
-
-                        <i style="color: white;" class="fas fa-bell"></i>
-
-                    </div>
-
-                    <div class="notification-icon">
-
-                        <i style="color: white;" class="fas fa-sign-out-alt"></i>
-
-                    </div>
-
-                </div>
 
                 <div style="margin-top: 3%; margin-left: 1%; height: 490px; overflow-y: auto;overflow-x:auto">
 
@@ -358,6 +361,7 @@
             </div>
 
         </div>
+        @endguest
 
         @livewireScripts
 

@@ -12,7 +12,11 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/emplogin', EmpLogin::class)->name('emplogin');
+Route::group(['middleware' => 'checkAuth'], function () {
+    Route::get('/emplogin', EmpLogin::class)->name('emplogin');
+});
+
+Route::middleware(['auth:emp'])->group(function () {
 Route::get('/', Home::class)->name('home');
 Route::get('/ProfileInfo', ProfileInfo::class)->name('profile.info');
 Route::get('/Feeds', Feeds::class);
@@ -20,4 +24,7 @@ Route::get('/PeoplesList', PeopleLists::class);
 Route::get('/HelpDesk', HelpDesk::class);
 Route::get('/review', Review::class)->name('review');
 Route::get('/task', Task::class)->name('task');
+});
+
+
 

@@ -17,7 +17,7 @@ class EmpLogin extends Component
                 "form.emp_id"=> 'required',
                 "form.password"=> "required"
             ]);
-            if (Auth::guard('employee_details')->attempt($this->form))
+            if (Auth::guard('emp')->attempt($this->form))
             {
                 session()->flash('Success', "You are Loggedin Successfully!");
                 return redirect()->route('profile.info');
