@@ -89,7 +89,7 @@
                         </div>
                         <div class="profile-container">
                             <div>
-                                <img class="profile-image" src="https://www.ninjaonlinedating.com/blog/wp-content/uploads/2019/08/SmileModifiedKRAK.jpg">
+                                <img class="profile-image" src="https://th.bing.com/th/id/OIP.SW3e_JMU32NeFaireox7YgHaD2?pid=ImgDet&w=1024&h=533&rs=1">
                             </div>
 
                             <div class="emp-name">
@@ -169,7 +169,7 @@
                         <i style="color: white;" class="fas fa-sign-out-alt"></i>
                     </div>
                 </div>
-                <div style="margin-top: 3%; margin-left: 1%; height: 475px; overflow-y: auto;">
+                <div style="margin-top: 3%; margin-left: 1%; height: 490px; overflow-y: auto;overflow-x:auto">
                     {{$slot}}
                 </div>
             </div>

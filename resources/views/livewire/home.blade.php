@@ -299,9 +299,6 @@
                                                         <img src="https://resumekit.com/blog/wp-content/uploads/2023/02/Optimal-outline-for-a-cover-letter-2-1.png" alt="Image Description" style="height: 100px; width: 160px; margin-top: 20px; margin-left: 80px;">
                                                         <div class="B" style="color: black; margin-left: 20px; font-family: Open Sans, sans-serif; font-size: 14px;">
                                                             <p style="color: #677A8E; margin-left: 20px; font-family: Open Sans, sans-serif; margin-top: 20px;">All good! You've nothing new to track.</p>
-
-
-
                                                         </div>
                                                     </div>
                                                 </div>
