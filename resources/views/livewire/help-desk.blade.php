@@ -119,7 +119,7 @@
                                         <label for="cc_to">CC to</label>
                                         <input wire:model="cc_to" type="text" id="cc_to" placeholder="Add CC recipients" readonly>
                                     </div>
-                                    <div class="row">
+                                    <div class="row" style="margin-top: 5px;">
                                         <div style="margin: 0px;">
                                             <button type="button" style="border-radius: 50%;margin-right:10px" class="add-button" wire:click="toggleRotation">
                                                 <i class="fa fa-plus"></i>
@@ -213,31 +213,31 @@
             <table style="width: 100%; border-collapse: collapse;">
                 <thead>
                     <tr style="background-color: #007BFF; color: white;">
-                        <th style="padding: 10px;">Emp ID</th>
-                        <th style="padding: 10px;">Category</th>
-                        <th style="padding: 10px;">Subject</th>
-                        <th style="padding: 10px;">Description</th>
-                        <th style="padding: 10px;">Attach Files</th>
-                        <th style="padding: 10px;">CC To</th>
-                        <th style="padding: 10px;">Priority</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Emp ID</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Category</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Subject</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Description</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Attach Files</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">CC To</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Priority</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($records as $record)
                     <tr>
-                        <td style="padding: 10px;">{{ $record->emp_id }}</td>
-                        <td style="padding: 10px;">{{ $record->category }}</td>
-                        <td style="padding: 10px;">{{ $record->subject }}</td>
-                        <td style="padding: 10px;">{{ $record->description }}</td>
-                        <td style="padding: 10px;">
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->emp_id }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->category }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->subject }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->description }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">
                             @if ($record->file_path)
                             <a href="{{ asset('storage/' . $record->file_path) }}" target="_blank" style="text-decoration: none; color: #007BFF;">View File</a>
                             @else
                             N/A
                             @endif
                         </td>
-                        <td style="padding: 10px;">{{ $record->cc_to }}</td>
-                        <td style="padding: 10px;">{{ $record->priority }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->cc_to }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->priority }}</td>
                     </tr>
                     @endforeach
                 </tbody>
