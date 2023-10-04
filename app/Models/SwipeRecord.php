@@ -9,9 +9,4 @@ class SwipeRecord extends Model
 {
     use HasFactory;
     protected $fillable = ['emp_id', 'swipe_time', 'in_or_out'];
-
-    public function employeeDetail()
-    {
-        return $this->belongsTo(EmployeeDetail::class, 'emp_id')->withDefault();
-    }
 }

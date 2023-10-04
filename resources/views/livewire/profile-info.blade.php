@@ -14,29 +14,53 @@
         }
     </style>
     <div class="row">
-        <div class="card" style="width: auto; height: 125px; margin-left: 3%;border:1px solid white">
-            <div>
-                <a onclick="toggleDetails('personalDetails')" class="links">1. Personal</a>
-            </div>
-            <div>
-                <a onclick="toggleDetails('accountDetails')" class="links">2. Accounts & Statements</a>
-            </div>
-            <div>
-                <a onclick="toggleDetails('familyDetails')" class="links">3. Family</a>
-            </div>
-            <div>
-                <a onclick="toggleDetails('employeeJobDetails')" class="links">4. Employment & Job</a>
-            </div>
-            <div>
-                <a onclick="toggleDetails('assetsDetails')" class="links">5. Assets</a>
-            </div>
-        </div>
+<style>
+    /* Define your custom CSS classes */
+    .custom-nav-tabs {
+        background-color: #f8f9fa; /* Background color for the tabs */
+    }
+
+    .custom-nav-link {
+        color: #333; /* Text color for inactive tabs */
+    }
+
+    .custom-nav-link.active {
+        color: #007bff; /* Text color for the active tab */
+        background-color: #fff; /* Background color for the active tab */
+        border-color: #007bff; /* Border color for the active tab */
+    }
+</style>
+
+<div class="card" style="width: auto; margin-left: 18%;">
+    <ul class="nav custom-nav-tabs"> <!-- Apply the custom class to the nav -->
+        <li class="nav-item flex-grow-1">
+            <a class="nav-link custom-nav-link" onclick="toggleDetails('personalDetails')">Personal</a>
+        </li>
+        <li class="nav-item flex-grow-1">
+            <a class="nav-link custom-nav-link" onclick="toggleDetails('accountDetails')" >Accounts & Statements</a>
+        </li>
+        <li class="nav-item flex-grow-1">
+            <a class="nav-link custom-nav-link" onclick="toggleDetails('familyDetails')">Family</a>
+        </li>
+        <li class="nav-item flex-grow-1">
+            <a class="nav-link custom-nav-link" onclick="toggleDetails('employeeJobDetails')">Employment & Job</a>
+        </li>
+        <li class="nav-item flex-grow-1">
+            <a class="nav-link custom-nav-link" onclick="toggleDetails('assetsDetails')">Assets</a>
+        </li>
+    </ul>
+</div>
+
+
+
+
 
         @foreach($employees as $employee)
         {{-- Personal Tab --}}
-        <div class="col" id="personalDetails" style="display: none;">
-            <div class="row" style="border-radius: 5px; height: 250px; width: 100%; background-color: white;margin-left: 5%; margin-bottom: 20px;">
-                <div style="margin-top: 2%">Profile</div>
+       <div class="row" id="personalDetails" style="margin-top:20px;display: none;">
+       <div class="col">
+            <div class="row" style="border-radius: 5px; height: 250px; width: 100%; background-color: white; margin-bottom: 20px;">
+                <div style="margin-top: 2%;margin-left:15px">Profile</div>
                 <div class="col">
                     <img style="border-radius: 50%; margin-left: 15px" height="80" width="80" src="{{ asset($employee->image) }}">
                     <div style="font-size: 12px; margin-top: 30px; color: grey; margin-left: 15px">
@@ -76,8 +100,8 @@
                 </div>
             </div>
 
-            <div class="row" style="border-radius: 5px; height: 250px; width: 100%; background-color: white;margin-left: 5%; margin-bottom: 20px;">
-                <div style="margin-top: 2%">Personal</div>
+            <div class="row" style="border-radius: 5px; height: 250px; width: 100%; background-color: white;margin-bottom: 20px;">
+                <div style="margin-top: 2%;margin-left:15px">Personal</div>
                 <div class="col">
                     <div style="font-size: 12px; color: grey; margin-left: 15px">
                         Blood Group
@@ -152,8 +176,8 @@
                 </div>
             </div>
 
-            <div class="row" style="border-radius: 5px; height: 200px; width: 100%; background-color: white;margin-left: 5%; margin-bottom: 20px;">
-                <div style="margin-top: 2%">Address</div>
+            <div class="row" style="border-radius: 5px; height: 200px; width: 100%; background-color: white; margin-bottom: 20px;">
+                <div style="margin-top: 2%;margin-left:15px">Address</div>
                 <div class="col">
                     <div style="font-size: 12px; color: grey; margin-left: 15px">
                         Address
@@ -186,8 +210,8 @@
                 </div>
             </div>
 
-            <div class="row" style="border-radius: 5px; height: 100px; width: 100%; background-color: white;margin-left: 5%; margin-bottom: 20px;">
-                <div style="margin-top: 2%">Education</div>
+            <div class="row" style="border-radius: 5px; height: 100px; width: 100%; background-color: white; margin-bottom: 20px;">
+                <div style="margin-top: 2%;margin-left:15px">Education</div>
                 <div class="col" style="margin-left: 15px; font-size: 12px">
                     <div style="font-size: 12px; color: grey; margin-left: 15px">
                         No Data Found
@@ -195,11 +219,12 @@
                 </div>
             </div>
         </div>
-
+       </div>
         {{-- Accounts & Statements --}}
-        <div class="col" style="border-radius: 5px;display: none;" id="accountDetails">
-            <div class="row" style="border-radius: 5px; height: 100px; width: 100%; background-color: white;margin-left: 5%; margin-bottom: 20px;">
-                <div style="margin-top: 2%">Bank Account</div>
+      <div class="row"style="margin-top:20px;border-radius: 5px;display: none;" id="accountDetails">
+      <div class="col" >
+            <div class="row" style="border-radius: 5px; height: 100px; width: 100%; background-color: white; margin-bottom: 20px;">
+                <div style="margin-top: 2%;margin-left:15px">Bank Account</div>
                 <div class="col">
                     <div style="font-size: 12px; color: grey; margin-left: 15px">
                         Bank Name
@@ -226,8 +251,8 @@
                 </div>
             </div>
 
-            <div class="row" style="border-radius: 5px; height: 100px; width: 100%; background-color: white;margin-left: 5%; margin-bottom: 20px;">
-                <div style="margin-top: 2%">PF Amount</div>
+            <div class="row" style="border-radius: 5px; height: 100px; width: 100%; background-color: white;margin-bottom: 20px;">
+                <div style="margin-top: 2%;margin-left:15px">PF Amount</div>
                 <div class="col">
                     <div style="font-size: 12px; color: grey; margin-left: 15px">
                         PF Number
@@ -246,8 +271,8 @@
                 </div>
             </div>
 
-            <div class="row" style="border-radius: 5px; height: 100px; width: 100%; background-color: white;margin-left: 5%; margin-bottom: 20px;">
-                <div style="margin-top: 2%">Others IDS</div>
+            <div class="row" style="border-radius: 5px; height: 100px; width: 100%; background-color: white; margin-bottom: 20px;">
+                <div style="margin-top: 2%;margin-left:15px">Others IDS</div>
                 <div class="col">
                     <div style="margin-left: 15px; font-size: 12px">
                         ___
@@ -261,22 +286,24 @@
             </div>
         </div>
 
+      </div>
         {{-- Family --}}
-        <div class="col" style="border-radius: 5px;display: none;" id="familyDetails">
-            <div class="row" style="border-radius: 5px; height: 180px; width: 100%; background-color: white;margin-left: 5%; margin-bottom: 20px;">
-                <div style="margin-top: 2%">Father</div>
+       <div class="row" style="margin-top:20px;border-radius: 5px;display: none;" id="familyDetails">
+       <div class="col" >
+            <div class="row" style="border-radius: 5px; height: 180px; width: 100%; background-color: white; margin-bottom: 20px;">
+                <div style="margin-top: 2%;margin-left:15px">Family</div>
                 <div class="col">
                     <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
-                        Name
+                        Father Name
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
                         {{$employee->father_name}}
                     </div>
                     <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
-                        Gender
+                        Mother Name
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        {{$employee->gender}}
+                        {{$employee->mother_name}}
                     </div>
                 </div>
                 <div class="col">
@@ -303,13 +330,14 @@
                 </div>
             </div>
         </div>
-
+       </div>
         {{-- Employment & Job --}}
-        <div class="col" style="border-radius: 5px;display: none;" id="employeeJobDetails">
-            <div class="row" style="border-radius: 5px; height: 250px; width: 100%; background-color: white;margin-left: 5%; margin-bottom: 20px;">
+      <div class="row" style="margin-top:20px;border-radius: 5px;display: none;" id="employeeJobDetails">
+      <div class="col" >
+            <div class="row" style="border-radius: 5px; height: 250px; width: 100%; background-color: white; margin-bottom: 20px;">
                 <div class="row">
                     <div class="col">
-                        <div style="margin-top: 2%">Current Position</div>
+                        <div style="margin-top: 2%;margin-left:15px">Current Position</div>
                     </div>
                     <div class="col">
                         <div style="margin-top: 2%; font-size: 12px; color: blue; margin-left: 25px">
@@ -367,10 +395,12 @@
             </div>
         </div>
 
+      </div>
         {{-- Assets --}}
-        <div class="col" style="border-radius: 5px;display: none;" id="assetsDetails">
-            <div class="row" style="border-radius: 5px; height: 200px; width: 100%; background-color: white;margin-left: 5%; margin-bottom: 20px;">
-                <div style="margin-top: 2%">Access Card Details</div>
+        <div class="row"style="margin-top:20px;border-radius: 5px;display: none;" id="assetsDetails">
+        <div class="col" >
+            <div class="row" style="border-radius: 5px; height: 200px; width: 100%; background-color: white; margin-bottom: 20px;">
+                <div style="margin-top: 2%;margin-left:15px">Access Card Details</div>
                 <div class="col">
                     <div style="font-size: 12px; color: grey; margin-left: 15px">
                         Card No
@@ -382,7 +412,7 @@
                         PREVIOUS
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        No Data Found 
+                        No Data Found
                     </div>
                 </div>
                 <div class="col">
@@ -395,14 +425,15 @@
                 </div>
             </div>
 
-            <div class="row" style="border-radius: 5px; height: 100px; width: 100%; background-color: white;margin-left: 5%; margin-bottom: 20px;">
-                <div style="margin-top: 2%">Assets</div>
+            <div class="row" style="border-radius: 5px; height: 100px; width: 100%; background-color: white; margin-bottom: 20px;">
+                <div style="margin-top: 2%;margin-left:15px;">Assets</div>
                 <div class="col">
                     <div style="font-size: 12px; color: black; margin-left: 15px">
                         No Data Found
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         @endforeach
 
