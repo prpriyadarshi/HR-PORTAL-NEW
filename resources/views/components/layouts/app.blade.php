@@ -17,10 +17,16 @@
     @vite(['resources/css/app.css','resources/js/app.js'])
 
     <script src="{{ mix('js/app.js') }}"></script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Include Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Include Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
@@ -217,16 +223,20 @@
                     </a>
 
                 </li>
-
-                <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle3()">
-
-                    <a class="nav-link" href="#">
-
-                        <i class="fas fa-tasks"></i> To do
-
+                <li class="nav-item dropdown">
+                    <!-- Dropdown Trigger -->
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-tasks"></i> Tasks
                     </a>
-
+                    <!-- Dropdown Menu -->
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <!-- Dropdown Items -->
+                        <a class="dropdown-item" href="/task" onclick="changePageTitle3()">To do</a>
+                        <a class="dropdown-item" href="/review" onclick="changePageTitle3()">Review</a>
+                    </div>
                 </li>
+
+
 
                 <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle4()">
 
@@ -297,7 +307,6 @@
                     </a>
 
                 </li>
-
             </ul>
 
         </div>
@@ -532,7 +541,12 @@
 
         }
 
+
+
+
     </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
