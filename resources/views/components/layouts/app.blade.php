@@ -230,9 +230,18 @@
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle3()">
 
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/task">
 
                                 <i class="fas fa-tasks"></i> To do
+
+                            </a>
+
+                        </li>
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle12()">
+
+                            <a class="nav-link" href="/review">
+
+                                <i class="fas fa-tasks"></i> Review
 
                             </a>
 
@@ -581,6 +590,22 @@
                 localStorage.setItem("pageTitle", newTitle);
 
             }
+
+            function changePageTitle12() {
+
+var newIcon = '<i style="color: white;" class="fas fa-cog"></i>'
+
+var newTitle = "Review";
+
+document.getElementById("pageIcon").innerHTML = newIcon;
+
+document.getElementById("pageTitle").textContent = newTitle;
+
+localStorage.setItem("pageIcon", newIcon);
+
+localStorage.setItem("pageTitle", newTitle);
+
+}
 
         </script>
 
