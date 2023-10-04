@@ -2,6 +2,8 @@
 
 <html lang="en">
 
+
+
 <head>
 
     <meta charset="UTF-8">
@@ -20,16 +22,11 @@
 
     <link rel="stylesheet" type="text/css" href="path/to/your.css">
 
-
-
-<!-- Include Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-
-
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
@@ -57,517 +54,538 @@
 
 </head>
 
+
+
 <body>
 
-<div>
+    <div>
 
-<style>
+        <style>
 
-        .profile-container {
+            .profile-container {
 
-            display: flex;
+                display: flex;
 
-            align-items: center;
+                align-items: center;
 
-            padding: 10px;
+                padding: 10px;
 
-            background-color:rgb(2, 17, 79) ;
+                background-color: rgb(2, 17, 79);
 
-            box-shadow: 2px 4px 4px 4px rgba(0, 0, 0, 0.1);
+                box-shadow: 2px 4px 4px 4px rgba(0, 0, 0, 0.1);
 
-            border-radius: 5px;
+                border-radius: 5px;
 
-        }
+            }
 
-        .profile-image {
 
-            height: 32px;
 
-            width: 32px;
+            .profile-image {
 
-            background-color: green;
+                height: 32px;
 
-            border-radius: 50%;
+                width: 32px;
 
-            margin-right: 10px;
+                background-color: green;
 
-        }
+                border-radius: 50%;
 
+                margin-right: 10px;
 
+            }
 
-        .username {
 
-            font-size: 16px;
 
-            margin: 0;
+            .username {
 
-        }
+                font-size: 16px;
 
+                margin: 0;
 
+            }
 
-        .nav-item {
 
-            font-size: 14px;
 
-            margin-bottom: 5px;
+            .nav-item {
 
-            border-radius: 5px;
+                font-size: 14px;
 
-        }
+                margin-bottom: 5px;
 
+                border-radius: 5px;
 
+            }
 
-        .nav-item-1 {
 
-            font-size: 12px;
 
-        }
+            .nav-item-1 {
 
+                font-size: 12px;
 
+            }
 
-        .fas {
 
-            width: 30px;
 
-            color: black;
+            .fas {
 
-        }
+                width: 30px;
 
+                color: black;
 
+            }
 
-        .emp-name {
 
-            margin-right: 20px;
 
-        }
+            .emp-name {
 
+                margin-right: 20px;
 
+            }
 
-        .profile-image {
 
-            margin-right: 15px;
 
-        }
+            .profile-image {
 
-        .nav-link{
+                margin-right: 15px;
 
-            color: black;
+            }
 
-        }
 
 
+            .nav-link {
 
-    </style>
+                color: black;
 
+            }
 
- <div class="row" style="height: auto;width:auto;background-color: #f0f0f0;">
-    <div class="card" style="border-radius:0px;height: auto; width: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-        <div class="card-body" style="height: auto;width:auto">
+        </style>
 
 
 
- <div class="row" style="height: auto;width:auto;background-color: #f0f0f0;">
+        <div class="row" style="height: auto;width:auto;background-color: #f0f0f0;">
 
-    <div class="card" style="border-radius:0px;height: auto; width: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            <div class="card" style="border-radius:0px;height: auto; width: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
 
-        <div class="card-body" style="height: auto;width:auto">
+                <div class="card-body" style="height: auto;width:auto">
 
+                    <ul class="nav flex-column">
 
-            <ul class="nav flex-column">
+                        <div style="margin-bottom: 10px;">
 
-                <div style="margin-bottom: 10px;">
+                            <img height="50" width="210" src="https://www.attuneglobal.net/images/logo.jpg" alt="">
 
-                    <img  height="50" width="210" src="https://www.attuneglobal.net/images/logo.jpg" alt="">
+                        </div>
+
+                        <div class="profile-container">
+
+                            <div>
+
+                                <img class="profile-image" src="https://www.ninjaonlinedating.com/blog/wp-content/uploads/2019/08/SmileModifiedKRAK.jpg">
+
+                            </div>
+
+
+
+                            <div class="emp-name">
+
+                                <h6 style="font-size: 12px;color:white" class="username">Sri Kumar Asapu</h6>
+
+                                <a href="{{ route('profile.info') }}" class="nav-item-1" style="text-decoration: none;" onclick="changePageTitle()">View My Info</a>
+
+                            </div>
+
+                            <div>
+
+                                <a href="/Settings" onclick="changePageTitle11()">
+
+                                    <i style="color: white;" class="fas fa-cog"></i>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle1()">
+
+                            <a class="nav-link" href="/">
+
+                                <i class="fas fa-home"></i> Home
+
+                            </a>
+
+                        </li>
+
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle2()">
+
+                            <a class="nav-link" href="/Feeds">
+
+                                <i class="fas fa-rss"></i> Feeds
+
+                            </a>
+
+                        </li>
+
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle3()">
+
+                            <a class="nav-link" href="#">
+
+                                <i class="fas fa-tasks"></i> To do
+
+                            </a>
+
+                        </li>
+
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle4()">
+
+                            <a class="nav-link" href="#">
+
+                                <i class="fas fa-money-bill-wave"></i> Salary
+
+                            </a>
+
+                        </li>
+
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5()">
+
+                            <a class="nav-link" href="#">
+
+                                <i class="fas fa-file-alt"></i> Leave
+
+                            </a>
+
+                        </li>
+
+
+
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
+
+                            <a class="nav-link" href="#">
+
+                                <i class="fas fa-clock"></i> Attendance
+
+                            </a>
+
+                        </li>
+
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle7()">
+
+                            <a class="nav-link" href="#">
+
+                                <i class="fas fa-folder"></i> Document Center
+
+                            </a>
+
+                        </li>
+
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle8()">
+
+                            <a class="nav-link" href="/PeoplesList">
+
+                                <i class="fas fa-users"></i> People
+
+                            </a>
+
+                        </li>
+
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle9()">
+
+                            <a class="nav-link" href="/HelpDesk">
+
+                                <i class="fas fa-headset"></i> Helpdesk
+
+                            </a>
+
+                        </li>
+
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle10()">
+
+                            <a class="nav-link" href="#">
+
+                                <i class="fas fa-user-friends"></i> Workflow Delegates
+
+                            </a>
+
+                        </li>
+
+                    </ul>
 
                 </div>
 
-                <div class="profile-container">
+            </div>
 
-                    <div>
+            <div class="col" style="height: 60px; width: auto; background-color:rgb(2, 17, 79)">
 
-                        <img  class="profile-image" src="https://www.ninjaonlinedating.com/blog/wp-content/uploads/2019/08/SmileModifiedKRAK.jpg">
+                <div class="col" style="display: flex; align-items: center; margin-top:2%;justify-content: start;">
+
+                    <i style="margin-bottom: 5px; color: white" id="pageIcon"></i>
+
+                    <h6 style="color: white; width: 200px; margin-right: 60%;" id="pageTitle">Home</h6>
+
+                    <h6 style="color: grey; margin-right: 20px;margin-top:5px;width:150px">Quick Links</h6>
+
+                    <div class="notification-icon" style="margin-right: 10px;">
+
+                        <i style="color: white;" class="fas fa-bell"></i>
 
                     </div>
 
+                    <div class="notification-icon">
 
-
-                    <div class="emp-name">
-
-                        <h6 style="font-size: 12px;color:white" class="username">Sri Kumar Asapu</h6>
-
-                    <a href="{{ route('profile.info') }}" class="nav-item-1" style="text-decoration: none;" onclick="changePageTitle()">View My Info</a>
-
-                    </div>
-
-                    <div>
-
-                        <a href="">
-
-                            <i style="color: white;" class="fas fa-cog"></i>
-
-                        </a>
+                        <i style="color: white;" class="fas fa-sign-out-alt"></i>
 
                     </div>
 
                 </div>
 
+                <div style="margin-top: 3%; margin-left: 1%; height: 490px; overflow-y: auto;overflow-x:auto">
 
+                    {{$slot}}
 
-                <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle1()">
+                </div>
 
-                    <a class="nav-link" href="/">
-
-                        <i class="fas fa-home"></i> Home
-
-                    </a>
-
-                </li>
-
-                <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle2()">
-
-                    <a class="nav-link" href="/Feeds">
-
-                        <i class="fas fa-rss"></i> Feeds
-
-                    </a>
-
-                </li>
-                <li class="nav-item dropdown">
-                    <!-- Dropdown Trigger -->
-                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-tasks"></i> Tasks
-                    </a>
-                    <!-- Dropdown Menu -->
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <!-- Dropdown Items -->
-                        <a class="dropdown-item" href="/task" onclick="changePageTitle3()">To do</a>
-                        <a class="dropdown-item" href="/review" onclick="changePageTitle3()">Review</a>
-                    </div>
-                </li>
-
-
-
-                <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle4()">
-
-                    <a class="nav-link" href="#">
-
-                        <i class="fas fa-money-bill-wave"></i> Salary
-
-                    </a>
-
-                </li>
-
-                <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5()">
-
-                    <a class="nav-link" href="#">
-
-                        <i class="fas fa-file-alt"></i> Leave
-
-                    </a>
-
-                </li>
-
-                <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
-
-                    <a class="nav-link" href="#">
-
-                        <i class="fas fa-clock"></i> Attendance
-
-                    </a>
-
-                </li>
-
-                <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle7()">
-
-                    <a class="nav-link" href="#">
-
-                        <i class="fas fa-folder"></i> Document Center
-
-                    </a>
-
-                </li>
-
-                <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle8()">
-
-                    <a class="nav-link" href="/PeoplesList"
-
-                    <a class="nav-link" href="/PeoplesList">
-
-
-                        <i class="fas fa-users"></i> People
-
-                    </a>
-
-                </li>
-
-                <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle9()">
-
-                    <a class="nav-link" href="/HelpDesk">
-
-
-                    <a class="nav-link" href="#">
-
-                        <i class="fas fa-headset"></i> Helpdesk
-
-                    </a>
-
-                </li>
-
-                <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle10()">
-
-                    <a class="nav-link" href="#">
-
-                        <i class="fas fa-user-friends"></i> Workflow Delegates
-
-                    </a>
-
-                </li>
-            </ul>
+            </div>
 
         </div>
 
-    </div>
+        @livewireScripts
 
-    <div class="col" style="height: 60px; width: auto; background-color:rgb(2, 17, 79)">
+        <script>
 
-    <div class="col" style="display: flex; align-items: center; margin-top:2%;justify-content: start;">
+            if (localStorage.getItem("pageIcon") && localStorage.getItem("pageTitle")) {
 
-    <i style="margin-bottom: 5px; color: white" id="pageIcon"></i>
+                var storedIcon = localStorage.getItem("pageIcon");
 
-    <h6 style="color: white; width: 200px; margin-right: 60%;" id="pageTitle">Home</h6>
+                var storedTitle = localStorage.getItem("pageTitle");
 
-        <h6 style="color: grey; margin-right: 20px;margin-top:5px;width:100px">Quick Links</h6>
+                document.getElementById("pageIcon").innerHTML = storedIcon;
 
-        <div class="notification-icon" style="margin-right: 10px;">
+                document.getElementById("pageTitle").textContent = storedTitle;
 
-            <i style="color: white;" class="fas fa-bell"></i>
+            }
 
-        </div>
 
-        <div class="notification-icon">
 
-        <i style="color: white;" class="fas fa-sign-out-alt"></i>
+            function changePageTitle() {
 
-        </div>
+                var newIcon = '<i style="color: white;" class="fas fa-address-card"></i>'
 
-        </div>
+                var newTitle = "Employee Information";
 
-        <div style="margin-top: 3%; margin-left: 1%; height: 505px; overflow-y: auto;">
+                document.getElementById("pageTitle").textContent = newTitle;
 
+                document.getElementById("pageIcon").innerHTML = newIcon;
 
-        <div style="margin-top: 3%; margin-left: 1%; height: 540px; overflow-y: auto;">
+                localStorage.setItem("pageIcon", newIcon);
 
+                localStorage.setItem("pageTitle", newTitle);
 
-        {{$slot}}
+            }
 
-</div>
 
-</div>
 
-</div>
+            function changePageTitle1() {
 
-@livewireScripts
+                var newTitle = "Home";
 
-<script>
+                var newIcon = '<i style="color: white;" class="fas fa-home"></i>'
 
-        if (localStorage.getItem("pageIcon") && localStorage.getItem("pageTitle")) {
+                document.getElementById("pageIcon").innerHTML = newIcon;
 
-            var storedIcon = localStorage.getItem("pageIcon");
+                document.getElementById("pageTitle").textContent = newTitle;
 
-            var storedTitle = localStorage.getItem("pageTitle");
+                localStorage.setItem("pageIcon", newIcon);
 
-            document.getElementById("pageIcon").innerHTML = storedIcon;
+                localStorage.setItem("pageTitle", newTitle);
 
-            document.getElementById("pageTitle").textContent = storedTitle;
+            }
 
-        }
 
 
+            function changePageTitle2() {
 
-        function changePageTitle() {
+                var newIcon = '<i style="color: white;" class="fas fa-rss"></i>'
 
-            var newIcon='<i style="color: white;" class="fas fa-address-card"></i>'
+                var newTitle = "Feeds";
 
-            var newTitle = "Employee Information";
+                document.getElementById("pageTitle").textContent = newTitle;
 
-            document.getElementById("pageTitle").textContent = newTitle;
+                document.getElementById("pageIcon").innerHTML = newIcon;
 
-            document.getElementById("pageIcon").innerHTML = newIcon;
+                localStorage.setItem("pageTitle", newTitle);
 
-            localStorage.setItem("pageIcon", newIcon);
+                localStorage.setItem("pageIcon", newIcon);
 
-            localStorage.setItem("pageTitle", newTitle);
+            }
 
-        }
 
-        function changePageTitle1() {
 
-            var newTitle = "Home";
+            function changePageTitle3() {
 
-            var newIcon='<i style="color: white;" class="fas fa-home"></i>'
+                var newIcon = '<i style="color: white;" class="fas fa-tasks"></i>'
 
-            document.getElementById("pageIcon").innerHTML = newIcon;
+                var newTitle = "To do";
 
-            document.getElementById("pageTitle").textContent = newTitle;
+                document.getElementById("pageTitle").textContent = newTitle;
 
-            localStorage.setItem("pageIcon", newIcon);
+                document.getElementById("pageIcon").innerHTML = newIcon;
 
-            localStorage.setItem("pageTitle", newTitle);
+                localStorage.setItem("pageIcon", newIcon);
 
-        }
+                localStorage.setItem("pageTitle", newTitle);
 
-        function changePageTitle2() {
+            }
 
-            var newIcon='<i style="color: white;" class="fas fa-rss"></i>'
 
-            var newTitle = "Feeds";
 
-            document.getElementById("pageTitle").textContent = newTitle;
+            function changePageTitle4() {
 
-            document.getElementById("pageIcon").innerHTML = newIcon;
+                var newIcon = '<i style="color: white;" class="fas fa-money-bill-wave"></i>'
 
-            localStorage.setItem("pageTitle", newTitle);
+                var newTitle = "Salary";
 
-            localStorage.setItem("pageIcon", newIcon);
+                document.getElementById("pageIcon").innerHTML = newIcon;
 
-        }
+                document.getElementById("pageTitle").textContent = newTitle;
 
-        function changePageTitle3() {
+                localStorage.setItem("pageIcon", newIcon);
 
-            var newIcon='<i style="color: white;" class="fas fa-tasks"></i>'
+                localStorage.setItem("pageTitle", newTitle);
 
-            var newTitle = "To do";
+            }
 
-            document.getElementById("pageTitle").textContent = newTitle;
 
-            document.getElementById("pageIcon").innerHTML = newIcon;
 
-            localStorage.setItem("pageIcon", newIcon);
+            function changePageTitle5() {
 
-            localStorage.setItem("pageTitle", newTitle);
+                var newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>'
 
-        }
+                var newTitle = "Leave";
 
-        function changePageTitle4() {
+                document.getElementById("pageIcon").innerHTML = newIcon;
 
-            var newIcon='<i style="color: white;" class="fas fa-money-bill-wave"></i>'
+                document.getElementById("pageTitle").textContent = newTitle;
 
-            var newTitle = "Salary";
+                localStorage.setItem("pageIcon", newIcon);
 
-            document.getElementById("pageIcon").innerHTML = newIcon;
+                localStorage.setItem("pageTitle", newTitle);
 
-            document.getElementById("pageTitle").textContent = newTitle;
+            }
 
-            localStorage.setItem("pageIcon", newIcon);
 
-            localStorage.setItem("pageTitle", newTitle);
 
-        }
+            function changePageTitle6() {
 
-        function changePageTitle5() {
+                var newIcon = '<i style="color: white;" class="fas fa-clock"></i>'
 
-            var newIcon='<i style="color: white;" class="fas fa-file-alt"></i>'
+                var newTitle = "Attendence";
 
-            var newTitle = "Leave";
+                document.getElementById("pageIcon").innerHTML = newIcon;
 
-            document.getElementById("pageIcon").innerHTML = newIcon;
+                document.getElementById("pageTitle").textContent = newTitle;
 
-            document.getElementById("pageTitle").textContent = newTitle;
+                localStorage.setItem("pageIcon", newIcon);
 
-            localStorage.setItem("pageIcon", newIcon);
+                localStorage.setItem("pageTitle", newTitle);
 
-            localStorage.setItem("pageTitle", newTitle);
+            }
 
-        }
 
-        function changePageTitle6() {
 
-            var newIcon='<i style="color: white;" class="fas fa-clock"></i>'
+            function changePageTitle7() {
 
-            var newTitle = "Attendence";
+                var newIcon = '<i style="color: white;" class="fas fa-folder"></i>'
 
-            document.getElementById("pageIcon").innerHTML = newIcon;
+                var newTitle = "Document Center";
 
-            document.getElementById("pageTitle").textContent = newTitle;
+                document.getElementById("pageIcon").innerHTML = newIcon;
 
-            localStorage.setItem("pageIcon", newIcon);
+                document.getElementById("pageTitle").textContent = newTitle;
 
-            localStorage.setItem("pageTitle", newTitle);
+                localStorage.setItem("pageIcon", newIcon);
 
-        }
+                localStorage.setItem("pageTitle", newTitle);
 
-        function changePageTitle7() {
+            }
 
-            var newIcon='<i style="color: white;" class="fas fa-folder"></i>'
 
-            var newTitle = "Document Center";
 
-            document.getElementById("pageIcon").innerHTML = newIcon;
+            function changePageTitle8() {
 
-            document.getElementById("pageTitle").textContent = newTitle;
+                var newIcon = '<i style="color: white;" class="fas fa-users"></i>'
 
-            localStorage.setItem("pageIcon", newIcon);
+                var newTitle = "People";
 
-            localStorage.setItem("pageTitle", newTitle);
+                document.getElementById("pageIcon").innerHTML = newIcon;
 
-        }
+                document.getElementById("pageTitle").textContent = newTitle;
 
-        function changePageTitle8() {
+                localStorage.setItem("pageIcon", newIcon);
 
-            var newIcon='<i style="color: white;" class="fas fa-users"></i>'
+                localStorage.setItem("pageTitle", newTitle);
 
-            var newTitle = "People";
+            }
 
-            document.getElementById("pageIcon").innerHTML = newIcon;
 
-            document.getElementById("pageTitle").textContent = newTitle;
 
-            localStorage.setItem("pageIcon", newIcon);
+            function changePageTitle9() {
 
-            localStorage.setItem("pageTitle", newTitle);
+                var newIcon = '<i style="color: white;" class="fas fa-headset"></i>'
 
-        }
+                var newTitle = "Help Desk";
 
-        function changePageTitle9() {
+                document.getElementById("pageIcon").innerHTML = newIcon;
 
-            var newIcon='<i style="color: white;" class="fas fa-headset"></i>'
+                document.getElementById("pageTitle").textContent = newTitle;
 
-            var newTitle = "Help Desk";
+                localStorage.setItem("pageIcon", newIcon);
 
-            document.getElementById("pageIcon").innerHTML = newIcon;
+                localStorage.setItem("pageTitle", newTitle);
 
-            document.getElementById("pageTitle").textContent = newTitle;
+            }
 
-            localStorage.setItem("pageIcon", newIcon);
 
-            localStorage.setItem("pageTitle", newTitle);
 
-        }
+            function changePageTitle10() {
 
-        function changePageTitle10() {
+                var newIcon = '<i style="color: white;" class="fas fa-user-friends"></i>'
 
-            var newIcon='<i style="color: white;" class="fas fa-user-friends"></i>'
+                var newTitle = "WorkFlow Delegates";
 
-            var newTitle = "WorkFlow Delegates";
+                document.getElementById("pageIcon").innerHTML = newIcon;
 
-            document.getElementById("pageIcon").innerHTML = newIcon;
+                document.getElementById("pageTitle").textContent = newTitle;
 
-            document.getElementById("pageTitle").textContent = newTitle;
+                localStorage.setItem("pageIcon", newIcon);
 
-            localStorage.setItem("pageIcon", newIcon);
+                localStorage.setItem("pageTitle", newTitle);
 
-            localStorage.setItem("pageTitle", newTitle);
+            }
 
-        }
 
 
+            function changePageTitle11() {
 
+                var newIcon = '<i style="color: white;" class="fas fa-cog"></i>'
 
-    </script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+                var newTitle = "Account Settings";
+
+                document.getElementById("pageIcon").innerHTML = newIcon;
+
+                document.getElementById("pageTitle").textContent = newTitle;
+
+                localStorage.setItem("pageIcon", newIcon);
+
+                localStorage.setItem("pageTitle", newTitle);
+
+            }
+
+        </script>
 
 </body>
 
-</html>
 
+
+</html>
