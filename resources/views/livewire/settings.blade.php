@@ -154,7 +154,7 @@
             </div>
             <div class="col-md-5" style="margin-top: 15px;">
                 <div style="font-size:12px;color: grey;">
-                    <div style="display: inline-block;width:100px">Official Birthday</div><Strong>:{{ \Carbon\Carbon::parse($employees->date_of_birth)->format('d-M-Y') }}
+                    <div style="display: inline-block;width:100px">Official Birthday</div><Strong>: {{ \Carbon\Carbon::parse($employees->date_of_birth)->format('d-M-Y') }}
                     </Strong>
                 </div>
                 <div style="font-size:12px;color: grey;">
