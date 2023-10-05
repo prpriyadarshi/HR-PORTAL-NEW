@@ -133,7 +133,7 @@
                         Date Of Birth
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        {{$employee->date_of_birth}}
+                    {{ \Carbon\Carbon::parse($employee->date_of_birth)->format('d-M-Y') }}
                     </div>
                     <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
                         Residential Status
@@ -311,7 +311,7 @@
                         Date of Birth
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        {{$employee->parent_dob}}
+                    {{ \Carbon\Carbon::parse($employee->parent_dob)->format('d-M-Y') }}
                     </div>
                     <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
                         Nationality
@@ -389,7 +389,7 @@
                         Date of Join
                     </div>
                     <div style="margin-left: 15px; font-size: 12px">
-                        {{$employee->hire_date}}
+                    {{ \Carbon\Carbon::parse($employee->hire_date)->format('d-M-Y') }}
                     </div>
                 </div>
             </div>

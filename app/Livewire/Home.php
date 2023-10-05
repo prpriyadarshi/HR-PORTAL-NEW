@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Livewire;
+use App\Models\EmployeeDetails;
 use App\Models\SwipeRecord;
 use Carbon\Carbon;
 use Livewire\Component;
@@ -13,11 +14,14 @@ class Home extends Component
     public $signIn = true;
     public $swipeDetails;
 
+    public $employeeDetails;
     public function toggleSignState()
     {
+        $employeeId = auth()->guard('emp')->user()->emp_id;
+        $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
         $this->signIn = !$this->signIn;
         SwipeRecord::create([
-            'emp_id'=>'PAYG-0003',
+            'emp_id'=>$this->employeeDetails->emp_id,
             'swipe_time' =>now()->format('H:i:s'),
             'in_or_out' => $this->signIn ? "Sign In" : "Sign Out",
         ]);

@@ -17,7 +17,14 @@ return new class extends Migration
             $table->string('swipe_time');
             $table->string('in_or_out');
             $table->timestamps();
-        });     
+
+            // Define a foreign key constraint
+            $table->foreign('emp_id')
+                ->references('emp_id')
+                ->on('employee_details')
+                ->onUpdate('cascade')
+                ->onDelete('restrict');
+        });
     }
 
     /**

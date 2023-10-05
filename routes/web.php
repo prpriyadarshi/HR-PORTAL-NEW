@@ -11,8 +11,6 @@ use App\Livewire\Review;
 use App\Livewire\Task;
 use Illuminate\Support\Facades\Route;
 
-
-
 Route::group(['middleware' => 'checkAuth'], function () {
     Route::get('/emplogin', EmpLogin::class)->name('emplogin');
 });
