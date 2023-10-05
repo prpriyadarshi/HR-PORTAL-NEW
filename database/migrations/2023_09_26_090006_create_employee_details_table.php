@@ -62,12 +62,12 @@ return new class extends Migration
                 $table->string('pan_no');
                 $table->string('adhar_no');
                 $table->string('pf_no');
-                $table->string('nick_name');
-                $table->string('time_zone');
-                $table->string('biography');
-                $table->string('facebook');
-                $table->string('twitter');
-                $table->string('linked_in');
+                $table->string('nick_name')->nullable();
+                $table->string('time_zone')->nullable();
+                $table->string('biography')->nullable();
+                $table->string('facebook')->nullable();
+                $table->string('twitter')->nullable();
+                $table->string('linked_in')->nullable();
                 $table->timestamps();
 
         });

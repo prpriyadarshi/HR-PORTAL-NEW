@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\EmployeeDetails;
 use App\Models\PeopleList;
 use Livewire\Component;
 use App\Models\HelpDesks;
@@ -27,9 +28,7 @@ class HelpDesk extends Component
     public $records;
     public $image;
     public $selectedPeopleNames = [];
-
-
-
+    public $employeeDetails;
     public $showDialog = false;
     public function toggleRotation()
     {
@@ -75,9 +74,11 @@ class HelpDesk extends Component
 
             $this->image = 'help-desk-images/' . $fileName;
         }
+        $employeeId = auth()->guard('emp')->user()->emp_id;
+        $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
 
         HelpDesks::create([
-            'emp_id' => 'PAYG-003',
+            'emp_id' =>$this->employeeDetails->emp_id,
             'category' => $this->category,
             'subject' => $this->subject,
             'description' => $this->description,

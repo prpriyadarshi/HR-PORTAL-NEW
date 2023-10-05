@@ -37,7 +37,7 @@ class CheckAuth
         // }
 
         // return $next($request);
-      if (auth('emp')->check()) {
+      if (auth()->guard('emp')->check()) {
         session(['user_type' => 'emp']);
         return redirect(route('profile.info'));
        }else {
