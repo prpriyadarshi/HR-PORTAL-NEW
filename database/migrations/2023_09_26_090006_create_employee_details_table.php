@@ -53,15 +53,15 @@ return new class extends Migration
                 $table->string('nationality');
                 $table->string('religion');
                 $table->enum('marital_status', ['married','unmarried']);
-                $table->string('spouse');
+                $table->string('spouse')->nullable();
                 $table->enum('physically_challenge', ['yes','no']);
                 $table->enum('inter_emp',['yes','no']);
                 $table->string('job_location');
                 $table->string('education');
                 $table->string('experince');
-                $table->string('pan_no');
-                $table->string('adhar_no');
-                $table->string('pf_no');
+                $table->string('pan_no')->unique()->nullable();
+                $table->string('adhar_no')->unique()->nullable();
+                $table->string('pf_no')->unique()->nullable();
                 $table->string('nick_name')->nullable();
                 $table->string('time_zone')->nullable();
                 $table->string('biography')->nullable();
@@ -76,9 +76,10 @@ return new class extends Migration
         BEGIN
             DECLARE next_id INT;
             SET next_id = (SELECT IFNULL(MAX(SUBSTRING_INDEX(emp_id, "-", -1) + 1), 1) FROM employee_details);
-            SET @new_emp_id = CONCAT("PAYG-", LPAD(next_id, 4, "0"));
+            SET @new_emp_id = CONCAT("AGS-", LPAD(next_id, 4, "0"));
         END;
     ');
+
 
     // Create a trigger to call the stored procedure to set "emp_id" before insert
     DB::unprepared('
