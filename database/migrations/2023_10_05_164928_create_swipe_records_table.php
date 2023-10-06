@@ -9,7 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+     public function up(): void
     {
         Schema::create('swipe_records', function (Blueprint $table) {
             $table->id();
@@ -17,14 +17,14 @@ return new class extends Migration
             $table->string('swipe_time');
             $table->string('in_or_out');
             $table->timestamps();
-
-            // Define a foreign key constraint
+        
             $table->foreign('emp_id')
                 ->references('emp_id')
                 ->on('employee_details')
-                ->onUpdate('cascade')
-                ->onDelete('restrict');
+                ->onDelete('restrict')
+                ->onUpdate('cascade');
         });
+        
     }
 
     /**

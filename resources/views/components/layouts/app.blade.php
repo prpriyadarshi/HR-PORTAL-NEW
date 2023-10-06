@@ -293,7 +293,7 @@
 
                     <i style="margin-bottom: 5px; color: white" id="pageIcon"></i>
 
-                    <h6 style="color: white; width: 280px; margin-right: 60%;" id="pageTitle">Home</h6>
+                    <h6 style="color: white; width: 300px; margin-right: 50%;" id="pageTitle">Home</h6>
 
                     <h6 style="color: grey; margin-right: 20px;margin-top:5px;width:150px">Quick Links</h6>
 

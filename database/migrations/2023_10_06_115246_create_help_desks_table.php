@@ -9,7 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+      public function up(): void
     {
         Schema::create('help_desks', function (Blueprint $table) {
             $table->id();
@@ -19,8 +19,15 @@ return new class extends Migration
             $table->text('description'); // Description field
             $table->string('file_path')->nullable(); // Path to attached file (nullable)
             $table->string('cc_to')->nullable(); // CC to field (nullable)
-            $table->enum('priority', ['High', 'Medium', 'Low']); // Priority field with enum values
+            $table->enum('priority', ['High', 'Medium', 'Low']); // Priority field with enum values 
             $table->timestamps();
+
+            // Add the foreign key constraint
+            $table->foreign('emp_id')
+                ->references('emp_id')
+                ->on('employee_details')
+                ->onDelete('restrict')
+                ->onUpdate('cascade');
         });
     }
 
