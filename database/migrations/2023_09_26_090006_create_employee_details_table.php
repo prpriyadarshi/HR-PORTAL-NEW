@@ -68,29 +68,42 @@ return new class extends Migration
                 $table->string('facebook')->nullable();
                 $table->string('twitter')->nullable();
                 $table->string('linked_in')->nullable();
+                $table->string('company_id');
+                $table->foreign('company_id')
+                    ->references('company_id') // Assuming the primary key of the companies table is 'id'
+                    ->on('companies');
                 $table->timestamps();
 
         });
-        DB::unprepared('
-        CREATE PROCEDURE generateEmployeeId()
-        BEGIN
-            DECLARE next_id INT;
-            SET next_id = (SELECT IFNULL(MAX(SUBSTRING_INDEX(emp_id, "-", -1) + 1), 1) FROM employee_details);
-            SET @new_emp_id = CONCAT("AGS-", LPAD(next_id, 4, "0"));
-        END;
-    ');
+    //     DB::unprepared('
+    //     CREATE PROCEDURE generateEmployeeId()
+    //     BEGIN
+    //         DECLARE next_id INT;
+    //         SET next_id = (SELECT IFNULL(MAX(SUBSTRING_INDEX(emp_id, "-", -1) + 1), 1) FROM employee_details);
+    //         SET @new_emp_id = CONCAT("AGS-", LPAD(next_id, 4, "0"));
+    //     END;
+    // ');
 
 
-    // Create a trigger to call the stored procedure to set "emp_id" before insert
+    // // Create a trigger to call the stored procedure to set "emp_id" before insert
+    // DB::unprepared('
+    //     CREATE TRIGGER set_employee_id BEFORE INSERT ON employee_details FOR EACH ROW
+    //     BEGIN
+    //         IF NEW.emp_id IS NULL THEN
+    //             CALL generateEmployeeId();
+    //             SET NEW.emp_id = @new_emp_id;
+    //         END IF;
+    //     END;
+    // ');
+
     DB::unprepared('
-        CREATE TRIGGER set_employee_id BEFORE INSERT ON employee_details FOR EACH ROW
-        BEGIN
-            IF NEW.emp_id IS NULL THEN
-                CALL generateEmployeeId();
-                SET NEW.emp_id = @new_emp_id;
-            END IF;
-        END;
-    ');
+    CREATE TRIGGER set_employee_id BEFORE INSERT ON employee_details FOR EACH ROW
+    BEGIN
+        IF NEW.emp_id IS NULL THEN
+            SET NEW.emp_id = CONCAT(NEW.company_name, "-", LPAD((SELECT IFNULL(MAX(SUBSTRING_INDEX(emp_id, "-", -1) + 1), 1) FROM employee_details WHERE company_name = NEW.company_name), 4, "0"));
+        END IF;
+    END;
+');
 
     // Add a unique constraint for mobile_number and alternate_mobile_number
     DB::unprepared('ALTER TABLE employee_details ADD CONSTRAINT unique_mobile_numbers UNIQUE (mobile_number, alternate_mobile_number)');
