@@ -9,6 +9,11 @@ use App\Livewire\ProfileInfo;
 use App\Livewire\Settings;
 use App\Livewire\Review;
 use App\Livewire\Task;
+use App\Livewire\Itdeclaration;
+use App\Livewire\Itstatement;
+use App\Livewire\Payroll;
+use App\Livewire\Documents;
+use App\Livewire\Documentcenter;
 use Illuminate\Support\Facades\Route;
 
 
@@ -28,10 +33,24 @@ Route::get('/Settings', Settings::class);
 Route::get('/review', Review::class)->name('review');
 Route::get('/task', Task::class)->name('task');
 
+Route::get('/payslip', Payroll::class);
+Route::get('/itdeclaration', Itdeclaration::class);
+Route::get('/itstatement', Itstatement::class);
+Route::get('/document', Documentcenter::class);
+Route::get('/documents', Documents::class);
+Route::get('/delegatesddb', function(){
+    return view('delegate');
+});
 });
 
 
 
 
+Route::get('/your-download-route', function(){
+    return view('download-pdf');
+});
+Route::get('/v2/employee/addemployeworkflowdelegates', function(){
+    return view('submitdelegate');
+});
 
 

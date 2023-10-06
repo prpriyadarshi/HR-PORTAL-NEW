@@ -233,93 +233,49 @@
 
                             </li>
 
-                            <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle3()">
-
-                                <a class="nav-link" href="#">
-
-                                    <i class="fas fa-tasks"></i> To do
-
-                                </a>
-
-                            </li>
-
-                            <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle4()">
-
-                                <a class="nav-link" href="#">
-
-                                    <i class="fas fa-money-bill-wave"></i> Salary
-
-                                </a>
-
-                            </li>
-
-                            <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5()">
-
-                                <a class="nav-link" href="#">
-
-                                    <i class="fas fa-file-alt"></i> Leave
-
-                                </a>
-
-                            </li>
-
-
-
-                            <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
-
-                                <a class="nav-link" href="#">
-
-                                    <i class="fas fa-clock"></i> Attendance
-
-                                </a>
-
-                            </li>
-
-                            <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle7()">
-
-                                <a class="nav-link" href="#">
-
-                                    <i class="fas fa-folder"></i> Document Center
-
-                                </a>
-
-                            </li>
-
-                            <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle8()">
-
-                                <a class="nav-link" href="/PeoplesList">
-
-                                    <i class="fas fa-users"></i> People
-
-                                </a>
-
-                            </li>
-
-                            <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle9()">
-
-                                <a class="nav-link" href="/HelpDesk">
-
-                                    <i class="fas fa-headset"></i> Helpdesk
-
-                                </a>
-
-                            </li>
-
-                            <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle10()">
-
-                                <a class="nav-link" href="#">
-
-                                    <i class="fas fa-user-friends"></i> Workflow Delegates
-
-                                </a>
-
-                            </li>
-
-                        </ul>
-
-                    </div>
-
-                </div>
+                            <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle3()">
+                    <a class="nav-link" href="task">
+                        <i class="fas fa-tasks"></i> To do
+                    </a>
+                </li>
+                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle4()">
+                    <a class="nav-link" href="/itstatement">
+                        <i class="fas fa-money-bill-wave"></i> Salary
+                    </a>
+                </li>
+                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle5()">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-file-alt"></i> Leave
+                    </a>
+                </li>
+                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle6()">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-clock"></i> Attendance
+                    </a>
+                </li>
+                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle7()">
+                    <a class="nav-link" href="/document">
+                        <i class="fas fa-folder"></i> Document Center
+                    </a>
+                </li>
+                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle8()">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-users"></i> People
+                    </a>
+                </li>
+                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle9()">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-headset"></i> Helpdesk
+                    </a>
+                </li>
+                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle10()">
+                    <a class="nav-link" href="/delegatesddb">
+                        <i class="fas fa-user-friends"></i> Workflow Delegates
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
                 <div class="col" style="height: 60px; width: auto; background-color:rgb(2, 17, 79)">
 
