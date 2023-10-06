@@ -68,6 +68,7 @@ class EmployeeDetails extends Authenticatable
         'facebook',
         'twitter',
         'linked_in',
+        'company_id'
     ];
 
 }
