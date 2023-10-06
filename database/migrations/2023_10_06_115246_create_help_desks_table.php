@@ -25,7 +25,9 @@ return new class extends Migration
             // Add the foreign key constraint
             $table->foreign('emp_id')
                 ->references('emp_id')
-                ->on('employee_details');
+                ->on('employee_details')
+                ->onDelete('restrict')
+                ->onUpdate('cascade');
         });
     }
 
