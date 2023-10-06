@@ -152,7 +152,6 @@
             }
 
 
-
             .nav-link {
 
                 color: black;
@@ -222,7 +221,7 @@
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5()">
 
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/holiday-calender">
 
                                 <i class="fas fa-file-alt"></i> Leave
 
