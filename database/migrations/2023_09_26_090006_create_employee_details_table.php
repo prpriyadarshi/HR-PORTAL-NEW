@@ -70,8 +70,14 @@ return new class extends Migration
                 $table->string('linked_in')->nullable();
                 $table->string('company_id');
                 $table->foreign('company_id')
-                    ->references('company_id') // Assuming the primary key of the companies table is 'id'
-                    ->on('companies');
+                     ->references('company_id') // Assuming the primary key of the companies table is 'id'
+
+                ->on('companies')
+
+                ->onDelete('restrict')
+
+                ->onUpdate('cascade');
+
                 $table->timestamps();
 
         });
