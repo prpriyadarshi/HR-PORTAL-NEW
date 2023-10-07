@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
- 
+
     public function up(): void
     {
         Schema::create('employee_details', function (Blueprint $table) {
-            $table->string('emp_id')->unique();
+            $table->string('emp_id')->primary();
             $table->string('first_name');
             $table->string('last_name');
             $table->date('date_of_birth');
@@ -55,10 +55,10 @@ return new class extends Migration
             $table->enum('inter_emp', ['yes', 'no']);
             $table->string('job_location');
             $table->string('education');
-            $table->string('experince');
-            $table->string('pan_no');
-            $table->string('adhar_no');
-            $table->string('pf_no');
+            $table->string('experince')->nullable();
+            $table->string('pan_no')->unique()->nullable();
+            $table->string('adhar_no')->unique()->nullable();
+            $table->string('pf_no')->unique()->nullable();
             $table->string('nick_name')->nullable();
             $table->string('time_zone')->nullable();
             $table->string('biography')->nullable();
@@ -72,10 +72,23 @@ return new class extends Migration
                 ->onDelete('restrict')
                 ->onUpdate('cascade');
 
-        
+
             $table->timestamps();
         });
-        
+
+
+ DB::unprepared('
+        CREATE TRIGGER set_employee_id BEFORE INSERT ON employee_details FOR EACH ROW
+        BEGIN
+            IF NEW.emp_id IS NULL THEN
+                SET NEW.emp_id = CONCAT(NEW.company_name, "-", LPAD((SELECT IFNULL(MAX(SUBSTRING_INDEX(emp_id, "-", -1) + 1), 1) FROM employee_details WHERE company_name = NEW.company_name), 4, "0"));
+            END IF;
+        END;
+    ');
+
+        // Add a unique constraint for mobile_number and alternate_mobile_number
+        DB::unprepared('ALTER TABLE employee_details ADD CONSTRAINT unique_mobile_numbers UNIQUE (mobile_number, alternate_mobile_number)');
+
     }
 
     /**
@@ -83,6 +96,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        DB::unprepared('DROP TRIGGER IF EXISTS set_employee_id');
         Schema::dropIfExists('employee_details');
     }
 };
