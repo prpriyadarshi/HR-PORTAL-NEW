@@ -23,12 +23,12 @@ return new class extends Migration
         });
 
         // Create a trigger to generate company_id based on company_name
-        DB::unprepared('
-            CREATE TRIGGER generate_company_id BEFORE INSERT ON companies FOR EACH ROW
-            BEGIN
-                SET NEW.company_id = CONCAT(LEFT(NEW.company_name, 3), LPAD((SELECT IFNULL(MAX(CAST(SUBSTRING(company_id, 4) AS UNSIGNED)) + 1, 1) FROM companies WHERE company_id LIKE CONCAT(LEFT(NEW.company_name, 3), "%")), 4, "0"));
-            END;
-        ');
+        // DB::unprepared('
+        //     CREATE TRIGGER generate_company_id BEFORE INSERT ON companies FOR EACH ROW
+        //     BEGIN
+        //         SET NEW.company_id = CONCAT(LEFT(NEW.company_name, 3), LPAD((SELECT IFNULL(MAX(CAST(SUBSTRING(company_id, 4) AS UNSIGNED)) + 1, 1) FROM companies WHERE company_id LIKE CONCAT(LEFT(NEW.company_name, 3), "%")), 4, "0"));
+        //     END;
+        // ');
     }
 
     /**
