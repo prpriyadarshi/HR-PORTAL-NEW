@@ -134,31 +134,32 @@
         <div class="modal-backdrop fade show blurred-backdrop"></div>
         @endif
     </div>
-    <div class="card" style="width: 60%;margin-top:20px;padding:10px">
+@foreach($employees as $employee)
+<div class="card" style="width: 60%;margin-top:20px;padding:10px">
         <div class="row">
             <div class="col-md-2">
-                <img style="border-radius: 50%;" height="80" width="80" src="{{ asset($employees->image) }}">
+                <img style="border-radius: 50%;" height="80" width="80" src="{{ asset($employee->image) }}">
             </div>
             <div class="col-md-5">
-                <div style="font-size:12px;"><strong>{{$employees->first_name}} {{$employees->last_name}}</strong></div>
+                <div style="font-size:12px;"><strong>{{$employee->first_name}} {{$employee->last_name}}</strong></div>
                 <div style="font-size: 12px; color: grey;">
-                    <div style="display: inline-block;width:65px">Emp ID</div><strong> : {{$employees->emp_id}}</strong>
+                    <div style="display: inline-block;width:65px">Emp ID</div><strong> : {{$employee->emp_id}}</strong>
                 </div>
 
                 <div style="font-size:12px;color: grey;">
-                    <div style="display: inline-block;width:65px">Location</div> <strong>: {{$employees->job_location}}</strong>
+                    <div style="display: inline-block;width:65px">Location</div> <strong>: {{$employee->job_location}}</strong>
                 </div>
                 <div style="font-size:12px;color: grey;">
-                    <div style="display: inline-block;width:65px">Designation</div><strong> : {{$employees->job_title}}</strong>
+                    <div style="display: inline-block;width:65px">Designation</div><strong> : {{$employee->job_title}}</strong>
                 </div>
             </div>
             <div class="col-md-5" style="margin-top: 15px;">
                 <div style="font-size:12px;color: grey;">
-                    <div style="display: inline-block;width:100px">Official Birthday</div><Strong>:{{ \Carbon\Carbon::parse($employees->date_of_birth)->format('d-M-Y') }}
+                    <div style="display: inline-block;width:100px">Official Birthday</div><Strong>: {{ \Carbon\Carbon::parse($employee->date_of_birth)->format('d-M-Y') }}
                     </Strong>
                 </div>
                 <div style="font-size:12px;color: grey;">
-                    <div style="display: inline-block;width:100px">Department</div><strong>: {{$employees->department}}</strong>
+                    <div style="display: inline-block;width:100px">Department</div><strong>: {{$employee->department}}</strong>
                 </div>
             </div>
         </div>
@@ -199,8 +200,8 @@
             </div>
             @else
             <div class="row" style="margin-top: 10px;">
-                <div class="col" style="color: black; font-size: 12px;">{{$employees->nick_name}}</div>
-                <div class="col" style="color: black; font-size: 12px;">{{ \Carbon\Carbon::parse($employees->date_of_birth)->format('d-M-Y') }}</div>
+                <div class="col" style="color: black; font-size: 12px;">{{$employee->nick_name}}</div>
+                <div class="col" style="color: black; font-size: 12px;">{{ \Carbon\Carbon::parse($employee->date_of_birth)->format('d-M-Y') }}</div>
             </div>
             @endif
         </div>
@@ -233,7 +234,7 @@
                         @endforeach
                     </select>
                     @else
-                    <div style="color: black; font-size: 12px;">{{ $employees->time_zone }}</div>
+                    <div style="color: black; font-size: 12px;">{{ $employee->time_zone }}</div>
                     @endif
                 </div>
             </div>
@@ -263,7 +264,7 @@
             </div>
             @else
             <div class="row" style="margin-top: 10px;">
-                <div class="col" style="color: black; font-size: 12px;">{{$employees->biography}}</div>
+                <div class="col" style="color: black; font-size: 12px;">{{$employee->biography}}</div>
             </div>
             @endif
         </div>
@@ -296,11 +297,12 @@
             </div>
             @else
             <div class="row" style="margin-top: 10px;margin-bottom:20px">
-                <div class="col" style="color: black; font-size: 12px;">{{$employees->facebook}}</div>
-                <div class="col" style="color: black; font-size: 12px;">{{$employees->twitter}}</div>
-                <div class="col" style="color: black; font-size: 12px;">{{$employees->linked_in}}</div>
+                <div class="col" style="color: black; font-size: 12px;">{{$employee->facebook}}</div>
+                <div class="col" style="color: black; font-size: 12px;">{{$employee->twitter}}</div>
+                <div class="col" style="color: black; font-size: 12px;">{{$employee->linked_in}}</div>
             </div>
             @endif
         </div>
     </div>
+@endforeach
 </div>

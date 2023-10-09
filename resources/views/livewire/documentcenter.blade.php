@@ -47,7 +47,7 @@
     <div class="col-md-3" style=" border-radius: 5px; border: 1px solid #D9D9D9; background-color: white; display: flex; margin-right: 10px;">
         <img src="https://th.bing.com/th/id/OIP.UB9cWBWVmXbXeJgcv63KZAHaHc?pid=ImgDet&rs=1" alt="Image Description" style="height: 30px; width: 40px; margin-top: 20px; margin-left: 10px;">
         <p style="margin-top: 20px; margin-left: 10px;">Documents</p>
-        <a class="links" href="/documents" style="margin-top: 23px; padding-left: 20px; font-size: 14px; font-family: Open Sans, sans-serif; color: black; text-decoration: none;">
+        <a class="links" href="/documents" style="margin-top: 23px; padding-left: 10px; font-size: 14px; font-family: Open Sans, sans-serif; color: black; text-decoration: none;">
   <span onmouseover="this.style.color='#33B3BC'; this.style.textDecoration='underline';" onmouseout="this.style.color='blue'; this.style.textDecoration='none';">
     View all
   </span>
@@ -77,7 +77,7 @@
 <div class="row" style=" margin-top: 20px;display:flex">
     <div class="col-md-3" style="background-color: white; border: 1px solid #D9D9D9; border-radius: 5px;display:flex">
         <img src="https://th.bing.com/th/id/OIP.lOQHjvDS8UGgyzbJ6N-WqAAAAA?pid=ImgDet&rs=1" alt="Image Description" style="height: 30px; width: 40px; margin-top: 20px; margin-left: 10px;">
-        <p style="margin-top: 20px;margin-left:20px">Policy</p>
+        <p style="margin-top: 20px;margin-left:10px">Policy</p>
         <a class="links" href="/documents" style="margin-top: 23px; padding-left: 50px; font-size: 14px; font-family: Open Sans, sans-serif; color: black; text-decoration: none;">
   <span onmouseover="this.style.color='#33B3BC'; this.style.textDecoration='underline';" onmouseout="this.style.color='blue'; this.style.textDecoration='none';">
   View all
@@ -86,7 +86,7 @@
     </div>
     <div class="col-md-3" style="background-color: white; border: 1px solid #D9D9D9; border-radius: 5px;display:flex;margin-left:10px">
         <img src="https://www.ucdavis.edu/sites/default/files/images/focal_link/requirements_2.png" alt="Image Description" style="height: 30px; width: 30px; margin-top: 20px; margin-left: 10px;">
-        <p style="margin-top: 20px; margin-left: 20px;">Forms</p>
+        <p style="margin-top: 20px; margin-left: 10px;">Forms</p>
         <a class="links" href="/documents" style="margin-top: 23px; padding-left: 60px; font-size: 14px; font-family: Open Sans, sans-serif; color: black; text-decoration: none;">
   <span onmouseover="this.style.color='#33B3BC'; this.style.textDecoration='underline';" onmouseout="this.style.color='blue'; this.style.textDecoration='none';">
   View all

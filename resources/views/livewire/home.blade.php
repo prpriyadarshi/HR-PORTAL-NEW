@@ -185,7 +185,7 @@
                                                                     <th style="font-size: 12px; color: grey">Sign-In / Sign-Out</th>
                                                                 </tr>
 
-                                                                @if ($swipeDetails->count() > 0)
+                                                                @if (!is_null($swipeDetails) && $swipeDetails->count() > 0)
                                                                 @foreach ($swipeDetails as $swipe)
                                                                 <tr>
                                                                     <td style="font-size: 10px; color: black;">{{ $swipe->swipe_time }}</td>
@@ -197,7 +197,6 @@
                                                                     <td colspan="2">No swipe records found for today.</td>
                                                                 </tr>
                                                                 @endif
-
 
                                                             </table>
                                                         </div>

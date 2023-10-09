@@ -11,6 +11,8 @@ class EmployeeDetails extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
     use HasFactory;
+    protected $primaryKey = 'emp_id'; 
+    public $incrementing = false; 
     protected $fillable = [
         'emp_id',
         'first_name',
@@ -66,6 +68,7 @@ class EmployeeDetails extends Authenticatable
         'facebook',
         'twitter',
         'linked_in',
+        'company_id'
     ];
 
 }

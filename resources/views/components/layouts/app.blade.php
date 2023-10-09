@@ -32,8 +32,7 @@
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -43,10 +42,15 @@
 
     <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <script src="{{ asset('vendor/livewire/livewire.js') }}"></script>
+    <!-- Add these links to your HTML -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
     <script src="{{ asset('livewire/livewire.js') }}" defer></script>
 
@@ -57,493 +61,511 @@
 </head>
 
 @guest
-    <livewire:emplogin/>
-    @else
-    <body>
+<livewire:emplogin />
+@else
 
-        <div>
+<body>
 
-            <style>
-                .profile-container {
+    <div>
 
-                    display: flex;
+        <style>
+            .profile-container {
 
-                    align-items: center;
+                display: flex;
 
-                    padding: 10px;
+                align-items: center;
 
-                    background-color: rgb(2, 17, 79);
+                padding: 10px;
 
-                    box-shadow: 2px 4px 4px 4px rgba(0, 0, 0, 0.1);
+                background-color: rgb(2, 17, 79);
 
-                    border-radius: 5px;
+                box-shadow: 2px 4px 4px 4px rgba(0, 0, 0, 0.1);
 
-                }
+                border-radius: 5px;
 
+            }
 
 
-                .profile-image {
 
-                    height: 32px;
+            .profile-image {
 
-                    width: 32px;
+                height: 32px;
 
-                    background-color: green;
+                width: 32px;
 
-                    border-radius: 50%;
+                background-color: green;
 
-                    margin-right: 10px;
+                border-radius: 50%;
 
-                }
+                margin-right: 10px;
 
+            }
 
 
-                .username {
 
-                    font-size: 16px;
+            .username {
 
-                    margin: 0;
+                font-size: 16px;
 
-                }
+                margin: 0;
 
+            }
 
 
-                .nav-item {
 
-                    font-size: 14px;
+            .nav-item {
 
-                    margin-bottom: 5px;
+                font-size: 14px;
 
-                    border-radius: 5px;
+                margin-bottom: 5px;
 
-                }
+                border-radius: 5px;
 
+            }
 
 
-                .nav-item-1 {
 
-                    font-size: 12px;
+            .nav-item-1 {
 
-                }
+                font-size: 12px;
 
+            }
 
 
-                .fas {
 
-                    width: 30px;
+            .fas {
 
-                    color: black;
+                width: 30px;
 
-                }
+                color: black;
 
+            }
 
 
-                .emp-name {
 
-                    margin-right: 20px;
+            .emp-name {
 
-                }
+                margin-right: 20px;
 
+            }
 
 
-                .profile-image {
 
-                    margin-right: 15px;
+            .profile-image {
 
-                }
+                margin-right: 15px;
 
+            }
 
 
-                .nav-link {
 
-                    color: black;
+            .nav-link {
 
-                }
-            </style>
+                color: black;
 
+            }
+        </style>
 
 
-            <div class="row" style="height: auto;width:auto;background-color: #f0f0f0;">
 
-                <div class="card"
-                    style="border-radius:0px;height: auto; width: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        <div class="row" style="height: auto;width:auto;background-color: #f0f0f0;">
 
-                    <div class="card-body" style="height: auto;width:auto">
+            <div class="card" style="border-radius:0px;height: auto; width: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
 
-                        <ul class="nav flex-column">
+                <div class="card-body" style="height: auto;width:auto">
 
-                            <div style="margin-bottom: 10px;">
+                    <ul class="nav flex-column">
 
-                                <img height="50" width="210" src="https://www.attuneglobal.net/images/logo.jpg"
-                                    alt="">
+                        <div style="margin-bottom: 10px;">
 
-                            </div>
+                            <img height="50" width="210" src="https://www.attuneglobal.net/images/logo.jpg" alt="">
 
-                            <div class="profile-container">
+                        </div>
 
-                                <div>
+                        @livewire('profile-card')
 
-                                    <img class="profile-image"
-                                        src="https://th.bing.com/th/id/OIP.SW3e_JMU32NeFaireox7YgHaD2?pid=ImgDet&w=1024&h=533&rs=1">
 
-                                </div>
 
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle1()">
 
+                            <a class="nav-link" href="/">
 
-                                <div class="emp-name">
+                                <i class="fas fa-home"></i> Home
 
-                                    <h6 style="font-size: 12px;color:white" class="username">Sri Kumar Asapu</h6>
+                            </a>
 
-                                    <a href="{{ route('profile.info') }}" class="nav-item-1" style="text-decoration: none;"
-                                        onclick="changePageTitle()">View My Info</a>
+                        </li>
 
-                                </div>
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle2()">
 
-                                <div>
+                            <a class="nav-link" href="/Feeds">
 
-                                    <a href="/Settings" onclick="changePageTitle11()">
+                                <i class="fas fa-rss"></i> Feeds
 
-                                        <i style="color: white;" class="fas fa-cog"></i>
+                            </a>
 
-                                    </a>
+                        </li>
 
-                                </div>
+                            <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle3()">
 
-                            </div>
+                                <a class="nav-link" href="#">
 
-
-
-                            <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle1()">
-
-                                <a class="nav-link" href="/">
-
-                                    <i class="fas fa-home"></i> Home
+                                    <i class="fas fa-tasks"></i> To do
 
                                 </a>
 
                             </li>
 
-                            <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle2()">
+                            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="/salary" id="salaryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-money-bill-wave"></i> Salary
+            </a>
+            <div class="dropdown-menu" aria-labelledby="salaryDropdown">
+                <!-- Dropdown items go here -->
+                <a class="dropdown-item" href="/itdeclaration">Itdeclaration</a>
+                <a class="dropdown-item" href="/itstatement">Itstatement</a>
+                <a class="dropdown-item" href="#">Item 3</a>
+            </div>
+        </li>
+    </ul>
+</nav>
 
-                                <a class="nav-link" href="/Feeds">
+                            <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5()">
 
-                                    <i class="fas fa-rss"></i> Feeds
+                                <a class="nav-link" href="#">
+
+                                    <i class="fas fa-file-alt"></i> Leave
 
                                 </a>
 
                             </li>
 
-                            <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle3()">
-                    <a class="nav-link" href="task">
-                        <i class="fas fa-tasks"></i> To do
-                    </a>
-                </li>
-                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle4()">
-                    <a class="nav-link" href="/itstatement">
-                        <i class="fas fa-money-bill-wave"></i> Salary
-                    </a>
-                </li>
-                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle5()">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-file-alt"></i> Leave
-                    </a>
-                </li>
-                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle6()">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-clock"></i> Attendance
-                    </a>
-                </li>
-                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle7()">
-                    <a class="nav-link" href="/document">
-                        <i class="fas fa-folder"></i> Document Center
-                    </a>
-                </li>
-                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle8()">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-users"></i> People
-                    </a>
-                </li>
-                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle9()">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-headset"></i> Helpdesk
-                    </a>
-                </li>
-                <li class="nav-item"style="text-decoration: none;" onclick="changePageTitle10()">
-                    <a class="nav-link" href="/delegatesddb">
-                        <i class="fas fa-user-friends"></i> Workflow Delegates
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
 
-                <div class="col" style="height: 60px; width: auto; background-color:rgb(2, 17, 79)">
 
-                    <div class="col" style="display: flex; align-items: center; margin-top:2%;justify-content: start;">
+                            <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
 
-                        <i style="margin-bottom: 5px; color: white" id="pageIcon"></i>
+                                <a class="nav-link" href="#">
 
-                        <h6 style="color: white; width: 200px; margin-right: 60%;" id="pageTitle">Home</h6>
+                                    <i class="fas fa-clock"></i> Attendance
 
-                        <h6 style="color: grey; margin-right: 20px;margin-top:5px;width:150px">Quick Links</h6>
+                                </a>
 
-                        <div class="notification-icon" style="margin-right: 10px;">
+                            </li>
 
-                            <i style="color: white;" class="fas fa-bell"></i>
+                            <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle7()">
 
-                        </div>
+                                <a class="nav-link" href="/document">
 
-                        <div class="notification-icon">
+                                    <i class="fas fa-folder"></i> Document Center
 
-                            <i style="color: white;" class="fas fa-sign-out-alt"></i>
+                                </a>
 
-                        </div>
+                            </li>
 
-                    </div>
+                            <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle8()">
 
-                    <div style="margin-top: 3%; margin-left: 1%; height: 490px; overflow-y: auto;overflow-x:auto">
+                                <a class="nav-link" href="/PeoplesList">
 
-                        {{ $slot }}
+                                    <i class="fas fa-users"></i> People
+
+                                </a>
+
+                            </li>
+
+                            <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle9()">
+
+                                <a class="nav-link" href="/HelpDesk">
+
+                                    <i class="fas fa-headset"></i> Helpdesk
+
+                                </a>
+
+                            </li>
+
+                            <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle10()">
+
+                                <a class="nav-link" href="#">
+
+                                    <i class="fas fa-user-friends"></i> Workflow Delegates
+
+                                </a>
+
+                            </li>
+
+                        </ul>
 
                     </div>
 
                 </div>
 
+            <div class="col" style="height: 60px; width: auto; background-color:rgb(2, 17, 79)">
+
+                <div class="col" style="display: flex; align-items: center; margin-top:2%;justify-content: start;">
+
+                    <i style="margin-bottom: 5px; color: white" id="pageIcon"></i>
+
+                    <h6 style="color: white; width: 300px; margin-right: 50%;" id="pageTitle">Home</h6>
+
+                    <h6 style="color: grey; margin-right: 20px;margin-top:5px;width:150px">Quick Links</h6>
+
+                    <div class="notification-icon" style="margin-right: 10px;">
+
+                        <i style="color: white;" class="fas fa-bell"></i>
+
+                    </div>
+
+                    <div class="notification-icon">
+
+                        @livewire('log-out')
+                    </div>
+
+                </div>
+
+                <div style="margin-top: 3%; margin-left: 1%; height: 490px; overflow-y: auto;overflow-x:auto">
+
+                    {{ $slot }}
+
+                </div>
+
             </div>
 
-            @livewireScripts
+        </div>
 
-            <script>
-                if (localStorage.getItem("pageIcon") && localStorage.getItem("pageTitle")) {
+        @livewireScripts
 
-                    var storedIcon = localStorage.getItem("pageIcon");
+        <script>
+            if (localStorage.getItem("pageIcon") && localStorage.getItem("pageTitle")) {
 
-                    var storedTitle = localStorage.getItem("pageTitle");
+                var storedIcon = localStorage.getItem("pageIcon");
 
-                    document.getElementById("pageIcon").innerHTML = storedIcon;
+                var storedTitle = localStorage.getItem("pageTitle");
 
-                    document.getElementById("pageTitle").textContent = storedTitle;
+                document.getElementById("pageIcon").innerHTML = storedIcon;
 
-                }
+                document.getElementById("pageTitle").textContent = storedTitle;
 
+            }
 
 
-                function changePageTitle() {
 
-                    var newIcon = '<i style="color: white;" class="fas fa-address-card"></i>'
+            function changePageTitle() {
 
-                    var newTitle = "Employee Information";
+                var newIcon = '<i style="color: white;" class="fas fa-address-card"></i>'
 
-                    document.getElementById("pageTitle").textContent = newTitle;
+                var newTitle = "Employee Information";
 
-                    document.getElementById("pageIcon").innerHTML = newIcon;
+                document.getElementById("pageTitle").textContent = newTitle;
 
-                    localStorage.setItem("pageIcon", newIcon);
+                document.getElementById("pageIcon").innerHTML = newIcon;
 
-                    localStorage.setItem("pageTitle", newTitle);
+                localStorage.setItem("pageIcon", newIcon);
 
-                }
+                localStorage.setItem("pageTitle", newTitle);
 
+            }
 
 
-                function changePageTitle1() {
 
-                    var newTitle = "Home";
+            function changePageTitle1() {
 
-                    var newIcon = '<i style="color: white;" class="fas fa-home"></i>'
+                var newTitle = "Home";
 
-                    document.getElementById("pageIcon").innerHTML = newIcon;
+                var newIcon = '<i style="color: white;" class="fas fa-home"></i>'
 
-                    document.getElementById("pageTitle").textContent = newTitle;
+                document.getElementById("pageIcon").innerHTML = newIcon;
 
-                    localStorage.setItem("pageIcon", newIcon);
+                document.getElementById("pageTitle").textContent = newTitle;
 
-                    localStorage.setItem("pageTitle", newTitle);
+                localStorage.setItem("pageIcon", newIcon);
 
-                }
+                localStorage.setItem("pageTitle", newTitle);
 
+            }
 
 
-                function changePageTitle2() {
 
-                    var newIcon = '<i style="color: white;" class="fas fa-rss"></i>'
+            function changePageTitle2() {
 
-                    var newTitle = "Feeds";
+                var newIcon = '<i style="color: white;" class="fas fa-rss"></i>'
 
-                    document.getElementById("pageTitle").textContent = newTitle;
+                var newTitle = "Feeds";
 
-                    document.getElementById("pageIcon").innerHTML = newIcon;
+                document.getElementById("pageTitle").textContent = newTitle;
 
-                    localStorage.setItem("pageTitle", newTitle);
+                document.getElementById("pageIcon").innerHTML = newIcon;
 
-                    localStorage.setItem("pageIcon", newIcon);
+                localStorage.setItem("pageTitle", newTitle);
 
-                }
+                localStorage.setItem("pageIcon", newIcon);
 
+            }
 
 
-                function changePageTitle3() {
 
-                    var newIcon = '<i style="color: white;" class="fas fa-tasks"></i>'
+            function changePageTitle3() {
 
-                    var newTitle = "To do";
+                var newIcon = '<i style="color: white;" class="fas fa-tasks"></i>'
 
-                    document.getElementById("pageTitle").textContent = newTitle;
+                var newTitle = "To do";
 
-                    document.getElementById("pageIcon").innerHTML = newIcon;
+                document.getElementById("pageTitle").textContent = newTitle;
 
-                    localStorage.setItem("pageIcon", newIcon);
+                document.getElementById("pageIcon").innerHTML = newIcon;
 
-                    localStorage.setItem("pageTitle", newTitle);
+                localStorage.setItem("pageIcon", newIcon);
 
-                }
+                localStorage.setItem("pageTitle", newTitle);
 
+            }
 
 
-                function changePageTitle4() {
 
-                    var newIcon = '<i style="color: white;" class="fas fa-money-bill-wave"></i>'
+            function changePageTitle4() {
 
-                    var newTitle = "Salary";
+                var newIcon = '<i style="color: white;" class="fas fa-money-bill-wave"></i>'
 
-                    document.getElementById("pageIcon").innerHTML = newIcon;
+                var newTitle = "Salary";
 
-                    document.getElementById("pageTitle").textContent = newTitle;
+                document.getElementById("pageIcon").innerHTML = newIcon;
 
-                    localStorage.setItem("pageIcon", newIcon);
+                document.getElementById("pageTitle").textContent = newTitle;
 
-                    localStorage.setItem("pageTitle", newTitle);
+                localStorage.setItem("pageIcon", newIcon);
 
-                }
+                localStorage.setItem("pageTitle", newTitle);
 
+            }
 
 
-                function changePageTitle5() {
 
-                    var newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>'
+            function changePageTitle5() {
 
-                    var newTitle = "Leave";
+                var newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>'
 
-                    document.getElementById("pageIcon").innerHTML = newIcon;
+                var newTitle = "Leave";
 
-                    document.getElementById("pageTitle").textContent = newTitle;
+                document.getElementById("pageIcon").innerHTML = newIcon;
 
-                    localStorage.setItem("pageIcon", newIcon);
+                document.getElementById("pageTitle").textContent = newTitle;
 
-                    localStorage.setItem("pageTitle", newTitle);
+                localStorage.setItem("pageIcon", newIcon);
 
-                }
+                localStorage.setItem("pageTitle", newTitle);
 
+            }
 
 
-                function changePageTitle6() {
 
-                    var newIcon = '<i style="color: white;" class="fas fa-clock"></i>'
+            function changePageTitle6() {
 
-                    var newTitle = "Attendence";
+                var newIcon = '<i style="color: white;" class="fas fa-clock"></i>'
 
-                    document.getElementById("pageIcon").innerHTML = newIcon;
+                var newTitle = "Attendence";
 
-                    document.getElementById("pageTitle").textContent = newTitle;
+                document.getElementById("pageIcon").innerHTML = newIcon;
 
-                    localStorage.setItem("pageIcon", newIcon);
+                document.getElementById("pageTitle").textContent = newTitle;
 
-                    localStorage.setItem("pageTitle", newTitle);
+                localStorage.setItem("pageIcon", newIcon);
 
-                }
+                localStorage.setItem("pageTitle", newTitle);
 
+            }
 
 
-                function changePageTitle7() {
 
-                    var newIcon = '<i style="color: white;" class="fas fa-folder"></i>'
+            function changePageTitle7() {
 
-                    var newTitle = "Document Center";
+                var newIcon = '<i style="color: white;" class="fas fa-folder"></i>'
 
-                    document.getElementById("pageIcon").innerHTML = newIcon;
+                var newTitle = "Document Center";
 
-                    document.getElementById("pageTitle").textContent = newTitle;
+                document.getElementById("pageIcon").innerHTML = newIcon;
 
-                    localStorage.setItem("pageIcon", newIcon);
+                document.getElementById("pageTitle").textContent = newTitle;
 
-                    localStorage.setItem("pageTitle", newTitle);
+                localStorage.setItem("pageIcon", newIcon);
 
-                }
+                localStorage.setItem("pageTitle", newTitle);
 
+            }
 
 
-                function changePageTitle8() {
 
-                    var newIcon = '<i style="color: white;" class="fas fa-users"></i>'
+            function changePageTitle8() {
 
-                    var newTitle = "People";
+                var newIcon = '<i style="color: white;" class="fas fa-users"></i>'
 
-                    document.getElementById("pageIcon").innerHTML = newIcon;
+                var newTitle = "People";
 
-                    document.getElementById("pageTitle").textContent = newTitle;
+                document.getElementById("pageIcon").innerHTML = newIcon;
 
-                    localStorage.setItem("pageIcon", newIcon);
+                document.getElementById("pageTitle").textContent = newTitle;
 
-                    localStorage.setItem("pageTitle", newTitle);
+                localStorage.setItem("pageIcon", newIcon);
 
-                }
+                localStorage.setItem("pageTitle", newTitle);
 
+            }
 
 
-                function changePageTitle9() {
 
-                    var newIcon = '<i style="color: white;" class="fas fa-headset"></i>'
+            function changePageTitle9() {
 
-                    var newTitle = "Help Desk";
+                var newIcon = '<i style="color: white;" class="fas fa-headset"></i>'
 
-                    document.getElementById("pageIcon").innerHTML = newIcon;
+                var newTitle = "Help Desk";
 
-                    document.getElementById("pageTitle").textContent = newTitle;
+                document.getElementById("pageIcon").innerHTML = newIcon;
 
-                    localStorage.setItem("pageIcon", newIcon);
+                document.getElementById("pageTitle").textContent = newTitle;
 
-                    localStorage.setItem("pageTitle", newTitle);
+                localStorage.setItem("pageIcon", newIcon);
 
-                }
+                localStorage.setItem("pageTitle", newTitle);
 
+            }
 
 
-                function changePageTitle10() {
 
-                    var newIcon = '<i style="color: white;" class="fas fa-user-friends"></i>'
+            function changePageTitle10() {
 
-                    var newTitle = "WorkFlow Delegates";
+                var newIcon = '<i style="color: white;" class="fas fa-user-friends"></i>'
 
-                    document.getElementById("pageIcon").innerHTML = newIcon;
+                var newTitle = "WorkFlow Delegates";
 
-                    document.getElementById("pageTitle").textContent = newTitle;
+                document.getElementById("pageIcon").innerHTML = newIcon;
 
-                    localStorage.setItem("pageIcon", newIcon);
+                document.getElementById("pageTitle").textContent = newTitle;
 
-                    localStorage.setItem("pageTitle", newTitle);
+                localStorage.setItem("pageIcon", newIcon);
 
-                }
+                localStorage.setItem("pageTitle", newTitle);
 
+            }
 
 
-                function changePageTitle11() {
 
-                    var newIcon = '<i style="color: white;" class="fas fa-cog"></i>'
+            function changePageTitle11() {
 
-                    var newTitle = "Account Settings";
+                var newIcon = '<i style="color: white;" class="fas fa-cog"></i>'
 
-                    document.getElementById("pageIcon").innerHTML = newIcon;
+                var newTitle = "Account Settings";
 
-                    document.getElementById("pageTitle").textContent = newTitle;
+                document.getElementById("pageIcon").innerHTML = newIcon;
 
-                    localStorage.setItem("pageIcon", newIcon);
+                document.getElementById("pageTitle").textContent = newTitle;
 
-                    localStorage.setItem("pageTitle", newTitle);
+                localStorage.setItem("pageIcon", newIcon);
 
-                }
-            </script>
+                localStorage.setItem("pageTitle", newTitle);
 
-    </body>
+            }
+        </script>
+
+</body>
 
 @endguest
 

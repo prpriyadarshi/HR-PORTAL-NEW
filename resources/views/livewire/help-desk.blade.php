@@ -203,12 +203,12 @@
         <div class="modal-backdrop fade show blurred-backdrop"></div>
         @endif
         @if ($activeTab == "active")
-        <div class="card-body" style="background-color: white; padding: 20px; width: 80%; margin-top: 30px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+        <div class="card-body" style="background-color:white;height:400px;width:80%;margin-top:30px;border-radius:5px">
+
 
             @if ($records->isEmpty())
-            <div style="text-align: center;">
-                <img src="https://media.istockphoto.com/id/1357284048/vector/no-item-found-vector-flat-icon-design-illustration-web-and-mobile-application-symbol-on.jpg?s=612x612&w=0&k=20&c=j0V0ww6uBl1LwQLH0U9L7Zn81xMTZCpXPjH5qJo5QyQ=" alt="No Items Found" style="max-width: 100%; height: auto;">
-            </div>
+            <div>            <img style="margin-top:15%;margin-left:30%" height="200" width="300" src="https://media.istockphoto.com/id/1357284048/vector/no-item-found-vector-flat-icon-design-illustration-web-and-mobile-application-symbol-on.jpg?s=612x612&w=0&k=20&c=j0V0ww6uBl1LwQLH0U9L7Zn81xMTZCpXPjH5qJo5QyQ=" alt="">
+        </div>
             @else
             <table style="width: 100%; border-collapse: collapse;">
                 <thead>

@@ -10,13 +10,12 @@ use App\Livewire\Settings;
 use App\Livewire\Review;
 use App\Livewire\Task;
 use App\Livewire\Itdeclaration;
-use App\Livewire\Itstatement;
+use App\Livewire\Itstatement1;
 use App\Livewire\Payroll;
+use App\Livewire\PlanA;
 use App\Livewire\Documents;
 use App\Livewire\Documentcenter;
 use Illuminate\Support\Facades\Route;
-
-
 
 Route::group(['middleware' => 'checkAuth'], function () {
     Route::get('/emplogin', EmpLogin::class)->name('emplogin');
@@ -35,12 +34,13 @@ Route::get('/task', Task::class)->name('task');
 
 Route::get('/payslip', Payroll::class);
 Route::get('/itdeclaration', Itdeclaration::class);
-Route::get('/itstatement', Itstatement::class);
+Route::get('/itstatement', Itstatement1::class);
 Route::get('/document', Documentcenter::class);
 Route::get('/documents', Documents::class);
 Route::get('/delegatesddb', function(){
     return view('delegate');
 });
+Route::get('/plan-A', PlanA::class)->name('plan-a');
 });
 
 

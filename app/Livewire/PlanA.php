@@ -4,10 +4,10 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
-class Itstatement extends Component
+class PlanA extends Component
 {
     public function render()
     {
-        return view('livewire.itstatement');
+        return view('livewire.plan-a');
     }
 }
