@@ -170,16 +170,14 @@
 
         <div class="row" style="height: auto;width:auto;background-color: #f0f0f0;">
 
-            <div class="card" style="border-radius:0px;height: auto; width: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            <div class="card" style="border-radius:0px;height: auto; width: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);margin-top:0px">
 
-                <div class="card-body" style="height: auto;width:auto">
+                <div class="card-body" style="height: auto;width:auto;margin-top:0px">
 
                     <ul class="nav flex-column">
 
-                        <div style="margin-bottom: 10px;">
-
-                            <img height="50" width="210" src="https://www.attuneglobal.net/images/logo.jpg" alt="">
-
+                        <div style="margin-bottom: 10px;margin-top:0px">
+                           @livewire('company_logo')
                         </div>
 
                         @livewire('profile-card')
@@ -564,7 +562,6 @@
 
             }
         </script>
-
 </body>
 
 @endguest

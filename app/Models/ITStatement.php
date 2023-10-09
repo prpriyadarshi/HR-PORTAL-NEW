@@ -10,7 +10,7 @@ class ITStatement extends Model
     
     use HasFactory;
 
-    protected $table = 'i_tstatements';
+    protected $table = 'itstatement';
 
     protected $fillable = [
         'emp_id',

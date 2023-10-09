@@ -125,9 +125,7 @@
                                                 <i class="fa fa-plus"></i>
                                             </button>Add
                                             <div>
-                                                @if ($selectedPeopleNames)
                                                 <div style="font-size: 12;"><strong>Selected CC recipients: </strong>{{ implode(', ', array_unique($selectedPeopleNames)) }}</div>
-                                                @endif
                                             </div>
                                         </div>
                                         @error('cc_to') <span class="text-danger">{{ $message }}</span> @enderror
@@ -148,16 +146,16 @@
                                     </div>
                                     @else
                                     @foreach($peopleData as $people)
-                                    <div wire:model="cc_to" wire:click="selectPerson({{ $people->id }})" class="container" style="cursor: pointer; background-color: darkgrey; padding: 5px; margin-bottom: 8px; width: 200px; border-radius: 5px;">
+                                    <div wire:model="cc_to" wire:click="selectPerson('{{ $people->emp_id }}')" class="container" style="cursor: pointer; background-color: darkgrey; padding: 5px; margin-bottom: 8px; width: 200px; border-radius: 5px;">
                                         <div class="row align-items-center">
                                             <div class="col-auto">
-                                                <input type="checkbox" name="selectedPeople[]" value="{{ $people->id }}" multiple>
+                                                <input type="checkbox" name="selectedPeople[]" value="{{ $people->emp_id }}" multiple>
                                             </div>
                                             <div class="col-auto">
                                                 <img class="profile-image" src="{{ $people->image }}" alt="Profile Image">
                                             </div>
                                             <div class="col">
-                                                <h6 class="username" style="font-size: 12px; color: white;">{{ $people->name }}</h6>
+                                                <h6 class="username" style="font-size: 12px; color: white;">{{ $people->first_name }} {{ $people->last_name }}</h6>
                                                 <p class="mb-0" style="font-size: 12px; color: white;">(#{{ $people->emp_id }})</p>
                                             </div>
                                         </div>
@@ -213,7 +211,7 @@
             <table style="width: 100%; border-collapse: collapse;">
                 <thead>
                     <tr style="background-color: #007BFF; color: white;">
-                        <th style="padding: 10px;font-size:12px;text-align:center">Emp ID</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center;width:150px">Emp ID</th>
                         <th style="padding: 10px;font-size:12px;text-align:center">Category</th>
                         <th style="padding: 10px;font-size:12px;text-align:center">Subject</th>
                         <th style="padding: 10px;font-size:12px;text-align:center">Description</th>
@@ -225,7 +223,7 @@
                 <tbody>
                     @foreach ($records as $record)
                     <tr>
-                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->emp_id }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center;width:150px">{{ $record->emp_id }}</td>
                         <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->category }}</td>
                         <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->subject }}</td>
                         <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->description }}</td>
