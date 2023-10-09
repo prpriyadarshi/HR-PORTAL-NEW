@@ -71,15 +71,18 @@
                             <span aria-hidden="true" style="color: white;">×</span>
                         </button>
                     </div>
+                    <form wire:submit="changePassword" class="login-form-with-shadow" style="margin-top: 0px;">
                     <div class="modal-body" style="background-color: #f0f0f0;padding:20px;width:600px">
                         <div class="row">
                             <div class="col">
                                 <div class="card" style="padding: 20px; width: 300px; margin-right: 0;">
                                     <div class="row">
                                         <div class="form-group">
-                                            <label style="font-size: 14px;" for="password">Old Password</label>
+                                            <label style="font-size: 14px;" for="oldPassword">Old Password</label>
                                             <div>
-                                                <input style="font-size: 12px;" type="password" id="password" name="password" placeholder="Enter your old password">
+                                                <input style="font-size: 12px;" type="oldPassword" id="oldPassword" name="oldPassword" placeholder="Enter your old password" wire:model="oldPassword">
+                                                @error("oldPassword") <p class="pt-2 px-1 text-danger">{{
+                                                    str_replace('oldPassword', 'Password', $message) }}</p> @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -89,7 +92,9 @@
                                             <div class="form-group">
                                                 <label style="font-size: 14px;" for="newPassword">New Password</label>
                                                 <div>
-                                                    <input style="font-size: 12px;" type="newPassword" id="newPassword" name="newPassword" placeholder="Enter your new password">
+                                                    <input style="font-size: 12px;" type="newPassword" id="newPassword" name="newPassword" placeholder="Enter your new password" wire:model="newPassword">
+                                                    @error("newPassword") <p class="pt-2 px-1 text-danger">{{
+                                                        str_replace('newPassword', 'Password', $message) }}</p> @enderror
                                                 </div>
                                             </div>
                                         </div>
@@ -97,7 +102,9 @@
                                             <div class="form-group">
                                                 <label style="font-size: 14px;" for="confirmNewPassword">Confirm New Password</label>
                                                 <div>
-                                                    <input style="font-size: 12px;" type="confirmNewPassword" id="confirmNewPassword" name="confirmNewPassword" placeholder="Enter your new password again">
+                                                    <input style="font-size: 12px;" type="confirmNewPassword" id="confirmNewPassword" name="confirmNewPassword" placeholder="Enter your new password again" wire:model="confirmNewPassword">
+                                                    @error("newPassword") <p class="pt-2 px-1 text-danger">{{
+                                                        str_replace('newPassword', 'Password', $message) }}</p> @enderror
                                                 </div>
                                             </div>
                                         </div>
@@ -109,7 +116,7 @@
                                     <div class="row" style="margin-left:1px">
                                         <div style="font-size: 8px;margin-top:5px">
                                             <i style="width: 7px;" class="fas fa-check-circle"></i>
-                                            <span>Password should contain a minimum of 10 characters.</span>
+                                            <span>Password should contain a minimum of 08 characters.</span>
                                         </div>
                                         <div style="font-size: 8px;">
                                             <i style="width: 7px;" class="fas fa-check-circle"></i>
@@ -122,9 +129,11 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div style="margin-top: 20px;margin-left:15%">
                                 <button style="background-color: green;color:white;border-radius:5px;font-size:15px">Save Password</button>
                             </div>
+                        </form>
                         </div>
 
                     </div>
