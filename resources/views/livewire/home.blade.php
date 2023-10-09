@@ -150,9 +150,9 @@
                                             @endif
                                             <button id="signButton" style="color: white; width: 80px; height: 30px; background-color: rgb(2, 17, 79); border: 1px solid #CFCACA; border-radius: 5px; margin-left: 50px;" wire:click="toggleSignState">
                                                 @if ($signIn)
-                                                Sign Out
-                                                @else
                                                 Sign In
+                                                @else
+                                                Sign Out
                                                 @endif
                                             </button>
 

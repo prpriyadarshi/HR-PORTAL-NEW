@@ -4,7 +4,7 @@ use App\Livewire\EmpLogin;
 use App\Livewire\Feeds;
 use App\Livewire\HelpDesk;
 use App\Livewire\Home;
-use App\Livewire\PeopleLists;
+use App\Livewire\Peoples;
 use App\Livewire\ProfileInfo;
 use App\Livewire\Settings;
 use App\Livewire\Review;
@@ -23,7 +23,7 @@ Route::middleware(['auth:emp'])->group(function () {
 Route::get('/', Home::class)->name('home');
 Route::get('/ProfileInfo', ProfileInfo::class)->name('profile.info');
 Route::get('/Feeds', Feeds::class);
-Route::get('/PeoplesList', PeopleLists::class);
+Route::get('/PeoplesList', Peoples::class);
 Route::get('/HelpDesk', HelpDesk::class);
 
 Route::get('/Settings', Settings::class);

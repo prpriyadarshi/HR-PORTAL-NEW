@@ -16,15 +16,14 @@ return new class extends Migration
             $table->string('emp_id');
             $table->string('swipe_time');
             $table->string('in_or_out');
-            $table->timestamps();
-        
             $table->foreign('emp_id')
-                ->references('emp_id')
-                ->on('employee_details')
-                ->onDelete('restrict')
-                ->onUpdate('cascade');
+            ->references('emp_id')
+            ->on('employee_details')
+            ->onDelete('restrict')
+            ->onUpdate('cascade');
+            $table->timestamps();
         });
-        
+
     }
 
     /**

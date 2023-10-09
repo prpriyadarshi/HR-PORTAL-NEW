@@ -22,7 +22,6 @@ return new class extends Migration
             $table->enum('priority', ['High', 'Medium', 'Low']); // Priority field with enum values 
             $table->timestamps();
 
-            // Add the foreign key constraint
             $table->foreign('emp_id')
                 ->references('emp_id')
                 ->on('employee_details')
