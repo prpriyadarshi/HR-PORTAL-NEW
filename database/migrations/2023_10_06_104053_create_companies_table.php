@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('company_logo');
             $table->timestamps(); // Created_at and updated_at columns
         });
-        
     }
 
     /**

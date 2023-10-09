@@ -5,38 +5,42 @@
             <div class="logo text-center mb-4">
             </div>
             @if(Session::has('success'))
+            <div class="d-flex justify-content-center align-items-center" style="height: 30;margin-bottom:0px">
                 <div class="alert alert-success alert-dismissible fade show" role="alert" style="font-size: 12px;">
-                   {{ Session::get('success') }}
+                    {{ Session::get('success') }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+            </div>
+
             @endif
-            <form wire:submit.prevent="empLogin" class="login-form-with-shadow">
-                <div class="logo text-center mb-4" >
+            <form wire:submit.prevent="empLogin" class="login-form-with-shadow" style="margin-top: 0px;">
+                <div class="logo text-center mb-4">
                     <img src="https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_ec40ff0b74fb940aa005e4fb50b3d85d/greythr.jpg" alt="Company Logo" width="200" height="100">
                 </div>
-                <hr class="bg-white"/>
+                <hr class="bg-white" />
                 <header _ngcontent-hyf-c110="" class="mb-12 text-center">
                     <div _ngcontent-hyf-c110="" class="text-12gpx font-bold font-title-poppins-bold opacity-90 text-text-default justify-items-center">Hello there! <span _ngcontent-hyf-c110="" class="font-emoji text-12gpx">👋</span>
-					</div></header><br>
-                @if($error)
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong>{{ $error }}</strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
                     </div>
+                </header><br>
+                @if($error)
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>{{ $error }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                 @endif
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Employee ID" wire:model="form.emp_id"  />
-                    @error("form.emp_id")  <p class="pt-2 px-1 text-danger">{{
-                        str_replace('form.emp id', 'Employee ID', $message) }}</p>  @enderror
+                    <input type="text" class="form-control" placeholder="Employee ID" wire:model="form.emp_id" />
+                    @error("form.emp_id") <p class="pt-2 px-1 text-danger">{{
+                        str_replace('form.emp id', 'Employee ID', $message) }}</p> @enderror
                 </div>
                 <div class="form-group" style="margin-top: 20px;">
-                    <input type="password" class="form-control" placeholder="Password" wire:model="form.password"  />
-                    @error("form.password")  <p class="pt-2 px-1 text-danger">{{
-                    str_replace('form.password', 'Password', $message) }}</p>  @enderror
+                    <input type="password" class="form-control" placeholder="Password" wire:model="form.password" />
+                    @error("form.password") <p class="pt-2 px-1 text-danger">{{
+                    str_replace('form.password', 'Password', $message) }}</p> @enderror
                 </div>
                 <div class="form-group" style="text-align: center;margin-top:10px">
                     <input type="submit" class="btn btn-primary btn-block" value="Login" />
@@ -91,20 +95,18 @@
 
 
 
-    <style>
-        /* Add box shadow to the login form */
-        .login-form-with-shadow {
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            border-radius: 10px;
-            background-color: "white";
-            max-width: 400px;
-            margin: 0 auto;
-            margin-top: 15%;
-        }
-    </style>
-    @livewireScripts
+        <style>
+            /* Add box shadow to the login form */
+            .login-form-with-shadow {
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+                padding: 20px;
+                border-radius: 10px;
+                background-color: "white";
+                max-width: 400px;
+                margin: 0 auto;
+                margin-top: 15%;
+            }
+        </style>
+        @livewireScripts
 
-</div>
-
-
+    </div>
