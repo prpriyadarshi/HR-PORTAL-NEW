@@ -11,6 +11,7 @@ use App\Livewire\Review;
 use App\Livewire\Task;
 use App\Livewire\LeaveApply;
 use App\Livewire\LeavePage;
+use App\Livewire\LeaveBalances;
 use App\Livewire\HolidayCalender;
 use Illuminate\Support\Facades\Route;
 
@@ -32,7 +33,7 @@ Route::get('/task', Task::class)->name('task');
 Route::get('/leave-page', LeavePage::class)->name('leave-page');
 Route::get('/leave-apply', LeaveApply::class)->name('leave-apply');
 Route::get('/holiday-calender', HolidayCalender::class)->name('holiday-calender');
-
+Route::get('/leave-balances', LeaveBalances::class)->name('leave-balances');
 });
 
 

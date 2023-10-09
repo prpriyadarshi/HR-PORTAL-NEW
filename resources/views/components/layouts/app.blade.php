@@ -157,6 +157,26 @@
                 color: black;
 
             }
+        
+       #leave-options a{
+        text-decoration:none;
+        color:#778899;
+
+       }
+       #leave-options a:hover{
+        text-decoration:none;
+        color:#3a9efd;
+
+       }
+       .active-option {
+        color: #3a9efd; /* Active option color (blue in this example) */
+    }
+
+    /* Add styles for highlighted option */
+    .highlighted-option {
+        background:#3a9efd; /* Highlighted option background color */
+        
+    }
         </style>
 
 
@@ -219,16 +239,35 @@
 
                         </li>
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5()">
-
-                            <a class="nav-link" href="/holiday-calender">
-
-                                <i class="fas fa-file-alt"></i> Leave
-
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5(item)">
+                    <a class="nav-link" href="#" onclick="toggleLeaveDropdown()">
+                        <i class="fas fa-file-alt" id="leave-icon"></i> Leave <i class="fas fa-caret-down" id="leave-caret"></i>
+                    </a>
+                    <div id="leave-options" style="display: none;">
+                        <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5('apply')">
+                            <a class="nav-link" href="/leave-page" id="leave-apply-link" onclick="selectOption(this, 'Leave Apply')">
+                                Leave Apply
                             </a>
-
                         </li>
-
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5('balances')">
+                            <a class="nav-link" href="/leave-balances" id="leave-balances-link" onclick="selectOption(this, 'Leave Balances')">
+                                Leave Balances
+                            </a>
+                        </li>
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5('calendar')">
+                            <a class="nav-link" href="/leave-calender" id="leave-Calender-link" onclick="selectOption(this, 'Leave Calender')">
+                                Leave Calender
+                            </a>
+                        </li>
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5('holiday')">
+                            <a class="nav-link" href="/holiday-calender" id="Holiday-Calender-link" onclick="selectOption(this, 'Holiday Calender')">
+                                Holiday Calender
+                            </a>
+                        </li>
+                        </ul>
+                    </div>
+                </li>
 
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
@@ -321,7 +360,7 @@
         </div>
 
         @livewireScripts
-
+            
         <script>
             if (localStorage.getItem("pageIcon") && localStorage.getItem("pageTitle")) {
 
@@ -550,8 +589,74 @@
                 localStorage.setItem("pageTitle", newTitle);
 
             }
+            function changePageTitle5(item) {
+        var newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+        var newTitle = "Leave";
+
+        if (item === 'apply') {
+            newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+            newTitle = "Leave Apply";
+        } else if (item === 'balances') {
+            newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+            newTitle = "Leave Balances";
+        } else if (item === 'calendar') {
+            newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+            newTitle = "Leave Calendar";
+        } else if (item === 'holiday') {
+            newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+            newTitle = "Holiday Calendar";
+        }
+
+        document.getElementById("pageIcon").innerHTML = newIcon;
+        document.getElementById("pageTitle").textContent = newTitle;
+        localStorage.setItem("pageIcon", newIcon);
+        localStorage.setItem("pageTitle", newTitle);
+    }
+            function toggleLeaveDropdown() {
+        const leaveOptions = document.getElementById("leave-options");
+        const leaveCaret = document.getElementById("leave-caret");
+
+        if (leaveOptions.style.display === "block") {
+            leaveOptions.style.display = "none";
+            leaveCaret.classList.remove("fa-caret-up");
+            leaveCaret.classList.add("fa-caret-down");
+        } else {
+            leaveOptions.style.display = "block";
+            leaveCaret.classList.remove("fa-caret-down");
+            leaveCaret.classList.add("fa-caret-up");
+        }
+    }
+
+    function selectOption(option, pageTitle) {
+        const accordionItems = document.querySelectorAll('.nav-link');
+        
+        // Remove the active class from all options
+        accordionItems.forEach(item => item.classList.remove('active-option'));
+
+        // Add the active class to the selected option
+        option.classList.add('active-option');
+        
+        // Update the pageTitle
+        updatePageTitle(pageTitle);
+        
+        // Toggle the highlighted option
+        option.classList.toggle('highlighted-option');
+        
+        // Close the dropdown if open
+        toggleLeaveDropdown();
+    }
+
+    function updatePageTitle(newTitle) {
+        document.getElementById("pageTitle").textContent = newTitle;
+        localStorage.setItem("pageTitle", newTitle);
+    }
         </script>
 
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 @endguest
