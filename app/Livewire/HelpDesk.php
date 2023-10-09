@@ -4,6 +4,8 @@ namespace App\Livewire;
 
 use App\Models\EmployeeDetails;
 use App\Models\PeopleList;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use App\Models\HelpDesks;
 use Livewire\WithFileUploads;
@@ -78,7 +80,7 @@ class HelpDesk extends Component
         $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
 
         HelpDesks::create([
-            'emp_id' =>$this->employeeDetails->emp_id,
+            'emp_id' => $this->employeeDetails->emp_id,
             'category' => $this->category,
             'subject' => $this->subject,
             'description' => $this->description,
@@ -88,7 +90,6 @@ class HelpDesk extends Component
         ]);
 
         $this->reset();
-
     }
 
 
@@ -102,22 +103,28 @@ class HelpDesk extends Component
     }
     public function selectPerson($personId)
     {
-        $selectedPerson = $this->peoples->where('id', $personId)->first();
-    
+        $selectedPerson = $this->peoples->where('emp_id', $personId)->first();
+
         if ($selectedPerson) {
-            $this->selectedPeopleNames[] = $selectedPerson->name;
-    
+            $this->selectedPeopleNames[] = $selectedPerson->first_name;
+
             $this->cc_to = implode(', ', array_unique($this->selectedPeopleNames));
         }
     }
-    
-    
+
+
+
     public function filter()
     {
+        $companyId = Auth::user()->company_id;
+
         $trimmedSearchTerm = trim($this->searchTerm);
 
-        $this->filteredPeoples = PeopleList::where('name', 'like', '%' . $trimmedSearchTerm . '%')
-            ->orWhere('emp_id', 'like', '%' . $trimmedSearchTerm . '%')
+        $this->filteredPeoples = EmployeeDetails::where('company_id', $companyId)
+            ->where(function ($query) use ($trimmedSearchTerm) {
+                $query->where(DB::raw("CONCAT(first_name, ' ', last_name)"), 'like', '%' . $trimmedSearchTerm . '%')
+                    ->orWhere('emp_id', 'like', '%' . $trimmedSearchTerm . '%');
+            })
             ->get();
 
         $this->peopleFound = count($this->filteredPeoples) > 0;
@@ -125,10 +132,15 @@ class HelpDesk extends Component
 
     public function render()
     {
-        $this->records = HelpDesks::all();
-        $this->peoples = PeopleList::all();
-        $peopleData = $this->filteredPeoples ? $this->filteredPeoples : $this->peoples;
+        $employeeId = auth()->guard('emp')->user()->emp_id;
+        $companyId = Auth::user()->company_id;
 
+        $this->peoples = EmployeeDetails::where('company_id', $companyId)->get();
+        $peopleData = $this->filteredPeoples ? $this->filteredPeoples : $this->peoples;
+        $this->records = DB::table('help_desks')
+            ->where('emp_id', $employeeId)
+            ->orderBy('created_at', 'desc')
+            ->get();
         return view('livewire.help-desk', [
             'peopleData' => $peopleData,
         ]);
