@@ -9,10 +9,20 @@ use App\Livewire\ProfileInfo;
 use App\Livewire\Settings;
 use App\Livewire\Review;
 use App\Livewire\Task;
+
+use App\Livewire\Itdeclaration;
+use App\Livewire\Itstatement1;
+use App\Livewire\Payroll;
+use App\Livewire\Payslip;
+use App\Livewire\PlanA;
+use App\Livewire\Documents;
+use App\Livewire\Documentcenter;
+
 use App\Livewire\LeaveApply;
 use App\Livewire\LeavePage;
 use App\Livewire\LeaveBalances;
 use App\Livewire\HolidayCalender;
+
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'checkAuth'], function () {
@@ -30,15 +40,34 @@ Route::get('/Settings', Settings::class);
 Route::get('/review', Review::class)->name('review');
 Route::get('/task', Task::class)->name('task');
 
+
+Route::get('/payslip', Payroll::class);
+Route::get('/slip', Payslip::class);
+Route::get('/itdeclaration', Itdeclaration::class);
+Route::get('/itstatement', Itstatement1::class);
+Route::get('/document', Documentcenter::class);
+Route::get('/documents', Documents::class);
+Route::get('/delegatesddb', function(){
+    return view('delegate');
+});
+Route::get('/plan-A', PlanA::class)->name('plan-a');
+
 Route::get('/leave-page', LeavePage::class)->name('leave-page');
 Route::get('/leave-apply', LeaveApply::class)->name('leave-apply');
 Route::get('/holiday-calender', HolidayCalender::class)->name('holiday-calender');
 Route::get('/leave-balances', LeaveBalances::class)->name('leave-balances');
+
 });
 
 
 
 
+Route::get('/your-download-route', function(){
+    return view('download-pdf');
+});
+Route::get('/v2/employee/addemployeworkflowdelegates', function(){
+    return view('submitdelegate');
+});
 
 
 
