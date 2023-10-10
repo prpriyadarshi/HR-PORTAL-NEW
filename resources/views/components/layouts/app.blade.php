@@ -45,6 +45,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <script src="{{ asset('vendor/livewire/livewire.js') }}"></script>
+    <!-- Add these links to your HTML -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
     <script src="{{ asset('livewire/livewire.js') }}" defer></script>
 
@@ -59,6 +65,9 @@
 @else
 
 <body>
+    <div>
+       
+    </div>
 
     <div>
 
@@ -219,25 +228,50 @@
 
                         </li>
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle3()">
+                            <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle3()">
 
-                            <a class="nav-link" href="#">
+                                <a class="nav-link" href="#">
 
-                                <i class="fas fa-tasks"></i> To do
+                                    <i class="fas fa-tasks"></i> To do
 
-                            </a>
+                                </a>
 
-                        </li>
+                            </li>
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle4()">
+                            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="/salary" id="salaryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-money-bill-wave"></i> Salary
+            </a>
+            <div class="dropdown-menu" aria-labelledby="salaryDropdown">
+                <!-- Dropdown items go here -->
+                <a class="dropdown-item" href="/itdeclaration">Itdeclaration</a>
+                <a class="dropdown-item" href="/itstatement">Itstatement</a>
+                <a class="dropdown-item" href="/slip">Payslip</a>
+            </div>
+        </li>
+    </ul>
+</nav>
 
-                            <a class="nav-link" href="#">
+                            <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5()">
 
-                                <i class="fas fa-money-bill-wave"></i> Salary
+                                <a class="nav-link" href="#">
 
-                            </a>
+                                    <i class="fas fa-file-alt"></i> Leave
 
-                        </li>
+                                </a>
+
+
+                            </li>
+
+
+
+                            <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
+
+                                <a class="nav-link" href="#">
+
+                                    <i class="fas fa-clock"></i> Attendance
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5(item)">
                     <a class="nav-link" href="#" onclick="toggleLeaveDropdown()">
@@ -270,61 +304,55 @@
                 </li>
 
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
+                                </a>
 
-                            <a class="nav-link" href="#">
+                            </li>
 
-                                <i class="fas fa-clock"></i> Attendance
+                            <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle7()">
 
-                            </a>
+                                <a class="nav-link" href="/document">
 
-                        </li>
+                                    <i class="fas fa-folder"></i> Document Center
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle7()">
+                                </a>
 
-                            <a class="nav-link" href="#">
+                            </li>
 
-                                <i class="fas fa-folder"></i> Document Center
+                            <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle8()">
 
-                            </a>
+                                <a class="nav-link" href="/PeoplesList">
 
-                        </li>
+                                    <i class="fas fa-users"></i> People
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle8()">
+                                </a>
 
-                            <a class="nav-link" href="/PeoplesList">
+                            </li>
 
-                                <i class="fas fa-users"></i> People
+                            <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle9()">
 
-                            </a>
+                                <a class="nav-link" href="/HelpDesk">
 
-                        </li>
+                                    <i class="fas fa-headset"></i> Helpdesk
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle9()">
+                                </a>
 
-                            <a class="nav-link" href="/HelpDesk">
+                            </li>
 
-                                <i class="fas fa-headset"></i> Helpdesk
+                            <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle10()">
 
-                            </a>
+                                <a class="nav-link" href="#">
 
-                        </li>
+                                    <i class="fas fa-user-friends"></i> Workflow Delegates
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle10()">
+                                </a>
 
-                            <a class="nav-link" href="#">
+                            </li>
 
-                                <i class="fas fa-user-friends"></i> Workflow Delegates
+                        </ul>
 
-                            </a>
-
-                        </li>
-
-                    </ul>
+                    </div>
 
                 </div>
-
-            </div>
 
             <div class="col" style="height: 60px; width: auto; background-color:rgb(2, 17, 79)">
 
