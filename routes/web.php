@@ -8,7 +8,7 @@ use App\Livewire\Peoples;
 use App\Livewire\ProfileInfo;
 use App\Livewire\Settings;
 use App\Livewire\Review;
-use App\Livewire\Task;
+use App\Livewire\Tasks;
 
 use App\Livewire\Itdeclaration;
 use App\Livewire\Itstatement1;
@@ -35,10 +35,9 @@ Route::get('/ProfileInfo', ProfileInfo::class)->name('profile.info');
 Route::get('/Feeds', Feeds::class);
 Route::get('/PeoplesList', Peoples::class);
 Route::get('/HelpDesk', HelpDesk::class);
-
 Route::get('/Settings', Settings::class);
 Route::get('/review', Review::class)->name('review');
-Route::get('/task', Task::class)->name('task');
+Route::get('/tasks', Tasks::class)->name('task');
 
 
 Route::get('/payslip', Payroll::class);

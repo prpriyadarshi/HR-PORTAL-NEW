@@ -5,7 +5,7 @@
             <div class="logo text-center mb-4">
             </div>
             @if(Session::has('success'))
-            <div class="d-flex justify-content-center align-items-center" style="height: 30;margin-bottom:0px">
+            <div style="height: 30px;width:400px;margin-bottom:0px;margin-left:13%"class="logo text-center mb-4">
                 <div class="alert alert-success alert-dismissible fade show" role="alert" style="font-size: 12px;">
                     {{ Session::get('success') }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
