@@ -4,7 +4,10 @@ namespace App\Livewire;
 
 use App\Models\EmployeeDetails;
 use App\Models\PeopleList;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
+
 
 class Settings extends Component
 {
@@ -22,6 +25,9 @@ class Settings extends Component
     public $editingSocialMedia = false;
     public $employees;
     public $employeeDetails;
+    public $oldPassword;
+    public $newPassword;
+    public $confirmNewPassword;
 
     public function editBiography()
     {
@@ -125,16 +131,52 @@ class Settings extends Component
     }
     public function show()
     {
+        $this->resetForm();
         $this->showDialog = true;
+
     }
     public function remove()
     {
+        $this->resetForm();
         $this->showDialog = false;
     }
     public function close()
     {
         $this->showAlertDialog = false;
     }
+
+
+
+    private function resetForm()
+    {
+        $this->oldPassword = '';
+        $this->newPassword = '';
+        $this->confirmNewPassword = '';
+    }
+
+    public function changePassword(){
+        $this->validate([
+
+            'oldPassword' => 'required',
+            'newPassword' => 'required|min:8',
+            'confirmNewPassword' => 'required|same:newPassword',
+        ]);
+        $employeeId = auth()->guard('emp')->user()->emp_id;
+        $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
+ if (!Hash::check($this->oldPassword,  $this->employeeDetails->password)) {
+        $this->addError('oldPassword', 'The old password is incorrect.');
+        return;
+    }
+
+    // Update the password
+    $this->employeeDetails->password = Hash::make($this->newPassword);
+    $this->employeeDetails->save();
+
+    session()->flash('success', 'Password changed successfully.');
+    $this->resetForm();
+    $this->showDialog = false;
+    }
+
     public function render()
     {
         $this->timeZones = timezone_identifiers_list();
