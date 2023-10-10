@@ -200,7 +200,7 @@
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle3()">
 
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/tasks">
 
                                 <i class="fas fa-tasks"></i> To do
 
