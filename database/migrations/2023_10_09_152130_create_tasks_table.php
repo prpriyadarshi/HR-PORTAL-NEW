@@ -11,16 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('help_desks', function (Blueprint $table) {
+        Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('emp_id');
-            $table->string('category'); // Name of the category
-            $table->string('subject'); // Subject field
-            $table->text('description'); // Description field
-            $table->string('file_path')->nullable(); // Path to attached file (nullable)
-            $table->string('cc_to')->nullable(); // CC to field (nullable)
+            $table->string('task_name');
+            $table->string('assignee');
+            $table->enum('priority', ['High', 'Medium', 'Low']); 
+            $table->string('due_date');
+            $table->string('tags'); 
+            $table->string('followers');
+            $table->string('subject');
+            $table->text('description');
+            $table->string('file_path')->nullable();
             $table->string('status')->nullable(); // CC to field (nullable)
-            $table->enum('priority', ['High', 'Medium', 'Low']); // Priority field with enum values 
             $table->timestamps();
 
             $table->foreign('emp_id')
@@ -36,6 +39,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('help_desks');
+        Schema::dropIfExists('tasks');
     }
 };
