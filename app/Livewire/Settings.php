@@ -27,7 +27,7 @@ class Settings extends Component
     public $employeeDetails;
     public $oldPassword;
     public $newPassword;
-    public $confirmPassword;
+    public $confirmNewPassword;
 
     public function editBiography()
     {
@@ -131,11 +131,13 @@ class Settings extends Component
     }
     public function show()
     {
+        $this->resetForm();
         $this->showDialog = true;
 
     }
     public function remove()
     {
+        $this->resetForm();
         $this->showDialog = false;
     }
     public function close()
@@ -143,34 +145,37 @@ class Settings extends Component
         $this->showAlertDialog = false;
     }
 
-    public function changePassword()
-    {
-        $this->validate([
-            'oldPassword' => 'required',
-            'newPassword' => 'required|min:8|confirmed',
-        ]);
 
-        if (!Hash::check($this->oldPassword, auth()->guard('emp')->password)) {
-            $this->addError('oldPassword', 'The old password is incorrect.');
-            return;
-        }
-
-        // auth()->guard('emp')->update([
-        //     'password' => Hash::make($this->newPassword),
-        // ]);
-
-        session()->flash('success', 'Password changed successfully.');
-        $this->resetForm();
-    }
 
     private function resetForm()
     {
         $this->oldPassword = '';
         $this->newPassword = '';
-        $this->confirmPassword = '';
+        $this->confirmNewPassword = '';
     }
 
+    public function changePassword(){
+        $this->validate([
 
+            'oldPassword' => 'required',
+            'newPassword' => 'required|min:8',
+            'confirmNewPassword' => 'required|same:newPassword',
+        ]);
+        $employeeId = auth()->guard('emp')->user()->emp_id;
+        $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
+ if (!Hash::check($this->oldPassword,  $this->employeeDetails->password)) {
+        $this->addError('oldPassword', 'The old password is incorrect.');
+        return;
+    }
+
+    // Update the password
+    $this->employeeDetails->password = Hash::make($this->newPassword);
+    $this->employeeDetails->save();
+
+    session()->flash('success', 'Password changed successfully.');
+    $this->resetForm();
+    $this->showDialog = false;
+    }
 
     public function render()
     {

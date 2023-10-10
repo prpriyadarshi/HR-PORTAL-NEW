@@ -42,10 +42,14 @@
                     @error("form.password") <p class="pt-2 px-1 text-danger">{{
                     str_replace('form.password', 'Password', $message) }}</p> @enderror
                 </div>
+                <div style="margin-left: 60%; text-align: center;" wire:click="show">
+                    <span><a href="#" wire:click="show">Forgot Password?</a></span>
+                </div>
                 <div class="form-group" style="text-align: center;margin-top:10px">
                     <input type="submit" class="btn btn-primary btn-block" value="Login" />
                 </div>
             </form>
+
         </div>
         <!-- Right Side (Carousel) -->
         <div class="col-md-6 p-0">
@@ -93,7 +97,60 @@
             </div>
         </div>
 
+        @if ($showDialog)
+        <div class="modal" tabindex="-1" role="dialog" style="display: block;">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: rgb(2, 17, 79); height: 50px; width: 600px;">
+                        <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title">
+                            <b>{{ $verified ? 'Create New Password' : 'Verify Email and DOB' }}</b>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="remove">
+                            <span aria-hidden="true" style="color: white;">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="background-color: #f0f0f0; padding: 20px; width: 600px;">
+                        @if ($verified)
+                            <form wire:submit.prevent="createNewPassword">
+                                <!-- Add input fields for new password and confirmation -->
+                                <div class="form-group">
+                                    <label for="newPassword">New Password</label>
+                                    <input type="password" id="newPassword" name="newPassword" class="form-control" placeholder="Enter your new password" wire:model="newPassword">
+                                    @error('newPassword') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmNewPassword">Confirm New Password</label>
+                                    <input type="password" id="confirmNewPassword" name="confirmNewPassword" class="form-control" placeholder="Enter your new password again" wire:model="confirmNewPassword">
+                                    @error('confirmNewPassword') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
+                                <button type="submit" class="btn btn-success">Save Password</button>
+                            </form>
+                        @else
+                            <form wire:submit.prevent="verifyEmailAndDOB">
+                                <!-- Add input fields for email and DOB verification -->
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" wire:model="email">
+                                    @error('email') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="dob">Date of Birth</label>
+                                    <input type="text" id="dob" name="dob" class="form-control" placeholder="Enter your date of birth" wire:model="dob">
+                                    @error('dob') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
+                                <button type="submit" class="btn btn-primary">Verify</button>
+                            </form>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-backdrop fade show blurred-backdrop"></div>
 
+
+
+
+          @endif
 
         <style>
             /* Add box shadow to the login form */
