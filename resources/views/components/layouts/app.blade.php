@@ -590,31 +590,33 @@
 
             }
             function changePageTitle5(item) {
-        var newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
-        var newTitle = "Leave";
+            var newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+            var newTitle = "Leave";
 
-        if (item === 'apply') {
-            newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
-            newTitle = "Leave Apply";
-        } else if (item === 'balances') {
-            newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
-            newTitle = "Leave Balances";
-        } else if (item === 'calendar') {
-            newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
-            newTitle = "Leave Calendar";
-        } else if (item === 'holiday') {
-            newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
-            newTitle = "Holiday Calendar";
-        }
+            if (item === 'apply') {
+                newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                newTitle = "Leave Apply";
+            } else if (item === 'balances') {
+                newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                newTitle = "Leave Balances";
+            } else if (item === 'calendar') {
+                newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                newTitle = "Leave Calendar";
+            } else if (item === 'holiday') {
+                newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                newTitle = "Holiday Calendar";
+            }
 
         document.getElementById("pageIcon").innerHTML = newIcon;
         document.getElementById("pageTitle").textContent = newTitle;
         localStorage.setItem("pageIcon", newIcon);
         localStorage.setItem("pageTitle", newTitle);
     }
-            function toggleLeaveDropdown() {
+
+        function toggleLeaveDropdown() {
         const leaveOptions = document.getElementById("leave-options");
         const leaveCaret = document.getElementById("leave-caret");
+       
 
         if (leaveOptions.style.display === "block") {
             leaveOptions.style.display = "none";
