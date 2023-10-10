@@ -12,6 +12,7 @@ use App\Livewire\Task;
 use App\Livewire\Itdeclaration;
 use App\Livewire\Itstatement1;
 use App\Livewire\Payroll;
+use App\Livewire\Payslip;
 use App\Livewire\PlanA;
 use App\Livewire\Documents;
 use App\Livewire\Documentcenter;
@@ -33,6 +34,7 @@ Route::get('/review', Review::class)->name('review');
 Route::get('/task', Task::class)->name('task');
 
 Route::get('/payslip', Payroll::class);
+Route::get('/slip', Payslip::class);
 Route::get('/itdeclaration', Itdeclaration::class);
 Route::get('/itstatement', Itstatement1::class);
 Route::get('/document', Documentcenter::class);

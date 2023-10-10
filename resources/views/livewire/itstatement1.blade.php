@@ -15,7 +15,7 @@
     .expand-collapse button:hover {
         text-decoration: none;
     }
-
+/* Container style */
 
 
     </style>
@@ -47,21 +47,23 @@
         <p style="font-size:24px;margin-top:10px;margin-left:40px">7</p>
     </div>
 </div>
+
 <div class="row" style="display:flex">
 <div _ngcontent-ffh-c446="" class="expand-collapse">
   <button id="collapseExpandBtn" _ngcontent-ffh-c446="" class="btn btn-link ng-star-inserted"><p  style="margin-top:10px">Collapse all</p></button>
   <p style="margin-left:750px;margin-bottom:70px">Value in ₹</p>
 </div>
 <div class="row" style="width: 850px; height: 50px; border-radius: 5px; border: 1px solid silver; margin-left: 15px; background: white; margin-top: -50px;">
-        <div class="column" style="display:flex">
-            <p id="expandButton" style="font-size: 14px; margin-top: 15px; padding-left: 10px; cursor: pointer;">+</p>
-            <p style="font-weight: normal;margin-top: 14px; margin-left: 20px;">A. Income </p>
-            <p style="font-weight: normal;margin-top: 14px; margin-left: 600px;">₹2,28,480.00 </p>
-            
-        </div>
-        <div id="incomeContainers" style="display: none; width: 850px;">
+    <div class="column" style="display:flex">
+        <p id="expandButton" style="font-size: 14px; margin-top: 15px; padding-left: 10px; cursor: pointer;">+</p>
+        <p style="font-weight: normal;margin-top: 14px; margin-left: 20px;">A. Income </p>
+        <p style="font-weight: normal;margin-top: 14px; margin-left: 600px;">₹2,28,480.00 </p>
+    </div>
+</div>
+
+<div id="incomeContainers" style="display: none; width: 850px;">
     <div class="row" style="display: flex; width: 106%;">
-        <div class="column" style="height: 40px; background: #AFC8ED; width: 102%; margin-left: -10px; display: flex;">
+        <div class="column" style="height: 40px; background: #AFC8ED; width: 102%; margin-left: 10px; display: flex;margin-top:10px">
             <p style="margin-top: 12px; margin-left: 20px; font-size: 10px;">Items</p>
             <p style="margin-top: 12px; margin-left: 100px; font-size: 10px;">Total</p>
             <div class="column" style="display: flex; white-space: nowrap; width: 100%;margin-left:40px">
@@ -70,146 +72,54 @@
                         <td style="font-size: 10px; margin-top: 12px; margin-left: 40px;">Jan 2023</td>
                         <td style="font-size: 10px; margin-top: 12px; margin-left: 10px;">Feb 2023</td>
                         <td style="font-size: 10px; margin-top: 12px; margin-left: 10px;">Mar 2023</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">Apr 2023</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">May 2023</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">Jun 2023</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">July 2023</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">Aug 2023</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">Sep 2023</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">Oct 2023</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">Nov 2023</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 30px;">Dec 2023</td>
+                        <td style="font-size: 10px; margin-top: 12px; margin-left: 10px;">Apr 2023</td>
+                        <td style="font-size: 10px; margin-top: 12px; margin-left: 10px;">May 2023</td>
+                        <td style="font-size: 10px; margin-top: 12px; margin-left: 10px;">Jun 2023</td>
+                        <td style="font-size: 10px; margin-top: 12px; margin-left: 10px;">Jul 2023</td>
+                        <td style="font-size: 10px; margin-top: 12px; margin-left: 10px;">Aug 2023</td>
+                        <td style="font-size: 10px; margin-top: 12px; margin-left: 10px;">Sep 2023</td>
+                        <td style="font-size: 10px; margin-top: 12px; margin-left: 10px;">Oct 2023</td>
+                        <td style="font-size: 10px; margin-top: 12px; margin-left: 10px;">Nov 2023</td>
+                        <td style="font-size: 10px; margin-top: 12px; margin-left: 10px;">Dec 2023</td>
+                        <!-- Add more months here -->
                     </tr>
                 </table>
             </div>
-     
-
-
-
         </div>
-       
-     <p style="font-weight: normal; margin-top: 4px;background:white;height:40px;width: 850px;margin-left:-10px">Monthly Income</p>
-</div>
-     <div class="row" style="height:200px;width:106%;margin-left:-23px;display:flex;background:white;margin-top:-15px">
-     <div class="column" style="display:flex;height:30px;">
-     <p style="margin-top:10px;margin-left:20px;font-size:13px">Basic</p>
-        <p  style="margin-top:10px;margin-left:95px;font-size:10px">96,000</p>
-        <div class="column" style="display: flex; white-space: nowrap; width: 100%;margin-left:40px">
-                <table style="width: 100%;">
-                    <tr style="width: 100%;">
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 90px;">8,000</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 10px;">8,000</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 10px;">8,000</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">8,000</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">8,000</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">8,000</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">8,000</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">8,000</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">8,000</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">8,000</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">8,000</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 30px;">8,000</td>
-                    </tr>
-                </table>
-            </div>
-     
-</div>
-
-<div class="column" style="display:flex;margin-top:-5px;" >
-        <p style="margin-top:10px;margin-left:20px;font-size:13px">HRA</p>
-        <p  style="margin-top:10px;margin-left:95px;font-size:10px">38,400</p>
-        <div class="column" style="display: flex; white-space: nowrap; width: 100%;margin-left:40px;margin-top:-10px">
-                <table style="width: 100%;">
-                    <tr style="width: 100%;">
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 90px;">3,200</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 10px;">3,200</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 10px;">3,200</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">3,200</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">3,200</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">3,200</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">3,200</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">3,200</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">3,200</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">3,200</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">3,200</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 30px;">3,200</td>
-                    </tr>
-                </table>
-            </div>
-</div>
-<div class="column" style="display:flex;margin-top:-10px;" >
-<p style="margin-top:10px;margin-left:20px;font-size:13px">Conveyance</p>
-        <p  style="margin-top:10px;margin-left:52px;font-size:10px">19,200</p>
-        <div class="column" style="display: flex; white-space: nowrap; width: 100%;margin-left:40px;margin-top:-10px">
-                <table style="width: 100%;">
-                    <tr style="width: 100%;">
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 90px;">1,600</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 10px;">1,600</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 10px;">1,600</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,600</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,600</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,600</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,600</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,600</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,600</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,600</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,600</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 30px;">1,600</td>
-                    </tr>
-                </table>
-            </div>
-      
-</div>
-<div class="column" style="display:flex;margin-top:-10px;" >
-      <p style="margin-top:10px;margin-left:20px;font-size:13px">Medical </p>
-        <p  style="margin-top:10px;margin-left:78px;font-size:10px">15,000</p>
-        <div class="column" style="display: flex; white-space: nowrap; width: 100%;margin-left:40px;margin-top:-10px">
-                <table style="width: 100%;">
-                    <tr style="width: 100%;">
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 10px;">1,250</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 10px;">1,250</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 10px;">1,250</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,250</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,250</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,250</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,250</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,250</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,250</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,250</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,250</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 30px;">1,250</td>
-                    </tr>
-                </table>
-            </div> 
-</div>
-<div class="column" style="display:flex;margin-top:-10px;background:#C3C7CD" >
-        <p style="margin-top:13px;margin-left:20px;font-size:13px"> Total</p>
-        <p  style="margin-top:13px;margin-left:90px;font-size:10px">₹2,28,480.00</p>
-        <div class="column" style="display: flex; white-space: nowrap; width: 100%;margin-left:40px;margin-top:-10px">
-                <table style="width: 100%;">
-                    <tr style="width: 100%;">
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 10px;">1,250</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 10px;">1,250</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 10px;">1,250</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,250</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,250</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,250</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,250</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,250</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,250</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,250</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,250</td>
-                        <td style="font-size: 10px; margin-top: 12px; margin-left: 30px;">1,250</td>
-                    </tr>
-                </table>
-            </div> 
-      
-</div>
-
-    </div>               
-    
+    <p style="font-weight: normal; margin-top: 4px;background:white;height:40px;width: 890px;margin-left:10px">Monthly Income</p>
     </div>
-    <div class="container" style="width: 106%; margin-left: -30px; margin-top: 5px;">
+
+    @foreach($itStatements as $index => $record)
+    <div class="row" style="height:30px;width:106%;display:flex;background:white; margin-bottom: 10px;">
+        <div class="column" style="display:flex;height:20px;margin-top:-5px @if(!$loop->last) margin-right: 10px; @endif">
+            <p style="margin-top:10px;margin-left:20px;font-size:13px"> {{$record->montly_income_type}}</p>
+            <p style="margin-top:10px;margin-left:75px;font-size:10px">{{$record->total}}</p>
+            <div class="column" style="display: flex; white-space: nowrap; width: 100%;margin-left:20px;margin-top:5px">
+                <table style="width: 100%;margin-top:5px;margin-left:-10px">
+                    <tr style="width: 100%;">
+                        <td style="font-size: 10px; margin-top: px; margin-left: 90px;">{{$record->Jan_2023}}</td>
+                        <td style="font-size: 10px; margin-top: 7px; margin-left: 10px;">{{$record->Feb_2023}}</td>
+                        <td style="font-size: 10px; margin-top: 7px; margin-left: 90px;">{{$record->Mar_2023}}</td>
+                        <td style="font-size: 10px; margin-top: 7px; margin-left: 10px;">{{$record->Apr_2023}}</td>
+                        <td style="font-size: 10px; margin-top: 7px; margin-left: 90px;">{{$record->May_2023}}</td>
+                        <td style="font-size: 10px; margin-top: 7px; margin-left: 10px;">{{$record->Jun_2023}}</td>
+                        <td style="font-size: 10px; margin-top: 7px; margin-left: 90px;">{{$record->July_2023}}</td>
+                        <td style="font-size: 10px; margin-top: 7px; margin-left: 10px;">{{$record->Aug_2023}}</td>
+                        <td style="font-size: 10px; margin-top: 7px; margin-left: 90px;">{{$record->Sep_2023}}</td>
+                        <td style="font-size: 10px; margin-top: 7px; margin-left: 10px;">{{$record->Oct_2023}}</td>
+                        <td style="font-size: 10px; margin-top: 7px; margin-left: 90px;">{{$record->Nov_2023}}</td>
+                        <td style="font-size: 10px; margin-top: 7px; margin-left: 10px;">{{$record->Dec_2023}}</td>
+                        <!-- Add more months here -->
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    @endforeach
+</div>
+
+
+    <div class="container" style="width: 106%; margin-left: -10px; margin-top: 5px;">
     <div class="row" style="width: 850px; height: 50px; border-radius: 5px; border: 1px solid silver; margin-left: 12px; background: white; margin-top: 20px;">
         <div class="column" style="display: flex;">
             <p id="expandButton2" style="font-size: 14px; margin-top: 15px; padding-left: 10px; cursor: pointer;">+</p>
@@ -417,6 +327,7 @@ D. Income Excluded From Tax</p>
 
                     
                 </div>
+              
 </div>
 </div>
 

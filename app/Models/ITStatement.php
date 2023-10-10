@@ -13,20 +13,20 @@ class ITStatement extends Model
     protected $table = 'itstatement';
 
     protected $fillable = [
-        'emp_id',
+        'montly_income_type',
         'total',
-        'Jan 2023',
-        'Feb 2023',
-        'Mar 2023',
-        'Apr 2023',
-        'May 2023',
-        'Jun 2023',
-        'Jul 2023',
-        'Aug 2023',
-        'Sep 2023',
-        'Oct 2023',
-        'Nov 2023',
-        'Dec 2023',
+        'Jan_2023',
+        'Feb_2023',
+        'Mar_2023',
+        'Apr_2023',
+        'May_2023',
+        'Jun_2023',
+        'Jul_2023',
+        'Aug_2023',
+        'Sep_2023',
+        'Oct_2023',
+        'Nov_2023',
+        'Dec_2023',
     ];
 }
 

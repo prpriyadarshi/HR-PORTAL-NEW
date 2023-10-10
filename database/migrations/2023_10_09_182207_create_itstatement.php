@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('itstatement', function (Blueprint $table) {
             $table->id();
+            $table->enum('montly_income_type', ['basic', 'hra', 'conveyance', 'medical', 'total']);
             $table->string('total');
             $table->string('Jan_2023');
             $table->string('Feb_2023');

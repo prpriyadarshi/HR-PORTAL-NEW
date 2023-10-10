@@ -4,10 +4,10 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
-class ITStatement extends Component
+class Payslip extends Component
 {
     public function render()
     {
-        return view('livewire.i-t-statement');
+        return view('livewire.payslip');
     }
 }
