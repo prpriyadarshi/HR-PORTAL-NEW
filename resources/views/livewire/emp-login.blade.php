@@ -168,12 +168,54 @@
             </div>
         </div>
         <div class="modal-backdrop fade show blurred-backdrop"></div>
+@endif
 
+        @if ($showSuccessModal)
+        <!-- Success Message and Password Change Modal -->
+        <div class="modal" tabindex="-1" role="dialog" style="display: block;">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: rgb(2, 17, 79); height: 50px; width: 600px;">
+                        <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title">
+                            <b>Success Message</b>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"  wire:click="remove">
+                            <span aria-hidden="true" style="color: white;">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="background-color: #f0f0f0; padding: 20px; width: 600px;">
+                        <p>Verification successful! Do you want to change your password?</p>
+                        <button type="button" class="btn btn-primary" wire:click="showPasswordChangeModal">Change Password</button>
+                        <button type="button" class="btn btn-secondary" wire:click="removeSuccessModal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-backdrop fade show blurred-backdrop"></div>
+    @endif
 
-
-
-          @endif
-
+    @if ($showErrorModal)
+    <!-- Error Modal -->
+    <div class="modal" tabindex="-1" role="dialog" style="display: block;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: rgb(255, 0, 0); height: 50px; width: 600px;">
+                    <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title">
+                        <b>Error Message</b>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="remove">
+                        <span aria-hidden="true" style="color: white;">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="background-color: #f0f0f0; padding: 20px; width: 600px;">
+                    <p>An error occurred. Please try again later.</p>
+                    <button type="button" class="btn btn-danger" wire:click="remove">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade show blurred-backdrop"></div>
+@endif
         <style>
             /* Add box shadow to the login form */
             .login-form-with-shadow {

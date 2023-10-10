@@ -14,6 +14,8 @@ class EmpLogin extends Component
     public $newPassword;
     public $newPassword_confirmation;
     public $verified = false;
+    public $showSuccessModal = false;
+    public $showErrorModal = false;
 
     public $form = [
         'emp_id'=>'',
@@ -47,6 +49,8 @@ class EmpLogin extends Component
         {
             // $this->resetForm();
             $this->showDialog = false;
+            $this->showErrorModal;
+            $this->showSuccessModal;
         }
 
 public function verifyEmailAndDOB()
@@ -61,9 +65,12 @@ public function verifyEmailAndDOB()
         $user = EmployeeDetails::where('email', $this->email)->where('date_of_birth', $this->dob)->first();
       if ($user) {
             $this->verified = true;
+            $this->showSuccessModal = true;
         } else {
+
             // Invalid email or DOB, show an error message or handle accordingly.
             $this->addError('email', 'Invalid email or date of birth');
+            $this->showErrorModal = true;
         }
     }
 
