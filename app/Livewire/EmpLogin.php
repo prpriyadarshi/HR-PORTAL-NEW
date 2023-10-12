@@ -16,7 +16,7 @@ class EmpLogin extends Component
     public $verified = false;
     public $showSuccessModal = false;
     public $showErrorModal = false;
-
+     public $passwordChangedModal=false;
     public $form = [
         'emp_id'=>'',
         'password'=>'',
@@ -39,20 +39,38 @@ class EmpLogin extends Component
 
         }
 
+
+        public function resetForm(){
+            $this->email = '';
+            $this->dob = '';
+            $this->newPassword = '';
+            $this->newPassword_confirmation = '';
+            $this->verified = false;
+        }
+
         public function show()
         {
-            // $this->resetForm();
+            $this->resetForm();
             $this->showDialog = true;
 
         }
         public function remove()
         {
-            // $this->resetForm();
+            $this->resetForm();
             $this->showDialog = false;
-            $this->showErrorModal;
-            $this->showSuccessModal;
+
+
         }
 
+        public function closeSuccessModal(){
+            $this->showSuccessModal=false;
+        }
+        public function closeErrorModal(){
+            $this->showErrorModal=false;
+        }
+        public function closePasswordChangedModal(){
+            $this->passwordChangedModal=false;
+        }
 public function verifyEmailAndDOB()
     {
 
@@ -64,8 +82,7 @@ public function verifyEmailAndDOB()
         // Example: Check if the email and DOB match a user's stored values in your database.
         $user = EmployeeDetails::where('email', $this->email)->where('date_of_birth', $this->dob)->first();
       if ($user) {
-            $this->verified = true;
-            $this->showSuccessModal = true;
+              $this->showSuccessModal = true;
         } else {
 
             // Invalid email or DOB, show an error message or handle accordingly.
@@ -73,7 +90,10 @@ public function verifyEmailAndDOB()
             $this->showErrorModal = true;
         }
     }
-
+public function showPasswordChangeModal(){
+    $this->verified = true;
+    $this->showSuccessModal=false;
+   }
     public function createNewPassword()
     {
      //dd($this->newPassword,$this->newPassword_confirmation);
@@ -88,12 +108,18 @@ public function verifyEmailAndDOB()
             if ($user) {
                 // Update the user's password in the database.
                 $user->update(['password' => bcrypt($this->newPassword)]);
+                $this->passwordChangedModal=true;
                 // Reset form fields and state after successful password update.
                 $this->reset(['newPassword', 'newPassword_confirmation', 'verified']);
+
+                $this->showDialog = false;
+
             }
         } else {
+
             // Passwords do not match, show an error message.
             $this->addError('newPassword', 'Passwords do not match');
+            $this->passwordChangedModal=false;
         }
     }
 
