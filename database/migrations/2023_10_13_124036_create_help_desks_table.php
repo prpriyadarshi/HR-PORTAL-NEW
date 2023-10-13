@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('description'); // Description field
             $table->string('file_path')->nullable(); // Path to attached file (nullable)
             $table->string('cc_to')->nullable(); // CC to field (nullable)
-            $table->string('status')->nullable(); // CC to field (nullable)
+            $table->string('status')->default('Open'); // CC to field (nullable)
             $table->enum('priority', ['High', 'Medium', 'Low']); // Priority field with enum values 
             $table->timestamps();
 

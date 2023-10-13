@@ -36,7 +36,7 @@ return new class extends Migration
             $table->string('job_title');
             $table->string('manager_id');
             $table->string('report_to');
-            $table->decimal('salary', 10, 2);
+            // $table->decimal('salary', 10, 2);
             $table->enum('employee_status', ['active', 'on-leave', 'terminated']);
             $table->string('bank_name')->nullable();
             $table->string('bank_branch')->nullable();

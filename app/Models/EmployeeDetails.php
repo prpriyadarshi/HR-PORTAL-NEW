@@ -39,7 +39,7 @@ class EmployeeDetails extends Authenticatable
         'job_title',
         'manager_id',
         'report_to',
-        'salary',
+        // 'salary',
         'employee_status',
         'bank_name',
         'bank_branch',
