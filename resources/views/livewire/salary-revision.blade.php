@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -43,14 +41,8 @@
             width:480px;
 
             height:200px;
-
-
-
-
-
-        }
-
-        .container2{
+ }
+ .container2{
 
        display: flex;
 
@@ -61,9 +53,6 @@
       justify-content: space-between;
 
           }
-
-
-
 .text1{
 
 margin-top: -2px;
@@ -77,9 +66,6 @@ color: rgba(0,0,0,.54);
 margin-left: 25px;
 
 }
-
-
-
 .text2{
 
 margin-top: 12px;

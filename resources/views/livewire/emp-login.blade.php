@@ -17,7 +17,7 @@
             @endif
             <form wire:submit.prevent="empLogin" class="login-form-with-shadow" style="margin-top: 0px;">
                 <div class="logo text-center mb-4">
-                    <img src="https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_ec40ff0b74fb940aa005e4fb50b3d85d/greythr.jpg" alt="Company Logo" width="200" height="100">
+                    <img src="{{ asset('images/attune_global_logo_2.png') }}" alt="Company Logo" width="150" height="80">
                 </div>
                 <hr class="bg-white" />
                 <header _ngcontent-hyf-c110="" class="mb-12 text-center">
