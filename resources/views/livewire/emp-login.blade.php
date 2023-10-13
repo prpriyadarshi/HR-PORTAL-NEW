@@ -1,4 +1,5 @@
 <div class="container-fluid p-0">
+    <div class="row"><button wire:click="createCV" style="width: 150px;border-radius:5px;margin-top:20px;margin-left:85%;background-color:rgb(2, 17, 79);color:white">Create CV</button></div>
     <div class="row m-0">
         <!-- Left Side (Login Form) -->
         <div class="col-md-6 p-5">

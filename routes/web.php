@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\CVBuilder;
 use App\Livewire\EmpLogin;
 use App\Livewire\Feeds;
 use App\Livewire\HelpDesk;
@@ -27,6 +28,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'checkAuth'], function () {
     Route::get('/emplogin', EmpLogin::class)->name('emplogin');
+});
+Route::get('/CreateCV', function(){
+    return view('create_cv_view');
 });
 
 Route::middleware(['auth:emp'])->group(function () {

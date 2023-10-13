@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('subject');
             $table->text('description');
             $table->string('file_path')->nullable();
-            $table->string('status')->nullable(); // CC to field (nullable)
+            $table->string('status')->default('Open'); // CC to field (nullable)
             $table->timestamps();
 
             $table->foreign('emp_id')
