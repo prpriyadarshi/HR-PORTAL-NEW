@@ -1,5 +1,4 @@
 <div class="container-fluid p-0">
-    <div class="row"><button wire:click="createCV" style="width: 150px;border-radius:5px;margin-top:20px;margin-left:85%;background-color:rgb(2, 17, 79);color:white">Create CV</button></div>
     <div class="row m-0">
         <!-- Left Side (Login Form) -->
         <div class="col-md-6 p-5">
@@ -17,9 +16,10 @@
 
             @endif
             <form wire:submit.prevent="empLogin" class="login-form-with-shadow" style="margin-top: 0px;">
-                <div class="logo text-center mb-4">
-                    <img src="{{ asset('images/attune_global_logo_2.png') }}" alt="Company Logo" width="150" height="80">
+                <div class="logo text-center mb-1" style="padding-top: 20px;">
+                    <img src="{{ asset('images/HR Portal.png') }}" alt="Company Logo" width="150" height="80">
                 </div>
+
                 <hr class="bg-white" />
                 <header _ngcontent-hyf-c110="" class="mb-12 text-center">
                     <div _ngcontent-hyf-c110="" class="text-12gpx font-bold font-title-poppins-bold opacity-90 text-text-default justify-items-center">Hello there! <span _ngcontent-hyf-c110="" class="font-emoji text-12gpx">👋</span>
