@@ -18,7 +18,7 @@
             @endif
             <form wire:submit.prevent="empLogin" class="login-form-with-shadow" style="margin-top: 0px;">
                 <div class="logo text-center mb-4">
-                    <img src="https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_ec40ff0b74fb940aa005e4fb50b3d85d/greythr.jpg" alt="Company Logo" width="200" height="100">
+                    <img src="{{ asset('images/attune_global_logo_2.png') }}" alt="Company Logo" width="150" height="80">
                 </div>
                 <hr class="bg-white" />
                 <header _ngcontent-hyf-c110="" class="mb-12 text-center">
@@ -169,11 +169,79 @@
             </div>
         </div>
         <div class="modal-backdrop fade show blurred-backdrop"></div>
+@endif
+
+        @if ($showSuccessModal)
+        <!-- Success Message and Password Change Modal -->
+        <div class="modal" tabindex="-1" role="dialog" style="display: block;">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: rgb(2, 17, 79); height: 50px; width: 600px;">
+                        <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title">
+                            <b>Success Message</b>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"  wire:click="closeSuccessModal">
+                            <span aria-hidden="true" style="color: white;">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="background-color: #f0f0f0; padding: 20px; width: 600px;">
+                        <p>Verification successful! Do you want to change your password?</p>
+                        <button type="button" class="btn btn-primary" wire:click="showPasswordChangeModal">Change Password</button>
+                        <button type="button" class="btn btn-secondary" wire:click="closeSuccessModal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-backdrop fade show blurred-backdrop"></div>
+    @endif
+
+    @if ($showErrorModal)
+    <!-- Error Modal -->
+    <div class="modal" tabindex="-1" role="dialog" style="display: block;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: rgb(255, 0, 0); height: 50px; width: 600px;">
+                    <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title">
+                        <b>Error Message</b>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="closeErrorModal">
+                        <span aria-hidden="true" style="color: white;">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="background-color: #f0f0f0; padding: 20px; width: 600px;">
+                    <p>Sorry You Are not Verified.... Please try again.</p>
+                    <button type="button" class="btn btn-danger" wire:click="closeErrorModal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="modal-backdrop fade show blurred-backdrop"></div>
+@endif
+
+
+@if ($passwordChangedModal)
+<div class="modal" tabindex="-1" role="dialog" style="display: block;">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: rgb(9, 45, 206); height: 50px; width: 600px;">
+                <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title">
+                    <b>Success Message</b>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="closePasswordChangedModal">
+                    <span aria-hidden="true" style="color: white;">×</span>
+                </button>
+            </div>
+            <div class="modal-body" style="background-color: #f0f0f0; padding: 20px; width: 600px;">
+                <p>Password Changes Successfully...</p>
+                <button type="button" class="btn btn-danger" wire:click="closePasswordChangedModal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 
 
 
-
-          @endif
 
         <style>
             /* Add box shadow to the login form */

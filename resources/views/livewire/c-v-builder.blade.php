@@ -423,7 +423,7 @@
                                     <strong>EXPERIENCE</strong>
                                 </h6>
                                 <ul>
-                                    @foreach($workExperienceEntries as $index => $workExperienceEntry)
+                                   @foreach($workExperienceEntries as $index => $workExperienceEntry)
                                     <li>
                                         <p>
                                         <div style="font-size: 12px"><strong>{{ $workExperienceEntry['job_title'] }}</strong></div>
