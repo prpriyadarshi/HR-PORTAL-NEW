@@ -18,7 +18,6 @@ class HelpDesk extends Component
     public $isRotated = false;
     public $selectedPerson = null;
     public $peoples;
-    public $activeTab = 'active';
     public $filteredPeoples;
     public $peopleFound = true;
     public $category;
@@ -32,6 +31,8 @@ class HelpDesk extends Component
     public $selectedPeopleNames = [];
     public $employeeDetails;
     public $showDialog = false;
+    public $record;
+    public $activeTab='active';
     public function toggleRotation()
     {
         $this->isRotated = true;
@@ -62,6 +63,28 @@ class HelpDesk extends Component
         'cc_to' => 'nullable|string|max:255',
         'priority' => 'required|in:High,Medium,Low',
     ];
+
+
+
+    public function openForDesks($taskId)
+    {
+        $task = HelpDesks::find($taskId);
+
+        if ($task) {
+            $task->update(['status' => 'Completed']);
+        }
+        return redirect()->to('/HelpDesk');
+    }
+
+    public function closeForDesks($taskId)
+    {
+        $task = HelpDesks::find($taskId);
+
+        if ($task) {
+            $task->update(['status' => 'Open']);
+        }
+        return redirect()->to('/HelpDesk');
+    }
 
     public function submit()
     {
@@ -101,6 +124,9 @@ class HelpDesk extends Component
     {
         $this->showDialog = false;
     }
+    public function closePeoples(){
+        $this->isRotated=false;
+    }
     public function selectPerson($personId)
     {
         $selectedPerson = $this->peoples->where('emp_id', $personId)->first();
@@ -137,6 +163,7 @@ class HelpDesk extends Component
 
         $this->peoples = EmployeeDetails::where('company_id', $companyId)->get();
         $peopleData = $this->filteredPeoples ? $this->filteredPeoples : $this->peoples;
+        $this->record = HelpDesks::all();
         $this->records = DB::table('help_desks')
             ->where('emp_id', $employeeId)
             ->orderBy('created_at', 'desc')

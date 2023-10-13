@@ -14,17 +14,18 @@ return new class extends Migration
         Schema::create('leave_applies', function (Blueprint $table) {
             $table->id();
             $table->string('emp_id');
-            $table->enum('leave_type', ['casual', 'maternity', 'loss_of_pay','sick_leave']);
+            $table->enum('leave_type', ['casual', 'maternity', 'loss_of_pay','sick_leave'],255);
             $table->date('from_date');
-            $table->enum('session', ['session_1', 'session_2']);
+            $table->string('from_session');
+            $table->string('to_session');
             $table->date('to_date');
             $table->string('applying_to');
             $table->string('cc_to')->nullable();
             $table->string('contact_details');
             $table->text('reason');
-            $table->string('attachment_path')->nullable();
-            $table->enum('sick_leave', ['yes', 'no'])->default('no');
-            $table->enum('casual_leave', ['yes', 'no'])->default('no');
+           
+            // $table->enum('sick_leave', ['yes', 'no'])->default('no');
+            // $table->enum('casual_leave', ['yes', 'no'])->default('no');
             $table->timestamps();
             $table->foreign('emp_id')
                 ->references('emp_id')

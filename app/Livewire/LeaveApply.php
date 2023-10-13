@@ -1,115 +1,150 @@
 <?php
 
 namespace App\Livewire;
+
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\LeaveRequest;
 use App\Models\EmployeeDetails;
 use Livewire\Component;
+use Illuminate\Support\Facades\DB;
 
 class LeaveApply extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads, WithPagination;
 
     public $leave_type;
     public $from_date;
-    public $session;
+    public $from_session;
+    public $to_session;
     public $to_date;
     public $applying_to;
     public $contact_details;
     public $reason;
-    public $attachment;
+    public $reportTo;
+    public $managerId;
+    public $employeeId;
+    public $attachment_path;
+     public $attachment_paths=[];
     public $defaultApplyingTo;
-    public $cc_to = [];
+    public $cc_to ;
     public $searchTerm = '';
-
+    public $selectedPeopleNames = [];
+    public $selectedPeople = [];
+    public $first_name;
+    public $employeeDetails = [];
+    public $ccRecipients =[];
+    public $isOpen = false;
     public function mount()
     {
-        // Fetch default values based on the logged-in user's ID
         $employeeId = auth()->guard('emp')->user()->emp_id;
         $this->applying_to = EmployeeDetails::where('emp_id', $employeeId)->first();
-       
         if ($this->applying_to) {
-            $this->defaultApplyingTo = $this->applying_to->report_to; // Set the default value
+            // Concatenate both report_to and manager_id
+            // $this->defaultApplyingTo = $this->applying_to->report_to . ' ' . $this->applying_to->manager_id;
+    
+            // Or display them separately
+            $this->reportTo = $this->applying_to->report_to;
+            $this->managerId = $this->applying_to->manager_id;
+            
         }
+        $this->searchEmployees(); 
+        $this->searchCCRecipients(); 
+        
     }
-       
-
-    public function store()
-   
+    // Add this method to your Livewire component
+    public function searchEmployees()
     {
-        // Validate the form data
-        $this->validate([
-            'leave_type' => 'required|in:casual,maternity,loss_of_pay,sick_leave',
-            'from_date' => 'required|date',
-            'session' => 'required|in:session_1,session_2',
-            'to_date' => 'required|date',
-            'applying_to' => 'required|string',
-            'cc_to' => 'nullable|string',
-            'contact_details' => 'required|string',
-            'reason' => 'required|string',
-            'attachment' => 'nullable|mimes:pdf,xls,xlsx,doc,docx,txt,ppt,pptx,gif,jpg,jpeg,png|max:2048',
-        ]);
-
-        // Handle file attachment if provided
-        $attachmentPath = null;
-        if ($this->attachment) {
-            $attachmentPath = $this->attachment->store('attachments');
-        }
-
-        // Create a new leave application and associate it with the employee
-        LeaveApply::create([
-            'emp_id' => $employeeId,
-            'leave_type' => $this->leave_type,
-            'from_date' => $this->from_date,
-            'session' => $this->session,
-            'to_date' => $this->to_date,
-            'applying_to' => $this->applying_to,
-            'cc_to' => $this->cc_to,
-            'contact_details' => $this->contact_details,
-            'reason' => $this->reason,
-            'attachment_path' => $attachmentPath,
-        ]);
-
-        // Redirect to a success page or emit an event as needed
-        session()->flash('message', 'Leave application submitted successfully.');
-        $this->resetFormFields(); // Optionally, reset the form fields
-
-        // Refresh the Livewire component to update the UI
-        $this->refresh();
+        // Fetch employees based on the search term
+        $this->employeeDetails = EmployeeDetails::where('company_id', $this->applying_to->company_id)
+            ->where(function ($query) {
+                $query->where('company_name', 'like', '%' . $this->searchTerm . '%')
+                    ->orWhere('emp_id', 'like', '%' . $this->searchTerm . '%');
+            })
+            
+            ->select(
+                'manager_id',
+                DB::raw('MIN(report_to) as report_to'),
+                DB::raw('MIN(image) as image'),
+                DB::raw('MIN(emp_id) as emp_id'),
+                DB::raw('MIN(CONCAT(first_name, " ", last_name)) as full_name')
+            )
+            ->groupBy('manager_id')
+            ->get();
     }
+    public function searchCCRecipients()
+    {
+        // Fetch employees based on the search term for CC To
+        $employeeId = auth()->guard('emp')->user()->emp_id;
+        $this->ccRecipients = EmployeeDetails::where('company_id', $this->applying_to->company_id)
+            ->where('emp_id', '!=', $employeeId) // Exclude the current user
+            ->where(function ($query) {
+                $query->where('company_name', 'like', '%' . $this->searchTerm . '%')
+                    ->orWhere('emp_id', 'like', '%' . $this->searchTerm . '%');
+            })
+            ->groupBy('emp_id')
+            ->select(
+                'emp_id',
+                DB::raw('MIN(CONCAT(first_name, " ", last_name)) as full_name')
+            )
+            ->get();
+    }
+    
+   
+    public function leaveApply()
+    {
+    
+    try {
+           
+        $employeeId = auth()->guard('emp')->user()->emp_id;
+        $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
+       
+        $this->validate([
+            'leave_type' => 'required|string|max:255',
+            // Add other validation rules for other attributes
+        ]);
+      
+     
+        dd('Applying To:', $this->applying_to);
+        dd('CC To:', $this->cc_to);
+        dd('Contact Details:', $this->contact_details);
+        dd('Reason:', $this->reason);
+   LeaveRequest::create([
+        'emp_id' => $this->employeeDetails->emp_id,
+        'leave_type' => $this->leave_type,
+        'from_date' => $this->from_date,
+        'from_session' => $this->from_session,
+        'to_session' => $this->to_session,
+        'to_date' => $this->to_date,
+        'applying_to' => $this->reportTo,
+        'cc_to' =>$this->employeeDetails->emp_id,
+        'contact_details' => $this->contact_details,
+        'reason' => $this->reason,
+    
+    ]);
+  
+  
+    $this->reset();
+ 
+    dd('Data stored successfully!');
+} catch (\Exception $e) {
+    // Display the exception message
+    dd('Error: ' . $e->getMessage());
+
+    // If you're using transactions, rollback
+    \DB::rollBack();
+}
+}
+
     
     public function render()
     {
-        $employees = [];
-
-        if ($this->searchTerm) {
-            // Fetch employees based on the search term and company_id
-            $employees = EmployeeDetails::where('company_name', auth()->user()->company_id)
-                ->where('name', 'like', '%' . $this->searchTerm . '%')
-                ->get();
-        }
-
-        return view('livewire.leave-apply', [
-            'employees' => $employees,
-        ]);
-    }
-    private function resetFormFields()
-    {
-        // Reset the form fields to their initial state
-        $this->leave_type = null;
-        $this->from_date = null;
-        $this->session = null;
-        $this->to_date = null;
-        $this->applying_to = null;
-        $this->cc_to = null;
-        $this->contact_details = null;
-        $this->reason = null;
-        $this->attachment = null;
+      
+        return view('livewire.leave-apply');
     }
 
-    public function applyPage(){
-         return redirect()->to('/leave-page');
-    }
+ 
 }
+

@@ -12,7 +12,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         /* Container row */
-      
+      .bal-container{
+        margin-top: 20px; 
+        width: 100%;
+      }
 
         /* Buttons and dropdown */
         .buttons-container {
@@ -78,13 +81,26 @@
         .view:hover {
             color: #007BFF;
         }
+        .leave-bal{
+            border: 1px solid #bfcee3;
+             padding: 5px 10px; 
+             border-radius: 5px;
+              text-align: center; 
+              height: 200px; 
+              background-color:#fff;
+        }
+        .balance{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
 
         /* Tube-like container */
         .tube-container {
             position: relative;
             width: 100%;
             height: 7px;
-            margin-top: 42px;
+            margin-top: 52px;
             background:#fff;
             border:1px solid #ccc;
             border-radius:10px;
@@ -99,11 +115,49 @@
             /* Green color for leaves */
             transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
         }
+        .center h5{
+            color:#778899;
+            font-size: 22px;
+            font-weight:600;
+        }
+        .center{
+            text-align: center;
+            align-items:center;
+             margin-top: 20px; 
+             font-size: 16px;
+        }
+        .center span{
+            color: #778899; 
+            font-size: 12px; 
+            font-weight: 400;
+             text-transform: capitalize;
+        }
+        .leave-type{
+            color: #778899;
+             font-size: 14px; 
+             font-weight: 500;
+        }
+        .leave-gran{
+            color: #778899; 
+            font-size: 14px; 
+            font-weight: 500; 
+            text-transform: capitalize;
+        }
+        .remaining{
+            color: #778899;
+             font-size: 12px;
+              font-weight: 400;
+               text-transform: capitalize;
+        }
+        .view-bal{
+            font-size:1.2rem;
+            color:#00BFFF;
+        }
     </style>
 </head>
 <body>
     <div class="buttons-container">
-        <button class="button1" id="leave-apply-link" onclick="changePageTitle5('apply')"><a href="/leave-page" style="text-decoration:none;">Apply</a></button>
+        <button class="button1" id="leave-apply-link" onclick="changePageTitle5('apply')"><a href="/leave-page" style="text-decoration:">Apply</a></button>
         <button class="button2">Download</button>
         <select class="dropdown">
             <option value="2022">2022</option>
@@ -111,68 +165,96 @@
             <option value="2024">2024</option>
         </select>
     </div>
-    <div class="container" style="margin-top: 20px; width: 100%; margin-right: 60px;">
-        <div class="row">
+    <div class="bal-container" >
+        <div class="row" style="margin:0 auto;">
             <div class="col-md-3">
-                <div style="border: 1px solid #bfcee3; padding: 10px; border-radius: 5px; text-align: center; height: 200px; background-color:#fff;">
-                    <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                <div class="leave-bal" >
+                    <div class="balance">
                         <div class="field">
-                            <span style="color: #778899; font-size: 14px; font-weight: 500;">Loss Of Pay</span>
+                            <span class="leave-type" >Loss Of Pay</span>
                         </div>
                         <div>
-                            <span style="color: #778899; font-size: 14px; font-weight: 500; text-transform: capitalize;">Granted:0</span>
+                            <span class="leave-gran">Granted:0</span>
                         </div>
                     </div>
-                    <div class="center" style="text-align: center; margin-top: 50px; font-size: 16px;">
-                        <h5 style="font-size: 22px; ">0 <br>
-                            <span style="color: #778899; font-size: 12px; font-weight: 400; text-transform: capitalize;">balance</span>
-                        </h5>
+                    <div class="center" >
+                        <h5 >0 </h5>
+                        <p style="margin-top:-15px;"><span class="remaining" >balance</span></p>
                     </div>
-                    
                 </div>
             </div>
+         <!-- ... (previous code) ... -->
             <div class="col-md-3">
-                <div style="border: 1px solid #bfcee3; padding: 10px; border-radius: 5px; text-align: center; height: 200px;background-color:#fff;">
-                    <div style="display: flex; flex-direction: row; justify-content: space-between;">
-                        <div class="field">
-                            <span style="color: #778899; font-size: 14px; font-weight: 500;">Maternity Leave
-                            </div>
-                            <div>
-                                <span style="color: #778899; font-size: 14px; font-weight: 500; text-transform: capitalize;">Granted:90</span>
-                            </div>
-                        </div>
-                        <div class="center" style="text-align: center; margin-top: 20px; font-size: 16px;">
-                            <h5 style="font-size: 22px; ">90 <br>
-                                <span style="color: #778899; font-size: 12px; font-weight: 400; text-transform: capitalize;">balance</span>
-                            </h5>
-                            <a href="#" class="view"><span>View Details</span></a>
-                        </div>
-                        <div class="tube-container">
-                        <p style="color: #778899; font-size: 10px; text-align:start; margin-top:-15px;font-weight: 400;">0 of 90 Consumed</p>
-                            <div class="tube" style="width: 0%; background-color: #1E90FF;"></div> <!-- Adjust the width and color based on your usage -->
-                        </div>
+               <div class="leave-bal">
+                <div class="balance">
+                    <div class="field">
+                        <span class="leave-type">
+                            @if($gender === 'Female')
+                                Maternity Leave
+                            @elseif($gender === 'Male')
+                                Paternity Leave
+                            @else
+                                Leave Type
+                            @endif
+                        </span>
+                    </div>
+                    <div>
+                        <span class="leave-gran">Granted:{{ $grantedLeave }}</span>
                     </div>
                 </div>
+                <div class="center">
+                    <h5>{{ $grantedLeave }}</h5>
+                    <p style="margin-top:-15px;"><span class="remaining">balance</span></p>
+                    <a href="#" class="view">View Details</a>
+                </div>
+                <div class="tube-container">
+                    <p style="color: #778899; font-size: 10px; text-align:start; margin-top:-15px;font-weight: 400;">0 of {{ $grantedLeave }} Consumed</p>
+                    <div class="tube" style="width: 0%; background-color: #1E90FF;"></div> <!-- Adjust the width and color based on your usage -->
+                </div>
+            </div>
+              </div>
+
+
                 <div class="col-md-3">
-                    <div style="border: 1px solid #bfcee3; padding: 10px; border-radius: 5px; text-align: center;  height: 200px;background-color:#fff;">
-                        <div style="display: flex; flex-direction: row; justify-content: space-between;">
-                            <div class="field">
-                                <span style="color: #778899; font-size: 14px; font-weight: 500;">Casual Leave Pr...
+                    <div class="leave-bal">
+                        <div class="balance">
+                                <div class="field">
+                                    <span class="leave-type">Casual Leave 
                                 </div>
                                 <div>
-                                    <span style="color: #778899; font-size: 14px; font-weight: 500; text-transform: capitalize;">Granted:9</span>
+                                    <span class="leave-gran">Granted:9</span>
                                 </div>
-                            </div>
-                            <div class="center" style="text-align: center; margin-top: 20px; font-size: 16px;">
-                                <h5 style="font-size: 22px; ">4.5<br>
-                                    <span style="color: #778899; font-size: 12px; font-weight: 400; text-transform: capitalize;">balance</span>
-                                </h5>
-                                <a href="#" class="view"><span>View Details</span></a>
-                            </div>
-                        
+                         </div>
+                         <div class="center" >
+                             <h5 >03</h5>
+                             <p style="margin-top:-15px;"><span class="remaining" >balance</span></p>
+                            <a href="#" >View Details</a>
+                        </div>
                             <div class="tube-container">
-                                <p style="color: #778899; font-size: 10px; text-align:start; margin-top:-15px;font-weight: 400;">4.5 of 9 Consumed</p>
-                                <div class="tube" style="width: 30%; background-color: #1E90FF;"></div> <!-- Adjust the width and color based on your usage -->
+                                <p style="color: #778899; font-size: 10px; text-align:start; margin-top:-15px;font-weight: 400;">0 of 3 Consumed</p>
+                                <div class="tube" style="width: 0%; background-color: #1E90FF;"></div> <!-- Adjust the width and color based on your usage -->
+                            </div>
+                        </div>
+                    </div>
+                      
+                    <div class="col-md-3">
+                    <div class="leave-bal">
+                        <div class="balance">
+                                <div class="field">
+                                    <span class="leave-type">Sick Leave
+                                </div>
+                                <div>
+                                    <span class="leave-gran">Granted:3</span>
+                                </div>
+                         </div>
+                            <div class="center" >
+                                <h5 >03</h5>
+                                <p style="margin-top:-15px;"><span class="remaining" >balance</span></p>
+                                <a href="#" >View Details</a>
+                            </div>
+                            <div class="tube-container">
+                                <p style="color: #778899; font-size: 10px; text-align:start; margin-top:-15px;font-weight: 400;">0 of 3 Consumed</p>
+                                <div class="tube" style="width: 0%; background-color: #1E90FF;"></div> <!-- Adjust the width and color based on your usage -->
                             </div>
                         </div>
                     </div>

@@ -9,6 +9,9 @@
         .text-gray {
             color: gray;
         }
+        .col-6{
+            width:250px;
+        }
     </style>
     <div class="container">
         <div class="row" style="margin-left: 1%; width: 20%">
@@ -22,13 +25,12 @@
 
         @if ($activeTab === 'starred')
         <!-- Starred tab content -->
-        <div class="container">
-            <div class="row" style="margin-top: 15px; width: 100%;">
+            <div class="row" style="margin-top: 15px">
                 <!-- Search input and filter button -->
-                <div class="col-6" style="width: 350px; background-color: white; border-radius: 5px; height: 420px; margin-right: 20px; padding: 5px;">
+                <div class="col" style="width: 150px; background-color: white; border-radius: 5px; height: 420px; margin-right: 20px; padding: 5px;">
                     <div class="container" style="margin-top: 10px">
                         <div class="row">
-                            <div class="col-md-12 col-search" style="margin: 0px; padding: 0px">
+                            <div class="col" style="margin: 0px; padding: 0px">
                                 <div class="input-group">
                                     <input wire:model="searchTerm" style="font-size: 10px; border-radius: 5px 0 0 5px; cursor: pointer" type="text" class="form-control" placeholder="Search for Emp.Name or ID" aria-label="Search" aria-describedby="basic-addon1">
                                     <div class="input-group-append">
@@ -107,19 +109,17 @@
                     @endif
                 </div>
             </div>
-        </div>
         <!-- End of Starred tab content -->
         @endif
 
         @if ($activeTab === 'everyone')
         <!-- Everyone tab content -->
-        <div class="container">
             <div class="row" style="margin-top: 15px; width: 100%;">
                 <!-- Search input and filter button -->
-                <div class="col-6" style="width: 350px; background-color: white; border-radius: 5px; height: 420px; margin-right: 20px; padding: 5px;">
+                <div class="col" style="width: 150px; background-color: white; border-radius: 5px; height: 420px; margin-right: 20px; padding: 5px;">
                     <div class="container" style="margin-top: 10px">
                         <div class="row">
-                            <div class="col-md-12 col-search" style="margin: 0px; padding: 0px">
+                            <div class="col" style="margin: 0px; padding: 0px">
                                 <div class="input-group">
                                     <input wire:model="searchTerm" style="font-size: 10px; cursor: pointer; border-radius: 5px 0 0 5px;" type="text" class="form-control" placeholder="Search for Emp.Name or ID" aria-label="Search" aria-describedby="basic-addon1">
                                     <div class="input-group-append">
@@ -221,7 +221,6 @@
                     @endif
                 </div>
             </div>
-        </div>
         <!-- End of Everyone tab content -->
         @endif
     </div>

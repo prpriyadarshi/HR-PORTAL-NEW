@@ -5,7 +5,7 @@
             <div class="logo text-center mb-4">
             </div>
             @if(Session::has('success'))
-            <div class="d-flex justify-content-center align-items-center" style="height: 30;margin-bottom:0px">
+            <div style="height: 30px;width:400px;margin-bottom:0px;margin-left:13%"class="logo text-center mb-4">
                 <div class="alert alert-success alert-dismissible fade show" role="alert" style="font-size: 12px;">
                     {{ Session::get('success') }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -65,21 +65,21 @@
                 <!-- The slideshow/carousel -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="https://xsilicasoftwaresolutions.greythr.com/uas/v1/cms/asset/33373960-635b-4019-9571-da5742815943" alt="Los Angeles" class="d-block w-100">
+                        <img src="{{ asset('images/communication.png') }}" alt="Los Angeles" class="d-block w-100">
                         <div class="carousel-caption">
                             <h3>Los Angeles</h3>
                             <p>We had such a great time in LA!</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="https://xsilicasoftwaresolutions.greythr.com/uas/v1/cms/asset/3d201a29-9bb3-4481-bef5-543565a40a7c" alt="Chicago" class="d-block w-100">
+                        <img src="{{ asset('images/tasks.png') }}" alt="Chicago" class="d-block w-100">
                         <div class="carousel-caption">
                             <h3>Chicago</h3>
                             <p>Thank you, Chicago!</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="https://xsilicasoftwaresolutions.greythr.com/uas/v1/cms/asset/5fe7bab4-8479-4266-a749-97a7208b7a40" alt="New York" class="d-block w-100">
+                        <img src="{{ asset('images/Working.png') }}" alt="New York" class="d-block w-100">
                         <div class="carousel-caption">
                             <h3>New York</h3>
                             <p>We love the Big Apple!</p>
@@ -111,47 +111,111 @@
                     </div>
                     <div class="modal-body" style="background-color: #f0f0f0; padding: 20px; width: 600px;">
                         @if ($verified)
-                            <form wire:submit.prevent="createNewPassword">
-                                <!-- Add input fields for new password and confirmation -->
-                                <div class="form-group">
-                                    <label for="newPassword">New Password</label>
-                                    <input type="password" id="newPassword" name="newPassword" class="form-control" placeholder="Enter your new password" wire:model="newPassword">
-                                    @error('newPassword') <span class="text-danger">{{ $message }}</span> @enderror
+                        <!-- Form for creating a new password -->
+                        <form wire:submit.prevent="createNewPassword">
+                            <!-- Add input fields for new password and confirmation -->
+                            <div class="form-group">
+                                <label for="newPassword">New Password</label>
+                                <input type="password" id="newPassword" name="newPassword" class="form-control" placeholder="Enter your new password" wire:model="newPassword">
+                                @error('newPassword') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword_confirmation">Confirm New Password</label>
+                                <input type="password" id="newPassword_confirmation" name="newPassword_confirmation" class="form-control" placeholder="Enter your new password again" wire:model="newPassword_confirmation">
+                                @error('newPassword_confirmation') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+
+                            <button type="submit" class="btn btn-success">Save Password</button>
+
+                            <!-- Success or error message for password update -->
+                            @if(session()->has('passwordMessage'))
+                                <div class="alert alert-success mt-3">
+                                    {{ session('passwordMessage') }}
                                 </div>
-                                <div class="form-group">
-                                    <label for="confirmNewPassword">Confirm New Password</label>
-                                    <input type="password" id="confirmNewPassword" name="confirmNewPassword" class="form-control" placeholder="Enter your new password again" wire:model="confirmNewPassword">
-                                    @error('confirmNewPassword') <span class="text-danger">{{ $message }}</span> @enderror
+                            @endif
+                        </form>
+                    @else
+                        <!-- Form for verifying email and DOB -->
+                        <form wire:submit.prevent="verifyEmailAndDOB">
+                            <!-- Add input fields for email and DOB verification -->
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" wire:model="email">
+                                @error('email') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="dob">Date of Birth</label>
+                                <div class="input-group">
+                                    <input type="date" id="dob" name="dob" class="form-control" wire:model="dob" max="{{ date('Y-m-d') }}">
                                 </div>
-                                <button type="submit" class="btn btn-success">Save Password</button>
-                            </form>
-                        @else
-                            <form wire:submit.prevent="verifyEmailAndDOB">
-                                <!-- Add input fields for email and DOB verification -->
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" wire:model="email">
-                                    @error('email') <span class="text-danger">{{ $message }}</span> @enderror
+                                @error('dob') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary">Verify</button>
+
+                            <!-- Success or error message for email and DOB verification -->
+                            @if(session()->has('emailDobMessage'))
+                                <div class="alert alert-{{ session('emailDobMessageType') }} mt-3">
+                                    {{ session('emailDobMessage') }}
                                 </div>
-                                <div class="form-group">
-                                    <label for="dob">Date of Birth</label>
-                                    <input type="text" id="dob" name="dob" class="form-control" placeholder="Enter your date of birth" wire:model="dob">
-                                    @error('dob') <span class="text-danger">{{ $message }}</span> @enderror
-                                </div>
-                                <button type="submit" class="btn btn-primary">Verify</button>
-                            </form>
-                        @endif
+                            @endif
+                        </form>
+                    @endif
+
                     </div>
                 </div>
             </div>
         </div>
         <div class="modal-backdrop fade show blurred-backdrop"></div>
+@endif
 
+        @if ($showSuccessModal)
+        <!-- Success Message and Password Change Modal -->
+        <div class="modal" tabindex="-1" role="dialog" style="display: block;">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: rgb(2, 17, 79); height: 50px; width: 600px;">
+                        <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title">
+                            <b>Success Message</b>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"  wire:click="remove">
+                            <span aria-hidden="true" style="color: white;">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="background-color: #f0f0f0; padding: 20px; width: 600px;">
+                        <p>Verification successful! Do you want to change your password?</p>
+                        <button type="button" class="btn btn-primary" wire:click="showPasswordChangeModal">Change Password</button>
+                        <button type="button" class="btn btn-secondary" wire:click="removeSuccessModal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-backdrop fade show blurred-backdrop"></div>
+    @endif
 
-
-
-          @endif
-
+    @if ($showErrorModal)
+    <!-- Error Modal -->
+    <div class="modal" tabindex="-1" role="dialog" style="display: block;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: rgb(255, 0, 0); height: 50px; width: 600px;">
+                    <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title">
+                        <b>Error Message</b>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="remove">
+                        <span aria-hidden="true" style="color: white;">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="background-color: #f0f0f0; padding: 20px; width: 600px;">
+                    <p>An error occurred. Please try again later.</p>
+                    <button type="button" class="btn btn-danger" wire:click="remove">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade show blurred-backdrop"></div>
+@endif
         <style>
             /* Add box shadow to the login form */
             .login-form-with-shadow {

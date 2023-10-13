@@ -9,6 +9,6 @@ class HelpDesks extends Model
 {
     use HasFactory;
     protected $fillable=[
-       'emp_id', 'category', 'subject', 'description', 'file_path', 'cc_to', 'priority'
+       'emp_id', 'category', 'subject', 'description', 'file_path', 'cc_to', 'priority','status'
     ];
 }

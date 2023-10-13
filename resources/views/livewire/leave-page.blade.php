@@ -1,3 +1,4 @@
+<livewire:styles />
 <style>
 
 .links {
@@ -242,3 +243,4 @@ tabs.forEach(tab => {
 
 
 </script>
+@livewireScripts

@@ -1,9 +1,11 @@
+<div>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <livewire:styles />
     <style>
                    /* Your custom styles here */
         .file-label:hover {
@@ -136,6 +138,99 @@
               background: #FFFFFF;
               padding:10px 15px;
         }
+    .reporting{
+        display:flex; 
+        flex-direction:row; 
+        justify-content: space-between;
+        padding: 15px 12px 15px 12px;
+        border-radius: 30px; 
+        align-items:center;
+        width: 180px; 
+        height: 55px; 
+    }
+        .reporting:hover{
+
+       border: 1px solid #ccc;
+   }
+   .searchContainer{
+    background:#fff;
+    border:1px solid #ccc;
+    border-radius:3px;
+    box-shadow: 2px 0 5px 0 #ccc;
+    padding:12px 15px;
+    width:30%;
+    margin-top:15px;
+    max-height: 100px; /* Adjust the maximum height as needed */
+    overflow-y: auto;
+
+   }
+   .ccContainer{
+    background:#fff;
+    border:1px solid #ccc;
+    border-radius:3px;
+    box-shadow: 2px 0 5px 0 #ccc;
+    padding:12px 15px;
+    width:30%;
+    margin-top:15px;
+    max-height: 100px; /* Adjust the maximum height as needed */
+    overflow-y: auto;
+
+   }
+    .ellipsis {
+        font-size:0.875rem;
+        margin-top:15px;
+         font-weight:500;
+         white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 70px; /* Adjust the value based on your container width */
+        display: inline-block;
+    }
+    .reporting:hover .details {
+        display: block;
+    }
+    .reporting.active {
+    background-color: #D9ECFF;
+    border:1px solid #ccc; /* Light blue color */
+    /* Add any other styles you want for the active state */
+}
+.icon-container.active{
+    background-color: #D9ECFF;
+}
+.icon-container{
+    height: 2rem;
+     width: 2rem;
+    background: #fff; 
+    padding: 7px; 
+    border: 1px solid #778899; 
+    border-radius: 50%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+    .details {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 5px 10px;
+        z-index: 1;
+        width:100px;
+        margin-top: -150px; /* Adjust the value to position it above the reporting container */
+        margin-left: 50px;
+        transform: translateX(-50%);
+    }
+    .cc-Container{
+        height: 2rem;
+        width: 2rem;
+        background: #fff;
+        padding: 7px; 
+        border: 1px solid #778899;
+        border-radius: 50%; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center;
+    }
         @media screen and (max-width: 1060px) {
         /* Apply styles for screens 960px or less in width */
         .wrap-content {
@@ -156,11 +251,11 @@
     
 
 <div class="applyContainer">
-    <h5 >Applying for Leave</h5>
-    <form wire:submit.prevent="store">
+    <h6 >Applying for Leave</h6>
+    <form wire:submit.prevent="leaveApply">
     <div class="form-group" >
                 <label for="leaveType"  style="color: #778899; font-size: 14px; font-weight: 500;">Leave type</label>
-                <select class="form-control" wire:model="leave_type" id="leaveType" name="leaveType" style="width: 50%; font-weight: 400; color: #778899;">
+                <select class="form-control" wire:model="leave_type" id="leaveType" name="leaveType" style="width: 50%; font-weight: 400; color: #778899;" onchange="toggleReporting()">
                     <option value="default">Select Type</option>
                     <option value="casual">Casual Leave</option>
                     <option value="lossOfPay">Loss of Pay</option>
@@ -176,7 +271,7 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="session" style="color: #778899; font-size: 14px; font-weight: 500;">Sessions</label>
-                <select class="form-control" wire:model="session" id="session" name="session" style="font-weight: 500; ">
+                <select class="form-control" wire:model="from_session" id="session" name="session" style="font-weight: 500; ">
                     <option value="default">Select session</option>
                     <option value="Session 1">Session 1</option>
                     <option value="Session 2">Session 2</option>
@@ -190,47 +285,112 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="session" style="color: #778899; font-size: 14px; font-weight: 500;">Sessions</label>
-                    <select class="form-control" wire:model="session" id="session" name="session" style="font-weight: 500;">
+                    <select class="form-control" wire:model="to_session" id="session" name="session" style="font-weight: 500;">
                         <option value="default">Select session</option>
                         <option value="Session 1">Session 1</option>
                         <option value="Session 2">Session 2</option>
                     </select>
                 </div>
             </div>
-            <div class="form-group" style="margin-top: 10px;">
-                <div style="display:flex; flex-direction:row;">
-                <label for="applyingToText" id="applyingToText" name="applyingTo" style="color: #778899; font-size: 14px; font-weight: 500; cursor: pointer;" onclick="toggleSearchBar()">
-                    Applying To
-                </label>
-                <div class="custom-dropdown-arrow" style="color: #778899; font-size:12px; margin-top:3px; margin-right:15px;cursor:pointer;" onclick="toggleSearchBar()">&#9660;</div>
+       
+            <div>
+                <div class="form-group" style="margin-top: 10px;">
+                    <div style="display:flex; flex-direction:row;">
+                        <label for="applyingToText" id="applyingToText" name="applyingTo" style="color: #778899; font-size: 14px; font-weight: 500; cursor: pointer;" >
+                            Applying To
+                        </label>
+                    </div>
                 </div>
-                <input type="text" class="form-control" id="applyingToInput" name="applyingTo" style="display: none;">
-                <ul class="custom-dropdown-search" id="searchBar" style="width: 20%; padding: 10px; background-color: #fff; border: 1px solid #ccc; display: none;">
-                    <li>
-                        <input type="text" wire:model="applying_to" class="custom-dropdown-search-input" placeholder="Search..." style="border: 1px solid #ccc; transition: border-color 0.3s; color: #778899; padding-left: 30px;">
-                        <i class="fas fa-search" style="position: absolute; top: 50%; left: 20px; transform: translateY(-50%); color: #778899;"></i>
-                        <i class="fas fa-times" style="position: absolute; top: 50%; right: 20px; transform: translateY(-50%); color: #778899; cursor: pointer;" onclick="toggleSearchBar()"></i>
-                    </li>
-                </ul>
+
+               
+
+                <div class="reporting" style="display:none;" >
+                    <div>
+                        <img src="https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars.png" alt="Default User Image" style="width: 40px; height: 40px; border-radius: 50%;">
+                    </div>
+                    <div class="center"  >
+                        <p id="reportToText" class="ellipsis" >{{$reportTo}}</p>
+                        <p style="margin-top:-20px; color:#778899; font-size:0.69rem;" id="managerIdText"><span class="remaining" >#{{$managerId}}</span></p>
+                    </div>
+                    <div class="downArrow" onclick="toggleSearchContainer()">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                       <!-- Details to show on hover -->
+                   
+                </div>
+                <div class="searchContainer" style="display:none;">
+                    <!-- Content for the search container -->
+                    <div class="row" style="padding: 0 15px; margin-bottom: 10px;">
+                        <div class="col" style="margin: 0px; padding: 0px">
+                            <div class="input-group">
+                                <input wire:model="searchTerm" style="font-size: 10px; border-radius: 5px 0 0 5px; cursor: pointer; width:50%;" type="text" class="form-control" placeholder="Search for Emp.Name or ID" aria-label="Search" aria-describedby="basic-addon1">
+                                <div class="input-group-append">
+                                    <button style="height: 29px; border-radius: 0 5px 5px 0; background-color: #007BFF; color: #fff; border: none; align-items: center; display: flex;" class="btn" type="button" wire:click="searchOnClick">
+                                        <i style="margin-right: 5px;" class="fa fa-search"></i> <!-- Adjust margin-right as needed -->
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    @foreach($employeeDetails as $employee)
+                        <div style="display:flex; gap:10px;"onclick="updateApplyingTo('{{ $employee['report_to'] }}', '{{ $employee['manager_id'] }}')">
+                               <img src="https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars.png" alt="Default User Image" style="width: 40px; height: 40px; border-radius: 50%;">
+                            <div class="center">
+                                <p style=" font-size:0.875rem; font-weight:500;"value="{{ $employee['report_to'] }}">{{ $employee['report_to'] }}</p>
+                                <p style="margin-top:-15px; color:#778899; font-size:0.69rem;" value="{{ $employee['manager_id'] }}">#{{ $employee['manager_id'] }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
-            <div class="form-group">
-                <label for="ccToText" wire:model="from_date" id="applyingToText" name="applyingTo" style="color: #778899; font-size: 14px; font-weight: 500;">
-                    CC to
-                </label>
-                <div class="control-wrapper" style="display: flex; flex-direction: row; gap: 10px;">
-                    <a href="javascript:void(0);" wire:model="cc_to" class="text-3 text-secondary control" aria-haspopup="true" onclick="toggleCCField()" style="text-decoration: none;">
-                       <div class="icon-container" style="height: 2rem; width: 2rem; background: #fff; padding:7px;border: 1px solid #778899; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
-                        <i class="fas fa-plus" style="color:#778899;"></i>
-                       </div>
-                    </a>
-                    <span class="text-5 text-secondary placeholder" id="ccPlaceholder" style="margin-top: 5px;background:transparent; color:#ccc;">Add</span>
-                    <div id="addedEmails" class="added-emails" style="display: flex; flex-wrap: wrap; gap: 5px;"></div>
-                    <div id="ccField" style="display: none;">
-                    <input type="text" id="emailInput" placeholder="Enter email" style="color: #778899; border:1px solid #778899; border-radius:5px; outline:none;">
-                    <button type="button" class="btn btn-primary" style="padding:3px; margin-bottom:3px;font-size:14px;"onclick="addEmail()">Add</button>
-                </div>
-                </div>
+        <div class="form-group">
+            <label for="ccToText" wire:model="from_date" id="applyingToText" name="applyingTo" style="color: #778899; font-size: 14px; font-weight: 500;">
+                CC to
+            </label>
+            <div class="control-wrapper" style="display: flex; flex-direction: row; gap: 10px;">
+                <a href="javascript:void(0);" class="text-3 text-secondary control" aria-haspopup="true" onclick="toggleCCField()" style="text-decoration: none;">
+                    <div class="icon-container" >
+                        <i class="fas fa-plus" style="color: #778899;"></i>
+                    </div>
+                </a>
+                <span class="text-2 text-secondary placeholder" id="ccPlaceholder" style="margin-top: 5px; background: transparent; color: #ccc;">Add</span>   
+    
+               <div id="addedEmails" style="display: flex; gap: 10px; "></div>
+               <div class="details">
+                        <!-- Add details content here -->
+                        <p style="font-size:0.875rem;" >{{$reportTo}}</p>
+                        <p style="margin-top:-15px; color:#778899; font-size:0.69rem;" >#{{$managerId}}</p>
+                        <!-- Add more details if needed -->
+                    </div>
+            
             </div>
+            <div class="ccContainer" style="display:none;">
+                    <!-- Content for the search container -->
+                    <div class="row" style="padding: 0 15px; margin-bottom: 10px;">
+                        <div class="col" style="margin: 0px; padding: 0px">
+                            <div class="input-group">
+                                <input wire:model="searchTerm" style="font-size: 10px; border-radius: 5px 0 0 5px; cursor: pointer; width:50%;" type="text" class="form-control" placeholder="Search for Emp.Name or ID" aria-label="Search" aria-describedby="basic-addon1">
+                                <div class="input-group-append">
+                                    <button style="height: 29px; border-radius: 0 5px 5px 0; background-color: #007BFF; color: #fff; border: none; align-items: center; display: flex;" class="btn" type="button" wire:click="searchOnClick">
+                                        <i style="margin-right: 5px;" class="fa fa-search"></i> <!-- Adjust margin-right as needed -->
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    @foreach($ccRecipients as $recipients)
+                        <div style="display:flex; gap:10px;"onclick="addEmail('{{ $recipients['full_name'] }}')">
+                           <img src="{{ $recipients['image'] ? $recipients['image'] : 'https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars.png' }}" alt="User Image" style="width: 40px; height: 40px; border-radius: 50%;">
+                            <div class="center">
+                                <p style=" font-size:0.875rem; font-weight:500;"value="{{ $recipients['full_name'] }}">{{ $recipients['full_name'] }}</p>
+                                <p style="margin-top:-15px; color:#778899; font-size:0.69rem;" value="{{ $recipients['emp_id'] }}">#{{ $recipients['emp_id'] }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+        </div>
             <div class="form-group">
                 <label for="contactDetails" style="color: #778899; font-size: 14px; font-weight: 500;">Contact Details</label>
                 <input type="text" wire:model="contact_details" class="form-control" id="contactDetails" name="contactDetails" style="color: #778899;width:50%;">
@@ -239,98 +399,130 @@
                 <label for="reason" style="color: #778899; font-size: 14px; font-weight: 500;">Reason for Leave</label>
                 <textarea class="form-control" wire:model="reason" id="reason" name="reason" placeholder="Enter Reason" rows="4" ></textarea>
             </div>
-            <div class="form-group">
-                <div class="file-input" style="display: flex; flex-direction:row; align-items: center;">
-                    <label for="file" class="file-label" style="display: inline-flex; align-items: center; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-weight: 500; font-size: 14px;">
-                        <i class="fas fa-link" style="margin-right: 5px;"></i> Attach File
-                    </label>
-                    <input type="file" wire:model="attachment" id="file" name="attachment" accept=".pdf, .xls, .xlsx, .doc, .docx, .txt, .ppt, .pptx, .gif, .jpg, .jpeg, .png" class="file-input-field" style="display: none;">
-                    <p style="color: #778899; font-size:12px; margin-top:10px; margin-left:50px;">File Types: pdf , xls , xlsx , doc , docx , txt , ppt , pptx , gif , jpg , jpeg , png</p>
-                </div>
-            </div>
+           
             <div class="buttons1">
               <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="button" wire:click="applyPage" class="btn btn-secondary" >Cancel</button>
+                <button type="button" class="btn btn-secondary" >Cancel</button>
             </div>
-        
     </form>
 </div>
 <script>
-      function toggleSearchBar() {
-        const searchBar = document.getElementById('searchBar');
-        const applyingToText = document.getElementById('applyingToText');
-        const applyingToInput = document.getElementById('applyingToInput');
+       function toggleReporting() {
+        const leaveType = document.getElementById('leaveType');
+        const reportingDiv = document.querySelector('.reporting');
+        const applyingToTextDiv = document.getElementById('applyingToText');
 
-        if (searchBar.style.display === 'none' || searchBar.style.display === '') {
-            // Open the search bar
-            searchBar.style.display = 'block';
-            applyingToText.style.display = 'block';
-            applyingToInput.style.display = 'none';
+        // Show or hide the reporting div based on the selected leave type
+        if (leaveType.value !== 'default') {
+            reportingDiv.style.display = 'flex';
+            applyingToTextDiv.style.display = 'none';
         } else {
-            // Close the search bar
-            searchBar.style.display = 'none';
-            applyingToText.style.display = 'block';
-            applyingToInput.style.display = 'none';
+            reportingDiv.style.display = 'none';
+            applyingToTextDiv.style.display = 'flex';
         }
     }
-          
-
-// Add an event listener to the document to capture clicks
-document.addEventListener('click', function(event) {
-    const ccField = document.getElementById('ccField');
-    const ccPlaceholder = document.getElementById('ccPlaceholder');
-    const emailInput = document.getElementById('emailInput');
-
-    // Check if the clicked element is not the email input, the "Add" button, or the CC field
-    if (
-        event.target !== emailInput &&
-        event.target !== ccPlaceholder &&
-        event.target !== ccField
-    ) {
-        ccField.style.display = 'none';
-        ccPlaceholder.style.display = 'inline-block';
-    }
-});
-
-function toggleCCField() {
-    const ccField = document.getElementById('ccField');
-    const ccPlaceholder = document.getElementById('ccPlaceholder');
-
-    if (ccField.style.display === 'none' || ccField.style.display === '') {
-        ccField.style.display = 'block';
-        ccPlaceholder.style.display = 'none';
+    function toggleSearchContainer() {
+        const searchContainer = document.querySelector('.searchContainer');
+        const reportingContainer = document.querySelector('.reporting');
+        // Toggle the display of the search container
+        searchContainer.style.display = searchContainer.style.display === 'none' ? 'block' : 'none';
+        if (searchContainer.style.display === 'block') {
+        reportingContainer.classList.add('active');
     } else {
-        ccField.style.display = 'none';
-        ccPlaceholder.style.display = 'inline-block';
+        reportingContainer.classList.remove('active');
     }
-}
+    }
+    function toggleCCField() {
+        const ccContainer = document.querySelector('.ccContainer');
+        const iconContainer = document.querySelector('.icon-container');
 
-function addEmail() {
-    const emailInput = document.getElementById('emailInput');
+        // Toggle the display of the search container
+        ccContainer.style.display = ccContainer.style.display === 'none' ? 'block' : 'none';
+        if (ccContainer.style.display === 'block') {
+            iconContainer.classList.add('active');
+    } else {
+        iconContainer.classList.remove('active');
+    }
+    }
+    function addEmail(fullName) {
     const addedEmails = document.getElementById('addedEmails');
+    const addSpan = document.getElementById('ccPlaceholder');
 
-    // Get the entered email address
-    const email = emailInput.value;
+    // Split the full name into first and last names
+    const names = fullName.split(' ');
 
-    if (email.trim() !== '') {
-        // Create a new element to display the added email address
-        const emailElement = document.createElement('div');
-        emailElement.textContent = email.substring(0, 2); // Display only the first two letters
-        emailElement.className = 'added-email';
-        emailElement.style.border = '2px solid #778899'; // You can style the circle here
-        emailElement.style.color = '#778899'; // You can set text color
-        emailElement.style.borderRadius = '70%'; // Make it circular
+    // Get the first letter of the first name
+    const firstNameAbbreviation = names.length > 0 ? names[0].charAt(0) : '';
 
-        // Append the email element to the addedEmails container
-        addedEmails.appendChild(emailElement);
+    // Get the first letter of the last name
+    const lastNameAbbreviation = names.length > 1 ? names[names.length - 1].charAt(0) : '';
 
-        // Clear the input field
-        emailInput.value = '';
-        ccField.style.display = 'none';
-        ccPlaceholder.style.display = 'inline-block';
+    // Combine the first letters of both names to create the email abbreviation
+    const emailAbbreviation = firstNameAbbreviation + lastNameAbbreviation;
+
+    // Check if the email abbreviation is already added
+    if (isEmailAlreadyAdded(emailAbbreviation)) {
+        return; // Do nothing if the email is already added
+    }
+
+    // Create a new element to display the added email abbreviation
+    const emailElement = document.createElement('div');
+    emailElement.textContent = emailAbbreviation;
+    emailElement.className = 'added-email';
+    emailElement.style.border = '2px solid #778899';
+    emailElement.style.color = '#778899';
+    emailElement.style.borderRadius = '50%';
+
+    // Add hover effect
+    emailElement.addEventListener('mouseover', function() {
+        emailElement.style.cursor = 'pointer';
+        emailElement.innerHTML = '&#9587;'; // Change the color to black
+    });
+
+    emailElement.addEventListener('mouseout', function() {
+        emailElement.innerHTML = emailAbbreviation; // Restore the email abbreviation on mouseout
+    });
+
+    // Remove on click
+    emailElement.addEventListener('click', function() {
+        emailElement.remove();
+        removeAddedEmail(emailAbbreviation); // Remove from the list of added emails
+        if (addedEmails.children.length === 0) {
+            addSpan.style.display = 'block';
+        }
+    });
+
+    // Append the email element to the addedEmails container
+    addedEmails.appendChild(emailElement);
+    addSpan.style.display = 'none';
+    // Add the email to the list of added emails
+    addedEmailList.push(emailAbbreviation);
+}
+
+// Array to keep track of added emails
+const addedEmailList = [];
+
+// Function to check if an email is already added
+function isEmailAlreadyAdded(email) {
+    return addedEmailList.includes(email);
+}
+
+// Function to remove an email from the list of added emails
+function removeAddedEmail(email) {
+    const index = addedEmailList.indexOf(email);
+    if (index !== -1) {
+        addedEmailList.splice(index, 1);
     }
 }
 
+    function updateApplyingTo(reportTo, managerId) {
+        // Update the values in the reporting container
+        document.getElementById('reportToText').innerText = reportTo;
+        document.getElementById('managerIdText').innerText = '#' + managerId;
+
+        // Optionally, you can also hide the search container here
+        toggleSearchContainer();
+    }
 
 function toggleDetails(tabId) {
             const tabs = ['leaveApply', 'restricted-content', 'leaveCancel-content', 'compOff-content'];
@@ -346,6 +538,7 @@ function toggleDetails(tabId) {
         }
 
     </script>
-
+@livewireScripts
 </body>
 </html>
+</div>

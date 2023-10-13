@@ -139,6 +139,9 @@
                                             <button wire:click="filter" style="height: 30px; border-radius: 0 5px 5px 0; background-color: #007BFF; color: #fff; border: none;" class="btn" type="button">
                                                 <i style="text-align: center;" class="fa fa-search"></i>
                                             </button>
+                                            <button wire:click="closePeoples" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true" style="color: white; font-size: 24px;">×</span>
+                                            </button>
                                         </div>
                                     </div>
                                     @if ($peopleData->isEmpty())
@@ -205,25 +208,28 @@
 
 
             @if ($records->isEmpty())
-            <div>            <img style="margin-top:15%;margin-left:30%" height="200" width="300" src="https://media.istockphoto.com/id/1357284048/vector/no-item-found-vector-flat-icon-design-illustration-web-and-mobile-application-symbol-on.jpg?s=612x612&w=0&k=20&c=j0V0ww6uBl1LwQLH0U9L7Zn81xMTZCpXPjH5qJo5QyQ=" alt="">
-        </div>
+            <div> <img style="margin-top:15%;margin-left:30%" height="200" width="300" src="https://media.istockphoto.com/id/1357284048/vector/no-item-found-vector-flat-icon-design-illustration-web-and-mobile-application-symbol-on.jpg?s=612x612&w=0&k=20&c=j0V0ww6uBl1LwQLH0U9L7Zn81xMTZCpXPjH5qJo5QyQ=" alt="">
+            </div>
             @else
             <table style="width: 100%; border-collapse: collapse;">
                 <thead>
                     <tr style="background-color: #007BFF; color: white;">
-                        <th style="padding: 10px;font-size:12px;text-align:center;width:150px">Emp ID</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center;width:120px">Emp ID</th>
                         <th style="padding: 10px;font-size:12px;text-align:center">Category</th>
                         <th style="padding: 10px;font-size:12px;text-align:center">Subject</th>
                         <th style="padding: 10px;font-size:12px;text-align:center">Description</th>
                         <th style="padding: 10px;font-size:12px;text-align:center">Attach Files</th>
                         <th style="padding: 10px;font-size:12px;text-align:center">CC To</th>
                         <th style="padding: 10px;font-size:12px;text-align:center">Priority</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Status</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @if($records->status="Open")
                     @foreach ($records as $record)
+                    @if($record->status=="Open")
                     <tr>
-                        <td style="padding: 10px;font-size:12px;text-align:center;width:150px">{{ $record->emp_id }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center;width:120px">{{ $record->emp_id }}</td>
                         <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->category }}</td>
                         <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->subject }}</td>
                         <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->description }}</td>
@@ -236,7 +242,69 @@
                         </td>
                         <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->cc_to }}</td>
                         <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->priority }}</td>
+                        <td style="padding: 5px; font-size: 12px; text-align: center; width: 100px;">
+                            <div class="row" style="display: flex; justify-content: space-between;">
+                                <button wire:click="openForDesks('{{$record->id}}')" style="background-color: red; color: white; border-radius: 5px;">Close</button>
+                            </div>
+                        </td>
                     </tr>
+                    @endif
+                    @endforeach
+                    @else
+                    <div style="text-align:center;">No Active Records</div>
+                    @endif
+                </tbody>
+            </table>
+            @endif
+
+        </div>
+        @endif
+
+        @if ($activeTab == "closed")
+        <div class="card-body" style="background-color:white;height:400px;width:80%;margin-top:30px;border-radius:5px">
+
+
+            @if ($records->isEmpty())
+            <div> <img style="margin-top:15%;margin-left:30%" height="200" width="300" src="https://media.istockphoto.com/id/1357284048/vector/no-item-found-vector-flat-icon-design-illustration-web-and-mobile-application-symbol-on.jpg?s=612x612&w=0&k=20&c=j0V0ww6uBl1LwQLH0U9L7Zn81xMTZCpXPjH5qJo5QyQ=" alt="">
+            </div>
+            @else
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background-color: #007BFF; color: white;">
+                        <th style="padding: 10px;font-size:12px;text-align:center;width:120px">Emp ID</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Category</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Subject</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Description</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Attach Files</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">CC To</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Priority</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($records as $record)
+                    @if($record->status=="Completed")
+                    <tr>
+                        <td style="padding: 10px;font-size:12px;text-align:center;width:120px">{{ $record->emp_id }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->category }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->subject }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->description }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">
+                            @if ($record->file_path)
+                            <a href="{{ asset('storage/' . $record->file_path) }}" target="_blank" style="text-decoration: none; color: #007BFF;">View File</a>
+                            @else
+                            N/A
+                            @endif
+                        </td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->cc_to }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->priority }}</td>
+                        <td style="padding: 5px; font-size: 12px; text-align: center; width: 100px;">
+                            <div class="row" style="display: flex; justify-content: space-between;">
+                                <button wire:click="closeForDesks('{{$record->id}}')" style="background-color: green; color: white; border-radius: 5px;">Open</button>
+                            </div>
+                        </td>
+                    </tr>
+                    @endif
                     @endforeach
                 </tbody>
             </table>
@@ -244,6 +312,10 @@
 
         </div>
         @endif
+
+
+
+
         <style>
             .card-body {
                 background-color: white;
