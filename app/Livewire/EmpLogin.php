@@ -24,6 +24,9 @@ class EmpLogin extends Component
         'password' => '',
     ];
     public $error = '';
+    public function jobs(){
+        return redirect()->to('/Jobs');
+    }
     public function createCV()
     {
         return redirect()->to('/CreateCV');
@@ -96,6 +99,7 @@ class EmpLogin extends Component
             }
         }
     }
+
     public function showPasswordChangeModal()
     {
         $this->verified = true;
