@@ -1,12 +1,21 @@
 <div class="container-fluid p-0">
-    <div class="row"><button wire:click="createCV" style="width: 150px;border-radius:5px;margin-top:20px;margin-left:85%;background-color:rgb(2, 17, 79);color:white">Create CV</button></div>
+    <div class="row justify-content-center" style="margin-top:15px">
+        <div class="col text-center" style="margin-left: 72%;">
+            <button wire:click="jobs" style="width: 150px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white">Jobs</button>
+        </div>
+        <div class="col text-center">
+            <button wire:click="createCV" style="width: 150px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white">Create CV</button>
+        </div>
+    </div>
+
+
     <div class="row m-0">
         <!-- Left Side (Login Form) -->
         <div class="col-md-6 p-5">
             <div class="logo text-center mb-4">
             </div>
             @if(Session::has('success'))
-            <div style="height: 30px;width:400px;margin-bottom:0px;margin-left:13%"class="logo text-center mb-4">
+            <div style="height: 30px;width:400px;margin-bottom:0px;margin-left:13%" class="logo text-center mb-4">
                 <div class="alert alert-success alert-dismissible fade show" role="alert" style="font-size: 12px;">
                     {{ Session::get('success') }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -130,12 +139,12 @@
 
                             <!-- Success or error message for password update -->
                             @if(session()->has('passwordMessage'))
-                                <div class="alert alert-success mt-3">
-                                    {{ session('passwordMessage') }}
-                                </div>
+                            <div class="alert alert-success mt-3">
+                                {{ session('passwordMessage') }}
+                            </div>
                             @endif
                         </form>
-                    @else
+                        @else
                         <!-- Form for verifying email and DOB -->
                         <form wire:submit.prevent="verifyEmailAndDOB">
                             <!-- Add input fields for email and DOB verification -->
@@ -157,19 +166,19 @@
 
                             <!-- Success or error message for email and DOB verification -->
                             @if(session()->has('emailDobMessage'))
-                                <div class="alert alert-{{ session('emailDobMessageType') }} mt-3">
-                                    {{ session('emailDobMessage') }}
-                                </div>
+                            <div class="alert alert-{{ session('emailDobMessageType') }} mt-3">
+                                {{ session('emailDobMessage') }}
+                            </div>
                             @endif
                         </form>
-                    @endif
+                        @endif
 
                     </div>
                 </div>
             </div>
         </div>
         <div class="modal-backdrop fade show blurred-backdrop"></div>
-@endif
+        @endif
 
         @if ($showSuccessModal)
         <!-- Success Message and Password Change Modal -->
@@ -180,7 +189,7 @@
                         <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title">
                             <b>Success Message</b>
                         </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"  wire:click="closeSuccessModal">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="closeSuccessModal">
                             <span aria-hidden="true" style="color: white;">×</span>
                         </button>
                     </div>
@@ -193,52 +202,52 @@
             </div>
         </div>
         <div class="modal-backdrop fade show blurred-backdrop"></div>
-    @endif
+        @endif
 
-    @if ($showErrorModal)
-    <!-- Error Modal -->
-    <div class="modal" tabindex="-1" role="dialog" style="display: block;">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: rgb(255, 0, 0); height: 50px; width: 600px;">
-                    <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title">
-                        <b>Error Message</b>
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="closeErrorModal">
-                        <span aria-hidden="true" style="color: white;">×</span>
-                    </button>
-                </div>
-                <div class="modal-body" style="background-color: #f0f0f0; padding: 20px; width: 600px;">
-                    <p>Sorry You Are not Verified.... Please try again.</p>
-                    <button type="button" class="btn btn-danger" wire:click="closeErrorModal">Close</button>
+        @if ($showErrorModal)
+        <!-- Error Modal -->
+        <div class="modal" tabindex="-1" role="dialog" style="display: block;">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: rgb(255, 0, 0); height: 50px; width: 600px;">
+                        <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title">
+                            <b>Error Message</b>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="closeErrorModal">
+                            <span aria-hidden="true" style="color: white;">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="background-color: #f0f0f0; padding: 20px; width: 600px;">
+                        <p>Sorry You Are not Verified.... Please try again.</p>
+                        <button type="button" class="btn btn-danger" wire:click="closeErrorModal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-<div class="modal-backdrop fade show blurred-backdrop"></div>
-@endif
+        <div class="modal-backdrop fade show blurred-backdrop"></div>
+        @endif
 
 
-@if ($passwordChangedModal)
-<div class="modal" tabindex="-1" role="dialog" style="display: block;">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color: rgb(9, 45, 206); height: 50px; width: 600px;">
-                <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title">
-                    <b>Success Message</b>
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="closePasswordChangedModal">
-                    <span aria-hidden="true" style="color: white;">×</span>
-                </button>
-            </div>
-            <div class="modal-body" style="background-color: #f0f0f0; padding: 20px; width: 600px;">
-                <p>Password Changes Successfully...</p>
-                <button type="button" class="btn btn-danger" wire:click="closePasswordChangedModal">Close</button>
+        @if ($passwordChangedModal)
+        <div class="modal" tabindex="-1" role="dialog" style="display: block;">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: rgb(9, 45, 206); height: 50px; width: 600px;">
+                        <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title">
+                            <b>Success Message</b>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="closePasswordChangedModal">
+                            <span aria-hidden="true" style="color: white;">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="background-color: #f0f0f0; padding: 20px; width: 600px;">
+                        <p>Password Changes Successfully...</p>
+                        <button type="button" class="btn btn-danger" wire:click="closePasswordChangedModal">Close</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-@endif
+        @endif
 
 
 
