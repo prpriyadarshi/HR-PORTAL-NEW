@@ -111,12 +111,13 @@ margin-left: 25px;
         <div class="card">
 
 
+@foreach ($salaryRevisions as $salaryRevisions)
 
         <div class="last-revision-duration" >
 
         <p class="text-5 text-muted text-secondary" style="margin-left:42px; font-size:15px;margin-top:-35px;">Duration since last revision</p>
 
-        <p  style="margin-left:42px;margin-top:-18px; "><b>0</b></p>
+        <p  style="margin-left:42px;margin-top:-18px; "><b>{{$salaryRevisions->duration}} Months</b></p>
 
         </div>
 
@@ -136,7 +137,8 @@ margin-left: 25px;
 
                 <p class="text-5 text-muted text-secondary" style="margin-left: 20px; font-size: 13px;">Last Revision Period</p>
 
-                <p class="text-3" style="margin-left: 20px;"><b>2023-04-17</b></p>
+                <p class="text-3" style="margin-left: 20px;"><b>{{ \Carbon\Carbon::parse($salaryRevisions->last_revision_period)->format('d-m-Y') }}
+                </b></b></p>
 
     </div>
 
@@ -146,7 +148,8 @@ margin-left: 25px;
 
                 <p class="text-5 text-muted text-secondary">Last Revision Percentage</p>
 
-                <p><b class="text-danger">0%</b></p>
+                <p><b  style="color: green">+{{ number_format($salaryRevisions->percentageChange, 2) }}%</b></p>
+
 
             </div>
 
@@ -272,7 +275,7 @@ margin-left: 25px;
 
 <p class="text2"></p>
 
-
+@endforeach
 
  </div>
 
