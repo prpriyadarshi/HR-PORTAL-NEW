@@ -26,9 +26,10 @@
 
             @endif
             <form wire:submit.prevent="empLogin" class="login-form-with-shadow" style="margin-top: 0px;">
-                <div class="logo text-center mb-4">
-                    <img src="{{ asset('images/attune_global_logo_2.png') }}" alt="Company Logo" width="150" height="80">
+                <div class="logo text-center mb-1" style="padding-top: 20px;">
+                    <img src="{{ asset('images/HR Portal.png') }}" alt="Company Logo" width="150" height="80">
                 </div>
+
                 <hr class="bg-white" />
                 <header _ngcontent-hyf-c110="" class="mb-12 text-center">
                     <div _ngcontent-hyf-c110="" class="text-12gpx font-bold font-title-poppins-bold opacity-90 text-text-default justify-items-center">Hello there! <span _ngcontent-hyf-c110="" class="font-emoji text-12gpx">👋</span>

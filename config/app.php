@@ -22,7 +22,7 @@ return [
         'timeout' => 3600,
         'options' => [],
     ],
-    
+
     'name' => env('APP_NAME', 'Laravel'),
 
     /*

@@ -55,14 +55,7 @@ class HelpDesk extends Component
         }
     }
 
-    protected $rules = [
-        'category' => 'required|string|max:255',
-        'subject' => 'required|string|max:255',
-        'description' => 'required|string',
-        'file_path' => 'nullable|file|mimes:pdf,xls,xlsx,doc,docx,txt,ppt,pptx,gif,jpg,jpeg,png|max:2048',
-        'cc_to' => 'nullable|string|max:255',
-        'priority' => 'required|in:High,Medium,Low',
-    ];
+
 
 
 
@@ -89,9 +82,14 @@ class HelpDesk extends Component
     public function submit()
     {
         $this->validate([
-            'image' => 'image|max:2048', // Validate the image file
+            'category' => 'required|string|max:255',
+            'subject' => 'required|string|max:255',
+            'description' => 'required|string',
+            'file_path' => 'nullable|file|mimes:pdf,xls,xlsx,doc,docx,txt,ppt,pptx,gif,jpg,jpeg,png|max:2048',
+            'cc_to' => 'nullable|string|max:255',
+            'priority' => 'required|in:High,Medium,Low',
+            'image' => 'image|max:2048',
         ]);
-
         if ($this->image) {
             $fileName = uniqid() . '_' . $this->image->getClientOriginalName();
 

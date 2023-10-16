@@ -1,436 +1,353 @@
 <div>
-  <!DOCTYPE html>
-  <html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Left Menu (Conditional)</title>
-    <style>
-      /* Add this CSS to your stylesheet or style tag */
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            .text-danger {
+                font-size: 12px;
+            }
 
-      /* Container styles */
-      .left-menu {
-        width: 150px;
-        background-color: #fff;
-        padding-right: 30px;
-        border-right: 1px solid #ccc;
-        /* Add a vertical line to the right of the left menu */
-      }
+            .rotate {
+                transition: transform 0.5s;
+            }
 
-      /* Content styles */
-      .content {
-        padding: 20px;
-      }
+            .rotate.rotate-180 {
+                transform: rotate(180deg);
+            }
 
-      #hidden-content {
-        display: none;
-        /* Initially hide the content */
-      }
+            .custom-button {
+                border-radius: 5px;
+                padding: 5px 10px;
+                color: white;
+                cursor: pointer;
+            }
 
-      .top-menu {
-        width: 600px;
+            .submit-button {
+                background-color: green;
+            }
 
-        background-color: #fff;
-        padding-right: 30px;
-        margin-bottom: 120px;
-        /* Add a vertical line to the right of the left menu */
-      }
+            .cancel-button {
+                background-color: red;
+            }
+        </style>
+    </head>
 
-      /* CSS for the like button */
-      .like-button {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        user-select: none;
-      }
-
-      .like-button .thumb-icon {
-        margin-right: 5px;
-        font-size: 16px;
-      }
-
-      .links:hover {
-        color: #58DCE4;
-        text-decoration: underline;
-      }
-
-      .comment-icon {
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        tab-size: 4;
-        -webkit-text-size-adjust: 100%;
-        font-stretch: normal;
-        letter-spacing: normal;
-        text-align: left;
-        color: #3b4452;
-        visibility: inherit;
-        --tw-bg-opacity: 1;
-        --tw-border-opacity: 1;
-        box-sizing: border-box;
-        border: 0 solid;
-        --tw-shadow: 0 0 transparent;
-        --tw-ring-inset: var(--tw-empty, );
-        --tw-ring-offset-width: 0px;
-        --tw-ring-offset-color: #fff;
-        --tw-ring-color: rgba(59, 130, 246, 0.5);
-        --tw-ring-offset-shadow: 0 0 transparent;
-        --tw-ring-shadow: 0 0 transparent;
-        cursor: pointer;
-        font-size: 1.25rem;
-        margin-right: 5px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        font-weight: 400;
-        font-style: normal;
-        text-decoration: inherit;
-        -webkit-font-smoothing: antialiased;
-        font-family: Greytip;
-        display: inline;
-        width: auto;
-        height: auto;
-        line-height: normal;
-        vertical-align: initial;
-        background-image: none;
-        background-position: 0 0;
-        background-repeat: repeat;
-        margin-top: 0;
-      }
-
-      /* Apply the CSS styles for the comment count text */
-      .comment-count {
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        tab-size: 4;
-        -webkit-text-size-adjust: 100%;
-        font-family: Open Sans, sans-serif;
-        font-weight: 400;
-        text-align: left;
-        box-sizing: border-box;
-        border: 0 solid;
-        --tw-ring-offset-color: #fff;
-        --tw-ring-color: rgba(59, 130, 246, 0.5);
-        --tw-ring-offset-shadow: 0 0 transparent;
-        --tw-ring-shadow: 0 0 transparent;
-        border-radius: .25rem;
-        cursor: pointer;
-        font-size: .75rem;
-        line-height: 1rem;
-        padding: 5px;
-        --tw-text-opacity: 1;
-        color: rgba(163, 179, 200, var(--tw-text-opacity));
-      }
-
-      .comment-icon {
-        cursor: pointer;
-      }
-
-      .comment-box {
-        display: none;
-      }
-
-      .comments {
-        margin-top: 10px;
-      }
-    </style>
-  </head>
-
-  <body>
-    <div class="container">
-      <!-- Left Menu and Content (Conditional) -->
-      <div class="left-menu">
-        <h2>Menu</h2>
-        <!-- Add your menu items here -->
-      </div>
-
-      <!-- Content Area -->
-      <div class="content" style="margin-top:-30px">
-        <div style="display: flex; margin-top:30px">
-
-          <div class="left-menu" style="height:500px;margin-bottom:170px;background:white;width:180px">
-            <div class="row">
-              <b class="links" style="margin-top: 20px;padding-left:40px; font-size: 14px;  font-family: Open Sans, sans-serif;">
-                Groups
-
-              </b>
-
-
-
-              <a class="links" href="/feeds" style="margin-top: 20px; padding-left: 40px; font-size: 14px; font-family: Open Sans, sans-serif; color: black; text-decoration: none;">
-                <span onmouseover="this.style.color='#33B3BC'; this.style.textDecoration='underline';" onmouseout="this.style.color='black'; this.style.textDecoration='none';">
-                  All Feeds
-                </span>
-              </a>
-              <a class="links" href="/everyone" style="margin-top: 20px; padding-left: 40px; font-size: 14px; font-family: Open Sans, sans-serif; color: black; text-decoration: none;">
-                <span onmouseover="this.style.color='#33B3BC'; this.style.textDecoration='underline';" onmouseout="this.style.color='black'; this.style.textDecoration='none';">
-                  Every One
-                </span>
-              </a>
-              <a class="links" href="/events" style="margin-top: 20px; padding-left: 40px; font-size: 14px; font-family: Open Sans, sans-serif; color: black; text-decoration: none;">
-                <span onmouseover="this.style.color='#33B3BC'; this.style.textDecoration='underline';" onmouseout="this.style.color='black'; this.style.textDecoration='none';">
-                  Events
-                </span>
-              </a>
-              <a class="links" href="/company" style="margin-top: 20px; padding-left: 40px; font-size: 14px; font-family: Open Sans, sans-serif; color: black; text-decoration: none;">
-                <span onmouseover="this.style.color='#33B3BC'; this.style.textDecoration='underline';" onmouseout="this.style.color='black'; this.style.textDecoration='none';">
-                  Company News
-                </span>
-              </a>
-
-              <a class="links" href="/everyone" style="margin-top: 20px; padding-left: 40px; font-size: 14px; font-family: Open Sans, sans-serif; color: black; text-decoration: none;">
-                <span onmouseover="this.style.color='#33B3BC'; this.style.textDecoration='underline';" onmouseout="this.style.color='black'; this.style.textDecoration='none';">
-                  Appreciation
-                </span>
-              </a>
-              <a class="links" href="/everyone" style="margin-top: 20px; padding-left: 40px; font-size: 14px; font-family: Open Sans, sans-serif; color: black; text-decoration: none;">
-                <span onmouseover="this.style.color='#33B3BC'; this.style.textDecoration='underline';" onmouseout="this.style.color='black'; this.style.textDecoration='none';">
-                  Buy/Sell/Rent
-                </span>
-              </a>
-
-            </div>
-          </div>
-          <div class="top-menu" style="background-color: #f0f0f0;">
-            <div class="B" style="width: 750px; height: 70px; border-top: 1px solid #E0DDDD; border-bottom: 1px solid #E0DDDD; background-color: #FFFFFF;font-size: 14px; font-family: Open Sans, sans-serif;padding:10px;">
-              <b> All Feeds</b>
-              <p>Groups</p>
-            </div>
-
-
-            <p style="text-align: center; font-size: 14px; font-family: Open Sans, sans-serif;margin-top:5px">sort: <strong style="font-weight: bold;">New posts</strong></p>
-            <div style="display: flex; width:800px">
-              <div class="F" style="background-color: white; width: 500px; height: 350px; border-radius: 5px; border: 1px solid #CFCACA; margin-left: 30px; color: #3b4452; padding-bottom: 40px">
-                <!-- Upcoming Holidays List -->
-                <div style="display: flex;">
-
-                  <div class="column">
-                    <img src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/2e383f1a48f91dbea7e6" alt="Image Description" style="height: 100px; width: 160px; margin-top: 5px; margin-left: 40px;">
-                    <div style="color: #677A8E; margin-left: 60px; font-size: 14px; font-family: Open Sans, sans-serif; font-weight: 100px;">Group Events</div>
-                  </div>
-                  <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 170px; font-family: Open Sans, sans-serif; margin-top: 40px; font-weight: 100px; color: #9E9696;">28 October 2023</div>
-                </div>
-                <div style="display: flex;">
-                  <img src="https://i.pinimg.com/originals/20/7f/22/207f229952dc673e1e88be7134436497.jpg" alt="Image Description" style="height: 160px; width: 160px; margin-left: 40px;">
-                  <div style="display: flex; flex-direction: column; margin-left: 20px;">
-                    <p style="font-size: 14px; font-family: 'Open Sans', sans-serif; margin-top: 10px; font-weight: 100; color: #677A8E;">Happy Birthday Archana, Have a great year ahead!</p>
-                    <div style="display: flex; align-items: center;">
-                      <img src="https://logodix.com/logo/1984436.jpg" alt="Image Description" style="height: 25px; width: 20px;">
-                      <p style="margin-left: 10px; font-size: 14px; font-family: 'Open Sans', sans-serif; color: #677A8E; margin-top: 10px;">Happy Birthday Archana!🎂</p>
+    <body>
+        <div class="row">
+            <div class="col" style="margin-left:25%">
+                <div class="card" style="width:250px;">
+                    <div class="card-header">
+                        <div class="row">
+                            <button wire:click="$set('activeTab', 'active')" class="col btn @if($activeTab === 'active') btn-success active @else btn-light @endif" style="border-radius: 5px; margin-right: 5px">
+                                Active
+                            </button>
+                            <button wire:click="$set('activeTab', 'closed')" class="col btn @if($activeTab === 'closed') btn-danger active @else btn-light @endif" style="border-radius: 5px;">
+                                Closed
+                            </button>
+                        </div>
                     </div>
-                  </div>
                 </div>
-
-                <confirmation-modal class="confirmation-modal">
-                  <gt-popup-modal label="modal" size="sm" class="hydrated">
-                    <div class="body-content">
-                      <div slot="modal-body"><!-- Content for modal body --></div>
-                    </div>
-                    <div slot="modal-footer">
-                      <div class="flex justify-end">
-                        <gt-button shade="secondary" name="Cancel" class="mr-2x hydrated"></gt-button>
-                        <gt-button shade="primary" name="Confirm" class="hydrated"></gt-button>
-                      </div>
-                    </div>
-                  </gt-popup-modal>
-                </confirmation-modal>
-                <!-- Like Button -->
-                <div style="display: flex;">
-                  <div class="like-button">
-                    <i class="thumb-icon" style="margin-left: 20px;">👍</i>
-                    <span class="like-count">0 Likes</span>
-                  </div>
-                  <div class="comment-icon">
-                    <i class="comment-icon" style="margin-left: 40px; margin-top: 20px;">💬</i>
-                    <span class="comment-count">0 Comments</span>
-                  </div>
-                  <div class="comment-box">
-                    <textarea id="comment-input" placeholder="Add your comment"></textarea>
-                  </div>
-                </div>
-              </div>
-              <div class="column" style="background-color: white; width: 200px; height: 300px;margin-left:10px;border-radius:10px;border:1px solid #A89F9F;margin-top:20px">
-                <div style="color: #677A8E; margin-left: 20px; font-family: Open Sans, sans-serif; margin-top: 20px;">
-                  HIGHLIGHTS
-                </div>
-                <div class="row">
-                  <img src="https://th.bing.com/th/id/OIP.quEUmw5-XtH8c1AhTN9dYQHaFh?pid=ImgDet&w=120&h=120&c=7&dpr=1.5&rs=1" style="height: 100px; width: 150px; margin-top: 10px; margin-left: 40px;">
-                  <p style="color: black; margin-left: 40px;font-weight:normal; font-size: 13px; font-family: Open Sans, sans-serif;margin-top:20px">Keep looking here! :)</p>
-                  <p style="color: #677A8E; margin-left: 10px; font-size: 10px; font-family: Open Sans, sans-serif;">We're rolling out Highlights help you stay tuned with events, birthdays, posts, and much more.</p>
-                  <div>
-                  </div>
-
-
-                </div>
-              </div>
             </div>
-            <div class="F" style="background-color: white; width: 500px; height: 350px; border-radius: 5px; border: 1px solid #CFCACA; margin-left: 30px; color: #3b4452; margin-top: 20px">
-              <!-- Upcoming Holidays List -->
-              <div style="display: flex;">
-
-                <div class="column">
-                  <img src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/2e383f1a48f91dbea7e6" alt="Image Description" style="height: 100px; width: 160px; margin-top: 5px; margin-left: 40px;">
-                  <div style="color: #677A8E; margin-left: 60px; font-size: 14px; font-family: Open Sans, sans-serif; font-weight: 100px;">Group Events</div>
-                </div>
-                <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 170px; font-family: Open Sans, sans-serif; margin-top: 40px; font-weight: 100px; color: #9E9696;">23 Aug 2023</div>
-              </div>
-              <div style="display: flex;">
-                <img src="https://cdn1.vectorstock.com/i/thumb-large/48/00/set-images-young-people-listening-to-music-vector-31034800.jpg" alt="Image Description" style="height: 160px; width: 160px; margin-left: 40px;">
-                <div style="display: flex; flex-direction: column; margin-left: 20px;">
-                  <p style="font-size: 14px; font-family: 'Open Sans', sans-serif; margin-top: 10px; font-weight: 100; color: #677A8E;">Chirag Palagrahara has joined us in the company on 07 Sep 2023,
-                    Please join us in welcoming our newest team member.
-                  </p>
-                  <div style="display: flex; align-items: center;">
-                    <img src="https://logodix.com/logo/1984436.jpg" alt="Image Description" style="height: 25px; width: 20px;">
-                    <p style="margin-left: 10px; font-size: 14px;font-weight:normal;margin-top:10px; font-family: 'Open Sans', sans-serif; color: black; margin-top: 10px;">Chirag Palagrahara Just Joined Us!
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <confirmation-modal class="confirmation-modal">
-                <gt-popup-modal label="modal" size="sm" class="hydrated">
-                  <div class="body-content">
-                    <div slot="modal-body"><!-- Content for modal body --></div>
-                  </div>
-                  <div slot="modal-footer">
-                    <div class="flex justify-end">
-                      <gt-button shade="secondary" name="Cancel" class="mr-2x hydrated"></gt-button>
-                      <gt-button shade="primary" name="Confirm" class="hydrated"></gt-button>
-                    </div>
-                  </div>
-                </gt-popup-modal>
-              </confirmation-modal>
-              <!-- Like Button -->
-              <div style="display: flex;">
-                <div class="like-button">
-                  <i class="thumb-icon" style="margin-left: 20px;">👍</i>
-                  <span class="like-count">0 Likes</span>
-                </div>
-                <div class="comment-icon">
-                  <i class="comment-icon" style="margin-left: 40px; margin-top: 20px;">💬</i>
-                  <span class="comment-count">0 Comments</span>
-                </div>
-                <div class="comment-box">
-                  <textarea id="comment-input" placeholder="Add your comment"></textarea>
-                </div>
-              </div>
+            <div class="col" style="margin-left:8%">
+                <button wire:click="open" style="background-color:rgb(2, 17, 79);color:white;border-radius:5px"> New Request </button>
             </div>
-            <div class="F" style="background-color: white; width: 500px; height: 350px; border-radius: 5px; border: 1px solid #CFCACA; margin-top: 30px; color: #3b4452; margin-left: 30px">
-              <!-- Upcoming Holidays List -->
-              <div style="display: flex;">
-
-                <div class="column">
-                  <img src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/2e383f1a48f91dbea7e6" alt="Image Description" style="height: 100px; width: 160px; margin-top: 5px; margin-left: 40px;">
-                  <div style="color: #677A8E; margin-left: 60px; font-size: 14px; font-family: Open Sans, sans-serif; font-weight: 100px;">Group Events</div>
-                </div>
-                <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 170px; font-family: Open Sans, sans-serif; margin-top: 40px; font-weight: 100px; color: #9E9696;">23 Aug 2023</div>
-              </div>
-              <div style="display: flex;">
-                <img src="https://cdn1.vectorstock.com/i/thumb-large/48/00/set-images-young-people-listening-to-music-vector-31034800.jpg" alt="Image Description" style="height: 160px; width: 160px; margin-left: 40px;">
-                <div style="display: flex; flex-direction: column; margin-left: 20px;">
-                  <p style="font-size: 14px; font-family: 'Open Sans', sans-serif; margin-top: 10px; font-weight: 100; color: #677A8E;">Chirag Palagrahara has joined us in the company on 07 Sep 2023,
-                    Please join us in welcoming our newest team member.
-                  </p>
-                  <div style="display: flex; align-items: center;">
-                    <img src="https://logodix.com/logo/1984436.jpg" alt="Image Description" style="height: 25px; width: 20px;">
-                    <p style="margin-left: 10px; font-size: 14px;font-weight:normal;margin-top:10px; font-family: 'Open Sans', sans-serif; color: black; margin-top: 10px;">Chirag Palagrahara Just Joined Us!
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <confirmation-modal class="confirmation-modal">
-                <gt-popup-modal label="modal" size="sm" class="hydrated">
-                  <div class="body-content">
-                    <div slot="modal-body"><!-- Content for modal body --></div>
-                  </div>
-                  <div slot="modal-footer">
-                    <div class="flex justify-end">
-                      <gt-button shade="secondary" name="Cancel" class="mr-2x hydrated"></gt-button>
-                      <gt-button shade="primary" name="Confirm" class="hydrated"></gt-button>
+        </div>
+        @if($showDialog)
+        <div class="modal" tabindex="-1" role="dialog" style="display: block;">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: rgb(2, 17, 79); height: 50px">
+                        <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title"><b>New Request</b></h5>
+                        <button wire:click="close" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="color: white;">×</span>
+                        </button>
                     </div>
-                  </div>
-                </gt-popup-modal>
-              </confirmation-modal>
-              <!-- Like Button -->
-              <div style="display: flex;">
-                <div class="like-button">
-                  <i class="thumb-icon" style="margin-left: 20px;">👍</i>
-                  <span class="like-count">0 Likes</span>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <div class="input-group">
+                                <select wire:model="category" id="category" class="custom-select">
+                                    <option style="color: grey;" value="">Select Category</option>
+                                    <option value="Employee Information">Employee Information</option>
+                                    <option value="Income Tax">Income Tax</option>
+                                    <option value="Loans">Loans</option>
+                                    <option value="Others">Others</option>
+                                    <option value="Payslip">Payslip</option>
+                                </select>
+                            </div>
+                        </div>
+                        @error('category') <span class="text-danger">{{ $message }}</span> @enderror
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" wire:model="subject" id="subject" class="form-control" placeholder="Enter subject">
+                        </div>
+                        @error('subject') <span class="text-danger">{{ $message }}</span> @enderror
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea wire:model="description" id="description" class="form-control" placeholder="Enter description" rows="4"></textarea>
+                        </div>
+                        @error('description') <span class="text-danger">{{ $message }}</span> @enderror
+                        <div class="row">
+                            <div class="col">
+                                <label for="fileInput" style="cursor: pointer;">
+                                    <i class="fa fa-paperclip"></i> Attach Image
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <input wire:model="image" type="file" accept="image/*">
+                            @if ($image)
+                            <div>
+                                <img height="100" width="100" src="{{ $image->temporaryUrl() }}" alt="Image Preview" style="max-width: 300px;">
+                            </div>
+                            @endif
+                        </div>
+
+
+                        @error('file_path') <span class="text-danger">{{ $message }}</span> @enderror
+
+                        <div id="filePreview"></div>
+                        <div class="row" style="margin-top: 10px;">
+                            <div class="col">
+                                <div class="row">
+                                    <div>
+                                        <label for="cc_to">CC to</label>
+                                        <input wire:model="cc_to" type="text" id="cc_to" placeholder="Add CC recipients" readonly>
+                                    </div>
+                                    <div class="row" style="margin-top: 5px;">
+                                        <div style="margin: 0px;">
+                                            <button type="button" style="border-radius: 50%;margin-right:10px" class="add-button" wire:click="toggleRotation">
+                                                <i class="fa fa-plus"></i>
+                                            </button>Add
+                                            <div>
+                                                <div style="font-size: 12;"><strong>Selected CC recipients: </strong>{{ implode(', ', array_unique($selectedPeopleNames)) }}</div>
+                                            </div>
+                                        </div>
+                                        @error('cc_to') <span class="text-danger">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                @if($isRotated)
+                                <div style="border-radius:5px;background-color:grey;padding:8px;width:220px;margin-top:10px">
+                                    <div class="input-group" style="margin-bottom: 10px;">
+                                        <input wire:model="searchTerm" style="font-size: 10px;cursor: pointer; border-radius: 5px 0 0 5px;" type="text" class="form-control" placeholder="Search for Emp.Name or ID" aria-label="Search" aria-describedby="basic-addon1">
+                                        <div class="input-group-append">
+                                            <button wire:click="filter" style="height: 30px; border-radius: 0 5px 5px 0; background-color: #007BFF; color: #fff; border: none;" class="btn" type="button">
+                                                <i style="text-align: center;" class="fa fa-search"></i>
+                                            </button>
+                                            <button wire:click="closePeoples" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true" style="color: white; font-size: 24px;">×</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    @if ($peopleData->isEmpty())
+                                    <div class="container" style="text-align: center; color: white;font-size:12px"> No People Found
+                                    </div>
+                                    @else
+                                    @foreach($peopleData as $people)
+                                    <div wire:model="cc_to" wire:click="selectPerson('{{ $people->emp_id }}')" class="container" style="cursor: pointer; background-color: darkgrey; padding: 5px; margin-bottom: 8px; width: 200px; border-radius: 5px;">
+                                        <div class="row align-items-center">
+                                            <div class="col-auto">
+                                                <input type="checkbox" name="selectedPeople[]" value="{{ $people->emp_id }}" multiple>
+                                            </div>
+                                            <div class="col-auto">
+                                                <img class="profile-image" src="{{ $people->image }}" alt="Profile Image">
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="username" style="font-size: 12px; color: white;">{{ $people->first_name }} {{ $people->last_name }}</h6>
+                                                <p class="mb-0" style="font-size: 12px; color: white;">(#{{ $people->emp_id }})</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                    @endif
+                                </div>
+                                @endif
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="category">Priority</label>
+                                    <div class="input-group">
+                                        <select name="category" id="category" wire:model="priority" class="custom-select">
+                                            <option style="color: grey;" value="">Select Priority</option>
+                                            <option value="High">
+                                                <span></span> High
+                                            </option>
+                                            <option value="Low">
+                                                <span></span> Low
+                                            </option>
+                                            <option value="Medium">
+                                                <span></span> Medium
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                @error('priority') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col-1" style="margin-left: 30%;">
+                                <button wire:click="submit" class="custom-button submit-button">Submit</button>
+                            </div>
+                            <div class="col-2" style="margin-left: 10%;">
+                                <button wire:click="close" class="custom-button cancel-button">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="comment-icon">
-                  <i class="comment-icon" style="margin-left: 40px; margin-top: 20px;">💬</i>
-                  <span class="comment-count">0 Comments</span>
-                </div>
-                <div class="comment-box">
-                  <textarea id="comment-input" placeholder="Add your comment"></textarea>
-                </div>
-              </div>
-
-
-              <script>
-                // JavaScript to toggle like/dislike and update the count
-                const likeButton = document.querySelector('.like-button');
-                const likeCount = likeButton.querySelector('.like-count');
-
-                let likes = 0;
-                let isLiked = false;
-
-                likeButton.addEventListener('click', () => {
-                  if (isLiked) {
-                    likes--;
-                    likeCount.textContent = `${likes} Likes`;
-                  } else {
-                    likes++;
-                    likeCount.textContent = `${likes} Likes`;
-                  }
-                  isLiked = !isLiked;
-                });
-              </script>
-
-              <script>
-                // JavaScript to toggle comment box and increment comment count
-                const commentIcon = document.querySelector('.comment-icon');
-                const commentBox = document.querySelector('.comment-box');
-                const commentCount = commentIcon.querySelector('.comment-count');
-                const commentInput = document.getElementById('comment-input');
-                const commentsContainer = document.querySelector('.comments');
-
-                let comments = 0;
-
-                commentIcon.addEventListener('click', () => {
-                  commentBox.style.display = 'block';
-                });
-
-                commentInput.addEventListener('input', () => {
-                  // Count lines in the textarea as comments
-                  const lines = commentInput.value.split('\n').length;
-                  comments = lines;
-                  updateCommentCount();
-                });
-
-                commentInput.addEventListener('blur', () => {
-                  // Clear and hide the comment box when it loses focus
-                  commentInput.value = '';
-                  commentBox.style.display = 'none';
-                  // Display the comments
-                  displayComments();
-                });
-
-                function updateCommentCount() {
-                  commentCount.textContent = `${comments} Comment${comments !== 1 ? 's' : ''}`;
-                }
-
-                function displayComments() {
-                  commentsContainer.innerHTML = '';
-                  for (let i = 0; i < comments; i++) {
-                    const commentElement = document.createElement('div');
-                    commentElement.classList.add('comment');
-                    commentElement.textContent = `Comment ${i + 1}`;
-                    commentsContainer.appendChild(commentElement);
-                  }
-                }
-              </script>
             </div>
-  </body>
+        </div>
+        <div class="modal-backdrop fade show blurred-backdrop"></div>
+        @endif
+        @if ($activeTab == "active")
+        <div class="card-body" style="background-color:white;height:400px;width:80%;margin-top:30px;border-radius:5px">
 
-  </html>
+
+            @if ($records->isEmpty())
+            <div> <img style="margin-top:15%;margin-left:30%" height="200" width="300" src="https://media.istockphoto.com/id/1357284048/vector/no-item-found-vector-flat-icon-design-illustration-web-and-mobile-application-symbol-on.jpg?s=612x612&w=0&k=20&c=j0V0ww6uBl1LwQLH0U9L7Zn81xMTZCpXPjH5qJo5QyQ=" alt="">
+            </div>
+            @else
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background-color: #007BFF; color: white;">
+                        <th style="padding: 10px;font-size:12px;text-align:center;width:120px">Emp ID</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Category</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Subject</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Description</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Attach Files</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">CC To</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Priority</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if($records->status="Open")
+                    @foreach ($records as $record)
+                    @if($record->status=="Open")
+                    <tr>
+                        <td style="padding: 10px;font-size:12px;text-align:center;width:120px">{{ $record->emp_id }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->category }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->subject }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->description }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">
+                            @if ($record->file_path)
+                            <a href="{{ asset('storage/' . $record->file_path) }}" target="_blank" style="text-decoration: none; color: #007BFF;">View File</a>
+                            @else
+                            N/A
+                            @endif
+                        </td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->cc_to }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->priority }}</td>
+                        <td style="padding: 5px; font-size: 12px; text-align: center; width: 100px;">
+                            <div class="row" style="display: flex; justify-content: space-between;">
+                                <button wire:click="openForDesks('{{$record->id}}')" style="background-color: red; color: white; border-radius: 5px;">Close</button>
+                            </div>
+                        </td>
+                    </tr>
+                    @endif
+                    @endforeach
+                    @else
+                    <div style="text-align:center;">No Active Records</div>
+                    @endif
+                </tbody>
+            </table>
+            @endif
+
+        </div>
+        @endif
+
+        @if ($activeTab == "closed")
+        <div class="card-body" style="background-color:white;height:400px;width:80%;margin-top:30px;border-radius:5px">
+
+
+            @if ($records->isEmpty())
+            <div> <img style="margin-top:15%;margin-left:30%" height="200" width="300" src="https://media.istockphoto.com/id/1357284048/vector/no-item-found-vector-flat-icon-design-illustration-web-and-mobile-application-symbol-on.jpg?s=612x612&w=0&k=20&c=j0V0ww6uBl1LwQLH0U9L7Zn81xMTZCpXPjH5qJo5QyQ=" alt="">
+            </div>
+            @else
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background-color: #007BFF; color: white;">
+                        <th style="padding: 10px;font-size:12px;text-align:center;width:120px">Emp ID</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Category</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Subject</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Description</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Attach Files</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">CC To</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Priority</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($records as $record)
+                    @if($record->status=="Completed")
+                    <tr>
+                        <td style="padding: 10px;font-size:12px;text-align:center;width:120px">{{ $record->emp_id }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->category }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->subject }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->description }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">
+                            @if ($record->file_path)
+                            <a href="{{ asset('storage/' . $record->file_path) }}" target="_blank" style="text-decoration: none; color: #007BFF;">View File</a>
+                            @else
+                            N/A
+                            @endif
+                        </td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->cc_to }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->priority }}</td>
+                        <td style="padding: 5px; font-size: 12px; text-align: center; width: 100px;">
+                            <div class="row" style="display: flex; justify-content: space-between;">
+                                <button wire:click="closeForDesks('{{$record->id}}')" style="background-color: green; color: white; border-radius: 5px;">Open</button>
+                            </div>
+                        </td>
+                    </tr>
+                    @endif
+                    @endforeach
+                </tbody>
+            </table>
+            @endif
+
+        </div>
+        @endif
+
+
+
+
+        <style>
+            .card-body {
+                background-color: white;
+                padding: 20px;
+                width: 80%;
+                margin-top: 30px;
+                border-radius: 5px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            table th {
+                background-color: rgb(2, 17, 79);
+                color: white;
+                padding: 10px;
+            }
+
+            table td {
+                padding: 10px;
+            }
+
+            table a {
+                text-decoration: none;
+                color: #007BFF;
+            }
+        </style>
+
+        @if($activeTab=="closed")
+        <div class="card-body" style="background-color:white;height:400px;width:80%;margin-top:30px;border-radius:5px">
+            <img style="margin-top:15%;margin-left:30%" height="200" width="300" src="https://media.istockphoto.com/id/1357284048/vector/no-item-found-vector-flat-icon-design-illustration-web-and-mobile-application-symbol-on.jpg?s=612x612&w=0&k=20&c=j0V0ww6uBl1LwQLH0U9L7Zn81xMTZCpXPjH5qJo5QyQ=" alt="">
+        </div>
+        @endif
+    </body>
+
+    </html>
 </div>
