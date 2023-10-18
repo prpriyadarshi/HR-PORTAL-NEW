@@ -13,20 +13,26 @@ return new class extends Migration
     {
         Schema::create('applied_jobs', function (Blueprint $table) {
             $table->id();
-            $table->string('job_id');
-            $table->string('job_title');
-            $table->string('company_name');
-            $table->string('applied_to');
+            $table->string('user_id');
             $table->string('full_name');
             $table->string('email');
             $table->string('address');
             $table->string('resume');
+            $table->string('applied_to');
+            $table->string('job_id');
+            $table->string('job_title');
+            $table->string('company_name');
             $table->timestamps();
-            $table->unique(['job_id', 'email']);
-        
+            $table->unique(['user_id', 'job_id']);
+
             $table->foreign('job_id')
                 ->references('job_id')
                 ->on('jobs')
+                ->onDelete('restrict')
+                ->onUpdate('cascade');
+            $table->foreign('user_id')
+                ->references('user_id')
+                ->on('users')
                 ->onDelete('restrict')
                 ->onUpdate('cascade');
         });

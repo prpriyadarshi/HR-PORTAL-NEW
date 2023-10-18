@@ -1,10 +1,7 @@
 <div class="container-fluid p-0">
     <div class="row justify-content-center" style="margin-top:15px">
-        <div class="col text-center" style="margin-left: 72%;">
-            <button wire:click="jobs" style="width: 150px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white">Jobs</button>
-        </div>
-        <div class="col text-center">
-            <button wire:click="createCV" style="width: 150px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white">Create CV</button>
+        <div class="col text-center" style="margin-left:85%;">
+            <button wire:click="jobs" style="width: 150px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white">Apply Jobs</button>
         </div>
     </div>
 
