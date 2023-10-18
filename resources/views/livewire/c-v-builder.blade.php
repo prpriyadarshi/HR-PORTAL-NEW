@@ -7,7 +7,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.2.3/html2canvas.min.js"></script>
         <style>
             body {
-                font-family: Arial, sans-serif;
                 background-color: #f4f4f4;
                 padding: 20px;
                 font-family: Montserrat;
@@ -150,9 +149,9 @@
     </head>
 
     <body>
-        <button><a href="/emplogin" style="text-decoration: none;
-            font-family: Montserrat;
-        ">Back</a></button>
+        <a href="/Jobs" style="text-decoration:none;
+            font-family: Montserrat;background-color:rgb(2, 17, 79);color:white;padding:5px;border-radius:5px
+        ">Back</a>
         <div class="cv-container" style="margin-top: 10px;">
             <div class="col" style="background-color: white; width: 45%; height: 835px; overflow: auto;">
                 <div style="margin-left: 40%; margin-top: 20px; font-size: 24px;"><strong>Create CV</strong></div>
@@ -311,7 +310,6 @@
                     <head>
                         <style>
                             body {
-                                font-family: Arial, sans-serif;
                                 background-color: #f4f4f4;
                                 padding: 20px;
                                 font-family: Montserrat;

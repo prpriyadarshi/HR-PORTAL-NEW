@@ -25,13 +25,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'checkAuth'], function () {
     Route::get('/emplogin', EmpLogin::class)->name('emplogin');
-    Route::get('/CreateCV', function () {
-        return view('create_cv_view');
+    Route::get('/Login&Register', function () {
+        return view('login_and_register_view');
     });
+ 
+});
+Route::middleware(['auth:web'])->group(function () {
     Route::get('/Jobs', function () {
         return view('jobs_view');
     });
+    Route::get('/CreateCV', function () {
+        return view('create_cv_view');
+    });
 });
+
+
 Route::middleware(['auth:emp'])->group(function () {
     Route::get('/', Home::class)->name('home');
     Route::get('/ProfileInfo', ProfileInfo::class)->name('profile.info');
