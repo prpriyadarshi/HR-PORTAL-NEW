@@ -28,14 +28,21 @@ Route::group(['middleware' => 'checkAuth'], function () {
     Route::get('/Login&Register', function () {
         return view('login_and_register_view');
     });
- 
+    Route::get('/CompanyLogin', function () {
+        return view('company_login_view');
+    });
+    Route::get('/CreateCV', function () {
+        return view('create_cv_view');
+    });
 });
 Route::middleware(['auth:web'])->group(function () {
     Route::get('/Jobs', function () {
         return view('jobs_view');
     });
-    Route::get('/CreateCV', function () {
-        return view('create_cv_view');
+});
+Route::middleware(['auth:com'])->group(function () {
+    Route::get('/PostJobs', function () {
+        return view('post_jobs_view');
     });
 });
 

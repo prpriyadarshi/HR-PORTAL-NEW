@@ -45,6 +45,10 @@ return [
             'driver' => 'session',
             'provider' => 'emp',
         ],
+        'com' => [
+            'driver' => 'session',
+            'provider' => 'com',
+        ],
     ],
 
     /*
@@ -79,6 +83,10 @@ return [
                 'driver' => 'eloquent',
                 'model' => App\Models\EmployeeDetails::class, // Update this to your Employee model
             ],
+            'com' => [
+                'driver' => 'eloquent',
+                'model' => App\Models\Company::class, // Update this to your Employee model
+            ],
     ],
 
     /*
@@ -112,6 +120,11 @@ return [
         'emp' => [
             'driver' => 'eloquent',
             'model' => App\Models\EmployeeDetails::class, // Update this to your Employee model
+        ],
+
+        'com' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Company::class, 
         ],
     ],
 

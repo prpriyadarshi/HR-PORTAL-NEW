@@ -42,10 +42,10 @@
                 <div class="card" style="width:250px;">
                     <div class="card-header">
                         <div class="row">
-                            <button wire:click="$set('activeTab', 'active')" class="col btn @if($activeTab === 'active') btn-success active @else btn-light @endif" style="border-radius: 5px; margin-right: 5px">
+                            <button wire:click="$set('activeTab', 'active')" class="col btn @if($activeTab === 'active') btn-primary active @else btn-light @endif" style="border-radius: 5px; margin-right: 5px">
                                 Active
                             </button>
-                            <button wire:click="$set('activeTab', 'closed')" class="col btn @if($activeTab === 'closed') btn-warning active @else btn-light @endif" style="border-radius: 5px;">
+                            <button wire:click="$set('activeTab', 'closed')" class="col btn @if($activeTab === 'closed') btn-success active @else btn-light @endif" style="border-radius: 5px;">
                                 Closed
                             </button>
                         </div>

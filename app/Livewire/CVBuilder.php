@@ -113,10 +113,8 @@ class CVBuilder extends Component
             'summary' => 'required',
             'languages' => 'required',
         ]);
-        $userId = auth()->guard('web')->user()->user_id;
-        $this->userDetails = User::where('user_id', $userId)->first();
+     
         CVEntrie::create([
-            'user_id'=>$this->userDetails->user_id,
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
             'email' => $this->email,

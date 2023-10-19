@@ -269,9 +269,7 @@
         }
 
 
-        .back {
-            margin-left: 74%;
-        }
+
 
         #error-message {
             position: relative;
@@ -306,13 +304,16 @@
             cursor: pointer;
             color: green;
         }
+
+        .subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            /* Semi-Bold */
+        }
     </style>
     <div>
-        <div class="row">
-            <button class="back" wire:click="createCV" style="width: 80px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;">
-                <a style="text-decoration: none; color: white; ">Create CV</a>
-            </button>
-            <button wire:click="open" style="width: 150px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white;">Applied Jobs</button>
+        <div class="row" style="margin-left: 85%;">
+            <button wire:click="open" style="width: 100px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white;">Applied Jobs</button>
             <button style="width: 80px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;" wire:click="logout">Logout</button>
         </div>
         @if($showDialog)
@@ -363,7 +364,7 @@
         </div>
         <div class="modal-backdrop fade show blurred-backdrop"></div>
         @endif
-        @if ($showSuccessMessage)
+        @if($showSuccessMessage)
         <div class="alert alert-success" id="success-message">
             Your job application has been submitted successfully!
             <button class="close-message" wire:click="dismissMessage">×</button>
@@ -387,17 +388,17 @@
                 <div class="job-card">
                     <h3 class="job-title">{{ $job->title }}</h3>
                     <p class="job-description">{{ $job->description }}</p>
-                    <p class="job-location">Location: {{ $job->location }}</p>
-                    <p class="job-salary">Salary: ₹{{ number_format($job->salary, 2) }}</p>
-                    <p class="job-company">Company: {{ $job->company_name }}</p>
-                    <p class="job-employment-type">Employment Type: {{ $job->employment_type }}</p>
-                    <p class="job-posted-at">Posted At: {{ $job->posted_at }}</p>
-                    <p class="job-contact-email">Contact Email: {{ $job->contact_email }}</p>
-                    <p class="job-contact-phone">Contact Phone: {{ $job->contact_phone }}</p>
-                    <p class="job-vacancies">Vacancies: {{ $job->vacancies }}</p>
-                    <p class="job-education-requirement">Education Requirement: {{ $job->education_requirement }}</p>
-                    <p class="job-experience-requirement">Experience Requirement: {{ $job->experience_requirement }}</p>
-                    <p class="job-skills-required">Skills Required: {{ $job->skills_required }}</p>
+                    <p class="job-location"><strong class="subtitle">Location:</strong> {{ $job->location }}</p>
+                    <p class="job-salary"><strong  class="subtitle">Salary:</strong> ₹{{ number_format($job->salary, 2) }} PA</p>
+                    <p class="job-company"><strong  class="subtitle">Company:</strong> {{ $job->company_name }}</p>
+                    <p class="job-employment-type"><strong  class="subtitle">Employment Type:</strong> {{ $job->job_type }}</p>
+                    <p class="job-posted-at"><strong  class="subtitle">Posted At:</strong> {{ $job->posted_at }}</p>
+                    <p class="job-contact-email"><strong  class="subtitle">Contact Email:</strong> {{ $job->contact_email }}</p>
+                    <p class="job-contact-phone"><strong  class="subtitle">Contact Phone:</strong> {{ $job->contact_phone }}</p>
+                    <p class="job-vacancies"><strong  class="subtitle">Vacancies:</strong> {{ $job->vacancies }}</p>
+                    <p class="job-education-requirement"><strong  class="subtitle">Education Requirement:</strong> {{ $job->education_requirement }}</p>
+                    <p class="job-experience-requirement"><strong  class="subtitle">Experience Requirement:</strong> {{ $job->experience_requirement }}</p>
+                    <p class="job-skills-required"><strong  class="subtitle">Skills Required:</strong> {{ $job->skills_required }}</p>
                     <a wire:click="showJobApplication('{{$job->job_id}}')" class="apply-button">Apply</a>
                 </div>
                 @endforeach

@@ -42,7 +42,10 @@ class CheckAuth
       return redirect(route('profile.info'));
     } elseif (auth()->user() && auth()->check()) {
       return redirect('/Jobs');
-    } else {
+    }elseif (auth()->guard('com')->check()) {
+      return redirect('/PostJobs');
+    }
+     else {
       session(['user_type' => 'guest']);
     }
 
