@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\CVEntrie;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -25,6 +26,7 @@ class CVBuilder extends Component
     public $languages;
     public $educationEntries = [];
     public $workExperienceEntries = [];
+    public $userDetails;
 
     public function addEducation()
     {
@@ -111,6 +113,7 @@ class CVBuilder extends Component
             'summary' => 'required',
             'languages' => 'required',
         ]);
+     
         CVEntrie::create([
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,

@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('company_address2');
             $table->date('company_registration_date');
             $table->string('company_logo');
+            $table->string('password');
+            $table->string('contact_email');
+            $table->string('contact_mail');
             $table->timestamps(); // Created_at and updated_at columns
         });
 

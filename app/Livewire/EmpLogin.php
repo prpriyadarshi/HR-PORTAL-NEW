@@ -25,7 +25,7 @@ class EmpLogin extends Component
     ];
     public $error = '';
     public function jobs(){
-        return redirect()->to('/Jobs');
+        return redirect()->to('/Login&Register');
     }
     public function createCV()
     {

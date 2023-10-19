@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class company extends Model
+class Company extends Authenticatable
 {
     use HasFactory;
     protected $primaryKey = 'company_id';
@@ -17,6 +17,9 @@ class company extends Model
         'company_address2',
         'company_registration_date',
         'company_logo',
+        'password',
+        'contact_email',
+        'contact_phone'
         // Add other fields that you want to be fillable here
     ];
 }

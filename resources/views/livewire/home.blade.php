@@ -26,55 +26,6 @@
         th {
             background-color: #f2f2f2;
         }
-        .greet {
-            -webkit-tap-highlight-color: rgba(0,0,0,0);
-            tab-size: 4;
-            -webkit-text-size-adjust: 100%;
-            visibility: inherit;
-            font-family: Open Sans,sans-serif;
-            font-size: 14px;
-            font-weight: 400;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            text-align: left;
-            box-sizing: border-box;
-            border: 0 solid;
-            --tw-shadow: 0 0 transparent;
-            --tw-ring-inset: var(--tw-empty,);
-            --tw-ring-offset-width: 0px;
-            --tw-ring-offset-color: #fff;
-            --tw-ring-color: rgba(59,130,246,0.5);
-            --tw-ring-offset-shadow: 0 0 transparent;
-            --tw-ring-shadow: 0 0 transparent;
-        }
-        .banner-ad {
-            -webkit-tap-highlight-color: rgba(0,0,0,0);
-            tab-size: 4;
-            -webkit-text-size-adjust: 100%;
-            visibility: inherit;
-            font-family: Open Sans, sans-serif;
-            font-weight: 400;
-            font-style: normal;
-            font-stretch: normal;
-            letter-spacing: normal;
-            text-align: left;
-            box-sizing: border-box;
-            border: 0 solid;
-            --tw-shadow: 0 0 transparent;
-            --tw-ring-inset: var(--tw-empty,);
-            --tw-ring-offset-width: 0px;
-            --tw-ring-offset-color: #fff;
-            --tw-ring-color: rgba(59,130,246,0.5);
-            --tw-ring-offset-shadow: 0 0 transparent;
-            --tw-ring-shadow: 0 0 transparent;
-            font-size: 1rem;
-            line-height: 1.5rem;
-            max-width: 32rem;
-            --tw-text-opacity: 1;
-            color: rgba(103,122,142,var(--tw-text-opacity));
-        }
     </style>
     <!-- resources/views/your-view.blade.php -->
 
@@ -103,29 +54,21 @@
         <div class="content">
             <div style="display:flex;">
                 <div>
-                <div class="greet">
-        <h1 class="text-secondary-500 pb-1.5x" id="greetingText" style="margin-top: 20px; font-size: 24px; font-family: montserrat;width:270px">Good Evening</h1>
-    </div>
-    <div class="banner-ad text-base max-w-lg text-secondary-400"  style="width:600px">
-    <carousel class="ng-star-inserted" style="width:470px">
-        <!-- Carousel content goes here -->
-    </carousel>
-    <div class="quote-text">
-        <!-- Quote text will be dynamically inserted here -->
-    </div>
-    <div class="author-text">
-        <!-- Author text will be dynamically inserted here -->
-    </div>
-    <div class="watch-video">
-        <p>Watch the video to understand your new Employee Self Service portal quickly.</p>
-        <a href="https://greytip-2.wistia.com/medias/vbxdhiqvk6" class="text-primary-400 pt-1x cursor-pointer text-sm font-semibold pb-2x inline-block">Watch Video</a>
-    </div>
-</div>
+                    <h1 style="margin-top: 20px; font-size: 24px; font-family: montserrat;width: 650px">
+                        Good Evening
+                    </h1>
+                    <div _ngcontent-eff-c326="" style="-webkit-tap-highlight-color: rgba(0,0,0,0); tab-size: 4; -webkit-text-size-adjust: 100%; visibility: inherit; font-family: Open Sans, sans-serif; font-weight: 400; font-style: normal; font-stretch: normal; letter-spacing: normal; text-align: left; font-size: 1rem; line-height: 1.5rem; --tw-text-opacity: 1; color: rgba(103,122,142,var(--tw-text-opacity)); box-sizing: border-box; border: 0 solid; --tw-shadow: 0 0 transparent; --tw-ring-inset: var(--tw-empty,); --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,0.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent;">
+                        The great thing in this world is not so much where you stand, as in what direction you are moving.
                     </div>
-                    <img id="greeting-image" src="" alt="Greeting Image" style="height: 200px; width: 400px; margin-left: 180px;">
+                    <div _ngcontent-eff-c326="" class="author text-black pt-1x uppercase pb-2x text-sm ng-star-inserted" style="-webkit-tap-highlight-color: rgba(0,0,0,0); tab-size: 4; -webkit-text-size-adjust: 100%; visibility: inherit; font-family: Open Sans, sans-serif; font-weight: 400; font-style: normal; font-stretch: normal; letter-spacing: normal; text-align: left; font-size: 1rem; line-height: 1.5rem; --tw-text-opacity: 1; color: rgba(103,122,142,var(--tw-text-opacity)); box-sizing: border-box; border: 0 solid; --tw-shadow: 0 0 transparent; --tw-ring-inset: var(--tw-empty,); --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,0.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent;">
+                        - Oliver Wendell Holmes
+                    </div>
 
 
                 </div>
+                <img src="https://cdn.dribbble.com/users/35381/screenshots/1928915/media/e5dd9341fce5ae6146dceb9cc485e611.png?compress=1&resize=768x576&vertical=top" alt="Image Description" style="height: 200px;width:500px; margin-right: 10px;">
+
+            </div>
             <div class="content" style="display:flex">
                 <div class="container">
 
@@ -320,11 +263,10 @@
 
                                                 </div>
                                             </div>
-                                            <div class="column" style="display: flex; color: #1090D8; margin-left: 20px; font-size: 14px; font-family: Open Sans, sans-serif; margin-top: 20px; font-weight: 100;">
-   
-   <a href="/your-download-route" id="pdfLink2023_4" class="pdf-download" download style="margin-left: 10px; display: inline-block;">Download PDF</a>
-   <p style="margin-left: 80px;">Show Salary</p>
-</div>
+                                            <div class="column" style="display:flex; color:#1090D8; margin-left: 20px; font-size: 14px; font-family: Open Sans, sans-serif; margin-top: 20px;font-weight:100px">
+                                                <p>Download</p>
+                                                <p style="margin-left: 120px;">Show Salary</p>
+                                            </div>
 
                                         </div>
 
@@ -376,89 +318,3 @@
         </div>
     </div>
 </div>
-<script>
-        // Get the current hour of the day (0-23)
-        const currentHour = new Date().getHours();
-
-        // Get the greeting element by its ID
-        const greetingElement = document.getElementById('greetingText');
-
-        // Define an array of greetings based on the time of day
-        const greetings = [
-            'Good Morning',
-            'Good Afternoon',
-            'Good Evening',
-            'Good Night'
-        ];
-
-        // Determine the appropriate greeting based on the time of day
-        let greeting;
-        if (currentHour >= 5 && currentHour < 12) {
-            greeting = greetings[0]; // Morning
-        } else if (currentHour >= 12 && currentHour < 17) {
-            greeting = greetings[1]; // Afternoon
-        } else if (currentHour >= 17 && currentHour < 20) {
-            greeting = greetings[2]; // Evening
-        } else {
-            greeting = greetings[3]; // Night
-        }
-
-        // Update the greeting text
-        greetingElement.textContent = greeting;
-
-        
-    </script>
-    <script>
-    // Function to change the quote text
-    function changeQuote() {
-        const quotes = [
-            { text: "Life is 10% what happens to us and 90% how we react to it.", author: "Dennis P. Kimbro" },
-            { text: "Your new Employee Self Service portal is here. Watch the video to learn more.", author: "Anonymous" },
-            { text: "Things usually work out in the end. What if they don't? That just means you haven't come to the end yet.", author: "Jeanette Walls" }
-            // Add more quotes here as needed
-        ];
-
-        const quoteElement = document.querySelector('.quote-text');
-        const authorElement = document.querySelector('.author-text');
-        const randomIndex = Math.floor(Math.random() * quotes.length);
-        const randomQuote = quotes[randomIndex];
-
-        quoteElement.textContent = randomQuote.text;
-        authorElement.textContent = `- ${randomQuote.author}`;
-    }
-
-    // Call the function to initially set the quote
-    changeQuote();
-
-    // Set an interval to change the quote every 5 seconds (5000 milliseconds)
-    setInterval(changeQuote, 5000);
-</script>
-
-<script>
-    // Function to change the greeting image
-    function changeGreetingImage() {
-        const date = new Date();
-        const hours = date.getHours();
-        const imageElement = document.getElementById('greeting-image');
-
-        if (hours >= 4 && hours < 12) {
-            // Morning (4 AM to 11:59 AM)
-            imageElement.src = 'https://th.bing.com/th/id/OIP.mti7ag1l4Xc_3OSA4b5mAgHaGC?w=224&h=183&c=7&r=0&o=5&dpr=1.5&pid=1.7';
-        } else if (hours >= 12 && hours < 17) {
-            // Afternoon (12 PM to 4:59 PM)
-            imageElement.src = 'https://cdn.dribbble.com/users/35381/screenshots/1928915/media/e5dd9341fce5ae6146dceb9cc485e611.png?compress=1&resize=768x576&vertical=top';
-        } else if (hours >= 17 && hours < 20) {
-            // Evening (5 PM to 7:59 PM)
-            imageElement.src = 'https://th.bing.com/th/id/OIP.zrIB4aYbzyMpxTTIbeUPUQHaFP?w=209&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7';
-        } else {
-            // Night (8 PM to 3:59 AM)
-            imageElement.src = 'https://th.bing.com/th/id/OIP.eD11lmjV2NG7K0QwKoD-WQHaE8?w=268&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7';
-        }
-    }
-
-    // Call the function to initially set the greeting image
-    changeGreetingImage();
-
-    // Set an interval to change the greeting image every 1 hour (3600000 milliseconds)
-    setInterval(changeGreetingImage, 3600000);
-</script>
