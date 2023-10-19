@@ -7,7 +7,7 @@ use App\Models\EmployeeDetails;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\Session;
 class EmpLogin extends Component
 {
     public $showDialog = false;
@@ -38,7 +38,13 @@ class EmpLogin extends Component
             "form.password" => "required"
         ]);
         if (Auth::guard('emp')->attempt($this->form)) {
-            session()->flash('Success', "You are Loggedin Successfully!");
+            // Retrieve emp_id after successful login
+            $emp_id = Auth::guard('emp')->user()->emp_id;
+
+            // Store emp_id in the session
+            Session::put('emp_id', $emp_id);
+            //dd($emp_id);
+            session()->flash('Success', 'You are logged in successfully!');
             return redirect()->route('home');
         } else {
             $this->error = "Employee ID or Password Wrong!!";
