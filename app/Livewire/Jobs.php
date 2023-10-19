@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\AppliedJob;
+use App\Models\Company;
 use App\Models\Job;
 use App\Models\User;
 use Illuminate\Database\QueryException;
@@ -24,13 +25,15 @@ class Jobs extends Component
     public $showDialog = false;
     public $appliedJobs;
     public $showError = true;
-    public $showSuccessMessage=false;
-  
-    public function open(){
-        $this->showDialog=true;
+    public $showSuccessMessage = false;
+
+    public function open()
+    {
+        $this->showDialog = true;
     }
-    public function close(){
-        $this->showDialog=false;
+    public function close()
+    {
+        $this->showDialog = false;
     }
     public function createCV()
     {
@@ -39,16 +42,16 @@ class Jobs extends Component
     public function logout()
     {
         Auth::logout();
-        return redirect('/emplogin'); 
+        return redirect('/emplogin');
     }
-   
+
 
     public function showJobApplication($jobId)
     {
         $this->selectedJob = Job::find($jobId);
         $userId = auth()->guard('web')->user()->user_id;
         $this->userDetails = User::where('user_id', $userId)->first();
-      
+
         try {
             AppliedJob::create([
                 'job_id' => $this->selectedJob->job_id,
@@ -61,7 +64,7 @@ class Jobs extends Component
                 'address' => $this->userDetails->address,
                 'resume' => $this->userDetails->resume,
             ]);
-            $this->showSuccessMessage = true;   
+            $this->showSuccessMessage = true;
         } catch (QueryException $e) {
             $this->addError('duplicate', 'You have already applied to this job.');
             $this->showError = true; // Show the error message
@@ -77,7 +80,13 @@ class Jobs extends Component
     }
     public function render()
     {
-        $this->jobs = Job::all();
+        $this->jobs = Job::where('created_at', '<=', now()) 
+        ->where(function ($query) {
+            $query->whereNull('expire_date') 
+                ->orWhere('expire_date', '>', now());
+        })
+        ->orderBy('created_at', 'desc') 
+        ->get();
         $user = auth()->user();
         $this->appliedJobs = AppliedJob::where('user_id', $user->user_id)->get();
         return view('livewire.jobs');

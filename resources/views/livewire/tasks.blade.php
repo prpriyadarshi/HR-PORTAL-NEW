@@ -133,10 +133,10 @@
                     <div class="card" style="width:250px;">
                         <div class="card-header">
                             <div class="row">
-                                <button wire:click="$set('activeTab', 'open')" class="col btn @if($activeTab === 'open') btn-success active @else btn-light @endif" style="border-radius: 5px; margin-right: 5px">
+                                <button wire:click="$set('activeTab', 'open')" class="col btn @if($activeTab === 'open') btn-primary active @else btn-light @endif" style="border-radius: 5px; margin-right: 5px">
                                     Open
                                 </button>
-                                <button wire:click="$set('activeTab', 'completed')" class="col btn @if($activeTab === 'completed') btn-warning active @else btn-light @endif" style="border-radius: 5px;">
+                                <button wire:click="$set('activeTab', 'completed')" class="col btn @if($activeTab === 'completed') btn-success active @else btn-light @endif" style="border-radius: 5px;">
                                     Completed
                                 </button>
                             </div>
@@ -220,7 +220,7 @@
                                 <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Due Date</th>
                                 <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Subject</th>
                                 <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Description</th>
-                                <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Attch File</th>
+                                <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Attach File</th>
                                 <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Status</th>
                             </tr>
                         </thead>
