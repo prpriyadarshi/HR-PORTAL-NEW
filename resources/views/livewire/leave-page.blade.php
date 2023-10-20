@@ -1,3 +1,4 @@
+
 <style>
 
 .links {
@@ -95,10 +96,13 @@
     color: #fff;
     border:none;
 }
-
-
+.card{
+        width: 25%; 
+        height:45%;  background:transparent; 
+        padding:10px; 
+        border:none;
+    }
 .links:hover {
-
     color: blue;
     text-decoration:none;
 
@@ -185,7 +189,7 @@
 
 
 </style>
-<div class="row" style=" width:100%; ">
+<div class="leave-page" style=" width:100%; display:flex;">
 
 <div class="main-layout" style=" width:100%;  ">
 <div class="buttons">
@@ -307,13 +311,78 @@
 </div>
 
 {{-- pending --}}
+<div class="col" style="border-radius: 5px; display: none;" id="leavePending" style="display: none; width: 70%; background: #fff; padding: 0; ">
+    @if($this->leaveRequests->isNotEmpty())
+        @foreach($this->leavePending as $leaveRequest)
+            <div class="container mt-4">
+                <div class="accordion">
+                    <div class="accordion-heading" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <!-- Display leave details here based on $leaveRequest -->
+                            <div class="accordion-content">
+                                <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">Category</span>
+                                <span style="color: #36454F; font-size: 1rem; font-weight: 500;">Leave</span>
+                            </div>
+                            <div class="accordion-content">
+                                <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">Leave Type</span>
+                                <span style="color: #36454F; font-size: 1rem; font-weight: 500;">{{ $leaveRequest->leave_type}}</span>
+                            </div>
+                            <div class="accordion-content">
+                                <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">No. of Days</span>
+                                <span style="color: #36454F; font-size: 1rem; font-weight: 500;">
+                                    {{ $this->calculateNumberOfDays($leaveRequest->from_date, $leaveRequest->from_session, $leaveRequest->to_date, $leaveRequest->to_session) }}
+                                </span>
+                            </div>
 
-<div class="col" style="border-radius: 5px;display: none;" id="leavePending" style="display: none; width: 70%; background: #fff; padding: 0; ">
-<div class="leave-pending" style="margin-top:30px; background:#fff; margin-left:120px; display:flex; width:75%;flex-direction:column; text-align:center;justify-content:center; border:1px solid #ccc; padding:20px;gap:10px;">
-        <img src="/images/pending.png" alt="Pending Image" style="width:60%; margin:0 auto;">
-        <p style="color:#969ea9; font-size:13px; font-weight:400; ">There are no pending records of any leave transaction</p>
-    </div>
+                            <!-- Add other details based on your leave request structure -->
+
+                            <div class="accordion-content">
+                                <span style="margin-top:0.625rem; font-size: 1rem; font-weight: 400; color:#cf9b17;">{{ strtoupper($leaveRequest->status) }}</span>
+                            </div>
+                            <div class="accordion-button" style="margin-top: 0.625rem; font-size: 1rem;  height: 0.625rem; width: 0.625rem; border-radius: 50%; background: #fff;  display: flex; justify-content: center; align-items: center; ">
+                                <!-- Down arrow character -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-body">
+                        <div style="width:100%; height:1px; border-bottom:1px solid #ccc; margin-bottom:10px;"></div>
+                        <div class="content">
+                            <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">Duration:</span>
+                            <span style="font-size: 0.8125rem;">
+                                <span style="font-size: 0.8125rem; font-weight: 500;">{{ $leaveRequest->from_date }}</span>
+                                {{ $leaveRequest->from_session }} to
+                                <span style="font-size: 0.8125rem; font-weight: 500;">{{ $leaveRequest->to_date }}</span>
+                               ( {{ $leaveRequest->to_session }} )
+                            </span>
+                        </div>
+                        <div class="content">
+                            <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">Reason:</span>
+                            <span style="font-size: 0.8125rem;">{{ $leaveRequest->reason }}</span>
+                        </div>
+                         <div style="width:100%; height:1px; border-bottom:1px solid #ccc; margin-bottom:10px;"></div>
+                        <div style="display:flex; flex-direction:row; justify-content:space-between;">
+                            <div class="content">
+                                <span style="color: #778899; font-size: 0.875rem; font-weight: 400;">Applied on:</span>
+                                <span style="color: #333; font-size: 1rem; font-weight: 500;">{{ $leaveRequest->created_at->format('d M, Y') }}</span>
+                            </div>
+                            <div class="content">
+                                <a href="/view-details">
+                                    <span style="color: #3a9efd; font-size: 0.875rem; font-weight: 500;">View Details</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    @else
+        <div class="leave-pending" style="margin-top:30px; background:#fff; margin-left:120px; display:flex; width:75%;flex-direction:column; text-align:center;justify-content:center; border:1px solid #ccc; padding:20px;gap:10px;">
+            <img src="/images/pending.png" alt="Pending Image" style="width:60%; margin:0 auto;">
+            <p style="color:#969ea9; font-size:13px; font-weight:400; ">There are no pending records of any leave transaction</p>
+        </div>
+    @endif
 </div>
+
 
 {{-- history --}}
 
@@ -375,10 +444,20 @@ Hi Sir, I would like to inform you that I require a 2 days of absence on 31/08/2
 </div>
 </div>
 <script>
+         function toggleAccordion(element) {
+            const accordionBody = element.nextElementSibling;
+            if (accordionBody.style.display === 'block') {
+                accordionBody.style.display = 'none';
+                element.classList.remove('active'); // Remove active class
+            } else {
+                accordionBody.style.display = 'block';
+                element.classList.add('active'); // Add active class
+            }
+        }
 
 function toggleDetails(tabId) {
-
-const tabs = ['leaveApply', 'leavePending', 'leaveHistory',];
+ console.log('Function is being called with tabId:', tabId);
+const tabs = ['leaveApply', 'leavePending', 'leaveHistory','leave', 'restricted-content', 'leaveCancel-content', 'compOff-content'];
 
 tabs.forEach(tab => {
 
@@ -398,6 +477,7 @@ tabs.forEach(tab => {
     const applyButton = document.getElementById("apply-button");
     const pendingButton = document.getElementById("pending-button");
     const historyButton = document.getElementById("history-button");
+    const leaveLink = document.getElementById("leave-link");
 
     applyButton.addEventListener("click", () => {
         applyButton.classList.add("clicked");
@@ -418,6 +498,14 @@ tabs.forEach(tab => {
         pendingButton.classList.remove("clicked");
         historyButton.classList.add("clicked");
         toggleTab('leaveHistory'); // Example: Load a different section
+    });
+
+    leaveLink.addEventListener("click", () => {
+        applyButton.classList.remove("clicked");
+        pendingButton.classList.remove("clicked");
+        historyButton.classList.remove("clicked");
+        leave-link.classList.add("clicked");
+        toggleTab('leave'); // Example: Load a different section
     });
 
     //cardlinks hiding
@@ -522,3 +610,4 @@ function addEmail() {
         }
 
 </script>
+@livewireScripts

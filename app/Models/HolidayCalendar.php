@@ -11,4 +11,5 @@ class HolidayCalendar extends Model
     protected $fillable=[
        'day' ,'date', 'month', 'year', 'festivals'
      ];
+
 }

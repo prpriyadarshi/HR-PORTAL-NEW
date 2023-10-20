@@ -125,6 +125,7 @@ class HelpDesk extends Component
     public function closePeoples(){
         $this->isRotated=false;
     }
+    
     public function selectPerson($personId)
     {
         $selectedPerson = $this->peoples->where('emp_id', $personId)->first();

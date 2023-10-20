@@ -7,13 +7,11 @@
         .file-label {
             color: #778899;
         }
-
         .custom-dropdown {
             position: relative;
             display: inline-block;
             width: 200px;
         }
-
         .custom-dropdown-label {
             display: flex;
             align-items: center;
@@ -34,7 +32,6 @@
             margin-left: 10px;
             transition: transform 0.3s;
         }
-
         .custom-dropdown.open .custom-dropdown-arrow {
             transform: rotate(180deg);
         }
@@ -86,22 +83,17 @@
     }
     
     .links {
-
     font-size: 13px;
     line-height: 2;
     font-family: 'Open Sans', sans-serif;
-
     text-decoration: none;
-
     cursor: pointer;
     font-weight:600; 
     color: #778899;
-
     transition: color 0.3s;
 
     }
     .links:hover {
-
     color: blue;
     text-decoration:none;
 
@@ -116,25 +108,135 @@
     .wrap-content{
         display:flex; background:transparent; width:100%; flex-direction:row; margin-top:30px;
     }
-    @media screen and (max-width: 1060px) {
+    .buttons1{
+            display: flex; 
+            justify-content: center; 
+            gap: 10px; 
+            margin-top:20px;
+            font-weight:500;
+            margin-bottom:10px;
+        }
+        .buttons1 .btn-secondary{
+            background: #fff; 
+            font-weight: 500; 
+            color: #1E90FF;
+             border: 1px solid #1E90FF;
+        }
+        .applyContainer{
+            border: 1px solid #DCDCDC;
+             border-radius: 10px;
+              box-shadow: 1px 2px 2px 2px #F5F5F5; 
+              width: 100%; 
+              margin: 10px auto; 
+              background: #FFFFFF;
+              padding:10px 15px;
+        }
+    .reporting{
+        display:flex; 
+        flex-direction:row; 
+        justify-content: space-between;
+        padding: 15px 12px 15px 12px;
+        border-radius: 30px; 
+        align-items:center;
+        width: 180px; 
+        height: 55px; 
+    }
+        .reporting:hover{
+
+       border: 1px solid #ccc;
+   }
+   .searchContainer{
+    background:#fff;
+    border:1px solid #ccc;
+    border-radius:3px;
+    box-shadow: 2px 0 5px 0 #ccc;
+    padding:12px 15px;
+    width:30%;
+    margin-top:15px;
+    max-height: 100px; /* Adjust the maximum height as needed */
+    overflow-y: auto;
+
+   }
+   .ccContainer{
+    background:#fff;
+    border:1px solid #ccc;
+    border-radius:3px;
+    box-shadow: 2px 0 5px 0 #ccc;
+    padding:12px 15px;
+    width:30%;
+    margin-top:15px;
+    max-height: 100px; /* Adjust the maximum height as needed */
+    overflow-y: auto;
+
+   }
+    .ellipsis {
+        font-size:0.875rem;
+        margin-top:15px;
+         font-weight:500;
+         white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 70px; /* Adjust the value based on your container width */
+        display: inline-block;
+    }
+    .reporting:hover .details {
+        display: block;
+    }
+    .reporting.active {
+    background-color: #D9ECFF;
+    border:1px solid #ccc; /* Light blue color */
+    /* Add any other styles you want for the active state */
+}
+.icon-container.active{
+    background-color: #D9ECFF;
+}
+.icon-container{
+    height: 2rem;
+     width: 2rem;
+    background: #fff; 
+    padding: 7px; 
+    border: 1px solid #778899; 
+    border-radius: 50%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+    .details {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 5px 10px;
+        z-index: 1;
+        width:100px;
+        margin-top: -150px; /* Adjust the value to position it above the reporting container */
+        margin-left: 50px;
+        transform: translateX(-50%);
+    }
+    .cc-Container{
+        height: 2rem;
+        width: 2rem;
+        background: #fff;
+        padding: 7px; 
+        border: 1px solid #778899;
+        border-radius: 50%; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center;
+    }
+        @media screen and (max-width: 1060px) {
         /* Apply styles for screens 960px or less in width */
         .wrap-content {
             flex-direction: column;
             align-items: start;
         }
-
         .wrap-content > .card {
             width: 100%; /* Adjust the width for smaller screens */
-            /* Remove the left margin */
         }
         .container  {
             width: 100%; /* Adjust the width for smaller screens */
-            /* Remove the left margin */
         }
-
-        /* You can add more specific styles if needed for smaller screens */
-    }
-  
+     }
     </style>
 
         <div class="wrap-content" >
@@ -195,17 +297,15 @@
     const ccField = document.getElementById('ccField');
     const ccPlaceholder = document.getElementById('ccPlaceholder');
 
-    if (ccField.style.display === 'none' || ccField.style.display === '') {
-        ccField.style.display = 'block';
-        ccPlaceholder.style.display = 'none';
+        // Toggle the display of the search container
+        ccContainer.style.display = ccContainer.style.display === 'none' ? 'block' : 'none';
+        if (ccContainer.style.display === 'block') {
+            iconContainer.classList.add('active');
     } else {
-        ccField.style.display = 'none';
-        ccPlaceholder.style.display = 'inline-block';
+        iconContainer.classList.remove('active');
     }
-}
-
-function addEmail() {
-    const emailInput = document.getElementById('emailInput');
+    }
+    function addEmail(fullName) {
     const addedEmails = document.getElementById('addedEmails');
 
     // Get the entered email address
@@ -243,4 +343,6 @@ function toggleOptions(tabId) {
         }
 
     </script>
-   
+@livewireScripts
+</body>
+</html>
