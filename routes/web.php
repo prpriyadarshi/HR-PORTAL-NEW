@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\CVBuilder;
 use App\Livewire\EmpLogin;
 use App\Livewire\Feeds;
 use App\Livewire\HelpDesk;
@@ -23,11 +24,14 @@ use App\Livewire\LeavePending;
 use App\Livewire\LeavePage;
 use App\Livewire\LeaveBalances;
 use App\Livewire\HolidayCalender;
-
+use App\Livewire\SalaryRevision;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'checkAuth'], function () {
     Route::get('/emplogin', EmpLogin::class)->name('emplogin');
+});
+Route::get('/CreateCV', function(){
+    return view('create_cv_view');
 });
 
 Route::middleware(['auth:emp'])->group(function () {
@@ -56,8 +60,7 @@ Route::get('/leave-page', LeavePage::class)->name('leave-page');
 Route::get('/leave-apply', LeaveApply::class)->name('leave-apply');
 Route::get('/holiday-calender', HolidayCalender::class)->name('holiday-calender');
 Route::get('/leave-balances', LeaveBalances::class)->name('leave-balances');
-Route::get('/leave-pending', LeavePending::class)->name('leave-pending');
-
+Route::get('/salary-revision', SalaryRevision::class)->name('salary-revision');
 });
 
 

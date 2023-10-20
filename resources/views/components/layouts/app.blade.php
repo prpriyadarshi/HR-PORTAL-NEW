@@ -179,6 +179,18 @@
 
             }
 
+            #salary-options a {
+                text-decoration: none;
+                color: #778899;
+
+            }
+
+            #salary-options a:hover {
+                text-decoration: none;
+                color: #3a9efd;
+
+            }
+
             .active-option {
                 color: #3a9efd;
                 /* Active option color (blue in this example) */
@@ -234,35 +246,18 @@
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle3()">
 
                             <a class="nav-link" href="/tasks">
-                              
+
 
                                     <i class="fas fa-tasks"></i> To do
 
         </a>
 
                         </li>
-
-                        
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="/salary" id="salaryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-money-bill-wave"></i> Salary
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="salaryDropdown">
-                                        <!-- Dropdown items go here -->
-                                        <a class="dropdown-item" href="/itdeclaration">Itdeclaration</a>
-                                        <a class="dropdown-item" href="/itstatement">Itstatement</a>
-                                        <a class="dropdown-item" href="/slip">Payslip</a>
-                                    </div>
-                                </li>
-                      
-
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
+           <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
 
                             <a class="nav-link" href="#">
 
-                                <i class="fas fa-clock"></i> Attendance
-                          </a>
-                        </li>
+                                <i class="fas fa-clock"></i> Attendance</a></li>
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5(item)">
                             <a class="nav-link" href="#" onclick="toggleLeaveDropdown()">
@@ -295,9 +290,8 @@
                         </li>
 
 
-                        </a>
 
-                        </li>
+
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle7()">
 
@@ -308,7 +302,35 @@
                             </a>
 
                         </li>
-
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle11(item)">
+                            <a class="nav-link" href="#" onclick="toggleSalaryDropdown()">
+                                <i class="fas fa-solid fa-money-bill-transfer" id="salary-icon"></i> Salary <i class="fas fa-caret-down" id="salary-caret"></i>
+                            </a>
+                            <div id="salary-options" style="display: none;">
+                                <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle11('itdeclaration')">
+                                        <a class="nav-link" href="/itdeclaration" id="itdeclaration" onclick="selectOption(this, 'IT Declaration')">
+                                            IT Declaration
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle11('itstatement')">
+                                        <a class="nav-link" href="/itstatement" id="itstatement" onclick="selectOption(this, 'IT Statement')">
+                                            IT Statement
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle11('slip')">
+                                        <a class="nav-link" href="/slip" id="slip" onclick="selectOption(this, 'Pay Slip')">
+                                            Payslips
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle11('salary-revision')">
+                                        <a class="nav-link" href="/salary-revision" id="slip" onclick="selectOption(this, 'Salary Revision')">
+                                            Salary Revision
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle8()">
 
                             <a class="nav-link" href="/PeoplesList">
@@ -594,17 +616,23 @@
 
 
             function changePageTitle11() {
+                var newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                var newTitle = "Salary";
 
-                var newIcon = '<i style="color: white;" class="fas fa-cog"></i>'
-
-                var newTitle = "Account Settings";
+                if (item === 'itdeclaration') {
+                    newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                    newTitle = "IT Declaration";
+                } else if (item === 'itstatement') {
+                    newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                    newTitle = "IT Statement";
+                } else if (item === 'slip') {
+                    newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                    newTitle = "Pay Slip";
+                }
 
                 document.getElementById("pageIcon").innerHTML = newIcon;
-
                 document.getElementById("pageTitle").textContent = newTitle;
-
                 localStorage.setItem("pageIcon", newIcon);
-
                 localStorage.setItem("pageTitle", newTitle);
 
             }
@@ -647,6 +675,26 @@
                     leaveCaret.classList.add("fa-caret-up");
                 }
             }
+            function toggleSalaryDropdown() {
+                const salaryOptions = document.getElementById("salary-options");
+                const salaryCaret = document.getElementById("salary-caret");
+
+                if (salaryOptions.style.display === "block") {
+                    salaryOptions.style.display = "none";
+                    salaryCaret.classList.remove("fa-caret-up");
+                    salaryCaret.classList.add("fa-caret-down");
+                } else {
+                    salaryOptions.style.display = "block";
+                    salaryCaret.classList.remove("fa-caret-down");
+                    salaryCaret.classList.add("fa-caret-up");
+                }
+            }
+
+
+
+
+
+
 
             function selectOption(option, pageTitle) {
                 const accordionItems = document.querySelectorAll('.nav-link');
@@ -665,6 +713,7 @@
 
                 // Close the dropdown if open
                 toggleLeaveDropdown();
+                toggleSalaryDropdown();
             }
 
             function updatePageTitle(newTitle) {
