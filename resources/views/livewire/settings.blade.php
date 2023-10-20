@@ -235,7 +235,6 @@
             </div>
             <div class="row" style="margin-top: 10px;">
                 <div class="col">
-                    <label for="time_zone" style="font-size: 12px;">Time Zone</label>
                     @if ($editingTimeZone)
                     <select id="time_zone" name="time_zone" wire:model="selectedTimeZone" class="form-control" style="width: 150px; font-size: 12px;">
                         @foreach ($timeZones as $tz)

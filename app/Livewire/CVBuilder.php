@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use App\Models\CVEntrie;
+use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -24,6 +26,7 @@ class CVBuilder extends Component
     public $languages;
     public $educationEntries = [];
     public $workExperienceEntries = [];
+    public $userDetails;
 
     public function addEducation()
     {
@@ -59,14 +62,23 @@ class CVBuilder extends Component
     public function preview()
     {
         $this->validate([
-            'first_name' => 'required',
+            'first_name' => 'required|min:6',
             'last_name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
             'country' => 'required',
             'city' => 'required',
             'address' => 'required',
-            'date_of_birth' => 'required|date',
+            'date_of_birth' => ['required', 'date', function ($attribute, $value, $fail) {
+                $birthdate = \Carbon\Carbon::parse($value); // Parse the date of birth using the Carbon library
+                $currentDate = \Carbon\Carbon::now(); // Get the current date
+
+                $age = $birthdate->diffInYears($currentDate); // Calculate the age
+
+                if ($age < 19) {
+                    $fail("You must be at least 19 years old to proceed.");
+                }
+            }],
             'image' => 'nullable|image',
             'educationEntries' => 'array|min:1',
             'workExperienceEntries' => 'array|min:1',
@@ -86,7 +98,14 @@ class CVBuilder extends Component
             'country' => 'required',
             'city' => 'required',
             'address' => 'required',
-            'date_of_birth' => 'required|date',
+            'date_of_birth' => ['required', 'date', function ($attribute, $value, $fail) {
+                $birthdate = \Carbon\Carbon::parse($value);
+                $currentDate = \Carbon\Carbon::now();
+                $age = $birthdate->diffInYears($currentDate);
+                if ($age < 19) {
+                    $fail("You must be at least 19 years old to proceed.");
+                }
+            }],
             'image' => 'nullable|image',
             'educationEntries' => 'array|min:1',
             'workExperienceEntries' => 'array|min:1',
@@ -94,6 +113,7 @@ class CVBuilder extends Component
             'summary' => 'required',
             'languages' => 'required',
         ]);
+     
         CVEntrie::create([
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,

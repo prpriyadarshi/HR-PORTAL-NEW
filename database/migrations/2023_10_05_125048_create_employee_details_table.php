@@ -16,10 +16,6 @@ return new class extends Migration
             $table->string('last_name');
             $table->date('date_of_birth');
             $table->string('gender');
-            $table->string('father_name');
-            $table->string('mother_name');
-            $table->date('parent_dob');
-            $table->string('parent_gender');
             $table->string('email')->unique();
             $table->string('company_email')->unique();
             $table->string('company_name');
@@ -36,17 +32,11 @@ return new class extends Migration
             $table->string('job_title');
             $table->string('manager_id');
             $table->string('report_to');
-            // $table->decimal('salary', 10, 2);
             $table->enum('employee_status', ['active', 'on-leave', 'terminated']);
-            $table->string('bank_name')->nullable();
-            $table->string('bank_branch')->nullable();
-            $table->string('account_number')->unique()->nullable();
-            $table->string('ifsc_code')->nullable();
             $table->string('emergency_contact')->nullable();
             $table->string('password');
             $table->string('image');
             $table->string('blood_group');
-            $table->string('parent_bld_group');
             $table->string('nationality');
             $table->string('religion');
             $table->enum('marital_status', ['married', 'unmarried']);

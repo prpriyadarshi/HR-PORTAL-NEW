@@ -7,31 +7,40 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.2.3/html2canvas.min.js"></script>
         <style>
             body {
-                font-family: Arial, sans-serif;
                 background-color: #f4f4f4;
                 padding: 20px;
+                font-family: Montserrat;
+
             }
 
             .cv-container {
                 display: flex;
                 background-color: #f0f0f0;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                font-family: Montserrat;
+
             }
 
             .left-column,
             .right-column {
                 flex: 1;
                 padding: 20px;
+                font-family: Montserrat;
+
             }
 
             .left-column {
                 background-color: #fff;
                 max-width: 350px;
                 padding: 40px;
+                font-family: Montserrat;
+
             }
 
             .right-column {
                 background-color: #f0f0f0;
+                font-family: Montserrat;
+
             }
 
             .col {
@@ -39,21 +48,29 @@
                 flex-direction: column;
                 justify-content: space-between;
                 height: 100%;
+                font-family: Montserrat;
+
             }
 
             h1 {
                 font-size: 24px;
                 text-align: center;
                 margin: 20px 0;
+                font-family: Montserrat;
+
             }
 
             h2 {
                 font-size: 20px;
                 margin-top: 20px;
+                font-family: Montserrat;
+
             }
 
             label {
                 font-weight: bold;
+                font-family: Montserrat;
+
             }
 
             input[type="text"],
@@ -68,6 +85,8 @@
                 border: 1px solid #ccc;
                 border-radius: 4px;
                 font-size: 16px;
+                font-family: Montserrat;
+
             }
 
             input[type="submit"] {
@@ -78,10 +97,14 @@
                 border-radius: 4px;
                 cursor: pointer;
                 font-size: 18px;
+                font-family: Montserrat;
+
             }
 
             input[type="submit"]:hover {
                 background-color: #0056b3;
+                font-family: Montserrat;
+
             }
 
             /* Added styles for education and work experience entries */
@@ -92,6 +115,8 @@
                 border-radius: 4px;
                 padding: 10px;
                 margin: 10px 0;
+                font-family: Montserrat;
+
             }
 
             .remove-education,
@@ -103,28 +128,39 @@
                 cursor: pointer;
                 margin: 5px;
                 padding: 5px 10px;
+                font-family: Montserrat;
+
             }
 
             .remove-education:hover,
             .remove-work-experience:hover {
                 background-color: #cc0000;
+                font-family: Montserrat;
+
             }
 
             .error {
                 font-size: 12px;
                 color: red;
+                font-family: Montserrat;
+
             }
         </style>
     </head>
 
     <body>
-        <div class="cv-container">
+        <a href="/Jobs" style="text-decoration:none;
+            font-family: Montserrat;background-color:rgb(2, 17, 79);color:white;padding:5px;border-radius:5px
+        ">Back</a>
+        <div class="cv-container" style="margin-top: 10px;">
             <div class="col" style="background-color: white; width: 45%; height: 835px; overflow: auto;">
                 <div style="margin-left: 40%; margin-top: 20px; font-size: 24px;"><strong>Create CV</strong></div>
                 <div class="row" style="padding: 15px; margin: 0px;">
                     <form wire.submit.prevent="submit" style="border: 1px solid rgb(2, 17, 79); background-color: rgb(2, 17, 79); height: 100%;width:100%; overflow: auto;padding:8px;">
                         <div style="text-align: center;">
-                            <h2 style="color:white;font-size:13px;">Personal Information</h2>
+                            <h2 style="color:white;font-size:13px;
+            font-family: Montserrat;
+                            ">Personal Information</h2>
                         </div>
                         <div class="education-entry">
                             <label style="font-size:12px" for="first_name">First Name:</label>
@@ -169,7 +205,9 @@
                             @endif
                         </div>
                         <div style="text-align: center;">
-                            <h2 style="color:white;font-size:13px;">Education</h2>
+                            <h2 style="color:white;font-size:13px;
+            font-family: Montserrat;
+                            ">Education</h2>
                         </div>
                         <!-- Education Entries -->
                         <div class="education-entries">
@@ -195,7 +233,9 @@
                         <button wire:click="addEducation" id="add_education" style="background-color:green;color:white;border-radius:5px;margin-bottom:8px;margin-left:10px" type="button">Add</button>
 
                         <div style="text-align: center;">
-                            <h2 style="color:white;font-size:13px;">Work Experience</h2>
+                            <h2 style="color:white;font-size:13px;
+            font-family: Montserrat;
+                            ">Work Experience</h2>
                         </div>
                         <!-- Work Experience Entries -->
                         <div class="work-experience-entries">
@@ -222,7 +262,9 @@
                         <!-- Add Work Experience Entry button -->
                         <button wire:click="addWorkExperience" id="add_work_experience" style="margin-left:10px;background-color:green;color:white;border-radius:5px;margin-bottom:8px" type="button">Add</button>
                         <div style="text-align: center;">
-                            <h2 style="color:white;font-size:13px;">Skills</h2>
+                            <h2 style="color:white;font-size:13px;
+            font-family: Montserrat;
+                            ">Skills</h2>
                         </div>
                         <div class="education-entry">
                             <label style="font-size:12px" for="technical_skills">Technical Skills:</label>
@@ -257,88 +299,80 @@
                 </div>
             </div>
 
-            <div class="col" style="background-color: rgb(2, 17, 79); width: 55%; height: 835px;overflow: auto;">
-                <div class="card" style="margin-top: 15px;margin-bottom:15px;width:595px">
+            <div id="card-content" class="col" style="background-color: rgb(2, 17, 79); width: 55%; height: 835px;overflow: auto;">
+                <button id="download-button"> <a style="text-decoration: none;
+            font-family: Montserrat;
+                ">Download</a></button>
+                <div style="margin-top: 15px;margin-bottom:15px;width:595px">
                     <!DOCTYPE html>
                     <html>
 
                     <head>
                         <style>
                             body {
-                                font-family: Arial, sans-serif;
                                 background-color: #f4f4f4;
                                 padding: 20px;
+                                font-family: Montserrat;
                             }
 
                             .cv-container {
+                                display: flex;
                                 width: 100%;
                                 margin: 0 auto;
                                 background-color: #f0f0f0;
                                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                                font-family: Montserrat;
                             }
 
                             .row {
                                 display: flex;
                                 align-items: center;
+                                font-family: Montserrat;
                             }
 
                             .col {
                                 flex: 1;
+                                font-family: Montserrat;
                             }
 
                             img {
                                 width: 230px;
                                 height: 180px;
+                                font-family: Montserrat;
                             }
 
                             .name {
                                 font-size: 24px;
                                 font-weight: bold;
                                 margin-left: 20px;
+                                font-family: Montserrat;
                             }
 
                             .job-title {
                                 font-size: 18px;
-                                margin-left: 20px;
+                                margin-left: 20px;font-family: Montserrat;
 
-                            }
-
-
-                            .left-column,
-                            .right-column {
-                                height: 600px;
-                                padding: 2px;
-                                margin: 0px;
-                            }
-
-                            .left-column {
-                                background-color: #fff;
-                                max-width: 266px;
-                            }
-
-                            .right-column {
-                                background-color: #f0f0f0;
                             }
 
                             .profile-image {
                                 width: 250px;
-                                height: 160px;
+                                height: 160px;font-family: Montserrat;
                             }
 
                             .contact-info {
                                 display: flex;
                                 align-items: center;
-                                font-size: 12px;
+                                font-size: 12px;font-family: Montserrat;
                             }
 
                             .contact-icon {
                                 margin-right: 10px;
                                 font-size: 24px;
-                                font-size: 12px;
+                                font-size: 12px;font-family: Montserrat;
                             }
 
                             .col-5 {
-                                margin-right: 0px;
+                                margin-right: 0px;font-family: Montserrat;
                             }
                         </style>
                     </head>
@@ -364,15 +398,18 @@
                         </div>
 
                         <div class="cv-container">
-                            <div class="left-column">
-                                <h6 style="text-align: center;font-size:12px;margin-top:10px;background-color:rgb(2, 17, 79);color:white;padding:5px">
-                                    <strong>PROFESSIONAL SUMMARY</strong>
+                            <div class="left-column" style="height: 600px;
+                                padding: 2px;
+                                margin: 0px;background-color: #fff;
+                                max-width: 266px;flex:1">
+                                <h6 style="text-align: center;font-size:12px;margin-top:10px;background-color:rgb(2, 17, 79);color:white;padding:5px;font-family: Montserrat;">
+                                    <strong style="font-family: Montserrat;">PROFESSIONAL SUMMARY</strong>
                                 </h6>
                                 <p style="text-align:start;font-size: 13px;">
                                     {{$summary}}
                                 </p>
                                 <h6 style="text-align: center;font-size:12px;margin-top:10px;background-color:rgb(2, 17, 79);color:white;padding:5px">
-                                    <strong>Personal Details</strong>
+                                    <strong style="font-family: Montserrat;">PERSONAL DETAILS</strong>
                                 </h6>
                                 <ul style="text-align: start;">
                                     @if($first_name &&$last_name)
@@ -390,14 +427,14 @@
                                         <p style="font-size:12px"><strong>DOB</strong> : {{$date_of_birth}}</p>
                                     </li>
                                     @endif
-                                   @if($city && $address)
-                                   <li>
+                                    @if($city && $address)
+                                    <li>
                                         <p style="font-size:12px"><strong>Address</strong> : {{$city}},{{$address}}.</p>
                                     </li>
-                                   @endif
+                                    @endif
                                 </ul>
                                 <h6 style="font-size:12px;text-align: center;background-color:rgb(2, 17, 79);color:white;margin-top:10px;padding:5px">
-                                    <strong>LANGUAGES</strong>
+                                    <strong style="font-family: Montserrat;">LANGUAGES</strong>
                                 </h6>
                                 <ul>
                                     @if($languages)
@@ -407,23 +444,27 @@
                                     @endif
                                 </ul>
                             </div>
-                            <div class="right-column">
+                            <div class="right-column" style="height: 600px;
+                                padding: 2px;
+                                background-color: #f0f0f0;
+                                margin: 0px;flex:1">
 
                                 <h6 style="font-size:12px;text-align: center;margin-top:10px;background-color:rgb(2, 17, 79);color:white;padding:5px">
-                                    <strong>TECHNICAL SKILLS</strong>
+                                    <strong style="font-family: Montserrat;">TECHNICAL SKILLS</strong>
                                 </h6>
                                 <ul>
-                                   @if($technical_skills)
-                                   <li>
+                                    @if($technical_skills)
+                                    <li>
                                         <p style="font-size: 12px;">{{$technical_skills}}</p>
                                     </li>
-                                   @endif
+                                    @endif
                                 </ul>
                                 <h6 style="font-size: 12px; text-align: center; background-color: rgb(2, 17, 79); color: white;padding:5px">
-                                    <strong>EXPERIENCE</strong>
+                                    <strong style="font-family: Montserrat;">EXPERIENCE</strong>
                                 </h6>
                                 <ul>
-                                   @foreach($workExperienceEntries as $index => $workExperienceEntry)
+                                    @foreach($workExperienceEntries as $index => $workExperienceEntry)
+                                    @if($workExperienceEntry['job_title'] && $workExperienceEntry['company'] && $workExperienceEntry['start_date'] && $workExperienceEntry['end_date'])
                                     <li>
                                         <p>
                                         <div style="font-size: 12px"><strong>{{ $workExperienceEntry['job_title'] }}</strong></div>
@@ -431,14 +472,16 @@
                                         <div style="font-size: 12px">{{ $workExperienceEntry['start_date'] }} - {{ $workExperienceEntry['end_date'] }}</div>
                                         </p>
                                     </li>
+                                    @endif
                                     @endforeach
                                 </ul>
 
                                 <h6 style="font-size: 12px; text-align: center; background-color: rgb(2, 17, 79); color: white;padding:5px">
-                                    <strong>EDUCATION</strong>
+                                    <strong style="font-family: Montserrat;">EDUCATION</strong>
                                 </h6>
                                 <ul>
                                     @foreach($educationEntries as $index => $educationEntry)
+                                    @if($educationEntry['degree'] && $educationEntry['university'] && $educationEntry['graduation_year'])
                                     <li>
                                         <p>
                                         <div style="font-size: 12px"><strong>{{ $educationEntry['degree'] }}</strong></div>
@@ -446,22 +489,23 @@
                                         <div style="font-size: 12px">{{ $educationEntry['graduation_year'] }}</div>
                                         </p>
                                     </li>
+                                    @endif
                                     @endforeach
                                 </ul>
 
                             </div>
                         </div>
+                    </body>
+
+                    </html>
                 </div>
+
+            </div>
+        </div>
     </body>
 
+
     </html>
-
-</div>
-</div>
-</body>
-
-
-</html>
 </div>
 <script>
     // JavaScript to handle adding and removing education and work experience entries
@@ -536,4 +580,26 @@
         workExperienceEntry.innerHTML = workExperienceHTML;
         return workExperienceEntry;
     }
+
+    // Function to trigger the download
+    function downloadCardContent() {
+        const cardContent = document.getElementById('card-content').innerHTML;
+        const blob = new Blob([cardContent], {
+            type: 'text/html'
+        });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'card-content.html'; // Specify the filename
+        a.style.display = 'none';
+
+        document.body.appendChild(a);
+        a.click();
+
+        window.URL.revokeObjectURL(url);
+    }
+
+    // Add a click event listener to the download button
+    document.getElementById('download-button').addEventListener('click', downloadCardContent);
 </script>

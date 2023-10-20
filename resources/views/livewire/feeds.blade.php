@@ -8,7 +8,6 @@
     <title>Left Menu (Conditional)</title>
     <style>
       /* Add this CSS to your stylesheet or style tag */
-
       /* Container styles */
       .left-menu {
         width: 150px;

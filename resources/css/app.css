@@ -9,6 +9,7 @@
  */
 .card{
   color:#f8f68879;
+  color: rgba(38, 66, 177, 0.838);
 }
 :root {
   --blue: #3490dc;
