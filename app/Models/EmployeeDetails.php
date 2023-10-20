@@ -9,19 +9,16 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 class EmployeeDetails extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory, Notifiable;
     use HasFactory;
     protected $primaryKey = 'emp_id';
+    public $incrementing = false;
     protected $fillable = [
         'emp_id',
         'first_name',
         'last_name',
         'date_of_birth',
         'gender',
-        'father_name',
-        'mother_name',
-        'parent_dob',
-        'parent_gender',
         'email',
         'company_name',
         'company_email',
@@ -38,17 +35,11 @@ class EmployeeDetails extends Authenticatable
         'job_title',
         'manager_id',
         'report_to',
-        'salary',
         'employee_status',
-        'bank_name',
-        'bank_branch',
-        'account_number',
-        'ifsc_code',
         'emergency_contact',
         'password',
         'image',
         'blood_group',
-        'parent_bld_group',
         'nationality',
         'religion',
         'marital_status',
@@ -61,6 +52,14 @@ class EmployeeDetails extends Authenticatable
         'pan_no',
         'adhar_no',
         'pf_no',
+        'nick_name',
+        'time_zone',
+        'biography',
+        'facebook',
+        'twitter',
+        'linked_in',
+        'company_id',
+        'is_starred'
     ];
 
 }

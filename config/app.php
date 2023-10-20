@@ -16,6 +16,13 @@ return [
     |
     */
 
+    'pdf' => [
+        'enabled' => true,
+        'binary' => '/usr/local/bin/wkhtmltopdf', // Path to wkhtmltopdf executable
+        'timeout' => 3600,
+        'options' => [],
+    ],
+
     'name' => env('APP_NAME', 'Laravel'),
 
     /*
@@ -165,6 +172,7 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
@@ -180,6 +188,7 @@ return [
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
     */
+    
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,

@@ -128,7 +128,7 @@
                                                                     <th style="font-size: 12px; color: grey">Sign-In / Sign-Out</th>
                                                                 </tr>
 
-                                                                @if ($swipeDetails->count() > 0)
+                                                                @if (!is_null($swipeDetails) && $swipeDetails->count() > 0)
                                                                 @foreach ($swipeDetails as $swipe)
                                                                 <tr>
                                                                     <td style="font-size: 10px; color: black;">{{ $swipe->swipe_time }}</td>
@@ -141,7 +141,6 @@
                                                                 </tr>
                                                                 @endif
 
-
                                                             </table>
                                                         </div>
                                                     </div>
@@ -151,9 +150,9 @@
                                             @endif
                                             <button id="signButton" style="color: white; width: 80px; height: 30px; background-color: rgb(2, 17, 79); border: 1px solid #CFCACA; border-radius: 5px; margin-left: 50px;" wire:click="toggleSignState">
                                                 @if ($signIn)
-                                                Sign Out
-                                                @else
                                                 Sign In
+                                                @else
+                                                Sign Out
                                                 @endif
                                             </button>
 
@@ -299,9 +298,6 @@
                                                         <img src="https://resumekit.com/blog/wp-content/uploads/2023/02/Optimal-outline-for-a-cover-letter-2-1.png" alt="Image Description" style="height: 100px; width: 160px; margin-top: 20px; margin-left: 80px;">
                                                         <div class="B" style="color: black; margin-left: 20px; font-family: Open Sans, sans-serif; font-size: 14px;">
                                                             <p style="color: #677A8E; margin-left: 20px; font-family: Open Sans, sans-serif; margin-top: 20px;">All good! You've nothing new to track.</p>
-
-
-
                                                         </div>
                                                     </div>
                                                 </div>

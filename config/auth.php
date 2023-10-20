@@ -41,9 +41,13 @@ return [
             'provider' => 'users',
         ],
 
-        'employee_details' => [
+        'emp' => [
             'driver' => 'session',
-            'provider' => 'employee_details',
+            'provider' => 'emp',
+        ],
+        'com' => [
+            'driver' => 'session',
+            'provider' => 'com',
         ],
     ],
 
@@ -75,9 +79,13 @@ return [
         //     'table' => 'users',
         // ],
 
-            'employee_details' => [
+            'emp' => [
                 'driver' => 'eloquent',
                 'model' => App\Models\EmployeeDetails::class, // Update this to your Employee model
+            ],
+            'com' => [
+                'driver' => 'eloquent',
+                'model' => App\Models\Company::class, // Update this to your Employee model
             ],
     ],
 
@@ -109,9 +117,14 @@ return [
         ],
 
 
-        'employee_details' => [
+        'emp' => [
             'driver' => 'eloquent',
             'model' => App\Models\EmployeeDetails::class, // Update this to your Employee model
+        ],
+
+        'com' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Company::class, 
         ],
     ],
 
