@@ -22,8 +22,10 @@ use App\Livewire\Documentcenter;
 use App\Livewire\LeaveApply;
 use App\Livewire\LeavePending;
 use App\Livewire\LeavePage;
+use App\Livewire\ViewPendingDetails;
 use App\Livewire\LeaveBalances;
 use App\Livewire\HolidayCalender;
+use App\Livewire\LeaveCalendar;
 use App\Livewire\SalaryRevision;
 use Illuminate\Support\Facades\Route;
 
@@ -58,8 +60,10 @@ Route::get('/plan-A', PlanA::class)->name('plan-a');
 
 Route::get('/leave-page', LeavePage::class)->name('leave-page');
 Route::get('/leave-apply', LeaveApply::class)->name('leave-apply');
+Route::get('/view-pending-details', ViewPendingDetails::class)->name('view-pending-details');
 Route::get('/holiday-calender', HolidayCalender::class)->name('holiday-calender');
 Route::get('/leave-balances', LeaveBalances::class)->name('leave-balances');
+Route::get('/leave-calendar', LeaveCalendar::class)->name('leave-calendar');
 Route::get('/salary-revision', SalaryRevision::class)->name('salary-revision');
 });
 

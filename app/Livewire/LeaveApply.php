@@ -16,6 +16,7 @@ class LeaveApply extends Component
     use WithFileUploads, WithPagination;
 
     public $leave_type;
+    public $emp_id;
     public $from_date;
     public $from_session;
     public $to_session;
@@ -24,19 +25,26 @@ class LeaveApply extends Component
     public $contact_details;
     public $reason;
     public $reportTo;
+    public $report_to;
     public $managerId;
     public $employeeId;
-    public $attachment_path;
-     public $attachment_paths=[];
+    public $file_paths;
+     public $filePaths=[];
     public $defaultApplyingTo;
     public $cc_to ;
     public $searchTerm = '';
-    public $selectedPeopleNames = [];
+    public $selectedEmployeeNames = [];
     public $selectedPeople = [];
+    public $selectedManager = [];
     public $first_name;
     public $employeeDetails = [];
     public $ccRecipients =[];
+    public $applyingToDetails =[];
+    public $files =[];
+    public $filteredEmployees =[];
+    public $has;
     public $isOpen = false;
+
     public function mount()
     {
         $employeeId = auth()->guard('emp')->user()->emp_id;
@@ -48,11 +56,9 @@ class LeaveApply extends Component
             // Or display them separately
             $this->reportTo = $this->applying_to->report_to;
             $this->managerId = $this->applying_to->manager_id;
-            
         }
         $this->searchEmployees(); 
-        $this->searchCCRecipients(); 
-        
+        $this->searchCCRecipients();  
     }
     // Add this method to your Livewire component
     public function searchEmployees()
@@ -72,6 +78,7 @@ class LeaveApply extends Component
                 DB::raw('MIN(CONCAT(first_name, " ", last_name)) as full_name')
             )
             ->groupBy('manager_id')
+            ->distinct() 
             ->get();
     }
     public function searchCCRecipients()
@@ -91,57 +98,90 @@ class LeaveApply extends Component
             )
             ->get();
     }
-    
    
-    public function leaveApply()
-    {
-    
-    try {
-           
+    public function leaveApply(){
+         
+        $this->validate([
+            'leave_type' => 'required',
+            'from_date' => 'required|date',
+            'to_date' => 'required|date|after_or_equal:from_date',
+            'from_session' => 'required',
+            'to_session' => 'required',
+            'reason' => 'required',
+            'applying_to' => 'required',
+            'files.*' => 'required|mimes:pdf,excel,png,jpg|max:2048',
+            'contact_details' =>'required',
+          
+        ]);
+
+        $filePaths = [];
+
+        if (isset($this->files)) {
+            foreach ($this->files as $file) {
+                $fileName = uniqid() . '_' . $file->getClientOriginalName();
+                $file->storeAs('public/help-desk-files', $fileName);
+                $filePaths[] = 'help-desk-files/' . $fileName;
+            }
+        }
+
         $employeeId = auth()->guard('emp')->user()->emp_id;
         $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
-       
-        $this->validate([
-            'leave_type' => 'required|string|max:255',
-            // Add other validation rules for other attributes
-        ]);
-      
      
-        dd('Applying To:', $this->applying_to);
-        dd('CC To:', $this->cc_to);
-        dd('Contact Details:', $this->contact_details);
-        dd('Reason:', $this->reason);
-   LeaveRequest::create([
-        'emp_id' => $this->employeeDetails->emp_id,
-        'leave_type' => $this->leave_type,
-        'from_date' => $this->from_date,
-        'from_session' => $this->from_session,
-        'to_session' => $this->to_session,
-        'to_date' => $this->to_date,
-        'applying_to' => $this->reportTo,
-        'cc_to' =>$this->employeeDetails->emp_id,
-        'contact_details' => $this->contact_details,
-        'reason' => $this->reason,
-    
-    ]);
-  
-  
-    $this->reset();
- 
-    dd('Data stored successfully!');
-} catch (\Exception $e) {
-    // Display the exception message
-    dd('Error: ' . $e->getMessage());
+        $ccToDetails = [];
+        foreach ($this->selectedPeople as $selectedEmployeeId) {
+            // Fetch additional details from EmployeeDetails table
+            $employeeDetails = EmployeeDetails::where('emp_id', $selectedEmployeeId)->first();
 
-    // If you're using transactions, rollback
-    \DB::rollBack();
-}
-}
+            // Concatenate first_name and last_name to get the full name
+            $fullName = $employeeDetails->first_name . ' ' . $employeeDetails->last_name;
 
-    
+            $ccToDetails[] = [
+                'emp_id' => $selectedEmployeeId,
+                'full_name' => $fullName,
+                'image' => $employeeDetails->image,  
+            ];
+        }
+
+        $employeeId = auth()->guard('emp')->user()->emp_id;
+        $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
+
+        $applyingToDetails = [];
+        foreach ($this->selectedManager as $selectedManagerId) {
+            // Fetch additional details from EmployeeDetails table
+            $employeeDetails = EmployeeDetails::where('manager_id', $selectedManagerId)->first();
+        
+            if ($employeeDetails) {
+                $applyingToDetails[] = [
+                    'manager_id' => $selectedManagerId,
+                    'report_to' => $employeeDetails->report_to,  
+                ];
+            }
+        }
+        LeaveRequest::create([
+            'emp_id' => $this->employeeDetails->emp_id,
+            'leave_type' => $this->leave_type,
+            'from_date' => $this->from_date,
+            'from_session' => $this->from_session,
+            'to_session' => $this->to_session,
+            'to_date' => $this->to_date,
+            'applying_to' => json_encode($applyingToDetails),
+            'file_paths' => json_encode($filePaths),
+            'cc_to' => json_encode($ccToDetails),
+            'contact_details' => $this->contact_details,
+            'reason' => $this->reason,
+        ]);
+
+        $this->reset();
+        if (session()->has('message')) {
+            $this->emit('showAlert', ['type' => 'Leave application submitted successfully!', 'message' => session('message')]);
+        }
+        return redirect()->route('/leave-page');
+    }
+      public function submit(){
+    $this->leaveApply();
+}
     public function render()
     {
-      
         return view('livewire.leave-apply');
     }
 

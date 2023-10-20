@@ -178,7 +178,7 @@
                         </div>
                     </div>
                     <div class="center" >
-                        <h5 >0 </h5>
+                        <h5 >{{$lossOfPayBalance}} </h5>
                         <p style="margin-top:-15px;"><span class="remaining" >balance</span></p>
                     </div>
                 </div>
@@ -222,11 +222,11 @@
                                     <span class="leave-type">Casual Leave 
                                 </div>
                                 <div>
-                                    <span class="leave-gran">Granted:9</span>
+                                    <span class="leave-gran">Granted:{{ $casualLeavePerYear }}</span>
                                 </div>
                          </div>
                          <div class="center" >
-                             <h5 >03</h5>
+                             <h5 >{{ $casualLeaveBalance }}</h5>
                              <p style="margin-top:-15px;"><span class="remaining" >balance</span></p>
                             <a href="#" >View Details</a>
                         </div>
@@ -244,11 +244,11 @@
                                     <span class="leave-type">Sick Leave
                                 </div>
                                 <div>
-                                    <span class="leave-gran">Granted:3</span>
+                                    <span class="leave-gran">Granted:{{ $sickLeavePerYear }}</span>
                                 </div>
                          </div>
                             <div class="center" >
-                                <h5 >03</h5>
+                                <h5 >{{ $sickLeaveBalance }}</h5>
                                 <p style="margin-top:-15px;"><span class="remaining" >balance</span></p>
                                 <a href="#" >View Details</a>
                             </div>

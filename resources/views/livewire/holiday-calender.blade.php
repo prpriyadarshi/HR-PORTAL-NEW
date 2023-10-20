@@ -78,6 +78,18 @@
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
                 margin-top: 20px;
             }
+            .No-holidays {
+                padding: 10px 15px;
+                background: #fff;
+                overflow: hidden;
+                color: #778899;
+                width: 100%;
+                display: flex;
+                margin-top:50px;
+                text-align: center;
+                justify-content: center;
+                height: 250px;
+            }
             .alone-cont h6 {
                 font-weight: 600;
                 font-size: 0.875rem;
@@ -152,19 +164,24 @@
                 @if ($key % 4 == 0) <!-- Start a new row for every 4th container -->
                     <div class="row" style="width:100%;">
                 @endif
-                <div class="month-container "> <!-- Each container takes 25% of the width -->
+                <div class="month-container">
                     <div class="inner-container">
                         <h6>{{ $entryMonth }} {{ date('Y', strtotime($entry->date)) }}</h6>
-                        <div class="group">
-                            @if (!empty($entry->festivals))
+                        @if($filteredData2023->isEmpty() || empty($entry->festivals))
+                            <div class="No-holidays">
+                                <h6>No holidays</h6>
+                            </div>
+                        @else
+                            <div class="group">
                                 <div class="fest" style="display:flex; gap:20px;" >
                                     <h5>{{ date('d', strtotime($entry->date)) }}<span><p style="font-size: 0.7rem;">{{ substr($entry->day, 0, 3) }}</p></span></h5>
                                     <p style=" font-size: 0.856rem;">{{ $entry->festivals }}</p>
                                 </div>
-                            @endif
-                        </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
+
                 @if (($key + 1) % 4 == 0 || $key == count($filteredData2023) - 1) <!-- Close the row for every 4th container or the last container -->
                     </div>
                 @endif
@@ -195,17 +212,22 @@
                 @if ($key % 4 == 0) <!-- Start a new row for every 4th container -->
                     <div class="row" style="width:100%;">
                 @endif
-                <div class="month-container "> <!-- Each container takes 25% of the width -->
-                    <div class="inner-container">
+              <!-- Inside the loop for each month -->
+                <div class="month-container">
+                <div class="inner-container">
                         <h6>{{ $entryMonth }} {{ date('Y', strtotime($entry->date)) }}</h6>
-                        <div class="group">
-                            @if (!empty($entry->festivals))
+                        @if($filteredData2022->isEmpty() || empty($entry->festivals))
+                            <div class="No-holidays">
+                                <h6>No holidays</h6>
+                            </div>
+                        @else
+                            <div class="group">
                                 <div class="fest" style="display:flex; gap:20px;" >
                                     <h5>{{ date('d', strtotime($entry->date)) }}<span><p style="font-size: 0.7rem;">{{ substr($entry->day, 0, 3) }}</p></span></h5>
                                     <p style=" font-size: 0.856rem;">{{ $entry->festivals }}</p>
                                 </div>
-                            @endif
-                        </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
                 @if (($key + 1) % 4 == 0 || $key == count($filteredData2022) - 1) <!-- Close the row for every 4th container or the last container -->

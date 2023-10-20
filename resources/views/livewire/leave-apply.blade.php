@@ -1,4 +1,3 @@
-<div>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -247,22 +246,30 @@
     </style>
 </head>
 <body>
-    <!-- resources/views/livewire/leave-application-form.blade.php -->
-    
 
 <div class="applyContainer">
     <h6 >Applying for Leave</h6>
-    <form wire:submit.prevent="leaveApply">
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+    <form wire:submit.prevent="leaveApply" enctype="multipart/form-data">
     <div class="form-group" >
                 <label for="leaveType"  style="color: #778899; font-size: 14px; font-weight: 500;">Leave type</label>
                 <select class="form-control" wire:model="leave_type" id="leaveType" name="leaveType" style="width: 50%; font-weight: 400; color: #778899;" onchange="toggleReporting()">
                     <option value="default">Select Type</option>
-                    <option value="casual">Casual Leave</option>
-                    <option value="lossOfPay">Loss of Pay</option>
-                    <option value="maternity">Maternity Leaves</option>
-                    <option value="sick_leave">Sick Leave</option>
+                    <option value="Causal Leave Prohabation">Casual Leave</option>
+                    <option value="Loss of Pay">Loss of Pay</option>
+                    <option value="Maternity Leave">Maternity Leaves</option>
+                    <option value="Sick Leave">Sick Leave</option>
                 </select>
-                @error('leave_type') <span class="error">{{ $message }}</span> @enderror
+                  @error('from_date') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
              <div class="form-row">
             <div class="form-group col-md-6">
@@ -277,6 +284,7 @@
                     <option value="Session 2">Session 2</option>
                 </select>
             </div>
+            @error('from_date') <span class="text-danger">{{ $message }}</span> @enderror
         </div>
         <div class="form-row">
                 <div class="form-group col-md-6">
@@ -291,6 +299,7 @@
                         <option value="Session 2">Session 2</option>
                     </select>
                 </div>
+                @error('to_date') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
        
             <div>
@@ -301,8 +310,6 @@
                         </label>
                     </div>
                 </div>
-
-               
 
                 <div class="reporting" style="display:none;" >
                     <div>
@@ -334,7 +341,8 @@
                     </div>
                     
                     @foreach($employeeDetails as $employee)
-                        <div style="display:flex; gap:10px;"onclick="updateApplyingTo('{{ $employee['report_to'] }}', '{{ $employee['manager_id'] }}')">
+                        <div style="display:flex; gap:10px;" onclick="updateApplyingTo('{{ $employee['report_to'] }}', '{{ $employee['manager_id'] }}')">
+                              <input type="checkbox" wire:model="selectedManager" value="{{ $employee['manager_id'] }}">
                                <img src="https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars.png" alt="Default User Image" style="width: 40px; height: 40px; border-radius: 50%;">
                             <div class="center">
                                 <p style=" font-size:0.875rem; font-weight:500;"value="{{ $employee['report_to'] }}">{{ $employee['report_to'] }}</p>
@@ -343,6 +351,7 @@
                         </div>
                     @endforeach
                 </div>
+                @error('applying_to') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
         <div class="form-group">
             <label for="ccToText" wire:model="from_date" id="applyingToText" name="applyingTo" style="color: #778899; font-size: 14px; font-weight: 500;">
@@ -357,12 +366,6 @@
                 <span class="text-2 text-secondary placeholder" id="ccPlaceholder" style="margin-top: 5px; background: transparent; color: #ccc;">Add</span>   
     
                <div id="addedEmails" style="display: flex; gap: 10px; "></div>
-               <div class="details">
-                        <!-- Add details content here -->
-                        <p style="font-size:0.875rem;" >{{$reportTo}}</p>
-                        <p style="margin-top:-15px; color:#778899; font-size:0.69rem;" >#{{$managerId}}</p>
-                        <!-- Add more details if needed -->
-                    </div>
             
             </div>
             <div class="ccContainer" style="display:none;">
@@ -380,26 +383,35 @@
                         </div>
                     </div>
                     
-                    @foreach($ccRecipients as $recipients)
-                        <div style="display:flex; gap:10px;"onclick="addEmail('{{ $recipients['full_name'] }}')">
-                           <img src="{{ $recipients['image'] ? $recipients['image'] : 'https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars.png' }}" alt="User Image" style="width: 40px; height: 40px; border-radius: 50%;">
+                    @foreach($ccRecipients as $employee)
+                        <div style="display:flex; gap:10px;"onclick="addEmail('{{ $employee['full_name'] }}')">
+                        <input type="checkbox" wire:model="selectedPeople" value="{{ $employee['emp_id'] }}">
+                            <img src="{{ $employee['image'] ? $employee['image'] : 'https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars.png' }}" alt="User Image" style="width: 40px; height: 40px; border-radius: 50%;">
                             <div class="center">
-                                <p style=" font-size:0.875rem; font-weight:500;"value="{{ $recipients['full_name'] }}">{{ $recipients['full_name'] }}</p>
-                                <p style="margin-top:-15px; color:#778899; font-size:0.69rem;" value="{{ $recipients['emp_id'] }}">#{{ $recipients['emp_id'] }}</p>
+                                <p style="font-size: 0.875rem; font-weight: 500;">{{ $employee['full_name'] }}</p>
+                                <p style="margin-top: -15px; color: #778899; font-size: 0.69rem;">#{{ $employee['emp_id'] }}</p>
                             </div>
+                       
                         </div>
                     @endforeach
                 </div>
+                @error('cc_to') <span class="text-danger">{{ $message }}</span> @enderror
         </div>
             <div class="form-group">
                 <label for="contactDetails" style="color: #778899; font-size: 14px; font-weight: 500;">Contact Details</label>
                 <input type="text" wire:model="contact_details" class="form-control" id="contactDetails" name="contactDetails" style="color: #778899;width:50%;">
+                @error('contact_details') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="reason" style="color: #778899; font-size: 14px; font-weight: 500;">Reason for Leave</label>
                 <textarea class="form-control" wire:model="reason" id="reason" name="reason" placeholder="Enter Reason" rows="4" ></textarea>
+                @error('reason') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
-           
+            <div class="form-group">
+            <input type="file" wire:model="files" wire:loading.attr="disabled" multiple />
+                 @error('file_paths') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+        
             <div class="buttons1">
               <button type="submit" class="btn btn-primary">Submit</button>
                 <button type="button" class="btn btn-secondary" >Cancel</button>
@@ -541,4 +553,3 @@ function toggleDetails(tabId) {
 @livewireScripts
 </body>
 </html>
-</div>

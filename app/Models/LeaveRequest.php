@@ -21,9 +21,8 @@ class LeaveRequest extends Model
         'applying_to',
         'cc_to',
         'contact_details',
-        'reason',
-      
-        
+        'reason',  
+        'file_paths'
         // Add other fields that you want to be fillable here
     ];
   
