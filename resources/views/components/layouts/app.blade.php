@@ -191,7 +191,7 @@
 
             }
 
-        
+
         </style>
 
 
@@ -267,7 +267,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5('calendar')">
-                                        <a class="nav-link" href="/leave-calendar" id="slip" onclick="selectOption(this, 'Leave Calender')">
+                                        <a class="nav-link" href="/leave-calender" id="slip" onclick="selectOption(this, 'Leave Calender')">
                                             Leave Calendar
                                         </a>
                                     </li>

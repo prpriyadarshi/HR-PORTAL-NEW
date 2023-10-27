@@ -13,9 +13,9 @@ class HolidayCalender extends Component
         // Fetch the calendar data for the selected year
         $calendarData = HolidayCalendarModel::where('year', $this->year)->get();
 
-        return view('livewire.holiday-calendar', [
+        return view('livewire.holiday-calender', [
             'calendarData' => $calendarData,
         ]);
     }
-    
+
 }

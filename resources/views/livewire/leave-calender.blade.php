@@ -21,7 +21,7 @@
 
         .table th {
             text-align: center; /* Center days of the week */
-            height: 20px; 
+            height: 20px;
             border: none;
             /* Adjust the height of days of the week cells */
         }
@@ -63,14 +63,14 @@
         .calendar-heading-container {
             background: #fff;
             padding: 5px;
-            width: 91%;
+            width: 83.5%;
             display: flex;
             justify-content: space-between;
             /* Add spacing between heading and icons */
         }
 
         .table {
-            width: 530px; /* Adjust the width as needed */
+            width: 500px; /* Adjust the width as needed */
             overflow-x: hidden; /* Add horizontal scrolling if the table overflows the container */
         }
 
@@ -109,7 +109,7 @@
         border: 1px solid #ccc;
         margin-bottom: 10px;
         width: 100%; /* Adjust the width as needed */
-        top: 100px; 
+        top: 100px;
         left:0;/* Adjust the top position as needed */
       /* Adjust the right position as needed */
       }
@@ -166,7 +166,7 @@
       }
 
       @media (max-width: 760px) {
-      
+
 
         .accordion {
           width: 65%;
@@ -229,7 +229,7 @@
         .button-container{
           display:flex;
           justify-content:end;
-         
+
         }
         .custom-button{
           padding: 2px;
@@ -300,6 +300,8 @@
              /* Add spacing between icon and text */
         }
 
+
+
     </style>
 </head>
 <body>
@@ -307,28 +309,27 @@
     <div class="filter-container">
         <button class="filter-button">Filter Type</button>
         <div class="filter-dropdown">
-            <a class="filter-item" href="javascript:void(0)">Me</a>
-            <a class="filter-item" href="javascript:void(0)">My Team</a>
+            <a class="filter-item" href="#)">Me</a>
+            <a class="filter-item" href="#">My Team</a>
             <!-- Add more items as needed -->
         </div>
     </div>
     <div class="button-container">
         <button class="custom-button">
-        <i class="fa fa-download" aria-hidden="true"></i> 
+        <i class="fa fa-download" aria-hidden="true"></i>
         </button>
     </div>
         <div class="row" >
             <div class="col-md-8">
-                <!-- Calendar Header -->
                 <div class="d-flex justify-content-between align-items-center mb-6">
                     <div class="calendar-heading-container">
-                        <button id="prev-month" class="nav-btn">&lt; Prev</button>
-                        <h5 id="calendar-heading"></h5>
-                        <button id="next-month" class="nav-btn">Next &gt;</button>
+                        <button wire:click="previousMonth" class="nav-btn">&lt; Prev</button>
+                        <h5>{{ date('F Y', strtotime("$year-$month-1")) }}</h5>
+                        <button wire:click="nextMonth" class="nav-btn">Next &gt;</button>
                     </div>
                 </div>
                 <!-- Calendar -->
-                <div class="table-responsive" >
+                <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -342,11 +343,37 @@
                             </tr>
                         </thead>
                         <tbody id="calendar-body">
-                            <!-- JavaScript will populate the calendar here -->
+                            @foreach ($calendar as $week)
+                                <tr>
+                                    @foreach ($week as $day)
+                                    <td>
+                                        @if ($day)
+                                            @if ($day['isToday'])
+                                                <div style="background-color: #007bff; color: white; border-radius: 50%; width: 24px; height: 24px; text-align: center; line-height: 24px;">
+                                                    {{ $day['day'] }}
+                                                </div>
+                                            @else
+                                                {{ $day['day'] }}
+                                            @endif
+                                        @endif
+                                        @if ($day && isset($day['teamOnLeave']) && count($day['teamOnLeave']) > 0)
+                                            <div style="background-color: grey; border-radius: 50%; width: 24px; height: 24px; text-align: center; margin-top: 5px;">
+                                                <span style="color: white; display: block; line-height: 24px;">
+                                                    {{ count($day['teamOnLeave']) }}
+                                                </span>
+                                            </div>
+                                        @endif
+                                    </td>
+                                @endforeach
+
+
+                                </tr>
+                            @endforeach
                         </tbody>
+
                     </table>
                 </div>
-                <!-- Calendar Legend -->
+
                 <div class="tol-calendar-legend mt-2">
                     <div>
                         Team on Leave
@@ -386,35 +413,43 @@
           </div>
         </div>
 
-            <div class="accordion" style="margin-top: 20px;">
-              <div class="accordion-heading" onclick="toggleAccordion(this)">
-                <div class="accordion-title">
-                  <div class="accordion-content">
-                    <span style="font-size: 16px; font-weight: 500;color:#778899;">Leave transactions(0)</span>
+        <div class="accordion" style="margin-top: 20px;">
+            <div class="accordion-heading" onclick="toggleAccordion(this)">
+              <div class="accordion-title">
+                <div class="accordion-content">
+                  <span style="font-size: 16px; font-weight: 500;color:#778899;">Leave transactions(0)</span>
+                </div>
+                <div class="accordion-button" style="border-radius: 50%; height: 0.5rem; width: 0.5rem; display: flex; justify-content: center; align-items: center;">
+                    <!-- <i class="fas fa-chevron-down"></i> -->
                   </div>
-                  <div class="accordion-button" style="border-radius: 50%; height: 0.5rem; width: 0.5rem; display: flex; justify-content: center; align-items: center;">
-                      <!-- <i class="fas fa-chevron-down"></i> -->
-                    </div>
-                </div>
-              </div>
-              <div class="accordion-body">
-                <hr>
-                <div class="content">
-                  <span style="font-size: 13px; font-weight: 500;">Employee</span>
-                  <span style="font-size: 13px; font-weight: 500;">Number of days</span>
-                  <span style="font-size: 13px; font-weight: 500;">From to</span>
-                </div>
-                <hr>
-                <div class="leave-trans" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                  <img src="/images/pending.png" alt="Pending Image" style="width: 100%; margin: 0 auto;">
-                  <span style="font-size: 0.75rem; font-weight: 500; color:#778899;">No Employees are on leave</span>
-                </div>
               </div>
             </div>
+            <div class="accordion-body">
+              <hr>
+              <div class="content">
+                <span style="font-size: 13px; font-weight: 500;">Employee</span>
+                <span style="font-size: 13px; font-weight: 500;">Number of days</span>
+                <span style="font-size: 13px; font-weight: 500;">From to</span>
+              </div>
+              <hr>
+              <hr>
+              @if($leaveTransactions)
+    @foreach($leaveTransactions as $transaction)
+        <div class="leave-trans">
+            <!-- Display individual leave transaction details -->
+        </div>
+    @endforeach
+@else
+    <div class="leave-trans" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <img src="/images/pending.png" alt="Pending Image" style="width: 100%; margin: 0 auto;">
+        <span style="font-size: 0.75rem; font-weight: 500; color:#778899;">No Employees are on leave</span>
+    </div>
+@endif
             </div>
+          </div>
 
         </div>
-        
+
     </div>
 
     <!-- Add Bootstrap JS scripts if needed -->
@@ -422,59 +457,8 @@
     <!-- Add jQuery library -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
-        // Function to generate the calendar dynamically
-        function generateCalendar(year, month) {
-            const today = new Date();
-            const firstDay = new Date(year, month, 1).getDay();
-            const daysInMonth = new Date(year, month + 1, 0).getDate();
-            const totalCells = Math.ceil((firstDay + daysInMonth) / 7) * 7; // Calculate the total number of cells needed
-
-            const calendarHeading = document.getElementById("calendar-heading");
-            calendarHeading.textContent = new Date(year, month).toLocaleString("default", { month: "long", year: "numeric" });
-
-            let calendarHtml = '';
-            let dayCount = 1;
-
-            for (let i = 0; i < totalCells / 7; i++) {
-                calendarHtml += '<tr>';
-                for (let j = 0; j < 7; j++) {
-                    if (i === 0 && j < firstDay) {
-                        calendarHtml += '<td></td>';
-                    } else if (dayCount <= daysInMonth) {
-                        const isToday = dayCount === today.getDate() && month === today.getMonth() && year === today.getFullYear();
-                        const cellClass = isToday ? 'current-date' : '';
-                        calendarHtml += `<td class="${isToday ? 'text-primary' : ''} ${isToday ? 'font-weight-bold' : ''} ${cellClass}">${dayCount}</td>`;
-                        dayCount++;
-                    } else {
-                        calendarHtml += '<td></td>';
-                    }
-                }
-                calendarHtml += '</tr>';
-            }
-
-            $('#calendar-body').html(calendarHtml);
-        }
-
-        // Initial calendar generation for the current month
-        const today = new Date();
-        generateCalendar(today.getFullYear(), today.getMonth());
-
-        // Add click events for Previous Month and Next Month buttons
-        $('#prev-month').click(function () {
-            const currentHeading = document.getElementById("calendar-heading").textContent;
-            const currentDate = new Date(currentHeading);
-            const prevMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1);
-            generateCalendar(prevMonth.getFullYear(), prevMonth.getMonth());
-        });
-
-        $('#next-month').click(function () {
-            const currentHeading = document.getElementById("calendar-heading").textContent;
-            const currentDate = new Date(currentHeading);
-            const nextMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1);
-            generateCalendar(nextMonth.getFullYear(), nextMonth.getMonth());
-        });
-        function toggleAccordion(element) {
-    const accordionBody = element.nextElementSibling;
+function toggleAccordion(element) {
+const accordionBody = element.nextElementSibling;
     if (accordionBody.style.display === 'block') {
       accordionBody.style.display = 'none';
       element.classList.remove('active'); // Remove active class
@@ -485,6 +469,6 @@
       element.closest('.wrapper').classList.add('fixed'); // Add fixed class
     }
   }
-    </script>
+</script>
 </body>
 </html>
