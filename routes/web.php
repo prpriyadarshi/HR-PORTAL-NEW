@@ -25,9 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'checkAuth'], function () {
     Route::get('/emplogin', EmpLogin::class)->name('emplogin');
-    Route::get('/Login&Register', function () {
-        return view('login_and_register_view');
-    });
+  
     Route::get('/CompanyLogin', function () {
         return view('company_login_view');
     });
@@ -35,9 +33,21 @@ Route::group(['middleware' => 'checkAuth'], function () {
         return view('create_cv_view');
     });
 });
+Route::get('/Login&Register', function () {
+    return view('login_and_register_view');
+});
 Route::middleware(['auth:web'])->group(function () {
     Route::get('/Jobs', function () {
         return view('jobs_view');
+    });
+    Route::get('/UserProfile', function () {
+        return view('user_profile_view');
+    });
+    Route::get('/full-job-view/{jobId}', function ($jobId) {
+        return view('full_job_details_view', compact('jobId'));
+    })->name('full-job-view');
+    Route::get('/AppliedJobs', function () {
+        return view('applied_jobs_view');
     });
 });
 Route::middleware(['auth:com'])->group(function () {

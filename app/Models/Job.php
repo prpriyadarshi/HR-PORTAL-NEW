@@ -33,4 +33,8 @@ class Job extends Model
         'benefits',
         'application_instructions',
     ];
+    public function appliedJob()
+    {
+        return $this->hasOne(AppliedJob::class, 'job_id', 'job_id');
+    }
 }

@@ -78,16 +78,23 @@ class Jobs extends Component
     {
         $this->showSuccessMessage = false;
     }
+    public $company;
+    public function showJobDetails($jobId)
+    {
+        return redirect()->route('full-job-view', ['jobId' => $jobId]);
+    }
+
     public function render()
     {
-        $this->jobs = Job::where('created_at', '<=', now()) 
-        ->where(function ($query) {
-            $query->whereNull('expire_date') 
-                ->orWhere('expire_date', '>', now());
-        })
-        ->orderBy('created_at', 'desc') 
-        ->get();
+        $this->jobs = Job::where('created_at', '<=', now())
+            ->where(function ($query) {
+                $query->whereNull('expire_date')
+                    ->orWhere('expire_date', '>', now());
+            })
+            ->orderBy('created_at', 'desc')
+            ->get();
         $user = auth()->user();
+        
         $this->appliedJobs = AppliedJob::where('user_id', $user->user_id)->get();
         return view('livewire.jobs');
     }

@@ -13,8 +13,6 @@ class PostJobs extends Component
     public $location;
     public $salary;
     public $company_name;
-    public $contact_email;
-    public $contact_phone;
     public $employment_type;
     public $expire_date;
     public $vacancies;
@@ -33,14 +31,13 @@ class PostJobs extends Component
     public $company_id; 
     public $companies;
 
+    public $companyDetails;
     public function submitJob()
     {
 
         $this->validate([
             'company_id'=>'required',
             'company_name'=>'required',
-            'contact_email'=>'required',
-            'contact_phone' => 'required|numeric',
             'title' => 'required',
             'description' => 'required',
             'location' => 'required',
@@ -55,17 +52,19 @@ class PostJobs extends Component
             'is_featured' => 'required'
         ]);
 
+        $company_id = auth()->guard('com')->user()->company_id;
+        $this->companyDetails = Company::where('company_id', $company_id)->first();
 
         Job::create([
             'company_id' => $this->company_id,
-            'contact_email' => $this->contact_email,
+            'contact_email' => $this->companyDetails->contact_email,
             'title' => $this->title,
             'description' => $this->description,
             'location' => $this->location,
             'salary' => $this->salary,
             'company_name' => $this->company_name,
             'expire_date' => $this->expire_date,
-            'contact_phone' => $this->contact_phone,
+            'contact_phone' => $this->companyDetails->contact_phone,
             'vacancies' => $this->vacancies,
             'education_requirement' => $this->education_requirement,
             'experience_requirement' => $this->experience_requirement,
