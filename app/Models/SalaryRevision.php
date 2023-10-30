@@ -18,6 +18,7 @@ class SalaryRevision extends Model
     protected $fillable = [
         'emp_id',
         'salary',
+        'salary_month',
         'last_revision_period',
         'present_revision_period',
         'previous_monthly_ctc',

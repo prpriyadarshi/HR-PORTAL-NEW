@@ -1,5 +1,5 @@
 
-<style>
+    <style>
         /* Your custom styles here */
         .file-label:hover {
             color: #1E90FF;
@@ -7,13 +7,11 @@
         .file-label {
             color: #778899;
         }
-
         .custom-dropdown {
             position: relative;
             display: inline-block;
             width: 200px;
         }
-
         .custom-dropdown-label {
             display: flex;
             align-items: center;
@@ -34,7 +32,6 @@
             margin-left: 10px;
             transition: transform 0.3s;
         }
-
         .custom-dropdown.open .custom-dropdown-arrow {
             transform: rotate(180deg);
         }
@@ -86,22 +83,17 @@
     }
     
     .links {
-
     font-size: 13px;
     line-height: 2;
     font-family: 'Open Sans', sans-serif;
-
     text-decoration: none;
-
     cursor: pointer;
     font-weight:600; 
     color: #778899;
-
     transition: color 0.3s;
 
     }
     .links:hover {
-
     color: blue;
     text-decoration:none;
 
@@ -116,31 +108,141 @@
     .wrap-content{
         display:flex; background:transparent; width:100%; flex-direction:row; margin-top:30px;
     }
-    @media screen and (max-width: 1060px) {
+    .buttons1{
+            display: flex; 
+            justify-content: center; 
+            gap: 10px; 
+            margin-top:20px;
+            font-weight:500;
+            margin-bottom:10px;
+        }
+        .buttons1 .btn-secondary{
+            background: #fff; 
+            font-weight: 500; 
+            color: #1E90FF;
+             border: 1px solid #1E90FF;
+        }
+        .applyContainer{
+            border: 1px solid #DCDCDC;
+             border-radius: 10px;
+              box-shadow: 1px 2px 2px 2px #F5F5F5; 
+              width: 100%; 
+              margin: 10px auto; 
+              background: #FFFFFF;
+              padding:10px 15px;
+        }
+    .reporting{
+        display:flex; 
+        flex-direction:row; 
+        justify-content: space-between;
+        padding: 15px 12px 15px 12px;
+        border-radius: 30px; 
+        align-items:center;
+        width: 180px; 
+        height: 55px; 
+    }
+        .reporting:hover{
+
+       border: 1px solid #ccc;
+   }
+   .searchContainer{
+    background:#fff;
+    border:1px solid #ccc;
+    border-radius:3px;
+    box-shadow: 2px 0 5px 0 #ccc;
+    padding:12px 15px;
+    width:30%;
+    margin-top:15px;
+    max-height: 100px; /* Adjust the maximum height as needed */
+    overflow-y: auto;
+
+   }
+   .ccContainer{
+    background:#fff;
+    border:1px solid #ccc;
+    border-radius:3px;
+    box-shadow: 2px 0 5px 0 #ccc;
+    padding:12px 15px;
+    width:30%;
+    margin-top:15px;
+    max-height: 100px; /* Adjust the maximum height as needed */
+    overflow-y: auto;
+
+   }
+    .ellipsis {
+        font-size:0.875rem;
+        margin-top:15px;
+         font-weight:500;
+         white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 70px; /* Adjust the value based on your container width */
+        display: inline-block;
+    }
+    .reporting:hover .details {
+        display: block;
+    }
+    .reporting.active {
+    background-color: #D9ECFF;
+    border:1px solid #ccc; /* Light blue color */
+    /* Add any other styles you want for the active state */
+}
+.icon-container.active{
+    background-color: #D9ECFF;
+}
+.icon-container{
+    height: 2rem;
+     width: 2rem;
+    background: #fff; 
+    padding: 7px; 
+    border: 1px solid #778899; 
+    border-radius: 50%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+    .details {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 5px 10px;
+        z-index: 1;
+        width:100px;
+        margin-top: -150px; /* Adjust the value to position it above the reporting container */
+        margin-left: 50px;
+        transform: translateX(-50%);
+    }
+    .cc-Container{
+        height: 2rem;
+        width: 2rem;
+        background: #fff;
+        padding: 7px; 
+        border: 1px solid #778899;
+        border-radius: 50%; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center;
+    }
+        @media screen and (max-width: 1060px) {
         /* Apply styles for screens 960px or less in width */
         .wrap-content {
             flex-direction: column;
             align-items: start;
         }
-
         .wrap-content > .card {
             width: 100%; /* Adjust the width for smaller screens */
-            /* Remove the left margin */
         }
         .container  {
             width: 100%; /* Adjust the width for smaller screens */
-            /* Remove the left margin */
         }
-
-        /* You can add more specific styles if needed for smaller screens */
-    }
-  
+     }
     </style>
 
         <div class="wrap-content" >
         <div class="card" id="cardElement" >
             <div>
-                <a onclick="toggleDetails('leaveApply')" class="links">Leave</a>
+                <a onclick="toggleDetails('leave')" class="links">Leave</a>
             </div>
             <div>
                 <a onclick="toggleDetails('restricted-content')" class="links">Restricted Holiday</a>
@@ -155,8 +257,7 @@
 
         <!-- Content for "Restricted Holiday" -->
         <div class="col" id="restricted-content" style="border-radius: 5px; display: none; width: 65%; background: pink; padding: 10px; ">
-            <div>leave apply</div>
-            <!-- @livewire('leave-pending') -->
+            <div>@livewire('leave-pending')</div>
         </div>
 
         <!-- Content for "Leave Cancel" -->
@@ -170,107 +271,7 @@
         </div>
 
 
-    <div class="container " style="border: 1px solid #DCDCDC; border-radius: 10px; box-shadow: 1px 2px 2px 2px #F5F5F5; width: 100%; margin: 0 auto; background: #FFFFFF;">
-        <h5 style="margin-top: 25px;">Applying for Leave</h5>
-                  <form style="margin-top: 30px;">
-            <div class="form-group" style="margin-top: 10px;">
-                <label for="leaveType" style="color: #778899; font-size: 14px; font-weight: 500;">Leave type</label>
-                <select class="form-control" id="leaveType" name="leaveType" style="width: 50%; font-weight: 400; color: #778899;">
-                    <option value="default">Select Type</option>
-                    <option value="casual">Casual Leave</option>
-                    <option value="lossOfPay">Loss of Pay</option>
-                    <option value="maternity">Maternity Leaves</option>
-                </select>
-            </div>
-            <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="fromDate" style="color: #778899; font-size: 14px; font-weight: 500;">From date</label>
-                <input type="date" class="form-control" id="fromDate" name="fromDate" style="color: #778899;">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="session" style="color: #778899; font-size: 14px; font-weight: 500;">Sessions</label>
-                <select class="form-control" id="session" name="session" style="font-weight: 500; ">
-                    <option value="default">Select session</option>
-                    <option value="Session 1">Session 1</option>
-                    <option value="Session 2">Session 2</option>
-                </select>
-               
-            </div>
-        </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="toDate" style="color: #778899; font-size: 14px; font-weight: 500;">To date</label>
-                    <input type="date" class="form-control" id="toDate" name="toDate" style="color: #778899;">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="session" style="color: #778899; font-size: 14px; font-weight: 500;">Sessions</label>
-                    <select class="form-control" id="session" name="session" style="font-weight: 500;">
-                        <option value="default">Select session</option>
-                        <option value="Session 1">Session 1</option>
-                        <option value="Session 2">Session 2</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group" style="margin-top: 10px;">
-                <div style="display:flex; flex-direction:row;">
-                <label for="applyingToText" id="applyingToText" name="applyingTo" style="color: #778899; font-size: 14px; font-weight: 500; cursor: pointer;" onclick="toggleSearchBar()">
-                    Applying To
-                </label>
-                <div class="custom-dropdown-arrow" style="color: #778899; font-size:12px; margin-top:3px; margin-right:15px;cursor:pointer;" onclick="toggleSearchBar()">&#9660;</div>
-                </div>
-                <input type="text" class="form-control" id="applyingToInput" name="applyingTo" style="display: none;">
-                <ul class="custom-dropdown-search" id="searchBar" style="width: 20%; padding: 10px; background-color: #fff; border: 1px solid #ccc; display: none;">
-                    <li>
-                        <input type="text" class="custom-dropdown-search-input" placeholder="Search..." style="border: 1px solid #ccc; transition: border-color 0.3s; color: #778899; padding-left: 30px;">
-                        <i class="fas fa-search" style="position: absolute; top: 50%; left: 20px; transform: translateY(-50%); color: #778899;"></i>
-                        <i class="fas fa-times" style="position: absolute; top: 50%; right: 20px; transform: translateY(-50%); color: #778899; cursor: pointer;" onclick="toggleSearchBar()"></i>
-                    </li>
-                </ul>
-            </div>
-            <div class="form-group">
-                <label for="applyingToText" id="applyingToText" name="applyingTo" style="color: #778899; font-size: 14px; font-weight: 500;">
-                    CC to
-                </label>
-                <div class="control-wrapper" style="display: flex; flex-direction: row; gap: 10px;">
-                    <a href="javascript:void(0);" class="text-3 text-secondary control" aria-haspopup="true" onclick="toggleCCField()" style="text-decoration: none;">
-                    <div class="icon-container" style="height: 2rem; width: 2rem; background: #fff; padding:7px;border: 1px solid #778899; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
-                        <i class="fas fa-plus" style="color:#778899;"></i>
-                    </div>
-                    </a>
-                    <span class="text-5 text-secondary placeholder" id="ccPlaceholder" style="margin-top: 5px;background:transparent; color:#ccc;">Add</span>
-                    <div id="addedEmails" class="added-emails" style="display: flex; flex-wrap: wrap; gap: 5px;"></div>
-                    <div id="ccField" style="display: none;">
-                    <input type="text" id="emailInput" placeholder="Enter email" style="color: #778899; border:1px solid #778899; border-radius:5px; outline:none;">
-                    <button type="button" class="btn btn-primary" style="padding:3px; margin-bottom:3px;font-size:14px;"onclick="addEmail()">Add</button>
-                </div>
-                </div>
-               
-            </div>
-
-            <div class="form-group">
-                <label for="contactDetails" style="color: #778899; font-size: 14px; font-weight: 500;">Contact Details</label>
-                <input type="text" class="form-control" id="contactDetails" name="contactDetails" style="color: #778899;width:50%;">
-            </div>
-            <div class="form-group">
-                <label for="reason" style="color: #778899; font-size: 14px; font-weight: 500;">Reason for Leave</label>
-                <textarea class="form-control" id="reason" name="reason" placeholder="Enter Reason" rows="4" ></textarea>
-            </div>
-            <div class="form-group">
-                <div class="file-input" style="display: flex; flex-direction:row; align-items: center;">
-                    <label for="file" class="file-label" style="display: inline-flex; align-items: center; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-weight: 500; font-size: 14px;">
-                        <i class="fas fa-link" style="margin-right: 5px;"></i> Attach File
-                    </label>
-                    <input type="file" id="file" name="attachment" accept=".pdf, .xls, .xlsx, .doc, .docx, .txt, .ppt, .pptx, .gif, .jpg, .jpeg, .png" class="file-input-field" style="display: none;">
-                    <p style="color: #778899; font-size:12px; margin-top:10px; margin-left:50px;">File Types: pdf , xls , xlsx , doc , docx , txt , ppt , pptx , gif , jpg , jpeg , png</p>
-                </div>
-            </div>
-            <div class="buttons1" style="display: flex; justify-content: center; gap: 10px; margin-top:20px; margin-bottom:10px;">
-                <button type="submit" class="btn btn-primary" style="font-weight: 500;">Submit</button>
-                <button type="button" class="btn btn-secondary" style="background: #fff; font-weight: 500; color: #1E90FF; border: 1px solid #1E90FF;">Cancel</button>
-            </div>
-        </form>
-        
-    </div>
+   
          </div>
          
     <script>
@@ -292,51 +293,19 @@
             }
         }
           
-// Add an event listener to the document to capture clicks
-document.addEventListener('click', function(event) {
-    const ccField = document.getElementById('ccField');
-    const ccPlaceholder = document.getElementById('ccPlaceholder');
-    const emailInput = document.getElementById('emailInput');
-
-    // Check if the clicked element is not the email input or the "Add" button
-    if (event.target !== emailInput && event.target !== ccPlaceholder) {
-        ccField.style.display = 'none';
-        ccPlaceholder.style.display = 'inline-block';
-    }
-});
-
-// Add an event listener to the document to capture clicks
-document.addEventListener('click', function(event) {
-    const ccField = document.getElementById('ccField');
-    const ccPlaceholder = document.getElementById('ccPlaceholder');
-    const emailInput = document.getElementById('emailInput');
-
-    // Check if the clicked element is not the email input, the "Add" button, or the CC field
-    if (
-        event.target !== emailInput &&
-        event.target !== ccPlaceholder &&
-        event.target !== ccField
-    ) {
-        ccField.style.display = 'none';
-        ccPlaceholder.style.display = 'inline-block';
-    }
-});
-
-function toggleCCField() {
+        function toggleCCField() {
     const ccField = document.getElementById('ccField');
     const ccPlaceholder = document.getElementById('ccPlaceholder');
 
-    if (ccField.style.display === 'none' || ccField.style.display === '') {
-        ccField.style.display = 'block';
-        ccPlaceholder.style.display = 'none';
+        // Toggle the display of the search container
+        ccContainer.style.display = ccContainer.style.display === 'none' ? 'block' : 'none';
+        if (ccContainer.style.display === 'block') {
+            iconContainer.classList.add('active');
     } else {
-        ccField.style.display = 'none';
-        ccPlaceholder.style.display = 'inline-block';
+        iconContainer.classList.remove('active');
     }
-}
-
-function addEmail() {
-    const emailInput = document.getElementById('emailInput');
+    }
+    function addEmail(fullName) {
     const addedEmails = document.getElementById('addedEmails');
 
     // Get the entered email address
@@ -349,21 +318,19 @@ function addEmail() {
         emailElement.className = 'added-email';
         emailElement.style.border = '2px solid #778899'; // You can style the circle here
         emailElement.style.color = '#778899'; // You can set text color
-        emailElement.style.borderRadius = '70%'; // Make it circular
+        emailElement.style.borderRadius = '70%';
+         // Make it circular
 
         // Append the email element to the addedEmails container
         addedEmails.appendChild(emailElement);
 
         // Clear the input field
         emailInput.value = '';
-        ccField.style.display = 'none';
-        ccPlaceholder.style.display = 'inline-block';
+        ccField.style.display = 'none'; 
     }
 }
-
-
-function toggleDetails(tabId) {
-            const tabs = ['leaveApply', 'restricted-content', 'leaveCancel-content', 'compOff-content'];
+function toggleOptions(tabId) {
+            const tabs = ['leave', 'restricted-content', 'leaveCancel-content', 'compOff-content'];
 
             tabs.forEach(tab => {
                 const tabElement = document.getElementById(tab);
@@ -376,4 +343,6 @@ function toggleDetails(tabId) {
         }
 
     </script>
-   
+@livewireScripts
+</body>
+</html>

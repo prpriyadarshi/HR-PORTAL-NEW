@@ -21,5 +21,4 @@ class ProfileInfo extends Component
 
         return view('livewire.profile-info');
     }
-    
 }
