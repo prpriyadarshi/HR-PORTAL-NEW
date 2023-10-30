@@ -19,7 +19,6 @@ class ProfileInfo extends Component
          $this->parentDetails = ParentDetail::where('emp_id',auth()->guard('emp')->user()->emp_id)->get();
          $this->empBankDetails = EmpBankDetail::where('emp_id',auth()->guard('emp')->user()->emp_id)->get();
 
-        return view('livewire.profile-info', ['employees' => $this->employeeDetails]);
+        return view('livewire.profile-info');
     }
-    
 }

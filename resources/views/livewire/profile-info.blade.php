@@ -56,11 +56,7 @@
             </ul>
         </div>
 
-
-
-
-
-        @foreach($employees as $employee)
+        @foreach($employeeDetails as $employee)
         {{-- Personal Tab --}}
         <div class="row" id="personalDetails" style="margin-top:20px;display: none;">
             <div class="col">
@@ -226,9 +222,8 @@
             </div>
         </div>
         @endforeach
+
         {{-- Accounts & Statements --}}
-
-
         @foreach($empBankDetails as $bankDetails)
         <div class="row" style="margin-top:20px;border-radius: 5px;display: none;" id="accountDetails">
             <div class="col">
@@ -309,9 +304,8 @@
 
         </div>
         @endforeach
-        {{-- Family --}}
 
-        
+        {{-- Family --}}
         @foreach($parentDetails as $details)
         <div class="row" style="margin-top:20px;border-radius: 5px;display: none;" id="familyDetails">
             <div class="col">
@@ -368,6 +362,12 @@
                         </div>
                         <div style="margin-left: 15px; font-size: 12px">
                             {{ $details->father_religion }}
+                        </div>
+                        <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
+                            Father Email
+                        </div>
+                        <div style="margin-left: 15px; font-size: 12px">
+                            {{ $details->father_email }}
                         </div>
                     </div>
                 </div>
@@ -427,6 +427,12 @@
                         </div>
                         <div style="margin-left: 15px; font-size: 12px">
                             {{ $details->mother_religion }}
+                        </div>
+                        <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
+                            Mother Email
+                        </div>
+                        <div style="margin-left: 15px; font-size: 12px">
+                            {{ $details->mother_email }}
                         </div>
                     </div>
                 </div>

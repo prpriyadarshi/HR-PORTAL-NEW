@@ -21,6 +21,29 @@ class User extends Authenticatable
     public $incrementing = false;
     protected $fillable = [
         'user_id',
+        'image',
+        'city',
+        'state',
+        'country',
+        'experience_status',
+        'available_to_join',
+        'profile_summary',
+        'technical_skills',
+        'education',
+        'current_industry',
+        'role_category',
+        'desired_job_type',
+        'preferred_shift',
+        'expected_salary',
+        'department',
+        'job_role',
+        'desired_employment_type',
+        'preferred_work_location',
+        'date_of_birth',
+        'religion',
+        'differently_abled',
+        'career_break',
+        'languages',
         'full_name',
         'email',
         'password',
@@ -48,5 +71,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'technical_skills' => 'array',
+        'education' => 'array',
+        'languages' => 'array',
     ];
+    
 }

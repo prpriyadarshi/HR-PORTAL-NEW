@@ -113,7 +113,7 @@ class CVBuilder extends Component
             'summary' => 'required',
             'languages' => 'required',
         ]);
-     
+
         CVEntrie::create([
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
@@ -132,7 +132,6 @@ class CVBuilder extends Component
         ]);
 
         session()->flash('message', 'CV created successfully.');
-
         $this->reset();
     }
     public function render()

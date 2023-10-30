@@ -14,9 +14,5 @@ class AppliedJob extends Model
         'job_title',
         'company_name',
         'applied_to',
-        'full_name',
-        'email',
-        'address',
-        'resume'
     ];
 }

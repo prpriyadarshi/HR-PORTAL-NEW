@@ -183,18 +183,7 @@
                 @error('is_active') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
 
-            <div class="form-group">
-                <label for="contact_email">Contact Mail:</label>
-                <input wire:model="contact_email" type="email" class="form-control">
-                @error('contact_email') <span class="text-danger">{{ $message }}</span> @enderror
-            </div>
-            <div class="form-group">
-                <label for="contact_phone">Contact Phone:</label>
-                <input wire:model="contact_phone" type="number" class="form-control">
-                @error('contact_phone') <span class="text-danger">{{ $message }}</span> @enderror
-            </div>
-
-
+           
             <div class="form-group">
                 <label for="application_link">Application Link (optional):</label>
                 <input wire:model="application_link" type="url" class="form-control">

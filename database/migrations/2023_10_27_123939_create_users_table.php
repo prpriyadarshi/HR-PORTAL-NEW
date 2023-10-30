@@ -5,11 +5,41 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-return new class extends Migration {
-    public function up(): void {
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('user_id')->unique();
+
+            $table->string('image')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('country')->nullable();
+            $table->string('experience_status')->nullable();
+            $table->string('available_to_join')->nullable();
+            $table->string('profile_summary')->nullable();
+            $table->json('technical_skills')->nullable();
+            $table->json('education')->nullable();
+            $table->string('current_industry')->nullable();
+            $table->string('role_category')->nullable();
+            $table->string('desired_job_type')->nullable();
+            $table->string('preferred_shift')->nullable();
+            $table->string('expected_salary')->nullable();
+            $table->string('department')->nullable();
+            $table->string('job_role')->nullable();
+            $table->string('desired_employment_type')->nullable();
+            $table->string('preferred_work_location')->nullable();
+            $table->date('date_of_birth')->nullable();
+            $table->string('religion')->nullable();
+            $table->string('differently_abled')->nullable();
+            $table->string('career_break')->nullable();
+            $table->json('languages')->nullable();
+
             $table->string('full_name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -41,7 +71,8 @@ return new class extends Migration {
         DB::unprepared($triggerSQL);
     }
 
-    public function down(): void {
+    public function down(): void
+    {
         Schema::dropIfExists('users');
     }
 };

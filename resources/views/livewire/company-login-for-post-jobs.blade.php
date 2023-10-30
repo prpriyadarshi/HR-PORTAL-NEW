@@ -32,5 +32,5 @@
             </div>
         </form>
     </div>
-    <div style="text-align: center;margin-top:10px"><h6 style="font-size: 12px;"><strong style="color: red;">NOTE : </strong>Before posting any job, company login is required.</h6></div>
+    <div style="text-align: center;margin-top:10px"><h6 style="font-size: 12px;"><strong style="color: red;">NOTE : </strong>Before posting any job, HR login is required.</h6></div>
 </div>
