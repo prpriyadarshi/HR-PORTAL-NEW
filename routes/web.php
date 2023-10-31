@@ -85,18 +85,17 @@ use App\Livewire\LeavePage;
 use App\Livewire\LeaveBalances;
 
 
-
 use App\Livewire\HolidayCalender;
 
 use App\Livewire\LeaveHistory;
 
 use App\Livewire\ViewDetails;
 
-
+use App\Livewire\ViewPendingDetails;
 
 use App\Livewire\LeaveCalender;
 
-
+use App\Livewire\LeavePending;
 
 use Illuminate\Support\Facades\Route;
 
@@ -271,7 +270,9 @@ Route::middleware(['auth:emp'])->group(function () {
 
 
     Route::get('/holiday-calender', HolidayCalender::class)->name('holiday-calender');
-
+  
+    
+    Route::get('/view-pending-details', ViewPendingDetails::class)->name('view-pending-details');
 
 
     Route::get('/view-details', ViewDetails::class)->name('view-details');
@@ -279,7 +280,7 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/leave-balances', LeaveBalances::class)->name('leave-balances');
 
     Route::get('/leave-calender', LeaveCalender::class)->name('leave-calender');
-
+    Route::get('/leave-pending', LeavePending::class)->name('leave-pending');
 
 
     Route::get('/salary-revision', SalaryRevisions::class)->name('salary-revision');
