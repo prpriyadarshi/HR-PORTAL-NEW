@@ -90,7 +90,7 @@ Route::get('/documents', Documents::class);
 
 
 
-    Route::get('/salary-revision', SalaryRevisions::class)->name('salary-revision');
+    // Route::get('/salary-revision', SalaryRevisions::class)->name('salary-revision');
 
 
 
@@ -114,7 +114,7 @@ Route::get('/documents', Documents::class);
 
 
 
-    Route::get('/salary-revision', SalaryRevisions::class)->name('salary-revision');
+    // Route::get('/salary-revision', SalaryRevisions::class)->name('salary-revision');
 });
 Route::get('/your-download-route', function () {
     return view('download-pdf');
