@@ -315,7 +315,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('proofofinvestment')">
-                                        <a class="nav-link" href="/proofofinvestment" id="proofofinvestment" onclick="selectOption(this,   Proof Of Investment')">
+                                        <a class="nav-link" href="/proofofinvestment" id="proofofinvestment" onclick="selectOption(this,   'Proof Of Investment')">
                                             Proof Of Investment
                                         </a>
                                     </li>

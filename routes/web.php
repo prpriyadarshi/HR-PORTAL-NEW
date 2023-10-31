@@ -137,6 +137,15 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/AppliedJobs', function () {
         return view('applied_jobs_view');
     });
+    Route::get('/Companies', function () {
+        return view('companies_view');
+    });
+    Route::get('/company-based-jobs/{companyId}', function ($companyId) {
+        return view('company_based_jobs_view', compact('companyId'));
+    })->name('company-based-jobs');
+    Route::get('/VendorScreen', function () {
+        return view('vendor_screen_view');
+    });
 });
 
 

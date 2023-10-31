@@ -8,7 +8,7 @@
         <title>Job Details</title>
         <style>
             body {
-                font-family: Arial, Monserrat;
+                font-family: 'Montserrat';
                 background-color: #f4f4f4;
                 margin: 0;
                 padding: 0;
@@ -21,6 +21,7 @@
                 padding: 20px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
                 border-radius: 5px;
+                font-family: 'Montserrat';
             }
 
             h1 {
