@@ -280,7 +280,7 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/leave-balances', LeaveBalances::class)->name('leave-balances');
 
     Route::get('/leave-calender', LeaveCalender::class)->name('leave-calender');
-    Route::get('/leave-pending', LeavePending::class)->name('leave-pending');
+    Route::get('/leave-pending/{leaveRequestId}', LeavePending::class)->name('leave-pending');
 
 
     Route::get('/salary-revision', SalaryRevisions::class)->name('salary-revision');

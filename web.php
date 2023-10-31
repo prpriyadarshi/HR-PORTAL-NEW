@@ -273,8 +273,6 @@ Route::middleware(['auth:emp'])->group(function () {
 
 
 
-
-
     Route::get('/holiday-calender', HolidayCalender::class)->name('holiday-calender');
     Route::get('/leave-page', LeavePage::class)->name('leave-page');
     Route::get('/leave-pending/{leaveRequestId}', LeavePending::class)->name('leave-pending');
