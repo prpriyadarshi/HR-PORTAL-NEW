@@ -1,12 +1,12 @@
 <div class="container-fluid p-0">
     <div class="row justify-content-center" style="margin-top:5px">
-        <div class="col" style="margin-left:76%">
+        <div class="col" style="margin-left:60%">
             <button wire:click="createCV" style="width: 100px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;">
                 <a style="text-decoration: none; color: white; ">Create CV</a>
             </button>
         </div>
         <div class="col">
-            <button wire:click="jobs" style="width: 150px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white">Apply & Post Jobs</button>
+            <button wire:click="jobs" style="width: 280px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white">User & Vendor Registration</button>
         </div>
     </div>
 

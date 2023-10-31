@@ -13,6 +13,7 @@
             font-weight: bold;
             margin-right: 10px;
         }
+
         body {
             font-family: 'Montserrat';
             background-color: #f0f0f0;
@@ -197,10 +198,9 @@
             cursor: pointer;
             color: red;
         }
-
     </style>
     <div class="back-button" style="margin-top: 10px;">
-        <a href="/Jobs">Back</a>
+        <a href="/Companies">Back</a>
     </div>
     <div class="container">
         <h2 style="text-align: center;
