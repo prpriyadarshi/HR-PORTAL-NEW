@@ -191,7 +191,17 @@
 
             }
 
+            .active-option {
+                color: #3a9efd;
+                /* Active option color (blue in this example) */
+            }
 
+            /* Add styles for highlighted option */
+            .highlighted-option {
+                background: #3a9efd;
+                /* Highlighted option background color */
+
+            }
         </style>
 
 
@@ -247,33 +257,32 @@
 
                             <a class="nav-link" href="#">
 
-                                <i class="fas fa-clock"></i> Attendance</a>
-            </li>
+                                <i class="fas fa-clock"></i> Attendance</a></li>
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5(item)">
-                            <a class="nav-link"  onclick="toggleLeaveDropdown()">
+                            <a class="nav-link" href="#" onclick="toggleLeaveDropdown()">
                                 <i class="fas fa-file-alt" id="leave-icon"></i> Leave <i class="fas fa-caret-down" id="leave-caret"></i>
                             </a>
                             <div id="leave-options" style="display: none;">
                                 <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5('apply')">
-                                        <a class="nav-link" href="/leave-page" id="itdeclaration" onclick="selectOption(this, 'Leave Apply')">
-                                           Leave Apply
+                                        <a class="nav-link" href="/leave-page" id="leave-apply-link" onclick="selectOption(this, 'Leave Apply')">
+                                            Leave Apply
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5('balances')">
-                                        <a class="nav-link" href="/leave-balances" id="itstatement" onclick="selectOption(this, 'Leave Balances')">
+                                        <a class="nav-link" href="/leave-balances" id="leave-balances-link" onclick="selectOption(this, 'Leave Balances')">
                                             Leave Balances
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5('calendar')">
-                                        <a class="nav-link" href="/leave-calender" id="slip" onclick="selectOption(this, 'Leave Calender')">
-                                            Leave Calendar
+                                        <a class="nav-link" href="/leave-calender" id="leave-Calender-link" onclick="selectOption(this, 'Leave Calender')">
+                                            Leave Calender
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5('holiday')">
-                                        <a class="nav-link" href="/holiday-calender" id="slip" onclick="selectOption(this, 'Holiday Calender')">
-                                            Holiday Calendar
+                                        <a class="nav-link" href="/holiday-calender" id="Holiday-Calender-link" onclick="selectOption(this, 'Holiday Calender')">
+                                            Holiday Calender
                                         </a>
                                     </li>
                                 </ul>
@@ -314,17 +323,17 @@
                                             Payslips
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('proofofinvestment')">
-                                        <a class="nav-link" href="/proofofinvestment" id="proofofinvestment" onclick="selectOption(this,   Proof Of Investment')">
-                                            Proof Of Investment
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('reimbursement')">
+                                        <a class="nav-link" href="/reimbursement" id="reimbursement" onclick="selectOption(this, 'Reimbursement')">
+                                        Reimbursement
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('loan')">
-                                        <a class="nav-link" href="/loan" id="slip" onclick="selectOption(this, 'Loan and Advances')">
-                                            Loan and Advances
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('investment')">
+                                        <a class="nav-link" href="/investment" id="investment" onclick="selectOption(this, 'Proof of Investment')">
+                                        Proof of Investment
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle15('salary-revision')">
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle17('salary-revision')">
                                         <a class="nav-link" href="/salary-revision" id="slip" onclick="selectOption(this, 'Salary Revision')">
                                             Salary Revision
                                         </a>
@@ -354,7 +363,7 @@
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle10()">
 
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/delegatesddb">
 
                                 <i class="fas fa-user-friends"></i> Workflow Delegates
 
@@ -699,8 +708,19 @@
 
             function selectOption(option, pageTitle) {
                 const accordionItems = document.querySelectorAll('.nav-link');
+
+                // Remove the active class from all options
+                accordionItems.forEach(item => item.classList.remove('active-option'));
+
+                // Add the active class to the selected option
+                option.classList.add('active-option');
+
                 // Update the pageTitle
                 updatePageTitle(pageTitle);
+
+                // Toggle the highlighted option
+                option.classList.toggle('highlighted-option');
+
                 // Close the dropdown if open
                 toggleLeaveDropdown();
                 toggleSalaryDropdown();
