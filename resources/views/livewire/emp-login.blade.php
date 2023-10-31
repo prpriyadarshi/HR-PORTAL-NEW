@@ -1,5 +1,5 @@
 <div class="container-fluid p-0">
-    <div class="row justify-content-center" style="margin-top:15px">
+    <div class="row justify-content-center" style="margin-top:5px">
         <div class="col" style="margin-left:76%">
             <button wire:click="createCV" style="width: 100px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;">
                 <a style="text-decoration: none; color: white; ">Create CV</a>
