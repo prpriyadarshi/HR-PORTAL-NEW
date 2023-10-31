@@ -24,7 +24,20 @@ use App\Livewire\LeaveApply;
 use App\Livewire\LeavePage;
 use App\Livewire\Reimbursement;
 use App\Livewire\LeaveBalances;
+
+
+
 use App\Livewire\HolidayCalender;
+
+use App\Livewire\LeaveHistory;
+
+use App\Livewire\ViewDetails;
+
+
+
+use App\Livewire\LeaveCalender;
+
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -61,17 +74,47 @@ Route::get('/documents', Documents::class);
 
 
 
-Route::get('/leave-page', LeavePage::class)->name('leave-page');
-Route::get('/leave-apply', LeaveApply::class)->name('leave-apply');
-Route::get('/holiday-calender', HolidayCalender::class)->name('holiday-calender');
-Route::get('/leave-balances', LeaveBalances::class)->name('leave-balances');
-// Route::get('/salary-revision', SalaryRevision::class)->name('salary-revision');
-});
+    Route::get('/leave-page', LeavePage::class)->name('leave-page');
 
 
 
-Route::get('/delegatesddb', function(){
-    return view('delegate');
+    Route::get('/leave-apply', LeaveApply::class)->name('leave-apply');
+
+
+
+    Route::get('/holiday-calender', HolidayCalender::class)->name('holiday-calender');
+
+
+
+    Route::get('/leave-balances', LeaveBalances::class)->name('leave-balances');
+
+
+
+    Route::get('/salary-revision', SalaryRevisions::class)->name('salary-revision');
+
+
+
+    Route::get('/leave-page', LeavePage::class)->name('leave-page');
+
+
+
+    Route::get('/leave-apply', LeaveApply::class)->name('leave-apply');
+
+
+
+    Route::get('/holiday-calender', HolidayCalender::class)->name('holiday-calender');
+
+
+
+    Route::get('/view-details', ViewDetails::class)->name('view-details');
+
+    Route::get('/leave-balances', LeaveBalances::class)->name('leave-balances');
+
+    Route::get('/leave-calender', LeaveCalender::class)->name('leave-calender');
+
+
+
+    Route::get('/salary-revision', SalaryRevisions::class)->name('salary-revision');
 });
 Route::get('/your-download-route', function () {
     return view('download-pdf');
