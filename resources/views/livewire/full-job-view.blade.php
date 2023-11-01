@@ -7,77 +7,80 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Job Details</title>
         <style>
-            body {
-                font-family: 'Montserrat';
-                background-color: #f4f4f4;
-                margin: 0;
-                padding: 0;
-            }
+        body {
+            font-family: 'Montserrat';
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
 
-            .container {
-                max-width: 800px;
-                margin: 20px auto;
-                background-color: #fff;
-                padding: 20px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-                border-radius: 5px;
-                font-family: 'Montserrat';
-            }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            font-family: 'Montserrat';
+        }
 
-            h1 {
-                color: #02134F;
-                font-size: 28px;
-            }
+        h1 {
+            color: #02134F;
+            font-size: 28px;
+        }
 
-            p {
-                color: #555;
-                font-size: 16px;
-                margin: 10px 0;
-            }
+        p {
+            color: #555;
+            font-size: 16px;
+            margin: 10px 0;
+        }
 
-            .company-logo {
-                max-width: 150px;
-                display: block;
-                margin: 0 auto 20px;
-            }
+        .company-logo {
+            max-width: 150px;
+            display: block;
+            margin: 0 auto 20px;
+        }
 
-            .back-button {
-                margin-top: 15px;
-                text-align: right;
-            }
+        .back-button {
+            margin-top: 15px;
+            text-align: right;
+        }
 
-            .back-button a {
-                text-decoration: none;
-                background-color: #02134F;
-                color: white;
-                padding: 10px 20px;
-                border-radius: 5px;
-                font-weight: bold;
-                margin-right: 10px;
-            }
+        .back-button a {
+            text-decoration: none;
+            background-color: #02134F;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
 
-            .section-divider {
-                border-top: 1px solid #ccc;
-                margin: 20px 0;
-            }
+        .section-divider {
+            border-top: 1px solid #ccc;
+            margin: 20px 0;
+        }
 
-            .job-title {
-                font-size: 24px;
-                font-weight: bold;
-                margin: 10px 0;
-            }
+        .job-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
 
-            .job-company {
-                color: #777;
-            }
+        .job-company {
+            color: #777;
+        }
 
-            .job-description {
-                margin: 20px 0;
-            }
+        .job-description {
+            margin: 20px 0;
+        }
         </style>
     </head>
 
     <body>
+        <div style="text-align: center;background-color: #02134F;color:white;padding:8px;margin-bottom:10px">
+            Job & Company Details
+        </div>
         <div class="back-button">
             <a href="/Jobs">Back</a>
         </div>
@@ -87,7 +90,8 @@
             <p class="job-company">{{ $job->company_name }}</p>
             <p class="job-location"><i class="fas fa-map-marker-alt"></i> {{ $job->location }}</p>
             <p class="job-salary"><strong>₹</strong> {{ number_format($job->salary, 2) }} PA</p>
-            <p class="job-posted-at"><i class="far fa-calendar-alt"></i> {{ date('d M Y', strtotime($job->expire_date)) }}
+            <p class="job-posted-at"><i class="far fa-calendar-alt"></i>
+                {{ date('d M Y', strtotime($job->expire_date)) }}
                 <strong>(Expired)</strong>
             </p>
             <p class="job-vacancies"><i class="fas fa-users"></i> Vacancies: {{ $job->vacancies }}</p>

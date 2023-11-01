@@ -25,7 +25,7 @@ class LoginAndRegisterForJobs extends Component
     public $password;
     public $login_email;
     public $credentials;
-    public $user_type = "";
+    public $user_type = "Job Seeker";
     public $activeTab = 'register';
 
     public $showDialogBox = false;

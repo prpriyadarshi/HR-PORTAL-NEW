@@ -1,17 +1,17 @@
 <div>
     <style>
-        .text-danger{
-            font-size: 12px;
-        }
+    .text-danger {
+        font-size: 12px;
+    }
     </style>
+    <div style="text-align: center;background-color: #02134F;color:white;padding:8px;margin-bottom:10px">
+        HR Login
+    </div>
     <a href="/emplogin" style="text-decoration:none;margin-left:10px;
             font-family: Montserrat;background-color:rgb(2, 17, 79);color:white;padding:5px;border-radius:5px
         ">Back</a>
     <div class="card" style="width: 400px;padding:10px;margin-top:100px;margin-left:35%">
         <form>
-            <div style="text-align: center;">
-            <h5>HR Login</h5>
-            </div>
             <div>
             </div>
             <div class="form-group">
@@ -28,9 +28,13 @@
 
             <br>
             <div style="text-align: center;margin:0px">
-                <button type="button" wire:click="login" style="font-size:12px;background-color:rgb(2, 17, 79);color:white">Login</button>
+                <button type="button" wire:click="login"
+                    style="font-size:12px;background-color:rgb(2, 17, 79);color:white">Login</button>
             </div>
         </form>
     </div>
-    <div style="text-align: center;margin-top:10px"><h6 style="font-size: 12px;"><strong style="color: red;">NOTE : </strong>Before posting any job, HR login is required.</h6></div>
+    <div style="text-align: center;margin-top:10px">
+        <h6 style="font-size: 12px;"><strong style="color: red;">NOTE : </strong>Before posting any job, HR login is
+            required.</h6>
+    </div>
 </div>

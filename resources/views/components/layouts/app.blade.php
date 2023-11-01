@@ -13,13 +13,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>Grey HR Portal</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/hr.png') }}">
+    <title>
+        HR Strategies Pro
+    </title>
+    <style>
+        /* Style for the grey horizontal rule */
+        hr.grey {
+            border: 1px solid #ccc;
+            /* Adjust the color and style as needed */
+        }
+    </style>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <script src="{{ mix('js/app.js') }}"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="path/to/your.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -190,8 +199,6 @@
                 color: #3a9efd;
 
             }
-
-
         </style>
 
 
@@ -206,7 +213,7 @@
 
                         <div style="margin-bottom: 10px;margin-top:0px">
 
-                           @livewire('company-logo')
+                            @livewire('company-logo')
                         </div>
 
                         @livewire('profile-card')
@@ -238,27 +245,27 @@
                             <a class="nav-link" href="/tasks">
 
 
-                                    <i class="fas fa-tasks"></i> To do
+                                <i class="fas fa-tasks"></i> To do
 
-        </a>
+                            </a>
 
                         </li>
-           <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
 
                             <a class="nav-link" href="#">
 
                                 <i class="fas fa-clock"></i> Attendance</a>
-            </li>
+                        </li>
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5(item)">
-                            <a class="nav-link"  onclick="toggleLeaveDropdown()">
+                            <a class="nav-link" onclick="toggleLeaveDropdown()">
                                 <i class="fas fa-file-alt" id="leave-icon"></i> Leave <i class="fas fa-caret-down" id="leave-caret"></i>
                             </a>
                             <div id="leave-options" style="display: none;">
                                 <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5('apply')">
                                         <a class="nav-link" href="/leave-page" id="itdeclaration" onclick="selectOption(this, 'Leave Apply')">
-                                           Leave Apply
+                                            Leave Apply
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5('balances')">
@@ -676,6 +683,7 @@
                     leaveCaret.classList.add("fa-caret-up");
                 }
             }
+
             function toggleSalaryDropdown() {
                 const salaryOptions = document.getElementById("salary-options");
                 const salaryCaret = document.getElementById("salary-caret");

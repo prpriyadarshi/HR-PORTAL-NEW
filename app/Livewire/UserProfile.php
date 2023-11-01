@@ -358,8 +358,11 @@ class UserProfile extends Component
 
         $this->editingLanguage = false;
     }
+    public $user;
     public function render()
     {
+        $this->user = auth()->user();
+
         $this->loadEducationData();
         $this->loadLanguagesData();
         $this->loadTechnicalData();

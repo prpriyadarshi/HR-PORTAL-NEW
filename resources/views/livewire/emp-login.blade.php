@@ -1,12 +1,15 @@
 <div class="container-fluid p-0">
     <div class="row justify-content-center" style="margin-top:5px">
-        <div class="col" style="margin-left:60%">
-            <button wire:click="createCV" style="width: 100px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;">
+        <div class="col" style="margin-left:67%">
+            <button wire:click="createCV"
+                style="width: 100px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;">
                 <a style="text-decoration: none; color: white; ">Create CV</a>
             </button>
         </div>
         <div class="col">
-            <button wire:click="jobs" style="width: 280px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white">User & Vendor Registration</button>
+            <button wire:click="jobs"
+                style="width: 260px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white">
+                Job Seeker & Vendor Registration</button>
         </div>
     </div>
 
@@ -34,7 +37,9 @@
 
                 <hr class="bg-white" />
                 <header _ngcontent-hyf-c110="" class="mb-12 text-center">
-                    <div _ngcontent-hyf-c110="" class="text-12gpx font-bold font-title-poppins-bold opacity-90 text-text-default justify-items-center">Hello there! <span _ngcontent-hyf-c110="" class="font-emoji text-12gpx">👋</span>
+                    <div _ngcontent-hyf-c110=""
+                        class="text-12gpx font-bold font-title-poppins-bold opacity-90 text-text-default justify-items-center">
+                        Hello there! <span _ngcontent-hyf-c110="" class="font-emoji text-12gpx">👋</span>
                     </div>
                 </header><br>
                 @if($error)
@@ -67,7 +72,8 @@
         <!-- Right Side (Carousel) -->
         <div class="col-md-6 p-0">
             <!-- Carousel -->
-            <div id="demo" class="carousel slide" data-bs-ride="carousel" style="background-color: f0f0f0; aspect-ratio: 16/9;border-radius:10px">
+            <div id="demo" class="carousel slide" data-bs-ride="carousel"
+                style="background-color: f0f0f0; aspect-ratio: 16/9;border-radius:10px">
                 <!-- Indicators/dots -->
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
@@ -129,13 +135,17 @@
                             <!-- Add input fields for new password and confirmation -->
                             <div class="form-group">
                                 <label for="newPassword">New Password</label>
-                                <input type="password" id="newPassword" name="newPassword" class="form-control" placeholder="Enter your new password" wire:model="newPassword">
+                                <input type="password" id="newPassword" name="newPassword" class="form-control"
+                                    placeholder="Enter your new password" wire:model="newPassword">
                                 @error('newPassword') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
                             <div class="form-group">
                                 <label for="newPassword_confirmation">Confirm New Password</label>
-                                <input type="password" id="newPassword_confirmation" name="newPassword_confirmation" class="form-control" placeholder="Enter your new password again" wire:model="newPassword_confirmation">
-                                @error('newPassword_confirmation') <span class="text-danger">{{ $message }}</span> @enderror
+                                <input type="password" id="newPassword_confirmation" name="newPassword_confirmation"
+                                    class="form-control" placeholder="Enter your new password again"
+                                    wire:model="newPassword_confirmation">
+                                @error('newPassword_confirmation') <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <button type="submit" class="btn btn-success">Save Password</button>
@@ -153,13 +163,15 @@
                             <!-- Add input fields for email and DOB verification -->
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" wire:model="email">
+                                <input type="email" id="email" name="email" class="form-control"
+                                    placeholder="Enter your email" wire:model="email">
                                 @error('email') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
                             <div class="form-group">
                                 <label for="dob">Date of Birth</label>
                                 <div class="input-group">
-                                    <input type="date" id="dob" name="dob" class="form-control" wire:model="dob" max="{{ date('Y-m-d') }}">
+                                    <input type="date" id="dob" name="dob" class="form-control" wire:model="dob"
+                                        max="{{ date('Y-m-d') }}">
                                 </div>
                                 @error('dob') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
@@ -192,13 +204,15 @@
                         <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title">
                             <b>Success Message</b>
                         </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="closeSuccessModal">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                            wire:click="closeSuccessModal">
                             <span aria-hidden="true" style="color: white;">×</span>
                         </button>
                     </div>
                     <div class="modal-body" style="background-color: #f0f0f0; padding: 20px; width: 600px;">
                         <p>Verification successful! Do you want to change your password?</p>
-                        <button type="button" class="btn btn-primary" wire:click="showPasswordChangeModal">Change Password</button>
+                        <button type="button" class="btn btn-primary" wire:click="showPasswordChangeModal">Change
+                            Password</button>
                         <button type="button" class="btn btn-secondary" wire:click="closeSuccessModal">Cancel</button>
                     </div>
                 </div>
@@ -216,7 +230,8 @@
                         <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title">
                             <b>Error Message</b>
                         </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="closeErrorModal">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                            wire:click="closeErrorModal">
                             <span aria-hidden="true" style="color: white;">×</span>
                         </button>
                     </div>
@@ -239,13 +254,15 @@
                         <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title">
                             <b>Success Message</b>
                         </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="closePasswordChangedModal">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                            wire:click="closePasswordChangedModal">
                             <span aria-hidden="true" style="color: white;">×</span>
                         </button>
                     </div>
                     <div class="modal-body" style="background-color: #f0f0f0; padding: 20px; width: 600px;">
                         <p>Password Changes Successfully...</p>
-                        <button type="button" class="btn btn-danger" wire:click="closePasswordChangedModal">Close</button>
+                        <button type="button" class="btn btn-danger"
+                            wire:click="closePasswordChangedModal">Close</button>
                     </div>
                 </div>
             </div>
@@ -256,16 +273,16 @@
 
 
         <style>
-            /* Add box shadow to the login form */
-            .login-form-with-shadow {
-                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-                padding: 20px;
-                border-radius: 10px;
-                background-color: "white";
-                max-width: 400px;
-                margin: 0 auto;
-                margin-top: 15%;
-            }
+        /* Add box shadow to the login form */
+        .login-form-with-shadow {
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            background-color: "white";
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 15%;
+        }
         </style>
         @livewireScripts
 
