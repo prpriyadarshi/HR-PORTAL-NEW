@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
  
 <html lang="en">
@@ -13,17 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
  
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/hr.png') }}">
-    <title>
-        HR Strategies Pro
-    </title>
-    <style>
-        /* Style for the grey horizontal rule */
-        hr.grey {
-            border: 1px solid #ccc;
-            /* Adjust the color and style as needed */
-        }
-    </style>
+
+    <title>Grey HR Portal</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
  
@@ -213,7 +205,7 @@
  
                         <div style="margin-bottom: 10px;margin-top:0px">
 
-                            @livewire('company-logo')
+                           @livewire('company-logo')
                         </div>
  
                         @livewire('profile-card')
@@ -245,17 +237,17 @@
                             <a class="nav-link" href="/tasks">
 
 
-                                <i class="fas fa-tasks"></i> To do
+                                    <i class="fas fa-tasks"></i> To do
 
-                            </a>
+        </a>
 
                         </li>
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
+           <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
 
                             <a class="nav-link" href="#">
  
                                 <i class="fas fa-clock"></i> Attendance</a>
-                        </li>
+            </li>
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5(item)">
                             <a class="nav-link" onclick="toggleLeaveDropdown()">
@@ -321,9 +313,21 @@
                                             Payslips
                                         </a>
                                     </li>
+<<<<<<< HEAD
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('proofofinvestment')">
                                         <a class="nav-link" href="/proofofinvestment" id="proofofinvestment" onclick="selectOption(this,   'Proof Of Investment')">
                                             Proof Of Investment
+=======
+
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('reimbursement')">
+                                        <a class="nav-link" href="/reimbursement" id="reimbursement" onclick="selectOption(this, 'Reimbursement')">
+                                        Reimbursement
+
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('proofofinvestment')">
+                                        <a class="nav-link" href="/proofofinvestment" id="proofofinvestment" onclick="selectOption(this,'Proof Of Investment')">
+                                            Proof Of Investment
+
+>>>>>>> c91d109226d32a54ddf30c7ebc67d3b6582e26a4
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('loan')">
@@ -683,7 +687,6 @@
                     leaveCaret.classList.add("fa-caret-up");
                 }
             }
-
             function toggleSalaryDropdown() {
                 const salaryOptions = document.getElementById("salary-options");
                 const salaryCaret = document.getElementById("salary-caret");
@@ -728,8 +731,8 @@
 </body>
  
 @endguest
- 
- 
- 
- 
+
+
+
+
 </html>

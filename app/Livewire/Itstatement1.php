@@ -3,6 +3,7 @@
 namespace App\Livewire;
 use App\Models\ITStatement;
 use Livewire\Component;
+use App\Models\AddDeclaration;
 
 
 class Itstatement1 extends Component
