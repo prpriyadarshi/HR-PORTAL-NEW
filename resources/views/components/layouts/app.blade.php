@@ -14,7 +14,14 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Grey HR Portal</title>
+    <link rel="icon" type="image/png" href="favicon.png"> <!-- Replace "favicon.png" with your favicon image URL -->
+    <title>HR Strategies Pro</title> <!-- Replace "Your Page Title" with your desired title -->
+    <style>
+        /* Style for the grey horizontal rule */
+        hr.grey {
+            border: 1px solid #ccc; /* Adjust the color and style as needed */
+        }
+    </style>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 

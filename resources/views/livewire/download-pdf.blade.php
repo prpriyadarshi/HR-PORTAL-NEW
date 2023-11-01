@@ -71,13 +71,16 @@
 <div>
     @foreach($employees as $employeeData)
     @foreach($empBankDetails as  $employee)
+      
     <div class="salary-slip">
         <table class="empDetail">
             <tr style="background-color: #c2d69b">
                 <td colspan='3'>
-                    <img src='https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/2e383f1a48f91dbea7e6' style="height:60px;width:200px" />
+                @livewire('company-logo')
                 </td>
-                <td colspan='3' class="companyName" style="margin-left:100px;font-size:16px">XSILICA SOFTWARE SOLUTIONS PVT LTD</td>
+                <td colspan='3' >
+               
+                    </td>
             </tr>
             <tr>
                 <th>Name</th>

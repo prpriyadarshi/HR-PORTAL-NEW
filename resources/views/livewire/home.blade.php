@@ -1,16 +1,19 @@
+
 <div style="width: 400px;">
     <script src="{{ asset('livewire/livewire.js') }}" defer></script>
 
     <style>
+        
         .left-menu {
             width: 150px;
 
             background-color: #f0f0f0;
             padding-right: 30px;
-            border-right: 1px solid #ccc;
+           
             /* Add a vertical line to the right of the left menu */
         }
 
+     
         table {
             border-collapse: collapse;
             width: 100%;
@@ -110,6 +113,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap">
 
         @if (session()->has('success'))
+        
         <div class="custom-alert alert-success" style="text-align: center;margin-left:50%;width: 500px;">
             {{ session('success') }}
         </div>
@@ -125,12 +129,15 @@
 
 
         <div class="left-menu">
-            <h2>Menu</h2>
+            
+            <h2>Home</h2>
             <!-- Add your menu items here -->
         </div>
 
         <!-- Content Area -->
         <div class="content">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap">
+
             <div style="display:flex;">
                 <div>
                 <div class="greet">
@@ -163,7 +170,7 @@
                         <div class="content" style="display: flex;">
                             <!-- Review Section -->
                             <div class="column">
-                                <div style="width: 280px; height: 220px; border-radius: 5px; border: 1px solid #CFCACA; margin-top: 20px; background-color: white;">
+                                <div style="width: 280px; height: 200px; border-radius: 5px; border: 1px solid #CFCACA; margin-top: 20px; background-color: white;">
                                     <div style="color: #677A8E; margin-left: 40px; font-family: Open Sans, sans-serif; margin-top: 20px;">
                                         Review
                                     </div>
@@ -247,48 +254,26 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="column" style="width:360px;">
-                                <div style="width: 310px; height: 300px; border-radius: 5px; border: 1px solid #CFCACA; margin-top: 20px; background-color: white;margin-left:30px">
-                                    <div style="color: #677A8E; margin-left: 20px; font-family: Open Sans, sans-serif; margin-top: 20px;">
-                                        Upcoming Holidays
-                                        <a href="/holiday-calender" style="font-size: 14px; margin-left: 130px; text-decoration: none;height:20px;color:black">&rarr; </a>
+                            
+                            <div class="column" style="width: 360px;">
+    <div style="width: 310px; height: 210px; border-radius: 5px; border: 1px solid #CFCACA; margin-top: 20px; background-color: white; margin-left: 30px">
+        <div style="color: #677A8E; margin-left: 20px; font-family: Open Sans, sans-serif; margin-top: 10px;">
+            Upcoming Holidays
+            <a href="/holiday-calendar" style="font-size: 14px; margin-left: 130px; text-decoration: none; height: 20px; color: black">&rarr;</a>
+        </div>
 
-                                    </div>
 
-                                    <div>
-                                        <p style="color: #677A8E; margin-left: 20px; font-size: 14px; font-family: Open Sans, sans-serif; margin-top: 20px;">
-                                            02 Oct Monday<br>
-                                            <span style="font-size: 12px;">Gandhi Jayanti</span>
-                                        </p>
-
-                                    </div>
-                                    <div>
-                                        <p style="color: #677A8E; margin-left: 20px; font-size: 14px; font-family: Open Sans, sans-serif; margin-top: 20px;">
-                                            02 Oct Monday<br>
-                                            <span style="font-size: 12px;">Gandhi Jayanti</span>
-                                        </p>
-
-                                    </div>
-                                    <div>
-                                        <p style="color: #677A8E; margin-left: 20px; font-size: 14px; font-family: Open Sans, sans-serif; margin-top: 20px;">
-                                            02 Oct Monday<br>
-                                            <span style="font-size: 12px;">Gandhi Jayanti</span>
-                                        </p>
-
-                                    </div>
-                                    <div>
-                                        <p style="color: #677A8E; margin-left: 20px; font-size: 14px; font-family: Open Sans, sans-serif; margin-top: 20px;">
-                                            02 Oct Monday<br>
-                                            <span style="font-size: 12px;">Gandhi Jayanti</span>
-                                        </p>
-
-                                    </div>
-                                </div>
-
-                                <!-- Additional Column with Black Background -->
-
-                            </div>
-                        </div>
+        @foreach ($calendarData as $entry)
+            <div>
+                <p style="color: #677A8E; margin-left: 20px; font-size: 14px; font-family: Open Sans, sans-serif; margin-top: 10px;">
+                    {{ date('d M l', strtotime($entry->date)) }}<br>
+                    <span style="font-size: 12px;">{{ $entry->festivals }}</span>
+                </p>
+            </div>
+        @endforeach
+    </div>
+</div>
+                                        </div>
 
                         <div class="container">
                             <div class="row" style="display: flex;">
@@ -324,6 +309,7 @@
                                     </div>
 
                                     <!-- Swipes Out Box -->
+                                    @foreach($salaryRevision as $salaries)
                                     <div class="column" style="margin-bottom:100px;">
                                         <div style="width: 300px; height: 400px; border-radius: 5px; border: 1px solid #CFCACA;margin-bottom:50px;margin-left:5px;background-color:white">
                                             <div style="color: #677A8E; margin-left: 10px; font-family: Open Sans, sans-serif; margin-top: 20px;">
@@ -333,21 +319,25 @@
 
                                             <div style="display:flex">
                                                 <img src="https://www.litmus.com/wp-content/uploads/2021/03/Dark-vs-Light-Mode-Poll-Results-300x300.png" alt="Image Description" style="height: 110px; width: 130px; margin-top: 20px; margin-left: 20px;">
-                                                <div class="c" style="font-size: 13px; font-weight: normal;margin-left: 60px;font-family: Open Sans, sans-serif;margin-top:30px;font-weight:100px;color:#9E9696"> <br>Aug 2023</br>
-                                                    <br>30</br>
-                                                    <br>Paid Days</br>
-                                                </div>
+                                                <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 60px; font-family: Open Sans, sans-serif; margin-top: 30px; font-weight: 100; color: #9E9696">
+    <br>{{ date('M Y', strtotime('-1 month')) }}</br>
+    <br>{{ date('t', strtotime('-1 month')) }}</br>
+    <br>Paid Days</br>
+</div>
+
                                             </div>
 
-                                            <div style="display:flex ;color: #677A8E; margin-left: 20px; font-size: 14px; font-family: Open Sans, sans-serif; font-weight:100px;">
-                                                <br>Gross Pay</br>
+                                            <div style="display:flex ;color: #677A8E; margin-left: 20px; font-size: 14px; font-family: Open Sans, sans-serif; font-weight:100px;margin-top:-2px">
+                                                <br style="margin-top:-10px">Gross Pay</br>
                                                 <br>Deduction</br>
                                                 <br>Net Pay</br>
 
-                                                <div style="margin-left:120px;margin-top:20px">
-                                                    <p>₹19,040.00</p>
-                                                    <p>₹19,040.00</p>
-                                                    <p>₹19,040.00</p>
+                                                <div style="margin-left:120px;margin-top:22px">
+                                                    <p>₹{{$salaries->calculateTotalAllowance(), 2}}</p>
+                                                    <p>₹{{$salaries->calculateTotalDeductions(), 2}}</p>
+                                                    @if ($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions() > 0)
+                          <p style="margin-top:5px"> ₹{{ number_format($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions(), 2) }}</p>
+                                    @endif
 
                                                 </div>
                                             </div>
@@ -360,7 +350,7 @@
                                         </div>
 
                                     </div>
-
+@endforeach
 
                                     <div class="column" style="margin-left:20px">
                                         <div style="width: 300px; height: 200px; border-radius: 5px; border: 1px solid #CFCACA; margin-top: 20px; background-color: white;">
@@ -410,6 +400,7 @@
         </div>
     </div>
 </div>
+
 <script>
         // Get the current hour of the day (0-23)
         const currentHour = new Date().getHours();
@@ -511,3 +502,4 @@ function startAnimation() {
 window.addEventListener('load', startAnimation);
 
 </script>
+

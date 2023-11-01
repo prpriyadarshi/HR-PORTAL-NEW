@@ -123,20 +123,22 @@
 
     <div class="header" style="height: 50px; font-family: 'Montserrat';">
        <div class="row">
-        <div class="col">
-        <img src="https://www.acutesoft.com/wp-content/uploads/2016/03/XSILICA.jpg" alt="Logo" style="margin-right: 700px; width: 200px; height: 50px">
+        <div class="col" style="margin-left:-750px">
+          
+        @livewire('company-logo')
         </div>
-        <div class="col">
-        <a href="/" style=" margin-right: 350px;margin-top:-200px;color:white; font-family: 'Montserrat';">Home</a>
+        <div class="col" style="margin-top:-20px">
+        <a href="/" style=" margin-right: 350px;margin-top:-250px;color:white; font-family: 'Montserrat';text-decoration:none">Home</a>
         </div>
-        <div class="col">
+        <div class="col" style="margin-top:15px">
         <p style="margin-top: -35px; margin-right: 160px; font-family: 'Montserrat';">My Info</p>
         </div>
-        <div class="col">
+        <div class="col" style="margin-top:15px">
         <p style="margin-top: -35px; margin-left: 600px; font-family: 'Montserrat';">{{$employee->first_name}} {{$employee->last_name}}</p>
     </div>
        </div>
     </div>
+   
     <h1 class="form-header" style="margin-right: 600px; font-family: 'Montserrat';">Workflow Delegates</h1>
     <div class="nav">
         <b style="margin-left: 100px; width: 150px; font-family: 'Montserrat';">Workflow:</b>

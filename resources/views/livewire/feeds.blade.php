@@ -152,7 +152,7 @@
 }
 
 .menu-item:hover {
-  background: #33B3BC;
+  background: blue;
   color: white;
 }
 

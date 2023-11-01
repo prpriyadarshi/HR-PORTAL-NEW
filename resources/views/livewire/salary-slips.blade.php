@@ -254,7 +254,7 @@
 </div>
 @endforeach
 @foreach($employees as $employee )
- 
+@foreach($empBankDetails as  $employeedata)
 <div class="row" style="height:550px;width:390px;background:#FAFFDE;border:1px solid silver;border-radius:5px;margin-left:-40px;">
  
         
@@ -289,7 +289,7 @@
  
                 <p>{{$employee->hire_date}}</p>
  
-                <p>{{$employee->bank_name}}</p>
+                <p>{{$employeedata->bank_name}}</p>
  
             </div>
             <div class="d-flex justify-content-between"style="font-weight:400; color:#7f8fa4; font-size: 12px;">
@@ -303,7 +303,7 @@
  
                 <p>{{$employee->job_title}}</p>
  
-                <p>{{$employee->account_number}}</p>
+                <p>{{$employeedata->account_number}}</p>
  
             </div>
        
@@ -337,17 +337,18 @@
             </div>
             <div class="d-flex justify-content-between"style="font-weight:400; color:#7f8fa4; font-size: 12px;">
  
-          <p>Effective Work Days</p>
- 
-          <p>PF UAN</p>
- 
-          </div>
-          <div class="d-flex justify-content-between"style="margin-top:-15px;margin-left:265px;">
- 
-             <p>101847711805</p>
- 
-            </div>
-           
+ <p>Company ID</p>
+
+ <p>Company  Address</p>
+
+ </div>
+ <div class="d-flex justify-content-between"style="margin-top:-15px;">
+
+       <p>{{$employee->company_id}}</p>
+
+       <p>{{$employeedata->company_address1}}</p>
+
+   </div>
             <div class="d-flex justify-content-between"style="font-weight:400; color:#7f8fa4; font-size: 12px;">
  
           <p>Lop</p>
@@ -365,6 +366,7 @@
         </div>
  
 </div>
+@endforeach
 @endforeach
       </div>
   </div>
