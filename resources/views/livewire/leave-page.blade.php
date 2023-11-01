@@ -188,7 +188,7 @@
             </div>
             <div class="row" id="leaveCancel" style="width:80%;margin-top:20px;display: none; margin-left:100px;">
         
-                <div>leavecancel</div>
+                <div>   @livewire('leave-cancel')</div>
             </div>
             
             <div class="row" id="compOff" style="width:80%; margin-top:20px;display: none; margin-left:100px;">

@@ -84,7 +84,7 @@ use App\Livewire\LeavePage;
 
 use App\Livewire\LeaveBalances;
 
-
+use App\Livewire\LeaveCancel;
 use App\Livewire\HolidayCalender;
 
 use App\Livewire\LeaveHistory;
@@ -278,8 +278,9 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/view-details', ViewDetails::class)->name('view-details');
 
     Route::get('/leave-balances', LeaveBalances::class)->name('leave-balances');
-
+    Route::get('/leave-cancel', LeaveCancel::class)->name('leave-cancel');
     Route::get('/leave-calender', LeaveCalender::class)->name('leave-calender');
+    Route::get('/leave-history', LeaveHistory::class)->name('leave-history');
     Route::get('/leave-pending/{leaveRequestId}', LeavePending::class)->name('leave-pending');
 
 
