@@ -249,63 +249,10 @@
 <body>
 
 <div class="applyContainer">
-    <h6 >Applying for Leave</h6>
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-@if(session()->has('message'))
-    <div class="alert alert-success">
-        {{ session('message') }}
-    </div>
-@endif
+    <h6 >Applying for Leave Cancel</h6>
+
     <form wire:submit.prevent="leaveApply" enctype="multipart/form-data">
-    <div class="form-group" >
-                <label for="leaveType"  style="color: #778899; font-size: 14px; font-weight: 500;">Leave type</label>
-                <select class="form-control" wire:model="leave_type" id="leaveType" name="leaveType" style="width: 50%; font-weight: 400; color: #778899;" onchange="toggleReporting()">
-                    <option value="default">Select Type</option>
-                    <option value="Causal Leave Probation">Casual Leave</option>
-                    <option value="Loss of Pay">Loss of Pay</option>
-                    <option value="Maternity Leave">Maternity Leaves</option>
-                    <option value="Sick Leave">Sick Leave</option>
-                </select>
-                  @error('from_date') <span class="text-danger">{{ $message }}</span> @enderror
-            </div>
-             <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="fromDate" style="color: #778899; font-size: 14px; font-weight: 500;">From date</label>
-                <input type="date" wire:model="from_date" class="form-control" id="fromDate" name="fromDate" style="color: #778899;">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="session" style="color: #778899; font-size: 14px; font-weight: 500;">Sessions</label>
-                <select class="form-control" wire:model="from_session" id="session" name="session" style="font-weight: 500; ">
-                    <option value="default">Select session</option>
-                    <option value="Session 1">Session 1</option>
-                    <option value="Session 2">Session 2</option>
-                </select>
-            </div>
-            @error('from_date') <span class="text-danger">{{ $message }}</span> @enderror
-        </div>
-        <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="toDate" style="color: #778899; font-size: 14px; font-weight: 500;">To date</label>
-                    <input type="date" wire:model="to_date" class="form-control" id="toDate" name="toDate" style="color: #778899;">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="session" style="color: #778899; font-size: 14px; font-weight: 500;">Sessions</label>
-                    <select class="form-control" wire:model="to_session" id="session" name="session" style="font-weight: 500;">
-                        <option value="default">Select session</option>
-                        <option value="Session 1">Session 1</option>
-                        <option value="Session 2">Session 2</option>
-                    </select>
-                </div>
-                @error('to_date') <span class="text-danger">{{ $message }}</span> @enderror
-            </div>
+   
        
             <div>
                 <div class="form-group" style="margin-top: 10px;">
@@ -412,11 +359,7 @@
                 <textarea class="form-control" wire:model="reason" id="reason" name="reason" placeholder="Enter Reason" rows="4" ></textarea>
                 @error('reason') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
-            <div class="form-group">
-            <input type="file" wire:model="files" wire:loading.attr="disabled" multiple />
-                 @error('file_paths') <span class="text-danger">{{ $message }}</span> @enderror
-            </div>
-        
+          
             <div class="buttons1">
               <button type="submit" class="btn btn-primary">Submit</button>
                 <button type="button" class="btn btn-secondary" >Cancel</button>

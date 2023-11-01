@@ -131,11 +131,24 @@ class LeavePage extends Component
             // You might need to customize this based on your actual session values
             return (int) str_replace('Session ', '', $session);
         }
+        
+        public function cancelLeave($leaveRequestId)
+        {
+            // Find the leave request by ID
+            $leaveRequest = LeaveRequest::find($leaveRequestId);
     
- 
+            // Update status to 'rejected'
+            $leaveRequest->status = 'cancel';
+            $leaveRequest->save();
+            $leaveRequest->touch();
+    
+            session()->flash('message', 'Leave application canceled.');
+        }
+
+        
     public function render()
     {
         return view('livewire.leave-page');
     }
-    
+   
 }

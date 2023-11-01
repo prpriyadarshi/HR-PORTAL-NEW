@@ -4,10 +4,10 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
-class ViewDetails extends Component
+class LeaveCancel extends Component
 {
     public function render()
     {
-        return view('livewire.view-details');
+        return view('livewire.leave-cancel');
     }
 }
