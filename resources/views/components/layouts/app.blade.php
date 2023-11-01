@@ -14,18 +14,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
  
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/hr.png') }}">
-    <title>
-        HR Strategies Pro
-    </title>
-    <style>
-        /* Style for the grey horizontal rule */
-        hr.grey {
-            border: 1px solid #ccc;
-            /* Adjust the color and style as needed */
-        }
-    </style>
- 
+
+    <title>Grey HR Portal</title>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
  
     <script src="{{ mix('js/app.js') }}"></script>
@@ -213,8 +204,8 @@
                     <ul class="nav flex-column">
  
                         <div style="margin-bottom: 10px;margin-top:0px">
- 
-                            @livewire('company-logo')
+
+                           @livewire('company-logo')
                         </div>
  
                         @livewire('profile-card')
@@ -244,20 +235,20 @@
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle3()">
  
                             <a class="nav-link" href="/tasks">
- 
- 
-                                <i class="fas fa-tasks"></i> To do
- 
-                            </a>
- 
+
+
+                                    <i class="fas fa-tasks"></i> To do
+
+        </a>
+
                         </li>
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
- 
+           <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
+
                             <a class="nav-link" href="#">
  
                                 <i class="fas fa-clock"></i> Attendance</a>
-                        </li>
- 
+            </li>
+
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5(item)">
                             <a class="nav-link" onclick="toggleLeaveDropdown()">
                                 <i class="fas fa-file-alt" id="leave-icon"></i> Leave <i class="fas fa-caret-down" id="leave-caret"></i>
@@ -684,7 +675,6 @@
                     leaveCaret.classList.add("fa-caret-up");
                 }
             }
- 
             function toggleSalaryDropdown() {
                 const salaryOptions = document.getElementById("salary-options");
                 const salaryCaret = document.getElementById("salary-caret");
