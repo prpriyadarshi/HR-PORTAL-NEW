@@ -1,76 +1,80 @@
 <div>
     <style>
-        /* Add this CSS to your stylesheet or create a new CSS file */
-        .job-posting-form {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #f5f5f5;
-            margin-bottom: 15px;
-            font-size: 12px;
+    /* Add this CSS to your stylesheet or create a new CSS file */
+    .job-posting-form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f5f5f5;
+        margin-bottom: 15px;
+        font-size: 12px;
 
-        }
+    }
 
-        .job-posting-form .form-group {
-            margin-bottom: 20px;
-        }
+    .job-posting-form .form-group {
+        margin-bottom: 20px;
+    }
 
-        .job-posting-form label {
-            font-weight: bold;
-        }
+    .job-posting-form label {
+        font-weight: bold;
+    }
 
-        .job-posting-form input[type="text"],
-        .job-posting-form input[type="number"],
-        .job-posting-form select,
-        .job-posting-form textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 12px;
-        }
+    .job-posting-form input[type="text"],
+    .job-posting-form input[type="number"],
+    .job-posting-form select,
+    .job-posting-form textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 12px;
+    }
 
-        .job-posting-form select {
-            height: 40px;
-        }
+    .job-posting-form select {
+        height: 40px;
+    }
 
-        .job-posting-form .btn-primary {
-            background-color: rgb(2, 17, 79);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
+    .job-posting-form .btn-primary {
+        background-color: rgb(2, 17, 79);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
 
-        .text-danger {
-            font-size: 12px;
-        }
+    .text-danger {
+        font-size: 12px;
+    }
 
-        .job-posting-form .btn-primary:hover {
-            background-color: #002D91;
-        }
+    .job-posting-form .btn-primary:hover {
+        background-color: #002D91;
+    }
 
-        #success-message {
-            position: relative;
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px;
-            margin: 10px 0;
-            text-align: center;
-        }
+    #success-message {
+        position: relative;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px;
+        margin: 10px 0;
+        text-align: center;
+    }
 
-        #success-message .close-message {
-            position: absolute;
-            top: 5px;
-            right: 10px;
-            cursor: pointer;
-            color: green;
-        }
+    #success-message .close-message {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        cursor: pointer;
+        color: green;
+    }
     </style>
-    <button style="width: 80px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;margin-left:90%" wire:click="logout">Logout</button>
+    <div style="text-align: center;background-color: #02134F;color:white;padding:8px;margin-bottom:10px">
+        Post Jobs
+    </div>
+    <button style="width: 80px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;margin-left:90%"
+        wire:click="logout">Logout</button>
     @if(Session::has('success'))
     <div id="success-alert" class="alert alert-success alert-dismissible fade show" style="
             height: 30px;
@@ -183,7 +187,7 @@
                 @error('is_active') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
 
-           
+
             <div class="form-group">
                 <label for="application_link">Application Link (optional):</label>
                 <input wire:model="application_link" type="url" class="form-control">

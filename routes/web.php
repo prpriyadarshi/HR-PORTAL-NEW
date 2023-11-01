@@ -53,6 +53,27 @@ Route::group(['middleware' => 'checkAuth'], function () {
     Route::get('/Jobs', function () {
         return view('jobs_view');
     });
+<<<<<<< HEAD
+=======
+    Route::get('/UserProfile', function () {
+        return view('user_profile_view');
+    });
+    Route::get('/full-job-view/{jobId}', function ($jobId) {
+        return view('full_job_details_view', compact('jobId'));
+    })->name('full-job-view');
+    Route::get('/AppliedJobs', function () {
+        return view('applied_jobs_view');
+    });
+    Route::get('/Companies', function () {
+        return view('companies_view');
+    });
+    Route::get('/company-based-jobs/{companyId}', function ($companyId) {
+        return view('company_based_jobs_view', compact('companyId'));
+    })->name('company-based-jobs');
+    Route::get('/VendorScreen', function () {
+        return view('vendor_screen_view');
+    });
+>>>>>>> 6a41cad72680c17aa6792f83404e18d89c1102d4
 });
 Route::middleware(['auth:emp'])->group(function () {
     Route::get('/', Home::class)->name('home');

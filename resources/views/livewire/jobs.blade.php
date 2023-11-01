@@ -2,7 +2,7 @@
     <style>
         /* Global styles */
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Montserrat';
             background-color: #f0f0f0;
             margin: 0;
             padding: 0;
@@ -14,12 +14,16 @@
             color: #fff;
             text-align: center;
             padding: 20px 0;
+            font-family: 'Montserrat';
+
         }
 
         .header h1 {
             font-size: 24px;
             font-weight: bold;
             margin: 0;
+            font-family: 'Montserrat';
+
         }
 
         /* Navigation styles */
@@ -41,46 +45,6 @@
             text-decoration: none;
         }
 
-        /* Modal styles */
-        .modal-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            background: rgba(0, 0, 0, 0.5);
-        }
-
-        .modal {
-            background-color: #fff;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            padding: 20px;
-            position: relative;
-        }
-
-        .close-button {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 20px;
-            cursor: pointer;
-            background-color: #fff;
-            color: red;
-            border: 2px solid #000;
-            border-radius: 50%;
-            height: 24px;
-            width: 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
 
         /* Job card styles */
         .job-listings {
@@ -90,6 +54,8 @@
             list-style: none;
             padding: 0;
             margin: 0;
+            font-family: 'Montserrat';
+
         }
 
         .job-card {
@@ -97,6 +63,8 @@
             border: 1px solid #ddd;
             border-radius: 8px;
             padding: 20px;
+            font-family: 'Montserrat';
+
         }
 
         .job-card:hover {
@@ -107,17 +75,23 @@
             font-size: 18px;
             color: #333;
             margin: 0;
+            font-family: 'Montserrat';
+
         }
 
         .job-company {
             font-weight: bold;
             color: #0077b6;
+            font-family: 'Montserrat';
+
         }
 
         .job-details {
             margin-top: 10px;
             display: flex;
             justify-content: space-between;
+            font-family: 'Montserrat';
+
         }
 
         .job-location,
@@ -129,6 +103,8 @@
         .job-skills-required {
             font-size: 14px;
             color: #555;
+            font-family: 'Montserrat';
+
         }
 
         .apply-button {
@@ -150,21 +126,29 @@
             width: 100%;
             margin-top: 10px;
             font-size: 14px;
+            font-family: 'Montserrat';
+
         }
 
         .job-list th {
             background-color: #007BFF;
             color: white;
             font-size: 14px;
+            font-family: 'Montserrat';
+
         }
 
         .job-list td {
             vertical-align: middle;
             padding: 10px;
+            font-family: 'Montserrat';
+
         }
 
         .job-list tbody tr:nth-child(odd) {
             background-color: #f2f2f2;
+            font-family: 'Montserrat';
+
         }
 
         /* Success and error message styles */
@@ -203,17 +187,31 @@
         }
     </style>
     <div>
-        <div class="row" style="margin-left: 71%;margin-top:10px">
-           <a href="/AppliedJobs" style="text-decoration: none;">
-           <button  style="font-size:12px;width: 130px;height:30px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white;margin-left: 5px;"> <i class="fas fa-check" style="margin-right: 5px;"></i> Applied Jobs</button>
-           </a>
+        <div class="container" style="background-color: #02134F; color: white; padding: 8px;">
+            <div style="display: flex; align-items: start; justify-content: start;">
+                <img src="https://xsilica.com/images/xsilica_broucher_final_modified_05082016-2.png" alt="Logo" style="width: 200px; height: 50px; margin-right: 10px;">
+                <h1 style="font-size: 21px; margin-left:20%">Job Seeker - {{$user->full_name}}</h1>
+            </div>
+
+        </div>
+
+        <div class="row" style="margin-left: 60%;margin-top:10px">
+            <a href="/Companies" style="text-decoration: none;">
+                <button style="font-size:12px;width: 130px;height:30px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white;margin-left: 5px;">
+                    <i class="fas fa-building" style="margin-right: 5px;"></i>
+                    Companies</button>
+            </a>
+            <a href="/AppliedJobs" style="text-decoration: none;">
+                <button style="font-size:12px;width: 130px;height:30px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white;margin-left: 5px;">
+                    <i class="fas fa-check" style="margin-right: 5px;"></i> Applied Jobs</button>
+            </a>
             <button style="font-size:12px;width: 100px; border-radius: 5px;height:30px; background-color: rgb(2, 17, 79); color: white;margin-left: 5px;">
                 <a href="/UserProfile" style="text-decoration: none;color:white"> <i class="fa fa-user" style="margin-right: 5px;"></i> Profile</a>
             </button>
             <button style="font-size:12px;margin-left: 5px;width: 100px; border-radius: 5px;height:30px; background-color: rgb(2, 17, 79); color: white;" wire:click="logout"> <i class="fas fa-sign-out-alt" style="margin-right: 5px;"></i> Logout</button>
         </div>
 
-       
+
         <div class="container">
             <h2 style="text-align: center;
             font-family: Montserrat;
@@ -229,8 +227,9 @@
                 <button class="close" wire:click="dismissError">×</button>
             </div>
             @endif
-            @if($jobs)
-            <div class="job-listings" style="margin-top: 20px;">
+            @if (!is_null($jobs) && $jobs->count() > 0)
+
+            <div class="job-listings" style="padding: 5px;">
                 @foreach ($jobs as $job)
                 <div class="job-card" style="text-align: start;">
                     <a wire:click="showJobDetails('{{$job->job_id}}')" style="text-decoration: none;color:black">
@@ -247,12 +246,14 @@
                                     </th>
                                     <th style="font-size: 12px; text-align: start;">
                                         <p class="job-salary" style="width:250px">
-                                            <strong style="margin-right: 10px;">₹</strong>{{ number_format($job->salary, 2) }} PA
+                                            <strong style="margin-right: 10px;">₹</strong>{{ number_format($job->salary, 2) }}
+                                            PA
                                         </p>
                                     </th>
                                     <th style="font-size: 12px; text-align: start;">
                                         <p class="job-posted-at" style="width:150px">
-                                            <i class="far fa-calendar-alt"></i> {{ date('d M Y', strtotime($job->expire_date)) }}
+                                            <i class="far fa-calendar-alt"></i>
+                                            {{ date('d M Y', strtotime($job->expire_date)) }}
                                             <strong style="font-size: 10px;">(Expired)</strong>
                                         </p>
                                     </th>
@@ -269,7 +270,8 @@
                                 </th>
                                 <th style="font-size: 12px; text-align: start;">
                                     <p class="job-education-requirement" style="width:250px;margin-right: 10px;">
-                                        <i class="fas fa-graduation-cap"></i> Education: {{ $job->education_requirement }}
+                                        <i class="fas fa-graduation-cap"></i> Education:
+                                        {{ $job->education_requirement }}
                                     </p>
                                 </th>
                                 <th style="font-size: 12px; text-align: start;">

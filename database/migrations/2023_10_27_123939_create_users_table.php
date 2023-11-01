@@ -15,7 +15,10 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('user_id')->unique();
-
+            $table->enum('user_type', ['Job Seeker', 'Vendor']);
+            $table->string('company_id');
+            $table->string('company_name');
+            $table->string('company_logo');
             $table->string('image')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
@@ -45,9 +48,9 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('mobile_no');
-            $table->string('work_status');
+            $table->string('work_status')->nullable();
             $table->string('address');
-            $table->string('resume');
+            $table->string('resume')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

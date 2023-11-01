@@ -21,6 +21,10 @@ class User extends Authenticatable
     public $incrementing = false;
     protected $fillable = [
         'user_id',
+        'user_type',
+        'company_id',
+        'company_name',
+        'company_logo',
         'image',
         'city',
         'state',
@@ -75,5 +79,6 @@ class User extends Authenticatable
         'education' => 'array',
         'languages' => 'array',
     ];
+    
     
 }
