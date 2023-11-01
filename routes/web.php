@@ -2,6 +2,14 @@
 
 use App\Livewire\EmpLogin;
 use App\Livewire\Feeds;
+<<<<<<< HEAD
+=======
+
+
+use App\Livewire\Attendance;
+use App\Livewire\Regularisation;
+
+>>>>>>> c91d109226d32a54ddf30c7ebc67d3b6582e26a4
 use App\Livewire\HelpDesk;
 use App\Livewire\Home;
 use App\Livewire\Peoples;
@@ -40,6 +48,14 @@ Route::group(['middleware' => 'checkAuth'], function () {
 });
 Route::middleware(['auth:emp'])->group(function () {
     Route::get('/', Home::class)->name('home');
+<<<<<<< HEAD
+=======
+
+
+    Route::get('/Attendance', Attendance::class)->name('Attendance');
+    Route::get('/regularisation', Regularisation::class)->name('regularisation');
+
+>>>>>>> c91d109226d32a54ddf30c7ebc67d3b6582e26a4
     Route::get('/ProfileInfo', ProfileInfo::class)->name('profile.info');
     Route::get('/Feeds', Feeds::class);
     Route::get('/PeoplesList', Peoples::class);

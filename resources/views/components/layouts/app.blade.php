@@ -313,9 +313,21 @@
                                             Payslips
                                         </a>
                                     </li>
+<<<<<<< HEAD
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('proofofinvestment')">
                                         <a class="nav-link" href="/proofofinvestment" id="proofofinvestment" onclick="selectOption(this,   'Proof Of Investment')">
                                             Proof Of Investment
+=======
+
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('reimbursement')">
+                                        <a class="nav-link" href="/reimbursement" id="reimbursement" onclick="selectOption(this, 'Reimbursement')">
+                                        Reimbursement
+
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('proofofinvestment')">
+                                        <a class="nav-link" href="/proofofinvestment" id="proofofinvestment" onclick="selectOption(this,'Proof Of Investment')">
+                                            Proof Of Investment
+
+>>>>>>> c91d109226d32a54ddf30c7ebc67d3b6582e26a4
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('loan')">
