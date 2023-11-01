@@ -11,6 +11,7 @@ class DownloadPdf extends Component
     public $employeeDetails;
     public $salaryRevision;
     public $empBankDetails;
+    
     public function render()
 {
 

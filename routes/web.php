@@ -116,6 +116,9 @@ Route::get('/documents', Documents::class);
 
     // Route::get('/salary-revision', SalaryRevisions::class)->name('salary-revision');
 });
+Route::get('/delegatesddb', function(){
+    return view('delegate');
+});
 Route::get('/your-download-route', function () {
     return view('download-pdf');
 });

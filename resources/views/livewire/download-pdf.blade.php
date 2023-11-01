@@ -1,102 +1,87 @@
-<style>
-    /* Define the CSS styles for the box */
-    .salary-slip {
-        margin: 15px;
-    }
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 50vh;
+            font-size:12px;
+        }
 
-    .empDetail {
-        width: 70%;
-        margin-left: 200px;
-        text-align: left;
-        border: 2px solid black;
-        border-collapse: collapse;
-        table-layout: fixed;
-    }
+        .salary-slip {
+            background: #fff;
+            max-width: 800px;
+            width: 100%;
+            margin: 20px;
+            font-size:12px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            padding: 20px;
+        }
 
-    .head {
-        margin: 10px;
-        margin-bottom: 50px;
-        width: 100%;
-    }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-    .companyName {
-        text-align: right;
-        font-size: 25px;
-        font-weight: bold;
-    }
+        }
 
-    .salaryMonth {
-        text-align: center;
-    }
+        .header img {
+            height: 80px;
+            width: auto;
+        }
 
-    .table-border-bottom {
-        border-bottom: 1px solid;
-    }
+        .company-name {
+          font-size:12px;
+        }
 
-    .table-border-right {
-        border-right: 1px solid;
-    }
+        .empDetail {
+            width: 100%;
+            font-size:12px;
+      
+        }
 
-    .myBackground {
-        padding-top: 10px;
-        text-align: left;
-        border: 1px solid black;
-        height: 40px;
-    }
+        .empDetail th,
+        .empDetail td {
+          
+            padding: 8px;
+            font-size:12px;
+        }
 
-    .myAlign {
-        text-align: center;
-        border-right: 1px solid black;
-    }
+        .myBackground {
+            background-color: #c2d69b;
+            font-weight: 300;
+        }
 
-    .myTotalBackground {
-        padding-top: 10px;
-        text-align: left;
-        background-color: #EBF1DE;
-        border-spacing: 0px;
-    }
+        .myAlign {
+            text-align: right;
+        }
 
-    .align-4 {
-        width: 25%;
-        float: left;
-    }
-
- 
-
-    .align-2 {
-        margin-top: 25px;
-        width: 50%;
-        float: left;
-    }
-
-    .border-center {
-        text-align: center;
-    }
-
-    .border-center th, .border-center td {
-        border: 1px solid black;
-    }
-
-    th, td {
-        padding-left: 50px;
-    }
-</style>
+       
+    </style>
 
 
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap">
 
 <div>
-    @foreach($employees as $employee)
-   @foreach($empBankDetails as  $employee)
-  <div class="salary-slip">
-  <table class="empDetail">
-  <tr height="100px" style='background-color: #c2d69b'>
-                <td colspan='4'>
-                  <img  src='https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/2e383f1a48f91dbea7e6' style="height:100px;width:200px" /></td>
-                <td colspan='4' class="companyName" style="margin-left:100px;font-size:16px"> XSILICA SOFTWARE SOLUTIONS PVT LTD</td>
-              </tr>
-              <tr>
+    @foreach($employees as $employeeData)
+    @foreach($empBankDetails as  $employee)
+    <div class="salary-slip">
+        <table class="empDetail">
+            <tr style="background-color: #c2d69b">
+                <td colspan='3'>
+                    <img src='https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/2e383f1a48f91dbea7e6' style="height:60px;width:200px" />
+                </td>
+                <td colspan='3' class="companyName" style="margin-left:100px;font-size:16px">XSILICA SOFTWARE SOLUTIONS PVT LTD</td>
+            </tr>
+            <tr>
                 <th>Name</th>
-                <td>{{ $employee->first_name }} {{ $employee->last_name }}</td>
+                <td>{{ $employeeData->first_name }} {{ $employeeData->last_name }}</td>
                 <th>Bank Branch</th>
                 <td>{{ $employee->bank_branch }}</td>
                 <th>Branch Name</th>
@@ -104,40 +89,36 @@
             </tr>
             <tr>
                 <th>PF Number</th>
-                <td>{{ $employee->pf_no }}</td>
+                <td>{{ $employeeData->pf_no }}</td>
                 <th>Bank Name</th>
                 <td>{{ $employee->bank_name }}</td>
                 <th>Bank Account Number</th>
                 <td>{{ $employee->account_number }}</td>
             </tr>
-            <tr>
-                <th>Father Name</th>
-                <td>{{ $employee->father_name }}</td>
-                <th>Bank Branch</th>
-                <td style="margin-left:50px">{{ $employee->bank_branch }}</td>
-                <th style="margin-left:50px">Pay Period</th>
-                <td>XXXXXXXXX</td>
-            </tr>
+            
             <tr>
                 <th>Mobile</th>
-                <td>{{ $employee->mobile_number }}</td>
+                <td>{{ $employeeData->mobile_number }}</td>
                 <th>Bank A/C no.</th>
                 <td style="margin-left:50px"> {{ $employee->account_number }}</td>
                 <th style="margin-left:50px">Address</th>
-                <td>{{ $employee->address }}</td>
+                <td>{{ $employeeData->address }}</td>
             </tr>
             <tr>
                 <th>Grade:</th>
                 <td>18</td>
                 <th>Designation</th>
-                <td>{{ $employee->job_title }}</td>
+                <td>{{ $employeeData->job_title }}</td>
                 <th style="margin-left:50px">PAN No:</th>
-                <td>{{ $employee->pan_no }}</td>
-               
+                <td>{{ $employeeData->pan_no }}</td>
             </tr>
-            @endforeach
-            @endforeach
-            @foreach($salaryRevision as $employee)
+        </table>
+    </div>
+    @endforeach
+    @endforeach
+    @foreach($salaryRevision as $employee)
+    <div class="salary-slip">
+        <table class="empDetail">
             <tr class="myBackground">
                 <th colspan="2">Payments</th>
                 <th>Particular</th>
@@ -191,7 +172,5 @@
             </tr>
         </table>
     </div>
-   @endforeach
- 
- 
+    @endforeach
 </div>

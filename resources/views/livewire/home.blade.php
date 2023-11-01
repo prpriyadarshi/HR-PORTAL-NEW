@@ -105,8 +105,10 @@
         }
     </style>
     <!-- resources/views/your-view.blade.php -->
-
+  
     <div class="container">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap">
+
         @if (session()->has('success'))
         <div class="custom-alert alert-success" style="text-align: center;margin-left:50%;width: 500px;">
             {{ session('success') }}

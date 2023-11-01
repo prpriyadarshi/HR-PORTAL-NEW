@@ -129,6 +129,33 @@
       .comments {
         margin-top: 10px;
       }
+      .horizontal-menu {
+  display: flex;
+  margin-top: 20px;
+  background: white;
+  padding: 10px;
+}
+
+.menu-item {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+  font-size: 14px;
+  border-radius:5px;
+  font-family: 'Open Sans', sans-serif;
+  background: #f7f7f7;
+  margin-right: 10px;
+  text-decoration: none;
+  color: #333;
+  transition: background 0.3s, color 0.3s;
+}
+
+.menu-item:hover {
+  background: #33B3BC;
+  color: white;
+}
+
     </style>
   </head>
 
@@ -136,59 +163,50 @@
     <div class="container">
       <!-- Left Menu and Content (Conditional) -->
       <div class="left-menu">
-        <h2>Menu</h2>
+        <h3>Feeds</h3>
         <!-- Add your menu items here -->
       </div>
 
       <!-- Content Area -->
-      <div class="content" style="margin-top:-30px">
-        <div style="display: flex; margin-top:30px">
+      <div class="content" style="margin-top: -20px">
+  <div class="horizontal-menu" style="display: flex; margin-top: 30px; background: white; padding: 10px;height:60px">
 
-          <div class="left-menu" style="height:500px;margin-bottom:170px;background:white;width:180px">
-            <div class="row">
-              <b class="links" style="margin-top: 20px;padding-left:40px; font-size: 14px;  font-family: Open Sans, sans-serif;">
-                Groups
+    <div class="menu-item">
+      <b class="links" style="font-size: 14px; font-family: 'Open Sans', sans-serif;">
+        Groups
+      </b>
+    </div>
 
-              </b>
+    <a class="menu-item" href="/Feeds">
+      All Feeds
+    </a>
 
+    <a class="menu-item" href="/everyone">
+      Every One
+    </a>
 
+    <a class="menu-item" href="/events">
+      Events
+    </a>
 
-              <a class="links" href="/feeds" style="margin-top: 20px; padding-left: 40px; font-size: 14px; font-family: Open Sans, sans-serif; color: black; text-decoration: none;">
-                <span onmouseover="this.style.color='#33B3BC'; this.style.textDecoration='underline';" onmouseout="this.style.color='black'; this.style.textDecoration='none';">
-                  All Feeds
-                </span>
-              </a>
-              <a class="links" href="/everyone" style="margin-top: 20px; padding-left: 40px; font-size: 14px; font-family: Open Sans, sans-serif; color: black; text-decoration: none;">
-                <span onmouseover="this.style.color='#33B3BC'; this.style.textDecoration='underline';" onmouseout="this.style.color='black'; this.style.textDecoration='none';">
-                  Every One
-                </span>
-              </a>
-              <a class="links" href="/events" style="margin-top: 20px; padding-left: 40px; font-size: 14px; font-family: Open Sans, sans-serif; color: black; text-decoration: none;">
-                <span onmouseover="this.style.color='#33B3BC'; this.style.textDecoration='underline';" onmouseout="this.style.color='black'; this.style.textDecoration='none';">
-                  Events
-                </span>
-              </a>
-              <a class="links" href="/company" style="margin-top: 20px; padding-left: 40px; font-size: 14px; font-family: Open Sans, sans-serif; color: black; text-decoration: none;">
-                <span onmouseover="this.style.color='#33B3BC'; this.style.textDecoration='underline';" onmouseout="this.style.color='black'; this.style.textDecoration='none';">
-                  Company News
-                </span>
-              </a>
+    <a class="menu-item" href="/company" style="font-size:12px">
+      Company News
+    </a>
 
-              <a class="links" href="/everyone" style="margin-top: 20px; padding-left: 40px; font-size: 14px; font-family: Open Sans, sans-serif; color: black; text-decoration: none;">
-                <span onmouseover="this.style.color='#33B3BC'; this.style.textDecoration='underline';" onmouseout="this.style.color='black'; this.style.textDecoration='none';">
-                  Appreciation
-                </span>
-              </a>
-              <a class="links" href="/everyone" style="margin-top: 20px; padding-left: 40px; font-size: 14px; font-family: Open Sans, sans-serif; color: black; text-decoration: none;">
-                <span onmouseover="this.style.color='#33B3BC'; this.style.textDecoration='underline';" onmouseout="this.style.color='black'; this.style.textDecoration='none';">
-                  Buy/Sell/Rent
-                </span>
-              </a>
+    <a class="menu-item" href="/appreciation">
+      Appreciation
+    </a>
 
-            </div>
-          </div>
+    <a class="menu-item" href="/buy-sell-rent">
+      Buy/Sell/Rent
+    </a>
+
+  </div>
+</div>
+
+     
           <div class="top-menu" style="background-color: #f0f0f0;">
-            <div class="B" style="width: 750px; height: 70px; border-top: 1px solid #E0DDDD; border-bottom: 1px solid #E0DDDD; background-color: #FFFFFF;font-size: 14px; font-family: Open Sans, sans-serif;padding:10px;">
+            <div class="B" style="width: 750px; height: 70px; border-top: 1px solid #E0DDDD; border-bottom: 1px solid #E0DDDD; background-color: #FFFFFF;font-size: 14px; font-family: Open Sans, sans-serif;padding:10px;margin-left:40px">
               <b> All Feeds</b>
               <p>Groups</p>
             </div>
