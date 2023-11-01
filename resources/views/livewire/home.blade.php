@@ -1,19 +1,17 @@
-
 <div style="width: 400px;">
     <script src="{{ asset('livewire/livewire.js') }}" defer></script>
 
     <style>
-        
         .left-menu {
             width: 150px;
 
             background-color: #f0f0f0;
             padding-right: 30px;
-           
+
             /* Add a vertical line to the right of the left menu */
         }
 
-     
+
         table {
             border-collapse: collapse;
             width: 100%;
@@ -25,17 +23,18 @@
             padding: 8px;
             text-align: center;
         }
-        
+
 
         th {
             background-color: #f2f2f2;
         }
+
         .greet {
-            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             tab-size: 4;
             -webkit-text-size-adjust: 100%;
             visibility: inherit;
-            font-family: Open Sans,sans-serif;
+            font-family: Open Sans, sans-serif;
             font-size: 14px;
             font-weight: 400;
             font-style: normal;
@@ -46,15 +45,16 @@
             box-sizing: border-box;
             border: 0 solid;
             --tw-shadow: 0 0 transparent;
-            --tw-ring-inset: var(--tw-empty,);
+            --tw-ring-inset: var(--tw-empty, );
             --tw-ring-offset-width: 0px;
             --tw-ring-offset-color: #fff;
-            --tw-ring-color: rgba(59,130,246,0.5);
+            --tw-ring-color: rgba(59, 130, 246, 0.5);
             --tw-ring-offset-shadow: 0 0 transparent;
             --tw-ring-shadow: 0 0 transparent;
         }
+
         .banner-ad {
-            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             tab-size: 4;
             -webkit-text-size-adjust: 100%;
             visibility: inherit;
@@ -67,33 +67,37 @@
             box-sizing: border-box;
             border: 0 solid;
             --tw-shadow: 0 0 transparent;
-            --tw-ring-inset: var(--tw-empty,);
+            --tw-ring-inset: var(--tw-empty, );
             --tw-ring-offset-width: 0px;
             --tw-ring-offset-color: #fff;
-            --tw-ring-color: rgba(59,130,246,0.5);
+            --tw-ring-color: rgba(59, 130, 246, 0.5);
             --tw-ring-offset-shadow: 0 0 transparent;
             --tw-ring-shadow: 0 0 transparent;
             font-size: 1rem;
             line-height: 1.5rem;
             max-width: 32rem;
             --tw-text-opacity: 1;
-            color: rgba(103,122,142,var(--tw-text-opacity));
+            color: rgba(103, 122, 142, var(--tw-text-opacity));
         }
-       
+
 
         @keyframes mergeAndJumble {
             0% {
                 transform: translate(0, 0);
             }
+
             25% {
                 transform: translate(100px, 0);
             }
+
             50% {
                 transform: translate(100px, 100px);
             }
+
             75% {
                 transform: translate(0, 100px);
             }
+
             100% {
                 transform: translate(0, 0);
             }
@@ -108,12 +112,12 @@
         }
     </style>
     <!-- resources/views/your-view.blade.php -->
-  
+
     <div class="container">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap">
 
         @if (session()->has('success'))
-        
+
         <div class="custom-alert alert-success" style="text-align: center;margin-left:50%;width: 500px;">
             {{ session('success') }}
         </div>
@@ -129,40 +133,40 @@
 
 
         <div class="left-menu">
-            
+
             <h2>Home</h2>
             <!-- Add your menu items here -->
         </div>
 
         <!-- Content Area -->
         <div class="content">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap">
 
             <div style="display:flex;">
                 <div>
-                <div class="greet">
-        <h1 class="text-secondary-500 pb-1.5x" id="greetingText" style="margin-top: 20px; font-size: 24px; font-family: montserrat;width:270px">Good Evening</h1>
-    </div>
-    <div class="banner-ad text-base max-w-lg text-secondary-400"  style="width:600px">
-    <carousel class="ng-star-inserted" style="width:470px">
-        <!-- Carousel content goes here -->
-    </carousel>
-    <div class="quote-text">
-        <!-- Quote text will be dynamically inserted here -->
-    </div>
-    <div class="author-text">
-        <!-- Author text will be dynamically inserted here -->
-    </div>
-    <div class="watch-video">
-        <p>Watch the video to understand your new Employee Self Service portal quickly.</p>
-        <a href="https://greytip-2.wistia.com/medias/vbxdhiqvk6" class="text-primary-400 pt-1x cursor-pointer text-sm font-semibold pb-2x inline-block">Watch Video</a>
-    </div>
-</div>
+                    <div class="greet">
+                        <h1 class="text-secondary-500 pb-1.5x" id="greetingText" style="margin-top: 20px; font-size: 24px; font-family: montserrat;width:270px">Good Evening</h1>
                     </div>
-                    <img id="greeting-image" src="" alt="Greeting Image" style="height: 200px; width: 400px; margin-left: 180px;">
-
-
+                    <div class="banner-ad text-base max-w-lg text-secondary-400" style="width:600px">
+                        <carousel class="ng-star-inserted" style="width:470px">
+                            <!-- Carousel content goes here -->
+                        </carousel>
+                        <div class="quote-text">
+                            <!-- Quote text will be dynamically inserted here -->
+                        </div>
+                        <div class="author-text">
+                            <!-- Author text will be dynamically inserted here -->
+                        </div>
+                        <div class="watch-video">
+                            <p>Watch the video to understand your new Employee Self Service portal quickly.</p>
+                            <a href="https://greytip-2.wistia.com/medias/vbxdhiqvk6" class="text-primary-400 pt-1x cursor-pointer text-sm font-semibold pb-2x inline-block">Watch Video</a>
+                        </div>
+                    </div>
                 </div>
+                <img id="greeting-image" src="" alt="Greeting Image" style="height: 200px; width: 400px; margin-left: 180px;">
+
+
+            </div>
             <div class="content" style="display:flex">
                 <div class="container">
 
@@ -254,26 +258,26 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="column" style="width: 360px;">
-    <div style="width: 310px; height: 210px; border-radius: 5px; border: 1px solid #CFCACA; margin-top: 20px; background-color: white; margin-left: 30px">
-        <div style="color: #677A8E; margin-left: 20px; font-family: Open Sans, sans-serif; margin-top: 10px;">
-            Upcoming Holidays
-            <a href="/holiday-calendar" style="font-size: 14px; margin-left: 130px; text-decoration: none; height: 20px; color: black">&rarr;</a>
-        </div>
+                                <div style="width: 310px; height: 210px; border-radius: 5px; border: 1px solid #CFCACA; margin-top: 20px; background-color: white; margin-left: 30px">
+                                    <div style="color: #677A8E; margin-left: 20px; font-family: Open Sans, sans-serif; margin-top: 10px;">
+                                        Upcoming Holidays
+                                        <a href="/holiday-calendar" style="font-size: 14px; margin-left: 130px; text-decoration: none; height: 20px; color: black">&rarr;</a>
+                                    </div>
 
 
-        @foreach ($calendarData as $entry)
-            <div>
-                <p style="color: #677A8E; margin-left: 20px; font-size: 14px; font-family: Open Sans, sans-serif; margin-top: 10px;">
-                    {{ date('d M l', strtotime($entry->date)) }}<br>
-                    <span style="font-size: 12px;">{{ $entry->festivals }}</span>
-                </p>
-            </div>
-        @endforeach
-    </div>
-</div>
-                                        </div>
+                                    @foreach ($calendarData as $entry)
+                                    <div>
+                                        <p style="color: #677A8E; margin-left: 20px; font-size: 14px; font-family: Open Sans, sans-serif; margin-top: 10px;">
+                                            {{ date('d M l', strtotime($entry->date)) }}<br>
+                                            <span style="font-size: 12px;">{{ $entry->festivals }}</span>
+                                        </p>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="container">
                             <div class="row" style="display: flex;">
@@ -314,16 +318,16 @@
                                         <div style="width: 300px; height: 400px; border-radius: 5px; border: 1px solid #CFCACA;margin-bottom:50px;margin-left:5px;background-color:white">
                                             <div style="color: #677A8E; margin-left: 10px; font-family: Open Sans, sans-serif; margin-top: 20px;">
                                                 Payslip
-                                                <a  href="/slip" style="font-size:16px; margin-left: 180px;">&rarr;</a>
+                                                <a href="/slip" style="font-size:16px; margin-left: 180px;">&rarr;</a>
                                             </div>
 
                                             <div style="display:flex">
                                                 <img src="https://www.litmus.com/wp-content/uploads/2021/03/Dark-vs-Light-Mode-Poll-Results-300x300.png" alt="Image Description" style="height: 110px; width: 130px; margin-top: 20px; margin-left: 20px;">
                                                 <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 60px; font-family: Open Sans, sans-serif; margin-top: 30px; font-weight: 100; color: #9E9696">
-    <br>{{ date('M Y', strtotime('-1 month')) }}</br>
-    <br>{{ date('t', strtotime('-1 month')) }}</br>
-    <br>Paid Days</br>
-</div>
+                                                    <br>{{ date('M Y', strtotime('-1 month')) }}</br>
+                                                    <br>{{ date('t', strtotime('-1 month')) }}</br>
+                                                    <br>Paid Days</br>
+                                                </div>
 
                                             </div>
 
@@ -336,21 +340,21 @@
                                                     <p>₹{{$salaries->calculateTotalAllowance(), 2}}</p>
                                                     <p>₹{{$salaries->calculateTotalDeductions(), 2}}</p>
                                                     @if ($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions() > 0)
-                          <p style="margin-top:5px"> ₹{{ number_format($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions(), 2) }}</p>
-                                    @endif
+                                                    <p style="margin-top:5px"> ₹{{ number_format($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions(), 2) }}</p>
+                                                    @endif
 
                                                 </div>
                                             </div>
                                             <div class="column" style="display: flex; color: #1090D8; margin-left: 20px; font-size: 14px; font-family: Open Sans, sans-serif; margin-top: 20px; font-weight: 100;">
-   
-   <a href="/your-download-route" id="pdfLink2023_4" class="pdf-download" download style="margin-left: 10px; display: inline-block;">Download PDF</a>
-   <p style="margin-left: 80px;">Show Salary</p>
-</div>
+
+                                                <a href="/your-download-route" id="pdfLink2023_4" class="pdf-download" download style="margin-left: 10px; display: inline-block;">Download PDF</a>
+                                                <p style="margin-left: 80px;">Show Salary</p>
+                                            </div>
 
                                         </div>
 
                                     </div>
-@endforeach
+                                    @endforeach
 
                                     <div class="column" style="margin-left:20px">
                                         <div style="width: 300px; height: 200px; border-radius: 5px; border: 1px solid #CFCACA; margin-top: 20px; background-color: white;">
@@ -362,9 +366,9 @@
                                                 <img src="https://th.bing.com/th/id/OIP.ISoRyxX3652noSb_DpscdAHaHa?pid=ImgDet&rs=1" alt="Image Description" style="height: 60px; width: 60px; margin-top: 20px; margin-left: 20px;">
                                                 <div class="B" style="color:  #677A8E; margin-left: 20px; font-family: Open Sans, sans-serif; font-size: 14px;margin-top:10px">
                                                     <br>Hurrah! Considered your IT declaration for Apr 2023.</br>
-                                                    <a href="/formdeclaration" class="button-link" >
-                                 <button class="custom-button view-button" style="width:60px;border:1px solid silver;border-radius:5px;background:blue;margin-top:30px;margin-left:70px;color:white">View</button>
-                                      </a>
+                                                    <a href="/formdeclaration" class="button-link">
+                                                        <button class="custom-button view-button" style="width:60px;border:1px solid silver;border-radius:5px;background:blue;margin-top:30px;margin-left:70px;color:white">View</button>
+                                                    </a>
 
 
 
@@ -402,44 +406,50 @@
 </div>
 
 <script>
-        // Get the current hour of the day (0-23)
-        const currentHour = new Date().getHours();
+    // Get the current hour of the day (0-23)
+    const currentHour = new Date().getHours();
 
-        // Get the greeting element by its ID
-        const greetingElement = document.getElementById('greetingText');
+    // Get the greeting element by its ID
+    const greetingElement = document.getElementById('greetingText');
 
-        // Define an array of greetings based on the time of day
-        const greetings = [
-            'Good Morning',
-            'Good Afternoon',
-            'Good Evening',
-            'Good Night'
-        ];
+    // Define an array of greetings based on the time of day
+    const greetings = [
+        'Good Morning',
+        'Good Afternoon',
+        'Good Evening',
+        'Good Night'
+    ];
 
-        // Determine the appropriate greeting based on the time of day
-        let greeting;
-        if (currentHour >= 5 && currentHour < 12) {
-            greeting = greetings[0]; // Morning
-        } else if (currentHour >= 12 && currentHour < 17) {
-            greeting = greetings[1]; // Afternoon
-        } else if (currentHour >= 17 && currentHour < 20) {
-            greeting = greetings[2]; // Evening
-        } else {
-            greeting = greetings[3]; // Night
-        }
+    // Determine the appropriate greeting based on the time of day
+    let greeting;
+    if (currentHour >= 5 && currentHour < 12) {
+        greeting = greetings[0]; // Morning
+    } else if (currentHour >= 12 && currentHour < 17) {
+        greeting = greetings[1]; // Afternoon
+    } else if (currentHour >= 17 && currentHour < 20) {
+        greeting = greetings[2]; // Evening
+    } else {
+        greeting = greetings[3]; // Night
+    }
 
-        // Update the greeting text
-        greetingElement.textContent = greeting;
-
-        
-    </script>
-    <script>
+    // Update the greeting text
+    greetingElement.textContent = greeting;
+</script>
+<script>
     // Function to change the quote text
     function changeQuote() {
-        const quotes = [
-            { text: "Life is 10% what happens to us and 90% how we react to it.", author: "Dennis P. Kimbro" },
-            { text: "Your new Employee Self Service portal is here. Watch the video to learn more.", author: "Anonymous" },
-            { text: "Things usually work out in the end. What if they don't? That just means you haven't come to the end yet.", author: "Jeanette Walls" }
+        const quotes = [{
+                text: "Life is 10% what happens to us and 90% how we react to it.",
+                author: "Dennis P. Kimbro"
+            },
+            {
+                text: "Your new Employee Self Service portal is here. Watch the video to learn more.",
+                author: "Anonymous"
+            },
+            {
+                text: "Things usually work out in the end. What if they don't? That just means you haven't come to the end yet.",
+                author: "Jeanette Walls"
+            }
             // Add more quotes here as needed
         ];
 
@@ -488,18 +498,16 @@
     setInterval(changeGreetingImage, 3600000);
     const containers = document.querySelectorAll('.container');
 
-function startAnimation() {
-    // Add a class to trigger the animation
-    containers.forEach(container => container.classList.add('animate'));
+    function startAnimation() {
+        // Add a class to trigger the animation
+        containers.forEach(container => container.classList.add('animate'));
 
-    // After animation, reset the positions (adjust the timeout based on animation duration)
-    setTimeout(() => {
-        containers.forEach(container => container.style.transform = 'translate(0, 0)');
-    }, 4000);
-}
+        // After animation, reset the positions (adjust the timeout based on animation duration)
+        setTimeout(() => {
+            containers.forEach(container => container.style.transform = 'translate(0, 0)');
+        }, 4000);
+    }
 
-// Start animation when the page loads
-window.addEventListener('load', startAnimation);
-
+    // Start animation when the page loads
+    window.addEventListener('load', startAnimation);
 </script>
-

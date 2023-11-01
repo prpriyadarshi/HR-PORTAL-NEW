@@ -19,7 +19,8 @@ class Home extends Component
     public $calendarData;
     public $employeeDetails;
     public $employee;
-    public $salaries; // Rename this variable to 'salaries'
+    public $salaries; 
+    public $salaryRevision;// Rename this variable to 'salaries'
 
     public function toggleSignState()
     {
