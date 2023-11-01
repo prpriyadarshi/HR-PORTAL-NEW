@@ -108,141 +108,145 @@
         #delegate-form-container {
             display: none;
         }
+        .body {
+            font-family: 'Montserrat';
+        }
+        .btn {
+            font-family: 'Montserrat';
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header" style="height:50px">
-            <img src="https://www.acutesoft.com/wp-content/uploads/2016/03/XSILICA.jpg" alt="Logo" style="margin-right:700px;width:200px;height:50px">
-            <p href="/Home" style="margin-top:-30px;margin-right:350px">Home</p>
-            <p style="margin-top:-35px;margin-right:160px">My Info</p>
-            <p style="margin-top:-35px;margin-left:660px">A.Archana</p>
-            <p style="margin-top:-35px;margin-left:830px">Logout</p>
+@foreach($employees as $employee)
+<div class="container">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap">
+
+    <div class="header" style="height: 50px; font-family: 'Montserrat';">
+       <div class="row">
+        <div class="col" style="margin-left:-750px">
+          
+        @livewire('company-logo')
         </div>
-        <h1 class="form-header" style="margin-right:500px;">Workflow Delegates</h1>
-        <div class="nav">
-            <b style="margin-left:150px;width:150px" >Workflow:</b>
-            <div class="workflow-select">
-                <!-- Your workflow selection dropdown goes here -->
-                <select class="form-control" style="width:230px">
-                    <option value="none">Select Workflow</option>
-                    <option value="none">Delegate All Workflow</option>
-                    <option value="none">Attendance Regularization</option>
-                    <option value="none">Confirmation</option>
-                    <option value="none">Resignations</option>
-                    <option value="none">Leave</option>
-                    <option value="none">Leave Cancel</option>
-                    <option value="none">Leave Comp Off</option>
-                    <option value="none">Restricted Holiday Leave</option>
-                    <option value="none">Help Desk</option>
-                    <!-- Add your workflow options here -->
-                </select>
-            </div>
-            <button id="show-delegate-form-button" style="margin-right:20px;width:170px;height:40px;min-width: 170px;margin-right:370px">Add Delegates</button>
-
-
+        <div class="col" style="margin-top:-20px">
+        <a href="/" style=" margin-right: 350px;margin-top:-250px;color:white; font-family: 'Montserrat';text-decoration:none">Home</a>
         </div>
-        <div class="content" style="">
-            <!-- Left-side content goes here -->
-            <div style="height: 500px; width: 500px; border: 1px solid #D9D9D9;border-radius:10px ">
-            <div class="header" style="height:20px;">
-            <p style="color:white;font-size:12px;margin-top:6px;margin-right:350px">Workflow Delegates</p>
-    </div>
-    <div class="row" style="width:100%;height:30px;background:#ACC7F0;display:flex">
-    <p style="color:#284570;font-size:12px;margin-top:6px;margin-left:30px">user</p>
-    <div style="width: 1px; height: 30px; background-color: #8D939D; margin-left: 5px;"></div>
-    <p style="color:#284570;font-size:12px;margin-top:6px;margin-left:10px">Workflow </p>
-    <div style="width: 1px; height: 30px; background-color: #8D939D; margin-left: 5px;"></div>
-    <p style="color::#284570;font-size:12px;margin-top:6px;margin-left:10px">Workflow Delegates</p>
-    <div style="width: 1px; height: 30px; background-color: #8D939D; margin-left: 5px;"></div>
-    
-    <p style="color::#284570;font-size:12px;margin-top:6px;margin-left:10px">From Date</p>
-    <div style="width: 1px; height: 30px; background-color: #8D939D; margin-left: 5px;"></div>
-    <p style="color::#284570;font-size:12px;margin-top:6px;margin-left:10px">To Date</p>
-    <div style="width: 1px; height: 30px; background-color: #8D939D; margin-left: 5px;"></div>
-    <p style="color::#284570;font-size:12px;margin-top:6px;margin-left:10px"> Delegates</p>
-
-    </div>
-    <div class="row" style="height:400px">
-
-    </div>
-    <div class="row" style="width:100%;height:30px;background:#ACC7F0;display:flex">
-    <p style="color:#284570;font-size:12px;margin-top:6px;margin-left:100px;width:40px;">Page</p>
-    <div class="row" style="height:20px;width:20px;background:white;border:1px solid grey;border-radius:5px;margin-top:4px;margin-left:2px;display:flex">
-    <p style="margin-left:5px;margin-top:2px;width:20px;">1</p>
-   
-    
-    </div>
-    <p style="margin-left:15px;margin-top:4px;">of 0</p>
-    <div style="width: 1px; height: 30px; background-color: #8D939D; margin-left: 30px;"></div>
- 
-   
-    <p style="color::#284570;font-size:12px;margin-top:6px;margin-left:100px">No records to view</p>
-    
-    
-   
-
-    </div>
-            
+        <div class="col" style="margin-top:15px">
+        <p style="margin-top: -35px; margin-right: 160px; font-family: 'Montserrat';">My Info</p>
         </div>
+        <div class="col" style="margin-top:15px">
+        <p style="margin-top: -35px; margin-left: 600px; font-family: 'Montserrat';">{{$employee->first_name}} {{$employee->last_name}}</p>
+    </div>
+       </div>
+    </div>
+   
+    <h1 class="form-header" style="margin-right: 600px; font-family: 'Montserrat';">Workflow Delegates</h1>
+    <div class="nav">
+        <b style="margin-left: 100px; width: 150px; font-family: 'Montserrat';">Workflow:</b>
+        <div class="workflow-select">
+            <!-- Your workflow selection dropdown goes here -->
+            <select class="form-control" style="width: 230px; font-family: 'Montserrat';">
+                <option value="none">Select Workflow</option>
+                <option value="none">Delegate All Workflow</option>
+                <option value="none">Attendance Regularization</option>
+                <option value="none">Confirmation</option>
+                <option value="none">Resignations</option>
+                <option value="none">Leave</option>
+                <option value="none">Leave Cancel</option>
+                <option value="none">Leave Comp Off</option>
+                <option value="none">Restricted Holiday Leave</option>
+                <option value="none">Help Desk</option>
+                <!-- Add your workflow options here -->
+            </select>
+        </div>
+        <button id="show-delegate-form-button" style="margin-right: 20px; width: 170px; height: 40px; min-width: 170px; margin-right: 370px">Add Delegates</button>
+    </div>
+    <div class="content">
+        <div style="height: 500px; width: 100%; border: 1px solid #D9D9D9; border-radius: 10px; font-family: 'Montserrat';">
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th style="color: #284570; font-size: 12px; text-align: left; font-family: Montserrat;">User</th>
+                        <th style="color: #284570; font-size: 12px; text-align: left; font-family: Montserrat;">Workflow</th>
+                        <th style="color: #284570; font-size: 12px; text-align: left; font-family: Montserrat;">From Date</th>
+                        <th style="color: #284570; font-size: 12px; text-align: left; font-family: Montserrat;">To Date</th>
+                        <th style="color: #284570; font-size: 12px; text-align: left; font-family: Montserrat;">Delegate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($retrievedData as $data)
+                    <tr>
+                        <td style="border: 1px solid #8D939D; padding: 5px;font-size:12px; font-family: Montserrat">{{$employee->first_name}} {{$employee->last_name}}({{$employee->emp_id}}) </td>
+                        <td style="border: 1px solid #8D939D; padding: 5px;font-size:12px; font-family: Montserrat">{{ $data->workflow }}</td>
+                        <td style="border: 1px solid #8D939D; padding: 5px;font-size:12px; font-family: Montserrat">{{ date('d M Y', strtotime($data->from_date)) }}</td>
+                        <td style="border: 1px solid #8D939D; padding: 5px;font-size:12px; font-family: Montserrat">{{ date('d M Y', strtotime($data->to_date)) }}</td>
+                        <td style="border: 1px solid #8D939D; padding: 5px;font-size:12px; font-family: Montserrat">{{ $data->delegate }}</td>
+                    </tr>
+                    
+                    @endforeach
+                    
+                </tbody>
+            </table>
+          
+    </div>
+
+     
             <!-- Delegate form -->
-            <div id="delegate-form-container" class="delegate-form" style="margin-left:20px">
-                <form class="work-flow-delegate-form" action="/v2/employee/addemployeworkflowdelegates" method="POST" novalidate="novalidate">
+            <div id="delegate-form-container" class="delegate-form" style="margin-left: 20px; font-family: 'Montserrat', sans-serif;">
+                <form wire:submit.prevent="submitForm">
                     <div class="form-group">
-                    <h2>Add/ Edit Work Flow Delegates</h2>
-                    <div class="column" style="display:flex">
-                        <h4 class="form-label" style="margin-top:15px">User:</h4>
-                        <p style="margin-left:10px;font-size:16px;">A Archana (XSS-0476)</p>
-                     </div>
+                        <h2 style="font-size:20px">Add/ Edit Work Flow Delegates</h2>
+                        <div class="column" style="display:flex">
+                            <h4 class="form-label" style="margin-top:15px">User:</h4>
+                            <p style="margin-left:10px;font-size:16px;"> {{$employee->first_name}} {{$employee->last_name}}  ({{$employee->emp_id}})</p>
+                        </div>
                     </div>
-                    <div class="form-group"  style="color:black">
-                        <label class="form-label" style="color:black" >WorkFlow</label>
-                        <select class="form-control" style="width:300px;color:black">
-                        <option value="none">Delegate All Workflow</option>
-                            <option value="none">Attendance Regularization </option>
-                    <option value="none">Confirmation</option>
-                    <option value="none">Resignations</option>
-                    <option value="none">Leave</option>
-                    <option value="none">Leave Cancel</option>
-                    <option value="none">Leave Comp Off</option>
-                    <option value="none">Restricted Holiday Leave</option>
-                    <option value="none">Help Desk</option>
-                           
+                    <div class="form-group" style="color: black;margin-top:-20px">
+                        <label class="form-label" style="color: black;font-size:14px">WorkFlow</label>
+                        <select class="form-control" style="width: 300px; color: black" wire:model="workflow">
+                            <option value="Delegate All Workflow">Delegate All Workflow</option>
+                            <option value="Attendance Regularization">Attendance Regularization</option>
+                            <option value="Confirmation">Confirmation</option>
+                            <option value="Resignations">Resignations</option>
+                            <option value="Leave">Leave</option>
+                            <option value="Leave Cancel">Leave Cancel</option>
+                            <option value="Leave Comp Off">Leave Comp Off</option>
+                            <option value="Restricted Holiday Leave">Restricted Holiday Leave</option>
+                            <option value="Help Desk">Help Desk</option>
                             <!-- Add your workflow options here -->
                         </select>
                     </div>
-                    <div class="form-group" >
-                        <label class="form-label" >From Date</label>
-                        <input type="date" name="fromDate" class="form-control" style="width:280px">
+                    <div class="form-group">
+                        <label class="form-label" style="font-size:14px">From Date</label>
+                        <input type="date" name="fromDate" class="form-control" style="width: 280px" wire:model="fromDate">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">To Date</label>
-                        <input type="date" name="toDate" class="form-control" style="width:280px">
+                        <label class="form-label" style="font-size:14px">To Date</label>
+                        <input type="date" name="toDate" class="form-control" style="width: 280px" wire:model="toDate">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Delegate</label>
-                        <select class="form-control" style="width:300px">
-                        <option value="none">Pranita Priyadarshi(XSS-0477)</option>
-                            <option value="none">Chandrapal Singh(XSS-0468) </option>
-                    <option value="none">Puran Kanwar(T0008)</option>
-                    <option value="none">RANJITH KUMAR C(XSS-0386)</option>
-                    <option value="none">Sai Keerthan Enterprise(T00013)</option>
-                    <option value="none">Hemant Parkhe(XSS-0509)</option>
-                    <option value="none">Indu Priya Yarramaneni(XSS-0438)</option>
-                    <option value="none">Chirag Sahu(XSS-0506)</option>
-                    <option value="none">Manish Vodnala(XSS-0522)</option>
+                        <label class="form-label" style="font-size:14px">Delegate</label>
+                        <select class="form-control" style="width: 300px" wire:model="delegate">
+                            <option value="Pranita Priyadarshi(XSS-0477)">Pranita Priyadarshi(XSS-0477)</option>
+                            <option value="Chandrapal Singh(XSS-0468)">Chandrapal Singh(XSS-0468)</option>
+                            <option value="Puran Kanwar(T0008)">Puran Kanwar(T0008)</option>
+                            <option value="RANJITH KUMAR C(XSS-0386)">RANJITH KUMAR C(XSS-0386)</option>
+                            <option value="Sai Keerthan Enterprise(T00013)">Sai Keerthan Enterprise(T00013)</option>
+                            <option value="Hemant Parkhe(XSS-0509)">Hemant Parkhe(XSS-0509)</option>
+                            <option value="Indu Priya Yarramaneni(XSS-0438)">Indu Priya Yarramaneni(XSS-0438)</option>
+                            <option value="Chirag Sahu(XSS-0506)">Chirag Sahu(XSS-0506)</option>
+                            <option value="Manish Vodnala(XSS-0522)">Manish Vodnala(XSS-0522)</option>
                             <!-- Add your delegate options here -->
                         </select>
                     </div>
                     <div class="form-actions">
-                        <button class="btn btn-primary submit" type="submit">Submit</button>
+                        <button class="btn btn-primary submit" type="submit" style="color:white;background-color:blue">Submit</button>
                         <button id="cancel-button" class="btn reset" type="reset">Cancel</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
+    @endforeach
     <script>
         document.getElementById('show-delegate-form-button').addEventListener('click', function () {
             var delegateFormContainer = document.getElementById('delegate-form-container');

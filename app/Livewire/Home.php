@@ -6,17 +6,21 @@ use App\Models\SwipeRecord;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-
+use App\Models\HolidayCalendar;
+use App\Models\SalaryRevision;
 class Home extends Component
 {   
     public $currentDate;
+
     public $currentDay;
     public $showAlertDialog = false;
     public $signIn = true;
     public $swipeDetails;
-
+    public $calendarData;
     public $employeeDetails;
     public $employee;
+    public $salaries; // Rename this variable to 'salaries'
+
     public function toggleSignState()
     {
         $employeeId = auth()->guard('emp')->user()->emp_id;
@@ -30,17 +34,17 @@ class Home extends Component
         $flashMessage = $this->signIn ? "You Have Successfully Signed Out." : "You Have Successfully Signed In.";
         session()->flash('success', $flashMessage);
     }
-
+    
     public function open()
     {
         $this->showAlertDialog = true;
     }
+    
     public function close()
     {
         $this->showAlertDialog = false;
     }
-
-
+    
     public function render()
     {
         $employeeId = auth()->guard('emp')->user()->emp_id;
@@ -52,6 +56,18 @@ class Home extends Component
             ->where('emp_id', $employeeId)
             ->orderBy('created_at', 'desc')
             ->get();
-        return view('livewire.home');
+    
+        // Assuming $calendarData should contain the data for upcoming holidays
+        $this->calendarData = HolidayCalendar::where('date', '>=', $today)
+            ->orderBy('date')
+            ->take(3)
+            ->get();
+    
+        $this->salaryRevision = SalaryRevision::where('emp_id', $employeeId)->get(); // Define and fetch salary data
+    
+        return view('livewire.home', [
+            'calendarData' => $this->calendarData,
+            'salaryRevision' => $this->salaryRevision, // Pass the salary data to the view
+        ]);
     }
-}
+}    
