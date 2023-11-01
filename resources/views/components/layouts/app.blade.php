@@ -262,7 +262,7 @@
                         </li>
            <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
 
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/Attendance">
 
                                 <i class="fas fa-clock"></i> Attendance</a></li>
 
@@ -330,9 +330,15 @@
                                             Payslips
                                         </a>
                                     </li>
+
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('reimbursement')">
                                         <a class="nav-link" href="/reimbursement" id="reimbursement" onclick="selectOption(this, 'Reimbursement')">
                                         Reimbursement
+
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('proofofinvestment')">
+                                        <a class="nav-link" href="/proofofinvestment" id="proofofinvestment" onclick="selectOption(this,'Proof Of Investment')">
+                                            Proof Of Investment
+
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('investment')">
