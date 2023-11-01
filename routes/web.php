@@ -12,8 +12,8 @@ use App\Livewire\EmpLogin;
 
 use App\Livewire\Feeds;
 
-
-
+use App\Livewire\Attendance;
+use App\Livewire\Regularisation;
 use App\Livewire\HelpDesk;
 
 
@@ -136,6 +136,15 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/AppliedJobs', function () {
         return view('applied_jobs_view');
     });
+    Route::get('/Companies', function () {
+        return view('companies_view');
+    });
+    Route::get('/company-based-jobs/{companyId}', function ($companyId) {
+        return view('company_based_jobs_view', compact('companyId'));
+    })->name('company-based-jobs');
+    Route::get('/VendorScreen', function () {
+        return view('vendor_screen_view');
+    });
 });
 
 
@@ -162,8 +171,8 @@ Route::middleware(['auth:emp'])->group(function () {
 
     Route::get('/', Home::class)->name('home');
 
-
-
+    Route::get('/Attendance', Attendance::class)->name('Attendance');
+    Route::get('/regularisation', Regularisation::class)->name('regularisation');
     Route::get('/ProfileInfo', ProfileInfo::class)->name('profile.info');
 
 
@@ -263,7 +272,7 @@ Route::middleware(['auth:emp'])->group(function () {
 
     Route::get('/leave-page', LeavePage::class)->name('leave-page');
 
-
+    
 
     Route::get('/leave-apply', LeaveApply::class)->name('leave-apply');
 
@@ -310,4 +319,3 @@ Route::get('/v2/employee/addemployeworkflowdelegates', function () {
 
     return view('submitdelegate');
 });
-

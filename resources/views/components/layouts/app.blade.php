@@ -24,7 +24,7 @@
             /* Adjust the color and style as needed */
         }
     </style>
- 
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
  
     <script src="{{ mix('js/app.js') }}"></script>
@@ -212,7 +212,7 @@
                     <ul class="nav flex-column">
  
                         <div style="margin-bottom: 10px;margin-top:0px">
- 
+
                             @livewire('company-logo')
                         </div>
  
@@ -243,20 +243,20 @@
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle3()">
  
                             <a class="nav-link" href="/tasks">
- 
- 
+
+
                                 <i class="fas fa-tasks"></i> To do
- 
+
                             </a>
- 
+
                         </li>
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
- 
+
                             <a class="nav-link" href="#">
  
                                 <i class="fas fa-clock"></i> Attendance</a>
                         </li>
- 
+
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5(item)">
                             <a class="nav-link" onclick="toggleLeaveDropdown()">
                                 <i class="fas fa-file-alt" id="leave-icon"></i> Leave <i class="fas fa-caret-down" id="leave-caret"></i>
@@ -683,7 +683,7 @@
                     leaveCaret.classList.add("fa-caret-up");
                 }
             }
- 
+
             function toggleSalaryDropdown() {
                 const salaryOptions = document.getElementById("salary-options");
                 const salaryCaret = document.getElementById("salary-caret");

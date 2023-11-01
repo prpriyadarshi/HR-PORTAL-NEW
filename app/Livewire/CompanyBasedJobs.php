@@ -3,16 +3,17 @@
 namespace App\Livewire;
 
 use App\Models\AppliedJob;
-use App\Models\Company;
 use App\Models\Job;
 use App\Models\User;
 use Illuminate\Database\QueryException;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class Jobs extends Component
+class CompanyBasedJobs extends Component
 {
+    public $jobList = [];
+
     use WithFileUploads;
     public $jobs;
     public $name;
@@ -22,28 +23,9 @@ class Jobs extends Component
     public $selectedJob;
     public $selectedUser;
     public $userDetails;
-    public $showDialog = false;
     public $appliedJobs;
     public $showError = true;
     public $showSuccessMessage = false;
-
-    public function open()
-    {
-        $this->showDialog = true;
-    }
-    public function close()
-    {
-        $this->showDialog = false;
-    }
-    public function createCV()
-    {
-        return redirect()->to('/CreateCV');
-    }
-    public function logout()
-    {
-        Auth::logout();
-        return redirect('/emplogin');
-    }
 
 
     public function showJobApplication($jobId)
@@ -83,21 +65,22 @@ class Jobs extends Component
     {
         return redirect()->route('full-job-view', ['jobId' => $jobId]);
     }
-    public $user;
 
-    public function render()
+    public function mount($companyId)
     {
-        $this->jobs = Job::where('created_at', '<=', now())
+        $this->jobList = DB::table('jobs')
+            ->where('created_at', '<=', now())
             ->where(function ($query) {
                 $query->whereNull('expire_date')
                     ->orWhere('expire_date', '>', now());
             })
+            ->where('company_id', $companyId)
             ->orderBy('created_at', 'desc')
             ->get();
-        $this->user = auth()->user();
+    }
 
-        
-        $this->appliedJobs = AppliedJob::where('user_id', $this->user->user_id)->get();
-        return view('livewire.jobs');
+    public function render()
+    {
+        return view('livewire.company-based-jobs');
     }
 }
