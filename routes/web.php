@@ -53,8 +53,6 @@ Route::group(['middleware' => 'checkAuth'], function () {
     Route::get('/Jobs', function () {
         return view('jobs_view');
     });
-<<<<<<< HEAD
-=======
     Route::get('/UserProfile', function () {
         return view('user_profile_view');
     });
@@ -73,7 +71,7 @@ Route::group(['middleware' => 'checkAuth'], function () {
     Route::get('/VendorScreen', function () {
         return view('vendor_screen_view');
     });
->>>>>>> 6a41cad72680c17aa6792f83404e18d89c1102d4
+
 });
 Route::middleware(['auth:emp'])->group(function () {
     Route::get('/', Home::class)->name('home');
