@@ -9,7 +9,7 @@ class LogOut extends Component
     public function handleLogout()
     {
         auth()->guard('emp')->logout();
-        session()->flash('success', "You Are LoggedOut Successfully!");
+        session()->flash('success', "You are logged out successfully!");
         return redirect(route('emplogin'));
     }
     

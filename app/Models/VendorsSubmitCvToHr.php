@@ -13,5 +13,5 @@ class VendorsSubmitCvToHr extends Model
         'cv' => 'array',
     ];
     protected $table = 'vendors_submit_cv_to_hr';
-    protected $fillable = ['user_id', 'company_id', 'submited_to', 'cv'];
+    protected $fillable = ['user_id', 'job_id', 'submited_to', 'cv'];
 }
