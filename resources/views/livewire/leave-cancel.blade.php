@@ -231,6 +231,20 @@
         justify-content: center; 
         align-items: center;
     }
+    .info-paragraph {
+        display: none;
+    }
+    .hide-info{
+        display:flex;
+         flex-direction:row;
+         background:#FFFFF2;
+         gap:50px;
+        padding:5px 10px;
+        font-size:0.725rem;
+         text-align:start;
+         align-items:center; 
+        
+    }
         @media screen and (max-width: 1060px) {
         /* Apply styles for screens 960px or less in width */
         .wrap-content {
@@ -249,11 +263,15 @@
 <body>
 
 <div class="applyContainer">
-    <h6 >Applying for Leave Cancel</h6>
+      <div class="hide-info">
+            <p style="font-size:0.725rem;">Leave Cancel enables you to apply for cancellation of approved leave applications. Please select a leave type to get started..</p>
+            <p onclick="toggleInfo()"  style="font-weight:500; color:#3a9efd; cursor:pointer;">Hide</p>
+            <p class="info-paragraph" style="font-weight:500; color:#3a9efd; cursor:pointer;" onclick="toggleInfo()">Info</p>
+         </div>
+
+ <div>   <h6 >Applying for Leave Cancel</h6></div>
 
     <form wire:submit.prevent="leaveApply" enctype="multipart/form-data">
-   
-       
             <div>
                 <div class="form-group" style="margin-top: 10px;">
                     <div style="display:flex; flex-direction:row;">
@@ -496,6 +514,14 @@ function toggleDetails(tabId) {
                 }
             });
         }
+        function toggleInfo() {
+    const hideInfoDiv = document.querySelector('.hide-info');
+    const infoParagraph = document.querySelector('.info-paragraph');
+
+    hideInfoDiv.style.display = hideInfoDiv.style.display === 'none' ? 'flex' : 'none';
+    infoParagraph.style.display = infoParagraph.style.display === 'none' ? 'block' : 'none';
+}
+
 
     </script>
 @livewireScripts

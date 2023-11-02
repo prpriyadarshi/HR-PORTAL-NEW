@@ -2,19 +2,24 @@
 
 use App\Livewire\EmpLogin;
 use App\Livewire\Feeds;
-
-
+ 
+ 
 use App\Livewire\Attendance;
+use App\Livewire\LeaveCalender;
+use App\Livewire\LeaveHistory;
+use App\Livewire\LeavePending;
+use App\Livewire\Payslip;
 use App\Livewire\Regularisation;
-
+ 
 use App\Livewire\HelpDesk;
 use App\Livewire\Home;
 use App\Livewire\Peoples;
 use App\Livewire\ProfileInfo;
+use App\Livewire\SalaryRevisions;
 use App\Livewire\Settings;
 use App\Livewire\Review;
 use App\Livewire\Tasks;
-
+ 
 use App\Livewire\Itdeclaration;
 use App\Livewire\Itstatement1;
 use App\Livewire\Payroll;
@@ -30,11 +35,16 @@ use App\Livewire\LeavePage;
 use App\Livewire\delegate;
 use App\Livewire\Reimbursement;
 use App\Livewire\LeaveBalances;
-
+ 
 use App\Livewire\LeaveCancel;
+use App\Livewire\TeamOnLeave;
 use App\Livewire\HolidayCalender;
-
+ 
+use App\Livewire\ViewDetails;
+use App\Livewire\ViewPendingDetails;
 use Illuminate\Support\Facades\Route;
+
+
 
 Route::group(['middleware' => 'checkAuth'], function () {
     Route::get('/emplogin', EmpLogin::class)->name('emplogin');
@@ -128,7 +138,7 @@ Route::middleware(['auth:emp'])->group(function () {
 
 
 
-    Route::get('/salary-revision', SalaryRevisions::class)->name('salary-revision');
+    // Route::get('/salary-revisions', SalaryRevisions::class)->name('salary-revisions');
 
 
 
@@ -154,7 +164,7 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/leave-history', LeaveHistory::class)->name('leave-history');
     Route::get('/leave-pending/{leaveRequestId}', LeavePending::class)->name('leave-pending');
 
-
+    Route::get('/team-on-leave', TeamOnLeave::class)->name('team-on-leave');
     Route::get('/salary-revision', SalaryRevisions::class)->name('salary-revision');
     Route::get('/plan-C', PlanA::class)->name('plan-a');
 
