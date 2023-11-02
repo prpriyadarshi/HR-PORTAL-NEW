@@ -32,5 +32,11 @@ class LeaveRequest extends Model
         return $this->belongsTo(EmployeeDetails::class, 'emp_id', 'emp_id');
     }
 
-   
+   // LeaveRequest.php
+
+    public function employeeDetails()
+    {
+        return $this->belongsTo(EmployeeDetails::class, 'emp_id'); // Assuming employee_id is the foreign key
+    }
+
 }
