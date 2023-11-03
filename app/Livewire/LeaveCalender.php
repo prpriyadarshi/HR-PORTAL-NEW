@@ -108,7 +108,7 @@ protected function getHolidaysForDay($date)
         $holiday = DB::table('holiday_calendars')
             ->where('date', $date->toDateString())
             ->first();
-        dd($holiday);
+        //dd($holiday);
 
         return $holiday !== null;
     } catch (QueryException $e) {
@@ -124,13 +124,13 @@ protected function getHolidaysForDay($date)
 protected function getTeamLeavesForDay($date)
 {
     // Fetch team leaves for the specified date from your database
-    return LeaveRequest::where('date', $date->toDateString())->where('status', 'approved')->get();
+   // return LeaveRequest::where('date', $date->toDateString())->where('status', 'approved')->get();
 }
 
 protected function getSingleLeavesForDay($date)
 {
     // Fetch approved single leaves for the specified date from your database
-    return LeaveRequest::where('date', $date->toDateString())->where('status', 'approved')->get();
+   // return LeaveRequest::where('date', $date->toDateString())->where('status', 'approved')->get();
 }
 
 

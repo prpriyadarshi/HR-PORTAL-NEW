@@ -43,7 +43,6 @@ class EmpLogin extends Component
 
             // Store emp_id in the session
             Session::put('emp_id', $emp_id);
-            //dd($emp_id);
             session()->flash('Success', 'You are logged in successfully!');
             return redirect()->route('home');
         } else {

@@ -5,6 +5,9 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class CheckAuth
 {
@@ -38,7 +41,13 @@ class CheckAuth
 
     // return $next($request);
     if (auth()->guard('emp')->check()) {
-      session(['user_type' => 'emp']);
+    //   session(['user_type' => 'emp']);
+      $emp_id = Auth::guard('emp')->user()->emp_id;
+      Session::put('emp_id', $emp_id);
+      $user = auth('emp')->user();
+      $sessionTimeout = $user->role === 'admin' ? 60 : 10; // Example: Admins get a 60-minute timeout, others get a 10-minute timeout.
+    //   Log::info("Session Timeout: $sessionTimeout minutes");
+    //   config(['session.lifetime' => $sessionTimeout]);
       return redirect(route('profile.info'));
     } elseif (auth()->user() && auth()->check()) {
       return redirect('/Jobs');
@@ -47,8 +56,12 @@ class CheckAuth
     }
      else {
       session(['user_type' => 'guest']);
+      Log::info('Session has timed out');
+     // return redirect('/emplogin');
+    //  return redirect(route('emplogin'));
+      return $next($request);
     }
 
-    return $next($request);
+    //
   }
 }
