@@ -40,7 +40,7 @@ class Home extends Component
             'swipe_time' => now()->format('H:i:s'),
             'in_or_out' => $this->signIn ? "Sign Out" : "Sign In",
         ]);
-        $flashMessage = $this->signIn ? "You Have Successfully Signed Out." : "You Have Successfully Signed In.";
+        $flashMessage = $this->signIn ? "You have successfully signed out." : "You have successfully signed in.";
         session()->flash('success', $flashMessage);
     }
     

@@ -14,12 +14,15 @@ return new class extends Migration
         Schema::create('vendors_submit_cv_to_hr', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
-            $table->string('company_id');
+            $table->string('job_id');
             $table->string('submited_to');
-            $table->json('cv'); 
+            $table->json('cv');
+            $table->unique(['user_id', 'job_id']);
 
-            $table->foreign('user_id')->references('user_id')->on('users');
-            $table->foreign('company_id')->references('company_id')->on('companies');
+            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('restrict')
+                ->onUpdate('cascade');;
+            $table->foreign('job_id')->references('job_id')->on('jobs')->onDelete('restrict')
+                ->onUpdate('cascade');;
 
             $table->timestamps();
         });

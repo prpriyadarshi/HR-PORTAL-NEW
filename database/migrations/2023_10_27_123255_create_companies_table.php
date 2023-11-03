@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->string('company_id')->primary(); // Primary key
             $table->string('company_name');
+            $table->string('hr_name');
             $table->string('company_address1');
             $table->string('company_address2');
             $table->date('company_registration_date');
