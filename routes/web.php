@@ -11,7 +11,7 @@ use App\Livewire\EmpLogin;
 
 
 use App\Livewire\Feeds;
-
+use App\Livewire\RegularisationPending;
 use App\Livewire\Attendance;
 use App\Livewire\Regularisation;
 use App\Livewire\HelpDesk;
@@ -164,6 +164,7 @@ Route::middleware(['auth:emp'])->group(function () {
 
     Route::get('/Attendance', Attendance::class)->name('Attendance');
     Route::get('/regularisation', Regularisation::class)->name('regularisation');
+    Route::get('/regularisation-pending', RegularisationPending::class)->name('regularisation-pending');
     Route::get('/ProfileInfo', ProfileInfo::class)->name('profile.info');
 
 
@@ -233,7 +234,7 @@ Route::middleware(['auth:emp'])->group(function () {
 
 
 
-    Route::get('/plan-A', PlanA::class)->name('plan-a');
+    Route::get('/plan-C', PlanA::class)->name('plan-c');
 
 
 

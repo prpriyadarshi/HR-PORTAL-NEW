@@ -11,14 +11,12 @@ class Regularisation extends Component
     public $data;
     public $data1;
     public $data7;
+    public $data8;
     public $manager3;
     public $employee;
     public $data4;
     public $from,$to,$reason;
-
-
- 
-    
+   
 
     public function storePost()
     {
@@ -44,7 +42,7 @@ class Regularisation extends Component
                  'is_withdraw'=>0,
                 
             ]);
-            
+            session()->flash('success', 'Hurry Up! Action completed successfully');
             // $this->from = '';
             // $this->to = '';
             // $this->reason = '';
@@ -56,7 +54,7 @@ class Regularisation extends Component
             session()->flash('error','Something goes wrong!!');
         }
     }
-    
+  
     public function withdraw()
     {
         $this->data =Regularisations::where('status', 'pending')->update(['is_withdraw' => 1]);
@@ -67,6 +65,7 @@ class Regularisation extends Component
     {
         $manager = EmployeeDetails::select('manager_id', 'report_to')->distinct()->get();
         $this->data = Regularisations::where('is_withdraw', '0')->count();
+        $this->data8 = Regularisations::where('is_withdraw', '0')->get();
         $this->data1 = Regularisations::where('status', 'pending')->first();
         $this->data4 = Regularisations::where('is_withdraw', '1')->count();
         $this->data7= Regularisations::where('is_withdraw', '1')->get();
@@ -77,6 +76,6 @@ class Regularisation extends Component
             
         }
        
-        return view('livewire.regularisation',['count'=>$this->c,'manager1'=>$manager,'count1'=> $this->data,'manager2'=>$this->manager3,'data2'=>$this->data1 ,'data5'=>$this->data4,'data8'=>$this->data7]);
+        return view('livewire.regularisation',['count'=>$this->c,'manager1'=>$manager,'count1'=> $this->data,'manager2'=>$this->manager3,'data2'=>$this->data1 ,'data5'=>$this->data4,'data8'=>$this->data7,'data10'=>$this->data8]);
     }
 }

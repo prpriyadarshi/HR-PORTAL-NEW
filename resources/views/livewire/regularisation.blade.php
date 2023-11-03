@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <style>
     .button-container {
     display: flex;
@@ -59,6 +60,7 @@
     color: #FFFFFF;
     border-color:rgb(2, 17, 79); /* Change text color to white when clicked */
 }
+
 .pending-button:active {
     background-color: rgb(2, 17, 79); /* Change background color to green when clicked */
     color: #FFFFFF;
@@ -250,11 +252,7 @@ button#saveReasonButton:hover {
     transform: translate(-50%, -50%);
     display:none;   
 }
-.apply-box
-{
- 
- 
-}
+
 
 
 .hidden-pending-box
@@ -340,7 +338,7 @@ button#saveReasonButton:hover {
 {
     display: none;
     background-color: #fff;
-    margin-top:300px;
+    margin-top:280px;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
@@ -353,10 +351,7 @@ button#saveReasonButton:hover {
     width:900px;
     transform: translate(-50%, -50%);
 }
-.hidden-history-box1
-{
-    display:none;
-}
+
 .my-button.active-button {
     background-color: rgb(2, 17, 79);
     color: #FFFFFF;
@@ -459,7 +454,25 @@ thead th:nth-child(2) {
             margin-top:80px;
 
         }
-</style>    
+</style>   
+@if (session('success'))
+    <div class="alert alert-success" id="success-message">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
 <div class="button-container">
     <button class="my-button apply-button" id="applyButton">Apply</button>
     <button class="my-button pending-button"id="pendingButton">Pending</button>
@@ -489,8 +502,8 @@ thead th:nth-child(2) {
         <div class="mother-box"id="motherbox"style="display:none;align-items: center;height:260px;">
            <div id="dateAndDay"style="margin-right:30px;">
                <div style="display:flex;flex-direction:row;margin-top:-60px;margin-right:20px;">
-                <p id="currentDate1" style="padding-right: 20px; display: inline-block;"></p>
-                <p id="currentDay1" style="padding-left: 20px; display: inline-block;">Current Day</p>
+                <p id="currentDate1" style="margin-right: 80px; display: inline-block;"></p>
+                <p id="currentDay1" style="margin-left: 20px; display: inline-block;">Current Day</p>
 
                  <label for="timeSlot"></label>
                  <select id="timeSlot" disabled>
@@ -567,7 +580,9 @@ thead th:nth-child(2) {
     </div>
 
     <!-- Calendar Dates -->
-      <div class="calendar-dates" id="calendarDates"></div>
+      <div class="calendar-dates" id="calendarDates">
+     
+      </div>
       <div class="calendar-footer" id="calendarFooter">
    
           No exception days to regularize
@@ -576,8 +591,9 @@ thead th:nth-child(2) {
     
 
     <div class="hidden-pending-box" id="hiddenpendingBox">
+    
       @if($count1>0)
-        <div class="container"style="width: 500px;height: 90px;background-color: #e0e0e0;text-align: center;padding: 10px;">
+        <div c`lass="container"style="width: 500px;height: 90px;background-color: #e0e0e0;text-align: center;padding: 10px;">
           <div style="display:flex;flex-direction:row;">        
             <p class="title"style="font-weight: bold;">Pending with</p>
             <p class="title"style="font-weight: bold;margin-left:100px;">No. of days</p>
@@ -588,33 +604,41 @@ thead th:nth-child(2) {
             <p class="days"style="font-size:24px;color: #ff9900;margin-top:-10px;margin-left:195px;">{{$count1}}</p>
           </div>  
           <div class="arrow-button"style="float:right;margin-top:-40px;margin-right:20px;"id="toggleButton"></div> 
-             <div class="container-body" style="width: 500px;height: 200px;background-color: #e0e0e0;text-align: center;padding: 10px;display:none;margin-right:4px;"id="myContainerBody">
-                 <p class="title"style="font-weight: bold;">Dates Applied:</p>
-                 <p class="highlight"style=" color: #ff9900;">(25-28) Oct 2023</p>
-                 <div class="horizontal-line"></div>
+            
+            <div class="container-body" style="display:none;"id="myContainerBody">
+             @foreach($data10 as $d)
+                <div style="width: 500px;height: 180px;background-color: #e0e0e0;margin-bottom: 20px;text-align: center;padding: 10px;margin-right:4px;">
+                   <p class="title"style="font-weight: bold;">Dates Applied:</p>
+                   <p class="highlight"style=" color: #ff9900;"id="applied-date"></p>
+                   <div class="horizontal-line"></div>
                  
-                <div style="margin-top:30px;margin-left:-320px;"> 
-                  <p class="title"style="font-weight: bold;">Applied On:</p>
-                  <p class="highlight"style=" color: #ff9900;">{{ $data2->created_at->format('j M Y') }}</p>
-                </div> 
-                <div style="margin-top:-60px;margin-left:220px;"> 
-                 <button class="withdraw-button"data-toggle="modal"data-target="#withdrawModal">Withdraw</button>
-                 <a href="#" class="button view-details-button">View Details</a>
-                </div>  
-             </div>
-        </div>
+                    <div style="margin-top:30px;margin-left:-320px;"> 
+                        <p class="title"style="font-weight: bold;">Applied On:</p>
+                        <p class="highlight"style=" color: #ff9900;">{{ $d->created_at->format('j M Y') }}</p>
+                    </div> 
+                    <div style="margin-top:-60px;margin-left:220px;"> 
+                          <button class="withdraw-button"data-toggle="modal"data-target="#withdrawModal">Withdraw</button>
+                          <a href="/regularisation-pending" class="button view-details-button">View Details</a>
+                    </div>
+                </div>
+             @endforeach  
+            </div>
+            
+      
        
     </div>
       @else
-      <img src="https://gt-linckia.s3.amazonaws.com/static-ess-v6.3.0-prod-144/review-list-empty.svg"style="margin-top:80px;">
-      <p style="color: #a3b2c7;font-weight:400;font-size: 20px;margin-top:20px;">Hey, you have no regularization records to view.</p>
+        
+            <img src="https://gt-linckia.s3.amazonaws.com/static-ess-v6.3.0-prod-144/review-list-empty.svg"style="margin-top:80px;">
+            <p style="color: #a3b2c7;font-weight:400;font-size: 20px;margin-top:20px;">Hey, you have no regularization records to view.</p>
+         
       @endif
     </div>
     
-    <div  id="hiddenhistoryBox">
+    <div class="hidden-history-box" id="hiddenhistoryBox">
       @if($data5>0)
-      @foreach($data8 as $d)
-       <div id="hiddenhistoryBox1"class="hidden-history-box1">
+      
+     
   
           <div style="display:flex;flex-direction:row;">        
         
@@ -628,7 +652,7 @@ thead th:nth-child(2) {
           </div>
          
           <div class="arrow-button"style="float:right;margin-top:-40px;margin-right:20px;"id="toggleButton1"></div> 
-             <div class="container-body" style="width: 500px;height: 200px;background-color: #e0e0e0;text-align: center;padding: 10px;display:none;margin-right:4px;"id="myContainerBody1">
+             <div class="container-body1" style="width: 500px;height: 200px;background-color: #e0e0e0;text-align: center;padding: 10px;display:none;margin-right:4px;"id="myContainerBody1">
                  <p class="title"style="font-weight: bold;">Dates Applied:</p>
                  <p class="highlight"style=" color: #ff9900;">(25-28) Oct 2023</p>
                  <div class="horizontal-line"></div>
@@ -642,14 +666,14 @@ thead th:nth-child(2) {
                    <a href="/regularisation-pending" class="button view-details-button">View Details</a>
                 </div>  
              </div>
-        </div>
-        @endforeach
+       
+       
      
       @else
-       <div class="hidden-history-box">
+    
          <img src="https://gt-linckia.s3.amazonaws.com/static-ess-v6.3.0-prod-144/review-list-empty.svg"style="margin-top:80px;">
          <p style="color: #a3b2c7;font-weight:400;font-size: 20px;margin-top:20px;">Hey, you have no regularization records to view.Thank you for your time</p>
-       </div>
+      
        @endif
     </div>
     
@@ -721,7 +745,7 @@ function setActiveButton(button) {
 }
 </script> 
 
-    <script>
+<script>
     let currentDate = new Date(); // Initialize currentDate
     
     function generateCalendar(year, month) {
@@ -869,15 +893,7 @@ saveReasonButton.addEventListener("click", () => {
 </script>    
 
 
-<script>
-    // JavaScript to toggle the dropdown options
-    // document.querySelector('.selected-option').addEventListener('click', function () {
-    //   document.querySelector('.custom-dropdown').classList.toggle('open');
-    // });
-   
-  
-    
-  </script>
+
 
 
 <script>
@@ -899,23 +915,7 @@ saveReasonButton.addEventListener("click", () => {
       });
     });
   </script>
-  <script>
-    
-     document.getElementById("calendarDates").addEventListener("click", function () {
-        const today1 = new Date();
-        const todayDate1 = today.getDate();   
-    // document.getElementById("hiddenBox").style.display = "block";
-    if (date < todayDate1) 
-    {
-       document.getElementById("motherbox").style.display = "block";
-    }
-    else
-    {
-        document.getElementById("motherbox").style.display = "none";
-    }
-     });
-    
-  </script>
+  
 <script>
 const currentDateElement1 = document.getElementById("currentDate1");
 
@@ -923,7 +923,7 @@ const currentDayElement1 = document.getElementById("currentDay1");
 
 const motherBox = document.getElementById("motherbox");
 
-const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const days= ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 // Function to update the date and day in the mother-box container
 function updateDateAndDay(date, day) {
@@ -937,20 +937,24 @@ function updateDateAndDay(date, day) {
 
 // Add event listeners to the calendar dates
 const calendarDates1 = document.querySelectorAll(".calendar-date");
-console.log(calendarDates1);
+const count=0;
 const today = new Date();
+
 const todayDate = today.getDate();
 
 calendarDates1.forEach(dateElement => {
     const date = parseInt(dateElement.textContent, 10);
-    if (date > todayDate) {
+    if (date < todayDate) {
     dateElement.addEventListener("click", () => {
         // Get the date and day abbreviation from the clicked date
+        
         const clickedDate = dateElement.textContent;
+        
         const selectedDate = new Date();
         selectedDate.setDate(parseInt(clickedDate, 10));
+        
         const clickedDay = days[selectedDate.getDay()];
-
+         
         // Update the date and day in the mother-box container
         updateDateAndDay( clickedDate + clickedDay);
     });
@@ -972,7 +976,7 @@ closeButton.addEventListener("click", () => {
 });
 const cancelButton = document.getElementById("cancelButton");
 
-closeButton.addEventListener("click", () => {
+cancelButton.addEventListener("click", () => {
     // Hide the "mother-box" container when the close button is clicked
     motherbox.style.display = "none";
 });
@@ -988,7 +992,7 @@ closeButton.addEventListener("click", () => {
 });
 </script> 
 <script>
-      document.getElementById("toggleButton1").addEventListener("click", function() {
+  document.getElementById("toggleButton1").addEventListener("click", function() {
   var containerBody1= document.getElementById("myContainerBody1");
   if (containerBody1.style.display === "none" || containerBody1.style.display === "") {
     containerBody1.style.display = "block";
@@ -1013,4 +1017,12 @@ closeButton.addEventListener("click", () => {
     toggleButton1.classList.toggle("rotate-arrow");
   });
 </script>
+<script>
+    $(document).ready(function() {
+        $('#success-message .close').on('click', function() {
+            $('#success-message').fadeOut(500);
+        });
+    });
+</script>
+ 
 </div>
