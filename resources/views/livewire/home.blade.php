@@ -139,33 +139,6 @@
         background-color: #fff;
         box-shadow: 1px 2px rgba(0, 0, 0, 0.2);
     }
-    @media only screen and (max-width: 600px) {
-    .left-menu {
-        width: 100%;
-        padding: 10px;
-    }
-
-    /* Adjust styles for smaller screens */
-
-    .col-md-4 {
-        width: 100%; /* Make the column take full width on smaller screens */
-        margin-bottom: 15px; /* Add margin for better spacing */
-    }
-
-    /* Add more styles for smaller screens */
-}
-
-/* Media query for screens larger than 600px (tablets, desktops, etc.) */
-
-@media only screen and (min-width: 601px) {
-    .col-md-4 {
-        width: calc(33.3333% - 20px); /* Adjust the width for larger screens with some margin */
-        margin-right: 20px; /* Add margin between columns for better spacing */
-        margin-bottom: 20px; /* Add margin for better spacing */
-    }
-
-    /* Add more styles for larger screens */
-}
     </style>
 </head>
 <body>
