@@ -204,7 +204,7 @@
   </div>
 </div>
 
-     
+
           <div class="top-menu" style="background-color: #f0f0f0;">
             <div class="B" style="width: 750px; height: 70px; border-top: 1px solid #E0DDDD; border-bottom: 1px solid #E0DDDD; background-color: #FFFFFF;font-size: 14px; font-family: Open Sans, sans-serif;padding:10px;margin-left:40px">
               <b> All Feeds</b>
@@ -213,8 +213,10 @@
 
 
             <p style="text-align: center; font-size: 14px; font-family: Open Sans, sans-serif;margin-top:5px">sort: <strong style="font-weight: bold;">New posts</strong></p>
-            <div style="display: flex; width:800px">
-              <div class="F" style="background-color: white; width: 500px; height: 350px; border-radius: 5px; border: 1px solid #CFCACA; margin-left: 30px; color: #3b4452; padding-bottom: 40px">
+          
+            <div style="display: flex; width:800px; ">
+            <div class="column" style="overflow-y:auto;display: flex;">
+              <div class="F" style="background-color: white; width: 500px; height: 350px; border-radius: 5px; border: 1px solid #CFCACA; margin-left: 30px; color: #3b4452; padding-bottom: 40px;">
                 <!-- Upcoming Holidays List -->
                 <div style="display: flex;">
 
@@ -222,7 +224,7 @@
                     <img src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/2e383f1a48f91dbea7e6" alt="Image Description" style="height: 100px; width: 160px; margin-top: 5px; margin-left: 40px;">
                     <div style="color: #677A8E; margin-left: 60px; font-size: 14px; font-family: Open Sans, sans-serif; font-weight: 100px;">Group Events</div>
                   </div>
-                  <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 170px; font-family: Open Sans, sans-serif; margin-top: 40px; font-weight: 100px; color: #9E9696;">28 October 2023</div>
+                  <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 170px; font-family: Open Sans, sans-serif; margin-top: 40px; font-weight: 100px; color: #9E9696;">Archana</div>
                 </div>
                 <div style="display: flex;">
                   <img src="https://i.pinimg.com/originals/20/7f/22/207f229952dc673e1e88be7134436497.jpg" alt="Image Description" style="height: 160px; width: 160px; margin-left: 40px;">
@@ -278,6 +280,7 @@
                 </div>
               </div>
             </div>
+</div>
             <div class="F" style="background-color: white; width: 500px; height: 350px; border-radius: 5px; border: 1px solid #CFCACA; margin-left: 30px; color: #3b4452; margin-top: 20px">
               <!-- Upcoming Holidays List -->
               <div style="display: flex;">

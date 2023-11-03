@@ -2,14 +2,13 @@
 
 use App\Livewire\EmpLogin;
 use App\Livewire\Feeds;
-<<<<<<< HEAD
-=======
+
 
 
 use App\Livewire\Attendance;
 use App\Livewire\Regularisation;
 
->>>>>>> c91d109226d32a54ddf30c7ebc67d3b6582e26a4
+
 use App\Livewire\HelpDesk;
 use App\Livewire\Home;
 use App\Livewire\Peoples;
@@ -30,11 +29,11 @@ use App\Livewire\Documentcenter;
 use App\Livewire\Investment;
 use App\Livewire\LeaveApply;
 use App\Livewire\LeavePage;
-use App\Livewire\delegate;
+// use App\Livewire\SalaryRevisions;
 use App\Livewire\Reimbursement;
 use App\Livewire\LeaveBalances;
 use App\Livewire\HolidayCalender;
-
+use App\Livewire\Delegates;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'checkAuth'], function () {
@@ -48,14 +47,12 @@ Route::group(['middleware' => 'checkAuth'], function () {
 });
 Route::middleware(['auth:emp'])->group(function () {
     Route::get('/', Home::class)->name('home');
-<<<<<<< HEAD
-=======
 
 
     Route::get('/Attendance', Attendance::class)->name('Attendance');
     Route::get('/regularisation', Regularisation::class)->name('regularisation');
 
->>>>>>> c91d109226d32a54ddf30c7ebc67d3b6582e26a4
+
     Route::get('/ProfileInfo', ProfileInfo::class)->name('profile.info');
     Route::get('/Feeds', Feeds::class);
     Route::get('/PeoplesList', Peoples::class);
@@ -75,21 +72,16 @@ Route::get('/document', Documentcenter::class);
 Route::get('/reimbursement', Reimbursement::class);
 Route::get('/investment', Investment::class);
 Route::get('/documents', Documents::class);
-
+Route::get('/delegatesddb', Delegates::class);
 
 
 Route::get('/leave-page', LeavePage::class)->name('leave-page');
 Route::get('/leave-apply', LeaveApply::class)->name('leave-apply');
 Route::get('/holiday-calender', HolidayCalender::class)->name('holiday-calender');
 Route::get('/leave-balances', LeaveBalances::class)->name('leave-balances');
-// Route::get('/salary-revision', SalaryRevision::class)->name('salary-revision');
+// Route::get('/salary-revision', SalaryRevisions::class)->name('salary-revision');
 });
 
-
-
-Route::get('/delegatesddb', function(){
-    return view('delegate');
-});
 Route::get('/your-download-route', function () {
     return view('download-pdf');
 });

@@ -1,4 +1,3 @@
-
 <div style="width: 400px;">
     <script src="{{ asset('livewire/livewire.js') }}" defer></script>
 
@@ -259,7 +258,7 @@
     <div style="width: 310px; height: 210px; border-radius: 5px; border: 1px solid #CFCACA; margin-top: 20px; background-color: white; margin-left: 30px">
         <div style="color: #677A8E; margin-left: 20px; font-family: Open Sans, sans-serif; margin-top: 10px;">
             Upcoming Holidays
-            <a href="/holiday-calendar" style="font-size: 14px; margin-left: 130px; text-decoration: none; height: 20px; color: black">&rarr;</a>
+            <a href="/holiday-calender" style="font-size: 14px; margin-left: 130px; text-decoration: none; height: 20px; color: black">&rarr;</a>
         </div>
 
 

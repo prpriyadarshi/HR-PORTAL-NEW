@@ -1,4 +1,3 @@
-[18:08] Asapu Sri Kumar Manikanta
 <!DOCTYPE html>
  
 <html lang="en">
@@ -199,7 +198,7 @@
  
             <div class="card" style="border-radius:0px;height: auto; width: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
  
-                <div class="card-body" style="height: auto;width:auto;margin-top:0px">
+                <div class="card-body" style="height: auto;width:auto;margin-top:0px; ">
  
                     <ul class="nav flex-column">
  
@@ -313,21 +312,15 @@
                                             Payslips
                                         </a>
                                     </li>
-<<<<<<< HEAD
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('proofofinvestment')">
-                                        <a class="nav-link" href="/proofofinvestment" id="proofofinvestment" onclick="selectOption(this,   'Proof Of Investment')">
-                                            Proof Of Investment
-=======
 
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('reimbursement')">
                                         <a class="nav-link" href="/reimbursement" id="reimbursement" onclick="selectOption(this, 'Reimbursement')">
                                         Reimbursement
-
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('proofofinvestment')">
-                                        <a class="nav-link" href="/proofofinvestment" id="proofofinvestment" onclick="selectOption(this,'Proof Of Investment')">
-                                            Proof Of Investment
-
->>>>>>> c91d109226d32a54ddf30c7ebc67d3b6582e26a4
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('investment')">
+                                        <a class="nav-link" href="/investment" id="investment" onclick="selectOption(this, 'Proof of Investment')">
+                                        Proof of Investment
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('loan')">
@@ -365,7 +358,7 @@
  
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle10()">
  
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/delegatesddb">
  
                                 <i class="fas fa-user-friends"></i> Workflow Delegates
  
@@ -731,15 +724,12 @@
 </body>
  
 @endguest
-<<<<<<< HEAD
  
  
  
  
-=======
 
 
 
 
->>>>>>> 6a41cad72680c17aa6792f83404e18d89c1102d4
 </html>
