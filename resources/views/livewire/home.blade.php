@@ -397,7 +397,7 @@
                           <div style="border-radius: 5px; border: 1px solid #CFCACA; background-color: white;padding:10px 15px;">
                                     <div style="display:flex; justify-content:space-between;" >
                                          <p style="color: #677A8E;font-weight:500;">Upcoming Holidays</p>
-                                        <a href="/holiday-calendar" style="font-size: 14px;  text-decoration: none; height: 20px; color: black">&rarr;</a>
+                                        <a href="/holiday-calender" style="font-size: 14px;  text-decoration: none; height: 20px; color: black">&rarr;</a>
                                     </div>
                                     @foreach ($calendarData as $entry)
                                     <div>
