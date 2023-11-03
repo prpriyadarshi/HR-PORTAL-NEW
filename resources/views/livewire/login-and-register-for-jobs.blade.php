@@ -8,7 +8,7 @@
     <button
         style="margin-left:85%;width: 120px;margin-top:5px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;">
         <a style="text-decoration: none; color: white; "><a href="/CompanyLogin"
-                style="text-decoration: none;color:white">Post Jobs</a></a>
+                style="text-decoration: none;color:white">HR Login</a></a>
     </button>
     <div class="row">
         <div class="col" style="margin-left: 80px;">

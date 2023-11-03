@@ -26,11 +26,12 @@ class LeavePending extends Component
 
     public function mount($leaveRequestId)
     {
-        // Fetch leave request details based on $leaveRequestId
-        $this->leaveRequest = LeaveRequest::find($leaveRequestId);
+        // Fetch leave request details based on $leaveRequestId with employee details
+        $this->leaveRequest = LeaveRequest::with('employee')->find($leaveRequestId);
         $this->leaveRequest->from_date = Carbon::parse($this->leaveRequest->from_date);
         $this->leaveRequest->to_date = Carbon::parse($this->leaveRequest->to_date);
     }
+    
     public  function calculateNumberOfDays($fromDate, $fromSession, $toDate, $toSession)
     {
         try {

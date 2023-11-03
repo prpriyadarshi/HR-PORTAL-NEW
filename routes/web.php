@@ -1,7 +1,10 @@
 <?php
 
+use App\Livewire\Delegates;
 use App\Livewire\EmpLogin;
+use App\Livewire\EmployeesReview;
 use App\Livewire\Feeds;
+
 use App\Livewire\Attendance;
 use App\Livewire\LeaveCalender;
 use App\Livewire\LeaveHistory;
@@ -13,6 +16,8 @@ use App\Livewire\HelpDesk;
 use App\Livewire\Home;
 use App\Livewire\Peoples;
 use App\Livewire\ProfileInfo;
+use App\Livewire\ReviewLeave;
+use App\Livewire\ReviewRegularizations;
 use App\Livewire\SalaryRevisions;
 use App\Livewire\Settings;
 use App\Livewire\Review;
@@ -35,11 +40,15 @@ use App\Livewire\Reimbursement;
 use App\Livewire\LeaveBalances;
 
 use App\Livewire\LeaveCancel;
+use App\Livewire\TeamOnLeave;
 use App\Livewire\HolidayCalender;
 
 use App\Livewire\ViewDetails;
+use App\Livewire\ViewDetails1;
 use App\Livewire\ViewPendingDetails;
 use Illuminate\Support\Facades\Route;
+
+
 
 Route::group(['middleware' => 'checkAuth'], function () {
 
@@ -147,12 +156,7 @@ Route::middleware(['auth:emp'])->group(function () {
 
 
 
-    Route::get('/delegatesddb', function () {
 
-
-
-        return view('delegate');
-    });
 
 
 
@@ -180,7 +184,7 @@ Route::middleware(['auth:emp'])->group(function () {
 
 
 
-    Route::get('/salary-revision', SalaryRevisions::class)->name('salary-revision');
+    Route::get('/salary-revisions', SalaryRevisions::class)->name('salary-revisions');
 
 
 
@@ -190,13 +194,11 @@ Route::middleware(['auth:emp'])->group(function () {
 
     Route::get('/leave-apply', LeaveApply::class)->name('leave-apply');
 
-
-
     Route::get('/holiday-calender', HolidayCalender::class)->name('holiday-calender');
 
 
     Route::get('/view-pending-details', ViewPendingDetails::class)->name('view-pending-details');
-
+    Route::get('/delegatesddb', Delegates::class);
 
     Route::get('/view-details', ViewDetails::class)->name('view-details');
 
@@ -206,7 +208,7 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/leave-history', LeaveHistory::class)->name('leave-history');
     Route::get('/leave-pending/{leaveRequestId}', LeavePending::class)->name('leave-pending');
 
-
+    Route::get('/team-on-leave', TeamOnLeave::class)->name('team-on-leave');
     Route::get('/salary-revision', SalaryRevisions::class)->name('salary-revision');
     Route::get('/plan-C', PlanA::class)->name('plan-a');
 
@@ -227,14 +229,14 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/leave-apply', LeaveApply::class)->name('leave-apply');
     Route::get('/holiday-calender', HolidayCalender::class)->name('holiday-calender');
     Route::get('/leave-balances', LeaveBalances::class)->name('leave-balances');
+
+    Route::get('/employees-review', EmployeesReview::class)->name('employees-review');
+    Route::get('/review-leave', ReviewLeave::class)->name('ReviewLeave');
+    Route::get('/view-details1', ViewDetails1::class)->name('view-details1');
+    Route::get('/review-regularizations', ReviewRegularizations::class)->name('review-regularizations');
     // Route::get('/salary-revision', SalaryRevision::class)->name('salary-revision');
 });
 
-
-
-Route::get('/delegatesddb', function () {
-    return view('delegate');
-});
 Route::get('/your-download-route', function () {
     return view('download-pdf');
 });

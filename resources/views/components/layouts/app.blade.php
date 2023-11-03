@@ -265,33 +265,34 @@
                             </a>
                             <div id="leave-options" style="display: none;">
                                 <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5('apply')">
-                                        <a class="nav-link" href="/leave-page" id="itdeclaration" onclick="selectOption(this, 'Leave Apply')">
-                                            Leave Apply
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5('balances')">
-                                        <a class="nav-link" href="/leave-balances" id="itstatement" onclick="selectOption(this, 'Leave Balances')">
-                                            Leave Balances
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5('calendar')">
-                                        <a class="nav-link" href="/leave-calender" id="slip" onclick="selectOption(this, 'Leave Calender')">
-                                            Leave Calendar
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5('holiday')">
-                                        <a class="nav-link" href="/holiday-calender" id="slip" onclick="selectOption(this, 'Holiday Calender')">
-                                            Holiday Calendar
+                                <li class="nav-item" style="text-decoration: none;">
+                                    <a class="nav-link" href="/leave-page" onclick="return changePageTitle5('apply');">
+                                        Leave Apply
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="text-decoration: none;">
+                                    <a class="nav-link" href="/leave-balances" onclick="changePageTitle5('balances'); return false;">
+                                      Leave Balances
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="text-decoration: none;">
+                                    <a class="nav-link" href="/leave-calender" onclick="changePageTitle5('calendar'); return false;">
+                                        Leave Calendar
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="text-decoration: none;">
+                                    <a class="nav-link" href="/holiday-calender" onclick="changePageTitle5('holiday'); return false;">
+                                         Holiday Calendar
+                                    </a>
+                                </li>
+                                    <li class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/leave-calender" onclick="changePageTitle5('team'); return false;">
+                                          @livewire('team-on-leave')
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
-
-
-
-
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle7()">
 
@@ -672,13 +673,40 @@
                 } else if (item === 'holiday') {
                     newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
                     newTitle = "Holiday Calendar";
-                }
-
-                document.getElementById("pageIcon").innerHTML = newIcon;
+                }      
+                else if (item === 'team') {
+                    newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                    newTitle = "Team on Leave";
+                }           
+               
+                switch (item) {
+            case 'apply':
+                window.location.href = '/leave-page';
+                break;
+            case 'balances':
+                window.location.href = '/leave-balances';
+                break;
+            case 'calendar':
+                window.location.href = '/leave-calender';
+                break;
+            case 'holiday':
+                window.location.href = '/holiday-calender';
+                break;
+                case 'team':
+                window.location.href = '/leave-calender';
+                break;
+            // Add cases for other options if needed
+            default:
+                break;
+        }
+        document.getElementById("pageIcon").innerHTML = newIcon;
                 document.getElementById("pageTitle").textContent = newTitle;
                 localStorage.setItem("pageIcon", newIcon);
                 localStorage.setItem("pageTitle", newTitle);
-            }
+        // Return false to prevent the default link behavior
+        return false;
+    }
+
 
             function toggleLeaveDropdown() {
                 const leaveOptions = document.getElementById("leave-options");
@@ -698,9 +726,12 @@
             function toggleSalaryDropdown() {
                 const salaryOptions = document.getElementById("salary-options");
                 const salaryCaret = document.getElementById("salary-caret");
+                const leaveOptions = document.getElementById("leave-options");
+                const leaveCaret = document.getElementById("leave-caret");
 
                 if (salaryOptions.style.display === "block") {
                     salaryOptions.style.display = "none";
+                    leaveOptions.style.display="none";
                     salaryCaret.classList.remove("fa-caret-up");
                     salaryCaret.classList.add("fa-caret-down");
                 } else {

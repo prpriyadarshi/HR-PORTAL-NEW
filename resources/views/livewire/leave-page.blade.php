@@ -16,7 +16,9 @@
            width:90%;
            margin:0 auto;
        }
-     
+       .accordion:hover {
+           border: 0.0625rem solid #3a9efd;
+       }
        .info-paragraph {
         display: none;
     }
@@ -65,16 +67,16 @@
         /* Blue arrow when active */
        }
        .side {
-    display: flex;
-    font-size: 0.875rem;
-    flex-direction: row; /* Change from 'row' to 'column' */
-    width: 45%;
-    padding: 5px;
-    border-radius: 5px;
-    justify-content: space-between;
-    margin-left: 100px;
-    margin-top: 15px;
-}
+        display: flex;
+        font-size: 0.875rem;
+        flex-direction: row; /* Change from 'row' to 'column' */
+        width: 45%;
+        padding: 5px;
+        border-radius: 5px;
+        justify-content: space-between;
+        margin-left: 100px;
+        margin-top: 15px;
+    }
 
 
     .side a {
@@ -92,6 +94,14 @@
         height:25px;
         width:1px;
         border-right:1px solid #ccc;
+    }
+    .withdraw{
+            background:#3a9efd;
+            border:none;
+            padding:5px 10px;
+            color:white;
+            font-weight:500;
+            border-radius:5px;
     }
     </style>
     <div class="toggle-container" style=" width:95%;">
@@ -120,7 +130,23 @@
                 border-radius: 5px;
             }
         </style>
- 
+            @if(session()->has('message'))
+            <div class="alert alert-success" style="display:flex; justify-content:space-between;">
+                {{ session('message') }}
+                <span class="close-btn" onclick="closeMessage()">X</span>
+            </div>
+            <script>
+                // Close the success message after a certain time
+                setTimeout(function() {
+                    closeMessage();
+                }, 5000); // Adjust the time limit (in milliseconds) as needed
+            
+                function closeMessage() {
+                    document.querySelector('.alert-success').style.display = 'none';
+                }
+            </script>
+        @endif
+
         <div class="nav-buttons" style="width: 50%; display:flex; align-items:center; margin-left:250px;">
             <ul class="nav custom-nav-tabs" > <!-- Apply the custom class to the nav -->
                 <li class="nav-item flex-grow-1">
@@ -188,7 +214,7 @@
             </div>
             <div class="row" id="leaveCancel" style="width:80%;margin-top:20px;display: none; margin-left:100px;">
         
-                <div>   @livewire('leave-cancel')</div>
+                <div>@livewire('leave-cancel')</div>
             </div>
             
             <div class="row" id="compOff" style="width:80%; margin-top:20px;display: none; margin-left:100px;">
@@ -213,20 +239,11 @@
 
         {{-- Apply Tab --}}
         <div class="row" id="personalDetails" style=" margin-top:20px;display: none; margin-left:100px;">
-        
-                <div class="leave-form" id="leaveForm" style="width:100%;">
-
-                        @livewire('leave-apply')
-
-                </div>
-        </div> 
+          <div>@livewire('leave-apply')</div>
+        </div>
+ 
         {{-- pending --}}
         <div class="row" style="margin-top:20px;border-radius: 5px;display: none;" id="accountDetails">
-        @if(session()->has('message'))
-            <div class="alert alert-success">
-                {{ session('message') }}
-            </div>
-        @endif
            
      @if($this->leavePending->isNotEmpty())
 
@@ -338,7 +355,7 @@
                             <span style="color: #3a9efd; font-size: 0.875rem; font-weight: 500;">View Details</span>
 
                         </a>
-                        <button class="rejectBtn"wire:click="cancelLeave({{ $leaveRequest->id }})">Withdraw</button>
+                        <button class="withdraw"wire:click="cancelLeave({{ $leaveRequest->id }})">Withdraw</button>
  
                     </div>
 
@@ -373,7 +390,7 @@
         <div class="row" style="margin-top:20px;border-radius: 5px;display: none;" id="familyDetails">
         @if($this->leaveRequests->isNotEmpty())
 
-@foreach($this->leaveRequests->whereIn('status', ['approved', 'rejected']) as $leaveRequest)
+@foreach($this->leaveRequests->whereIn('status', ['approved', 'rejected','Withdrawn']) as $leaveRequest)
 
 <div class="container mt-4">
 
@@ -423,15 +440,15 @@
 
                                 @if(strtoupper($leaveRequest->status) == 'APPROVED')
 
-                                    <span style="margin-top:0.625rem; font-size: 1rem; font-weight: 500; color:#32CD32;">{{ strtoupper($leaveRequest->status) }}</span>
+                                    <span style="margin-top:0.625rem; font-size: 0.9rem; font-weight: 500; color:#32CD32;">{{ strtoupper($leaveRequest->status) }}</span>
 
                                 @elseif(strtoupper($leaveRequest->status) == 'REJECTED')
 
-                                    <span style="margin-top:0.625rem; font-size: 1rem; font-weight: 500; color:#FF0000;">{{ strtoupper($leaveRequest->status) }}</span>
+                                    <span style="margin-top:0.625rem; font-size: 0.9rem; font-weight: 500; color:#FF0000;">{{ strtoupper($leaveRequest->status) }}</span>
 
                                 @else
 
-                                    <span style="margin-top:0.625rem; font-size: 1rem; font-weight: 500; color:#778899;">{{ strtoupper($leaveRequest->status) }}</span>
+                                    <span style="margin-top:0.625rem; font-size: 0.9rem; font-weight: 500; color:#778899;">{{ strtoupper($leaveRequest->status) }}</span>
 
                                 @endif
 
@@ -537,7 +554,7 @@
     infoParagraph.style.display = (infoParagraph.style.display === 'none' || infoParagraph.style.display === '') ? 'block' : 'none';
 }
     function toggleDetails(sectionId, clickedLink) {
-        const tabs = ['personalDetails', 'accountDetails', 'familyDetails'];
+        const tabs = ['leave', 'accountDetails', 'familyDetails'];
  
         const links = document.querySelectorAll('.custom-nav-link');
         links.forEach(link => link.classList.remove('active'));
@@ -553,7 +570,7 @@
             }
         });
           // Hide the content of other containers
-        const otherContainers = ['leave', 'restricted', 'leaveCancel', 'compOff'];
+        const otherContainers = [ 'restricted', 'leaveCancel', 'compOff'];
         otherContainers.forEach(container => {
             const containerElement = document.getElementById(container);
             containerElement.style.display = 'none';
@@ -606,7 +623,7 @@
     });
 
     // Hide the content of other containers
-    const otherContainers = ['personalDetails', 'accountDetails', 'familyDetails'];
+    const otherContainers = [ 'accountDetails', 'familyDetails'];
     otherContainers.forEach(container => {
         const containerElement = document.getElementById(container);
         containerElement.style.display = 'none';

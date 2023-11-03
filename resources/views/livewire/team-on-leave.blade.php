@@ -6,7 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    @livewire('delegates')
-    @livewireScripts
+    @if($showTeamOnLeave)
+        <p>Team on Leave</p>
+    @endif
 </body>
 </html>

@@ -36,7 +36,8 @@ class VendorScreen extends Component
             'cv.' . $jobId => 'required',
         ], [
             'cv.' . $jobId . '.required' => 'At least one CV is required.',
-        ]);
+        ],
+    );
 
 
         $cvSets = [];

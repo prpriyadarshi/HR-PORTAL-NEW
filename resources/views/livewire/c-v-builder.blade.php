@@ -183,7 +183,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label style="font-size: 12px" for="date_of_birth">Date of Birth:</label>
-                                    <input  style="margin-left: 5px;width:220px" type="date" wire:model="date_of_birth" max="<?php echo date('Y-m-d'); ?>">
+                                    <input  style="margin-left: 5px;width:230px" type="date" wire:model="date_of_birth" max="<?php echo date('Y-m-d'); ?>">
                                     @error('date_of_birth') <span class="error">{{ $message }}</span> @enderror <br>
                                 </div>
                             </div>

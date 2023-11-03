@@ -172,16 +172,27 @@
 
                     <div class="row" style="display: flex; ">
                         <div class="content" style="display: flex;">
-                            <!-- Review Section -->
-                            <div class="column">
-                                <div style="width: 280px; height: 200px; border-radius: 5px; border: 1px solid #CFCACA; margin-top: 20px; background-color: white;">
-                                    <div style="color: #677A8E; margin-left: 40px; font-family: Open Sans, sans-serif; margin-top: 20px;">
-                                        Review
+                           <!-- Review Section -->
+                                <div class="column">
+                                    <div style="width: 280px; height: 200px; border-radius: 5px; border: 1px solid #CFCACA; margin-top: 20px; background-color: white;">
+                                        <div style="color: #677A8E; margin-left: 40px; font-family: Open Sans, sans-serif; margin-top: 20px;">
+                                            Review
+                                        </div>
+                                     
+                                        @if($showLeaveApplies)
+                                            <p style="color: #677A8E; margin-left: 50px; font-size: 14px; font-family: Open Sans, sans-serif;">
+
+                                                Hi! You have  {{ $leaveApplicationsCount }}  employees to review.
+                                            </p>
+                                        @else
+                                           <img src="https://ftl.technology/images/theme-pics/case.png" alt="Image Description" style="height: 100px; width: 100px; margin-top: 10px; margin-left: 80px;">
+                                            <p style="color: #677A8E; margin-left: 50px; font-size: 14px; font-family: Open Sans, sans-serif;">
+                                                Hurrah! You've nothing to review.
+                                            </p>
+                                        @endif
                                     </div>
-                                    <img src="https://ftl.technology/images/theme-pics/case.png" alt="Image Description" style="height: 100px; width: 100px; margin-top: 10px; margin-left: 80px;">
-                                    <p style="color: #677A8E; margin-left: 50px; font-size: 14px; font-family: Open Sans, sans-serif;">Hurrah! You've nothing to review.</p>
                                 </div>
-                            </div>
+
 
                             <!-- Swipes Out Box -->
                             <div class="column " style="margin-left:10px;margin-top:10px">
@@ -263,7 +274,7 @@
                                 <div style="width: 310px; height: 210px; border-radius: 5px; border: 1px solid #CFCACA; margin-top: 20px; background-color: white; margin-left: 30px">
                                     <div style="color: #677A8E; margin-left: 20px; font-family: Open Sans, sans-serif; margin-top: 10px;">
                                         Upcoming Holidays
-                                        <a href="/holiday-calendar" style="font-size: 14px; margin-left: 130px; text-decoration: none; height: 20px; color: black">&rarr;</a>
+                                        <a href="/holiday-calender" style="font-size: 14px; margin-left: 130px; text-decoration: none; height: 20px; color: black">&rarr;</a>
                                     </div>
 
 
