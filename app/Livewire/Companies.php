@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Company;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -16,8 +17,16 @@ class Companies extends Component
         return redirect()->route('company-based-jobs', ['companyId' => $company_id]);
     }
 
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/emplogin');
+    }
+    public $user;
     public function render()
     {
+        $this->user = auth()->user();
+
         $this->companies = Company::orderBy('created_at', 'desc')->get();
     
         return view('livewire.companies');

@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use App\Models\Company;
 
 class CompanyLoginForPostJobs extends Component
 {

@@ -26,7 +26,7 @@ public function addMedical() {
     $this->showMedicalDialog = true; // Open the Medical (Sec 80D) modal
 }
 public function addSalayAllowance() {
-    $this->SalayAllowance = true; // Open the Medical (Sec 80D) modal
+    $this->showSalayAllowance = true; // Open the Medical (Sec 80D) modal
 }
 public function addshowOtherIncome() {
     $this->showOtherIncome = true; // Open the Medical (Sec 80D) modal

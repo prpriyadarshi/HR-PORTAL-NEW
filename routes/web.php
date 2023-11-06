@@ -105,6 +105,13 @@ Route::middleware(['auth:com'])->group(function () {
     Route::get('/PostJobs', function () {
         return view('post_jobs_view');
     });
+
+    Route::get('/VendorsSubmittedCVs', function () {
+        return view('vendors-submitted-cvs');
+    });
+    Route::get('/JobSeekersAppliedJobs', function () {
+        return view('job-seekers-applied-jobs');
+    });
 });
 
 Route::middleware(['auth:emp'])->group(function () {
