@@ -26,35 +26,38 @@
                 /* Text color for inactive tabs */
             }
 
+
+
             .custom-nav-link.active {
-                color: #007bff;
-                /* Text color for the active tab */
-                background-color: #fff;
-                /* Background color for the active tab */
-                border-color: #007bff;
-                /* Border color for the active tab */
+                margin-top: 5px;
+                color: white;
+                background-color: rgb(2, 17, 79);
+                border-radius: 5px;
             }
         </style>
 
         <div class="card" style="width: auto; margin-left: 18%;">
             <ul class="nav custom-nav-tabs"> <!-- Apply the custom class to the nav -->
                 <li class="nav-item flex-grow-1">
-                    <a class="nav-link custom-nav-link" onclick="toggleDetails('personalDetails')">Personal</a>
+                    <a class="nav-link custom-nav-link active" data-section="personalDetails" onclick="toggleDetails('personalDetails', this)">Personal</a>
                 </li>
                 <li class="nav-item flex-grow-1">
-                    <a class="nav-link custom-nav-link" onclick="toggleDetails('accountDetails')">Accounts & Statements</a>
+                    <a class="nav-link custom-nav-link" data-section="accountDetails" onclick="toggleDetails('accountDetails', this)">Accounts & Statements</a>
                 </li>
                 <li class="nav-item flex-grow-1">
-                    <a class="nav-link custom-nav-link" onclick="toggleDetails('familyDetails')">Family</a>
+                    <a class="nav-link custom-nav-link" data-section="familyDetails" onclick="toggleDetails('familyDetails', this)">Family</a>
                 </li>
                 <li class="nav-item flex-grow-1">
-                    <a class="nav-link custom-nav-link" onclick="toggleDetails('employeeJobDetails')">Employment & Job</a>
+                    <a class="nav-link custom-nav-link" data-section="employeeJobDetails" onclick="toggleDetails('employeeJobDetails', this)">Employment & Job</a>
                 </li>
                 <li class="nav-item flex-grow-1">
-                    <a class="nav-link custom-nav-link" onclick="toggleDetails('assetsDetails')">Assets</a>
+                    <a class="nav-link custom-nav-link" data-section="assetsDetails" onclick="toggleDetails('assetsDetails', this)">Assets</a>
                 </li>
             </ul>
         </div>
+
+
+
 
         @foreach($employeeDetails as $employee)
         {{-- Personal Tab --}}
@@ -312,7 +315,7 @@
                 <div class="row" style="border-radius: 5px; height: 200px; width: 100%; background-color: white; margin-bottom: 20px;">
                     <div style="margin-top: 2%;margin-left:17px">Father Details</div>
                     <div class="col" style="margin-left: 15px;">
-                        <img height="150" width="150" src="{{$details->father_image}}" alt="">
+                        <img style="border-radius: 5px;" height="150" width="150" src="{{$details->father_image}}" alt="">
                     </div>
                     <div class="col">
                         <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
@@ -377,7 +380,7 @@
                 <div class="row" style="border-radius: 5px; height: 200px; width: 100%; background-color: white; margin-bottom: 20px;">
                     <div style="margin-top: 2%;margin-left:17px">Mother Details</div>
                     <div class="col" style="margin-left: 15px;">
-                        <img height="150" width="150" src="{{$details->mother_image}}" alt="">
+                        <img style="border-radius: 5px;" height="150" width="150" src="{{$details->mother_image}}" alt="">
                     </div>
                     <div class="col">
                         <div style="font-size: 12px; margin-top: 20px; color: grey; margin-left: 15px">
@@ -551,14 +554,23 @@
     </div>
 </div>
 <script>
-    function toggleDetails(tabId) {
+    function toggleDetails(sectionId, clickedLink) {
         const tabs = ['personalDetails', 'accountDetails', 'familyDetails', 'employeeJobDetails', 'assetsDetails'];
+
+        const links = document.querySelectorAll('.custom-nav-link');
+        links.forEach(link => link.classList.remove('active'));
+
+        clickedLink.classList.add('active');
+
         tabs.forEach(tab => {
-            if (tab === tabId) {
-                document.getElementById(tab).style.display = 'block';
+            const tabElement = document.getElementById(tab);
+            if (tab === sectionId) {
+                tabElement.style.display = 'block';
             } else {
-                document.getElementById(tab).style.display = 'none';
+                tabElement.style.display = 'none';
             }
         });
     }
+
+    document.getElementById('personalDetails').style.display = 'block';
 </script>

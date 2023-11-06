@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    @livewire('delegates')
+    @livewire('downloadform')
     @livewireScripts
 </body>
 </html>

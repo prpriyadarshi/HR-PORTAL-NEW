@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -14,12 +15,22 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Grey HR Portal</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/hr.png') }}">
+    <title>
+        HR Strategies Pro
+    </title>
+    <style>
+        /* Style for the grey horizontal rule */
+        hr.grey {
+            border: 1px solid #ccc;
+            /* Adjust the color and style as needed */
+        }
+    </style>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <script src="{{ mix('js/app.js') }}"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="path/to/your.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -190,8 +201,6 @@
                 color: #3a9efd;
 
             }
-
-
         </style>
 
 
@@ -206,7 +215,7 @@
 
                         <div style="margin-bottom: 10px;margin-top:0px">
 
-                           @livewire('company-logo')
+                            @livewire('company-logo')
                         </div>
 
                         @livewire('profile-card')
@@ -238,51 +247,52 @@
                             <a class="nav-link" href="/tasks">
 
 
-                                    <i class="fas fa-tasks"></i> To do
+                                <i class="fas fa-tasks"></i> To do
 
-        </a>
+                            </a>
 
                         </li>
-           <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
 
                             <a class="nav-link" href="/Attendance">
 
                                 <i class="fas fa-clock"></i> Attendance</a>
-            </li>
+                        </li>
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5(item)">
-                            <a class="nav-link"  onclick="toggleLeaveDropdown()">
+                            <a class="nav-link" onclick="toggleLeaveDropdown()">
                                 <i class="fas fa-file-alt" id="leave-icon"></i> Leave <i class="fas fa-caret-down" id="leave-caret"></i>
                             </a>
                             <div id="leave-options" style="display: none;">
                                 <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5('apply')">
-                                        <a class="nav-link" href="/leave-page" id="itdeclaration" onclick="selectOption(this, 'Leave Apply')">
-                                           Leave Apply
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5('balances')">
-                                        <a class="nav-link" href="/leave-balances" id="itstatement" onclick="selectOption(this, 'Leave Balances')">
-                                            Leave Balances
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5('calendar')">
-                                        <a class="nav-link" href="/leave-calender" id="slip" onclick="selectOption(this, 'Leave Calender')">
-                                            Leave Calendar
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5('holiday')">
-                                        <a class="nav-link" href="/holiday-calender" id="slip" onclick="selectOption(this, 'Holiday Calender')">
-                                            Holiday Calendar
+                                <li class="nav-item" style="text-decoration: none;">
+                                    <a class="nav-link" href="/leave-page" onclick="return changePageTitle5('apply');">
+                                        Leave Apply
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="text-decoration: none;">
+                                    <a class="nav-link" href="/leave-balances" onclick="changePageTitle5('balances'); return false;">
+                                      Leave Balances
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="text-decoration: none;">
+                                    <a class="nav-link" href="/leave-calender" onclick="changePageTitle5('calendar'); return false;">
+                                        Leave Calendar
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="text-decoration: none;">
+                                    <a class="nav-link" href="/holiday-calender" onclick="changePageTitle5('holiday'); return false;">
+                                         Holiday Calendar
+                                    </a>
+                                </li>
+                                    <li class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/leave-calender" onclick="changePageTitle5('team'); return false;">
+                                          @livewire('team-on-leave')
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
-
-
-
-
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle7()">
 
@@ -315,8 +325,17 @@
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('proofofinvestment')">
-                                        <a class="nav-link" href="/proofofinvestment" id="proofofinvestment" onclick="selectOption(this,'Proof Of Investment')">
+                                        <a class="nav-link" href="/proofofinvestment" id="proofofinvestment" onclick="selectOption(this,   'Proof Of Investment')">
                                             Proof Of Investment
+
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('reimbursement')">
+                                        <a class="nav-link" href="/reimbursement" id="reimbursement" onclick="selectOption(this, 'Reimbursement')">
+                                            Reimbursement
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('investment')">
+                                        <a class="nav-link" href="/investment" id="investment" onclick="selectOption(this, 'Proof of Investment')">
+                                            Proof of Investment
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('loan')">
@@ -354,7 +373,7 @@
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle10()">
 
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/delegatesddb">
 
                                 <i class="fas fa-user-friends"></i> Workflow Delegates
 
@@ -654,13 +673,40 @@
                 } else if (item === 'holiday') {
                     newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
                     newTitle = "Holiday Calendar";
-                }
-
-                document.getElementById("pageIcon").innerHTML = newIcon;
+                }      
+                else if (item === 'team') {
+                    newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                    newTitle = "Team on Leave";
+                }           
+               
+                switch (item) {
+            case 'apply':
+                window.location.href = '/leave-page';
+                break;
+            case 'balances':
+                window.location.href = '/leave-balances';
+                break;
+            case 'calendar':
+                window.location.href = '/leave-calender';
+                break;
+            case 'holiday':
+                window.location.href = '/holiday-calender';
+                break;
+                case 'team':
+                window.location.href = '/leave-calender';
+                break;
+            // Add cases for other options if needed
+            default:
+                break;
+        }
+        document.getElementById("pageIcon").innerHTML = newIcon;
                 document.getElementById("pageTitle").textContent = newTitle;
                 localStorage.setItem("pageIcon", newIcon);
                 localStorage.setItem("pageTitle", newTitle);
-            }
+        // Return false to prevent the default link behavior
+        return false;
+    }
+
 
             function toggleLeaveDropdown() {
                 const leaveOptions = document.getElementById("leave-options");
@@ -676,12 +722,16 @@
                     leaveCaret.classList.add("fa-caret-up");
                 }
             }
+
             function toggleSalaryDropdown() {
                 const salaryOptions = document.getElementById("salary-options");
                 const salaryCaret = document.getElementById("salary-caret");
+                const leaveOptions = document.getElementById("leave-options");
+                const leaveCaret = document.getElementById("leave-caret");
 
                 if (salaryOptions.style.display === "block") {
                     salaryOptions.style.display = "none";
+                    leaveOptions.style.display="none";
                     salaryCaret.classList.remove("fa-caret-up");
                     salaryCaret.classList.add("fa-caret-down");
                 } else {
@@ -720,8 +770,5 @@
 </body>
 
 @endguest
-
-
-
 
 </html>

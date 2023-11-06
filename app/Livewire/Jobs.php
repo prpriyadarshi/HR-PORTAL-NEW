@@ -83,6 +83,7 @@ class Jobs extends Component
     {
         return redirect()->route('full-job-view', ['jobId' => $jobId]);
     }
+    public $user;
 
     public function render()
     {
@@ -93,9 +94,10 @@ class Jobs extends Component
             })
             ->orderBy('created_at', 'desc')
             ->get();
-        $user = auth()->user();
+        $this->user = auth()->user();
+
         
-        $this->appliedJobs = AppliedJob::where('user_id', $user->user_id)->get();
+        $this->appliedJobs = AppliedJob::where('user_id', $this->user->user_id)->get();
         return view('livewire.jobs');
     }
 }

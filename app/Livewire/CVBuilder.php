@@ -36,7 +36,6 @@ class CVBuilder extends Component
             'graduation_year' => '',
         ];
     }
-
     public function removeEducation($index)
     {
         unset($this->educationEntries[$index]);
@@ -88,6 +87,7 @@ class CVBuilder extends Component
         ]);
     }
 
+    
     public function submit()
     {
         $this->validate([

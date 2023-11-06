@@ -13,6 +13,7 @@ class Company extends Authenticatable
     protected $fillable = [
         'company_id',
         'company_name',
+        'hr_name',
         'company_address1',
         'company_address2',
         'company_registration_date',

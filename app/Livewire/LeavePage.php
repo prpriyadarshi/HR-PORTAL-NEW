@@ -14,17 +14,16 @@ class LeavePage extends Component
     public $employeeDetails = [];
     public $employeeId;
     public $leaveRequests;
-
+    public $leavePending;
     public function mount()
 {
     // Get the logged-in user's ID and company ID
     $employeeId = auth()->guard('emp')->user()->emp_id;
     // Fetch all leave requests (pending, approved, rejected) for the logged-in user and company
     $this->leaveRequests = LeaveRequest::where('emp_id', $employeeId)
-        ->whereIn('status', ['approved', 'rejected'])
+        ->whereIn('status', ['approved', 'rejected','Withdrawn'])
         ->orderBy('created_at', 'desc')
         ->get();
-
     // Fetch pending leave requests for the logged-in user and company
     $this->leavePending = LeaveRequest::where('emp_id', $employeeId)
         ->where('status', 'pending')
@@ -131,11 +130,24 @@ class LeavePage extends Component
             // You might need to customize this based on your actual session values
             return (int) str_replace('Session ', '', $session);
         }
+        
+        public function cancelLeave($leaveRequestId)
+        {
+            // Find the leave request by ID
+            $leaveRequest = LeaveRequest::find($leaveRequestId);
     
- 
+            // Update status to 'rejected'
+            $leaveRequest->status = 'Withdrawn';
+            $leaveRequest->save();
+            $leaveRequest->touch();
+    
+            session()->flash('message', 'Leave application Withdrawn .');
+        }
+
+        
     public function render()
     {
         return view('livewire.leave-page');
     }
-    
+   
 }

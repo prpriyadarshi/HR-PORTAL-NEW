@@ -175,9 +175,18 @@
                             <input type="email" wire:model="email">
                             @error('email') <span class="error">{{ $message }}</span> @enderror <br>
 
-                            <label style="font-size:12px" for="phone">Phone:</label>
-                            <input type="tel" wire:model="phone">
-                            @error('phone') <span class="error">{{ $message }}</span> @enderror <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label style="font-size: 12px" for="phone">Phone:</label>
+                                    <input style="width: 250px;" type="tel" wire:model="phone">
+                                    @error('phone') <span class="error">{{ $message }}</span> @enderror <br>
+                                </div>
+                                <div class="col-md-6">
+                                    <label style="font-size: 12px" for="date_of_birth">Date of Birth:</label>
+                                    <input  style="margin-left: 5px;width:230px" type="date" wire:model="date_of_birth" max="<?php echo date('Y-m-d'); ?>">
+                                    @error('date_of_birth') <span class="error">{{ $message }}</span> @enderror <br>
+                                </div>
+                            </div>
 
                             <label style="font-size:12px" for="country">Country:</label>
                             <input type="text" wire:model="country">
@@ -190,10 +199,6 @@
                             <label style="font-size:12px" for="address">Address:</label>
                             <input type="text" wire:model="address">
                             @error('address') <span class="error">{{ $message }}</span> @enderror <br>
-
-                            <label style="font-size:12px" for="date_of_birth">Date of Birth:</label>
-                            <input type="date" wire:model="date_of_birth" max="<?php echo date('Y-m-d'); ?>">
-                            @error('date_of_birth') <span class="error">{{ $message }}</span> @enderror <br>
 
                             <label style="font-size:12px" for="image">Image:</label>
                             <input type="file" wire:model="image" accept="image/*">
@@ -215,11 +220,13 @@
                             <div class="education-entry">
                                 <label style="font-size:12px" for="degree">Degree:</label>
                                 <input type="text" wire:model="educationEntries.{{ $index }}.degree" required><br>
-                                @error("educationEntries.$index.degree") <span class="error">{{ $message }}</span> @enderror <br>
+                                @error("educationEntries.$index.degree") <span class="error">{{ $message }}</span>
+                                @enderror <br>
                                 <!-- Add similar error messages for other education fields -->
                                 <label style="font-size:12px" for="university">University/Institution:</label>
                                 <input type="text" wire:model="educationEntries.{{ $index }}.university" required><br>
-                                @error("educationEntries.$index.university") <span class="error">{{ $message }}</span> @enderror <br>
+                                @error("educationEntries.$index.university") <span class="error">{{ $message }}</span>
+                                @enderror <br>
                                 <label style="font-size:12px" for="graduation_year">Graduation Year:</label>
                                 <input type="text" wire:model="educationEntries.{{ $index }}.graduation_year" required><br>
                                 @error("educationEntries.$index.graduation_year") <span class="error">{{ $message }}</span> @enderror <br>
@@ -247,7 +254,8 @@
                                 <!-- Add similar error messages for other work experience fields -->
                                 <label style="font-size:12px" for="company">Company:</label>
                                 <input type="text" wire:model="workExperienceEntries.{{ $index }}.company" required><br>
-                                @error("workExperienceEntries.$index.company") <span class="error">{{ $message }}</span> @enderror <br>
+                                @error("workExperienceEntries.$index.company") <span class="error">{{ $message }}</span>
+                                @enderror <br>
                                 <label style="font-size:12px" for="start_date">Start Date:</label>
                                 <input type="date" wire:model="workExperienceEntries.{{ $index }}.start_date" max="<?php echo date('Y-m-d'); ?>" required><br>
                                 @error("workExperienceEntries.$index.start_date") <span class="error">{{ $message }}</span> @enderror <br>
@@ -299,11 +307,9 @@
                 </div>
             </div>
 
-            <div id="card-content" class="col" style="background-color: rgb(2, 17, 79); width: 55%; height: 835px;overflow: auto;">
-                <button id="download-button"> <a style="text-decoration: none;
-            font-family: Montserrat;
-                ">Download</a></button>
-                <div style="margin-top: 15px;margin-bottom:15px;width:595px">
+            <div class="col" style="background-color: rgb(2, 17, 79); width: 55%; height: 835px;overflow: auto;">
+
+                <div id="card-content" class="card" style="margin-top: 15px;margin-bottom:15px;width:595px">
                     <!DOCTYPE html>
                     <html>
 
@@ -350,29 +356,34 @@
 
                             .job-title {
                                 font-size: 18px;
-                                margin-left: 20px;font-family: Montserrat;
+                                margin-left: 20px;
+                                font-family: Montserrat;
 
                             }
 
                             .profile-image {
                                 width: 250px;
-                                height: 160px;font-family: Montserrat;
+                                height: 160px;
+                                font-family: Montserrat;
                             }
 
                             .contact-info {
                                 display: flex;
                                 align-items: center;
-                                font-size: 12px;font-family: Montserrat;
+                                font-size: 12px;
+                                font-family: Montserrat;
                             }
 
                             .contact-icon {
                                 margin-right: 10px;
                                 font-size: 24px;
-                                font-size: 12px;font-family: Montserrat;
+                                font-size: 12px;
+                                font-family: Montserrat;
                             }
 
                             .col-5 {
-                                margin-right: 0px;font-family: Montserrat;
+                                margin-right: 0px;
+                                font-family: Montserrat;
                             }
                         </style>
                     </head>
@@ -414,7 +425,8 @@
                                 <ul style="text-align: start;">
                                     @if($first_name &&$last_name)
                                     <li>
-                                        <p style="font-size:12px"><strong>Name</strong> : {{$first_name}} {{$last_name}}</p>
+                                        <p style="font-size:12px"><strong>Name</strong> : {{$first_name}} {{$last_name}}
+                                        </p>
                                     </li>
                                     @endif
                                     @if($email)
@@ -464,12 +476,17 @@
                                 </h6>
                                 <ul>
                                     @foreach($workExperienceEntries as $index => $workExperienceEntry)
-                                    @if($workExperienceEntry['job_title'] && $workExperienceEntry['company'] && $workExperienceEntry['start_date'] && $workExperienceEntry['end_date'])
+                                    @if($workExperienceEntry['job_title'] && $workExperienceEntry['company'] &&
+                                    $workExperienceEntry['start_date'] && $workExperienceEntry['end_date'])
                                     <li>
                                         <p>
-                                        <div style="font-size: 12px"><strong>{{ $workExperienceEntry['job_title'] }}</strong></div>
+                                        <div style="font-size: 12px">
+                                            <strong>{{ $workExperienceEntry['job_title'] }}</strong>
+                                        </div>
                                         <div style="font-size: 12px">{{ $workExperienceEntry['company'] }}</div>
-                                        <div style="font-size: 12px">{{ $workExperienceEntry['start_date'] }} - {{ $workExperienceEntry['end_date'] }}</div>
+                                        <div style="font-size: 12px">{{ $workExperienceEntry['start_date'] }} -
+                                            {{ $workExperienceEntry['end_date'] }}
+                                        </div>
                                         </p>
                                     </li>
                                     @endif
@@ -481,10 +498,12 @@
                                 </h6>
                                 <ul>
                                     @foreach($educationEntries as $index => $educationEntry)
-                                    @if($educationEntry['degree'] && $educationEntry['university'] && $educationEntry['graduation_year'])
+                                    @if($educationEntry['degree'] && $educationEntry['university'] &&
+                                    $educationEntry['graduation_year'])
                                     <li>
                                         <p>
-                                        <div style="font-size: 12px"><strong>{{ $educationEntry['degree'] }}</strong></div>
+                                        <div style="font-size: 12px"><strong>{{ $educationEntry['degree'] }}</strong>
+                                        </div>
                                         <div style="font-size: 12px">{{ $educationEntry['university'] }}</div>
                                         <div style="font-size: 12px">{{ $educationEntry['graduation_year'] }}</div>
                                         </p>
@@ -499,7 +518,9 @@
 
                     </html>
                 </div>
-
+                <button onclick="generatePDF()"> <a style="text-decoration: none;
+            font-family: Montserrat;
+                ">Download</a></button>
             </div>
         </div>
     </body>
@@ -581,25 +602,28 @@
         return workExperienceEntry;
     }
 
-    // Function to trigger the download
-    function downloadCardContent() {
+    function generatePDF() {
         const cardContent = document.getElementById('card-content').innerHTML;
-        const blob = new Blob([cardContent], {
+
+        // Create a Blob from the HTML content
+        const blob = new Blob([`<div style="max-width: 600px;">${cardContent}</div>`], {
             type: 'text/html'
         });
+
+        // Create a URL for the Blob
         const url = URL.createObjectURL(blob);
 
+        // Create an <a> element for downloading the PDF
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'card-content.html'; // Specify the filename
+        a.download = 'cv.html'; // Specify the filename with .html extension
         a.style.display = 'none';
 
+        // Append the <a> element to the document and trigger the download
         document.body.appendChild(a);
         a.click();
 
+        // Clean up by revoking the object URL
         window.URL.revokeObjectURL(url);
     }
-
-    // Add a click event listener to the download button
-    document.getElementById('download-button').addEventListener('click', downloadCardContent);
 </script>

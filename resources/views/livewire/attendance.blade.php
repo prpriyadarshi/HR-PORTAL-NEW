@@ -29,7 +29,7 @@
   .my-button:hover {
     /* Styles for hover state */
     text-decoration: none;
-    background-color:rgb(2, 17, 79);; 
+    background-color:rgb(2, 17, 79);
     color: #fff !important; /* Remove underline on hover */
 }
 
@@ -913,9 +913,11 @@ table {
         <i class="fas fa-bars" id="bars-icon" onclick="showMessage()"></i>
      </div>
      
-     <div class="calendar"style="display:none;">
+<div class="calendar"style="display:none;">
   <div class="calendar-header">
-    <h1>September 2023</h1>
+    <button id="prevMonth">Previous</button>
+    <h1 id="currentMonth">September 2023</h1>
+    <button id="nextMonth">Next</button>
   </div>
   <div class="calendar-weekdays">
     <div>Sun</div>
@@ -929,7 +931,7 @@ table {
   <div class="calendar-days" id="calendar-days">
     <!-- Calendar days will be generated here -->
   </div>
-
+</div>
 <div class="container1">
   <!-- Content goes here -->
   <div>
@@ -1475,6 +1477,47 @@ calendarIcon.addEventListener('click', hideBoxContainer);
         });
     });
 </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+  const currentMonthElement = document.getElementById("currentMonth");
+  const prevMonthButton = document.getElementById("prevMonth");
+  const nextMonthButton = document.getElementById("nextMonth");
+  const calendarDaysElement = document.getElementById("calendar-days");
 
+  let currentDate = new Date(2023, 8); // September 2023 (Note: Month is zero-based)
+
+  // Function to update the calendar for a given date
+  function updateCalendar(year, month) {
+    // Generate and display the calendar for the specified year and month
+    // You can use your own code to generate the calendar here.
+
+    currentMonthElement.textContent = new Date(year, month).toLocaleString("en-US", {
+      month: "long",
+      year: "numeric",
+    });
+    // Update the calendar content in the 'calendar-days' element
+    // You will need to generate the days based on the 'year' and 'month' and update the content in the 'calendar-days' element.
+  }
+
+  // Function to go to the previous month
+  function previousMonth() {
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    updateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+  }
+
+  // Function to go to the next month
+  function nextMonth() {
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    updateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+  }
+
+  // Add click event listeners to the previous and next buttons
+  prevMonthButton.addEventListener("click", previousMonth);
+  nextMonthButton.addEventListener("click", nextMonth);
+
+  // Initial calendar rendering
+  updateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+});
+  </script>  
 
 </div> 

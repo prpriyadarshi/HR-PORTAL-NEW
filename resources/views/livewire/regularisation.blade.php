@@ -272,6 +272,23 @@ button#saveReasonButton:hover {
     width:900px;
     transform: translate(-50%, -50%);
 }
+.hidden-pending-box1
+{
+    display: none;
+    
+    margin-top:300px;
+    padding: 20px;
+    border-radius: 5px;
+    
+    text-align: center;
+    margin-left:30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height:320px;
+    width:900px;
+    transform: translate(-50%, -50%);
+}
 .calendar-date:hover::before {
     content: '+';
     font-size: 20px;
@@ -437,7 +454,7 @@ thead th:nth-child(2) {
             display: inline-block;
             padding: 10px 20px;
             border-radius: 5px; /* Adjust the border radius as needed */
-            background-color: #FFA500; /* Orange background color */
+            background-color: rgb(2, 17, 79); /* Orange background color */
             color: #fff; /* White text color */
             text-align: center;
             border: none; /* Remove button border */
@@ -590,31 +607,31 @@ thead th:nth-child(2) {
     </div>
     
 
-    <div class="hidden-pending-box" id="hiddenpendingBox">
+    <div class="hidden-pending-box1" id="hiddenpendingBox">
     
       @if($count1>0)
-        <div c`lass="container"style="width: 500px;height: 90px;background-color: #e0e0e0;text-align: center;padding: 10px;">
+        <div class="container"style="width: 500px;height: 90px;background-color: #fff;text-align: center;padding: 10px;">
           <div style="display:flex;flex-direction:row;">        
             <p class="title"style="font-weight: bold;">Pending with</p>
             <p class="title"style="font-weight: bold;margin-left:100px;">No. of days</p>
             
           </div>  
           <div style="display:flex;flex-direction:row;"> 
-            <p class="highlight"style=" color: #ff9900;margin-right:60px;">{{$manager3->first_name}}&nbsp;&nbsp;{{$manager3->last_name}}</p>
-            <p class="days"style="font-size:24px;color: #ff9900;margin-top:-10px;margin-left:195px;">{{$count1}}</p>
+            <p class="highlight"style=" color: rgb(2, 17, 79);margin-right:60px;">{{$manager3->first_name}}&nbsp;&nbsp;{{$manager3->last_name}}</p>
+            <p class="days"style="font-size:24px;color:  rgb(2, 17, 79);margin-top:-10px;margin-left:195px;">{{$count1}}</p>
           </div>  
           <div class="arrow-button"style="float:right;margin-top:-40px;margin-right:20px;"id="toggleButton"></div> 
             
             <div class="container-body" style="display:none;"id="myContainerBody">
              @foreach($data10 as $d)
-                <div style="width: 500px;height: 180px;background-color: #e0e0e0;margin-bottom: 20px;text-align: center;padding: 10px;margin-right:4px;">
+                <div style="width: 500px;height: 180px;background-color: #fff;margin-bottom: 20px;text-align: center;padding: 10px;margin-right:4px;">
                    <p class="title"style="font-weight: bold;">Dates Applied:</p>
-                   <p class="highlight"style=" color: #ff9900;"id="applied-date"></p>
+                   <p class="highlight"style=" color: rgb(2, 17, 79);"id="applied-date"></p>
                    <div class="horizontal-line"></div>
                  
                     <div style="margin-top:30px;margin-left:-320px;"> 
                         <p class="title"style="font-weight: bold;">Applied On:</p>
-                        <p class="highlight"style=" color: #ff9900;">{{ $d->created_at->format('j M Y') }}</p>
+                        <p class="highlight"style=" color: rgb(2, 17, 79);">{{ $d->created_at->format('j M Y') }}</p>
                     </div> 
                     <div style="margin-top:-60px;margin-left:220px;"> 
                           <button class="withdraw-button"data-toggle="modal"data-target="#withdrawModal">Withdraw</button>
@@ -628,10 +645,10 @@ thead th:nth-child(2) {
        
     </div>
       @else
-        
+        <div class="hidden-pending-box">
             <img src="https://gt-linckia.s3.amazonaws.com/static-ess-v6.3.0-prod-144/review-list-empty.svg"style="margin-top:80px;">
             <p style="color: #a3b2c7;font-weight:400;font-size: 20px;margin-top:20px;">Hey, you have no regularization records to view.</p>
-         
+        </div> 
       @endif
     </div>
     
@@ -659,7 +676,7 @@ thead th:nth-child(2) {
                  
                 <div style="margin-top:30px;margin-left:-320px;"> 
                   <p class="title"style="font-weight: bold;">Withdrawn On:</p>
-                  <p class="highlight"style=" color: #ff9900;">{{$d->created_at}}</p>
+                  <p class="highlight"style=" color: #ff9900;">05-11-2023</p>
                 </div> 
                 <div style="margin-top:-60px;margin-left:220px;"> 
                 
@@ -875,22 +892,6 @@ saveReasonButton.addEventListener("click", () => {
         });
     });
 </script>
-<script>
-    let clickCount = 0;
-    function updateClickCount() {
-      const clickCountElement = document.getElementById("clickCountElement"); // Change to your actual HTML element
-      clickCount++;
-      clickCountElement.textContent = `Click Count: ${clickCount}`;
-    }
-    const calendarDates2 = document.querySelectorAll(".calendar-date");
-
-    // Add a click event listener to each date element
-     calendarDates.forEach((dateElement) => {
-         dateElement.addEventListener("click", () => {
-         updateClickCount(); // Increment and display the count
-        });
-    });
-</script>    
 
 
 
@@ -954,7 +955,7 @@ calendarDates1.forEach(dateElement => {
         selectedDate.setDate(parseInt(clickedDate, 10));
         
         const clickedDay = days[selectedDate.getDay()];
-         
+        console.log(selectedDate);  
         // Update the date and day in the mother-box container
         updateDateAndDay( clickedDate + clickedDay);
     });
