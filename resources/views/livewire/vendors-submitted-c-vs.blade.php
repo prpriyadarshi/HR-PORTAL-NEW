@@ -2,7 +2,6 @@
     <style>
         .container {
             font-family: 'Montserrat';
-
         }
 
         /* Example custom styles for the table */
@@ -87,7 +86,7 @@
     </div>
 
     <div class="job-seekers-applied-jobs">
-        <h3 class="text-2xl font-semibold mb-4" style="text-align: center;">Vendors Submitted CVs</h3>
+        <h5 class="text-2xl font-semibold mb-4" style="text-align: center;">Vendors Submitted CVs</h5>
 
         <table class="table table-striped">
             <thead>
@@ -111,12 +110,12 @@
                     <td>{{ $submitDetails->job->title }}</td>
                     <td>{{ $submitDetails->job->company_name }}</td>
                     <td>
-                        Total CV's : <strong>{{count($submitDetails->cv)}}</strong>
+                        Total CV's : <strong>{{ count($submitDetails->cv) }}</strong>
                         <ul>
-                            @foreach ($submitDetails->cv as $cv)
+                            @foreach ($submitDetails->cv as $key=> $cv)
                             <li style="margin-bottom: 8px;">
-                                <a style="text-decoration: none;" class="preview-button" href="{{ asset('storage/' . $cv['cv']) }}" target="_blank">Preview CV</a>
-                                <a style="text-decoration:none;" class="download-button" href="{{ asset('storage/' . $cv['cv']) }}" download>Download CV</a>
+                                <a style="text-decoration: none;margin-right:5px" class="preview-button" href="{{ Storage::url( $cv['cv']) }}" target="_blank">Preview CV{{ $key + 1 }} </a>
+                                <a style="text-decoration: none;" class="download-button" href="{{ Storage::url($cv['cv']) }}" download>Download CV{{ $key + 1 }} </a>
                             </li>
                             @endforeach
                         </ul>

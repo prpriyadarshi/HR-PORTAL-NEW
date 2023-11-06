@@ -125,7 +125,7 @@
     </div>
 
     <div class="job-seekers-applied-jobs">
-        <h3 class="text-2xl font-semibold mb-4" style="text-align: center;">Job Seekers Applied Jobs</h3>
+        <h5 class="text-2xl font-semibold mb-4" style="text-align: center;">Job Seekers Applied Jobs</h5>
 
         <table class="table table-striped">
             <thead>

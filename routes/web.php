@@ -111,9 +111,6 @@ Route::middleware(['auth:com'])->group(function () {
     Route::get('/JobSeekersAppliedJobs', function () {
         return view('job-seekers-applied-jobs');
     });
-    Route::get('/download-resume/{filename}',function(){
-        return view();
-    })->name('download.resume');
 });
 
 Route::middleware(['auth:emp'])->group(function () {

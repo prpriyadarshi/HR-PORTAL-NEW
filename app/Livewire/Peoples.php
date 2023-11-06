@@ -31,7 +31,7 @@ class Peoples extends Component
     {
         $this->selectedPerson = EmployeeDetails::where('emp_id', $empId)->first();
     }
-    
+
 
     public function mount()
     {
