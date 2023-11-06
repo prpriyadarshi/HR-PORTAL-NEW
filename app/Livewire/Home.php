@@ -24,6 +24,10 @@ class Home extends Component
     public $employeeDetails;
     public $employee;
     public $salaries; 
+    public $count;
+    public $applying_to= [];
+    public $matchingLeaveApplications = [];
+    public $leaveRequest;
     public $salaryRevision;// Rename this variable to 'salaries'
 
     public function toggleSignState()
@@ -56,13 +60,27 @@ class Home extends Component
         $this->currentDay = now()->format('l');
         $this->currentDate = now()->format('d M Y');
         $today = Carbon::now()->format('Y-m-d');
-
-        $leaveApplicationsCount = LeaveRequest::where(function ($query) use ($employeeId) {
-            $query->where('applying_to', $employeeId)
-                ->orWhere('status', 'pending')
-                ->orWhere('cc_to', $employeeId);
-        })->count();
-       
+        $this->leaveRequests = LeaveRequest::where('status', 'pending')->get();
+        $matchingLeaveApplications = [];
+    
+        foreach ($this->leaveRequests as $leaveRequest) {
+            $applyingToJson = trim($leaveRequest->applying_to);
+            $applyingArray = is_array($applyingToJson) ? $applyingToJson : json_decode($applyingToJson, true);
+    
+            $ccToJson = trim($leaveRequest->cc_to);
+            $ccArray = is_array($ccToJson) ? $ccToJson : json_decode($ccToJson, true);
+    
+            $isManagerInApplyingTo = isset($applyingArray[0]['manager_id']) && $applyingArray[0]['manager_id'] == $employeeId;
+            $isEmpInCcTo = isset($ccArray[0]['emp_id']) && $ccArray[0]['emp_id'] == $employeeId;
+    
+            if ($isManagerInApplyingTo || $isEmpInCcTo) {
+                $matchingLeaveApplications[] = $leaveRequest;
+            }
+        }
+    
+        // Get the count of matching leave applications
+        $this->count = count($matchingLeaveApplications);
+        
         $this->swipeDetails = DB::table('swipe_records')
             ->whereDate('created_at', $today)
             ->where('emp_id', $employeeId)
@@ -75,21 +93,23 @@ class Home extends Component
             ->take(3)
             ->get();
     
-        $this->salaryRevision = SalaryRevision::where('emp_id', $employeeId)->get(); // Define and fetch salary data
+        $this->salaryRevision = SalaryRevision::where('emp_id', $employeeId)->get();
     
         $loggedInEmpId = Auth::guard('emp')->user()->emp_id;
-
-        // Check if the logged-in user is a manager by comparing emp_id with manager_id in employeedetails
+    
         $isManager = EmployeeDetails::where('manager_id', $loggedInEmpId)->exists();
-
-        // Show "Team on Leave" if the logged-in user is a manager
+    
         $this->showLeaveApplies = $isManager;
-
+    
+        // Pass the data to the view and return the view instance
         return view('livewire.home', [
             'calendarData' => $this->calendarData,
             'salaryRevision' => $this->salaryRevision,
             'showLeaveApplies' => $this->showLeaveApplies,
-            'leaveApplicationsCount' => $leaveApplicationsCount, // Pass the salary data to the view
+            'count' => $this->count,
+            'matchingLeaveApplications' => $this->matchingLeaveApplications,
         ]);
+
     }
+    
 }    
