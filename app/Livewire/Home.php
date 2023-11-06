@@ -2,12 +2,16 @@
 
 namespace App\Livewire;
 use App\Models\EmployeeDetails;
+use App\Models\LeaveRequest;
 use App\Models\SwipeRecord;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use App\Models\HolidayCalendar;
 use App\Models\SalaryRevision;
+use Illuminate\Support\Facades\Auth;
+
+use App\Livewire\TeamOnLeave;
 class Home extends Component
 {   
     public $currentDate;
@@ -19,7 +23,8 @@ class Home extends Component
     public $calendarData;
     public $employeeDetails;
     public $employee;
-    public $salaries; // Rename this variable to 'salaries'
+    public $salaries; 
+    public $salaryRevision;// Rename this variable to 'salaries'
 
     public function toggleSignState()
     {
@@ -31,7 +36,7 @@ class Home extends Component
             'swipe_time' => now()->format('H:i:s'),
             'in_or_out' => $this->signIn ? "Sign Out" : "Sign In",
         ]);
-        $flashMessage = $this->signIn ? "You Have Successfully Signed Out." : "You Have Successfully Signed In.";
+        $flashMessage = $this->signIn ? "You have successfully signed out." : "You have successfully signed in.";
         session()->flash('success', $flashMessage);
     }
     
@@ -51,6 +56,13 @@ class Home extends Component
         $this->currentDay = now()->format('l');
         $this->currentDate = now()->format('d M Y');
         $today = Carbon::now()->format('Y-m-d');
+
+        $leaveApplicationsCount = LeaveRequest::where(function ($query) use ($employeeId) {
+            $query->where('applying_to', $employeeId)
+                ->orWhere('status', 'pending')
+                ->orWhere('cc_to', $employeeId);
+        })->count();
+       
         $this->swipeDetails = DB::table('swipe_records')
             ->whereDate('created_at', $today)
             ->where('emp_id', $employeeId)
@@ -65,9 +77,19 @@ class Home extends Component
     
         $this->salaryRevision = SalaryRevision::where('emp_id', $employeeId)->get(); // Define and fetch salary data
     
+        $loggedInEmpId = Auth::guard('emp')->user()->emp_id;
+
+        // Check if the logged-in user is a manager by comparing emp_id with manager_id in employeedetails
+        $isManager = EmployeeDetails::where('manager_id', $loggedInEmpId)->exists();
+
+        // Show "Team on Leave" if the logged-in user is a manager
+        $this->showLeaveApplies = $isManager;
+
         return view('livewire.home', [
             'calendarData' => $this->calendarData,
-            'salaryRevision' => $this->salaryRevision, // Pass the salary data to the view
+            'salaryRevision' => $this->salaryRevision,
+            'showLeaveApplies' => $this->showLeaveApplies,
+            'leaveApplicationsCount' => $leaveApplicationsCount, // Pass the salary data to the view
         ]);
     }
 }    

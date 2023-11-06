@@ -1,11 +1,17 @@
- <style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workflow Delegates</title>
+    <style>
         body {
             margin: 0;
             padding: 0;
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
             background-color: #f5f5f5;
         }
-
+ 
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -13,84 +19,84 @@
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
+ 
         .header {
             background-color: #3771C8;
             color: #fff;
             padding: 10px 0;
             text-align: center;
         }
-
+ 
         .header img {
             height: 40px;
             width: auto;
             vertical-align: middle;
         }
-
+ 
         .nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-top: 20px;
         }
-
+ 
         .nav a {
             text-decoration: none;
             color: #333;
             margin-left: 20px;
         }
-
+ 
         .nav b {
             font-weight: bold;
             margin-left: 20px;
         }
-
+ 
         .content {
             margin-top: 20px;
             display: flex;
         }
-
+ 
         .workflow-select {
             flex: 1;
             margin-right: 20px;
-            
+           
         }
-
+ 
         .delegate-form {
             flex: 2;
             padding: 20px;
             background-color: #fff;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
         }
-
+ 
         .form-header {
             text-align: center;
             font-size: 14px;
             color: orange;
             margin-bottom: 20px;
         }
-
+ 
         .form-group {
             margin-bottom: 20px;
         }
-
+ 
         .form-label {
             display: block;
             font-weight: bold;
         }
-
+ 
         .form-control {
             width: 100%;
             padding: 10px;
            font-size:12px;
             border-radius: 5px;
         }
-
+ 
         .form-actions {
             display: flex;
             justify-content: center;
         }
-
+ 
         .form-actions button {
             padding: 10px 20px;
             margin: 0 10px;
@@ -98,7 +104,7 @@
             border-radius: 5px;
             cursor: pointer;
         }
-
+ 
         #delegate-form-container {
             display: none;
         }
@@ -110,15 +116,15 @@
             font-family: 'Montserrat';
         }
     </style>
-
+</head>
 <body>
 @foreach($employees as $employee)
 <div class="container">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap">
 
-    <div class="header" style="height: 50px; font-family: 'Montserrat';margin-top:2px">
+    <div class="header" style="height: 50px; font-family: 'Montserrat';">
        <div class="row">
-        <div class="col" style="margin-top:-5px" >
+        <div class="col" style="margin-left:-750px">
           
         @livewire('company-logo')
         </div>
@@ -176,14 +182,14 @@
                         <td style="border: 1px solid #8D939D; padding: 5px;font-size:12px; font-family: Montserrat">{{ date('d M Y', strtotime($data->to_date)) }}</td>
                         <td style="border: 1px solid #8D939D; padding: 5px;font-size:12px; font-family: Montserrat">{{ $data->delegate }}</td>
                     </tr>
-                    
+                   
                     @endforeach
-                    
+                   
                 </tbody>
             </table>
-          
+         
     </div>
-
+ 
      
             <!-- Delegate form -->
             <div id="delegate-form-container" class="delegate-form" style="margin-left: 20px; font-family: 'Montserrat', sans-serif;font-size:14px">
@@ -252,10 +258,11 @@
                 delegateFormContainer.style.display = 'none';
             }
         });
-
+ 
         document.getElementById('cancel-button').addEventListener('click', function () {
             var delegateFormContainer = document.getElementById('delegate-form-container');
             delegateFormContainer.style.display = 'none';
         });
     </script>
-
+</body>
+</html>

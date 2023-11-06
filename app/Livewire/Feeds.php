@@ -8,33 +8,23 @@ use Carbon\Carbon;
 use App\Models\Employee;
 class Feeds extends Component
 {
-    public $employeesWithYearsCompleted; // Use the correct variable name here
-    public $employeeDetails;
-    protected $table = 'employee_details';
+    public $employees;
+    public $employees_data;
+    public $currentMonthDay;
+    public $employeesWithMatchingDOB;
+    public $employeesWithHireDate;
 
-    public function render()
+    public function mount()
     {
-        $currentMonthDay = Carbon::now()->format('m-d');
+        $this->currentMonthDay = Carbon::now()->format('m-d');
+
+        $this->employeesWithMatchingDOB = EmployeeDetails::orderBy('date_of_birth', 'desc')
+        ->get();
+        $this->employeesWithHireDate = EmployeeDetails::orderBy('hire_date', 'desc')
+        ->get();
+
     
-        // Construct a raw SQL query to filter employees with both joining date and date of birth equal to the current date and month
-        $employeeDetails = EmployeeDetails::whereRaw("DATE_FORMAT(date_of_birth, '%m-%d') = ?", [$currentMonthDay])
-            ->whereRaw("DATE_FORMAT(hire_date, '%m-%d') = ?", [$currentMonthDay])
-            ->get();
     
-        $employeesWithYearsCompleted = [];
-    
-        foreach ($employeeDetails as $employeeDetail) {
-            $joiningDate = Carbon::parse($employeeDetail->hire_date);
-            $yearsCompleted = $joiningDate->diffInYears(Carbon::now());
-    
-            $employeesWithYearsCompleted[] = [
-                'employee' => $employeeDetail,
-                'yearsCompleted' => $yearsCompleted,
-            ];
-        }
-    
-        return view('livewire.feeds', [
-            'employees' => $employeesWithYearsCompleted, // Use the correct variable name here
-        ]);
-    }
+    return view('livewire.feeds', );
+}
 }

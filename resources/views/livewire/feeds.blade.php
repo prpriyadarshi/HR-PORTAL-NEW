@@ -205,7 +205,7 @@
 </div>
 
 
-          <div class="top-menu" style="background-color: #f0f0f0;">
+          <div class="top-menu" style="background-color: #f0f0f0;margin-top:20px">
             <div class="B" style="width: 750px; height: 70px; border-top: 1px solid #E0DDDD; border-bottom: 1px solid #E0DDDD; background-color: #FFFFFF;font-size: 14px; font-family: Open Sans, sans-serif;padding:10px;margin-left:40px">
               <b> All Feeds</b>
               <p>Groups</p>
@@ -213,177 +213,129 @@
 
 
             <p style="text-align: center; font-size: 14px; font-family: Open Sans, sans-serif;margin-top:5px">sort: <strong style="font-weight: bold;">New posts</strong></p>
-          
-            <div style="display: flex; width:800px; ">
-            <div class="column" style="overflow-y:auto;display: flex;">
-              <div class="F" style="background-color: white; width: 500px; height: 350px; border-radius: 5px; border: 1px solid #CFCACA; margin-left: 30px; color: #3b4452; padding-bottom: 40px;">
+      
+   
+            @foreach ($employeesWithMatchingDOB as $employee)
+            @if ($employee->date_of_birth)
+            <div class="F" style="background-color: white; width: 500px; height: 350px; border-radius: 5px; border: 1px solid #CFCACA; margin-left: 30px; color: #3b4452; margin-top: 20px">
                 <!-- Upcoming Holidays List -->
                 <div style="display: flex;">
-
-                  <div class="column">
-                    <img src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/2e383f1a48f91dbea7e6" alt="Image Description" style="height: 100px; width: 160px; margin-top: 5px; margin-left: 40px;">
-                    <div style="color: #677A8E; margin-left: 60px; font-size: 14px; font-family: Open Sans, sans-serif; font-weight: 100px;">Group Events</div>
-                  </div>
-                  <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 170px; font-family: Open Sans, sans-serif; margin-top: 40px; font-weight: 100px; color: #9E9696;">Archana</div>
+                    <div class="column">
+                        <img src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/2e383f1a48f91dbea7e6" alt="Image Description" style="height: 100px; width: 160px; margin-top: 5px; margin-left: 40px;">
+                        <div style="color: #677A8E; margin-left: 60px; font-size: 14px; font-family: Open Sans, sans-serif; font-weight: 100px;">Group Events</div>
+                    </div>
+                    <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 170px; font-family: Open Sans, sans-serif; margin-top: 40px; font-weight: 100px; color: #9E9696;">
+                        {{ date('d M Y', strtotime($employee->date_of_birth)) }}
+                    </div>
                 </div>
                 <div style="display: flex;">
-                  <img src="https://i.pinimg.com/originals/20/7f/22/207f229952dc673e1e88be7134436497.jpg" alt="Image Description" style="height: 160px; width: 160px; margin-left: 40px;">
-                  <div style="display: flex; flex-direction: column; margin-left: 20px;">
-                    <p style="font-size: 14px; font-family: 'Open Sans', sans-serif; margin-top: 10px; font-weight: 100; color: #677A8E;">Happy Birthday Archana, Have a great year ahead!</p>
-                    <div style="display: flex; align-items: center;">
-                      <img src="https://logodix.com/logo/1984436.jpg" alt="Image Description" style="height: 25px; width: 20px;">
-                      <p style="margin-left: 10px; font-size: 14px; font-family: 'Open Sans', sans-serif; color: #677A8E; margin-top: 10px;">Happy Birthday Archana!🎂</p>
+                    <img src="https://cdn1.vectorstock.com/i/thumb-large/48/00/set-images-young-people-listening-to-music-vector-31034800.jpg" alt="Image Description" style="height: 160px; width: 160px; margin-left: 40px;">
+                    <div style="display: flex; flex-direction: column; margin-left: 20px;">
+                        <p style="font-size: 14px; font-family: 'Open Sans', sans-serif; margin-top: 10px; font-weight: 100; color: #677A8E;">
+                            Happy Birthday {{$employee->first_name}} {{$employee->last_name}}, Have a great year ahead!
+                        </p>
+                        <div style="display: flex; align-items: center;">
+                            <img src="https://logodix.com/logo/1984436.jpg" alt="Image Description" style="height: 25px; width: 20px;">
+                            <p style="margin-left: 10px; font-size: 14px; font-weight: normal; margin-top: 10px; font-family: 'Open Sans', sans-serif; color: black; margin-top: 10px;">
+                                Happy Birthday {{$employee->first_name}} {{$employee->last_name}}! 🎂
+                            </p>
+                        </div>
                     </div>
-                  </div>
                 </div>
-
                 <confirmation-modal class="confirmation-modal">
-                  <gt-popup-modal label="modal" size="sm" class="hydrated">
-                    <div class="body-content">
-                      <div slot="modal-body"><!-- Content for modal body --></div>
-                    </div>
-                    <div slot="modal-footer">
-                      <div class="flex justify-end">
-                        <gt-button shade="secondary" name="Cancel" class="mr-2x hydrated"></gt-button>
-                        <gt-button shade="primary" name="Confirm" class="hydrated"></gt-button>
-                      </div>
-                    </div>
-                  </gt-popup-modal>
+                    <gt-popup-modal label="modal" size="sm" class="hydrated">
+                        <div class="body-content">
+                            <div slot="modal-body"><!-- Content for modal body --></div>
+                        </div>
+                        <div slot="modal-footer">
+                            <div class="flex justify-end">
+                                <gt-button shade="secondary" name="Cancel" class="mr-2x hydrated"></gt-button>
+                                <gt-button shade="primary" name "Confirm" class="hydrated"></gt-button>
+                            </div>
+                        </div>
+                    </gt-popup-modal>
                 </confirmation-modal>
                 <!-- Like Button -->
                 <div style="display: flex;">
-                  <div class="like-button">
-                    <i class="thumb-icon" style="margin-left: 20px;">👍</i>
-                    <span class="like-count">0 Likes</span>
-                  </div>
-                  <div class="comment-icon">
-                    <i class="comment-icon" style="margin-left: 40px; margin-top: 20px;">💬</i>
-                    <span class="comment-count">0 Comments</span>
-                  </div>
-                  <div class="comment-box">
-                    <textarea id="comment-input" placeholder="Add your comment"></textarea>
-                  </div>
+                    <div class="like-button">
+                        <i class="thumb-icon" style="margin-left: 20px;">👍</i>
+                        <span class="like-count">0 Likes</span>
+                    </div>
+                    <div class "comment-icon">
+                        <i class="comment-icon" style="margin-left: 40px; margin-top: 20px;">💬</i>
+                        <span class="comment-count">0 Comments</span>
+                    </div>
+                    <div class="comment-box">
+                        <textarea id="comment-input" placeholder="Add your comment"></textarea>
+                    </div>
                 </div>
-              </div>
-              <div class="column" style="background-color: white; width: 200px; height: 300px;margin-left:10px;border-radius:10px;border:1px solid #A89F9F;margin-top:20px">
-                <div style="color: #677A8E; margin-left: 20px; font-family: Open Sans, sans-serif; margin-top: 20px;">
-                  HIGHLIGHTS
-                </div>
-                <div class="row">
-                  <img src="https://th.bing.com/th/id/OIP.quEUmw5-XtH8c1AhTN9dYQHaFh?pid=ImgDet&w=120&h=120&c=7&dpr=1.5&rs=1" style="height: 100px; width: 150px; margin-top: 10px; margin-left: 40px;">
-                  <p style="color: black; margin-left: 40px;font-weight:normal; font-size: 13px; font-family: Open Sans, sans-serif;margin-top:20px">Keep looking here! :)</p>
-                  <p style="color: #677A8E; margin-left: 10px; font-size: 10px; font-family: Open Sans, sans-serif;">We're rolling out Highlights help you stay tuned with events, birthdays, posts, and much more.</p>
-                  <div>
-                  </div>
-
-
-                </div>
-              </div>
             </div>
-</div>
+        @endif
+  @endforeach
+
+        @foreach ($employeesWithHireDate as $employee)
+        @if ($employee->hire_date)
             <div class="F" style="background-color: white; width: 500px; height: 350px; border-radius: 5px; border: 1px solid #CFCACA; margin-left: 30px; color: #3b4452; margin-top: 20px">
-              <!-- Upcoming Holidays List -->
-              <div style="display: flex;">
-
-                <div class="column">
-                  <img src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/2e383f1a48f91dbea7e6" alt="Image Description" style="height: 100px; width: 160px; margin-top: 5px; margin-left: 40px;">
-                  <div style="color: #677A8E; margin-left: 60px; font-size: 14px; font-family: Open Sans, sans-serif; font-weight: 100px;">Group Events</div>
-                </div>
-                <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 170px; font-family: Open Sans, sans-serif; margin-top: 40px; font-weight: 100px; color: #9E9696;">23 Aug 2023</div>
-              </div>
-              <div style="display: flex;">
-                <img src="https://cdn1.vectorstock.com/i/thumb-large/48/00/set-images-young-people-listening-to-music-vector-31034800.jpg" alt="Image Description" style="height: 160px; width: 160px; margin-left: 40px;">
-                <div style="display: flex; flex-direction: column; margin-left: 20px;">
-                  <p style="font-size: 14px; font-family: 'Open Sans', sans-serif; margin-top: 10px; font-weight: 100; color: #677A8E;">Chirag Palagrahara has joined us in the company on 07 Sep 2023,
-                    Please join us in welcoming our newest team member.
-                  </p>
-                  <div style="display: flex; align-items: center;">
-                    <img src="https://logodix.com/logo/1984436.jpg" alt="Image Description" style="height: 25px; width: 20px;">
-                    <p style="margin-left: 10px; font-size: 14px;font-weight:normal;margin-top:10px; font-family: 'Open Sans', sans-serif; color: black; margin-top: 10px;">Chirag Palagrahara Just Joined Us!
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <confirmation-modal class="confirmation-modal">
-                <gt-popup-modal label="modal" size="sm" class="hydrated">
-                  <div class="body-content">
-                    <div slot="modal-body"><!-- Content for modal body --></div>
-                  </div>
-                  <div slot="modal-footer">
-                    <div class="flex justify-end">
-                      <gt-button shade="secondary" name="Cancel" class="mr-2x hydrated"></gt-button>
-                      <gt-button shade="primary" name="Confirm" class="hydrated"></gt-button>
+                <!-- Upcoming Holidays List -->
+                <div style="display: flex;">
+                    <div class="column">
+                        <img src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/2e383f1a48f91dbea7e6" alt="Image Description" style="height: 100px; width of 160px; margin-top: 5px; margin-left: 40px;">
+                        <div style="color: #677A8E; margin-left: 60px; font-size: 14px; font-family: Open Sans, sans-serif; font-weight: 100px;">Group Events</div>
                     </div>
-                  </div>
-                </gt-popup-modal>
-              </confirmation-modal>
-              <!-- Like Button -->
-              <div style="display: flex;">
-                <div class="like-button">
-                  <i class="thumb-icon" style="margin-left: 20px;">👍</i>
-                  <span class="like-count">0 Likes</span>
+                    <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 170px; font-family: Open Sans, sans-serif; margin-top: 40px; font-weight: 100px; color: #9E9696;">
+                        {{ date('d M Y', strtotime($employee->hire_date)) }}
+                    </div>
                 </div>
-                <div class="comment-icon">
-                  <i class="comment-icon" style="margin-left: 40px; margin-top: 20px;">💬</i>
-                  <span class="comment-count">0 Comments</span>
+                <div style="display: flex;">
+                    <img src="https://cdn1.vectorstock.com/i/thumb-large/48/00/set-images-young-people-listening-to-music-vector-31034800.jpg" alt="Image Description" style="height: 160px; width: 160px; margin-left: 40px;">
+                    <div style="display: flex; flex-direction: column; margin-left: 20px;">
+                        <p style="font-size: 14px; font-family: 'Open Sans', sans-serif; margin-top: 10px; font-weight: 100; color: #677A8E;">
+                            {{$employee->first_name}} {{$employee->last_name}} has joined us in the company on {{ date('d M Y', strtotime($employee->hire_date)) }},
+                            Please join us in welcoming our newest team member.
+                        </p>
+                        <div style="display: flex; align-items: center;">
+                            <img src="https://logodix.com/logo/1984436.jpg" alt="Image Description" style="height: 25px; width: 20px;">
+                            <p style="margin-left: 10px; font-size: 14px; font-weight: normal; margin-top: 10px; font-family: 'Open Sans', sans-serif; color: black; margin-top: 10px;">
+                                {{$employee->first_name}} {{$employee->last_name}} Just Joined Us!
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div class="comment-box">
-                  <textarea id="comment-input" placeholder="Add your comment"></textarea>
+                <confirmation-modal class="confirmation-modal">
+                    <gt-popup-modal label="modal" size="sm" class="hydrated">
+                        <div class="body-content">
+                            <div slot="modal-body"><!-- Content for modal body --></div>
+                        </div>
+                        <div slot="modal-footer">
+                            <div class="flex justify-end">
+                                <gt-button shade="secondary" name="Cancel" class="mr-2x hydrated"></gt-button>
+                                <gt-button shade="primary" name "Confirm" class="hydrated"></gt-button>
+                            </div>
+                        </div>
+                    </gt-popup-modal>
+                </confirmation-modal>
+                <!-- Like Button -->
+                <div style="display: flex;">
+                    <div class="like-button">
+                        <i class="thumb-icon" style="margin-left: 20px;">👍</i>
+                        <span class="like-count">0 Likes</span>
+                    </div>
+                    <div class "comment-icon">
+                        <i class="comment-icon" style="margin-left: 40px; margin-top: 20px;">💬</i>
+                        <span class="comment-count">0 Comments</span>
+                    </div>
+                    <div class="comment-box">
+                        <textarea id="comment-input" placeholder="Add your comment"></textarea>
+                    </div>
                 </div>
-              </div>
             </div>
-            <div class="F" style="background-color: white; width: 500px; height: 350px; border-radius: 5px; border: 1px solid #CFCACA; margin-top: 30px; color: #3b4452; margin-left: 30px">
-              <!-- Upcoming Holidays List -->
-              <div style="display: flex;">
+        @endif
+    @endforeach
 
-                <div class="column">
-                  <img src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/2e383f1a48f91dbea7e6" alt="Image Description" style="height: 100px; width: 160px; margin-top: 5px; margin-left: 40px;">
-                  <div style="color: #677A8E; margin-left: 60px; font-size: 14px; font-family: Open Sans, sans-serif; font-weight: 100px;">Group Events</div>
-                </div>
-                <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 170px; font-family: Open Sans, sans-serif; margin-top: 40px; font-weight: 100px; color: #9E9696;">23 Aug 2023</div>
-              </div>
-              <div style="display: flex;">
-                <img src="https://cdn1.vectorstock.com/i/thumb-large/48/00/set-images-young-people-listening-to-music-vector-31034800.jpg" alt="Image Description" style="height: 160px; width: 160px; margin-left: 40px;">
-                <div style="display: flex; flex-direction: column; margin-left: 20px;">
-                  <p style="font-size: 14px; font-family: 'Open Sans', sans-serif; margin-top: 10px; font-weight: 100; color: #677A8E;">Chirag Palagrahara has joined us in the company on 07 Sep 2023,
-                    Please join us in welcoming our newest team member.
-                  </p>
-                  <div style="display: flex; align-items: center;">
-                    <img src="https://logodix.com/logo/1984436.jpg" alt="Image Description" style="height: 25px; width: 20px;">
-                    <p style="margin-left: 10px; font-size: 14px;font-weight:normal;margin-top:10px; font-family: 'Open Sans', sans-serif; color: black; margin-top: 10px;">Chirag Palagrahara Just Joined Us!
-                    </p>
-                  </div>
-                </div>
-              </div>
+</div>
 
-              <confirmation-modal class="confirmation-modal">
-                <gt-popup-modal label="modal" size="sm" class="hydrated">
-                  <div class="body-content">
-                    <div slot="modal-body"><!-- Content for modal body --></div>
-                  </div>
-                  <div slot="modal-footer">
-                    <div class="flex justify-end">
-                      <gt-button shade="secondary" name="Cancel" class="mr-2x hydrated"></gt-button>
-                      <gt-button shade="primary" name="Confirm" class="hydrated"></gt-button>
-                    </div>
-                  </div>
-                </gt-popup-modal>
-              </confirmation-modal>
-              <!-- Like Button -->
-              <div style="display: flex;">
-                <div class="like-button">
-                  <i class="thumb-icon" style="margin-left: 20px;">👍</i>
-                  <span class="like-count">0 Likes</span>
-                </div>
-                <div class="comment-icon">
-                  <i class="comment-icon" style="margin-left: 40px; margin-top: 20px;">💬</i>
-                  <span class="comment-count">0 Comments</span>
-                </div>
-                <div class="comment-box">
-                  <textarea id="comment-input" placeholder="Add your comment"></textarea>
-                </div>
-              </div>
+
+
 
 
               <script>
