@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -194,6 +195,11 @@ class UserProfile extends Component
         $this->userDetails = User::where('user_id', auth()->guard('web')->user()->user_id)->first();
 
         $this->technicalEntries = $this->userDetails->technical_skills ?? [];
+    }
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/emplogin');
     }
 
     public function editTechnical($index)

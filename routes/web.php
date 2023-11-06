@@ -104,6 +104,16 @@ Route::middleware(['auth:com'])->group(function () {
     Route::get('/PostJobs', function () {
         return view('post_jobs_view');
     });
+
+    Route::get('/VendorsSubmittedCVs', function () {
+        return view('vendors-submitted-cvs');
+    });
+    Route::get('/JobSeekersAppliedJobs', function () {
+        return view('job-seekers-applied-jobs');
+    });
+    Route::get('/download-resume/{filename}',function(){
+        return view();
+    })->name('download.resume');
 });
 
 Route::middleware(['auth:emp'])->group(function () {
