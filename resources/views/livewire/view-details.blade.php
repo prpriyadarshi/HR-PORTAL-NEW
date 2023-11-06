@@ -160,25 +160,11 @@
                     <div style="display:flex; flex-direction:row; justify-content:space-between;">
                     <div class="field">
                             <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">
-                                @if(strtoupper($leaveRequest->status) == 'WITHDRAWN')
-                                    Withdrawn by
-                                @elseif(strtoupper($leaveRequest->status) == 'APPROVED')
-                                    Approved by
-                                @else
-                                     Pending with
-                                @endif
+                              Applied by
                             </span>
-                            @if(strtoupper($leaveRequest->status) == 'WITHDRAWN')
-                                <span style="color: #333; font-weight: 500; text-transform: uppercase;">
-                                    {{ $this->leaveRequest->employee->first_name }} {{ $this->leaveRequest->employee->last_name }}
-                                </span>
-                            @elseif(!empty($leaveRequest['applying_to']))
-                                @foreach($leaveRequest['applying_to'] as $applyingTo)
                                     <span style="color: #333; font-weight: 500; text-transform:uppercase;">
-                                        {{ $applyingTo['report_to'] }}
+                                      {{ $firstName }}
                                     </span>
-                                @endforeach
-                            @endif
                         </div>
 
                      <div>

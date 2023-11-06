@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
+          body{
+            font-family: 'Montserrat', sans-serif;
+        }
         .detail-container {
         display: flex;
         flex-direction: column;
@@ -206,7 +209,7 @@
                             </div>
                             <div class="vertical-line"></div>
                          </div>
-                         <div class="box" style="display:flex;  margin-left:50px;  text-align:center; padding:5px;">
+                         <div class="box" style="display:flex;  margin-left:30px;  text-align:center; padding:5px;">
                             <div class="field">
                                 <span style="color: #778899; font-size: 0.825rem; font-weight: 500;">No. of days</span>
                                 <span style=" font-size: 0.875rem; font-weight: 600;"> {{ $this->calculateNumberOfDays($leaveRequest->from_date, $leaveRequest->from_session, $leaveRequest->to_date, $leaveRequest->to_session) }}</span>
