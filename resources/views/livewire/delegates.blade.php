@@ -122,23 +122,7 @@
 <div class="container">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap">
 
-    <div class="header" style="height: 50px; font-family: 'Montserrat';">
-       <div class="row">
-        <div class="col" style="margin-left:-750px">
-          
-        @livewire('company-logo')
-        </div>
-        <div class="col" style="margin-left:-100px">
-        <a href="/" style=" color:white; font-family: 'Montserrat';text-decoration:none;margin-left:-50px">Home</a>
-        </div>
-        <div class="col" style="margin-top:3px;">
-        <p style="font-family: 'Montserrat';margin-left:-200px">My Info</p>
-        </div>
-        <div class="col" style="margin-top:32px">
-        <p style="margin-top: -35px;  font-family: 'Montserrat';">{{$employee->first_name}} {{$employee->last_name}}</p>
-    </div>
-       </div>
-    </div>
+
    
     <h1 class="form-header" style="margin-right: 500px; font-family: 'Montserrat';margin-top:20px;font-size:17px">Workflow Delegates</h1>
     <div class="nav">
@@ -159,7 +143,7 @@
                 <!-- Add your workflow options here -->
             </select>
         </div>
-        <button id="show-delegate-form-button" style="margin-right: 20px; width: 170px; height: 40px; min-width: 130px; margin-right: 10px;border-radius:5px;background:#E8E8E8">Add Delegates</button>
+        <button id="show-delegate-form-button" style="margin-right: 20px; width: 170px; height: 40px; min-width: 130px; margin-right: 10px;border-radius:5px;background:blue;color:white">Add Delegates</button>
     </div>
     <div class="content">
         <div style="height: 500px; width: 100%; border: 1px solid #D9D9D9; border-radius: 10px; font-family: 'Montserrat';">

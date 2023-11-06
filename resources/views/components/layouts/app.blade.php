@@ -325,17 +325,16 @@
                                         </a>
 
                                  
-
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('proofofinvestment')">
-                                        <a class="nav-link" href="/proofofinvestment" id="proofofinvestment" onclick="selectOption(this,'Proof Of Investment')">
-                                            Proof Of Investment
-
-
+        </li>
+                
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle16('proofofinvestment')">
+                                        <a class="nav-link" href="/proofofinvestment" id="proofofinvestment" onclick="selectOption(this, 'Proof Of Investment')">
+                                        Proof Of Investment
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('loan')">
-                                        <a class="nav-link" href="/loan" id="slip" onclick="selectOption(this, 'Loan and Advances')">
-                                            Loan and Advances
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle17('loan')">
+                                        <a class="nav-link" href="/loan" id="loan" onclick="selectOption(this, 'Loan')">
+                                       Loan
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle15('salary-revision')">
@@ -368,7 +367,7 @@
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle10()">
  
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/delegates">
  
                                 <i class="fas fa-user-friends"></i> Workflow Delegates
 

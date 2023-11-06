@@ -4,27 +4,52 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\EmployeeDetails;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\Employee;
 class Feeds extends Component
 {
     public $employees;
-    public $employees_data;
-    public $currentMonthDay;
-    public $employeesWithMatchingDOB;
-    public $employeesWithHireDate;
+    public $combinedData;
 
     public function mount()
     {
-        $this->currentMonthDay = Carbon::now()->format('m-d');
+        $companyId = Auth::user()->company_id;
+        $this->employees = EmployeeDetails::where('company_id', $companyId)->get();
+        $this->combinedData = $this->combineAndSortData($this->employees);
+    }
 
-        $this->employeesWithMatchingDOB = EmployeeDetails::orderBy('date_of_birth', 'desc')
-        ->get();
-        $this->employeesWithHireDate = EmployeeDetails::orderBy('hire_date', 'desc')
-        ->get();
+    public function render()
+    {
+        return view('livewire.feeds', ['combinedData' => $this->combinedData]);
+    }
 
-    
-    
-    return view('livewire.feeds', );
-}
+    private function combineAndSortData($employees)
+    {
+        $combinedData = [];
+
+        foreach ($employees as $employee) {
+            if ($employee->date_of_birth) {
+                $combinedData[] = [
+                    'date' => Carbon::parse($employee->date_of_birth)->format('m-d'),
+                    'type' => 'date_of_birth',
+                    'employee' => $employee,
+                ];
+            }
+
+            if ($employee->hire_date) {
+                $combinedData[] = [
+                    'date' => Carbon::parse($employee->hire_date)->format('m-d'),
+                    'type' => 'hire_date',
+                    'employee' => $employee,
+                ];
+            }
+        }
+
+        usort($combinedData, function ($a, $b) {
+            return $b['date'] <=> $a['date']; // Sort in descending order
+        });
+
+        return $combinedData;
+    }
 }

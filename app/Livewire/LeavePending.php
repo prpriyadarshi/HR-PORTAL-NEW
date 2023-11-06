@@ -18,11 +18,7 @@ class LeavePending extends Component
     public $leaveRequestId;
     public $full_name;
     public $employeeDetails = [];
-   
-
     public $leaveRequest=[]; // Property to hold the selected leave request
-
-    
 
     public function mount($leaveRequestId)
     {

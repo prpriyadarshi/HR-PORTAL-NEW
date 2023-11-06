@@ -24,7 +24,7 @@ use App\Livewire\SalaryRevisions;
 use App\Livewire\Settings;
 use App\Livewire\Review;
 use App\Livewire\Tasks;
-
+// use App\Livewire\Loan;
 use App\Livewire\Itdeclaration;
 use App\Livewire\Itstatement1;
 use App\Livewire\Payroll;
@@ -198,7 +198,7 @@ Route::middleware(['auth:emp'])->group(function () {
 
 
   //  Route::get('/view-pending-details', ViewPendingDetails::class)->name('view-pending-details');
-    Route::get('/delegatesddb', Delegates::class);
+    Route::get('/delegates', Delegates::class);
 
     // Route::get('/view-details', ViewDetails::class)->name('view-details');
 
@@ -220,7 +220,8 @@ Route::middleware(['auth:emp'])->group(function () {
 Route::get('/itstatement', Itstatement1::class);
 Route::get('/document', Documentcenter::class);
 Route::get('/reimbursement', Reimbursement::class);
-Route::get('/investment', Investment::class);
+// Route::get('/loan', Loan::class);
+Route::get('/proofofinvestment', Investment::class);
 Route::get('/documents', Documents::class);
 
 
