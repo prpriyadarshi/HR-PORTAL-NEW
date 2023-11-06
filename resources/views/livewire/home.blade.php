@@ -139,13 +139,67 @@
         background-color: #fff;
         box-shadow: 1px 2px rgba(0, 0, 0, 0.2);
     }
+    .leave-display{
+        padding: 5px 10px; 
+        display: flex; 
+        flex-direction:row;
+        align-items: center; 
+        white-space: nowrap; 
+        overflow: hidden; 
+        background:#fafafa;
+        text-overflow: ellipsis; 
+        border-top:1px solid #ccc;
+        font-size: 12px;
+        gap:15px;
+    }
     </style>
 </head>
 <body>
+@if ($showAlertDialog)
+                                            <div class="modal" tabindex="-1" role="dialog" style="display: block;">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header" style="background-color: rgb(2, 17, 79); height: 50px">
+                                                            <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title"><b>Swipes</b></h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="close">
+                                                                <span aria-hidden="true" style="color: white;">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="col" style="font-size: 10px;">Date : <b>{{$currentDate}}</b></div>
+                                                                <div class="col" style="font-size: 10px;">Shift Time : <b>10:00 to 19:00</b></div>
+                                                            </div>
+                                                            <table border="1" style="margin-top: 10px;">
+                                                                <tr>
+                                                                    <th style="font-size: 12px; color: grey;">Swipe Time</th>
+                                                                    <th style="font-size: 12px; color: grey">Sign-In / Sign-Out</th>
+                                                                </tr>
+
+                                                                @if (!is_null($swipeDetails) && $swipeDetails->count() > 0)
+                                                                @foreach ($swipeDetails as $swipe)
+                                                                <tr>
+                                                                    <td style="font-size: 10px; color: black;">{{ $swipe->swipe_time }}</td>
+                                                                    <td style="font-size: 10px; color: black;">{{ $swipe->in_or_out }}</td>
+                                                                </tr>
+                                                                @endforeach
+                                                                @else
+                                                                <tr>
+                                                                    <td colspan="2">No swipe records found for today.</td>
+                                                                </tr>
+                                                                @endif
+
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-backdrop fade show blurred-backdrop"></div>
+                                            @endif
     <div class="container">
     @if (session()->has('success'))
 
-        <div class="custom-alert alert-success" style="text-align: center;margin-left:50%;width: 500px;">
+        <div class="custom-alert alert-success" style="text-align: center;margin-left:10%;width: 500px;">
             {{ session('success') }}
         </div>
         <script>
@@ -191,8 +245,8 @@
                 <img id="greeting-image" src="" alt="Greeting Image" style="height: 200px; width:300px ;margin-left:50px; ">
             </div>
  <!-- main content -->
-            <div class="container" style="display:flex; flex-direction:row; gap:5px; padding:10px 5pxx;">
-                    <div class="first-col col-md-4" style=" padding:0;  display:flex; flex-direction:column;gap:5px;" >
+            <div class="container" style="display:flex; flex-direction:row; gap:5px; padding:5px 10px;">
+                    <div class="first-col col-md-4" style=" padding:0;  display:flex; flex-direction:column; gap:5px;" >
                         <div class="home-hover">
                                <div class="reviews">
                                   <div style="border-radius: 5px; border: 1px solid #CFCACA;  background-color: white;">
@@ -204,7 +258,7 @@
                                           <i class="fa fa-long-arrow-right" aria-hidden="true" style="color: #bbbbba;"></i>
                                         </div>
                                     </div>
-                                        @if($showLeaveApplies)
+                                    @if(($this->count) > 0)
                                           <div class="notify">
                                                 <p style="color: black; font-size: 1.2rem; font-weight: 500;">
                                                     {{$count}} <br>
@@ -212,19 +266,20 @@
                                                 </p>
                                                 <img src="https://png.pngtree.com/png-vector/20190214/ourlarge/pngtree-vector-notes-icon-png-image_509622.jpg" alt="" style="height: 50px; width: 50px;">
                                             </div>
-                                            <div class="leave-display" style="background: #fafafa; padding: 5px 10px; display: flex; align-items: center;">
+                                            <div class="leave-display" >
                                                 @for ($i = 0; $i < min($count, 2); $i++)
-                                                    <div class="circle-notify" style="height: 50px; width: 50px; border-radius: 60%; border: 2px solid #dcdcdc; margin-right: 5px;">
-                                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDDbrRPghufD20Fgaa0IFT62n3vLc5lI5B_w&usqp=CAU" alt="" style="height: 45px; width: 45px; border-radius: 45%;">  <span>Leave</span>
+                                                    <div class="circle-notify" style="margin-right: 5px; display:flex; flex-direction:column;">
+                                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDDbrRPghufD20Fgaa0IFT62n3vLc5lI5B_w&usqp=CAU" alt="" style="height: 40px; width: 40px; border-radius: 50%; border:2px solid #D9D9D9;"><span>Leave</span>
                                                     </div>
                                                   
                                                 @endfor
                                                 @if ($count > 2)
-                                                    <div class="circle-notify" style="color:blue;cursor:pointer;">
+                                                    <div class="circle-notify" style="color:blue;cursor:pointer;font-size:0.925rem;">
                                                         +{{ $count - 2 }}
                                                     </div>
                                                 @endif
                                             </div>
+
                                         @else
                                            <img src="https://ftl.technology/images/theme-pics/case.png" alt="Image Description" style="height: 100px; width: 100px; margin-top: 10px; margin-left: 80px;">
                                             <p style="color: #677A8E; margin-left: 50px; font-size: 14px; ">
@@ -283,50 +338,10 @@
                                             updateTime();
                                             setInterval(updateTime, 1000);
                                         </script>
-                                        <div class="A" style="display: flex;flex-direction:row;justify-content:space-between; align-items:center;margin-top:10px;">
-                                            <a style="width:40%;font-size:0.855rem;cursor: pointer;color:blue" wire:click="open">View Swipes</a>
-                                            @if ($showAlertDialog)
-                                            <div class="modal" tabindex="-1" role="dialog" style="display: block;">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header" style="background-color: rgb(2, 17, 79); height: 50px">
-                                                            <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title"><b>Swipes</b></h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="close">
-                                                                <span aria-hidden="true" style="color: white;">×</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="row">
-                                                                <div class="col" style="font-size: 10px;">Date : <b>{{$currentDate}}</b></div>
-                                                                <div class="col" style="font-size: 10px;">Shift Time : <b>10:00 to 19:00</b></div>
-                                                            </div>
-                                                            <table border="1" style="margin-top: 10px;">
-                                                                <tr>
-                                                                    <th style="font-size: 12px; color: grey;">Swipe Time</th>
-                                                                    <th style="font-size: 12px; color: grey">Sign-In / Sign-Out</th>
-                                                                </tr>
-
-                                                                @if (!is_null($swipeDetails) && $swipeDetails->count() > 0)
-                                                                @foreach ($swipeDetails as $swipe)
-                                                                <tr>
-                                                                    <td style="font-size: 10px; color: black;">{{ $swipe->swipe_time }}</td>
-                                                                    <td style="font-size: 10px; color: black;">{{ $swipe->in_or_out }}</td>
-                                                                </tr>
-                                                                @endforeach
-                                                                @else
-                                                                <tr>
-                                                                    <td colspan="2">No swipe records found for today.</td>
-                                                                </tr>
-                                                                @endif
-
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-backdrop fade show blurred-backdrop"></div>
-                                            @endif
-                                            <button id="signButton" style="color: white; width: 80px; height: 30px; background-color: rgb(2, 17, 79); border: 1px solid #CFCACA; border-radius: 5px; " wire:click="toggleSignState">
+                                        <div class="A" style="display: flex;flex-direction:row;justify-content:start; gap:30px;align-items:center;margin-top:10px;">
+                                            <a style="width:50%;font-size:0.855rem;cursor: pointer;color:blue" wire:click="open">View Swipes</a>
+                                            
+                                            <button id="signButton" style="color: white; width: 100px; height: 30px; background-color: rgb(2, 17, 79); border: 1px solid #CFCACA; border-radius: 5px; " wire:click="toggleSignState">
                                                 @if ($signIn)
                                                 Sign In
                                                 @else

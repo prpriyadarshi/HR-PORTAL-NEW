@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         /* Container row */
+        body{
+            font-family: 'Montserrat', sans-serif;
+        }
       .bal-container{
         margin-top: 20px; 
         width: 100%;
@@ -94,6 +97,7 @@
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+            
         }
 
         /* Tube-like container */
@@ -135,8 +139,11 @@
         }
         .leave-type{
             color: #778899;
-             font-size: 14px; 
-             font-weight: 500;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .leave-gran{
             color: #778899; 
@@ -298,10 +305,10 @@
             <div class="col-md-3">
                <div class="leave-bal">
                 <div class="balance">
-                    <div class="field">
+                    <div class="field" style="width: 100px;overflow: hidden;">
                         <span class="leave-type">
                             @if($gender === 'Female')
-                                Maternity Leave
+                            Maternity Leave
                             @elseif($gender === 'Male')
                                 Paternity Leave
                             @else
@@ -316,7 +323,7 @@
                 <div class="center">
                     <h5>{{ $grantedLeave }}</h5>
                     <p style="margin-top:-15px;"><span class="remaining">balance</span></p>
-                    <a href="#" class="view">View Details</a>
+                    <a href="#" class="view" style="font-size:0.9rem;">View Details</a>
                 </div>
                 <div class="tube-container">
                     <p style="color: #778899; font-size: 10px; text-align:start; margin-top:-15px;font-weight: 400;">0 of {{ $grantedLeave }} Consumed</p>
@@ -339,11 +346,17 @@
                          <div class="center" >
                              <h5 >{{ $casualLeaveBalance }}</h5>
                              <p style="margin-top:-15px;"><span class="remaining" >balance</span></p>
-                            <a href="#" >View Details</a>
+                             <a href="#" style="font-size:0.9rem;">View Details</a>
                         </div>
                             <div class="tube-container">
-                                <p style="color: #778899; font-size: 10px; text-align:start; margin-top:-15px;font-weight: 400;">0 of 3 Consumed</p>
-                                <div class="tube" style="width: 0%; background-color: #1E90FF;"></div> <!-- Adjust the width and color based on your usage -->
+                                <p style="color: #778899; font-size: 10px; text-align:start; margin-top:-15px;font-weight: 400;">
+                                @if($consumedCasualLeaves > 0)
+                                        {{ $consumedCasualLeaves }} of {{ $casualLeavePerYear }} Consumed
+                                    @else
+                                        0 of {{ $casualLeavePerYear }} Consumed
+                                    @endif
+                            </p>
+                            <div class="tube" style="width: {{ $percentageCasual }}%; background-color: {{ $this->getTubeColor($consumedCasualLeaves, $casualLeavePerYear, 'Causal Leave Probation') }};"></div>
                             </div>
                         </div>
                     </div>
@@ -361,11 +374,17 @@
                             <div class="center" >
                                 <h5 >{{ $sickLeaveBalance }}</h5>
                                 <p style="margin-top:-15px;"><span class="remaining" >balance</span></p>
-                                <a href="#" >View Details</a>
+                                <a href="#" style="font-size:0.9rem;">View Details</a>
                             </div>
                             <div class="tube-container">
-                                <p style="color: #778899; font-size: 10px; text-align:start; margin-top:-15px;font-weight: 400;">0 of 3 Consumed</p>
-                                <div class="tube" style="width: 0%; background-color: #1E90FF;"></div> <!-- Adjust the width and color based on your usage -->
+                            <p style="color: #778899; font-size: 10px; text-align: start; margin-top: -15px; font-weight: 400;">
+                                    @if($consumedSickLeaves > 0)
+                                        {{ $consumedSickLeaves }} of {{ $sickLeavePerYear }} Consumed
+                                    @else
+                                        0 of {{ $sickLeavePerYear }} Consumed
+                                    @endif
+                                </p>
+                                <div class="tube" style="width: {{ $percentageSick }}%; background-color: {{ $this->getTubeColor($consumedSickLeaves, $sickLeavePerYear, 'Sick Leave') }};"></div>
                             </div>
                         </div>
                     </div>
@@ -411,6 +430,9 @@
             format: 'dd/mm/yyyy'
         });
     });
+
+
+
 </script>
 
 <!-- Include Bootstrap Datepicker CSS -->

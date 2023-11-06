@@ -7,13 +7,19 @@
     <title>Document</title>
 </head>
 <style>
+      body{
+            font-family: 'Montserrat', sans-serif;
+        }
     .accordion {
-            border: 0.0625rem solid #ccc;
+            border: 1px solid #ccc;
             margin-bottom: 0.625rem;
             width:90%;
             margin:0 auto;
+            border-radius:5px;
         }
-      
+      .accordion:hover{
+        border: 0.0625rem solid #3a9efd;
+      }
 
         .accordion-heading {
             background-color: #fff;
@@ -62,18 +68,20 @@
          /* Blue arrow when active */
         }
         .approveBtn{
-            background:green;
-            border:none;
-            padding:5px 10px;
-            color:white;
+            background:#007BFF;
+            border:1px solid #007BFF;
+            padding:3px 5px;
+            color:#fff;
+            font-size:0.805rem;
             font-weight:500;
             border-radius:5px;
         }
         .rejectBtn{
             background:#fff;
             border:1px solid #007BFF;
-            padding:5px 10px;
+            padding:3px 5px;
             color:#007BFF;
+            font-size:0.825rem;
             font-weight:500;
             border-radius:5px;
         }
@@ -81,9 +89,9 @@
 </style>
 <body>
 <div class="col" style="border-radius: 5px; " id="leavePending" style="width: 70%; background: #fff; padding: 0; ">
-    @if($this->leaveRequests->isNotEmpty())
-        @foreach($this->leaveRequests as $leaveRequest)
-            <div class="container mt-4">
+   @if(!empty($this->leaveApplications))
+        @foreach($this->leaveApplications as $leaveRequest)
+            <div class="container mt-4" >
                 <div class="accordion">
                     <div class="accordion-heading" onclick="toggleAccordion(this)">
                         <div class="accordion-title">
@@ -91,28 +99,45 @@
                             
                             <div class="accordion-content">
                              <div class="accordion-profile" style="display:flex; gap:10px; margin:auto 0;">
-                            @if($this->employeeDetails->image)
-                                    <img src="{{ $this->employeeDetails->image }}" alt="User Profile Image" style="width: 40px; height: 40px; border-radius: 50%;">
-                                @else
-                                    <img src="https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars.png" alt="Default User Image" style="width: 40px; height: 40px; border-radius: 50%;">
-                                @endif
-                                <div class="center">
-                                    <p style=" font-size:0.875rem; font-weight:500;">{{$this->employeeDetails->fullname  }}</p>
-                                    <p style="margin-top:-15px; color:#778899; font-size:0.69rem;">#{{ $this->employeeDetails->emp_id }}</p>
+                             @if(isset($leaveRequest['leaveRequest']->image))
+                                    <img src="{{ $leaveRequest['leaveRequest']->image }}" alt="User Profile Image" style="width: 40px; height: 40px; border-radius: 50%;">
+                                    @else
+                                    <img src="https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars.png" alt="Default User Image" style="width: 45px; height: 45px; border-radius: 50%;">
+                                    @endif
+                                    <div class="center">
+                                    @if(isset($leaveRequest['leaveRequest']->first_name))
+                                    <p style="font-size: 0.875rem; font-weight: 500;">{{ $leaveRequest['leaveRequest']->first_name }}  {{ $leaveRequest['leaveRequest']->last_name }}</p>
+                                    @else
+                                        <p style="font-size: 0.875rem; font-weight: 500;">Name Not Available</p>
+                                    @endif
+                                    @if(isset($leaveRequest['leaveRequest']->emp_id))
+                                        <p style="margin-top: -15px; color: #778899; font-size: 0.69rem;">#{{ $leaveRequest['leaveRequest']->emp_id }} </p>
+                                    @endif
                                 </div>
                             </div>
                             </div>
                          
                             <div class="accordion-content">
                                 <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">Leave Type</span>
-                                <span style="color: #36454F; font-size: 1rem; font-weight: 500;">{{ $leaveRequest->leave_type}}</span>
+                                @if(isset($leaveRequest['leaveRequest']->leave_type))
+                                    <span style="color: #36454F; font-size: 1rem; font-weight: 500;">{{ $leaveRequest['leaveRequest']->leave_type }}</span>
+                                @else
+                                    <span style="color: #778899; font-size: 0.69rem;">Leave Type Not Available</span>
+                                @endif
                             </div>
+
                             <div class="accordion-content">
                                 <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">Period</span>
-                                <span style="color: #333; font-size: 0.9rem; font-weight: 500;">{{ $leaveRequest->created_at->format('d M, Y') }}</span>
+                                <span style="color: #333; font-size: 0.9rem; font-weight: 500;">
+                                @if(isset($leaveRequest['leaveRequest']->created_at))
+                                    {{ $leaveRequest['leaveRequest']->created_at->format('d M, Y') }}
+                                @else
+                                    Date Not Available
+                                @endif
+                                </span>
                                 <span style="color: #36454F; font-size: 0.675rem; font-weight: 400;">
                                     @php
-                                        $numberOfDays = $this->calculateNumberOfDays($leaveRequest->from_date, $leaveRequest->from_session, $leaveRequest->to_date, $leaveRequest->to_session);
+                                        $numberOfDays = $this->calculateNumberOfDays($leaveRequest['leaveRequest']->from_date, $leaveRequest['leaveRequest']->from_session, $leaveRequest['leaveRequest']->to_date, $leaveRequest['leaveRequest']->to_session);
                                     @endphp
 
                                     @if($numberOfDays == 1)
@@ -136,26 +161,54 @@
                     <div class="accordion-body">
                         <div style="width:100%; height:1px; border-bottom:1px solid #ccc; margin-bottom:10px;"></div>
                         <div class="content">
-                                <span style="color: #333; font-size: 0.875rem; font-weight: 500;">No.of days:</span>
-                                <span style="color: #778899; font-size: 1rem; font-weight: 400;">
-                                    {{ $this->calculateNumberOfDays($leaveRequest->from_date, $leaveRequest->from_session, $leaveRequest->to_date, $leaveRequest->to_session) }}
-                                </span>
+                        <span style="color: #333; font-size: 0.875rem; font-weight: 500;">No. of days:</span>
+                                @if(isset($leaveRequest['leaveRequest']->from_date))
+                                    <span style="color: #778899; font-size: 1rem; font-weight: 400;">
+                                        {{ $this->calculateNumberOfDays($leaveRequest['leaveRequest']->from_date, $leaveRequest['leaveRequest']->from_session, $leaveRequest['leaveRequest']->to_date, $leaveRequest['leaveRequest']->to_session) }}
+                                    </span>
+                                @else
+                                    <span style="color: #778899; font-size: 0.875rem; font-weight: 400;">No. of days not available</span>
+                                @endif
                             </div>
                         <div class="content">
-                            <span style="color: #333; font-size: 0.875rem; font-weight: 500;">Reason:</span>
-                            <span style="font-size: 0.8125rem; color:#778899">{{ $leaveRequest->reason }}</span>
+                          <span style="color: #333; font-size: 0.875rem; font-weight: 500;">Reason:</span>
+                          @if(isset($leaveRequest['leaveRequest']->reason))
+                                <span style="font-size: 0.8125rem; color:#778899">{{ $leaveRequest['leaveRequest']->reason }}<</span>
+                            @else
+                                <span style="font-size: 0.8125rem; color:#778899">Reason Not Available</span>
+                            @endif
                         </div>
                          <div style="width:100%; height:1px; border-bottom:1px solid #ccc; margin-bottom:10px;"></div>
                         <div style="display:flex; flex-direction:row; justify-content:space-between;">
+                        <div class="content">
+                            <span style="color: #333; font-size: 0.875rem; font-weight: 500;">No. of days:</span>
+                            @if(isset($leaveRequest['leaveRequest']->from_date))
+                                <span style="color: #778899; font-size: 1rem; font-weight: 400;">
+                                    {{ $this->calculateNumberOfDays($leaveRequest['leaveRequest']->from_date, $leaveRequest['leaveRequest']->from_session, $leaveRequest['leaveRequest']->to_date, $leaveRequest['leaveRequest']->to_session) }}
+                                </span>
+                            @else
+                                <span style="color: #778899; font-size: 0.875rem; font-weight: 400;">No. of days not available</span>
+                            @endif
+                        </div>
+
+                        <div class="content">
+                            <span style="color: #778899; font-size: 0.875rem; font-weight: 400;"> Balance:</span>
+                            @if(!empty($leaveRequest['leaveBalances']))
+                                @if($leaveRequest['leaveRequest']->leave_type === 'Sick Leave')
+                                    <span style="font-size: 0.875rem; font-weight: 500;">{{ $leaveRequest['leaveBalances']['sickLeaveBalance'] }}</span>
+                                @elseif($leaveRequest['leaveRequest']->leave_type === 'Causal Leave Probation')
+                                    <span style="font-size: 0.875rem; font-weight: 500;">{{ $leaveRequest['leaveBalances']['casualLeaveBalance'] }}</span>
+                                @elseif($leaveRequest['leaveRequest']->leave_type === 'Loss Of Pay')
+                                    <span style="font-size: 0.875rem; font-weight: 500;">{{ $leaveRequest['leaveBalances']['lossOfPayBalance'] }}</span>
+                                @endif
+                            @endif
+                        </div>
+
                             <div class="content">
-                                <span style="color: #778899; font-size: 0.875rem; font-weight: 400;">Applied on:</span>
-                                <span style="color: #333; font-size: 1rem; font-weight: 500;">{{ $leaveRequest->created_at->format('d M, Y') }}</span>
-                            </div>
-                            <div class="content">
-                                <a href="" style="color:#007BFF">View Details</a>
-                                <button class="btn btn-primary" wire:click="approveLeave({{ $leaveRequest->id }})">Approve</button>
-                                <button class="rejectBtn"wire:click="rejectLeave({{ $leaveRequest->id }})">Reject</button>
-                                <button class="rejectBtn"wire:click="rejectLeave({{ $leaveRequest->id }})">Forward</button>
+                                <a href="{{ route('view-details', ['leaveRequestId' => $leaveRequest['leaveRequest']->id]) }}" style="color:#007BFF;font-size:0.875rem;">View Details</a>
+                                <button class="rejectBtn" wire:click="rejectLeave({{ $loop->index }})">Reject</button>
+                                <button class="rejectBtn" wire:click="rejectLeave({{ $loop->index }})">Forward</button>
+                                <button class="approveBtn btn-primary" wire:click="approveLeave({{ $loop->index }})">Approve</button>
                             </div>
                         </div>
                     </div>
