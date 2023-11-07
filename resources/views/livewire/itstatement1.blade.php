@@ -1,3 +1,13 @@
+<div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+    <script src="{{ asset('livewire/livewire.js') }}" defer></script>
+</head>
 <style>
    .expand-collapse {
         margin-left: 10px; /* Adjust margin as needed */
@@ -16,15 +26,41 @@
         text-decoration: none;
     }
 /* Container style */
+.button-container{
+          display:flex;
+          justify-content:end;
+        
+
+        }
+        .custom-button{
+          padding: 2px;
+            margin-bottom:15px;
+            background-color:#3eb0f7;
+            color: #fff;
+            width:100px;
+            margin-right:40px;
+            height:40px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 
 
     </style>
 <div class="container" >
+
+<div class="button-container" >
+<a href="/itform" id="pdfLink2024" class="custom-button" download style="margin-left:-40px"></a>  
+        <i class="fa fa-download" aria-hidden="true" style="margin-left:-100px;color:white;margin-top:15px"></i>
+    </a>
+</div>
+
+
 <div class="row" style="display: flex">
     <div class="column" style="width: 170px; height: 100px; border: 1px solid silver; border-radius: 5px; background: white; margin-top: 40px; margin-left: 20px">
-        <p style="font-size: 11px;margin-top:5px;margin-left:10px">TAX CALCULATED AS PER</p>
+        <p style="font-size: 10px;margin-top:5px;margin-left:10px">TAX CALCULATED AS PER</p>
         <div style="border:1px solid silver ;height:1px;width:117%;margin-top:-10px;margin-left:-12px"></div>
-        <p style="color:#41CD2A;font-size:14px;margin-top:20px;margin-left:18px">NEW TAX REGIME</p>
+        <p style="color:#41CD2A;font-size:13px;margin-top:20px;margin-left:10px">NEW TAX REGIME</p>
     </div>
     <div class="column" style="width: 170px; height: 100px; border: 1px solid silver; border-radius: 5px; background: white; margin-top: 40px; margin-left: 10px">
         <p style="font-size: 11px;margin-top:5px;margin-left:30px">NET TAX IN ₹</p>
@@ -37,17 +73,17 @@
         <p style="font-size:24px;margin-top:10px;margin-left:40px">0.00</p>
     </div>
     <div class="column" style="width: 170px; height: 100px; border: 1px solid silver; border-radius: 5px; background: white; margin-top: 40px; margin-left: 10px">
-        <p style="font-size: 11px;margin-top:5px;margin-left:30px">TAX DEDUCTIBLE PER MONTH IN ₹</p>
+        <p style="font-size: 9px;margin-top:5px;margin-left:30px">TAX DEDUCTIBLE PER MONTH IN ₹</p>
         <div style="border:1px solid silver ;height:1px;width:117%;margin-top:-10px;margin-left:-12px"></div>
         <p style="font-size:24px;margin-top:10px;margin-left:40px">0.00</p>
     </div>
-    <div class="column" style="width: 170px; height: 100px; border: 1px solid silver; border-radius: 5px; background: white; margin-top: 40px; margin-left: 10px">
+    <!-- <div class="column" style="width: 170px; height: 100px; border: 1px solid silver; border-radius: 5px; background: white; margin-top: 40px; margin-left: 10px">
         <p style="font-size: 11px;margin-top:5px;margin-left:30px">REMAINING MONTHS (SEP 2023 ONWARDS)</p>
         <div style="border:1px solid silver ;height:1px;width:117%;margin-top:-10px;margin-left:-12px"></div>
         <p style="font-size:24px;margin-top:10px;margin-left:40px">7</p>
-    </div>
+    </div> -->
 </div>
-
+@foreach($salaryRevision as $employee)
 <div class="row" style="display:flex">
 <div _ngcontent-ffh-c446="" class="expand-collapse">
   <button id="collapseExpandBtn" _ngcontent-ffh-c446="" class="btn btn-link ng-star-inserted"><p  style="margin-top:10px">Collapse all</p></button>
@@ -56,8 +92,8 @@
 <div class="row" style="width: 850px; height: 50px; border-radius: 5px; border: 1px solid silver; margin-left: 15px; background: white; margin-top: -50px;">
     <div class="column" style="display:flex">
         <p id="expandButton" style="font-size: 14px; margin-top: 15px; padding-left: 10px; cursor: pointer;">+</p>
-        <p style="font-weight: normal;margin-top: 14px; margin-left: 20px;">A. Income </p>
-        <p style="font-weight: normal;margin-top: 14px; margin-left: 600px;">₹2,28,480.00 </p>
+        <p style="font-weight: normal;margin-top: 12px;margin-left:5px;font-size:14px ">A. Income </p>
+        <p style="font-weight: normal;margin-top: 14px; margin-left: 600px;">₹{{ number_format($employee->calculateTotalAllowance()*12, 2) }} </p>
     </div>
 </div>
 
@@ -89,44 +125,130 @@
     <p style="font-weight: normal; margin-top: 4px;background:white;height:40px;width: 890px;margin-left:10px">Monthly Income</p>
     </div>
 
-    @foreach($itStatements as $index => $record)
-    <div class="row" style="height:30px;width:106%;display:flex;background:white; margin-bottom: 10px;">
-        <div class="column" style="display:flex;height:20px;margin-top:-5px @if(!$loop->last) margin-right: 10px; @endif">
-            <p style="margin-top:10px;margin-left:20px;font-size:13px"> {{$record->montly_income_type}}</p>
-            <p style="margin-top:10px;margin-left:75px;font-size:10px">{{$record->total}}</p>
-            <div class="column" style="display: flex; white-space: nowrap; width: 100%;margin-left:20px;margin-top:5px">
-                <table style="width: 100%;margin-top:5px;margin-left:-10px">
-                    <tr style="width: 100%;">
-                        <td style="font-size: 10px; margin-top: px; margin-left: 90px;">{{$record->Jan_2023}}</td>
-                        <td style="font-size: 10px; margin-top: 7px; margin-left: 10px;">{{$record->Feb_2023}}</td>
-                        <td style="font-size: 10px; margin-top: 7px; margin-left: 90px;">{{$record->Mar_2023}}</td>
-                        <td style="font-size: 10px; margin-top: 7px; margin-left: 10px;">{{$record->Apr_2023}}</td>
-                        <td style="font-size: 10px; margin-top: 7px; margin-left: 90px;">{{$record->May_2023}}</td>
-                        <td style="font-size: 10px; margin-top: 7px; margin-left: 10px;">{{$record->Jun_2023}}</td>
-                        <td style="font-size: 10px; margin-top: 7px; margin-left: 90px;">{{$record->July_2023}}</td>
-                        <td style="font-size: 10px; margin-top: 7px; margin-left: 10px;">{{$record->Aug_2023}}</td>
-                        <td style="font-size: 10px; margin-top: 7px; margin-left: 90px;">{{$record->Sep_2023}}</td>
-                        <td style="font-size: 10px; margin-top: 7px; margin-left: 10px;">{{$record->Oct_2023}}</td>
-                        <td style="font-size: 10px; margin-top: 7px; margin-left: 90px;">{{$record->Nov_2023}}</td>
-                        <td style="font-size: 10px; margin-top: 7px; margin-left: 10px;">{{$record->Dec_2023}}</td>
+  
+    <div class="row" style="height:250px;width:106%;display:flex;background:white;margin-left:-2px;margin-top:-14px">
+        <div class="column" style="display:flex;margin-top:-5px  margin-right: 10px; ">
+          
+
+            <div class="column" style="display: flex; white-space: nowrap; width: 100%;margin-left:25px;margin-top:5px;">
+                <table style="width: 100%;margin-top:5px;margin-left:-15px">
+                    <tr style="width: 100%;margin-left:80px">
+                    <tr style="font-size:10px;margin-left:25px">
+        <td style="font-size:12px">Basic</td>
+        <td>{{ number_format($employee->basic*12, 2) }}</td>
+        <td>{{ number_format($employee->basic, 2) }}</td>
+        <td>{{ number_format($employee->basic, 2) }}</td>
+        <td>{{ number_format($employee->basic, 2) }}</td>
+        <td>{{ number_format($employee->basic, 2) }}</td>
+        <td>{{ number_format($employee->basic, 2) }}</td>
+        <td>{{ number_format($employee->basic, 2) }}</td>
+        <td>{{ number_format($employee->basic, 2) }}</td>
+        <td>{{ number_format($employee->basic, 2) }}</td>
+        <td>{{ number_format($employee->basic, 2) }}</td>
+        <td>{{ number_format($employee->basic, 2) }}</td>
+        <td>{{ number_format($employee->basic, 2) }}</td>
+        <td>{{ number_format($employee->basic, 2) }}</td>
+    </tr>
+    <tr style="font-size:10px">
+        <td style="font-size:12px">HRA</td>
+        <td>{{ number_format($employee->hra*12, 2) }}</td>
+        <td>{{ number_format($employee->hra, 2) }}</td>
+        <td>{{ number_format($employee->hra, 2) }}</td>
+        <td>{{ number_format($employee->hra, 2) }}</td>
+        <td>{{ number_format($employee->hra, 2) }}</td>
+        <td>{{ number_format($employee->hra, 2) }}</td>
+        <td>{{ number_format($employee->hra, 2) }}</td>
+        <td>{{ number_format($employee->hra, 2) }}</td>
+        <td>{{ number_format($employee->hra, 2) }}</td>
+        <td>{{ number_format($employee->hra, 2) }}</td>
+        <td>{{ number_format($employee->hra, 2) }}</td>
+        <td>{{ number_format($employee->hra, 2) }}</td>
+        <td>{{ number_format($employee->hra, 2) }}</td>
+    </tr>
+    <tr style="font-size:10px">
+        <td style="font-size:12px">Conveyance</td>
+        <td>{{ number_format($employee->conveyance*12, 2) }}</td>
+        <td>{{ number_format($employee->conveyance, 2) }}</td>
+        <td>{{ number_format($employee->conveyance, 2) }}</td>
+        <td>{{ number_format($employee->conveyance, 2) }}</td>
+        <td>{{ number_format($employee->conveyance, 2) }}</td>
+        <td>{{ number_format($employee->conveyance, 2) }}</td>
+        <td>{{ number_format($employee->conveyance, 2) }}</td>
+        <td>{{ number_format($employee->conveyance, 2) }}</td>
+        <td>{{ number_format($employee->conveyance, 2) }}</td>
+        <td>{{ number_format($employee->conveyance, 2) }}</td>
+        <td>{{ number_format($employee->conveyance, 2) }}</td>
+        <td>{{ number_format($employee->conveyance, 2) }}</td>
+        <td>{{ number_format($employee->conveyance, 2) }}</td>
+    </tr>
+    <tr style="font-size:10px">
+        <td style="font-size:12px">Medical</td>
+        <td>{{ number_format($employee->medical*12, 2) }}</td>
+        <td>{{ number_format($employee->medical, 2) }}</td>
+        <td>{{ number_format($employee->medical, 2) }}</td>
+        <td>{{ number_format($employee->medical, 2) }}</td>
+        <td>{{ number_format($employee->medical, 2) }}</td>
+        <td>{{ number_format($employee->medical, 2) }}</td>
+        <td>{{ number_format($employee->medical, 2) }}</td>
+        <td>{{ number_format($employee->medical, 2) }}</td>
+        <td>{{ number_format($employee->medical, 2) }}</td>
+        <td>{{ number_format($employee->medical, 2) }}</td>
+        <td>{{ number_format($employee->medical, 2) }}</td>
+        <td>{{ number_format($employee->medical, 2) }}</td>
+        <td>{{ number_format($employee->medical, 2) }}</td>
+    </tr>
+    <tr style="font-size:10px">
+        <td style="font-size:12px" >Special Allowance</td>
+        <td>{{ number_format($employee->special*12, 2) }}</td>
+        <td>{{ number_format($employee->special, 2) }}</td>
+        <td>{{ number_format($employee->special, 2) }}</td>
+        <td>{{ number_format($employee->special, 2) }}</td>
+        <td>{{ number_format($employee->special, 2) }}</td>
+        <td>{{ number_format($employee->special, 2) }}</td>
+        <td>{{ number_format($employee->special, 2) }}</td>
+        <td>{{ number_format($employee->special, 2) }}</td>
+        <td>{{ number_format($employee->special, 2) }}</td>
+        <td>{{ number_format($employee->special, 2) }}</td>
+        <td>{{ number_format($employee->special, 2) }}</td>
+        <td>{{ number_format($employee->special, 2) }}</td>
+        <td>{{ number_format($employee->special, 2) }}</td>
+    </tr>
+
+    <tr style="font-size:10px;background:#C3C7CD;width:110%;font-size:800">
+        <td style="font-size:12px" >Total  Allowance</td>
+        <td>{{ number_format($employee->calculateTotalAllowance()*12, 2) }}</td>
+        <td>{{ number_format($employee->calculateTotalAllowance(), 2) }}</td>
+        <td>{{ number_format($employee->calculateTotalAllowance(), 2) }}</td>
+        <td>{{ number_format($employee->calculateTotalAllowance(), 2) }}</td>
+        <td>{{ number_format($employee->calculateTotalAllowance(), 2) }}</td>
+        <td>{{ number_format($employee->calculateTotalAllowance(), 2) }}</td>
+        <td>{{ number_format($employee->calculateTotalAllowance(), 2) }}</td>
+        <td>{{ number_format($employee->calculateTotalAllowance(), 2) }}</td>
+        <td>{{ number_format($employee->calculateTotalAllowance(), 2) }}</td>
+        <td>{{ number_format($employee->calculateTotalAllowance(), 2) }}</td>
+        <td>{{ number_format($employee->calculateTotalAllowance(), 2) }}</td>
+        <td>{{ number_format($employee->calculateTotalAllowance(), 2) }}</td>
+        <td>{{ number_format($employee->calculateTotalAllowance(), 2) }}</td>
+    </tr>
+           
                         <!-- Add more months here -->
                     </tr>
                 </table>
             </div>
         </div>
     </div>
-    @endforeach
-</div>
 
+</div>
+@endforeach
 
     <div class="container" style="width: 106%; margin-left: -10px; margin-top: 5px;">
     <div class="row" style="width: 850px; height: 50px; border-radius: 5px; border: 1px solid silver; margin-left: 12px; background: white; margin-top: 20px;">
         <div class="column" style="display: flex;">
             <p id="expandButton2" style="font-size: 14px; margin-top: 15px; padding-left: 10px; cursor: pointer;">+</p>
             <p style="font-weight: normal; margin-top: 14px; margin-left: 20px;">B. Deductions</p>
-            <p style="font-weight: normal; margin-top: 14px; margin-left: 540px;">₹1,13,320.00</p>
+            <p style="font-weight: normal; margin-top: 14px; margin-left: 540px;">₹{{ number_format($employee->calculatePf() * 12 + 1800, 2) }}</p>
         </div>
-        <div style="border: 1px solid silver; height: 1px; width: 98%; margin-top: -5px;"></div>
+       
         <div id="incomeContainer2" style="display: none; width: 850px;">
             <div class="row" style="display: flex; width: 103%;">
                 <div class="column" style="height: 40px; background: #AFC8ED; width: 103%; margin-left: 0; display: flex; margin-top: -3px;">
@@ -155,69 +277,69 @@
                 <div class="row" style="height: 120px; width: 100%; margin-left: 0; display: flex; background: white;">
                     <div class="column" style="display: flex; margin-top: 5px; margin-left: 0;">
                         <p style="margin-top: 23px; margin-left: 20px; font-size: 13px; width: 100px;">PF</p>
-                        <p style="margin-top: 24px; margin-left: 20px; font-size: 10px; width: 50px;">15,000</p>
+                        <p style="margin-top: 24px; margin-left: 20px; font-size: 10px; width: 50px;">{{ number_format($employee->calculatePf()*12, 2) }}</p>
                         <div class="column" style="display: flex; white-space: nowrap; width: 100%; margin-left: 30px; margin-top: 10px;">
                             <table style="width: 100%;">
                                 <tr style="width: 100%;">
-                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 10px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 10px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 10px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 20px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 20px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 20px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 20px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 20px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 20px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 20px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 20px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 20px;">1,250</td>
+                                    <td style="font-size: 10px; margin-top: 3px; margin-left: 10px;">{{ number_format($employee->calculatePf(), 2) }}</td>
+                                    <td style="font-size: 10px; margin-top: 3px; margin-left: 10px;">{{ number_format($employee->calculatePf(), 2) }}</td>
+                                    <td style="font-size: 10px; margin-top: 3px; margin-left: 10px;">{{ number_format($employee->calculatePf(), 2) }}</td>
+                                    <td style="font-size: 10px; margin-top: 3px; margin-left: 20px;">{{ number_format($employee->calculatePf(), 2) }}</td>
+                                    <td style="font-size: 10px; margin-top: 3px; margin-left: 20px;">{{ number_format($employee->calculatePf(), 2) }}</td>
+                                    <td style="font-size: 10px; margin-top: 3px; margin-left: 20px;">{{ number_format($employee->calculatePf(), 2) }}</td>
+                                    <td style="font-size: 10px; margin-top: 3px; margin-left: 20px;">{{ number_format($employee->calculatePf(), 2) }}</td>
+                                    <td style="font-size: 10px; margin-top: 3px; margin-left: 20px;">{{ number_format($employee->calculatePf(), 2) }}</td>
+                                    <td style="font-size: 10px; margin-top: 3px; margin-left: 20px;">{{ number_format($employee->calculatePf(), 2) }}</td>
+                                    <td style="font-size: 10px; margin-top: 3px; margin-left: 20px;">{{ number_format($employee->calculatePf(), 2) }}</td>
+                                    <td style="font-size: 10px; margin-top: 3px; margin-left: 20px;">{{ number_format($employee->calculatePf(), 2) }}</td>
+                                    <td style="font-size: 10px; margin-top: 3px; margin-left: 20px;">{{ number_format($employee->calculatePf(), 2) }}</td>
                                 </tr>
                             </table>
                         </div>
                     </div>
                     <div class="column" style="display: flex; margin-top: 5px; margin-left: 0;">
-                        <p style="margin-top: 23px; margin-left: 9px; font-size: 10px; width: 100px;">PROTAX</p>
-                        <p style="margin-top: 24px; margin-left: 30px; font-size: 10px; width: 50px;">15,000</p>
+                        <p style="margin-top: 23px; margin-left: 9px; font-size: 13px; width: 100px;">PROTAX</p>
+                        <p style="margin-top: 24px; margin-left: 30px; font-size: 10px; width: 50px;">1800.00</p>
                         <div class="column" style="display: flex; white-space: nowrap; width: 100%; margin-left: 30px; margin-top: 10px;">
                             <table style="width: 100%;">
                                 <tr style="width: 100%;">
-                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 10px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 10px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 10px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 20px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 20px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 20px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 20px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 20px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 20px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 20px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 20px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 30px;">1,250</td>
+                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 10px;">150.00</td>
+                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 10px;">150.00</td>
+                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 10px;">150.00</td>
+                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 20px;">150.00</td>
+                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 20px;">150.00</td>
+                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 20px;">150.00</td>
+                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 20px;">150.00</td>
+                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 20px;">150.00</td>
+                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 20px;">150.00</td>
+                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 20px;">150.00</td>
+                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 20px;">150.00</td>
+                                    <td style="font-size: 10px; margin-top: 5px; margin-left: 30px;">150.00</td>
                                 </tr>
                             </table>
                         </div>
-                    </div>
-                </div>
+                        </div>         </div>
+     
 </div>
                 <div class="row" style="height: 40px; width: 103%; background: #C3C7CD; ">
                     <div class="column" style="display: flex; margin-top: 2px; margin-left: -8px; width: 900px;">
                         <p style="margin-top: 13px; margin-left: 20px; font-size: 13px; width: 110px;">Total</p>
-                        <p style="margin-top: 13px; margin-left: 20px; font-size: 10px; width: 120px;">₹2,28,480.00</p>
+                        <p style="margin-top: 13px; margin-left: 20px; font-size: 10px; width: 120px;">₹{{ number_format($employee->calculatePf() * 12 + 1800, 2) }}</p>
                         <div class="column" style="display: flex; white-space: nowrap; width: 100%; margin-top: -10px;">
                             <table style="width: 100%;">
                                 <tr style="width: 100%;">
-                                    <td style="font-size: 10px; margin-top: 12px; margin-left: -100px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 12px; margin-left: -20px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 12px; margin-left: 10px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 12px; margin-left: 30px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 12px; margin-left: 30px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">1,250</td>
-                                    <td style="font-size: 10px; margin-top: 12px; margin-left: 30px;">1,250</td>
+                                    <td style="font-size: 10px; margin-top: 12px; margin-left: -100px;">{{ number_format($employee->calculatePf() + 150, 2) }}</td>
+                                    <td style="font-size: 10px; margin-top: 12px; margin-left: -20px;">{{ number_format($employee->calculatePf() + 150, 2) }}</td>
+                                    <td style="font-size: 10px; margin-top: 12px; margin-left: 10px;">{{ number_format($employee->calculatePf() + 150, 2) }}</td>
+                                    <td style="font-size: 10px; margin-top: 12px; margin-left: 30px;">{{ number_format($employee->calculatePf() + 150, 2) }}</td>
+                                    <td style="font-size: 10px; margin-top: 12px; margin-left: 30px;">{{ number_format($employee->calculatePf() + 150, 2) }}</td>
+                                    <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">{{ number_format($employee->calculatePf() + 150, 2) }}</td>
+                                    <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">{{ number_format($employee->calculatePf() + 150, 2) }}</td>
+                                    <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">{{ number_format($employee->calculatePf() + 150, 2) }}</td>
+                                    <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">{{ number_format($employee->calculatePf() + 150, 2) }}</td>
+                                    <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">{{ number_format($employee->calculatePf() + 150, 2) }}</td>
+                                    <td style="font-size: 10px; margin-top: 12px; margin-left: 20px;">{{ number_format($employee->calculatePf() + 150, 2) }}</td>
+                                    <td style="font-size: 10px; margin-top: 12px; margin-left: 30px;">{{ number_format($employee->calculatePf() + 150, 2) }}</td>
                                 </tr>
                             </table>
                         </div>
@@ -234,7 +356,7 @@
             <p style="font-weight: normal; margin-top: 14px; margin-left: 20px;">C. Perquisites</p>
             <p style="font-weight: normal; margin-top: 14px; margin-left: 590px;">₹0.00</p>
         </div>
-        <div style="border: 1px solid silver; height: 1px; width: 98%; margin-top: -5px;"></div>
+       
         <div id="incomeContainer3" style="display: none; width: 850px;">
             <div class="row" style="display: flex; width: 103%;">
                 
@@ -253,12 +375,12 @@
 <div class="container" style="width: 106%; margin-left: -30px;margin-top:20px">
     <div class="row" style="width: 840px; height: 50px; border-radius: 5px; border: 1px solid silver; margin-left: 13px; background: white; margin-top: 20px;">
         <div class="column" style="display: flex">
-            <p id="expandButton4" style="font-size: 14px; margin-top: 15px; padding-left: 10px; cursor: pointer;">+</p>
-            <p style="font-weight: normal; margin-top: 14px; margin-left: 20px;">
+            <p id="expandButton4" style="font-size: 10px; margin-top: 15px; padding-left: 10px; cursor: pointer;">+</p>
+            <p style="font-weight: normal; margin-top: 14px; margin-left: 20px;font-size:13px">
 D. Income Excluded From Tax</p>
             <p style="font-weight: normal; margin-top: 14px; margin-left: 500px;">₹0.00</p>
         </div>
-        <div style="border: 1px solid silver; height: 1px; width: 98%; margin-top: -5px;"></div>
+        
         <div id="incomeContainer4" style="display: none; width: 850px;">
             <div class="row" style="display: flex; width: 103%;">
                 
@@ -278,19 +400,19 @@ D. Income Excluded From Tax</p>
 </div>
 <div class="row" style="height:50px;width:850px;border-radius:5px;border:1px soloid silver;background:#DCDEE0;margin-left:5px;margin-top:15px">
 <b style="font-size:14px;margin-left:20px;margin-top:12px">E. Gross Salary (A + C - D)</b>
-<p style="font-size:14px;margin-left:720px;margin-top:-17px">₹2,28,480.00</p>
+<p style="font-size:14px;margin-left:720px;margin-top:-17px">₹{{ number_format($employee->calculateTotalAllowance()*12, 2) }} </p>
 </div>
 </div>
 </div>
 
-<div class="container" style="width: 106%; margin-left: -16px; margin-top: 90px;">
+<div class="container" style="width: 106%; margin-left: -16px; margin-top: 100px;">
     <div class="row" style="width: 850px; height: 50px; border-radius: 5px; border: 1px solid silver; margin-left: 12px; background: white; margin-top: 20px;">
         <div class="column" style="display: flex;">
             <p id="expandButton5" style="font-size: 14px; margin-top: 15px; padding-left: 10px; cursor: pointer;">+</p>
             <p style="font-weight: normal; margin-top: 14px; margin-left: 20px;">G. Income From Previous Employer</p>
             <p style="font-weight: normal; margin-top: 14px; margin-left: 450px;">₹0.00</p>
         </div>
-        <div style="border: 1px solid silver; height: 1px; width: 98%; margin-top: -5px;"></div>
+        
         <div id="incomeContainer5" style="display: none; width: 850px;">
             <div class="row" style="display: flex; width: 103%;">
                 <div class="column" style="height: 40px; background: #AFC8ED; width: 103%; margin-left: 0; display: flex; margin-top: -3px;">
@@ -299,7 +421,7 @@ D. Income Excluded From Tax</p>
                     
                 </div>
                 <div style="border: 1px solid silver; height: 1px; width: 98%;"></div>
-                <div class="row" style="height: 130px; width: 100%; margin-left: 0; display: flex; background: white;">
+                <div class="row" style="height: 150px; width: 100%; margin-left: 0; display: flex; background: white;">
                     <div class="column" style="display: flex; margin-top: -5px;">
                         <p style="margin-top: 23px; margin-left: 20px; font-size: 13px; width: 100px;">TOTAL INCOME</p>
                         <p style="margin-top: 24px; margin-left: 620px; font-size: 14px; width: 50px;">0</p>
@@ -426,3 +548,5 @@ const expandButton2 = document.getElementById('expandButton2');
 
 </script>
 
+</html>
+</div>
