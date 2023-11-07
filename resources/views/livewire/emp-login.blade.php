@@ -1,14 +1,13 @@
+
 <div class="container-fluid p-0">
-    <div class="row justify-content-center" style="margin-top:5px">
-        <div class="col" style="margin-left:67%">
-            <button wire:click="createCV"
-                style="width: 100px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;">
+    <div class="m-0 mt-3 row">
+        <div class="col-md-9 mb-2" style="text-align: end;">
+            <button wire:click="createCV" class="btn btn-primary">
                 <a style="text-decoration: none; color: white; ">Create CV</a>
             </button>
         </div>
-        <div class="col">
-            <button wire:click="jobs"
-                style="width: 260px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white">
+        <div class="col-md-3" style="text-align: end;">
+            <button wire:click="jobs" class="btn btn-primary">
                 Job Seeker & Vendor Registration</button>
         </div>
     </div>
@@ -30,7 +29,7 @@
             </div>
 
             @endif
-            <form wire:submit.prevent="empLogin" class="login-form-with-shadow" style="margin-top: 0px;">
+            <form wire:submit.prevent="empLogin" class="login-form-with-shadow" style="margin-top: 0px; border: 1px solid #007bff;">
                 <div class="logo text-center mb-1" style="padding-top: 20px;">
                     <img src="{{ asset('images/HR Portal.png') }}" alt="Company Logo" width="150" height="80">
                 </div>
@@ -84,22 +83,22 @@
                 <!-- The slideshow/carousel -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{{ asset('images/communication.png') }}" alt="Los Angeles" class="d-block w-100">
-                        <div class="carousel-caption">
+                        <img src="{{ asset('images/communication.png') }}" style="width: 85%;" alt="Los Angeles" class="d-block">
+                        <div class="carousel-caption" style="bottom: 0px; padding-bottom: 0px; color: #007bff;">
                             <h3>Los Angeles</h3>
                             <p>We had such a great time in LA!</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ asset('images/tasks.png') }}" alt="Chicago" class="d-block w-100">
-                        <div class="carousel-caption">
+                        <img src="{{ asset('images/tasks.png') }}" style="width: 85%;"  alt="Chicago" class="d-block">
+                        <div class="carousel-caption" style="bottom: 0px; padding-bottom: 0px; color: #007bff;">
                             <h3>Chicago</h3>
                             <p>Thank you, Chicago!</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ asset('images/Working.png') }}" alt="New York" class="d-block w-100">
-                        <div class="carousel-caption">
+                        <img src="{{ asset('images/Working.png') }}" style="width: 85%;" alt="New York" class="d-block">
+                        <div class="carousel-caption" style="bottom: 0px; padding-bottom: 0px; color: #007bff;">
                             <h3>New York</h3>
                             <p>We love the Big Apple!</p>
                         </div>
@@ -120,15 +119,15 @@
         <div class="modal" tabindex="-1" role="dialog" style="display: block;">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header" style="background-color: rgb(2, 17, 79); height: 50px; width: 600px;">
+                    <div class="modal-header" style="background-color: rgb(2, 17, 79);">
                         <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title">
                             <b>{{ $verified ? 'Create New Password' : 'Verify Email and DOB' }}</b>
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="remove">
-                            <span aria-hidden="true" style="color: white;">×</span>
+                            <span aria-hidden="true" style="color: white;">x</span>
                         </button>
                     </div>
-                    <div class="modal-body" style="background-color: #f0f0f0; padding: 20px; width: 600px;">
+                    <div class="modal-body" style="background-color: #f0f0f0; padding: 20px;">
                         @if ($verified)
                         <!-- Form for creating a new password -->
                         <form wire:submit.prevent="createNewPassword">
@@ -200,16 +199,16 @@
         <div class="modal" tabindex="-1" role="dialog" style="display: block;">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header" style="background-color: rgb(2, 17, 79); height: 50px; width: 600px;">
+                    <div class="modal-header" style="background-color: rgb(2, 17, 79);">
                         <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title">
                             <b>Success Message</b>
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"
                             wire:click="closeSuccessModal">
-                            <span aria-hidden="true" style="color: white;">×</span>
+                            <span aria-hidden="true" style="color: white;">x</span>
                         </button>
                     </div>
-                    <div class="modal-body" style="background-color: #f0f0f0; padding: 20px; width: 600px;">
+                    <div class="modal-body" style="background-color: #f0f0f0; padding: 20px;">
                         <p>Verification successful! Do you want to change your password?</p>
                         <button type="button" class="btn btn-primary" wire:click="showPasswordChangeModal">Change
                             Password</button>
@@ -226,16 +225,16 @@
         <div class="modal" tabindex="-1" role="dialog" style="display: block;">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header" style="background-color: rgb(255, 0, 0); height: 50px; width: 600px;">
+                    <div class="modal-header" style="background-color: rgb(255, 0, 0);">
                         <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title">
                             <b>Error Message</b>
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"
                             wire:click="closeErrorModal">
-                            <span aria-hidden="true" style="color: white;">×</span>
+                            <span aria-hidden="true" style="color: white;">x</span>
                         </button>
                     </div>
-                    <div class="modal-body" style="background-color: #f0f0f0; padding: 20px; width: 600px;">
+                    <div class="modal-body" style="background-color: #f0f0f0; padding: 20px;">
                         <p>Sorry You Are not Verified.... Please try again.</p>
                         <button type="button" class="btn btn-danger" wire:click="closeErrorModal">Close</button>
                     </div>
@@ -250,16 +249,16 @@
         <div class="modal" tabindex="-1" role="dialog" style="display: block;">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header" style="background-color: rgb(9, 45, 206); height: 50px; width: 600px;">
+                    <div class="modal-header" style="background-color: rgb(9, 45, 206);">
                         <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title">
                             <b>Success Message</b>
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"
                             wire:click="closePasswordChangedModal">
-                            <span aria-hidden="true" style="color: white;">×</span>
+                            <span aria-hidden="true" style="color: white;">x</span>
                         </button>
                     </div>
-                    <div class="modal-body" style="background-color: #f0f0f0; padding: 20px; width: 600px;">
+                    <div class="modal-body" style="background-color: #f0f0f0; padding: 20px;">
                         <p>Password Changes Successfully...</p>
                         <button type="button" class="btn btn-danger"
                             wire:click="closePasswordChangedModal">Close</button>
