@@ -38,6 +38,7 @@
             background-color:#3eb0f7;
             color: #fff;
             width:100px;
+            margin-right:40px;
             height:40px;
             border: none;
             border-radius: 4px;
@@ -50,7 +51,7 @@
 
 <div class="button-container" >
 <a href="/itform" id="pdfLink2024" class="custom-button" download style="margin-left:-40px"></a>  
-        <i class="fa fa-download" aria-hidden="true" style="margin-left:-50px;color:white;margin-top:15px"></i>
+        <i class="fa fa-download" aria-hidden="true" style="margin-left:-100px;color:white;margin-top:15px"></i>
     </a>
 </div>
 

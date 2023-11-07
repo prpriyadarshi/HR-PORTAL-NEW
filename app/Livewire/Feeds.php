@@ -2,10 +2,11 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
 use App\Models\EmployeeDetails;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
+use Livewire\Component;
+
 use App\Models\Employee;
 class Feeds extends Component
 {
@@ -21,7 +22,7 @@ class Feeds extends Component
 
     public function render()
     {
-        return view('livewire.feeds', ['combinedData' => $this->combinedData]);
+        return view('livewire.feeds');
     }
 
     private function combineAndSortData($employees)

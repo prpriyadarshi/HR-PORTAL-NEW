@@ -22,24 +22,24 @@
         .left-menu h2 {
             font-family: 'Montserrat', sans-serif;
         }
- 
+
         table {
             border-collapse: collapse;
             width: 100%;
         }
- 
+
         th,
         td {
             border: 1px solid black;
             padding: 8px;
             text-align: center;
         }
- 
- 
+
+
         th {
             background-color: #f2f2f2;
         }
- 
+
         .greet {
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             tab-size: 4;
@@ -490,10 +490,10 @@
 <script>
     // Get the current hour of the day (0-23)
     const currentHour = new Date().getHours();
- 
+
     // Get the greeting element by its ID
     const greetingElement = document.getElementById('greetingText');
- 
+
     // Define an array of greetings based on the time of day
     const greetings = [
         'Good Morning',
@@ -501,7 +501,7 @@
         'Good Evening',
         'Good Night'
     ];
- 
+
     // Determine the appropriate greeting based on the time of day
     let greeting;
     if (currentHour >= 5 && currentHour < 12) {
