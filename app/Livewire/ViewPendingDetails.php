@@ -14,38 +14,50 @@ class ViewPendingDetails extends Component
     public $employeeDetails = [];
     public $employeeId;
     public $leaveRequests;
+    public $count;
+    public $applying_to= [];
+    public $matchingLeaveApplications = [];
+    public $leaveRequest;
+    public $leaveApplications;
+
 
     public function mount()
     {
-        // Get the logged-in user's ID
-        $employeeId = auth()->guard('emp')->user()->emp_id;
-        // Fetch employee details by joining employeedetails and leave_applies tables
-        $this->employeeDetails = EmployeeDetails::join('leave_applies', 'employee_details.emp_id', '=', 'leave_applies.emp_id')
-            ->where('employee_details.emp_id', $employeeId)
-            ->select(
-                DB::raw('CONCAT(employee_details.first_name, " ", employee_details.last_name) as fullname'),
-                'employee_details.image',
-                'leave_applies.*'
-            )
-            ->first();
-    
-        // Check if employeeDetails is not null
-        if ($this->employeeDetails) {
-            // Fetch only pending leave requests for the logged-in user
-            $this->leaveRequests = LeaveRequest::where('emp_id', $employeeId)
-                ->where('status', 'pending')
-                ->orderBy('created_at', 'desc')
-                ->get();
-               
-        } else {
-            // Handle the case where employeeDetails is null
-            $this->leaveRequests = collect(); // or any other appropriate handling
-        }
-    }
-    
-    
-    
-    
+            $employeeId = auth()->guard('emp')->user()->emp_id;
+            $this->leaveRequests = LeaveRequest::where('status', 'pending')
+            ->where(function ($query) use ($employeeId) {
+                $query->whereJsonContains('applying_to', [['manager_id' => $employeeId]])
+                    ->orWhereJsonContains('cc_to', [['emp_id' => $employeeId]]);
+            })
+            ->join('employee_details', 'leave_applies.emp_id', '=', 'employee_details.emp_id')
+            ->get(['leave_applies.*', 'employee_details.image', 'employee_details.first_name','employee_details.last_name']);
+            $matchingLeaveApplications = [];
+        
+            foreach ($this->leaveRequests as $leaveRequest) {
+                $applyingToJson = trim($leaveRequest->applying_to);
+                $applyingArray = is_array($applyingToJson) ? $applyingToJson : json_decode($applyingToJson, true);
+        
+                $ccToJson = trim($leaveRequest->cc_to);
+                $ccArray = is_array($ccToJson) ? $ccToJson : json_decode($ccToJson, true);
+        
+                $isManagerInApplyingTo = isset($applyingArray[0]['manager_id']) && $applyingArray[0]['manager_id'] == $employeeId;
+                $isEmpInCcTo = isset($ccArray[0]['emp_id']) && $ccArray[0]['emp_id'] == $employeeId;
+        
+                if ($isManagerInApplyingTo || $isEmpInCcTo) {
+                    // Call the getLeaveBalances function to get leave balances for each application
+                    $leaveBalances = LeaveBalances::getLeaveBalances($leaveRequest->emp_id);
+        
+                    // Add leave balances and leave request data to the array
+                    $matchingLeaveApplications[] = [
+                        'leaveRequest' => $leaveRequest,
+                        'leaveBalances' => $leaveBalances,
+                    ];
+                }
+            }
+            $this->leaveApplications = $matchingLeaveApplications;
+            
+        } 
+      
     public function hasPendingLeave()
     {
         // Check if there are pending leave requests
@@ -131,31 +143,31 @@ class ViewPendingDetails extends Component
         return (int) str_replace('Session ', '', $session);
     }
 
-    public function approveLeave($leaveRequestId)
-    {
-        // Find the leave request by ID
-        $leaveRequest = LeaveRequest::find($leaveRequestId);
+    public function approveLeave($index)
+{
+    // Find the leave request by ID
+    $leaveRequest = $this->leaveApplications[$index]['leaveRequest'];
 
-        // Update status to 'approved'
-        $leaveRequest->status = 'approved';
-        $leaveRequest->save();
-        $leaveRequest->touch();
+    // Update status to 'approved'
+    $leaveRequest->status = 'approved';
+    $leaveRequest->save();
+    $leaveRequest->touch();
 
-        session()->flash('message', 'Leave application approved successfully.');
-    }
+    session()->flash('message', 'Leave application approved successfully.');
+}
 
-    public function rejectLeave($leaveRequestId)
-    {
-        // Find the leave request by ID
-        $leaveRequest = LeaveRequest::find($leaveRequestId);
+public function rejectLeave($index)
+{
+    // Find the leave request by ID
+    $leaveRequest = $this->leaveApplications[$index]['leaveRequest'];
 
-        // Update status to 'rejected'
-        $leaveRequest->status = 'rejected';
-        $leaveRequest->save();
-        $leaveRequest->touch();
+    // Update status to 'rejected'
+    $leaveRequest->status = 'rejected';
+    $leaveRequest->save();
+    $leaveRequest->touch();
 
-        session()->flash('message', 'Leave application rejected.');
-    }
+    session()->flash('message', 'Leave application rejected.');
+}
 
     public function render()
     {

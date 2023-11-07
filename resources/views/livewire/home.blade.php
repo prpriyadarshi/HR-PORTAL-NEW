@@ -139,25 +139,53 @@
         background-color: #fff;
         box-shadow: 1px 2px rgba(0, 0, 0, 0.2);
     }
-    .leave-display{
-        padding: 5px 10px;
-        display: flex;
-        flex-direction:row;
-        align-items: center;
-        white-space: nowrap;
-        overflow: hidden;
-        background:#fafafa;
-        text-overflow: ellipsis;
-        border-top:1px solid #ccc;
-        font-size: 12px;
-        gap:15px;
-    }
     </style>
 </head>
 <body>
+@if ($showAlertDialog)
+                                            <div class="modal" tabindex="-1" role="dialog" style="display: block;">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header" style="background-color: rgb(2, 17, 79); height: 50px">
+                                                            <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title"><b>Swipes</b></h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="close">
+                                                                <span aria-hidden="true" style="color: white;">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="col" style="font-size: 10px;">Date : <b>{{$currentDate}}</b></div>
+                                                                <div class="col" style="font-size: 10px;">Shift Time : <b>10:00 to 19:00</b></div>
+                                                            </div>
+                                                            <table border="1" style="margin-top: 10px;">
+                                                                <tr>
+                                                                    <th style="font-size: 12px; color: grey;">Swipe Time</th>
+                                                                    <th style="font-size: 12px; color: grey">Sign-In / Sign-Out</th>
+                                                                </tr>
+
+                                                                @if (!is_null($swipeDetails) && $swipeDetails->count() > 0)
+                                                                @foreach ($swipeDetails as $swipe)
+                                                                <tr>
+                                                                    <td style="font-size: 10px; color: black;">{{ $swipe->swipe_time }}</td>
+                                                                    <td style="font-size: 10px; color: black;">{{ $swipe->in_or_out }}</td>
+                                                                </tr>
+                                                                @endforeach
+                                                                @else
+                                                                <tr>
+                                                                    <td colspan="2">No swipe records found for today.</td>
+                                                                </tr>
+                                                                @endif
+
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-backdrop fade show blurred-backdrop"></div>
+                                            @endif
     <div class="container">
     @if (session()->has('success'))
- 
+
         <div class="custom-alert alert-success" style="text-align: center;margin-left:50%;width: 500px;">
             {{ session('success') }}
         </div>
@@ -204,7 +232,7 @@
                 <img id="greeting-image" src="" alt="Greeting Image" style="height: 200px; width:300px ;margin-left:50px; ">
             </div>
  <!-- main content -->
-            <div class="container" style="display:flex; flex-direction:row; gap:5px; padding:10px 5px;">
+            <div class="container" style="display:flex; flex-direction:row; gap:5px; padding:10px 5pxx;">
                     <div class="first-col col-md-4" style=" padding:0;  display:flex; flex-direction:column;gap:5px;" >
                         <div class="home-hover">
                                <div class="reviews">
@@ -238,7 +266,6 @@
                                                     </div>
                                                 @endif
                                             </div>
- 
                                         @else
                                            <img src="https://ftl.technology/images/theme-pics/case.png" alt="Image Description" style="height: 100px; width: 100px; margin-top: 10px; margin-left: 80px;">
                                             <p style="color: #677A8E; margin-left: 50px; font-size: 14px; ">
@@ -319,7 +346,7 @@
                                                                     <th style="font-size: 12px; color: grey;">Swipe Time</th>
                                                                     <th style="font-size: 12px; color: grey">Sign-In / Sign-Out</th>
                                                                 </tr>
- 
+
                                                                 @if (!is_null($swipeDetails) && $swipeDetails->count() > 0)
                                                                 @foreach ($swipeDetails as $swipe)
                                                                 <tr>
@@ -332,7 +359,7 @@
                                                                     <td colspan="2">No swipe records found for today.</td>
                                                                 </tr>
                                                                 @endif
- 
+
                                                             </table>
                                                         </div>
                                                     </div>

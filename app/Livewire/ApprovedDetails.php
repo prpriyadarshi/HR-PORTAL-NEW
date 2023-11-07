@@ -1,21 +1,33 @@
 <?php
 
 namespace App\Livewire;
-use App\Models\EmployeeDetails;
-use App\Models\LeaveRequest;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-use Livewire\Component;
 
-class EmployeesReview extends Component
+use App\Models\LeaveRequest;
+use App\Models\EmployeeDetails;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Livewire\Component;
+use App\Helpers\LeaveHelper; 
+use Carbon\Carbon;
+use App\Livewire\LeavePage;
+
+class ApprovedDetails extends Component
 {
-    public $count;
-    public $applying_to= [];
-    public $matchingLeaveApplications = [];
-    public $leaveRequest;
-    public $employeeDetails;
-    public $approvedLeaveApplicationsList;
+    public $selectedLeaveRequestId;
+    public $employeeId;
+    public $leaveRequestId;
+    public $full_name;
+    public $employeeDetails = [];
+    public $leaveRequest=[]; // Property to hold the selected leave request
+
+    public function mount($leaveRequestId)
+    {
+        // Fetch leave request details based on $leaveRequestId with employee details
+        $this->leaveRequest = LeaveRequest::with('employee')->find($leaveRequestId);
+        $this->leaveRequest->from_date = Carbon::parse($this->leaveRequest->from_date);
+        $this->leaveRequest->to_date = Carbon::parse($this->leaveRequest->to_date);
+    }
+    
     public  function calculateNumberOfDays($fromDate, $fromSession, $toDate, $toSession)
     {
         try {
@@ -107,58 +119,33 @@ class EmployeesReview extends Component
         // You might need to customize this based on your actual session values
         return (int) str_replace('Session ', '', $session);
     }
+
     public function render()
     {
-        $employeeId = auth()->guard('emp')->user()->emp_id;
-        $this->leaveRequests = LeaveRequest::where('status', 'Pending')->get();
-        $matchingLeaveApplications = [];
-    
-        foreach ($this->leaveRequests as $leaveRequest) {
-            $applyingToJson = trim($leaveRequest->applying_to);
-            $applyingArray = is_array($applyingToJson) ? $applyingToJson : json_decode($applyingToJson, true);
-    
-            $ccToJson = trim($leaveRequest->cc_to);
-            $ccArray = is_array($ccToJson) ? $ccToJson : json_decode($ccToJson, true);
-    
-            $isManagerInApplyingTo = isset($applyingArray[0]['manager_id']) && $applyingArray[0]['manager_id'] == $employeeId;
-            $isEmpInCcTo = isset($ccArray[0]['emp_id']) && $ccArray[0]['emp_id'] == $employeeId;
-    
-            if ($isManagerInApplyingTo || $isEmpInCcTo) {
-                $matchingLeaveApplications[] = $leaveRequest;
-            }
-        }
+        $employeeId = auth()->guard('emp')->user()->emp_id; 
+        // Call the getLeaveBalances function to get leave balances
+        $leaveBalances = LeaveBalances::getLeaveBalances($employeeId);
+        
+        try {
+                // Attempt to decode applying_to
+        $applyingToJson = trim($this->leaveRequest->applying_to);
+        $this->leaveRequest->applying_to = is_array($applyingToJson) ? $applyingToJson : json_decode($applyingToJson, true);
 
-        $this->approvedLeaveRequests = LeaveRequest::where('status', 'approved')
-        ->where(function ($query) use ($employeeId) {
-            $query->whereJsonContains('applying_to', [['manager_id' => $employeeId]])
-                ->orWhereJsonContains('cc_to', [['emp_id' => $employeeId]]);
-        })
-        ->join('employee_details', 'leave_applies.emp_id', '=', 'employee_details.emp_id')
-        ->get(['leave_applies.*', 'employee_details.image', 'employee_details.first_name','employee_details.last_name']);
-        $approvedLeaveApplications = [];
-    
-        foreach ($this->approvedLeaveRequests as $approvedLeaveRequest) {
-            $applyingToJson = trim($approvedLeaveRequest->applying_to);
-            $applyingArray = is_array($applyingToJson) ? $applyingToJson : json_decode($applyingToJson, true);
+        // Attempt to decode cc_to
+        $ccToJson = trim($this->leaveRequest->cc_to);
+        $this->leaveRequest->cc_to = is_array($ccToJson) ? $ccToJson : json_decode($ccToJson, true);
+
+        } catch (\Exception $e) {
+            dd("Error in JSON decoding: " . $e->getMessage());
+        }
           
-            $ccToJson = trim($approvedLeaveRequest->cc_to);
-            $ccArray = is_array($ccToJson) ? $ccToJson : json_decode($ccToJson, true);
-    
-            $isManagerInApplyingTo = isset($applyingArray[0]['manager_id']) && $applyingArray[0]['manager_id'] == $employeeId;
-            $isEmpInCcTo = isset($ccArray[0]['emp_id']) && $ccArray[0]['emp_id'] == $employeeId;
-    
-            if ($isManagerInApplyingTo || $isEmpInCcTo) {
-                $approvedLeaveApplications[] = $approvedLeaveRequest;
-            }
-        }
-        $this->approvedLeaveApplicationsList = $approvedLeaveApplications;
-        $this->leaveApplications = $matchingLeaveApplications;
-           return view('livewire.employees-review', [
-            'leaveApplications' => $this->leaveApplications,
-            'approvedLeaveApplicationsList' => $this->approvedLeaveApplicationsList,
-
+        // Pass the leaveRequest data and leaveBalances to the Blade view
+        return view('livewire.approved-details', [
+             'leaveRequest' => $this->leaveRequest,
+             'leaveBalances' => $leaveBalances,
+             
         ]);
-    }
-
+       
+    }  
 
 }

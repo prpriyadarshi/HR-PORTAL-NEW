@@ -224,7 +224,10 @@
             <div class="F" style="background-color: white; width: 500px; height: 350px; border-radius: 5px; border: 1px solid #CFCACA; margin-left: 30px; color: #3b4452; margin-top: 20px">
             <div style="display: flex;">
                 <div class="column">
-                @livewire('company-logo')
+                <div style="margin-left: 20px;">
+    @livewire('company-logo')
+</div>
+
                     <div style="color: #677A8E; margin-left: 60px; font-size: 14px; font-family: Open Sans, sans-serif; font-weight: 100px;margin-top:20px">Group Events</div>
                 </div>
                 <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 170px; font-family: Open Sans, sans-serif; margin-top: 40px; font-weight: 100px; color: #9E9696;margin-top:20px">
@@ -253,7 +256,7 @@
                     <div slot="modal-footer">
                         <div class="flex justify-end">
                             <gt-button shade="secondary" name="Cancel" class="mr-2x hydrated"></gt-button>
-                            <gt-button shade="primary" name "Confirm" class="hydrated"></gt-button>
+                            <gt-button shade="primary" name ="Confirm" class="hydrated"></gt-button>
                         </div>
                     </div>
                 </gt-popup-modal>
@@ -264,7 +267,7 @@
                     <i class="thumb-icon" style="margin-left: 20px;">👍</i>
                     <span class="like-count">0 Likes</span>
                 </div>
-                <div class "comment-icon">
+                <div class ="comment-icon">
                     <i class="comment-icon" style="margin-left: 40px; margin-top: 20px;">💬</i>
                     <span class="comment-count">0 Comments</span>
                 </div>
@@ -280,7 +283,10 @@
             <div class="F" style="background-color: white; width: 500px; height: 350px; border-radius: 5px; border: 1px solid #CFCACA; margin-left: 30px; color: #3b4452; margin-top: 20px">
             <div style="display: flex;">
                 <div class="column">
-                @livewire('company-logo')
+                <div style="margin-left: 20px;">
+              @livewire('company-logo')
+         </div>
+
                     <div style="color: #677A8E; margin-left: 60px; font-size: 14px; font-family: Open Sans, sans-serif; font-weight: 100px;margin-top:20px">Group Events</div>
                 </div>
                 <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 170px; font-family: Open Sans, sans-serif; margin-top: 40px; font-weight: 100px; color: #9E9696;font-weight: 100px;margin-top:20px">
@@ -310,7 +316,7 @@
                     <div slot="modal-footer">
                         <div class="flex justify-end">
                             <gt-button shade="secondary" name="Cancel" class="mr-2x hydrated"></gt-button>
-                            <gt-button shade="primary" name "Confirm" class="hydrated"></gt-button>
+                            <gt-button shade="primary" name ="Confirm" class="hydrated"></gt-button>
                         </div>
                     </div>
                 </gt-popup-modal>
@@ -322,7 +328,7 @@
                     <i class="thumb-icon" style="margin-left: 20px;">👍</i>
                     <span class="like-count">0 Likes</span>
                 </div>
-                <div class "comment-icon">
+                <div class ="comment-icon">
                     <i class="comment-icon" style="margin-left: 40px; margin-top: 20px;">💬</i>
                     <span class="comment-count">0 Comments</span>
                 </div>

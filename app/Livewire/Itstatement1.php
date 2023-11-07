@@ -9,8 +9,11 @@ use App\Models\EmployeeDetails;
 use App\Models\SalaryRevision;
 use App\Models\EmpBankDetail;
 
+use Illuminate\Support\Facades\Response;
+use PDF;
 class Itstatement1 extends Component
 {
+    public $resumeData;
     public $itStatements;
     public $monthlyIncomeType ;
     public $employeeDetails;
@@ -18,12 +21,21 @@ class Itstatement1 extends Component
     public $empBankDetails;
  
     public $filteredData;
-
+   public $activePreview;
     public function mount()
     {
         // Retrieve data for the specified monthly_income_type
         $this->filteredData = Itstatement1::all('monthly_income_type', $this->monthlyIncomeType);
 
+    }
+ 
+
+    public function generatePDF()
+    {
+        // Generate your PDF content using a PDF package like dompdf or TCPDF
+        $pdf = PDF::loadView('pdf.itform'); // Load the PDF view
+       
+        return $pdf->download('itform.pdf'); // Download the PDF
     }
 
   

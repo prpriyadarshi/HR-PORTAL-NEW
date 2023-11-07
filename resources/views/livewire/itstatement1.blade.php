@@ -26,15 +26,40 @@
         text-decoration: none;
     }
 /* Container style */
+.button-container{
+          display:flex;
+          justify-content:end;
+        
+
+        }
+        .custom-button{
+          padding: 2px;
+            margin-bottom:15px;
+            background-color:#3eb0f7;
+            color: #fff;
+            width:100px;
+            height:40px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 
 
     </style>
 <div class="container" >
+
+<div class="button-container" >
+<a href="/itform" id="pdfLink2024" class="custom-button" download style="margin-left:-40px"></a>  
+        <i class="fa fa-download" aria-hidden="true" style="margin-left:-50px;color:white;margin-top:15px"></i>
+    </a>
+</div>
+
+
 <div class="row" style="display: flex">
     <div class="column" style="width: 170px; height: 100px; border: 1px solid silver; border-radius: 5px; background: white; margin-top: 40px; margin-left: 20px">
-        <p style="font-size: 11px;margin-top:5px;margin-left:10px">TAX CALCULATED AS PER</p>
+        <p style="font-size: 10px;margin-top:5px;margin-left:10px">TAX CALCULATED AS PER</p>
         <div style="border:1px solid silver ;height:1px;width:117%;margin-top:-10px;margin-left:-12px"></div>
-        <p style="color:#41CD2A;font-size:14px;margin-top:20px;margin-left:18px">NEW TAX REGIME</p>
+        <p style="color:#41CD2A;font-size:13px;margin-top:20px;margin-left:10px">NEW TAX REGIME</p>
     </div>
     <div class="column" style="width: 170px; height: 100px; border: 1px solid silver; border-radius: 5px; background: white; margin-top: 40px; margin-left: 10px">
         <p style="font-size: 11px;margin-top:5px;margin-left:30px">NET TAX IN ₹</p>
@@ -47,7 +72,7 @@
         <p style="font-size:24px;margin-top:10px;margin-left:40px">0.00</p>
     </div>
     <div class="column" style="width: 170px; height: 100px; border: 1px solid silver; border-radius: 5px; background: white; margin-top: 40px; margin-left: 10px">
-        <p style="font-size: 11px;margin-top:5px;margin-left:30px">TAX DEDUCTIBLE PER MONTH IN ₹</p>
+        <p style="font-size: 9px;margin-top:5px;margin-left:30px">TAX DEDUCTIBLE PER MONTH IN ₹</p>
         <div style="border:1px solid silver ;height:1px;width:117%;margin-top:-10px;margin-left:-12px"></div>
         <p style="font-size:24px;margin-top:10px;margin-left:40px">0.00</p>
     </div>
@@ -66,7 +91,7 @@
 <div class="row" style="width: 850px; height: 50px; border-radius: 5px; border: 1px solid silver; margin-left: 15px; background: white; margin-top: -50px;">
     <div class="column" style="display:flex">
         <p id="expandButton" style="font-size: 14px; margin-top: 15px; padding-left: 10px; cursor: pointer;">+</p>
-        <p style="font-weight: normal;margin-top: 14px; margin-left: 20px;">A. Income </p>
+        <p style="font-weight: normal;margin-top: 12px;margin-left:5px;font-size:14px ">A. Income </p>
         <p style="font-weight: normal;margin-top: 14px; margin-left: 600px;">₹{{ number_format($employee->calculateTotalAllowance()*12, 2) }} </p>
     </div>
 </div>
@@ -222,7 +247,7 @@
             <p style="font-weight: normal; margin-top: 14px; margin-left: 20px;">B. Deductions</p>
             <p style="font-weight: normal; margin-top: 14px; margin-left: 540px;">₹{{ number_format($employee->calculatePf() * 12 + 1800, 2) }}</p>
         </div>
-        <div style="border: 1px solid silver; height: 1px; width: 98%; margin-top: -5px;"></div>
+       
         <div id="incomeContainer2" style="display: none; width: 850px;">
             <div class="row" style="display: flex; width: 103%;">
                 <div class="column" style="height: 40px; background: #AFC8ED; width: 103%; margin-left: 0; display: flex; margin-top: -3px;">
@@ -330,7 +355,7 @@
             <p style="font-weight: normal; margin-top: 14px; margin-left: 20px;">C. Perquisites</p>
             <p style="font-weight: normal; margin-top: 14px; margin-left: 590px;">₹0.00</p>
         </div>
-        <div style="border: 1px solid silver; height: 1px; width: 98%; margin-top: -5px;"></div>
+       
         <div id="incomeContainer3" style="display: none; width: 850px;">
             <div class="row" style="display: flex; width: 103%;">
                 
@@ -349,12 +374,12 @@
 <div class="container" style="width: 106%; margin-left: -30px;margin-top:20px">
     <div class="row" style="width: 840px; height: 50px; border-radius: 5px; border: 1px solid silver; margin-left: 13px; background: white; margin-top: 20px;">
         <div class="column" style="display: flex">
-            <p id="expandButton4" style="font-size: 14px; margin-top: 15px; padding-left: 10px; cursor: pointer;">+</p>
-            <p style="font-weight: normal; margin-top: 14px; margin-left: 20px;">
+            <p id="expandButton4" style="font-size: 10px; margin-top: 15px; padding-left: 10px; cursor: pointer;">+</p>
+            <p style="font-weight: normal; margin-top: 14px; margin-left: 20px;font-size:13px">
 D. Income Excluded From Tax</p>
             <p style="font-weight: normal; margin-top: 14px; margin-left: 500px;">₹0.00</p>
         </div>
-        <div style="border: 1px solid silver; height: 1px; width: 98%; margin-top: -5px;"></div>
+        
         <div id="incomeContainer4" style="display: none; width: 850px;">
             <div class="row" style="display: flex; width: 103%;">
                 
@@ -386,7 +411,7 @@ D. Income Excluded From Tax</p>
             <p style="font-weight: normal; margin-top: 14px; margin-left: 20px;">G. Income From Previous Employer</p>
             <p style="font-weight: normal; margin-top: 14px; margin-left: 450px;">₹0.00</p>
         </div>
-        <div style="border: 1px solid silver; height: 1px; width: 98%; margin-top: -5px;"></div>
+        
         <div id="incomeContainer5" style="display: none; width: 850px;">
             <div class="row" style="display: flex; width: 103%;">
                 <div class="column" style="height: 40px; background: #AFC8ED; width: 103%; margin-left: 0; display: flex; margin-top: -3px;">
@@ -395,7 +420,7 @@ D. Income Excluded From Tax</p>
                     
                 </div>
                 <div style="border: 1px solid silver; height: 1px; width: 98%;"></div>
-                <div class="row" style="height: 130px; width: 100%; margin-left: 0; display: flex; background: white;">
+                <div class="row" style="height: 150px; width: 100%; margin-left: 0; display: flex; background: white;">
                     <div class="column" style="display: flex; margin-top: -5px;">
                         <p style="margin-top: 23px; margin-left: 20px; font-size: 13px; width: 100px;">TOTAL INCOME</p>
                         <p style="margin-top: 24px; margin-left: 620px; font-size: 14px; width: 50px;">0</p>

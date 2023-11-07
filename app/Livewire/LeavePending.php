@@ -125,6 +125,7 @@ class LeavePending extends Component
         $employeeId = auth()->guard('emp')->user()->emp_id; 
         // Call the getLeaveBalances function to get leave balances
         $leaveBalances = LeaveBalances::getLeaveBalances($employeeId);
+        
         try {
                 // Attempt to decode applying_to
         $applyingToJson = trim($this->leaveRequest->applying_to);
