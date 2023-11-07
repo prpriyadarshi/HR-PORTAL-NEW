@@ -1,14 +1,13 @@
+
 <div class="container-fluid p-0">
     <div class="m-0 mt-3 row">
         <div class="col-md-9 mb-2" style="text-align: end;">
-            <button wire:click="createCV"
-                style="width: 100px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;">
+            <button wire:click="createCV" style="background-color:rgb(2, 17, 79);color:white;border:none;border-radius:5px ">
                 <a style="text-decoration: none; color: white; ">Create CV</a>
             </button>
         </div>
         <div class="col-md-3" style="text-align: end;">
-            <button wire:click="jobs"
-                style="width: 260px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white">
+            <button wire:click="jobs" style="background-color:rgb(2, 17, 79);color:white;border:none;border-radius:5px ">
                 Job Seeker & Vendor Registration</button>
         </div>
     </div>
@@ -30,7 +29,7 @@
             </div>
 
             @endif
-            <form wire:submit.prevent="empLogin" class="login-form-with-shadow" style="margin-top: 0px;">
+            <form wire:submit.prevent="empLogin" class="login-form-with-shadow" style="margin-top: 0px; border: 1px solid #007bff;">
                 <div class="logo text-center mb-1" style="padding-top: 20px;">
                     <img src="{{ asset('images/HR Portal.png') }}" alt="Company Logo" width="150" height="80">
                 </div>
@@ -84,22 +83,22 @@
                 <!-- The slideshow/carousel -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{{ asset('images/communication.png') }}" alt="Los Angeles" class="d-block w-100">
-                        <div class="carousel-caption">
+                        <img src="{{ asset('images/communication.png') }}" style="width: 85%;" alt="Los Angeles" class="d-block">
+                        <div class="carousel-caption" style="bottom: 0px; padding-bottom: 0px; color: #007bff;">
                             <h3>Los Angeles</h3>
                             <p>We had such a great time in LA!</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ asset('images/tasks.png') }}" alt="Chicago" class="d-block w-100">
-                        <div class="carousel-caption">
+                        <img src="{{ asset('images/tasks.png') }}" style="width: 85%;"  alt="Chicago" class="d-block">
+                        <div class="carousel-caption" style="bottom: 0px; padding-bottom: 0px; color: #007bff;">
                             <h3>Chicago</h3>
                             <p>Thank you, Chicago!</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ asset('images/Working.png') }}" alt="New York" class="d-block w-100">
-                        <div class="carousel-caption">
+                        <img src="{{ asset('images/Working.png') }}" style="width: 85%;" alt="New York" class="d-block">
+                        <div class="carousel-caption" style="bottom: 0px; padding-bottom: 0px; color: #007bff;">
                             <h3>New York</h3>
                             <p>We love the Big Apple!</p>
                         </div>
