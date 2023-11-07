@@ -210,9 +210,9 @@
         <div class="row" style="height: auto;width:auto;background-color: #f0f0f0;">
 
             <div class="card" style="border-radius:0px;height: auto; width: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-
+ 
                 <div class="card-body" style="height: auto;width:auto;margin-top:0px">
-
+ 
                     <ul class="nav flex-column">
 
                         <div style="margin-bottom: 10px;margin-top:0px">
@@ -336,18 +336,24 @@
                                         <a class="nav-link" href="/slip" id="slip" onclick="selectOption(this, 'Pay Slip')">
                                             Payslips
                                         </a>
-
-
                                     </li>
-
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle16('proofofinvestment')">
-                                        <a class="nav-link" href="/investment" id="proofofinvestment" onclick="selectOption(this, 'Proof Of Investment')">
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('proofofinvestment')">
+                                        <a class="nav-link" href="/proofofinvestment" id="proofofinvestment" onclick="selectOption(this,   'Proof Of Investment')">
                                             Proof Of Investment
+
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('reimbursement')">
+                                        <a class="nav-link" href="/reimbursement" id="reimbursement" onclick="selectOption(this, 'Reimbursement')">
+                                            Reimbursement
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle17('loan')">
-                                        <a class="nav-link" href="/loan" id="loan" onclick="selectOption(this, 'Loan')">
-                                            Loan
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('investment')">
+                                        <a class="nav-link" href="/investment" id="investment" onclick="selectOption(this, 'Proof of Investment')">
+                                            Proof of Investment
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('loan')">
+                                        <a class="nav-link" href="/loan" id="slip" onclick="selectOption(this, 'Loan and Advances')">
+                                            Loan and Advances
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle15('salary-revision')">
@@ -380,7 +386,7 @@
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle10()">
 
-                            <a class="nav-link" href="/delegates">
+                            <a class="nav-link" href="/delegatesddb">
 
                                 <i class="fas fa-user-friends"></i> Workflow Delegates
 

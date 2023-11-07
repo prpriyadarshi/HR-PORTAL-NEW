@@ -16,29 +16,29 @@
             font-family: 'Montserrat', sans-serif;
             background-color: #f0f0f0;
             padding: auto 30px;
-
+ 
             /* Add a vertical line to the right of the left menu */
         }
         .left-menu h2 {
             font-family: 'Montserrat', sans-serif;
         }
 
-            table {
-                border-collapse: collapse;
-                width: 100%;
-            }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
 
-            th,
-            td {
-                border: 1px solid black;
-                padding: 8px;
-                text-align: center;
-            }
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
 
 
-            th {
-                background-color: #f2f2f2;
-            }
+        th {
+            background-color: #f2f2f2;
+        }
 
         .greet {
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -122,35 +122,22 @@
             animation: mergeAndJumble 0.3s forwards;
         }
         .notify{
-            display:flex; 
+            display:flex;
             justify-content:space-between;
-            padding:5px 10px; 
+            padding:5px 10px;
             align-items:center;
         }
-        
+       
         .home-hover {
     transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
     border-radius:5px;
     }
-
+ 
     .home-hover:hover {
         transform: scale(1.01);
         cursor: pointer;
         background-color: #fff;
         box-shadow: 1px 2px rgba(0, 0, 0, 0.2);
-    }
-    .leave-display{
-        padding: 5px 10px; 
-        display: flex; 
-        flex-direction:row;
-        align-items: center; 
-        white-space: nowrap; 
-        overflow: hidden; 
-        background:#fafafa;
-        text-overflow: ellipsis; 
-        border-top:1px solid #ccc;
-        font-size: 12px;
-        gap:15px;
     }
     </style>
 </head>
@@ -199,7 +186,7 @@
     <div class="container">
     @if (session()->has('success'))
 
-        <div class="custom-alert alert-success" style="text-align: center;margin-left:10%;width: 500px;">
+        <div class="custom-alert alert-success" style="text-align: center;margin-left:50%;width: 500px;">
             {{ session('success') }}
         </div>
         <script>
@@ -211,14 +198,14 @@
             }, 5000);
         </script>
         @endif
-
-
+ 
+ 
         <div class="left-menu">
-
+ 
             <h2>Home</h2>
             <!-- Add your menu items here -->
         </div>
-
+ 
     </div>
     <div class="content">
             <div style="display:flex; padding:10px 20px;">
@@ -245,8 +232,8 @@
                 <img id="greeting-image" src="" alt="Greeting Image" style="height: 200px; width:300px ;margin-left:50px; ">
             </div>
  <!-- main content -->
-            <div class="container" style="display:flex; flex-direction:row; gap:5px; padding:5px 10px;">
-                    <div class="first-col col-md-4" style=" padding:0;  display:flex; flex-direction:column; gap:5px;" >
+            <div class="container" style="display:flex; flex-direction:row; gap:5px; padding:10px 5pxx;">
+                    <div class="first-col col-md-4" style=" padding:0;  display:flex; flex-direction:column;gap:5px;" >
                         <div class="home-hover">
                                <div class="reviews">
                                   <div style="border-radius: 5px; border: 1px solid #CFCACA;  background-color: white;">
@@ -271,7 +258,7 @@
                                                     <div class="circle-notify" style="margin-right: 5px; display:flex; flex-direction:column;">
                                                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDDbrRPghufD20Fgaa0IFT62n3vLc5lI5B_w&usqp=CAU" alt="" style="height: 40px; width: 40px; border-radius: 50%; border:2px solid #D9D9D9;"><span>Leave</span>
                                                     </div>
-                                                  
+                                                 
                                                 @endfor
                                                 @if ($count > 2)
                                                     <div class="circle-notify" style="color:blue;cursor:pointer;font-size:0.925rem;">
@@ -279,7 +266,6 @@
                                                     </div>
                                                 @endif
                                             </div>
-
                                         @else
                                            <img src="https://ftl.technology/images/theme-pics/case.png" alt="Image Description" style="height: 100px; width: 100px; margin-top: 10px; margin-left: 80px;">
                                             <p style="color: #677A8E; margin-left: 50px; font-size: 14px; ">
@@ -289,7 +275,7 @@
                                     </div>
                                 </div>
                         </div>
-                        <div class="home-hover"> 
+                        <div class="home-hover">
                             <div style="border-radius: 5px; border: 1px solid #CFCACA;background-color: white;">
                                   <div style="color: #677A8E; margin-left: 20px;font-weight:500; margin-top:10px;">
                                                 IT Declaration
@@ -301,8 +287,8 @@
                                                     <a href="/formdeclaration" class="button-link">
                                                         <button class="custom-button view-button" style="width:60px;border:1px solid blue;border-radius:5px;margin-bottom:10px;margin-left:120px;color:blue;background:#fff;margin-top:10px;">View</button>
                                                     </a>    
-                                                </div>       
-                                             </div>                                 
+                                                </div>      
+                                             </div>                                
                                         </div>
                                     </div>
                             <div class="home-hover">
@@ -338,10 +324,50 @@
                                             updateTime();
                                             setInterval(updateTime, 1000);
                                         </script>
-                                        <div class="A" style="display: flex;flex-direction:row;justify-content:start; gap:30px;align-items:center;margin-top:10px;">
-                                            <a style="width:50%;font-size:0.855rem;cursor: pointer;color:blue" wire:click="open">View Swipes</a>
-                                            
-                                            <button id="signButton" style="color: white; width: 100px; height: 30px; background-color: rgb(2, 17, 79); border: 1px solid #CFCACA; border-radius: 5px; " wire:click="toggleSignState">
+                                        <div class="A" style="display: flex;flex-direction:row;justify-content:space-between; align-items:center;margin-top:10px;">
+                                            <a style="width:40%;font-size:0.855rem;cursor: pointer;color:blue" wire:click="open">View Swipes</a>
+                                            @if ($showAlertDialog)
+                                            <div class="modal" tabindex="-1" role="dialog" style="display: block;">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header" style="background-color: rgb(2, 17, 79); height: 50px">
+                                                            <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title"><b>Swipes</b></h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="close">
+                                                                <span aria-hidden="true" style="color: white;">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="col" style="font-size: 10px;">Date : <b>{{$currentDate}}</b></div>
+                                                                <div class="col" style="font-size: 10px;">Shift Time : <b>10:00 to 19:00</b></div>
+                                                            </div>
+                                                            <table border="1" style="margin-top: 10px;">
+                                                                <tr>
+                                                                    <th style="font-size: 12px; color: grey;">Swipe Time</th>
+                                                                    <th style="font-size: 12px; color: grey">Sign-In / Sign-Out</th>
+                                                                </tr>
+
+                                                                @if (!is_null($swipeDetails) && $swipeDetails->count() > 0)
+                                                                @foreach ($swipeDetails as $swipe)
+                                                                <tr>
+                                                                    <td style="font-size: 10px; color: black;">{{ $swipe->swipe_time }}</td>
+                                                                    <td style="font-size: 10px; color: black;">{{ $swipe->in_or_out }}</td>
+                                                                </tr>
+                                                                @endforeach
+                                                                @else
+                                                                <tr>
+                                                                    <td colspan="2">No swipe records found for today.</td>
+                                                                </tr>
+                                                                @endif
+
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-backdrop fade show blurred-backdrop"></div>
+                                            @endif
+                                            <button id="signButton" style="color: white; width: 80px; height: 30px; background-color: rgb(2, 17, 79); border: 1px solid #CFCACA; border-radius: 5px; " wire:click="toggleSignState">
                                                 @if ($signIn)
                                                 Sign In
                                                 @else
@@ -359,7 +385,7 @@
                                                 Payslip
                                                 <a href="/slip" style="font-size:16px; margin-left: 180px;">&rarr;</a>
                                             </div>
-
+ 
                                             <div style="display:flex">
                                                 <img src="https://www.litmus.com/wp-content/uploads/2021/03/Dark-vs-Light-Mode-Poll-Results-300x300.png" alt="Image Description" style="height: 110px; width: 130px; margin-top: 20px; margin-left: 20px;">
                                                 <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 60px;margin-top: 30px; font-weight: 100; color: #9E9696">
@@ -367,29 +393,29 @@
                                                     <br>{{ date('t', strtotime('-1 month')) }}</br>
                                                     <br>Paid Days</br>
                                                 </div>
-
+ 
                                             </div>
-
+ 
                                             <div style="display:flex ;color: #677A8E; margin-left: 20px; font-size: 14px;  font-weight:100px;margin-top:-2px">
                                                 <br style="margin-top:-10px">Gross Pay</br>
                                                 <br>Deduction</br>
                                                 <br>Net Pay</br>
-
+ 
                                                 <div style="margin-left:120px;margin-top:22px">
                                                     <p>₹{{$salaries->calculateTotalAllowance(), 2}}</p>
                                                     <p>₹{{$salaries->calculateTotalDeductions(), 2}}</p>
                                                     @if ($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions() > 0)
                                                     <p style="margin-top:5px"> ₹{{ number_format($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions(), 2) }}</p>
                                                     @endif
-
+ 
                                                 </div>
                                             </div>
                                             <div class="column" style="display: flex; color: #1090D8; margin-left: 20px; font-size: 14px;  margin-top: 20px; font-weight: 100;">
-
+ 
                                                 <a href="/your-download-route" id="pdfLink2023_4" class="pdf-download" download style="margin-left: 10px; display: inline-block;">Download PDF</a>
                                                 <p style="margin-left: 80px;">Show Salary</p>
                                             </div>
-
+ 
                                         </div>
                                         @empty
                                             <div style="border-radius: 5px; border: 1px solid #CFCACA;background-color:white;">
@@ -424,7 +450,7 @@
                                     @endforeach
                                 </div>
                         </div>
-                        <div class="home-hover"> 
+                        <div class="home-hover">
                                 <div style="border-radius: 5px; border: 1px solid #CFCACA; background-color: white;">
                                     <div style="color: #677A8E; font-weight:500; margin-left: 10px; margin-top:10px;">
                                         Quick Access
@@ -442,12 +468,12 @@
                                     </div>
                                 </div>
                          </div>
-                        <div class="home-hover"> 
+                        <div class="home-hover">
                             <div style=" border-radius: 5px; border: 1px solid #CFCACA; background-color: white;">
                                                     <div style="color: #677A8E;font-weight:500; margin-left: 20px;  margin-top: 20px;">
                                                         Track
                                                     </div>
-
+ 
                                                     <div>
                                                         <img src="https://resumekit.com/blog/wp-content/uploads/2023/02/Optimal-outline-for-a-cover-letter-2-1.png" alt="Image Description" style="height: 100px; width: 160px; margin-top: 20px; margin-left: 80px;">
                                                         <div class="B" style="color: black; margin-left: 20px;  font-size: 14px;">
