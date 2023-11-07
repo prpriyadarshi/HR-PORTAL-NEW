@@ -316,6 +316,48 @@
                                                 </div>
                                     </div>
                               </div>
+
+                              <!-- TEAM ON LEAVE -->
+                              @if($this->showLeaveApplies)
+                               <div class="home-hover">
+                               <div class="reviews">
+                                  <div style="border-radius: 5px; border: 1px solid #CFCACA;  background-color: white;">
+                                    <div class="heading" style="display:flex; justify-content:space-between;padding:5px 10px;">
+                                       <div style="color: #677A8E;font-weight:500;">
+                                            Team On Leave
+                                        </div>
+                                        <div >
+                                          <i class="fa fa-long-arrow-right" aria-hidden="true" style="color: #bbbbba;"></i>
+                                        </div>
+                                    </div>
+                                    @if(($this->count) > 0)
+                                          <div class="teamleave">
+                                                <p style="color: black; font-size: 0.9rem; font-weight: 500;">
+                                                    Today({{$count}}) </p>
+                                            </div>
+                                            <div class="leave-display" >
+                                                @for ($i = 0; $i < min($count, 2); $i++)
+                                                    <div class="circle-notify" style="margin-right: 5px; border-radius:50%; background:pink; padding:8px; border:2px solid #778899;">
+                                                        <span>SK</span>
+                                                    </div>        
+                                                @endfor
+                                                @if ($count > 2)
+                                                    <div class="circle-notify" style="color:blue;cursor:pointer;font-size:0.925rem;">
+                                                        +{{ $count - 2 }}
+                                                    </div>
+                                                @endif
+                                            </div>
+
+                                        @else
+                                           <img src="https://ftl.technology/images/theme-pics/case.png" alt="Image Description" style="height: 100px; width: 100px; margin-top: 10px; margin-left: 80px;">
+                                            <p style="color: #677A8E; margin-left: 50px; font-size: 14px; ">
+                                                Hurrah! You've nothing to review.
+                                            </p>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
                         </div>
                         <!-- second column -->
                     <div class="first-col col-md-4" style=" padding:0; display:flex; flex-direction:column;gap:5px;">
@@ -443,15 +485,15 @@
                                 </div>
                          </div>
                         <div class="home-hover"> 
-                            <div style=" border-radius: 5px; border: 1px solid #CFCACA; background-color: white;">
-                                                    <div style="color: #677A8E;font-weight:500; margin-left: 20px;  margin-top: 20px;">
+                            <div style=" border-radius: 5px; border: 1px solid #CFCACA; background-color: white;padding:10px 15px;">
+                                                    <div style="color: #677A8E;font-weight:500; ">
                                                         Track
                                                     </div>
 
                                                     <div>
                                                         <img src="https://resumekit.com/blog/wp-content/uploads/2023/02/Optimal-outline-for-a-cover-letter-2-1.png" alt="Image Description" style="height: 100px; width: 160px; margin-top: 20px; margin-left: 80px;">
-                                                        <div class="B" style="color: black; margin-left: 20px;  font-size: 14px;">
-                                                            <p style="color: #677A8E; margin-left: 20px;  margin-top: 20px;">All good! You've nothing new to track.</p>
+                                                        <div class="B" style="color: black;  font-size: 14px;">
+                                                            <p style="color: #677A8E;  margin-top: 20px;">All good! You've nothing new to track.</p>
                                                         </div>
                                                     </div>
                                                 </div>

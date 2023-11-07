@@ -101,7 +101,7 @@ class Home extends Component
         $isManager = EmployeeDetails::where('manager_id', $loggedInEmpId)->exists();
     
         $this->showLeaveApplies = $isManager;
-    
+       
         // Pass the data to the view and return the view instance
         return view('livewire.home', [
            
