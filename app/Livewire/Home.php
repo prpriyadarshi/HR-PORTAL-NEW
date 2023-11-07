@@ -80,7 +80,8 @@ class Home extends Component
     
         // Get the count of matching leave applications
         $this->count = count($matchingLeaveApplications);
-        
+      
+          
         $this->swipeDetails = DB::table('swipe_records')
             ->whereDate('created_at', $today)
             ->where('emp_id', $employeeId)
@@ -103,13 +104,13 @@ class Home extends Component
     
         // Pass the data to the view and return the view instance
         return view('livewire.home', [
+           
             'calendarData' => $this->calendarData,
             'salaryRevision' => $this->salaryRevision,
             'showLeaveApplies' => $this->showLeaveApplies,
             'count' => $this->count,
-            'matchingLeaveApplications' => $this->matchingLeaveApplications,
+            'matchingLeaveApplications' => $matchingLeaveApplications,
         ]);
-
     }
     
 }    

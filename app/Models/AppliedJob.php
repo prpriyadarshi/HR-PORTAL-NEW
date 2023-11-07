@@ -19,4 +19,10 @@ class AppliedJob extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
+    public function job()
+    {
+        $this->data = json_decode($this->jsonData, true);
+
+        return $this->belongsTo(Job::class, 'job_id', 'job_id');
+    }
 }

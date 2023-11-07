@@ -45,7 +45,7 @@ class JobSeekersAppliedJobs extends Component
     {
         $hrEmail = auth()->guard('com')->user()->contact_email;
         $this->hrDetails = Company::where('contact_email', $hrEmail)->first();
-        $this->appliedJobs = AppliedJob::with('user')
+        $this->appliedJobs = AppliedJob::with('user','job')
             ->where('applied_to', '=', $this->hrDetails->contact_email)
             ->get();
 
