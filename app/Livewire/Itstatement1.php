@@ -4,13 +4,18 @@ namespace App\Livewire;
 use App\Models\ITStatement;
 use Livewire\Component;
 use App\Models\AddDeclaration;
-
+use App\Models\Salaryslip;
+use App\Models\EmployeeDetails;
+use App\Models\SalaryRevision;
+use App\Models\EmpBankDetail;
 
 class Itstatement1 extends Component
 {
     public $itStatements;
     public $monthlyIncomeType ;
-
+    public $employeeDetails;
+    public $salaryRevision;
+    public $empBankDetails;
  
     public $filteredData;
 
@@ -24,6 +29,10 @@ class Itstatement1 extends Component
   
     public function render()
     {
+        $employeeId = auth()->guard('emp')->user()->emp_id;
+    $this->employeeDetails =  EmployeeDetails::where('emp_id', $employeeId)->get();
+    $this->salaryRevision =  SalaryRevision::where('emp_id', $employeeId)->get();
+    $this-> empBankDetails=  EmpBankDetail::where('emp_id', $employeeId)->get();
          $this->itStatements = ITStatement::all();
         // Fetch the data from the ITStatement model
         try {
@@ -35,7 +44,7 @@ class Itstatement1 extends Component
             $this->itStatements = [];
         }
 
-        return view('livewire.itstatement1', ['itStatements' => $this->itStatements]);
+        return view('livewire.itstatement1',['employees' => $this->employeeDetails],['salaryRevision' => $this->salaryRevision],['empBankDetails' => $this->empBankDetails] ,['itStatements' => $this->itStatements],);
     }
     
 }
