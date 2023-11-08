@@ -7,6 +7,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
     <script src="{{ asset('livewire/livewire.js') }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
         body{
             font-family: 'Montserrat', sans-serif;
@@ -63,7 +65,7 @@
             --tw-ring-offset-shadow: 0 0 transparent;
             --tw-ring-shadow: 0 0 transparent;
         }
- 
+
         .banner-ad {
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             tab-size: 4;
@@ -90,44 +92,44 @@
             --tw-text-opacity: 1;
             color: rgba(103, 122, 142, var(--tw-text-opacity));
         }
- 
- 
+
+
         @keyframes mergeAndJumble {
             0% {
                 transform: translate(0, 0);
             }
- 
+
             25% {
                 transform: translate(100px, 0);
             }
- 
+
             50% {
                 transform: translate(100px, 100px);
             }
- 
+
             75% {
                 transform: translate(0, 100px);
             }
- 
+
             100% {
                 transform: translate(0, 0);
             }
         }
- 
+
         .animate {
             animation: mergeAndJumble 0.3s forwards;
         }
- 
+
         .animate {
             animation: mergeAndJumble 0.3s forwards;
         }
         .notify{
-            display:flex; 
+            display:flex;
             justify-content:space-between;
-            padding:5px 10px; 
+            padding:5px 10px;
             align-items:center;
         }
-        
+
         .home-hover {
     transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
     border-radius:5px;
@@ -217,7 +219,7 @@
                                                     <div class="circle-notify" style="height: 50px; width: 50px; border-radius: 60%; border: 2px solid #dcdcdc; margin-right: 5px;">
                                                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDDbrRPghufD20Fgaa0IFT62n3vLc5lI5B_w&usqp=CAU" alt="" style="height: 45px; width: 45px; border-radius: 45%;">  <span>Leave</span>
                                                     </div>
-                                                  
+
                                                 @endfor
                                                 @if ($count > 2)
                                                     <div class="circle-notify" style="color:blue;cursor:pointer;">
@@ -234,7 +236,7 @@
                                     </div>
                                 </div>
                         </div>
-                        <div class="home-hover"> 
+                        <div class="home-hover">
                             <div style="border-radius: 5px; border: 1px solid #CFCACA;background-color: white;">
                                   <div style="color: #677A8E; margin-left: 20px;font-weight:500; margin-top:10px;">
                                                 IT Declaration
@@ -245,9 +247,9 @@
                                                     <br>Hurrah! Considered your IT declaration for Apr 2023.</br>
                                                     <a href="/formdeclaration" class="button-link">
                                                         <button class="custom-button view-button" style="width:60px;border:1px solid blue;border-radius:5px;margin-bottom:10px;margin-left:120px;color:blue;background:#fff;margin-top:10px;">View</button>
-                                                    </a>    
-                                                </div>       
-                                             </div>                                 
+                                                    </a>
+                                                </div>
+                                             </div>
                                         </div>
                                     </div>
                             <div class="home-hover">
@@ -346,7 +348,7 @@
                                             </div>
 
                                             <div style="display:flex">
-                                                <img src="https://www.litmus.com/wp-content/uploads/2021/03/Dark-vs-Light-Mode-Poll-Results-300x300.png" alt="Image Description" style="height: 110px; width: 130px; margin-top: 20px; margin-left: 20px;">
+                                                <canvas id="pieChart" width="130" height="110"></canvas>
                                                 <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 60px;margin-top: 30px; font-weight: 100; color: #9E9696">
                                                     <br>{{ date('M Y', strtotime('-1 month')) }}</br>
                                                     <br>{{ date('t', strtotime('-1 month')) }}</br>
@@ -386,7 +388,7 @@
                                                     <p style="color: #677A8E;  margin-bottom: 20px; font-size:0.875rem;"> We are working on your payslip!</p>
                                                 </div>
                                             </div>
-                                               
+
                                             </div>
                                         @endforelse
                                      </div>
@@ -409,7 +411,7 @@
                                     @endforeach
                                 </div>
                         </div>
-                        <div class="home-hover"> 
+                        <div class="home-hover">
                                 <div style="border-radius: 5px; border: 1px solid #CFCACA; background-color: white;">
                                     <div style="color: #677A8E; font-weight:500; margin-left: 10px; margin-top:10px;">
                                         Quick Access
@@ -427,7 +429,7 @@
                                     </div>
                                 </div>
                          </div>
-                        <div class="home-hover"> 
+                        <div class="home-hover">
                             <div style=" border-radius: 5px; border: 1px solid #CFCACA; background-color: white;">
                                                     <div style="color: #677A8E;font-weight:500; margin-left: 20px;  margin-top: 20px;">
                                                         Track
@@ -449,10 +451,10 @@
 <script>
     // Get the current hour of the day (0-23)
     const currentHour = new Date().getHours();
- 
+
     // Get the greeting element by its ID
     const greetingElement = document.getElementById('greetingText');
- 
+
     // Define an array of greetings based on the time of day
     const greetings = [
         'Good Morning',
@@ -460,7 +462,7 @@
         'Good Evening',
         'Good Night'
     ];
- 
+
     // Determine the appropriate greeting based on the time of day
     let greeting;
     if (currentHour >= 5 && currentHour < 12) {
@@ -472,7 +474,7 @@
     } else {
         greeting = greetings[3]; // Night
     }
- 
+
     // Update the greeting text
     greetingElement.textContent = greeting;
 </script>
@@ -493,30 +495,30 @@
             }
             // Add more quotes here as needed
         ];
- 
+
         const quoteElement = document.querySelector('.quote-text');
         const authorElement = document.querySelector('.author-text');
         const randomIndex = Math.floor(Math.random() * quotes.length);
         const randomQuote = quotes[randomIndex];
- 
+
         quoteElement.textContent = randomQuote.text;
         authorElement.textContent = `- ${randomQuote.author}`;
     }
- 
+
     // Call the function to initially set the quote
     changeQuote();
- 
+
     // Set an interval to change the quote every 5 seconds (5000 milliseconds)
     setInterval(changeQuote, 5000);
 </script>
- 
+
 <script>
     // Function to change the greeting image
     function changeGreetingImage() {
         const date = new Date();
         const hours = date.getHours();
         const imageElement = document.getElementById('greeting-image');
- 
+
         if (hours >= 4 && hours < 12) {
             // Morning (4 AM to 11:59 AM)
             imageElement.src = 'https://th.bing.com/th/id/OIP.mti7ag1l4Xc_3OSA4b5mAgHaGC?w=224&h=183&c=7&r=0&o=5&dpr=1.5&pid=1.7';
@@ -531,24 +533,45 @@
             imageElement.src = 'https://th.bing.com/th/id/OIP.eD11lmjV2NG7K0QwKoD-WQHaE8?w=268&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7';
         }
     }
- 
+
     // Call the function to initially set the greeting image
     changeGreetingImage();
- 
+
     // Set an interval to change the greeting image every 1 hour (3600000 milliseconds)
     setInterval(changeGreetingImage, 3600000);
     const containers = document.querySelectorAll('.container');
- 
+
     function startAnimation() {
         // Add a class to trigger the animation
         containers.forEach(container => container.classList.add('animate'));
- 
+
         // After animation, reset the positions (adjust the timeout based on animation duration)
         setTimeout(() => {
             containers.forEach(container => container.style.transform = 'translate(0, 0)');
         }, 4000);
     }
- 
+
     // Start animation when the page loads
     window.addEventListener('load', startAnimation);
+</script>
+
+
+<script>
+    // Get a reference to the canvas element
+    var ctx = document.getElementById('pieChart').getContext('2d');
+
+    // Data for the pie chart (replace with your own data)
+    var data = {
+        labels: ['Label 1', 'Label 2', 'Label 3'],
+        datasets: [{
+            data: [30, 40, 30], // Replace with your data values
+            backgroundColor: ['#FF5733', '#3399FF', '#33FF33'], // Replace with your desired colors
+        }]
+    };
+
+    // Create the pie chart
+    var myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: data,
+    });
 </script>

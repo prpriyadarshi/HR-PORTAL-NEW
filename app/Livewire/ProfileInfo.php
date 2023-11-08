@@ -6,6 +6,7 @@ use App\Models\EmpBankDetail;
 use App\Models\EmployeeDetails;
 use App\Models\ParentDetail;
 use Livewire\Component;
+use Illuminate\Support\Facades\Session;
 
 class ProfileInfo extends Component
 {
@@ -17,9 +18,18 @@ class ProfileInfo extends Component
     {
 
         $emp_id = session('emp_id');
+
        //$emp_id = session()->get('emp_id');
        // dd($emp_id);
        // dd(session()->has('emp_id'));
+    //    if (Session::has('emp_id')) {
+    //     // Value exists, you can use it here
+    //     echo "Employee ID: " . $emp_id;
+    // } else {
+    //     // 'emp_id' has expired or does not exist
+    //     echo "Employee ID has expired or is not set in the session.";
+    // }
+
         if (session()->has('emp_id')) {
          //$this->employeeDetails = EmployeeDetails::where('emp_id',auth()->guard('emp')->user()->emp_id)->get();
          $this->employeeDetails = EmployeeDetails::where('emp_id',$emp_id)->get();

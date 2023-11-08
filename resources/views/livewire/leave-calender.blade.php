@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<div>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -344,31 +345,31 @@
                         </thead>
                         <tbody id="calendar-body">
                             @foreach ($calendar as $week)
-                                <tr>
-                                    @foreach ($week as $day)
-                                    <td>
-                                        @if ($day)
-                                            @if ($day['isToday'])
-                                                <div style="background-color: #007bff; color: white; border-radius: 50%; width: 24px; height: 24px; text-align: center; line-height: 24px;">
-                                                    {{ $day['day'] }}
-                                                </div>
-                                            @else
-                                                {{ $day['day'] }}
-                                            @endif
-                                        @endif
-                                        @if ($day && isset($day['teamOnLeave']) && count($day['teamOnLeave']) > 0)
-                                            <div style="background-color: grey; border-radius: 50%; width: 24px; height: 24px; text-align: center; margin-top: 5px;">
-                                                <span style="color: white; display: block; line-height: 24px;">
-                                                    {{ count($day['teamOnLeave']) }}
-                                                </span>
-                                            </div>
-                                        @endif
-                                    </td>
-                                @endforeach
+    <tr>
+        @foreach ($week as $day)
+        <td>
+            @if ($day)
+                @if ($day['isPublicHoliday'] || in_array($day['day'], $publicHolidaysArray))
+                    <div style="background-color: red; color: white; border-radius: 50%; width: 24px; height: 24px; text-align: center; line-height: 24px;">
+                        {{ $day['day'] }}
+                    </div>
+                @elseif ($day['isToday'])
+                    <div style="background-color: #007bff; color: white; border-radius: 50%; width: 24px; height: 24px; text-align: center; line-height: 24px;">
+                        {{ $day['day'] }}
+                    </div>
+                @else
+                    {{ $day['day'] }}
+                @endif
+            @endif
+        </td>
+        @endforeach
+    </tr>
+@endforeach
 
 
-                                </tr>
-                            @endforeach
+
+
+
                         </tbody>
 
                     </table>
@@ -472,3 +473,5 @@ const accordionBody = element.nextElementSibling;
 </script>
 </body>
 </html>
+
+</div>
