@@ -117,9 +117,9 @@ public function submitsec80()
     }
  
         // Set a default value for '5_years_fixed_deposit' if not provided by the user
-        if (!isset($this->fields['5_years_fixed_deposit'])) {
-            $this->fields['5_years_fixed_deposit'] = 0; // You can change 0 to the appropriate default value.
-        }
+        // if (!isset($this->fields['5_years_fixed_deposit'])) {
+        //     $this->fields['5_years_fixed_deposit'] = 0; // You can change 0 to the appropriate default value.
+        // }
  
         $rules = [
             'fields.5_years_fixed_deposit' => 'numeric|between:0,50000',

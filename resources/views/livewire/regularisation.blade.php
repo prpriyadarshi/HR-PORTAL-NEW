@@ -520,7 +520,7 @@ thead th:nth-child(2) {
            <div id="dateAndDay"style="margin-right:30px;">
                <div style="display:flex;flex-direction:row;margin-top:-60px;margin-right:20px;">
                 <p id="currentDate1" style="margin-right: 80px; display: inline-block;"></p>
-                <p id="currentDay1" style="margin-left: 20px; display: inline-block;">Current Day</p>
+                <p id="currentDay1" style="margin-left: 20px; display: inline-block;"></p>
 
                  <label for="timeSlot"></label>
                  <select id="timeSlot" disabled>

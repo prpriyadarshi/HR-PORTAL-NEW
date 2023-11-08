@@ -19,7 +19,7 @@ class Companies extends Component
     public function render()
     {
         $this->companies = Company::orderBy('created_at', 'desc')->get();
-    
+         
         return view('livewire.companies');
     }
 }
