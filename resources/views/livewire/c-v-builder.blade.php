@@ -542,9 +542,11 @@
 
                     </html>
                 </div>
+                <div style="text-align: center;">
                 <button onclick="generatePDF()" class="btn btn-warning"> <a style="color: #fff; text-decoration: none;
             font-family: Montserrat;
                 ">Download</a></button>
+                </div>
             </div>
         </div>
     </body>

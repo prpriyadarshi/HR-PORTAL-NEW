@@ -230,31 +230,30 @@
                 </a>
             </div>
         </div>
-
         <div class="card" id="notification-popup">
             <h5 style="padding: 5px;background-color:#02134F;color:white;text-align:center">All Notifications</h5>
             <div style="margin-left: 25%; margin-bottom: 10px">
                 <input style="font-family: Montserrat;" type="radio" name="formType" value="register" wire:click="$set('activeTab', 'Shorlisted')" checked> Shorlisted
-                <input style="font-family: Montserrat;" type="radio" name="formType" value="login" wire:click="$set('activeTab', 'Rejected')"> Rejected
+                <input style="font-family: Montserrat;" type="radio" name="formType" value="login" wire:click="$set('activeTab', 'Rejected')">  Rejected
             </div>
 
             @if($activeTab=="Shorlisted")
             @foreach($notificationList as $list)
             <li style="margin-bottom: 10px;">
                 <a class="shortedList" wire:click="showShortlisetdJobInterviewDetails('{{$list->job->job_id}}')" style="font-size: 12px;color:black;text-decoration:none">
-                Congratulations! Your CV has been shortlisted for the position of <strong>{{$list->job->title}}</strong> at <strong>{{$list->job->company_name}}</strong> Company.
+                    Congratulations! Your CV has been shortlisted for the position of <strong>{{$list->job->title}}</strong> at <strong>{{$list->job->company_name}}</strong> Company.
                 </a>
             </li>
             @endforeach
             @endif
             @if($activeTab=="Rejected")
-           @foreach($rejectedJobs as $list)
-           <li style="margin-bottom: 10px;">
+            @foreach($rejectedJobs as $list)
+            <li style="margin-bottom: 10px;">
                 <a wire:click="showJobDetails('{{$list->job->job_id}}')" class="shortedList" style="font-size: 12px;color:black;text-decoration:none">
-                Your application has not been shortlisted for the position of <strong>{{$list->job->title}}</strong> at <strong>{{$list->job->company_name}}</strong> Company. Keep your spirits high and continue your job search,The right opportunity is out there waiting for you.
+                    Your application has not been shortlisted for the position of <strong>{{$list->job->title}}</strong> at <strong>{{$list->job->company_name}}</strong> Company. Keep your spirits high and continue your job search,The right opportunity is out there waiting for you.
                 </a>
             </li>
-           @endforeach
+            @endforeach
             @endif
         </div>
 

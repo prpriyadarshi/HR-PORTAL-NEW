@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Livewire;
+
 use App\Models\EmployeeDetails;
 use App\Models\LeaveRequest;
 use App\Models\SwipeRecord;
@@ -12,6 +13,7 @@ use App\Models\SalaryRevision;
 use Illuminate\Support\Facades\Auth;
 
 use App\Livewire\TeamOnLeave;
+
 class Home extends Component
 {
     public $currentDate;
@@ -25,16 +27,18 @@ class Home extends Component
     public $employee;
     public $salaries;
     public $count;
-    public $applying_to= [];
+    public $initials;
+    public $applying_to = [];
     public $matchingLeaveApplications = [];
+    public $upcomingLeaveApplications;
     public $leaveRequest;
-    public $salaryRevision;// Rename this variable to 'salaries'
+    public $salaryRevision; // Rename this variable to 'salaries'
     public $pieChartData;
     public $grossPay;
     public $deductions;
     public $netPay;
-public $leaveRequests;
-public $showLeaveApplies;
+    public $leaveRequests;
+    public $showLeaveApplies;
     public function toggleSignState()
     {
         $employeeId = auth()->guard('emp')->user()->emp_id;
@@ -87,6 +91,48 @@ public $showLeaveApplies;
         $this->count = count($matchingLeaveApplications);
 
 
+
+
+
+        //team on leave
+        $currentDate = Carbon::today();
+        $this->teamOnLeaveRequests = LeaveRequest::with('employee')
+            ->where('status', 'approved')
+            ->where(function ($query) use ($currentDate) {
+                $query->whereDate('from_date', '=', $currentDate)
+                    ->orWhereDate('to_date', '=', $currentDate);
+            })
+            ->get();
+        $teamOnLeaveApplications = [];
+
+        foreach ($this->teamOnLeaveRequests as $teamOnLeaveRequest) {
+            $applyingToJson = trim($teamOnLeaveRequest->applying_to);
+            $applyingArray = is_array($applyingToJson) ? $applyingToJson : json_decode($applyingToJson, true);
+
+            $ccToJson = trim($teamOnLeaveRequest->cc_to);
+            $ccArray = is_array($ccToJson) ? $ccToJson : json_decode($ccToJson, true);
+
+            $isManagerInApplyingTo = isset($applyingArray[0]['manager_id']) && $applyingArray[0]['manager_id'] == $employeeId;
+            $isEmpInCcTo = isset($ccArray[0]['emp_id']) && $ccArray[0]['emp_id'] == $employeeId;
+
+            if ($isManagerInApplyingTo || $isEmpInCcTo) {
+                $teamOnLeaveApplications[] = $teamOnLeaveRequest;
+            }
+        }
+        $this->teamOnLeave = $teamOnLeaveApplications;
+
+        // Get the count of matching leave applications
+        $this->teamCount = count($teamOnLeaveApplications);
+
+        $this->upcomingLeaveRequests = LeaveRequest::with('employee')
+            ->where('status', 'approved')
+            ->where(function ($query) use ($currentDate) {
+                $query->whereMonth('from_date', Carbon::now()->month); // Filter for the current month
+            })
+            ->orderBy('created_at', 'desc')
+            ->get();
+        $this->upcomingLeaveApplications = count($this->upcomingLeaveRequests);
+
         $this->swipeDetails = DB::table('swipe_records')
             ->whereDate('created_at', $today)
             ->where('emp_id', $employeeId)
@@ -107,22 +153,24 @@ public $showLeaveApplies;
         $this->showLeaveApplies = $isManager;
 
 
-//##################################### pie chart details #########################
-        $sal=new SalaryRevision();
+        //##################################### pie chart details #########################
+        $sal = new SalaryRevision();
         $this->grossPay = $sal->calculateTotalAllowance();
-        $this->deductions =$sal ->calculateTotalDeductions();
+        $this->deductions = $sal->calculateTotalDeductions();
         $this->netPay = $this->grossPay - $this->deductions;
+
         // Pass the data to the view and return the view instance
         return view('livewire.home', [
 
             'calendarData' => $this->calendarData,
-           'salaryRevision' => $this->salaryRevision,
+            'salaryRevision' => $this->salaryRevision,
             'showLeaveApplies' => $this->showLeaveApplies,
             'count' => $this->count,
+            'teamCount' => $this->teamCount,
+            'teamOnLeave' => $this->teamOnLeave,
             'matchingLeaveApplications' => $matchingLeaveApplications,
-            'matchingLeaveApplications' => $matchingLeaveApplications,
+            'upcomingLeaveRequests'  => $this->upcomingLeaveRequests,
+            'upcomingLeaveApplications' => $this->upcomingLeaveApplications,
         ]);
     }
-
-
 }

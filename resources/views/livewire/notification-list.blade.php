@@ -105,3 +105,5 @@
 
     </html>
 </div>
+when i click on Rejected radio then notification closed
+But i want show

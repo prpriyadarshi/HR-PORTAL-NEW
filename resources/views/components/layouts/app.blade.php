@@ -14,7 +14,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/hr.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/HR Portal.png') }}">
     <title>
         HR Strategies Pro
     </title>
@@ -337,9 +337,7 @@
                                             Payslips
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('proofofinvestment')">
-                                        <a class="nav-link" href="/proofofinvestment" id="proofofinvestment" onclick="selectOption(this,   'Proof Of Investment')">
-                                            Proof Of Investment
+                                   
 
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('reimbursement')">
                                         <a class="nav-link" href="/reimbursement" id="reimbursement" onclick="selectOption(this, 'Reimbursement')">
@@ -351,11 +349,7 @@
                                             Proof of Investment
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('loan')">
-                                        <a class="nav-link" href="/loan" id="slip" onclick="selectOption(this, 'Loan and Advances')">
-                                            Loan and Advances
-                                        </a>
-                                    </li>
+   
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle15('salary-revision')">
                                         <a class="nav-link" href="/salary-revision" id="slip" onclick="selectOption(this, 'Salary Revision')">
                                             Salary Revision
@@ -423,7 +417,7 @@
 
                 </div>
 
-                <div style="margin-top: 3%; margin-left: 1%; height:    ; overflow-y: auto;overflow-x:auto">
+                <div style="margin-top: 3%; margin-left: 1%; height: 490px; overflow-y: auto;overflow-x:auto">
 
                     {{ $slot }}
 

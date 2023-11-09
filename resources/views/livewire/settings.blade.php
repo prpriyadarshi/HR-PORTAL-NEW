@@ -4,14 +4,14 @@
             border-collapse: collapse;
             width: 100%;
         }
-
+ 
         th,
         td {
             border: 1px solid black;
             padding: 8px;
             text-align: center;
         }
-
+ 
         th {
             background-color: #f2f2f2;
         }
@@ -59,90 +59,64 @@
         <div class="modal-backdrop fade show blurred-backdrop"></div>
         @endif
         <div class="col" style="margin: 0px;">
-            <button wire:click="show" style="background-color:rgb(2, 17, 79);color:white;border-radius:5px;width:200px"><i style="color: white;" class="fas fa-cog"></i>Change Password</button>
+            <button wire:click="show" style="background-color:rgb(2, 17, 79);color:white;border-radius:5px; width:200px"><i style="color: white;" class="fas fa-cog"></i>Change Password</button>
         </div>
-        @if ($showDialog)
-        <div class="modal" tabindex="-1" role="dialog" style="display: block;">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header" style="background-color: rgb(2, 17, 79); height: 50px;width:600px">
-                        <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title"><b>Change Password</b></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="remove">
-                            <span aria-hidden="true" style="color: white;">×</span>
-                        </button>
-                    </div>
-                    <form wire:submit="changePassword" class="login-form-with-shadow" style="margin-top: 0px;">
-                    <div class="modal-body" style="background-color: #f0f0f0;padding:20px;width:600px">
-                        <div class="row">
-                            <div class="col">
-                                <div class="card" style="padding: 20px; width: 300px; margin-right: 0;">
-                                    <div class="row">
-                                        <div class="form-group">
-                                            <label style="font-size: 14px;" for="oldPassword">Old Password</label>
-                                            <div>
-                                                <input style="font-size: 12px;" type="oldPassword" id="oldPassword" name="oldPassword" placeholder="Enter your old password" wire:model="oldPassword">
-                                                @error("oldPassword") <p class="pt-2 px-1 text-danger">{{
-                                                    str_replace('oldPassword', 'Password', $message) }}</p> @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label style="font-size: 14px;" for="newPassword">New Password</label>
-                                                <div>
-                                                    <input style="font-size: 12px;" type="newPassword" id="newPassword" name="newPassword" placeholder="Enter your new password" wire:model="newPassword">
-                                                    @error("newPassword") <p class="pt-2 px-1 text-danger">{{
-                                                        str_replace('newPassword', 'Password', $message) }}</p> @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label style="font-size: 14px;" for="confirmNewPassword">Confirm New Password</label>
-                                                <div>
-                                                    <input style="font-size: 12px;" type="confirmNewPassword" id="confirmNewPassword" name="confirmNewPassword" placeholder="Enter your new password again" wire:model="confirmNewPassword">
-                                                    @error("newPassword") <p class="pt-2 px-1 text-danger">{{
-                                                        str_replace('newPassword', 'Password', $message) }}</p> @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+@if ($showDialog)
+<div class="modal" tabindex="-1" role="dialog" style="display: block;">
+    <div class="modal-dialog modal-dialog-centered" role="document" >
+        <div class="modal-content" style="width: 500px;margin-left:30px">
+            <div class="modal-header" style="background-color: rgb(2, 17, 79); height: 50px;">
+                <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title"><b>Change Password</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="remove">
+                    <span aria-hidden="true" style="color: white;">×</span>
+                </button>
+            </div>
+            <form wire:submit="changePassword" class="login-form-with-shadow" style="margin-top: 0;">
+                <div class="modal-body" style="background-color: #f0f0f0; padding: 20px;margin-top:40px">
+                    <div class="row" style="width:800px;margin-left:30px">
+                        <div class="col-md-6">
+                            <div class="card" style="padding: 20px;">
+                                <div class="form-group" style="margin-top:-13px">
+                                    <label style="font-size: 14px;" for="oldPassword" >Old Password</label>
+                                    <br><input style="font-size: 12px;" type="password" id="oldPassword" name="oldPassword" style="margin-left:60px" placeholder="Enter your old password" wire:model="oldPassword" wire:change="changePassword">
+                                    @error("oldPassword")
+                                    <p class="pt-2 px-1 text-danger" style="font-size:10px">{{ str_replace('oldPassword', 'Password', $message) }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group" style="margin-top:-13px">
+                                    <label style="font-size: 14px;" for="newPassword">New Password</label>
+                                    <br><input style="font-size: 12px;" type="password" id="newPassword"style="margin-left:30px" name="newPassword" placeholder="Enter your new password" wire:model="newPassword" wire:change="changePassword">
+                                    @error("newPassword")
+                                    <p class="pt-2 px-1 text-danger" style="font-size:10px">{{ str_replace('newPassword', 'Password', $message) }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group" style="margin-top:-13px">
+                                    <label style="font-size: 14px;" for="confirmNewPassword">Confirm New Password</label>
+                                    <br><input style="font-size: 12px;" type="password" id="confirmNewPassword" name="confirmNewPassword"style="margin-left:20px" placeholder="Enter your new password again" wire:model="confirmNewPassword" wire:change="changePassword">
+                                    @error("confirmNewPassword")
+                                    <p class="pt-2 px-1 text-danger" style="font-size:10px">{{ str_replace('newPassword', 'Password', $message) }}</p>
+                                    @enderror
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="card" style="height: 90px; width:230px; margin-left: 0;background-color:#f8f68879">
-                                    <div class="row" style="margin-left:1px">
-                                        <div style="font-size: 8px;margin-top:5px">
-                                            <i style="width: 7px;" class="fas fa-check-circle"></i>
-                                            <span>Password should contain a minimum of 08 characters.</span>
-                                        </div>
-                                        <div style="font-size: 8px;">
-                                            <i style="width: 7px;" class="fas fa-check-circle"></i>
-                                            <span>Password should contain a maximum of 50 characters.</span>
-                                        </div>
-                                        <div style="font-size: 8px;margin-bottom:5px">
-                                            <i style="width: 7px;" class="fas fa-check-circle"></i>
-                                            <span>Password should contain at least one of the following special characters: &,*,(,),$,%,^,#,@.</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div style="margin-top: 20px;margin-left:15%">
-                                <button style="background-color: green;color:white;border-radius:5px;font-size:15px">Save Password</button>
-                            </div>
-                        </form>
                         </div>
-
+                    </div>
+                    <div style="margin-top: 20px; text-align: center;">
+                        <button style="background-color: green; color: white; border-radius: 5px; font-size: 15px;">Save Password</button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
-        <div class="modal-backdrop fade show blurred-backdrop"></div>
-        @endif
     </div>
+</div>
+<div class="modal-backdrop fade show blurred-backdrop"></div>
+@endif
+<div>
+@if ($passwordChanged)
+<div style="text-align: center; position: fixed; top: 15%; left: 50%; transform: translate(-50%, -50%); z-index: 999;background-color: #4CAF50; color: #ffffff;" wire:poll.5s>
+    Your password has been changed successfully...
+</div>
+@endif
+</div>
 @foreach($employees as $employee)
 <div class="card" style="width: 60%;margin-top:20px;padding:10px">
         <div class="row">
@@ -154,12 +128,12 @@
                 <div style="font-size: 12px; color: grey;">
                     <div style="display: inline-block;width:65px">Emp ID</div><strong> : {{$employee->emp_id}}</strong>
                 </div>
-
+ 
                 <div style="font-size:12px;color: grey;">
                     <div style="display: inline-block;width:65px">Location</div> <strong>: {{$employee->job_location}}</strong>
                 </div>
                 <div style="font-size:12px;color: grey;">
-                    <div style="display: inline-block;width:65px">Role</div><strong> : {{$employee->job_title}}</strong>
+                    <div style="display: inline-block;width:65px">Designation</div><strong> : {{$employee->job_title}}</strong>
                 </div>
             </div>
             <div class="col-md-5" style="margin-top: 15px;">
@@ -246,7 +220,7 @@
                     @endif
                 </div>
             </div>
-
+ 
         </div>
         <hr>
         <div class="container">

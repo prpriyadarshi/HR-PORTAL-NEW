@@ -45,6 +45,7 @@ use App\Livewire\LeaveCancel;
 use App\Livewire\TeamOnLeave;
 use App\Livewire\HolidayCalender;
 
+use App\Livewire\TeamOnLeaveChart;
 use App\Livewire\ViewDetails;
 use App\Livewire\ViewDetails1;
 use App\Livewire\ViewPendingDetails;
@@ -145,11 +146,13 @@ Route::middleware(['auth:emp'])->group(function () {
    
     // Related salary module and ITdeclaration Document center
     Route::get('/payslip', Payroll::class);
-    Route::get('/slip', Payslip::class);
+    Route::get('/slip', SalarySlips::class);
     Route::get('/itdeclaration', Itdeclaration::class);
     Route::get('/itstatement', Itstatement1::class);
     Route::get('/document', Documentcenter::class);
     Route::get('/documents', Documents::class);
+    Route::get('/team-on-leave-chart', TeamOnLeaveChart::class);
+   
     Route::get('/plan-A', PlanA::class)->name('plan-a');
     Route::get('/salary-revisions', SalaryRevisions::class)->name('salary-revisions');
 
