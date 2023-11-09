@@ -41,6 +41,7 @@ use App\Livewire\LeaveBalances;
 
 use App\Livewire\LeaveCancel;
 use App\Livewire\TeamOnLeave;
+use App\Livewire\TeamOnLeaveChart;
 use App\Livewire\HolidayCalender;
 
 use App\Livewire\ViewDetails;
@@ -170,7 +171,8 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/leave-history/{leaveRequestId}', LeaveHistory::class)->name('leave-history');
     Route::get('/leave-pending/{leaveRequestId}', LeavePending::class)->name('leave-pending');
     Route::get('/team-on-leave', TeamOnLeave::class)->name('team-on-leave');
-
+    Route::get('/team-on-leave-chart', TeamOnLeaveChart::class)->name('team-on-leave-chart');
+    
   
     // TODO module
     Route::get('/tasks', Tasks::class)->name('task');

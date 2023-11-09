@@ -16,6 +16,10 @@ class EmployeesReview extends Component
     public $leaveRequest;
     public $employeeDetails;
     public $approvedLeaveApplicationsList;
+    public $search = '';
+    public $filterData;
+   
+
     public  function calculateNumberOfDays($fromDate, $fromSession, $toDate, $toSession)
     {
         try {
@@ -107,9 +111,12 @@ class EmployeesReview extends Component
         // You might need to customize this based on your actual session values
         return (int) str_replace('Session ', '', $session);
     }
+
+
     public function render()
     {
         $employeeId = auth()->guard('emp')->user()->emp_id;
+        
         $this->leaveRequests = LeaveRequest::where('status', 'Pending')->get();
         $matchingLeaveApplications = [];
     
@@ -134,6 +141,7 @@ class EmployeesReview extends Component
                 ->orWhereJsonContains('cc_to', [['emp_id' => $employeeId]]);
         })
         ->join('employee_details', 'leave_applies.emp_id', '=', 'employee_details.emp_id')
+        ->orderBy('created_at', 'desc')
         ->get(['leave_applies.*', 'employee_details.image', 'employee_details.first_name','employee_details.last_name']);
         $approvedLeaveApplications = [];
     
@@ -146,19 +154,29 @@ class EmployeesReview extends Component
     
             $isManagerInApplyingTo = isset($applyingArray[0]['manager_id']) && $applyingArray[0]['manager_id'] == $employeeId;
             $isEmpInCcTo = isset($ccArray[0]['emp_id']) && $ccArray[0]['emp_id'] == $employeeId;
+            $approvedLeaveRequest->formatted_from_date = Carbon::parse($approvedLeaveRequest->from_date)->format('d-m-Y');
+            $approvedLeaveRequest->formatted_to_date = Carbon::parse($approvedLeaveRequest->to_date)->format('d-m-Y');
     
             if ($isManagerInApplyingTo || $isEmpInCcTo) {
                 $approvedLeaveApplications[] = $approvedLeaveRequest;
             }
         }
         $this->approvedLeaveApplicationsList = $approvedLeaveApplications;
+
+        $approvedLeaveApplicationsList =  $filteredData = array_filter($this->approvedLeaveApplicationsList, function ($item) {
+            return stripos($item->first_name, $this->search) !== false ||
+                   stripos($item->emp_id, $this->search) !== false ||
+                   stripos($item->leave_type, $this->search) !== false;
+        });
+ 
         $this->leaveApplications = $matchingLeaveApplications;
            return view('livewire.employees-review', [
             'leaveApplications' => $this->leaveApplications,
             'approvedLeaveApplicationsList' => $this->approvedLeaveApplicationsList,
+            'approvedLeaveApplicationsList' => $filteredData
 
         ]);
     }
-
+ 
 
 }

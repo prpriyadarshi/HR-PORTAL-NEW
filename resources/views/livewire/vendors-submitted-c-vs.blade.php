@@ -111,17 +111,16 @@
                     <td>{{ $submitDetails->job->company_name }}</td>
                     <td>
                         Total CV's : <strong>{{ count($submitDetails->cv) }}</strong>
-                        <ul>
                             @foreach ($submitDetails->cv as $key=> $cv)
-                            <li style="margin-bottom: 8px;">
+                            <div style="margin-bottom: 8px">
+                            {{ $key + 1 }}
                                 <a style="text-decoration: none;margin-right:5px" class="preview-button" href="{{ Storage::url( $cv['cv']) }}" target="_blank">Preview CV{{ $key + 1 }} </a>
                                 <a style="text-decoration: none;" class="download-button" href="{{ Storage::url($cv['cv']) }}" download>Download CV{{ $key + 1 }} </a>
-                            </li>
+                            </div>
                             @endforeach
-                        </ul>
                     </td>
-                    <td>{{ date('d-M-Y H\h i\m s\s', strtotime($submitDetails->created_at)) }}</td>
-                    <td>{{ date('d-M-Y H\h i\m s\s', strtotime($submitDetails->expire_date)) }}</td>
+                    <td>{{ date('d-M-Y', strtotime($submitDetails->created_at)) }}</td>
+                    <td>{{ date('d-M-Y', strtotime($submitDetails->job->expire_date)) }}</td>
                 </tr>
                 @endforeach
             </tbody>

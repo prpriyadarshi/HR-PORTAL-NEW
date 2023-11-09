@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    @livewire('company-based-jobs')
+    @livewire('company-based-jobs',['companyId'=>$companyId])
     @livewireScripts
 </body>
 

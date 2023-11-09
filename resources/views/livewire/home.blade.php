@@ -23,22 +23,22 @@
             font-family: 'Montserrat', sans-serif;
         }
 
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
 
-        th,
-        td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: center;
-        }
+            th,
+            td {
+                border: 1px solid black;
+                padding: 8px;
+                text-align: center;
+            }
 
 
-        th {
-            background-color: #f2f2f2;
-        }
+            th {
+                background-color: #f2f2f2;
+            }
 
         .greet {
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -127,6 +127,13 @@
             padding:5px 10px; 
             align-items:center;
         }
+        .team-Notify{
+            display:flex; 
+            flex-direction:column;
+            justify-content:start;
+            padding:5px 10px; 
+            
+        }
         
         .home-hover {
     transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
@@ -151,6 +158,25 @@
         border-top:1px solid #ccc;
         font-size: 12px;
         gap:15px;
+    }
+    .team-leave{
+        display: flex; 
+        flex-direction:row;
+        align-items: center; 
+        white-space: nowrap; 
+        overflow: hidden; 
+        text-overflow: ellipsis; 
+        font-size: 12px;
+        gap:12px;
+    }
+    .net-salary{
+        display: flex; 
+        flex-direction:row;
+        align-items: center; 
+        white-space: nowrap; 
+        overflow: hidden; 
+        justify-content:space-between;
+        text-overflow: ellipsis; 
     }
     </style>
 </head>
@@ -259,23 +285,33 @@
                                         </div>
                                     </div>
                                     @if(($this->count) > 0)
+                                    
                                           <div class="notify">
                                                 <p style="color: black; font-size: 1.2rem; font-weight: 500;">
                                                     {{$count}} <br>
                                                     <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">Things to review</span>
                                                 </p>
+                                                         
                                                 <img src="https://png.pngtree.com/png-vector/20190214/ourlarge/pngtree-vector-notes-icon-png-image_509622.jpg" alt="" style="height: 50px; width: 50px;">
                                             </div>
                                             <div class="leave-display" >
+                                           
                                                 @for ($i = 0; $i < min($count, 2); $i++)
                                                     <div class="circle-notify" style="margin-right: 5px; display:flex; flex-direction:column;">
-                                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDDbrRPghufD20Fgaa0IFT62n3vLc5lI5B_w&usqp=CAU" alt="" style="height: 40px; width: 40px; border-radius: 50%; border:2px solid #D9D9D9;"><span>Leave</span>
+                                                    @php
+                                                            function getRandomColor() {
+                                                                $colors = ['#FFD1DC', '#B0E57C', '#ADD8E6', '#E6E6FA', '#FFB6C1'];
+                                                                return $colors[array_rand($colors)];
+                                                            }
+                                                        @endphp
+                                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDDbrRPghufD20Fgaa0IFT62n3vLc5lI5B_w&usqp=CAU" alt="" style="height: 40px; width: 40px; border-radius: 50%;  border: 2px solid {{ getRandomColor() }};"><span>Leave</span>
                                                     </div>
                                                   
                                                 @endfor
-                                                @if ($count > 2)
-                                                    <div class="circle-notify" style="color:blue;cursor:pointer;font-size:0.925rem;">
-                                                        +{{ $count - 2 }}
+                                                @if ($count > 4)
+                                                    <div class="circle-notify" style="color:blue;cursor:pointer; margin-top:20px;display:flex;flex-direction:column;align-items:center;">
+                                                      <a href="#" style="color:blue;font-size:0.725rem;">+{{ $count - 4 }}</a>
+                                                       <p style="font-size:0.725rem;margin-top:-5px;"><span class="remaining" >More</span></p>
                                                     </div>
                                                 @endif
                                             </div>
@@ -330,28 +366,49 @@
                                           <i class="fa fa-long-arrow-right" aria-hidden="true" style="color: #bbbbba;"></i>
                                         </div>
                                     </div>
-                                    @if(($this->count) > 0)
-                                          <div class="teamleave">
-                                                <p style="color: black; font-size: 0.9rem; font-weight: 500;">
-                                                    Today({{$count}}) </p>
-                                            </div>
-                                            <div class="leave-display" >
-                                                @for ($i = 0; $i < min($count, 2); $i++)
-                                                    <div class="circle-notify" style="margin-right: 5px; border-radius:50%; background:pink; padding:8px; border:2px solid #778899;">
-                                                        <span>SK</span>
-                                                    </div>        
-                                                @endfor
-                                                @if ($count > 2)
-                                                    <div class="circle-notify" style="color:blue;cursor:pointer;font-size:0.925rem;">
-                                                        +{{ $count - 2 }}
-                                                    </div>
-                                                @endif
-                                            </div>
+                                    @if(($this->teamCount) > 0)
+                                          <div class="team-Notify">
+                                                <p style="color: #778899; font-size: 0.875rem; font-weight: 500;">
+                                                    Today({{$teamCount}}) </p>
+                                                    <div class="team-leave" >
+                                                        @php
+                                                            function getRandomLightColor() {
+                                                                $colors = ['#FFD1DC', '#B0E57C', '#ADD8E6', '#E6E6FA', '#FFB6C1'];
+                                                                return $colors[array_rand($colors)];
+                                                            }
+                                                        @endphp
 
+                                                        @for ($i = 0; $i < min($teamCount, 4); $i++)
+                                                                <?php
+                                                                    $teamLeave = $this->teamOnLeave[$i] ?? null;
+                                                                    if ($teamLeave) {
+                                                                        $initials = strtoupper(substr($teamLeave->employee->first_name, 0, 1) . substr($teamLeave->employee->last_name, 0, 1));
+                                                                ?>
+                                                                    <div class="circle-notify" style="margin-right: 5px; border-radius: 50%; background: #fcfdfe; padding: 8px 8px; border: 2px solid {{ getRandomLightColor() }};">
+                                                                        <span>{{$initials}}</span>
+                                                                    </div> 
+                                                                <?php
+                                                                    }
+                                                                ?>
+                                                            @endfor
+                                                            @if ($teamCount > 4)
+                                                                <div class="circle-notify" style="color:blue;cursor:pointer; margin-top:20px;display:flex;flex-direction:column;align-items:center;">
+                                                                <a href="#" style="color:blue;font-size:0.725rem;">+{{ $teamCount - 4 }}</a>
+                                                                <p style="font-size:0.725rem;margin-top:-5px;"><span class="remaining" >More</span></p>
+                                                                </div>
+                                                            @endif
+                                                        </div>
+                                                        
+                                                    <div style="margin-top:20px;">
+                                                    <p style="color: #778899; font-size: 0.875rem; font-weight: 500;">
+                                                    This month({{$upcomingLeaveApplications}}) </p>
+                                                    <p style="color: #778899; font-size: 0.825rem; font-weight: 400;"><a href="/team-on-leave-chart">Click here</a> to see who will be on leave in the upcoming days!</p>
+                                                    </div>
+                                            </div>
                                         @else
                                            <img src="https://ftl.technology/images/theme-pics/case.png" alt="Image Description" style="height: 100px; width: 100px; margin-top: 10px; margin-left: 80px;">
                                             <p style="color: #677A8E; margin-left: 50px; font-size: 14px; ">
-                                                Hurrah! You've nothing to review.
+                                                Wow!No leaves planned today.
                                             </p>
                                         @endif
                                     </div>
@@ -396,40 +453,42 @@
                         </div>
                         <div class="home-hover">
                           @forelse($salaryRevision as $salaries)
-                             <div style="border-radius: 5px; border: 1px solid #CFCACA;background-color:white">
-                                            <div style="color: #677A8E; margin-left: 10px; font-weight:500; margin-top: 20px;">
+                             <div style="border-radius: 5px; border: 1px solid #CFCACA;background-color:white;padding:10px 20px;">
+                                            <div style="color: #677A8E;  font-weight:500; display:flex;justify-content:space-between;">
                                                 Payslip
-                                                <a href="/slip" style="font-size:16px; margin-left: 180px;">&rarr;</a>
+                                                <a href="/slip" style="font-size:16px; ">&rarr;</a>
                                             </div>
 
-                                            <div style="display:flex">
-                                                <img src="https://www.litmus.com/wp-content/uploads/2021/03/Dark-vs-Light-Mode-Poll-Results-300x300.png" alt="Image Description" style="height: 110px; width: 130px; margin-top: 20px; margin-left: 20px;">
-                                                <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 60px;margin-top: 30px; font-weight: 100; color: #9E9696">
-                                                    <br>{{ date('M Y', strtotime('-1 month')) }}</br>
-                                                    <br>{{ date('t', strtotime('-1 month')) }}</br>
-                                                    <br>Paid Days</br>
+                                            <div style="display:flex;justify-content:space-between;margin-top:20px;  ">
+                                                <img src="https://www.litmus.com/wp-content/uploads/2021/03/Dark-vs-Light-Mode-Poll-Results-300x300.png" alt="Image Description" style="height: 110px; width: 120px;  ">
+                                                <div class="c" style="font-size: 13px; font-weight: normal; font-weight: 500; color: #9E9696;display:flex; flex-direction:column;justify-content:space-between;margin-top:10px;">
+                                                    <p style="color:#333;">{{ date('M Y', strtotime('-1 month')) }}</p>
+                                                    <p style="display:flex;justify-content:end;flex-direction:column;align-items:end; color:#333;">{{ date('t', strtotime('-1 month')) }} <br>
+                                                        <span style="color:#778899;">Paid days</span>
+                                                    </p>
+                                                   
                                                 </div>
-
                                             </div>
 
-                                            <div style="display:flex ;color: #677A8E; margin-left: 20px; font-size: 14px;  font-weight:100px;margin-top:-2px">
-                                                <br style="margin-top:-10px">Gross Pay</br>
-                                                <br>Deduction</br>
-                                                <br>Net Pay</br>
-
-                                                <div style="margin-left:120px;margin-top:22px">
+                                            <div style="display:flex ;color: #677A8E;  font-size: 14px;  font-weight:100px;flex-direction:column; margin-top:20px;  ">
+                                                <div class="net-salary">
+                                                    <p>Gross Pay</p>
                                                     <p>₹{{$salaries->calculateTotalAllowance(), 2}}</p>
+                                                </div>
+                                                <div class="net-salary">
+                                                    <p>Deduction</p>
                                                     <p>₹{{$salaries->calculateTotalDeductions(), 2}}</p>
+                                                </div>
+                                                <div class="net-salary">
+                                                    <p>Net Pay</p>
                                                     @if ($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions() > 0)
-                                                    <p style="margin-top:5px"> ₹{{ number_format($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions(), 2) }}</p>
+                                                    <p> ₹{{ number_format($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions(), 2) }}</p>
                                                     @endif
-
                                                 </div>
                                             </div>
-                                            <div class="column" style="display: flex; color: #1090D8; margin-left: 20px; font-size: 14px;  margin-top: 20px; font-weight: 100;">
-
-                                                <a href="/your-download-route" id="pdfLink2023_4" class="pdf-download" download style="margin-left: 10px; display: inline-block;">Download PDF</a>
-                                                <p style="margin-left: 80px;">Show Salary</p>
+                                            <div class="show-salary" style="display: flex; color: #1090D8; justify-content:space-between;font-size: 14px;  margin-top: 20px; font-weight: 100;">
+                                                <a href="/your-download-route" id="pdfLink2023_4" class="pdf-download" download >Download PDF</a>
+                                                <p >Show Salary</p>
                                             </div>
 
                                         </div>
@@ -506,10 +565,10 @@
 <script>
     // Get the current hour of the day (0-23)
     const currentHour = new Date().getHours();
- 
+
     // Get the greeting element by its ID
     const greetingElement = document.getElementById('greetingText');
- 
+
     // Define an array of greetings based on the time of day
     const greetings = [
         'Good Morning',
@@ -517,7 +576,7 @@
         'Good Evening',
         'Good Night'
     ];
- 
+
     // Determine the appropriate greeting based on the time of day
     let greeting;
     if (currentHour >= 5 && currentHour < 12) {

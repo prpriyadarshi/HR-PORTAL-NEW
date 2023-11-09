@@ -110,6 +110,10 @@
         .download-button:hover {
             background-color: #027D02;
         }
+        .status{
+            border: none;
+            border-radius: 5px;
+        }
     </style>
 
     <div class="container" style="background-color: #02134F; color: white;margin:0%;max-width:100%;padding:2px">
@@ -138,6 +142,7 @@
                     <th>CV</th>
                     <th>Applied Date</th>
                     <th>Expiry Date</th>
+                    <th>Application Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -148,8 +153,8 @@
                     <td>{{ $appliedJob->job_id }}</td>
                     <td>{{ $appliedJob->job_title }}</td>
                     <td>{{ $appliedJob->company_name }}</td>
-                    <td>
-                        <div class="card">
+                    <td style="max-width: 150px;">
+                        <div class="container">
                             <div class="row">
                                 <div class="col">
                                     <a href="{{ asset('storage/' . $appliedJob->user->resume) }}" target="_blank">
@@ -162,8 +167,10 @@
                             </div>
                         </div>
                     </td>
-                    <td> {{ date('d-M-Y H\h i\m s\s', strtotime($appliedJob->created_at)) }}</td>
-                    <td> {{ date('d-M-Y H\h i\m s\s', strtotime($appliedJob->expire_date)) }}</td>
+                    <td> {{ date('d-M-Y', strtotime($appliedJob->created_at)) }}</td>
+                    <td> {{ date('d-M-Y', strtotime($appliedJob->job->expire_date)) }}</td>
+                    <td><button class="status" style="background-color: green;color:white">Select</button>
+                <button class="status" style="background-color: red;color:white ">Reject</button></td>
                 </tr>
                 @endforeach
             </tbody>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -208,9 +207,9 @@
 
 
 
-        <div class="row" style="height: auto;width:auto;background-color: #f0f0f0;">
+        <div class="row" style="height: auto;width:auto; background-color: #f0f0f0;">
 
-            <div class="card" style="border-radius:0px;height: auto; width: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            <div class="card" style="border-radius:0px;height: auto; width: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); ">
 
                 <div class="card-body" style="height: auto;width:auto;margin-top:0px">
 
@@ -221,7 +220,7 @@
                             @livewire('company-logo')
                         </div>
 
-                        @livewire('profile-card')
+                           @livewire('profile-card')
 
 
 
@@ -279,29 +278,29 @@
                             </a>
                             <div id="leave-options" style="display: none;">
                                 <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
-                                <li class="nav-item" style="text-decoration: none;">
-                                    <a class="nav-link" href="/leave-page" onclick="return changePageTitle5('apply');">
-                                        Leave Apply
-                                    </a>
-                                </li>
-                                <li class="nav-item" style="text-decoration: none;">
-                                    <a class="nav-link" href="/leave-balances" onclick="changePageTitle5('balances'); return false;">
-                                      Leave Balances
-                                    </a>
-                                </li>
-                                <li class="nav-item" style="text-decoration: none;">
-                                    <a class="nav-link" href="/leave-calender" onclick="changePageTitle5('calendar'); return false;">
-                                        Leave Calendar
-                                    </a>
-                                </li>
-                                <li class="nav-item" style="text-decoration: none;">
-                                    <a class="nav-link" href="/holiday-calender" onclick="changePageTitle5('holiday'); return false;">
-                                         Holiday Calendar
-                                    </a>
-                                </li>
                                     <li class="nav-item" style="text-decoration: none;">
-                                        <a class="nav-link" href="/leave-calender" onclick="changePageTitle5('team'); return false;">
-                                          @livewire('team-on-leave')
+                                        <a class="nav-link" href="/leave-page" onclick="return changePageTitle5('apply');">
+                                            Leave Apply
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/leave-balances" onclick="changePageTitle5('balances'); return false;">
+                                            Leave Balances
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/leave-calender" onclick="changePageTitle5('calendar'); return false;">
+                                            Leave Calendar
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/holiday-calender" onclick="changePageTitle5('holiday'); return false;">
+                                            Holiday Calendar
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/team-on-leave-chart" onclick="changePageTitle5('team'); return false;">
+                                            @livewire('team-on-leave')
                                         </a>
                                     </li>
                                 </ul>
@@ -337,24 +336,18 @@
                                         <a class="nav-link" href="/slip" id="slip" onclick="selectOption(this, 'Pay Slip')">
                                             Payslips
                                         </a>
-                                    </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('proofofinvestment')">
-                                        <a class="nav-link" href="/proofofinvestment" id="proofofinvestment" onclick="selectOption(this,   'Proof Of Investment')">
-                                            Proof Of Investment
 
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('reimbursement')">
-                                        <a class="nav-link" href="/reimbursement" id="reimbursement" onclick="selectOption(this, 'Reimbursement')">
-                                            Reimbursement
+
+                                    </li>
+
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle16('proofofinvestment')">
+                                        <a class="nav-link" href="/investment" id="proofofinvestment" onclick="selectOption(this, 'Proof Of Investment')">
+                                            Proof Of Investment
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('investment')">
-                                        <a class="nav-link" href="/investment" id="investment" onclick="selectOption(this, 'Proof of Investment')">
-                                            Proof of Investment
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('loan')">
-                                        <a class="nav-link" href="/loan" id="slip" onclick="selectOption(this, 'Loan and Advances')">
-                                            Loan and Advances
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle17('loan')">
+                                        <a class="nav-link" href="/loan" id="loan" onclick="selectOption(this, 'Loan')">
+                                            Loan
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle15('salary-revision')">
@@ -387,7 +380,7 @@
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle10()">
 
-                            <a class="nav-link" href="/delegatesddb">
+                            <a class="nav-link" href="/delegates">
 
                                 <i class="fas fa-user-friends"></i> Workflow Delegates
 
@@ -424,7 +417,7 @@
 
                 </div>
 
-                <div style="margin-top: 3%; margin-left: 1%; height: 490px; overflow-y: auto;overflow-x:auto">
+                <div style="margin-top: 3%;  height: 490px; overflow-y: auto;overflow-x:auto">
 
                     {{ $slot }}
 
@@ -695,39 +688,38 @@
                 } else if (item === 'holiday') {
                     newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
                     newTitle = "Holiday Calendar";
-                }      
-                else if (item === 'team') {
+                } else if (item === 'team') {
                     newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
                     newTitle = "Team on Leave";
-                }           
-               
+                }
+
                 switch (item) {
-            case 'apply':
-                window.location.href = '/leave-page';
-                break;
-            case 'balances':
-                window.location.href = '/leave-balances';
-                break;
-            case 'calendar':
-                window.location.href = '/leave-calender';
-                break;
-            case 'holiday':
-                window.location.href = '/holiday-calender';
-                break;
-                case 'team':
-                window.location.href = '/leave-calender';
-                break;
-            // Add cases for other options if needed
-            default:
-                break;
-        }
-        document.getElementById("pageIcon").innerHTML = newIcon;
+                    case 'apply':
+                        window.location.href = '/leave-page';
+                        break;
+                    case 'balances':
+                        window.location.href = '/leave-balances';
+                        break;
+                    case 'calendar':
+                        window.location.href = '/leave-calender';
+                        break;
+                    case 'holiday':
+                        window.location.href = '/holiday-calender';
+                        break;
+                    case 'team':
+                        window.location.href = '/team-on-leave-chart';
+                        break;
+                        // Add cases for other options if needed
+                    default:
+                        break;
+                }
+                document.getElementById("pageIcon").innerHTML = newIcon;
                 document.getElementById("pageTitle").textContent = newTitle;
                 localStorage.setItem("pageIcon", newIcon);
                 localStorage.setItem("pageTitle", newTitle);
-        // Return false to prevent the default link behavior
-        return false;
-    }
+                // Return false to prevent the default link behavior
+                return false;
+            }
 
 
             function toggleLeaveDropdown() {
@@ -753,7 +745,7 @@
 
                 if (salaryOptions.style.display === "block") {
                     salaryOptions.style.display = "none";
-                    leaveOptions.style.display="none";
+                    leaveOptions.style.display = "none";
                     salaryCaret.classList.remove("fa-caret-up");
                     salaryCaret.classList.add("fa-caret-down");
                 } else {

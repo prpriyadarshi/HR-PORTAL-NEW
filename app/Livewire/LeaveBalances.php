@@ -161,27 +161,7 @@ class LeaveBalances extends Component
             'lossOfPayBalance' => $lossOfPayBalance,
         ];
     }
-    public function generatePdf()
-    {
-        
-    // Fetch employee details (you might need to adjust this based on your actual database structure)
-    $employeeId = auth()->guard('emp')->user()->emp_id;
-
-    $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
-    
-    $this->leaveTransactions = LeaveRequest::join('employee_details', 'employee_details.emp_id', '=', 'leave_applies.emp_id')
-        ->where('employee_details.emp_id', $employeeId)
-        ->where('employee_details.company_id', auth()->guard('emp')->user()->company_id)
-        // Add more conditions as needed
-        ->get();
-        dd($this->leaveTransactions);
-    // Load the view with the fetched data
-    $pdf = PDF::loadView('livewire.leave-balances', [
-        'leaveTransactions' => $leaveTransactions,
-        'employeeDetails' => $employeeDetails,
-    ]);
-    return $pdf->download('generated-pdf.pdf');
-    }
+  
     }
 
 
