@@ -13,7 +13,7 @@ class SalarySlips extends Component
     public $employeeDetails;
     public $salaryRevision;
     public $empBankDetails;
-    
+
 public function render()
 {
     $employeeId = auth()->guard('emp')->user()->emp_id;

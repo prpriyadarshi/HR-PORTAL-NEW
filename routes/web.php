@@ -198,7 +198,6 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/review-leave', ReviewLeave::class)->name('ReviewLeave');
     Route::get('/view-details1', ViewDetails1::class)->name('view-details1');
     Route::get('/review-regularizations', ReviewRegularizations::class)->name('review-regularizations');
-    // Route::get('/salary-revision', SalaryRevision::class)->name('salary-revision');
 });
 
 
