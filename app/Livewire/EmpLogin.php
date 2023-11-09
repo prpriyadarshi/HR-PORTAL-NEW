@@ -42,8 +42,12 @@ class EmpLogin extends Component
             $emp_id = Auth::guard('emp')->user()->emp_id;
 
             // Store emp_id in the session
+            //Session::put('emp.emp_id', $emp_id);
+            //session(['emp.emp_id' => $emp_id]);
             Session::put('emp_id', $emp_id);
-            //dd($emp_id);
+            //dd(Session::get('emp_id'));
+            Session::put('lastActivityTime', now());
+           // dd(Session::get('lastActivityTime'));
             session()->flash('Success', 'You are logged in successfully!');
             return redirect()->route('home');
         } else {
