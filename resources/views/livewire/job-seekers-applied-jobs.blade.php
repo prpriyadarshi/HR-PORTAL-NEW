@@ -252,7 +252,7 @@
 
     @if($showSuccessMessage)
     <div class="alert alert-success" id="success-message">
-    Job application has been successfully shortlisted!
+        Job application has been successfully shortlisted!
         <button class="close-message" wire:click="dismissMessage">×</button>
     </div>
     @elseif ($errors->has('duplicate'))

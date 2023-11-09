@@ -59,7 +59,7 @@
         <div class="modal-backdrop fade show blurred-backdrop"></div>
         @endif
         <div class="col" style="margin: 0px;">
-            <button wire:click="show" style="background-color:rgb(2, 17, 79);color:white;border-radius:5px;"><i style="color: white;" class="fas fa-cog"></i>Change Password</button>
+            <button wire:click="show" style="background-color:rgb(2, 17, 79);color:white;border-radius:5px;width:200px"><i style="color: white;" class="fas fa-cog"></i>Change Password</button>
         </div>
         @if ($showDialog)
         <div class="modal" tabindex="-1" role="dialog" style="display: block;">
@@ -112,7 +112,7 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="card" style="height: 60px; width:230px; margin-left: 0;background-color:#f8f68879">
+                                <div class="card" style="height: 90px; width:230px; margin-left: 0;background-color:#f8f68879">
                                     <div class="row" style="margin-left:1px">
                                         <div style="font-size: 8px;margin-top:5px">
                                             <i style="width: 7px;" class="fas fa-check-circle"></i>
@@ -159,7 +159,7 @@
                     <div style="display: inline-block;width:65px">Location</div> <strong>: {{$employee->job_location}}</strong>
                 </div>
                 <div style="font-size:12px;color: grey;">
-                    <div style="display: inline-block;width:65px">Designation</div><strong> : {{$employee->job_title}}</strong>
+                    <div style="display: inline-block;width:65px">Role</div><strong> : {{$employee->job_title}}</strong>
                 </div>
             </div>
             <div class="col-md-5" style="margin-top: 15px;">

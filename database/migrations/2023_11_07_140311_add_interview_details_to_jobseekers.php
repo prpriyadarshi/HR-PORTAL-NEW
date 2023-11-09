@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('location_link')->nullable();
             $table->foreign('user_id')->references('user_id')->on('users');
             $table->foreign('job_id')->references('job_id')->on('jobs');
+            $table->unique(['user_id', 'job_id']);
         });
     }
 

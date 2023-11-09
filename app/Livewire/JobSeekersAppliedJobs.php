@@ -42,24 +42,30 @@ class JobSeekersAppliedJobs extends Component
             'company_website' => 'required',
         ]);
 
-        JobseekersInterviewDetail::create([
-            'user_id' => $this->selectedJobApplicationId->user->user_id,
-            'job_id' => $this->selectedJobApplicationId->job->job_id,
-            'interview_date' => $this->date,
-            'interview_time' => $this->time,
-            'instructions' => $this->instructions,
-            'company_website' => $this->company_website,
-            'location_link' => $this->location_link,
-        ]);
-        $this->jobApplication = AppliedJob::find($this->selectedJobApplicationId->id);
-
-        if ($this->jobApplication) {
-            $this->jobApplication->update([
-                'application_status' => 'Shortlisted',
+        try {
+            JobseekersInterviewDetail::create([
+                'user_id' => $this->selectedJobApplicationId->user->user_id,
+                'job_id' => $this->selectedJobApplicationId->job->job_id,
+                'interview_date' => $this->date,
+                'interview_time' => $this->time,
+                'instructions' => $this->instructions,
+                'company_website' => $this->company_website,
+                'location_link' => $this->location_link,
             ]);
+            $this->jobApplication = AppliedJob::find($this->selectedJobApplicationId->id);
+
+            if ($this->jobApplication) {
+                $this->jobApplication->update([
+                    'application_status' => 'Shortlisted',
+                ]);
+            }
+            $this->isOpen = false;
+            $this->showSuccessMessage = true;
+        } catch (QueryException $e) {
+            $this->isOpen=false;
+            $this->addError('duplicate', 'You have already shortlisted to this CV.');
+            $this->showError = true; // Show the error message
         }
-        $this->isOpen = false;
-        $this->showSuccessMessage = true;
     }
     public function logout()
     {

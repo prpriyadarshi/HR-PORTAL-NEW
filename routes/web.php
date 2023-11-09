@@ -80,6 +80,9 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/Jobs', function () {
         return view('jobs_view');
     });
+    Route::get('/NotificationList{jobId}', function ($jobId) {
+        return view('notification_list_view',compact('jobId'));
+    })->name('job-interview-details');
     Route::get('/UserProfile', function () {
         return view('user_profile_view');
     });
@@ -162,7 +165,7 @@ Route::middleware(['auth:emp'])->group(function () {
 
 
     Route::get('/view-pending-details', ViewPendingDetails::class)->name('view-pending-details');
-    Route::get('/delegatesddb', Delegates::class);
+    Route::get('/delegates', Delegates::class);
 
     Route::get('/view-details', ViewDetails::class)->name('view-details');
 
@@ -182,6 +185,7 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/reimbursement', Reimbursement::class);
     Route::get('/investment', Investment::class);
     Route::get('/documents', Documents::class);
+    Route::get('/tasks', Tasks::class);
 
 
 

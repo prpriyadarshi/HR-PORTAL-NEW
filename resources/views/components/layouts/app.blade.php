@@ -386,7 +386,7 @@
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle10()">
 
-                            <a class="nav-link" href="/delegatesddb">
+                            <a class="nav-link" href="/delegates">
 
                                 <i class="fas fa-user-friends"></i> Workflow Delegates
 
@@ -423,7 +423,7 @@
 
                 </div>
 
-                <div style="margin-top: 3%; margin-left: 1%; height: 490px; overflow-y: auto;overflow-x:auto">
+                <div style="margin-top: 3%; margin-left: 1%; height:    ; overflow-y: auto;overflow-x:auto">
 
                     {{ $slot }}
 

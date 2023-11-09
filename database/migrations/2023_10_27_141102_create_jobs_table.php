@@ -21,6 +21,7 @@ return new class extends Migration
             $table->decimal('salary', 10, 2);
             $table->string('company_id');
             $table->string('company_name');
+            $table->string('hr_name');
             $table->date('expire_date');
             $table->string('contact_phone');
             $table->integer('vacancies');

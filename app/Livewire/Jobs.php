@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\AppliedJob;
 use App\Models\Company;
 use App\Models\Job;
+use App\Models\JobseekersInterviewDetail;
 use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +27,7 @@ class Jobs extends Component
     public $appliedJobs;
     public $showError = true;
     public $showSuccessMessage = false;
+    public $activeTab = "Shorlisted";
 
     public function open()
     {
@@ -83,10 +85,16 @@ class Jobs extends Component
     {
         return redirect()->route('full-job-view', ['jobId' => $jobId]);
     }
+
+    public function showShortlisetdJobInterviewDetails($jobId)
+    {
+        return redirect()->route('job-interview-details', ['jobId' => $jobId]);
+    }
     public $selectOrNot;
     public $user;
 
-    public $list;
+    public $notificationList;
+    public $rejectedJobs;
     public function render()
     {
         $this->jobs = Job::where('created_at', '<=', now())
@@ -97,14 +105,17 @@ class Jobs extends Component
             ->orderBy('created_at', 'desc')
             ->get();
         $this->user = auth()->user();
-
+        $this->notificationList = JobseekersInterviewDetail::with('user', 'job', 'company')
+            ->where('user_id', $this->user->user_id)
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         $this->appliedJobs = AppliedJob::where('user_id', $this->user->user_id)->get();
         $this->selectOrNot = AppliedJob::where('user_id', $this->user->user_id)
             ->whereIn('application_status', ['Shortlisted', 'Rejected'])
             ->count();
-        $this->list = AppliedJob::where('user_id', $this->user->user_id)
-            ->whereIn('application_status', ['Shortlisted', 'Rejected'])
+        $this->rejectedJobs = AppliedJob::where('user_id', $this->user->user_id)
+            ->whereIn('application_status', ['Rejected'])
             ->get();
 
         return view('livewire.jobs');
