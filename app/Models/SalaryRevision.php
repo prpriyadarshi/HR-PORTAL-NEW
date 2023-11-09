@@ -58,6 +58,7 @@ class SalaryRevision extends Model
 
     public function calculateHRA()
     {
+
         return ($this->basic * 0.4); // 40% of basic as HRA
     }
 
@@ -68,7 +69,7 @@ class SalaryRevision extends Model
 
     public function calculateSpecial()
     {
-        $remainingSalary = $this->salary - ($this->basic + $this->hra + $this->conveyance + $this->medical+$this->calculatePf()); 
+        $remainingSalary = $this->salary - ($this->basic + $this->hra + $this->conveyance + $this->medical+$this->calculatePf());
         return max($remainingSalary, 0);// Fixed amount for Special Allowance
     }
 
@@ -108,9 +109,9 @@ public function calculateTotalDeductions()
     {
         return $this->where('emp_id', $emp_id)->first();
     }
-    
 
-  
+
+
 
     public function calculateTotalAllowance()
     {

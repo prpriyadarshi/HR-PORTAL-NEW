@@ -348,7 +348,13 @@
                                             </div>
 
                                             <div style="display:flex">
-                                                <canvas id="pieChart" width="130" height="110"></canvas>
+                                                <div style="position: relative;">
+                                                    <canvas id="outerPieChart" width="200" height="250"></canvas>
+                                                    <canvas id="innerPieChart"  style="position: absolute; top: -10px; left: 0px;"></canvas>
+                                                </div>
+
+
+
                                                 <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 60px;margin-top: 30px; font-weight: 100; color: #9E9696">
                                                     <br>{{ date('M Y', strtotime('-1 month')) }}</br>
                                                     <br>{{ date('t', strtotime('-1 month')) }}</br>
@@ -555,23 +561,85 @@
     window.addEventListener('load', startAnimation);
 </script>
 
-
 <script>
     // Get a reference to the canvas element
-    var ctx = document.getElementById('pieChart').getContext('2d');
+    //var ctx = document.getElementById('pieChart').getContext('2d');
+    // var data = {
+    //     datasets: [
+    //         {
+    //             data: [ {{$salaries->calculateTotalAllowance(), 2}}],
+    //             backgroundColor: ['#FF5733'],
+    //         },
+    //         {
+    //             data: [{{$salaries->calculateTotalDeductions(), 2}},   {{$salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions(), 2 }}],
+    //             backgroundColor: ['#33FF33', '#3399FF'],
+    //         },
+    //     ],
+    // };
 
-    // Data for the pie chart (replace with your own data)
+
+//     var data = {
+//         labels: ['Gross Pay','Deduction','Net Pay'],
+//     datasets: [
+//         {
+//             data: [{{$salaries->calculateTotalAllowance(), 2}}, 0, 0], // Gross Pay value
+//             backgroundColor: ['#FF5733'],
+//         },
+//         {
+//             data: [0, 0, {{$salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions(), 2 }}], // Net Pay value
+//             backgroundColor: ['#33FF33'],
+//         },
+//         {
+//             data: [0,{{$salaries->calculateTotalDeductions(), 2}}, 0], // Deductions value
+//             backgroundColor: ['#3399FF'],
+//         },
+
+//     ],
+// };
+
+    // // Create the pie chart
+    // var myPieChart = new Chart(ctx, {
+    //     type: 'pie',
+    //     data: data,
+    // });
+
+
+
     var data = {
-        labels: ['Label 1', 'Label 2', 'Label 3'],
-        datasets: [{
-            data: [30, 40, 30], // Replace with your data values
-            backgroundColor: ['#FF5733', '#3399FF', '#33FF33'], // Replace with your desired colors
-        }]
-    };
+    labels: ['Gross Pay'],
+    datasets: [{
+        data: [{{$salaries->calculateTotalAllowance(), 2}}],
+        backgroundColor: ['#FF5733'], // Color for Gross Pay
+    }],
+};
 
-    // Create the pie chart
-    var myPieChart = new Chart(ctx, {
-        type: 'pie',
-        data: data,
-    });
+var innerData = {
+   labels: ['Deductions', 'Net Pay'],
+    datasets: [{
+        data: [{{$salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions(), 2 }}, {{$salaries->calculateTotalDeductions(), 2}}],
+        backgroundColor: ['#3399FF', '#33FF33'], // Colors for Deductions and Net Pay
+    }],
+};
+
+var ctx = document.getElementById('outerPieChart').getContext('2d');
+var outerPieChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: data,
+    options: {
+        cutout: '70%', // Adjust the cutout to control the size of the inner circle
+    },
+});
+
+var innerCtx = document.getElementById('innerPieChart').getContext('2d');
+var innerPieChart = new Chart(innerCtx, {
+    type: 'doughnut',
+    data: innerData,
+    options: {
+        cutout: '60%', // Adjust the cutout to control the size of the inner circle
+    },
+});
+
+
 </script>
+
+
