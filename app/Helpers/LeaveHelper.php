@@ -109,6 +109,7 @@ class LeaveHelper
             'totalSickDays' => $totalSickDays,
             'totalLossOfPayDays' => $totalLossOfPayDays,
         ];
+
     }
     
 }

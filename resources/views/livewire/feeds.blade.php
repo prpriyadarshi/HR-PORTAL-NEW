@@ -129,33 +129,33 @@
       .comments {
         margin-top: 10px;
       }
+
       .horizontal-menu {
-  display: flex;
-  margin-top: 20px;
-  background: white;
-  padding: 10px;
-}
+        display: flex;
+        margin-top: 20px;
+        background: white;
+        padding: 10px;
+      }
 
-.menu-item {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  text-align: center;
-  font-size: 14px;
-  border-radius:5px;
-  font-family: 'Open Sans', sans-serif;
-  background: #f7f7f7;
-  margin-right: 10px;
-  text-decoration: none;
-  color: #333;
-  transition: background 0.3s, color 0.3s;
-}
+      .menu-item {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: center;
+        font-size: 14px;
+        border-radius: 5px;
+        font-family: 'Open Sans', sans-serif;
+        background: #f7f7f7;
+        margin-right: 10px;
+        text-decoration: none;
+        color: #333;
+        transition: background 0.3s, color 0.3s;
+      }
 
-.menu-item:hover {
-  background: blue;
-  color: white;
-}
-
+      .menu-item:hover {
+        background: blue;
+        color: white;
+      }
     </style>
   </head>
 
@@ -169,40 +169,40 @@
 
       <!-- Content Area -->
       <div class="content" style="margin-top: -20px">
-  <div class="horizontal-menu" style="display: flex; margin-top: 30px; background: white; padding: 10px;height:60px">
+        <div class="horizontal-menu" style="display: flex; margin-top: 30px; background: white; padding: 10px;height:60px">
 
-    <div class="menu-item">
-      <b class="links" style="font-size: 14px; font-family: 'Open Sans', sans-serif;">
-        Groups
-      </b>
-    </div>
+          <div class="menu-item">
+            <b class="links" style="font-size: 14px; font-family: 'Open Sans', sans-serif;">
+              Groups
+            </b>
+          </div>
 
-    <a class="menu-item" href="/Feeds">
-      All Feeds
-    </a>
+          <a class="menu-item" href="/Feeds">
+            All Feeds
+          </a>
 
-    <a class="menu-item" href="/everyone">
-      Every One
-    </a>
+          <a class="menu-item" href="/everyone">
+            Every One
+          </a>
 
-    <a class="menu-item" href="/events">
-      Events
-    </a>
+          <a class="menu-item" href="/events">
+            Events
+          </a>
 
-    <a class="menu-item" href="/company" style="font-size:12px">
-      Company News
-    </a>
+          <a class="menu-item" href="/company" style="font-size:12px">
+            Company News
+          </a>
 
-    <a class="menu-item" href="/appreciation">
-      Appreciation
-    </a>
+          <a class="menu-item" href="/appreciation">
+            Appreciation
+          </a>
 
-    <a class="menu-item" href="/buy-sell-rent">
-      Buy/Sell/Rent
-    </a>
+          <a class="menu-item" href="/buy-sell-rent">
+            Buy/Sell/Rent
+          </a>
 
-  </div>
-</div>
+        </div>
+      </div>
 
      
           <div class="top-menu" style="background-color: #f0f0f0;">
@@ -238,7 +238,7 @@
                 <confirmation-modal class="confirmation-modal">
                   <gt-popup-modal label="modal" size="sm" class="hydrated">
                     <div class="body-content">
-                      <div slot="modal-body"><!-- Content for modal body --></div>
+                        <div slot="modal-body"><!-- Content for modal body --></div>
                     </div>
                     <div slot="modal-footer">
                       <div class="flex justify-end">
@@ -246,19 +246,19 @@
                         <gt-button shade="primary" name="Confirm" class="hydrated"></gt-button>
                       </div>
                     </div>
-                  </gt-popup-modal>
-                </confirmation-modal>
-                <!-- Like Button -->
-                <div style="display: flex;">
-                  <div class="like-button">
+                </gt-popup-modal>
+            </confirmation-modal>
+            <!-- Like Button -->
+            <div style="display: flex;">
+                <div class="like-button">
                     <i class="thumb-icon" style="margin-left: 20px;">👍</i>
                     <span class="like-count">0 Likes</span>
-                  </div>
-                  <div class="comment-icon">
+                </div>
+                <div class ="comment-icon">
                     <i class="comment-icon" style="margin-left: 40px; margin-top: 20px;">💬</i>
                     <span class="comment-count">0 Comments</span>
-                  </div>
-                  <div class="comment-box">
+                </div>
+                <div class="comment-box">
                     <textarea id="comment-input" placeholder="Add your comment"></textarea>
                   </div>
                 </div>
@@ -383,70 +383,70 @@
               </div>
 
 
-              <script>
-                // JavaScript to toggle like/dislike and update the count
-                const likeButton = document.querySelector('.like-button');
-                const likeCount = likeButton.querySelector('.like-count');
+            <script>
+              // JavaScript to toggle like/dislike and update the count
+              const likeButton = document.querySelector('.like-button');
+              const likeCount = likeButton.querySelector('.like-count');
 
-                let likes = 0;
-                let isLiked = false;
+              let likes = 0;
+              let isLiked = false;
 
-                likeButton.addEventListener('click', () => {
-                  if (isLiked) {
-                    likes--;
-                    likeCount.textContent = `${likes} Likes`;
-                  } else {
-                    likes++;
-                    likeCount.textContent = `${likes} Likes`;
-                  }
-                  isLiked = !isLiked;
-                });
-              </script>
-
-              <script>
-                // JavaScript to toggle comment box and increment comment count
-                const commentIcon = document.querySelector('.comment-icon');
-                const commentBox = document.querySelector('.comment-box');
-                const commentCount = commentIcon.querySelector('.comment-count');
-                const commentInput = document.getElementById('comment-input');
-                const commentsContainer = document.querySelector('.comments');
-
-                let comments = 0;
-
-                commentIcon.addEventListener('click', () => {
-                  commentBox.style.display = 'block';
-                });
-
-                commentInput.addEventListener('input', () => {
-                  // Count lines in the textarea as comments
-                  const lines = commentInput.value.split('\n').length;
-                  comments = lines;
-                  updateCommentCount();
-                });
-
-                commentInput.addEventListener('blur', () => {
-                  // Clear and hide the comment box when it loses focus
-                  commentInput.value = '';
-                  commentBox.style.display = 'none';
-                  // Display the comments
-                  displayComments();
-                });
-
-                function updateCommentCount() {
-                  commentCount.textContent = `${comments} Comment${comments !== 1 ? 's' : ''}`;
+              likeButton.addEventListener('click', () => {
+                if (isLiked) {
+                  likes--;
+                  likeCount.textContent = `${likes} Likes`;
+                } else {
+                  likes++;
+                  likeCount.textContent = `${likes} Likes`;
                 }
+                isLiked = !isLiked;
+              });
+            </script>
 
-                function displayComments() {
-                  commentsContainer.innerHTML = '';
-                  for (let i = 0; i < comments; i++) {
-                    const commentElement = document.createElement('div');
-                    commentElement.classList.add('comment');
-                    commentElement.textContent = `Comment ${i + 1}`;
-                    commentsContainer.appendChild(commentElement);
-                  }
+            <script>
+              // JavaScript to toggle comment box and increment comment count
+              const commentIcon = document.querySelector('.comment-icon');
+              const commentBox = document.querySelector('.comment-box');
+              const commentCount = commentIcon.querySelector('.comment-count');
+              const commentInput = document.getElementById('comment-input');
+              const commentsContainer = document.querySelector('.comments');
+
+              let comments = 0;
+
+              commentIcon.addEventListener('click', () => {
+                commentBox.style.display = 'block';
+              });
+
+              commentInput.addEventListener('input', () => {
+                // Count lines in the textarea as comments
+                const lines = commentInput.value.split('\n').length;
+                comments = lines;
+                updateCommentCount();
+              });
+
+              commentInput.addEventListener('blur', () => {
+                // Clear and hide the comment box when it loses focus
+                commentInput.value = '';
+                commentBox.style.display = 'none';
+                // Display the comments
+                displayComments();
+              });
+
+              function updateCommentCount() {
+                commentCount.textContent = `${comments} Comment${comments !== 1 ? 's' : ''}`;
+              }
+
+              function displayComments() {
+                commentsContainer.innerHTML = '';
+                for (let i = 0; i < comments; i++) {
+                  const commentElement = document.createElement('div');
+                  commentElement.classList.add('comment');
+                  commentElement.textContent = `Comment ${i + 1}`;
+                  commentsContainer.appendChild(commentElement);
                 }
-              </script>
-            </div>
+              }
+            </script>
+          </div>
   </body>
 
   </html>

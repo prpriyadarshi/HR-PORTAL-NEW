@@ -5,12 +5,14 @@ use App\Livewire\EmpLogin;
 use App\Livewire\EmployeesReview;
 use App\Livewire\Feeds;
 
+
 use App\Livewire\Attendance;
 use App\Livewire\LeaveCalender;
 use App\Livewire\LeaveHistory;
 use App\Livewire\LeavePending;
 use App\Livewire\Payslip;
 use App\Livewire\Regularisation;
+
 
 use App\Livewire\HelpDesk;
 use App\Livewire\Home;
@@ -22,7 +24,7 @@ use App\Livewire\SalaryRevisions;
 use App\Livewire\Settings;
 use App\Livewire\Review;
 use App\Livewire\Tasks;
-
+// use App\Livewire\Loan;
 use App\Livewire\Itdeclaration;
 use App\Livewire\Itstatement1;
 use App\Livewire\Payroll;
@@ -35,7 +37,7 @@ use App\Livewire\Documentcenter;
 use App\Livewire\Investment;
 use App\Livewire\LeaveApply;
 use App\Livewire\LeavePage;
-use App\Livewire\delegate;
+// use App\Livewire\SalaryRevisions;
 use App\Livewire\Reimbursement;
 use App\Livewire\LeaveBalances;
 
@@ -104,86 +106,48 @@ Route::middleware(['auth:com'])->group(function () {
     Route::get('/PostJobs', function () {
         return view('post_jobs_view');
     });
+
+    Route::get('/VendorsSubmittedCVs', function () {
+        return view('vendors-submitted-cvs');
+    });
+    Route::get('/JobSeekersAppliedJobs', function () {
+        return view('job-seekers-applied-jobs');
+    });
 });
 
 Route::middleware(['auth:emp'])->group(function () {
     Route::get('/', Home::class)->name('home');
 
 
-
+    // Attendance Routes
     Route::get('/Attendance', Attendance::class)->name('Attendance');
     Route::get('/regularisation', Regularisation::class)->name('regularisation');
 
+    //Profile info routes
     Route::get('/ProfileInfo', ProfileInfo::class)->name('profile.info');
-    Route::get('/Feeds', Feeds::class);
-    Route::get('/PeoplesList', Peoples::class);
-    Route::get('/HelpDesk', HelpDesk::class);
     Route::get('/Settings', Settings::class);
-    Route::get('/review', Review::class)->name('review');
-    Route::get('/tasks', Tasks::class)->name('task');
 
 
+    //Feeds Module
+    Route::get('/Feeds', Feeds::class);
 
 
+    //People module
+    Route::get('/PeoplesList', Peoples::class);
 
 
+    //Helpdesk module
+    Route::get('/HelpDesk', HelpDesk::class);
 
-
-
-
-
+   
+    // Related salary module and ITdeclaration Document center
     Route::get('/payslip', Payroll::class);
-
-
-
     Route::get('/slip', Payslip::class);
-
-
-
     Route::get('/itdeclaration', Itdeclaration::class);
-
-
-
     Route::get('/itstatement', Itstatement1::class);
-
-
-
     Route::get('/document', Documentcenter::class);
-
-
-
     Route::get('/documents', Documents::class);
-
-
-
-
-
-
-
     Route::get('/plan-A', PlanA::class)->name('plan-a');
-
-
-
-
-
-
-
-    Route::get('/leave-page', LeavePage::class)->name('leave-page');
-
-
-
-    Route::get('/leave-apply', LeaveApply::class)->name('leave-apply');
-
-
-
-    Route::get('/holiday-calender', HolidayCalender::class)->name('holiday-calender');
-
-
-
-    Route::get('/leave-balances', LeaveBalances::class)->name('leave-balances');
-
-
-
     Route::get('/salary-revisions', SalaryRevisions::class)->name('salary-revisions');
 
 
@@ -211,10 +175,6 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/team-on-leave', TeamOnLeave::class)->name('team-on-leave');
     Route::get('/salary-revision', SalaryRevisions::class)->name('salary-revision');
     Route::get('/plan-C', PlanA::class)->name('plan-a');
-
-    Route::get('/payslip', Payroll::class);
-    Route::get('/slip', SalarySlips::class);
-    Route::get('/itdeclaration', Itdeclaration::class);
     Route::get('/formdeclaration', Declaration::class);
 
     Route::get('/itstatement', Itstatement1::class);
@@ -236,6 +196,11 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/review-regularizations', ReviewRegularizations::class)->name('review-regularizations');
 });
 
+
+Route::get('/itform', function () {
+    return view('itform');
+});
+//Download routes
 Route::get('/your-download-route', function () {
     return view('download-pdf');
 });

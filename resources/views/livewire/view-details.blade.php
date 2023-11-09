@@ -10,15 +10,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
+          body{
+            font-family: 'Montserrat', sans-serif;
+        }
         .detail-container {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         width: 100%;
         gap: 10px;
         padding: 5px;
         background-color: none;
     }
-          
+          .approved-leave{
+            display: flex;
+        flex-direction: row;
+        width: 100%;
+        gap: 10px;
+        padding: 5px;
+        background-color: none;
+          }
 
     .heading {
     flex: 8; /* Adjust the flex value to control the size of the heading container */
@@ -34,7 +44,7 @@
     background-color: #fff;
     text-align: center;
     padding: 20px;
-    height: 230px;
+    height: 25%;
     border-radius:5px;
     border:1px solid #dcdcdc;
 }
@@ -108,7 +118,10 @@
             height:0.75rem; width:0.75rem; background: #778899; border-radius:50%;
         }
         .v-line{
-            height:100px; width:0.5px; background: #778899; border-right:1px solid #778899; margin-left:5px;
+            height:130px; width:0.5px; background: #778899; border-right:1px solid #778899; margin-left:5px;
+        }
+        .h-line{
+             height:1px; border-top:1px solid #778899;margin-top:10px; 
         }
         .leave{
             display:flex; flex-direction:row; gap:50px; background:#fff;
@@ -136,68 +149,108 @@
     </style>
 </head>
 <body>
-    <div class="header" style="font-size: 1rem; font-weight: 500; text-align:center; ">
-    <h6 >Leave Applied on Sep 21, 2023</h6>
-    </div>
 
     <div class="detail-container ">
-        <div class="heading">
-        <div class="heading-2" >
-        <div style="display:flex; flex-direction:row; justify-content:space-between;">
-        <div class="field">
-            <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">Approved by</span>
-            <span style="color: #333; font-weight: 500; text-transform:uppercase;">GyAN PRABODH DASARI</span>
+        <div class="header" style="font-size: 1rem; font-weight: 500; text-align:start; margin-left:150px; ">
+            <h6 >Leave Applied on {{ $leaveRequest->created_at->format('d M, Y') }} </h6>
         </div>
-        <div>
-        <span style="color: #32CD32; font-size: 0.875rem; font-weight: 500; text-transform:uppercase;">Approved</span>
-        </div>
-        </div>
-        <div class="middle-container">
-            <div class="view-container">
-            <div class="first" style="display:flex; gap:40px;padding:5px; ">
-            <div class="field">
-                <span style="color: #778899; font-size: 0.825rem; font-weight: 500;">From date</span>
-                <span style="font-size: 1rem; font-weight: 600;">Sep 22, 2023 <br><span style="color: #494F55;font-size: 0.825rem; font-weight: 600;">Session 1</span></span>
-            </div>
-            <div class="field">
-                <span style="color: #778899; font-size: 0.825rem; font-weight: 500;">To date</span>
-                <span style="font-size: 1rem; font-weight: 600;">Sep 22, 2023 <br><span style="color: #494F55;font-size: 0.825rem; font-weight: 600;">Session 2</span></span>
-            </div>
-            <div class="vertical-line"></div>
-         </div>
-         <div class="box" style="display:flex;  margin-left:50px;  text-align:center; padding:5px;">
-        <div class="field">
-            <span style="color: #778899; font-size: 0.825rem; font-weight: 500;">No. of days</span>
-            <span style=" font-size: 0.875rem; font-weight: 600;">1</span>
-        </div>
-        </div>
-            </div>
+        <div class="approved-leave">
+            <div class="heading">
+                <div class="heading-2" >
+                    <div style="display:flex; flex-direction:row; justify-content:space-between;">
+                    <div class="field">
+                            <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">
+                              Applied by
+                            </span>
+                                    <span style="color: #333; font-weight: 500; text-transform:uppercase;">
+                                      {{ $firstName }}
+                                    </span>
+                        </div>
+
+                     <div>
+                        <span style="color: #32CD32; font-size: 0.875rem; font-weight: 500; text-transform:uppercase;">
+                        @if(strtoupper($leaveRequest->status) == 'APPROVED')
+
+                                    <span style="margin-top:0.625rem; font-size: 1rem; font-weight: 500; color:#32CD32;">{{ strtoupper($leaveRequest->status) }}</span>
+
+                                @elseif(strtoupper($leaveRequest->status) == 'REJECTED')
+
+                                    <span style="margin-top:0.625rem; font-size: 1rem; font-weight: 500; color:#FF0000;">{{ strtoupper($leaveRequest->status) }}</span>
+
+                                @else
+
+                                    <span style="margin-top:0.625rem; font-size: 1rem; font-weight: 500; color:#cf9b17;">{{ strtoupper($leaveRequest->status) }}</span>
+
+                                @endif
+                        </span>
+                   </div>
                 </div>
+            <div class="middle-container">
+                <div class="view-container">
+                     <div class="first" style="display:flex; gap:40px;padding:5px; ">
+                            <div class="field">
+                                <span style="color: #778899; font-size: 0.825rem; font-weight: 500;">From date</span>
+                                <span style="font-size: 1rem; font-weight: 600;"> {{ $leaveRequest->from_date->format('d M, Y') }}<br><span style="color: #494F55;font-size: 0.825rem; font-weight: 600;">{{ $leaveRequest->from_session }}</span></span>
+                            </div>
+                            <div class="field">
+                                <span style="color: #778899; font-size: 0.825rem; font-weight: 500;">To date</span>
+                                <span style="font-size: 1rem; font-weight: 600;">{{ $leaveRequest->to_date->format('d M, Y') }} <br><span style="color: #494F55;font-size: 0.825rem; font-weight: 600;">{{ $leaveRequest->to_session }}</span></span>
+                            </div>
+                            <div class="vertical-line"></div>
+                         </div>
+                         <div class="box" style="display:flex;  margin-left:30px;  text-align:center; padding:5px;">
+                            <div class="field">
+                                <span style="color: #778899; font-size: 0.825rem; font-weight: 500;">No. of days</span>
+                                <span style=" font-size: 0.875rem; font-weight: 600;"> {{ $this->calculateNumberOfDays($leaveRequest->from_date, $leaveRequest->from_session, $leaveRequest->to_date, $leaveRequest->to_session) }}</span>
+                            </div>
+                        </div>
+                     </div>
+                 </div>
                     <div class="leave">
                         <div class="pay-bal">
                             <span style=" font-size: 0.975rem; font-weight: 500;">Balance:</span>
-                            <span style=" font-size: 0.875rem; font-weight: 500;">4.5</span>
+                           @if(!empty($leaveBalances))
+                                @if($leaveRequest->leave_type === 'Sick Leave')
+                                <span style=" font-size: 0.875rem; font-weight: 500;">{{ $leaveBalances['sickLeaveBalance'] }}</span>
+                                @elseif($leaveRequest->leave_type === 'Causal Leave Probation')
+                                <span style=" font-size: 0.875rem; font-weight: 500;">{{ $leaveBalances['casualLeaveBalance'] }}</span>
+                                @elseif($leaveRequest->leave_type === 'Loss Of Pay')
+                                <span style=" font-size: 0.875rem; font-weight: 500;">{{ $leaveBalances['lossOfPayBalance'] }}</span>
+                                @endif
+                            @endif
                         </div>
                         <div class="leave-type">
-                            <span style=" color: #605448; font-size: 1rem; font-weight: 600;">Casual Leave Probation</span>
+                            <span style=" color: #605448; font-size: 1rem; font-weight: 600;">{{ $leaveRequest->leave_type }}</span>
                         </div>
-            </div>
-        </div>
+                  </div>
+              </div>
 
         <div class="details">
            <div class="data">
            <p><span style="color: #333; font-weight: 500; font-size:1rem;">Details</span></p>
-            <p style=" font-size: 0.90rem; "><span style="color: #778899; font-size: 0.875rem; font-weight: 400;padding-right: 60px;">Applying to</span  > GYAN PRABODH DASARI</p>
-            <p><span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 88px;">Reason</span>
-           Good Evening Sir,</p>
-          
-          <p style="margin-left: 138px; margin-top:20px; "> I am requesting you to accept my leave for tomorrow(22-09-2-23).because am going to take my provisionals and original certificate from college.</p> 
-            <p style="margin-left: 138px;  margin-top:20px;">Thank you & Regards,<br> 
-            B.Divya,<br>
-            Software Engineer-I.</p>
+           @if(!empty($leaveRequest['applying_to']))
+            @foreach($leaveRequest['applying_to'] as $applyingTo)
+            <p style=" font-size: 0.90rem; "><span style="color: #778899; font-size: 0.875rem; font-weight: 400;padding-right: 58px;">Applying to</span  >{{ $applyingTo['report_to'] }}</p>
+            @endforeach
+            @endif
+             <div style="display:flex; flex-direction:row; justify-conetnt-space-between;">
+             <span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 88px;">Reason</span>
+             <p>{{ $leaveRequest->reason }}</p>
         
-            <p style="margin-top:10px;"><span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 86px;">Contact</span> B.Divya, mbl:7989181787</p>
-            <p style=" font-size: 0.975rem; font-weight: 500; "><span style="color: #778899; font-size: 0.875rem; font-weight: 400;padding-right: 100px;">CC to</span > Shivam Tiwari (XSS-0491)</p>
+             </div>
+            <p style="margin-top:10px;"><span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 82px;">Contact</span>{{ $leaveRequest->contact_details }} </p>
+            @if(!empty($leaveRequest->cc_to))
+                <p style="font-size: 0.975rem; font-weight: 500;">
+                    <span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 90px;">CC to</span>
+                    @foreach($leaveRequest->cc_to as $ccToItem)
+                    {{ $ccToItem['full_name'] }} (#{{ $ccToItem['emp_id'] }})
+                    @if(!$loop->last)
+                        ,
+                    @endif
+                    @endforeach
+                </p>
+            @endif
+
            </div>
         </div>
         </div>
@@ -209,19 +262,42 @@
              <div class="v-line"></div>
             <div class=cirlce></div>
              </div>
-              <div style="display:flex; flex-direction:column; gap:40px;">
+              <div style="display:flex; flex-direction:column; gap:20px;">
               <div class="group">
-               <div >
-                  <h5 style="color: #778899; font-size: 0.825rem; font-weight: 400; text-align:start;">Approved<br>
-                <span>by <span style="color: #778899; font-size: 0.825rem; font-weight: 500;text-align:start;">GYAN PRABODH DASARI</span></span><br>
-                <span style="color: #778899; font-size: 0.725rem; font-weight: 400;text-align:start;">22 Sep, 2023     7:01 AM</span>
-                    </h5>
-               </div>
+              <div>
+                <h5 style="color: #333; font-size: 0.825rem; font-weight: 400; text-align:start;">
+                    @if(strtoupper($leaveRequest->status) == 'WITHDRAWN')
+                        Withdrawn <br><span style="color: #778899; font-size: 0.825rem; font-weight: 400; text-align:start;">by</span> 
+                        <span style="color: #778899; font-weight: 500; text-transform: uppercase;">
+                            {{ $this->leaveRequest->employee->first_name }}  {{ $this->leaveRequest->employee->last_name }}
+                        </span>
+                    @elseif(strtoupper($leaveRequest->status) == 'PENDING')
+                    <span style="color: #778899; font-size: 0.825rem; font-weight: 500;text-align:start;"> Pending <br> with</span>
+                        @if(!empty($leaveRequest['applying_to']))
+                            @foreach($leaveRequest['applying_to'] as $applyingTo)
+                                <span style="color: #333; font-size: 0.825rem; font-weight: 500;text-align:start;">
+                                    {{ $applyingTo['report_to'] }}
+                                </span>
+                            @endforeach
+                        @endif
+                    @else
+                        Rejected by
+                        <!-- Add your logic for rejected by -->
+                    @endif
+                    <br>
+                    <span style="color: #778899; font-size: 0.725rem; font-weight: 400; text-align: start;">
+                        <input type="text" placeholder="Write comment" style="outline: none; border: 1px solid #778899; padding: 0.3rem; border-radius: 5px; width: 100%; margin-top: 10px; color: #5e6b7c;">
+                    </span>
+
+                </h5>
+            </div>
+
            </div>
+           <div class="h-line"></div>
            <div class="group">
                <div >
-                  <h5 style="color: #778899; font-size: 0.825rem; font-weight: 400; text-align:start;">Submitted<br>
-                <span style="color: #778899; font-size: 0.725rem; font-weight: 400;text-align:start;">22 Sep, 2023     10:44 PM</span>
+                  <h5 style="color: #333; font-size: 0.825rem; font-weight: 400; text-align:start;">Submitted<br>
+                <span style="color: #778899; font-size: 0.725rem; font-weight: 400;text-align:start;">{{ $leaveRequest->created_at->format('d M, Y g:i A') }}</span>
                     </h5>
                </div>
            </div>
@@ -230,7 +306,9 @@
            </div>
              
         </div>
+        </div>
     </div>
+   
 </body>
 </html>
 

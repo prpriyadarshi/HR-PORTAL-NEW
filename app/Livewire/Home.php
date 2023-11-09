@@ -120,6 +120,7 @@ public $showLeaveApplies;
             'showLeaveApplies' => $this->showLeaveApplies,
             'count' => $this->count,
             'matchingLeaveApplications' => $matchingLeaveApplications,
+            'matchingLeaveApplications' => $matchingLeaveApplications,
         ]);
     }
 

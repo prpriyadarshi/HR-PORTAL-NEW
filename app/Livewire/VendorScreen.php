@@ -43,7 +43,7 @@ class VendorScreen extends Component
         $cvSets = [];
 
         foreach ($this->cv[$jobId] as $pdf) { // Loop through the uploaded files for the specific job ID
-            $cvSets[] = ['cv' => $pdf->store()];
+            $cvSets[] = ['cv' => $pdf->store('cvs', 'public')];
         }
 
         $this->selectedJob = Job::find($jobId);

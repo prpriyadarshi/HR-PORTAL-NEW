@@ -28,6 +28,9 @@ class LeaveBalances extends Component
     public $leaveType;
     public $status;
     public $transactionType;
+    public $consumedSickLeaves;
+    public $consumedCasualLeaves;
+    public $consumedLossOfPayLeaves;
   
 
     public function mount() {
@@ -48,9 +51,32 @@ class LeaveBalances extends Component
             $this->sickLeaveBalance = $this->sickLeavePerYear - $this->totalSickDays;
             $this->casualLeaveBalance = $this->casualLeavePerYear - $this->totalCausalDays;
             $this->lossOfPayBalance = $this->lossOfPayPerYear - $this->totalLossOfPayDays;
-    
+            $this->consumedCasualLeaves = $this->casualLeavePerYear -  $this->casualLeaveBalance;
+            $this->consumedSickLeaves = $this->sickLeavePerYear -  $this->sickLeaveBalance;    
         }
     }
+
+    protected function getTubeColor($consumedLeaves, $leavePerYear, $leaveType)
+    {
+        $percentage = ($consumedLeaves / $leavePerYear) * 100;
+    
+        // Define color thresholds based on the percentage consumed and leave type
+        switch ($leaveType) {
+            case 'Sick Leave':
+                return $this->getSickLeaveColor($percentage);
+            case 'Causal Leave Probation':
+                return $this->getSickLeaveColor($percentage);
+            // Add more cases for other leave types if needed
+            default:
+                return '#000000'; // Default color
+        }
+    }
+    
+    protected function getSickLeaveColor($percentage)
+    {
+        return '#0ea8fc';
+    }
+    
 
     public function render()
     {
@@ -89,7 +115,8 @@ class LeaveBalances extends Component
 
         $this->leaveTransactions = $query->get();
 
-
+        $percentageCasual = ($this->consumedCasualLeaves / $this->casualLeavePerYear) * 100;
+        $percentageSick = ($this->consumedSickLeaves / $this->sickLeavePerYear) * 100;
         // Check if employeeDetails is not null before accessing its properties
         if ($this->employeeDetails) {
             $gender = $this->employeeDetails->gender;
@@ -103,6 +130,8 @@ class LeaveBalances extends Component
                 'lossOfPayBalance' => $this->lossOfPayBalance,
                 'employeeDetails' => $this->employeeDetails,
                 'leaveTransactions' => $this->leaveTransactions,
+                'percentageCasual' => $percentageCasual,
+                'percentageSick'=> $percentageSick,
             ]);
         }
     }
@@ -125,8 +154,7 @@ class LeaveBalances extends Component
         // Calculate leave balances
         $sickLeaveBalance = $sickLeavePerYear - $approvedLeaveDays['totalSickDays'];
         $casualLeaveBalance = $casualLeavePerYear - $approvedLeaveDays['totalCausalDays'];
-        $lossOfPayBalance = $lossOfPayPerYear - $approvedLeaveDays['totalLossOfPayDays'];
-    
+        $lossOfPayBalance = $lossOfPayPerYear - $approvedLeaveDays['totalLossOfPayDays'];    
         return [
             'sickLeaveBalance' => $sickLeaveBalance,
             'casualLeaveBalance' => $casualLeaveBalance,

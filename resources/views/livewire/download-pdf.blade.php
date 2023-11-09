@@ -79,7 +79,7 @@
                 @livewire('company-logo')
                 </td>
                 <td colspan='3' >
-               
+               <p  style="margin-left:20px;font-size:20px;font-weight:800">{{ $employeeData->company_name }}</p>
                     </td>
             </tr>
             <tr>

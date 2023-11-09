@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('job_id');
             $table->string('job_title');
             $table->string('company_name');
+            $table->string('application_status');
             $table->timestamps();
             $table->unique(['user_id', 'job_id']);
 

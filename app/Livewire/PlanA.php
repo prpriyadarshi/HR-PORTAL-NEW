@@ -21,12 +21,12 @@ class PlanA extends Component
    public $showSalayAllowance = false;
    public $total;
    public $totaldeductions;
-
+ 
 public function addMedical() {
     $this->showMedicalDialog = true; // Open the Medical (Sec 80D) modal
 }
 public function addSalayAllowance() {
-    $this->SalayAllowance = true; // Open the Medical (Sec 80D) modal
+    $this->showSalayAllowance = true; // Open the Medical (Sec 80D) modal
 }
 public function addshowOtherIncome() {
     $this->showOtherIncome = true; // Open the Medical (Sec 80D) modal
@@ -40,7 +40,7 @@ public function addshowVIDeductions() {
 public function addIncome() {
     $this->showIncomeDialog = true; // Open the Medical (Sec 80D) modal
 }
-
+ 
 public function openshowOtherIncome()
 {
     $this->showOtherIncome = true; // Open the Sec 80C modal
@@ -49,7 +49,7 @@ public function openSalayAllowance()
 {
     $this->SalayAllowance = true; // Open the Sec 80C modal
 }
-
+ 
 public function openSec80C()
 {
     $this->showSec80CDialog = true; // Open the Sec 80C modal
@@ -77,13 +77,13 @@ public function closeshowOtherIncome()
 public function openIncome() {
     $this->showIncomeDialog = true; // Open the Medical (Sec 80D) modal
 }
-
+ 
 public function closeMedical()
 {
     $this->showMedicalDialog = false; // Close the Medical (Sec 80D) modal
 }
-
-
+ 
+ 
 public function closeSec80C()
 {
     $this->showSec80CDialog = false; // Close the Sec 80C modal
@@ -102,25 +102,25 @@ public function closeIncome() {
       'life_insurance' ,
          
 ];
-
+ 
 public function submitsec80()
 {
-
+ 
     if (auth()->check()) {
         // Get the authenticated user
         $user = auth()->user();
-
+ 
         // Access the user's emp_id
         $emp_id = $user->emp_id;
        if (session()->has('form_submitted')) {
         return redirect()->back()->with('error', 'You have already submitted the form.');
     }
-
+ 
         // Set a default value for '5_years_fixed_deposit' if not provided by the user
         if (!isset($this->fields['5_years_fixed_deposit'])) {
             $this->fields['5_years_fixed_deposit'] = 0; // You can change 0 to the appropriate default value.
         }
-
+ 
         $rules = [
             'fields.5_years_fixed_deposit' => 'numeric|between:0,50000',
             'fields.5_years_deposit' => 'numeric|between:0,50000',
@@ -131,27 +131,27 @@ public function submitsec80()
             'fields.equity' => 'numeric|between:0,50000',
             'fields.life_insurance' => 'numeric|between:0,50000',
         ];
-
+ 
         $customMessages = [
             'between' => 'The :attribute must be between :min and :max.',
         ];
-
+ 
         $this->validate($rules, $customMessages);
-
+ 
         // Set the 'emp_id' with the retrieved value
         $this->fields['emp_id'] = $emp_id;
-
+ 
         // Calculate the total value
         $this->total = array_sum($this->fields);
-
+ 
         adddeclaration::create($this->fields);
     } else {
         dd('Not logged in or user data not retrieved correctly.');
     }
     session(['form_submitted' => true]);
 }
-
-
+ 
+ 
 public $fieldsdeductions = [
          
          'intrest_on_housing',
@@ -168,7 +168,7 @@ public function submitotherdeductions()
     if (auth()->check()) {
         // Get the authenticated user
         $user = auth()->user();
-
+ 
         // Access the user's emp_id
         $emp_id = $user->emp_id;
         if (session()->has('submitted')) {
@@ -184,32 +184,32 @@ public function submitotherdeductions()
             'fieldsdeductions.superannuation' => 'required|numeric|between:0,50000',
             'fieldsdeductions.donation' => 'required|numeric|between:0,50000',
         ];
-        
+       
         $customMessages = [
             'between' => 'The :attribute must be between :min and :max.',
         ];
-        
+       
         $this->validate($rules, $customMessages);
-        
-
+       
+ 
         $this->validate($rules, $customMessages);
-
+ 
         // Set the 'emp_id' with the retrieved value
         $this->fieldsdeductions['emp_id'] = $emp_id;
-
+ 
         $this->totaldeductions = array_sum($this->fieldsdeductions);
-
+ 
         otherchapter::create($this->fieldsdeductions);
     } else {
         dd('Not logged in or user data not retrieved correctly.');
     }
     session(['submitted' => true]);
 }
-
-
-
+ 
+ 
+ 
 public $fieldsmedical = [
-    
+   
         'medical' => null,
         'Health Checkup' => null,
         'Dependant Parents' => null,
@@ -221,19 +221,19 @@ public function submitmedical()
             'fieldsmedical.Health Checkup' => 'numeric',
             'fieldsmedical.Dependant Parents' => 'numeric',
         ]);
-
+ 
         // Calculate the total or perform other operations if needed
-
+ 
         $this->totalmedical = array_sum($this->fieldsmedical);
    
         medical::create($this->fieldsmedical);
-
+ 
         // Reset the form or take any necessary actions
-  
-
+ 
+ 
         // Optionally, you can add a success message or redirect
     }
-
+ 
     public function render()
     {
         $employeeId = auth()->guard('emp')->user()->emp_id;
