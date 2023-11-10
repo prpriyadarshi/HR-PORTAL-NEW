@@ -81,6 +81,9 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/Jobs', function () {
         return view('jobs_view');
     });
+    Route::get('/AllNotifications', function () {
+        return view('all-notifications_view');
+    });
     Route::get('/NotificationList{jobId}', function ($jobId) {
         return view('notification_list_view',compact('jobId'));
     })->name('job-interview-details');

@@ -221,7 +221,7 @@
             <div style="display: flex; align-items: start; justify-content: start;">
                 <img src="https://xsilica.com/images/xsilica_broucher_final_modified_05082016-2.png" alt="Logo" style="width: 200px; height: 50px; margin-right: 10px;">
                 <h1 style="font-size: 21px; margin-left: 21%">Job Seeker - {{$user->full_name}}</h1>
-                <a href="#" id="notification-button" style="text-decoration: none; margin-top: 18px; margin-left: 5%; color: white">
+                <a href="/AllNotifications" style="text-decoration: none; margin-top: 18px; margin-left: 5%; color: white">
                     <span><i class="fas fa-bell"></i> <!-- FontAwesome bell icon for notifications -->
                         <span class="badge">
                             {{$selectOrNot}}
@@ -229,32 +229,6 @@
                     </span>
                 </a>
             </div>
-        </div>
-        <div class="card" id="notification-popup">
-            <h5 style="padding: 5px;background-color:#02134F;color:white;text-align:center">All Notifications</h5>
-            <div style="margin-left: 25%; margin-bottom: 10px">
-                <input style="font-family: Montserrat;" type="radio" name="formType" value="register" wire:click="$set('activeTab', 'Shorlisted')" checked> Shorlisted
-                <input style="font-family: Montserrat;" type="radio" name="formType" value="login" wire:click="$set('activeTab', 'Rejected')">  Rejected
-            </div>
-
-            @if($activeTab=="Shorlisted")
-            @foreach($notificationList as $list)
-            <li style="margin-bottom: 10px;">
-                <a class="shortedList" wire:click="showShortlisetdJobInterviewDetails('{{$list->job->job_id}}')" style="font-size: 12px;color:black;text-decoration:none">
-                    Congratulations! Your CV has been shortlisted for the position of <strong>{{$list->job->title}}</strong> at <strong>{{$list->job->company_name}}</strong> Company.
-                </a>
-            </li>
-            @endforeach
-            @endif
-            @if($activeTab=="Rejected")
-            @foreach($rejectedJobs as $list)
-            <li style="margin-bottom: 10px;">
-                <a wire:click="showJobDetails('{{$list->job->job_id}}')" class="shortedList" style="font-size: 12px;color:black;text-decoration:none">
-                    Your application has not been shortlisted for the position of <strong>{{$list->job->title}}</strong> at <strong>{{$list->job->company_name}}</strong> Company. Keep your spirits high and continue your job search,The right opportunity is out there waiting for you.
-                </a>
-            </li>
-            @endforeach
-            @endif
         </div>
 
     </div>
@@ -364,20 +338,3 @@
     </div>
 </div>
 </div>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const notificationButton = document.getElementById("notification-button");
-        const notificationPopup = document.getElementById("notification-popup");
-
-        // Show the notification pop-up when the bell icon is clicked
-        notificationButton.addEventListener("click", function(e) {
-            e.preventDefault(); // Prevent the default link behavior
-
-            if (notificationPopup.style.display === "block") {
-                notificationPopup.style.display = "none";
-            } else {
-                notificationPopup.style.display = "block";
-            }
-        });
-    });
-</script>

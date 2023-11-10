@@ -85,11 +85,6 @@ class Jobs extends Component
     {
         return redirect()->route('full-job-view', ['jobId' => $jobId]);
     }
-
-    public function showShortlisetdJobInterviewDetails($jobId)
-    {
-        return redirect()->route('job-interview-details', ['jobId' => $jobId]);
-    }
     public $selectOrNot;
     public $user;
 

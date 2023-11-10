@@ -214,7 +214,7 @@
                             ">Education</h2>
                         </div>
                         <!-- Education Entries -->
-                        <div class="education-entries">
+                        <div class="education-entries">kiwmaduhjkcndw
                             @foreach($educationEntries as $index => $educationEntry)
                             <div class="education-entry">
                                 <label style="font-size:12px" for="degree">Degree:</label>

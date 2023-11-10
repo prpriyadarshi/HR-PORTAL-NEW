@@ -100,10 +100,6 @@
             <p>Sincerely,<br><strong>{{$list->job->hr_name}}</strong><br><strong>HR Manager</strong><br>{{$list->job->company}}</p>
         </div>
         @endforeach
-
     </body>
-
     </html>
 </div>
-when i click on Rejected radio then notification closed
-But i want show

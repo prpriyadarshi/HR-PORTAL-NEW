@@ -133,7 +133,7 @@
                     <div style="display: inline-block;width:65px">Location</div> <strong>: {{$employee->job_location}}</strong>
                 </div>
                 <div style="font-size:12px;color: grey;">
-                    <div style="display: inline-block;width:65px">Designation</div><strong> : {{$employee->job_title}}</strong>
+                    <div style="display: inline-block;width:65px">Role</div><strong> : {{$employee->job_title}}</strong>
                 </div>
             </div>
             <div class="col-md-5" style="margin-top: 15px;">
@@ -152,9 +152,14 @@
             My Profile
         </div>
         <div class="container">
-            <div class="row" style="margin-top: 10px;font-size: 12px;">
-                <div class="col"><strong>Profile</strong></div>
-                <div class="col" style="margin-left: 70%;">
+            <div class="row" style="margin-top: 20px;">
+                <div class="col" style="color: grey;font-size: 12px;">
+                    Nick Name
+                </div>
+                <div class="col" style="color: grey;font-size: 12px;">
+                    Wish Me On
+                </div>
+                <div class="col" style="margin-left: 54%;font-size:12px">
                     @if($editingNickName)
                     <i wire:click="editProfile" class="fas fa-edit"></i>
                     <i wire:click="cancelProfile" class="fas fa-times"></i>
@@ -162,14 +167,6 @@
                     @else
                     <i wire:click="editProfile" class="fas fa-edit"></i>
                     @endif
-                </div>
-            </div>
-            <div class="row" style="margin-top: 20px;">
-                <div class="col" style="color: grey;font-size: 12px;">
-                    Nick Name
-                </div>
-                <div class="col" style="color: grey;font-size: 12px;">
-                    Wish Me On
                 </div>
             </div>
             @if ($editingNickName)
@@ -203,9 +200,6 @@
                 </div>
             </div>
             <div class="row" style="margin-top: 20px;">
-                <div class="col" style="color: grey;font-size: 12px;">
-                    Time Zone
-                </div>
             </div>
             <div class="row" style="margin-top: 10px;">
                 <div class="col">
@@ -236,7 +230,6 @@
                 </div>
             </div>
             <div class="row" style="color: grey;margin-top: 20px;">
-                <div class="col" style="font-size: 12px;">Biography</div>
             </div>
             @if ($editingBiography)
             <div class="row" style="margin-top: 10px;">

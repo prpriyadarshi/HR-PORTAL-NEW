@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
+
         Schema::create('salary_revisions', function (Blueprint $table) {
             $table->id();
             $table->string('emp_id');
+            $table->string('company_id');
             $table->decimal('salary', 10, 2);
             $table->date('salary_month');
             $table->date('last_revision_period');
@@ -23,7 +25,7 @@ return new class extends Migration
             $table->timestamps();
             // Define the foreign key relationship
             $table->foreign('emp_id')->references('emp_id')->on('employee_details');
-
+            $table->foreign('company_id')->references('company_id')->on('companies');
         });
     }
 
@@ -33,6 +35,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('salary_revisions');
-
     }
 };

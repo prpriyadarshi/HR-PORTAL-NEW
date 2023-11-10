@@ -452,7 +452,7 @@
                                 @endforeach
                                 @else
                                 <tr>
-                                    <td colspan="2">No swipe records found for today.</td>
+                                    <td style="font-size:12px;"                                                                                                                                                                                                                                                                                                                                                                                          colspan="2">No swipe records found for today.</td>
                                 </tr>
                                 @endif
 
@@ -582,46 +582,7 @@
 
     // Set an interval to change the quote every 5 seconds (5000 milliseconds)
     setInterval(changeQuote, 5000);
-    // Get a reference to the canvas element
-    //var ctx = document.getElementById('pieChart').getContext('2d');
-    // var data = {
-    //     datasets: [
-    //         {
-    //             data: [ {{$salaries->calculateTotalAllowance(), 2}}],
-    //             backgroundColor: ['#FF5733'],
-    //         },
-    //         {
-    //             data: [{{$salaries->calculateTotalDeductions(), 2}},   {{$salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions(), 2 }}],
-    //             backgroundColor: ['#33FF33', '#3399FF'],
-    //         },
-    //     ],
-    // };
  
- 
-//     var data = {
-//         labels: ['Gross Pay','Deduction','Net Pay'],
-//     datasets: [
-//         {
-//             data: [{{$salaries->calculateTotalAllowance(), 2}}, 0, 0], // Gross Pay value
-//             backgroundColor: ['#FF5733'],
-//         },
-//         {
-//             data: [0, 0, {{$salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions(), 2 }}], // Net Pay value
-//             backgroundColor: ['#33FF33'],
-//         },
-//         {
-//             data: [0,{{$salaries->calculateTotalDeductions(), 2}}, 0], // Deductions value
-//             backgroundColor: ['#3399FF'],
-//         },
- 
-//     ],
-// };
- 
-    // // Create the pie chart
-    // var myPieChart = new Chart(ctx, {
-    //     type: 'pie',
-    //     data: data,
-    // });
  
  
  
