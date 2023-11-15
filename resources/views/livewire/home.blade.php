@@ -185,7 +185,6 @@
 <body>
     <div class="container">
     @if (session()->has('success'))
-
         <div class="custom-alert alert-success" style="text-align: center;margin-left:50%;width: 500px;">
             {{ session('success') }}
         </div>

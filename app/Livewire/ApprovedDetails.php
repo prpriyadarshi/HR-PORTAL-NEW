@@ -143,7 +143,6 @@ class ApprovedDetails extends Component
         return view('livewire.approved-details', [
              'leaveRequest' => $this->leaveRequest,
              'leaveBalances' => $leaveBalances,
-             
         ]);
        
     }  

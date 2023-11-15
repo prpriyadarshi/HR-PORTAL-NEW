@@ -37,6 +37,7 @@ use App\Livewire\Documentcenter;
 use App\Livewire\Investment;
 use App\Livewire\LeaveApply;
 use App\Livewire\LeavePage;
+use App\Livewire\ApprovedDetails;
 // use App\Livewire\SalaryRevisions;
 use App\Livewire\Reimbursement;
 use App\Livewire\LeaveBalances;
@@ -187,6 +188,7 @@ Route::middleware(['auth:emp'])->group(function () {
 
 
     Route::get('/leave-page', LeavePage::class)->name('leave-page');
+    Route::get('/approved-details/{leaveRequestId}', ApprovedDetails::class)->name('approved-details');
     Route::get('/leave-apply', LeaveApply::class)->name('leave-apply');
     Route::get('/holiday-calender', HolidayCalender::class)->name('holiday-calender');
     Route::get('/leave-balances', LeaveBalances::class)->name('leave-balances');
