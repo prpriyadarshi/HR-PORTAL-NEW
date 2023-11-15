@@ -23,6 +23,7 @@ class VendorsSubmittedCVs extends Component
         $this->hrDetails = Company::where('contact_email', $hrEmail)->first();
         $this->submittedCVs = VendorsSubmitCvToHr::with('user', 'job')
             ->where('submited_to', '=', $this->hrDetails->contact_email)
+            ->orderBy('created_at','desc')
             ->get();
         return view('livewire.vendors-submitted-c-vs');
     }

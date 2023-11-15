@@ -17,6 +17,7 @@ class LeaveCalender extends Component
     public $generalHolidayData;
     public $leaveRequests;
     public $leaveTransactions;
+
     public function mount()
     {
         $this->year = now()->year;
@@ -34,6 +35,7 @@ class LeaveCalender extends Component
 
         $calendar = [];
         $dayCount = 1;
+        $publicHolidays = $this->getPublicHolidaysForMonth($this->year, $this->month);
 
         for ($i = 0; $i < ceil(($firstDay->dayOfWeek + $daysInMonth) / 7); $i++) {
             $week = [];
@@ -42,10 +44,19 @@ class LeaveCalender extends Component
                     $week[] = null;
                 } elseif ($dayCount <= $daysInMonth) {
                     $isToday = $dayCount === $today->day && $this->month === $today->month && $this->year === $today->year;
+                    $publicHolidaysArray = [];
+                    foreach ($publicHolidays as $holiday) {
+                        $publicHolidaysArray[] = $holiday->toArray();
+                    }
+
+
+                    $isPublicHoliday = in_array(Carbon::create($this->year, $this->month, $dayCount)->toDateString(), $publicHolidaysArray);
                     $week[] = [
                         'day' => $dayCount,
                         'isToday' => $isToday,
+                        'isPublicHoliday' => $isPublicHoliday,
                     ];
+
                     $dayCount++;
                 } else {
                     $week[] = null;
@@ -54,18 +65,16 @@ class LeaveCalender extends Component
             $calendar[] = $week;
         }
 
-        foreach ($calendar as $week) {
-            foreach ($week as $day) {
-                if ($day) {
-                    $day['teamOnLeave'] = $this->getTeamOnLeaveDataForDay($day);
-                    $day['restrictedHoliday'] = $this->isRestrictedHolidayForDay($day);
-                    $day['generalHoliday'] = $this->isGeneralHolidayForDay($day);
-                }
-            }
-        }
-
         $this->calendar = $calendar;
     }
+    protected function getPublicHolidaysForMonth($year, $month)
+{
+    return HolidayCalendar::whereYear('date', $year)
+        ->whereMonth('date', $month)
+        ->where('type', 'public') ;// Assuming 'public' is the type for public holidays
+
+}
+
 
     public function previousMonth()
     {
@@ -113,25 +122,23 @@ protected function isRestrictedHolidayForDay($day)
    return LeaveRequest::where('from_date', $day)->get();
 }
 
-protected function isGeneralHolidayForDay($day)
+protected function getHolidaysForMonth($year, $month)
 {
-    // Check if $day is a general holiday
-  //  return LeaveRequest::where('date', $day)->where('type', 'general')->exists();
-         return HolidayCalendar::where('date',  $day)->get();
+    $startOfMonth = Carbon::create($year, $month, 1);
+    $endOfMonth = Carbon::create($year, $month, $startOfMonth->daysInMonth);
 
+    // Fetch holidays for the entire month
+    $holidays = HolidayCalendar::whereBetween('date', [$startOfMonth, $endOfMonth])->get();
+    // Organize holidays by day
+    $holidaysByDay = [];
+
+    foreach ($holidays as $holiday) {
+        $day = $holiday->date;
+// Store the holiday data in an array for each day
+        $holidaysByDay[$day][] = $holiday;
+    }
+    return $holidaysByDay;
 }
-
-
-
-
-
-
-
-
-public $calendarData = [];
-
-
-
 
 
     public function render()
