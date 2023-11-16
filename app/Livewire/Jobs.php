@@ -46,7 +46,7 @@ class Jobs extends Component
         Auth::logout();
         return redirect('/emplogin');
     }
-
+    public $user_resume;
 
     public function showJobApplication($jobId)
     {
@@ -55,7 +55,8 @@ class Jobs extends Component
         $this->userDetails = User::where('user_id', $userId)->first();
 
         try {
-            AppliedJob::create([
+
+            $userData = [
                 'job_id' => $this->selectedJob->job_id,
                 'job_title' => $this->selectedJob->title,
                 'company_name' => $this->selectedJob->company_name,
@@ -64,8 +65,13 @@ class Jobs extends Component
                 'full_name' => $this->userDetails->full_name,
                 'email' => $this->userDetails->email,
                 'address' => $this->userDetails->address,
-                'resume' => $this->userDetails->resume,
-            ]);
+            ];
+            if ($this->user_resume) {
+                $resumePath = $this->user_resume->store('resumes', 'public');
+                $userData['resume'] = $resumePath;
+                $this->userDetails->update(['resume' => $resumePath]);
+            }
+            AppliedJob::create($userData);
             $this->showSuccessMessage = true;
         } catch (QueryException $e) {
             $this->addError('duplicate', 'You have already applied to this job.');

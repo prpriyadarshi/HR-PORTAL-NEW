@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Illuminate\Support\Carbon;
 use Livewire\Component;
 use App\Helpers\LeaveHelper;
 use App\Models\EmployeeDetails;
@@ -10,7 +11,6 @@ use PDF;
 
 class LeaveBalances extends Component
 {
-   
     public $employeeDetails;
     public $sickLeavePerYear = 12; // Assuming 12 days of sick leave per year
     public $casualLeavePerYear = 12; // Assuming 12 days of casual leave per year
@@ -19,24 +19,25 @@ class LeaveBalances extends Component
     public $casualLeaveBalance;
     public $lossOfPayBalance;
     public $leaveTransactions;
-    public $fromDateModal;
-    public $toDateModal;
     public $leaveTypeModal = 'all';
     public $transactionTypeModal = 'all';
-    public $sortBy;
     public $employeeId;
-    public $leaveType;
     public $status;
+    public $fromDateModal;
+    public $toDateModal;
+    public $leaveType;
     public $transactionType;
+    public $sortBy;
     public $consumedSickLeaves;
     public $consumedCasualLeaves;
     public $consumedLossOfPayLeaves;
-  
 
-    public function mount() {
+
+    public function mount()
+    {
         $employeeId = auth()->guard('emp')->user()->emp_id;
         $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
-    
+
         // Check if employeeDetails is not null before accessing its properties
         if ($this->employeeDetails) {
             // Get the logged-in employee's approved leave days for sick, causal, and loss of pay leave
@@ -46,59 +47,54 @@ class LeaveBalances extends Component
             $this->totalCausalDays = $approvedLeaveDays['totalCausalDays'];
             $this->totalSickDays = $approvedLeaveDays['totalSickDays'];
             $this->totalLossOfPayDays = $approvedLeaveDays['totalLossOfPayDays'];
-    
+
             // Calculate leave balances
             $this->sickLeaveBalance = $this->sickLeavePerYear - $this->totalSickDays;
             $this->casualLeaveBalance = $this->casualLeavePerYear - $this->totalCausalDays;
             $this->lossOfPayBalance = $this->lossOfPayPerYear - $this->totalLossOfPayDays;
             $this->consumedCasualLeaves = $this->casualLeavePerYear -  $this->casualLeaveBalance;
-            $this->consumedSickLeaves = $this->sickLeavePerYear -  $this->sickLeaveBalance;    
+            $this->consumedSickLeaves = $this->sickLeavePerYear -  $this->sickLeaveBalance;
         }
     }
 
     protected function getTubeColor($consumedLeaves, $leavePerYear, $leaveType)
     {
         $percentage = ($consumedLeaves / $leavePerYear) * 100;
-    
+
         // Define color thresholds based on the percentage consumed and leave type
         switch ($leaveType) {
             case 'Sick Leave':
                 return $this->getSickLeaveColor($percentage);
             case 'Causal Leave Probation':
                 return $this->getSickLeaveColor($percentage);
-            // Add more cases for other leave types if needed
+                // Add more cases for other leave types if needed
             default:
                 return '#000000'; // Default color
         }
     }
-    
+
     protected function getSickLeaveColor($percentage)
     {
         return '#0ea8fc';
     }
-    
+    public function sortBy($option)
+    {
+        $this->sortBy = $option;
 
-    public function render()
+        // Re-run the query based on the selected sorting option
+        $this->fetchLeaveTransactions();
+    }
+
+    public function fetchLeaveTransactions()
     {
         $employeeId = auth()->guard('emp')->user()->emp_id;
-        $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
-       
-        $query = LeaveRequest::join('employee_details', 'leave_applies.emp_id', '=', 'employee_details.emp_id')
-            ->select('leave_applies.*', 'employee_details.*')
-            ->where('leave_applies.emp_id', $this->employeeId);
 
-            if ($this->fromDateModal && $this->toDateModal) {
-                $query->whereBetween('leave_applies.from_date', [$this->fromDateModal, $this->toDateModal]);
-            }
-    
-            if ($this->leaveType && $this->leaveType !== 'all') {
-                $query->where('leave_applies.leave_type', $this->leaveType);
-            }
-    
-            if ($this->transactionType && $this->transactionType !== 'all') {
-                $query->where('leave_applies.status', $this->transactionType);
-            }
-                 // Apply sorting based on selected option
+        $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
+        $query = LeaveRequest::join('employee_details', 'leave_applies.emp_id', '=', 'employee_details.emp_id')
+            ->select('leave_applies.*', 'employee_details.*', 'leave_applies.created_at as leave_created_at')
+            ->where('leave_applies.emp_id', $employeeId);
+
+        // Apply sorting based on selected option
         switch ($this->sortBy) {
             case 'leave_type':
                 $query->orderBy('leave_applies.leave_type');
@@ -106,13 +102,25 @@ class LeaveBalances extends Component
             case 'transaction_type':
                 $query->orderBy('leave_applies.status');
                 break;
-            case 'newest_first':
-                $query->orderByDesc('leave_applies.created_at');
+            case 'oldest_first':
+                $query->orderBy('leave_created_at');
                 break;
             default:
-                $query->orderBy('leave_applies.created_at');
+                $query->orderByDesc('leave_created_at');
         }
 
+        $this->leaveTransactions = $query->get();
+    }
+
+
+    public function render()
+    {
+        $employeeId = auth()->guard('emp')->user()->emp_id;
+        $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
+
+        $query = LeaveRequest::join('employee_details', 'leave_applies.emp_id', '=', 'employee_details.emp_id')
+            ->select('leave_applies.*', 'employee_details.*', 'leave_applies.created_at as leave_created_at')
+            ->where('leave_applies.emp_id', $employeeId);
         $this->leaveTransactions = $query->get();
 
         $percentageCasual = ($this->consumedCasualLeaves / $this->casualLeavePerYear) * 100;
@@ -120,8 +128,8 @@ class LeaveBalances extends Component
         // Check if employeeDetails is not null before accessing its properties
         if ($this->employeeDetails) {
             $gender = $this->employeeDetails->gender;
-            $grantedLeave = ($gender === 'Female') ? 90 : 05; 
-        
+            $grantedLeave = ($gender === 'Female') ? 90 : 05;
+
             return view('livewire.leave-balances', [
                 'gender' => $gender,
                 'grantedLeave' => $grantedLeave,
@@ -131,7 +139,7 @@ class LeaveBalances extends Component
                 'employeeDetails' => $this->employeeDetails,
                 'leaveTransactions' => $this->leaveTransactions,
                 'percentageCasual' => $percentageCasual,
-                'percentageSick'=> $percentageSick,
+                'percentageSick' => $percentageSick,
             ]);
         }
     }
@@ -139,49 +147,115 @@ class LeaveBalances extends Component
     public static function getLeaveBalances($employeeId)
     {
         $employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
-    
+
+
         if (!$employeeDetails) {
             return null;
         }
-    
+
         $sickLeavePerYear = 12; // Assuming 12 days of sick leave per year
         $casualLeavePerYear = 12; // Assuming 12 days of casual leave per year
         $lossOfPayPerYear = 0;
-    
+
         // Get the logged-in employee's approved leave days for sick, causal, and loss of pay leave
         $approvedLeaveDays = LeaveHelper::getApprovedLeaveDays($employeeId);
-    
+
         // Calculate leave balances
         $sickLeaveBalance = $sickLeavePerYear - $approvedLeaveDays['totalSickDays'];
         $casualLeaveBalance = $casualLeavePerYear - $approvedLeaveDays['totalCausalDays'];
-        $lossOfPayBalance = $lossOfPayPerYear - $approvedLeaveDays['totalLossOfPayDays'];    
+        $lossOfPayBalance = $lossOfPayPerYear - $approvedLeaveDays['totalLossOfPayDays'];
         return [
             'sickLeaveBalance' => $sickLeaveBalance,
             'casualLeaveBalance' => $casualLeaveBalance,
             'lossOfPayBalance' => $lossOfPayBalance,
         ];
     }
-    public function generatePdf()
+    public  function calculateNumberOfDays($fromDate, $fromSession, $toDate, $toSession)
     {
-        
-    // Fetch employee details (you might need to adjust this based on your actual database structure)
-    $employeeId = auth()->guard('emp')->user()->emp_id;
+        try {
 
-    $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
-    
-    $this->leaveTransactions = LeaveRequest::join('employee_details', 'employee_details.emp_id', '=', 'leave_applies.emp_id')
-        ->where('employee_details.emp_id', $employeeId)
-        ->where('employee_details.company_id', auth()->guard('emp')->user()->company_id)
-        // Add more conditions as needed
-        ->get();
-        dd($this->leaveTransactions);
-    // Load the view with the fetched data
-    $pdf = PDF::loadView('livewire.leave-balances', [
-        'leaveTransactions' => $leaveTransactions,
-        'employeeDetails' => $employeeDetails,
-    ]);
-    return $pdf->download('generated-pdf.pdf');
+            $startDate = Carbon::parse($fromDate);
+            $endDate = Carbon::parse($toDate);
+            // Check if the start and end sessions are different on the same day
+            if ($startDate->isSameDay($endDate) && $this->getSessionNumber($fromSession) === $this->getSessionNumber($toSession)) {
+                // Inner condition to check if both start and end dates are weekdays
+                if (!$startDate->isWeekend() && !$endDate->isWeekend()) {
+                    return 0.5;
+                } else {
+                    // If either start or end date is a weekend, return 0
+                    return 0;
+                }
+            }
+            // Check if the start and end sessions are different on the same day
+            if (
+
+                $startDate->isSameDay($endDate) &&
+                $this->getSessionNumber($fromSession) === $this->getSessionNumber($toSession)
+            ) {
+
+                // Inner condition to check if both start and end dates are weekdays
+                if (!$startDate->isWeekend() && !$endDate->isWeekend()) {
+                    return 0.5;
+                } else {
+                    // If either start or end date is a weekend, return 0
+                    return 0;
+                }
+            }
+            if (
+                $startDate->isSameDay($endDate) &&
+                $this->getSessionNumber($fromSession) !== $this->getSessionNumber($toSession)
+            ) {
+
+                // Inner condition to check if both start and end dates are weekdays
+                if (!$startDate->isWeekend() && !$endDate->isWeekend()) {
+                    return 1;
+                } else {
+                    // If either start or end date is a weekend, return 0
+                    return 0;
+                }
+            }
+            $totalDays = 0;
+
+            while ($startDate->lte($endDate)) {
+                // Check if it's a weekday (Monday to Friday)
+                if ($startDate->isWeekday()) {
+                    $totalDays += 1;
+                }
+
+                // Move to the next day
+                $startDate->addDay();
+            }
+
+            // Deduct weekends based on the session numbers
+            if ($this->getSessionNumber($fromSession) > 1) {
+                $totalDays -= $this->getSessionNumber($fromSession) - 1; // Deduct days for the starting session
+            }
+            if ($this->getSessionNumber($toSession) < 2) {
+                $totalDays -= 2 - $this->getSessionNumber($toSession); // Deduct days for the ending session
+            }
+            // Adjust for half days
+            if ($this->getSessionNumber($fromSession) === $this->getSessionNumber($toSession)) {
+                // If start and end sessions are the same, check if the session is not 1
+                if ($this->getSessionNumber($fromSession) !== 1) {
+                    $totalDays += 0.5; // Add half a day
+                }
+            } elseif ($this->getSessionNumber($fromSession) !== $this->getSessionNumber($toSession)) {
+                if ($this->getSessionNumber($fromSession) !== 1) {
+                    $totalDays += 1; // Add half a day
+                }
+            } else {
+                $totalDays += ($this->getSessionNumber($toSession) - $this->getSessionNumber($fromSession) + 1) * 0.5;
+            }
+
+            return $totalDays;
+        } catch (\Exception $e) {
+            return 'Error: ' . $e->getMessage();
+        }
     }
+
+    private function getSessionNumber($session)
+    {
+        // You might need to customize this based on your actual session values
+        return (int) str_replace('Session ', '', $session);
     }
-
-
+}

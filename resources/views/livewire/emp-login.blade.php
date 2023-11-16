@@ -1,13 +1,8 @@
 <div class="container-fluid p-0">
     <div class="m-0 mt-3 row">
-        <div class="col-md-9 mb-2" style="text-align: end;">
-            <button wire:click="createCV" style="background-color: rgb(2, 17, 79);color:white;border-radius:5px;border:none">
-                <a style="text-decoration: none; color: white; ">Create CV</a>
-            </button>
-        </div>
-        <div class="col-md-3" style="text-align: end;">
+        <div class="col-md-12" style="text-align: end;">
             <button wire:click="jobs" style="background-color: rgb(2, 17, 79);color:white;border-radius:5px;border:none">
-                Job Seeker & Vendor Registration</button>
+            Recruitment Process</button>
         </div>
     </div>
 

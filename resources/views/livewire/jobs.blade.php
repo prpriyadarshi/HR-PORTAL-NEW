@@ -1,5 +1,10 @@
 <div>
     <style>
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+
         /* Style for the notification pop-up */
         .card {
             background-color: white;
@@ -233,7 +238,12 @@
 
     </div>
 
-    <div class="row" style="margin-left: 60%;margin-top:10px">
+    <div class="row" style="margin-left: 48%;margin-top:10px">
+        <a href="/CreateCV" style="text-decoration: none;">
+            <button style="font-size:12px;width: 130px;height:30px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white;margin-left: 5px;">
+                <i class="fas fa-file-alt" style="margin-right: 5px;"></i>
+                Create CV</button>
+        </a>
         <a href="/Companies" style="text-decoration: none;">
             <button style="font-size:12px;width: 130px;height:30px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white;margin-left: 5px;">
                 <i class="fas fa-building" style="margin-right: 5px;"></i>
@@ -323,8 +333,23 @@
                     <p class="job-skills-required">
                         <i class="fas fa-tools"></i> Skills: {{ $job->skills_required }}
                     </p>
-
                 </a>
+                <div class="form-group">
+                    <table>
+                        <tr>
+                            <th>
+                                <label style="font-size:12px;
+            font-family: Montserrat;
+                                    " for="resume">CV:</label>
+                            </th>
+                            <th>
+                                <input wire:model="user_resume" style="font-size:12px" type="file" class="form-control">
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+                @error('user_resume') <span class="error">{{ $message }}</span> @enderror <br>
+
                 <div style="text-align: center;">
                     <a wire:click="showJobApplication('{{$job->job_id}}')" class="apply-button">Apply</a>
                 </div>

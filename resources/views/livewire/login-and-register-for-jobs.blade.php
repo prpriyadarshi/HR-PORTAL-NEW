@@ -103,6 +103,7 @@
                                     " for="resume">Resume:</label><br>
                                 <input wire:model="user_resume" style="font-size:12px" type="file" class="form-control">
                             </div>
+
                             @endif
                             @if($user_type == "Vendor")
                             <div class="form-group">
