@@ -18,7 +18,7 @@
         /* Style for the "Applied Jobs" section */
         .container {
             margin: 20px auto;
-            max-width: 600px;
+            max-width: 800px;
             padding: 20px;
             background-color: #f9f9f9;
             border: 1px solid #e0e0e0;
@@ -42,7 +42,7 @@
         .table th,
         .table td {
             padding: 12px 16px;
-            text-align: left;
+            text-align:center;
         }
 
         .table thead {
@@ -97,6 +97,7 @@
                     <th>Job Title</th>
                     <th>Company Name</th>
                     <th>Applied Date</th>
+                    <th>Expired Date</th>
                 </tr>
             </thead>
             <tbody>
@@ -105,7 +106,8 @@
                     <td>{{ $appliedJob->job_id }}</td>
                     <td>{{ $appliedJob->job_title }}</td>
                     <td>{{ $appliedJob->company_name }}</td>
-                    <td> {{ date('d-M-Y H\h i\m s\s', strtotime($appliedJob->created_at)) }}</td>
+                    <td> {{ date('d-M-Y', strtotime($appliedJob->created_at)) }}</td>
+                    <td> {{ date('d-M-Y', strtotime($appliedJob->expire_date)) }}</td>
                 </tr>
                 @endforeach
             </tbody>

@@ -1,7 +1,8 @@
 <div>
     <style>
         #success-message,
-        #error-message {
+        #error-message,
+        #success-exam-message {
             position: relative;
             padding: 10px;
             margin: 10px 0;
@@ -10,6 +11,11 @@
 
         #success-message {
             background-color: #4CAF50;
+            color: white;
+        }
+
+        #success-exam-message {
+            background-color: blue;
             color: white;
         }
 
@@ -24,6 +30,14 @@
             right: 10px;
             cursor: pointer;
             color: green;
+        }
+
+        .close-exam-message {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+            color: blue;
         }
 
         .close {
@@ -260,6 +274,11 @@
         {{ $errors->first('duplicate') }}
         <button class="close" wire:click="dismissError">×</button>
     </div>
+    @elseif($showExaminationMessage)
+    <div style="text-align: center;" class="alert alert-success" id="success-exam-message">
+        The examination link has been successfully sent!
+        <button class="close-exam-message" wire:click="dismissExamMessage">×</button>
+    </div>
     @endif
     <div class="job-seekers-applied-jobs">
         <h5 class="text-2xl font-semibold mb-4" style="text-align: center;">Job Seekers Applied Jobs</h5>
@@ -275,7 +294,7 @@
                     <th>CV</th>
                     <th>Applied Date</th>
                     <th>Expiry Date</th>
-                    <th>Application Status</th>
+                    <th>Application Details</th>
                 </tr>
             </thead>
             <tbody>
@@ -305,6 +324,11 @@
                     <td>
                         @if($appliedJob->application_status == "Shortlisted")
                         <button class="status" style="background-color: lightgreen;color:white" disabled>Shortlist</button>
+                        @if($appliedJob->exam_link=='')
+                        <button wire:click="openExamPopUp('{{$appliedJob->job_id}}')" class="status" style="background-color:  blue;color:white">Examination</button>
+                        @else
+                        <button class="status" style="background-color:  blue;color:white" disabled>Examination</button>
+                        @endif
                         @else
                         <button wire:click="open('{{$appliedJob->id}}')" class="status" style="background-color: green;color:white">Shortlist</button>
                         @endif
@@ -352,12 +376,12 @@
 
                         <div class="row" style="text-align: center">
                             <div class="col">
-                                <button type="button" wire:click="close" style="background-color: red;color:white;border:none;border-radius:5px">Cancel</button>
+                                <button type="button" wire:click="submit" style="background-color: blue;color:white;border:none;border-radius:5px">
+                                    Send
+                                </button>
                             </div>
                             <div class="col">
-                                <button type="button" wire:click="submit" style="background-color: blue;color:white;border:none;border-radius:5px">
-                                    Save
-                                </button>
+                                <button type="button" wire:click="close" style="background-color: red;color:white;border:none;border-radius:5px">Cancel</button>
                             </div>
                         </div>
                     </div>
@@ -366,5 +390,47 @@
         </div>
     </div>
     @endif
+
+
+
+    @if($examPopUp=="true")
+    <div class="modal" tabindex="-1" role="dialog" style="display: block;overflow-y:auto">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: rgb(2, 17, 79); height: 50px">
+                    <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title"><b>Examination Link</b></h5>
+                    <button type="button" wire:click="closeExamPopUp">
+                        <span aria-hidden="true" style="color: black;">×</span>
+                    </button>
+                </div>
+                <div style="padding: 5px;">
+                    <label style="font-size: 12px;" for="date">Date:</label>
+                    <input style="font-size: 12px;" class="input-fields" wire:model="examDate" type="date" id="date" readonly><br>
+                    @error('examDate') <span class="text-danger">{{ $message }}</span> @enderror <br>
+
+                    <label style="font-size: 12px;" for="time">Time:</label>
+                    <input style="font-size: 12px;" class="input-fields" wire:model="examTime" type="time" readonly><br>
+                    @error('examTime') <span class="text-danger">{{ $message }}</span> @enderror <br>
+
+                    <label style="font-size: 12px;" for="location">Examination Link:</label>
+                    <input style="font-size: 12px;" class="input-fields" wire:model="examLink" type="text"><br>
+                    @error('examLink') <span class="text-danger">{{ $message }}</span> @enderror <br>
+
+                    <div class="row" style="text-align: center">
+                        <div class="col">
+                            <button type="button" wire:click="sendExamLink" style="background-color: blue;color:white;border:none;border-radius:5px">
+                                Send
+                            </button>
+                        </div>
+                        <div class="col">
+                            <button type="button" wire:click="closeExamPopUp" style="background-color: red;color:white;border:none;border-radius:5px">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 </div>
 </div>

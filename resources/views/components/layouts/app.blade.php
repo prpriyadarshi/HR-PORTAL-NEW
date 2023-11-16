@@ -13,18 +13,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    @guest
     <link rel="icon" type="image/x-icon" href="{{ asset('images/HR Portal.png') }}">
     <title>
         HR Strategies Pro
     </title>
-    <style>
-        /* Style for the grey horizontal rule */
-        hr.grey {
-            border: 1px solid #ccc;
-            /* Adjust the color and style as needed */
-        }
-    </style>
+    @else
+    @php
+    $employeeId = auth()->guard('emp')->user()->emp_id;
+    $employee = DB::table('employee_details')
+    ->join('companies', 'employee_details.company_id', '=', 'companies.company_id')
+    ->where('employee_details.emp_id', $employeeId)
+    ->select('companies.company_logo','companies.company_name')
+    ->first();
+    @endphp
+    <link rel="icon" type="image/x-icon" href="{{ asset($employee->company_logo) }}">
+    <title>
+        {{$employee->company_name}}
+    </title>
+    @livewireScripts
+    @endguest
+
+   
+
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -82,9 +93,10 @@
     <div>
 
         <style>
-            body{
+            body {
                 font-family: 'Montserrat', sans-serif;
             }
+
             .profile-container {
 
                 display: flex;
@@ -210,9 +222,9 @@
         <div class="row" style="height: auto;width:auto;background-color: #f0f0f0;">
 
             <div class="card" style="border-radius:0px;height: auto; width: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
- 
+
                 <div class="card-body" style="height: auto;width:auto;margin-top:0px">
- 
+
                     <ul class="nav flex-column">
 
                         <div style="margin-bottom: 10px;margin-top:0px">
@@ -250,17 +262,17 @@
                             </a>
                             <div id="todo-options" style="display: none;">
                                 <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
-                                <li class="nav-item" style="text-decoration: none;">
-                                    <a class="nav-link" href="/tasks" onclick="changePageTitle3('task');">
-                                        Tasks
-                                    </a>
-                                </li>
-                                <li class="nav-item" style="text-decoration: none;">
-                                    <a class="nav-link" href="/employees-review" onclick="changePageTitle3('review');">
-                                      Review
-                                    </a>
-                                </li>
-                               
+                                    <li class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/tasks" onclick="changePageTitle3('task');">
+                                            Tasks
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/employees-review" onclick="changePageTitle3('review');">
+                                            Review
+                                        </a>
+                                    </li>
+
                                 </ul>
                             </div>
                         </li>
@@ -337,7 +349,7 @@
                                             Payslips
                                         </a>
                                     </li>
-                                   
+
 
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('reimbursement')">
                                         <a class="nav-link" href="/reimbursement" id="reimbursement" onclick="selectOption(this, 'Reimbursement')">
@@ -349,7 +361,7 @@
                                             Proof of Investment
                                         </a>
                                     </li>
-   
+
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle15('salary-revision')">
                                         <a class="nav-link" href="/salary-revision" id="slip" onclick="selectOption(this, 'Salary Revision')">
                                             Salary Revision
@@ -460,6 +472,21 @@
 
             }
 
+            function changePageTitle123() {
+
+                var newIcon = '<i style="color: white;" class="fas fa-cog"></i>'
+
+                var newTitle = "Settings";
+
+                document.getElementById("pageTitle").textContent = newTitle;
+
+                document.getElementById("pageIcon").innerHTML = newIcon;
+
+                localStorage.setItem("pageIcon", newIcon);
+
+                localStorage.setItem("pageTitle", newTitle);
+
+            }
 
 
             function changePageTitle1() {
@@ -503,14 +530,14 @@
                 var newIcon = '<i style="color: white;" class="fas fa-tasks"></i>'
 
                 var newTitle = "To do";
-            
+
                 if (item === 'task') {
                     newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
                     newTitle = "Tasks";
                 } else if (item === 'review') {
                     newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
                     newTitle = "Review";
-                } 
+                }
 
                 document.getElementById("pageTitle").textContent = newTitle;
 
@@ -765,7 +792,7 @@
 
                 if (todoOptions.style.display === "block") {
                     todoOptions.style.display = "none";
-                    leaveOptions.style.display="none";
+                    leaveOptions.style.display = "none";
                     todoCaret.classList.remove("fa-caret-up");
                     todoCaret.classList.add("fa-caret-down");
                 } else {

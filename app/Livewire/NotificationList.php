@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\AppliedJob;
 use App\Models\Job;
 use App\Models\JobseekersInterviewDetail;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class NotificationList extends Component
@@ -13,6 +14,12 @@ class NotificationList extends Component
     public $user;
     public $companyDetails;
     public $job;
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/emplogin');
+    }
+
     public function showJobDetails($jobId)
     {
         return redirect()->route('full-job-view', ['jobId' => $jobId]);

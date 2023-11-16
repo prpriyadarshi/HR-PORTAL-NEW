@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\LeaveRequest;
+
 class EmployeeDetails extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -63,9 +64,13 @@ class EmployeeDetails extends Authenticatable
         'is_starred'
     ];
     public function leaveRequests()
-{
-    return $this->hasMany(LeaveRequest::class, 'emp_id');
-}
+    {
+        return $this->hasMany(LeaveRequest::class, 'emp_id');
+    }
 
+    // Inside the EmployeeDetails model
+    public function starredPeople()
+    {
+        return $this->hasMany(StarredPeople::class, 'emp_id', 'emp_id');
+    }
 }
-

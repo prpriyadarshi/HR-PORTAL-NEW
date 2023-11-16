@@ -453,9 +453,10 @@
                                         @endif
                                         @error('file_path') <span class="text-danger">{{ $message }}</span> @enderror
                                         <div style="margin-top: 30px; text-align: center;">
-                                            <button wire:click="close" class="btn btn-danger btn-medium" type="button" name="link" style="background-color: #FF3D57; color: white; width: 100px;font-size:13px">Cancel</button>
                                             <button wire:click="submit" class="btn btn-success btn-medium" type="button" name="link" style="background-color: #4CAF50; color: white; margin-left: 20px;font-size:13px">Save
                                                 Changes</button>
+                                            <button wire:click="close" class="btn btn-danger btn-medium" type="button" name="link" style="background-color: #FF3D57; color: white; width: 100px;font-size:13px">Cancel</button>
+
                                         </div>
                                     </div>
                                 </div>

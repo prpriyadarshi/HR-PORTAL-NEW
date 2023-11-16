@@ -156,10 +156,10 @@
                 <div class="col" style="color: grey;font-size: 12px;">
                     Nick Name
                 </div>
-                <div class="col" style="color: grey;font-size: 12px;">
+                <div class="col" style="color: grey;font-size: 12px;margin-left:80px">
                     Wish Me On
                 </div>
-                <div class="col" style="margin-left: 54%;font-size:12px">
+                <div class="col" style="margin-left: 44%;font-size:12px">
                     @if($editingNickName)
                     <i wire:click="editProfile" class="fas fa-edit"></i>
                     <i wire:click="cancelProfile" class="fas fa-times"></i>
@@ -174,14 +174,14 @@
                 <div class="col">
                     <input style="width:150px;font-size:12px" type="text" class="form-control" wire:model="nickName" placeholder="Enter Nick Name">
                 </div>
-                <div class="col">
+                <div class="col" style="margin-right: 50%;">
                     <input style="width: 150px; font-size: 12px;" type="date" id="date_of_birth" placeholder="Select Wish Me On" name="date_of_birth" wire:model="wishMeOn" max="{{ date('Y-m-d') }}">
                 </div>
             </div>
             @else
             <div class="row" style="margin-top: 10px;">
                 <div class="col" style="color: black; font-size: 12px;">{{$employee->nick_name}}</div>
-                <div class="col" style="color: black; font-size: 12px;">{{ \Carbon\Carbon::parse($employee->date_of_birth)->format('d-M-Y') }}</div>
+                <div class="col" style="color: black; font-size: 12px;margin-right:50%">{{ \Carbon\Carbon::parse($employee->date_of_birth)->format('d-M-Y') }}</div>
             </div>
             @endif
         </div>

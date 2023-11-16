@@ -90,6 +90,8 @@ class Jobs extends Component
 
     public $notificationList;
     public $rejectedJobs;
+    public $examinationCount;
+    public $allNotificationCount;
     public function render()
     {
         $this->jobs = Job::where('created_at', '<=', now())
@@ -109,6 +111,15 @@ class Jobs extends Component
         $this->selectOrNot = AppliedJob::where('user_id', $this->user->user_id)
             ->whereIn('application_status', ['Shortlisted', 'Rejected'])
             ->count();
+
+        $this->examinationCount = JobseekersInterviewDetail::with('user', 'job')
+            ->where('user_id', $this->user->user_id)
+            ->whereNotNull('exam_link')
+            ->whereDate('interview_date', now()->toDateString())
+            ->count();
+
+        $this->allNotificationCount = $this->selectOrNot + $this->examinationCount;
+
         $this->rejectedJobs = AppliedJob::where('user_id', $this->user->user_id)
             ->whereIn('application_status', ['Rejected'])
             ->get();

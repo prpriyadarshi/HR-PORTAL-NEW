@@ -224,7 +224,7 @@
                 <a href="/AllNotifications" style="text-decoration: none; margin-top: 18px; margin-left: 5%; color: white">
                     <span><i class="fas fa-bell"></i> <!-- FontAwesome bell icon for notifications -->
                         <span class="badge">
-                            {{$selectOrNot}}
+                            {{$allNotificationCount}}
                         </span>
                     </span>
                 </a>

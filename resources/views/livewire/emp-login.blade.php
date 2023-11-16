@@ -94,23 +94,20 @@
                         <img src="{{ asset('images/communication.png') }}" style="width: 85%;" alt="Los Angeles"
                             class="d-block">
                         <div class="carousel-caption" style="bottom: 0px; padding-bottom: 0px; color: #007bff;">
-                            <h3>Los Angeles</h3>
-                            <p>We had such a great time in LA!</p>
+                           
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="{{ asset('images/tasks.png') }}" style="width: 85%;" alt="Chicago" class="d-block">
                         <div class="carousel-caption" style="bottom: 0px; padding-bottom: 0px; color: #007bff;">
-                            <h3>Chicago</h3>
-                            <p>Thank you, Chicago!</p>
+                          
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="{{ asset('images/Working.png') }}" style="width: 85%;" alt="New York"
                             class="d-block">
                         <div class="carousel-caption" style="bottom: 0px; padding-bottom: 0px; color: #007bff;">
-                            <h3>New York</h3>
-                            <p>We love the Big Apple!</p>
+    
                         </div>
                     </div>
                 </div>

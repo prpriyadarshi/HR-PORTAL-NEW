@@ -120,11 +120,12 @@
                     <input type="radio" name="formType" value="register" wire:click="$set('activeTab', 'Rejected')"> Rejected
                 </label>
                 <label class="radio-option">
-                    <input type="radio" name="formType" value="register" wire:click="$set('activeTab', 'Examinations')"> Examination
+                    <input type="radio" name="formType" value="register" wire:click="$set('activeTab', 'Examinations')"> Examinations
                 </label>
             </div>
 
             @if($activeTab=="Shorlisted")
+            @if($notificationList)
             @foreach($notificationList as $key=> $list)
             <div class="notification-list">
                 <a wire:click="showShortlistedJobInterviewDetails('{{$list->job->job_id}}')" class="notification-item">
@@ -132,8 +133,12 @@
                 </a>
             </div>
             @endforeach
+            @else
+            <div style="text-align: center;margin-top:15px">Not Found</div>
+            @endif
             @endif
             @if($activeTab=="Rejected")
+            @if($rejectedJobs)
             @foreach($rejectedJobs as $key=> $list)
             <div class="notification-list">
                 <a wire:click="showJobDetails('{{$list->job->job_id}}')" class="notification-item">
@@ -141,7 +146,31 @@
                 </a>
             </div>
             @endforeach
+            @else
+            <div style="text-align: center;margin-top:15px">Not Found</div>
             @endif
+            @endif
+
+            @if($activeTab == "Examinations")
+            @if($examinations->isNotEmpty())
+            @foreach($examinations as $key => $exam)
+            <div class="examination-notification" style="font-size: 12px; border-radius: 5px; border: 1px solid grey; padding: 10px; margin-bottom: 8px; text-align: left;">
+                <p class="notification-content">
+                    {{$key+1}}. 🚀 Congratulations,
+                    Your application for the position of <strong>{{$exam->job->title}}</strong> at <strong>{{$exam->job->company_name}}</strong> company has advanced to the next stage. We're thrilled to invite you to the examination phase. Click the link below to access your examination details:
+                </p>
+                <p class="exam-link" style="margin-top: 10px;">
+                    <strong><a href="{{$exam->exam_link}}">{{$exam->exam_link}}</a></strong>
+                </p>
+                <p class="best-of-luck-text" style="margin-top: 10px;">Best of luck! 🌟</p>
+            </div>
+
+            @endforeach
+            @else
+            <div class="not-found-message">No examinations found at the moment.</div>
+            @endif
+            @endif
+
         </div>
     </body>
 

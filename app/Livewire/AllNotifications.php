@@ -11,6 +11,7 @@ class AllNotifications extends Component
 {
     public $activeTab = 'Shorlisted';
     public $user;
+    public $examination;
     public $notificationList;
     public function logout()
     {
@@ -27,6 +28,7 @@ class AllNotifications extends Component
     {
         return redirect()->route('job-interview-details', ['jobId' => $jobId]);
     }
+    public $examinations;
     public function render()
     {
         $this->user = auth()->user();
@@ -36,6 +38,10 @@ class AllNotifications extends Component
             ->get();
         $this->rejectedJobs = AppliedJob::where('user_id', $this->user->user_id)
             ->whereIn('application_status', ['Rejected'])
+            ->get();
+            $this->examinations = JobseekersInterviewDetail::with('user', 'job')
+            ->where('user_id', $this->user->user_id)
+            ->whereNotNull('exam_link')
             ->get();
         return view('livewire.all-notifications');
     }
