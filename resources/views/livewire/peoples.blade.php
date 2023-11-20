@@ -15,7 +15,7 @@
         }
     </style>
     <div class="container">
-        <div class="row" style="margin-left: 1%; width: 20%; position: relative;">
+        <div class="row" style="margin-left: 1%; width: 20%; position: relative;width:500px">
             <div class="col" style="text-align: center; border-radius: 5px; margin-right: 10px; cursor: pointer;">
                 <a id="starred-tab-link" style="text-decoration: none; font-size: 13px; color: {{ $activeTab === 'starred' ? '#3498db' : '#333' }}" wire:click="$set('activeTab', 'starred')" class="links">Starred</a>
             </div>
@@ -91,7 +91,11 @@
                             <img class="people-image" src="{{ optional($selectStarredPeoples)->profile }}" alt="Profile Image">
                         </div>
                         <div class="col" style="margin-top: 50px; margin-right: 80px;">
-                            <i wire:click="removeToggleStar('{{ optional($selectStarredPeoples)->people_id }}')" class="fa fa-star" style="cursor: pointer; color: yellow;"></i>
+                        <a style="text-decoration: none;" wire:click="removeToggleStar('{{ optional($selectStarredPeoples)->people_id }}')" >
+                            <button style="background-color: white;border:1px solid white">
+                            <i class="fa fa-star" style="cursor: pointer; color: yellow;"></i>
+                            </button>
+                        </a>
                             <div>{{ optional($selectStarredPeoples)->name }}</div>
                             <strong>
                                 <div>(#{{ optional($selectStarredPeoples)->people_id }})</div>
@@ -123,7 +127,10 @@
                             <img class="people-image" src="{{ optional($firstStarredPerson)->profile }}" alt="Profile Image">
                         </div>
                         <div class="col" style="margin-top: 50px; margin-right: 80px;">
-                            <i wire:click="removeToggleStar('{{ optional($firstStarredPerson)->people_id }}')" class="fa fa-star" style="cursor: pointer; color: yellow;"></i>
+                            <a style="text-decoration: none;" wire:click="removeToggleStar('{{ optional($firstStarredPerson)->people_id }}')"> <button style="background-color:white;border:1px solid white">
+                                    <i class="fa fa-star" style="cursor: pointer; color: yellow;"></i>
+                                </button></a>
+
                             <div>{{ optional($firstStarredPerson)->name }}</div>
                             <strong>
                                 <div>(#{{ optional($firstStarredPerson)->people_id }})</div>
@@ -210,8 +217,11 @@
                             ->where('emp_id', auth()->guard('emp')->user()->emp_id)
                             ->first();
                             @endphp
-
-                            <i wire:click="toggleStar('{{ optional($selectedPerson)->emp_id }}')" class="fa fa-star{{ $starredPerson && $starredPerson->starred_status == 'starred' ? ' text-yellow' : ' text-gray' }}" style="cursor: pointer;"></i>
+                            <a style="text-decoration: none;" wire:click="toggleStar('{{ optional($selectedPerson)->emp_id }}')">
+                                <button style="background-color: #fff;border:1px solid white">
+                                    <i class="fa fa-star{{ $starredPerson && $starredPerson->starred_status == 'starred' ? ' text-yellow' : ' text-gray' }}" style="cursor: pointer;"></i>
+                                </button>
+                            </a>
 
                             <div>{{ optional($selectedPerson)->first_name }} {{ optional($selectedPerson)->last_name }}</div>
                             <strong>
@@ -250,8 +260,11 @@
                             <img class="people-image" src="{{ optional($firstPerson)->image }}" alt="Profile Image">
                         </div>
                         <div class="col" style="margin-top: 50px; margin-right: 80px;">
-                            <i wire:click="toggleStar('{{ optional($firstPerson)->emp_id }}')" class="fa fa-star{{ $starredPerson && $starredPerson->starred_status == 'starred' ? ' text-yellow' : ' text-gray' }}" style="cursor: pointer;"></i>
-
+                            <a style="text-decoration: none;" wire:click="toggleStar('{{ optional($firstPerson)->emp_id }}')">
+                                <button style="background-color: white;border:1px solid white">
+                                    <i class="fa fa-star{{ $starredPerson && $starredPerson->starred_status == 'starred' ? ' text-yellow' : ' text-gray' }}" style="cursor: pointer;"></i>
+                                </button>
+                            </a>
                             <div>{{ optional($firstPerson)->first_name }} {{ optional($firstPerson)->last_name }}</div>
                             <strong>
                                 <div>(#{{ optional($firstPerson)->emp_id }})</div>
@@ -272,3 +285,4 @@
         @endif
     </div>
 </div>
+@livewireScripts

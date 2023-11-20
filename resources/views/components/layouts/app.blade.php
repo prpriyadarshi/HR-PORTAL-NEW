@@ -14,7 +14,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @guest
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/HR Portal.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('/images/hr_expert.png') }}">
     <title>
         HR Strategies Pro
     </title>
@@ -34,7 +34,7 @@
     @livewireScripts
     @endguest
 
-   
+
 
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -219,7 +219,7 @@
 
 
 
-        <div class="row" style="height: auto;width:auto;background-color: #f0f0f0;">
+        <div class="row" style="height: 100%;width:100%;background-color: #f0f0f0;">
 
             <div class="card" style="border-radius:0px;height: auto; width: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
 
@@ -255,6 +255,15 @@
                             </a>
 
                         </li>
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle8()">
+
+                            <a class="nav-link" href="/PeoplesList">
+
+                                <i class="fas fa-users"></i> People
+
+                            </a>
+
+                        </li>
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle3(item)">
                             <a class="nav-link" onclick="toggleToDoDropdown()">
@@ -277,57 +286,9 @@
                             </div>
                         </li>
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
 
-                            <a class="nav-link" href="/Attendance">
 
-                                <i class="fas fa-clock"></i> Attendance</a>
-                        </li>
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5(item)">
-                            <a class="nav-link" onclick="toggleLeaveDropdown()">
-                                <i class="fas fa-file-alt" id="leave-icon"></i> Leave <i class="fas fa-caret-down" id="leave-caret"></i>
-                            </a>
-                            <div id="leave-options" style="display: none;">
-                                <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
-                                    <li class="nav-item" style="text-decoration: none;">
-                                        <a class="nav-link" href="/leave-page" onclick="return changePageTitle5('apply');">
-                                            Leave Apply
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" style="text-decoration: none;">
-                                        <a class="nav-link" href="/leave-balances" onclick="changePageTitle5('balances'); return false;">
-                                            Leave Balances
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" style="text-decoration: none;">
-                                        <a class="nav-link" href="/leave-calender" onclick="changePageTitle5('calendar'); return false;">
-                                            Leave Calendar
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" style="text-decoration: none;">
-                                        <a class="nav-link" href="/holiday-calender" onclick="changePageTitle5('holiday'); return false;">
-                                            Holiday Calendar
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" style="text-decoration: none;">
-                                        <a class="nav-link" href="/leave-calender" onclick="changePageTitle5('team'); return false;">
-                                            @livewire('team-on-leave')
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle7()">
-
-                            <a class="nav-link" href="/document">
-
-                                <i class="fas fa-folder"></i> Document Center
-
-                            </a>
-
-                        </li>
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle12(item)">
                             <a class="nav-link" href="#" onclick="toggleSalaryDropdown()">
                                 <i class="fas fa-solid fa-money-bill-transfer" id="salary-icon"></i> Salary <i class="fas fa-caret-down" id="salary-caret"></i>
@@ -370,15 +331,60 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle8()">
 
-                            <a class="nav-link" href="/PeoplesList">
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5(item)">
+                            <a class="nav-link" onclick="toggleLeaveDropdown()">
+                                <i class="fas fa-file-alt" id="leave-icon"></i> Leave <i class="fas fa-caret-down" id="leave-caret"></i>
+                            </a>
+                            <div id="leave-options" style="display: none;">
+                                <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
+                                    <li class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/leave-page" onclick="return changePageTitle5('apply');">
+                                            Leave Apply
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/leave-balances" onclick="changePageTitle5('balances'); return false;">
+                                            Leave Balances
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/leave-calender" onclick="changePageTitle5('calendar'); return false;">
+                                            Leave Calendar
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/holiday-calender" onclick="changePageTitle5('holiday'); return false;">
+                                            Holiday Calendar
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/leave-calender" onclick="changePageTitle5('team'); return false;">
+                                            @livewire('team-on-leave')
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
 
-                                <i class="fas fa-users"></i> People
+
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
+
+                            <a class="nav-link" href="/Attendance">
+
+                                <i class="fas fa-clock"></i> Attendance</a>
+                        </li>
+
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle7()">
+
+                            <a class="nav-link" href="/document">
+
+                                <i class="fas fa-folder"></i> Document Center
 
                             </a>
 
                         </li>
+
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle9()">
 
@@ -430,9 +436,7 @@
                 </div>
 
                 <div style="margin-top: 3%; margin-left: 1%; height: 490px; overflow-y: auto;overflow-x:auto">
-
                     {{ $slot }}
-
                 </div>
 
             </div>

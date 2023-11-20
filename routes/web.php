@@ -45,7 +45,7 @@ use App\Livewire\LeaveBalances;
 use App\Livewire\LeaveCancel;
 use App\Livewire\TeamOnLeave;
 use App\Livewire\HolidayCalender;
-
+use App\Livewire\LeaveBalanaceAsOnADay;
 use App\Livewire\TeamOnLeaveChart;
 use App\Livewire\ViewDetails;
 use App\Livewire\ViewDetails1;
@@ -124,6 +124,7 @@ Route::middleware(['auth:com'])->group(function () {
 
 Route::middleware(['auth:emp'])->group(function () {
     Route::get('/', Home::class)->name('home');
+    Route::get('/LeaveBalanceAsOnADay', LeaveBalanaceAsOnADay::class);
 
     // Attendance Routes
     Route::get('/Attendance', Attendance::class)->name('Attendance');

@@ -358,7 +358,7 @@
                                         <div class="form-group" style="margin-top: 20px;">
                                             <label class="form-label" style="font-size: 14px;">Due Date</label>
                                             <br>
-                                            <input type="date" wire:model="due_date" style="width: 100%;font-size:12px" max="<?= date('Y-m-d'); ?>">
+                                            <input type="date" wire:model="due_date" style="width: 100%;font-size:12px" min="<?= date('Y-m-d'); ?>">
                                         </div>
                                         @error('due_date') <span class="text-danger">{{ $message }}</span> @enderror
 

@@ -63,33 +63,36 @@
 
         /* Add more CSS styles as needed to achieve your desired design */
     </style>
-    <div class="container-1" style="background-color: #02134F; color: white; padding: 8px;">
-        <div style="display: flex; align-items: start; justify-content: start;">
-            <img src="https://xsilica.com/images/xsilica_broucher_final_modified_05082016-2.png" alt="Logo" style="width: 200px; height: 50px; margin-right: 10px;">
-            <h1 style="font-size: 21px; margin-left:21%;margin-top:10px">Job Seeker - {{$user->full_name}}</h1>
+    <div class="row m-0" style="background-color: #02134F; color: white; padding: 8px;">
+        <div class="col-md-2 mb-3" style="text-align: center; margin: auto;">
+            <img src="https://xsilica.com/images/xsilica_broucher_final_modified_05082016-2.png" alt="Logo" style="height: 50px; margin-right: 10px;">
+        </div>
+        <div class="col-md-10 mb-3" style="text-align: center; margin: auto;">
+            <h1 style="font-size: 21px">Job Seeker - {{$user->full_name}}</h1>
         </div>
 
     </div>
 
-    <div class="row-1" style="margin-left: 60%;margin-top:10px">
+    <div class="row-1" style="margin-top: 10px; text-align: end; margin-right: 10px;">
         <a href="/Jobs" style="text-decoration: none;">
-            <button style="font-size:12px;width: 130px;height:30px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white;margin-left: 5px;">
+            <button class="btn btn-primary mb-2" style="font-size:12px;background-color: rgb(2, 17, 79); color: white;margin-left: 5px;">
             <i class="fas fa-briefcase" style="margin-right: 5px;"></i> </i>
                 Jobs</button>
         </a>
         <a href="/Companies" style="text-decoration: none;">
-            <button style="font-size:12px;width: 130px;height:30px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white;margin-left: 5px;">
+            <button class="btn btn-primary mb-2" style="font-size:12px;background-color: rgb(2, 17, 79); color: white;margin-left: 5px;">
                 <i class="fas fa-building" style="margin-right: 5px;"></i>
                 Companies</button>
         </a>
-        <button style="font-size:12px;width: 100px; border-radius: 5px;height:30px; background-color: rgb(2, 17, 79); color: white;margin-left: 5px;">
+        <button class="btn btn-primary mb-2" style="font-size:12px;background-color: rgb(2, 17, 79); color: white;margin-left: 5px;">
             <a href="/UserProfile" style="text-decoration: none;color:white"> <i class="fa fa-user" style="margin-right: 5px;"></i> Profile</a>
         </button>
-        <button style="font-size:12px;margin-left: 5px;width: 100px; border-radius: 5px;height:30px; background-color: rgb(2, 17, 79); color: white;" wire:click="logout"> <i class="fas fa-sign-out-alt" style="margin-right: 5px;"></i> Logout</button>
+        <button class="btn btn-primary mb-2" style="font-size:12px;background-color: rgb(2, 17, 79); color: white;margin-left: 5px;" wire:click="logout"> <i class="fas fa-sign-out-alt" style="margin-right: 5px;"></i> Logout</button>
     </div>
     <div class="container">
-        <h4 style="text-align: center;"> Applied Jobs</h4>
+        <h4 style="text-align: center;">Applied Jobs</h4>
         @if(count($appliedJobs) > 0)
+        <div class="table-responsive">
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -112,6 +115,7 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
         @else
         <p>No applied jobs found.</p>
         @endif

@@ -86,17 +86,25 @@
                 View full job details
             </button>
             <strong style="margin-top: 5px;margin-bottom:5px">Exam Details:</strong>
-                <li><strong>Date:</strong> {{ date('d-M-Y', strtotime($list->exam_date)) }}</li>
-                <li><strong>Time:</strong> {{$list->interview_time}} (Railway Time)</li>
-                <li><strong>Platform:</strong> Online</li>
+            <li><strong>Date:</strong> {{ date('d-M-Y', strtotime($list->exam_date)) }}</li>
+            <li><strong>Time:</strong> {{$list->interview_time}} (Railway Time)</li>
+            <li><strong>Location:</strong> <a href="{{$list->location_link}}"><strong>location link</strong></a></li> <!-- Add this line for location -->
+            <li><strong>Platform:</strong> Online</li>
+
             <p><strong>Instructions:</strong></p>
             <p>{{$list->instructions}}</p>
+
             <p><strong>Company Website:</strong></p>
-            <p>For more information about <strong>{{$list->job->company_name}}</strong> Company, please visit our <a href="{{$list->company_website}}" target="_blank"><strong>website</strong></a></p>
+            <p>For more information about <strong>{{$list->job->company_name}}</strong> Company, please visit our <a href="{{$list->company_website}}" target="_blank"><strong>website link</strong></a></p>
+
             <p>Please confirm your participation by replying to this email or by following the instructions provided in the online exam portal. If the provided date and time are not convenient for you, please let us know, and we will make arrangements accordingly.</p>
+
             <p>If you have any questions or require further information, please do not hesitate to contact us at <strong>{{$list->job->contact_email}}</strong> or <strong>{{$list->job->contact_phone}}</strong>.</p>
+
             <p>We look forward to your participation in the online examination.</p>
+
             <p>Sincerely,<br><strong>{{$list->job->hr_name}}</strong><br><strong>HR Manager</strong><br>{{$list->job->company}}</p>
+
         </div>
         @endforeach
 

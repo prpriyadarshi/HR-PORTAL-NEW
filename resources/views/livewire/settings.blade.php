@@ -118,10 +118,10 @@
 @endif
 </div>
 @foreach($employees as $employee)
-<div class="card" style="width: 60%;margin-top:20px;padding:10px">
+<div class="card" style="width: 800px;margin-top:20px;padding:10px">
         <div class="row">
-            <div class="col-md-2">
-                <img style="border-radius: 50%;" height="80" width="80" src="{{ asset($employee->image) }}">
+            <div class="col-md-2" >
+                <img style="border-radius: 50%;padding:8px" height="80" width="80" src="{{ asset($employee->image) }}">
             </div>
             <div class="col-md-5">
                 <div style="font-size:12px;"><strong>{{$employee->first_name}} {{$employee->last_name}}</strong></div>
@@ -148,7 +148,7 @@
         </div>
     </div>
     <div class="card" style="margin-top: 20px;height:auto;width:800px;margin-bottom:10px">
-        <div class="card-header" style="background-color: rgb(2, 17, 79);color:white;font-size: 15px;">
+        <div class="card-header" style="background-color: rgb(2, 17, 79);color:white;font-size: 15px;width:787px">
             My Profile
         </div>
         <div class="container">
@@ -234,7 +234,7 @@
             @if ($editingBiography)
             <div class="row" style="margin-top: 10px;">
                 <div class="col" style="color: black; font-size: 12px;">
-                    <textarea style="width:250px;font-size:12px" wire:model="biography" id="biography" class="form-control" placeholder="Enter Biography" rows="4"></textarea>
+                    <textarea style="width:100%;font-size:12px" wire:model="biography" id="biography" class="form-control" placeholder="Enter Biography" rows="4"></textarea>
                 </div>
             </div>
             @else

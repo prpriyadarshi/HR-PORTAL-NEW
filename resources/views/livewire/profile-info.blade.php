@@ -17,12 +17,13 @@
         <style>
             /* Define your custom CSS classes */
             .custom-nav-tabs {
-                background-color: #f8f9fa;
+                background-color: white;
                 /* Background color for the tabs */
             }
 
             .custom-nav-link {
                 color: #333;
+                cursor: pointer;
                 /* Text color for inactive tabs */
             }
 

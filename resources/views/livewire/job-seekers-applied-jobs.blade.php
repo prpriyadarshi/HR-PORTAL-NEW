@@ -323,19 +323,17 @@
                     <td> {{ date('d-M-Y', strtotime($appliedJob->job->expire_date)) }}</td>
                     <td>
                         @if($appliedJob->application_status == "Shortlisted")
-                        <button class="status" style="background-color: lightgreen;color:white" disabled>Shortlist</button>
-                        @if($appliedJob->exam_link=='')
-                        <button wire:click="openExamPopUp('{{$appliedJob->job_id}}')" class="status" style="background-color:  blue;color:white">Examination</button>
+                        <button class="status" style="background-color: lightgreen;color:white;width:90px" disabled>Shortlist</button>
+                        <button wire:click="openExamPopUp('{{$appliedJob->job_id}}')" class="status" style="background-color:  blue;color:white;width:90px">Examination</button> <br>
+                        <button wire:click="openExamPopUp('{{$appliedJob->job_id}}')" class="status" style="background-color:  grey;color:white;width:90px">Interview</button>
+                    
                         @else
-                        <button class="status" style="background-color:  blue;color:white" disabled>Examination</button>
-                        @endif
-                        @else
-                        <button wire:click="open('{{$appliedJob->id}}')" class="status" style="background-color: green;color:white">Shortlist</button>
+                        <button wire:click="open('{{$appliedJob->id}}')" class="status" style="background-color: green;color:white;width:90px">Shortlist</button>
                         @endif
                         @if($appliedJob->application_status=="Rejected")
-                        <button class="status" style="background-color:  #FF9999;color:white" disabled>Reject</button>
+                        <button class="status" style="background-color:  #FF9999;color:white;width:90px" disabled>Reject</button>
                         @else
-                        <button wire:click="reject('{{$appliedJob->id}}')" class="status" style="background-color: red;color:white">Reject</button>
+                        <button wire:click="reject('{{$appliedJob->id}}')" class="status" style="background-color: red;color:white;width:90px">Reject</button>
                         @endif
                     </td>
 
