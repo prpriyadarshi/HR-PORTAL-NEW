@@ -120,6 +120,12 @@ Route::middleware(['auth:com'])->group(function () {
     Route::get('/JobSeekersAppliedJobs', function () {
         return view('job-seekers-applied-jobs');
     });
+
+    Route::get('/empregister', function () {
+        return view('emp-register-view');
+    });
+
+
 });
 
 Route::middleware(['auth:emp'])->group(function () {
@@ -146,7 +152,7 @@ Route::middleware(['auth:emp'])->group(function () {
     //Helpdesk module
     Route::get('/HelpDesk', HelpDesk::class);
 
-   
+
     // Related salary module and ITdeclaration Document center
     Route::get('/payslip', Payroll::class);
     Route::get('/slip', SalarySlips::class);
@@ -155,7 +161,7 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/document', Documentcenter::class);
     Route::get('/documents', Documents::class);
     Route::get('/team-on-leave-chart', TeamOnLeaveChart::class);
-   
+
     Route::get('/plan-A', PlanA::class)->name('plan-a');
     Route::get('/salary-revisions', SalaryRevisions::class)->name('salary-revisions');
 
