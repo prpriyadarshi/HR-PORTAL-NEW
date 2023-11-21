@@ -18,6 +18,7 @@ class JobseekersInterviewDetail extends Model
         'instructions',
         'company_website',
         'location_link',
+        'exam_link',
     ];
       public function user()
     {

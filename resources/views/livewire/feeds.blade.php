@@ -153,21 +153,16 @@
       }
  
       .menu-item:hover {
-        background: blue;
+        background: rgb(2, 17, 79);
         color: white;
+        text-decoration: none;
       }
     </style>
   </head>
  
   <body>
     <div class="container">
-      <!-- Left Menu and Content (Conditional) -->
-     
-        <!-- Add your menu items here -->
-      </div>
- 
-      <!-- Content Area -->
-      <div class="content" style="margin-top: -20px">
+    <div class="content" style="margin-top: -20px">
         <div class="horizontal-menu" style="display: flex; margin-top: 30px; background: white; padding: 10px;height:60px">
  
           <div class="menu-item">
@@ -202,13 +197,16 @@
  
         </div>
       </div>
- 
- 
-      <div class="top-menu" style="background-color: #f0f0f0;margin-top:20px">
-        <div class="B" style="width: 750px; height: 70px; border-top: 1px solid #E0DDDD; border-bottom: 1px solid #E0DDDD; background-color: #FFFFFF;font-size: 14px; font-family: Open Sans, sans-serif;padding:10px;margin-left:40px">
+      <div class="contanier"  style="margin-left:0%;width: 750px; height: 70px; border-top: 1px solid #E0DDDD; border-bottom: 1px solid #E0DDDD; background-color: #FFFFFF;font-size: 14px; font-family: Open Sans, sans-serif;padding:10px;margin-left:40px">
           <b> All Feeds</b>
           <p>Groups</p>
         </div>
+      </div>
+ 
+   
+ 
+      <div class="top-menu" style="background-color: #f0f0f0;margin-top:20px">
+       
  
  
    
@@ -231,7 +229,7 @@
                   </div>
                 </div>
                 <div style="display: flex;">
-                  <img src="https://cdn1.vectorstock.com/i/thumb-large/48/00/set-images-young-people-listening-to-music-vector-31034800.jpg" alt="Image Description" style="height: 160px; width: 160px; margin-left: 40px;">
+                  <img src="[padding:8px;https://cdn1.vectorstock.com/i/thumb-large/48/00/set-images-young-people-listening-to-music-vector-31034800.jpg" alt="Image Description" style="height: 160px; width: 160px; margin-left: 40px;">
                   <div style="display: flex; flex-direction: column; margin-left: 20px;">
                     <p style="font-size: 14px; font-family: 'Open Sans', sans-serif; margin-top: 10px; font-weight: 100; color: #677A8E;">
                       Happy Birthday {{ $data['employee']->first_name }} {{ $data['employee']->last_name }}, Have a great year ahead!

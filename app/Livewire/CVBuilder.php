@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\CVEntrie;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -135,8 +136,16 @@ class CVBuilder extends Component
         $this->reset();
     }
 
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/emplogin');
+    }
+    public $user;
     public function render()
     {
+        $this->user = auth()->user();
+
         return view('livewire.c-v-builder');
     }
 }

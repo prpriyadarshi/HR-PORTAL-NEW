@@ -248,7 +248,7 @@
     </style>
     <div class="container" style="background-color: #02134F; color: white; padding: 8px;">
         <div style="display: flex; align-items: start; justify-content: start;">
-            <img src="https://xsilica.com/images/xsilica_broucher_final_modified_05082016-2.png" alt="Logo" style="width: 200px; height: 50px; margin-right: 10px;">
+            <img src="{{ asset('storage/' . $user->company_logo) }}" alt="Logo" style="width: 200px; height: 50px; margin-right: 10px;border:1px solid white">
             <h1 style="font-size: 20px; margin-left:23%">Vendor - {{$user->full_name}}</h1>
         </div>
 

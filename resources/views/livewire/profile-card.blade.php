@@ -20,7 +20,7 @@
 
         <div>
 
-            <a href="/Settings" onclick="changePageTitle11()">
+            <a href="/Settings" onclick="changePageTitle123()">
 
                 <i style="color: white;" class="fas fa-cog"></i>
 

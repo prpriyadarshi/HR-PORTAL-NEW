@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('jobseekers_interview_details', function (Blueprint $table) {
+            $table->id();
             $table->string('user_id');
             $table->string('job_id');
             $table->date('interview_date');
@@ -19,6 +20,7 @@ return new class extends Migration
             $table->text('instructions')->nullable();
             $table->string('company_website')->nullable();
             $table->string('location_link')->nullable();
+            $table->string('exam_link')->nullable();
             $table->foreign('user_id')
                 ->references('user_id') // Assuming the primary key of the companies table is 'id'
                 ->on('users')
@@ -30,6 +32,7 @@ return new class extends Migration
                 ->onDelete('restrict')
                 ->onUpdate('cascade');
             $table->unique(['user_id', 'job_id']);
+            $table->timestamps();
         });
     }
 

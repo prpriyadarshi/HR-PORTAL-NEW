@@ -123,6 +123,27 @@
                 animation: mergeAndJumble 0.3s forwards;
             }
 
+        .animate {
+            animation: mergeAndJumble 0.3s forwards;
+        }
+        .notify{
+            display:flex;
+            justify-content:space-between;
+            padding:5px 10px;
+            align-items:center;
+        }
+        .team-Notify{
+            display:flex; 
+            flex-direction:column;
+            justify-content:start;
+            padding:5px 10px; 
+            
+        }
+        
+        .home-hover {
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    border-radius:5px;
+    }
             .animate {
                 animation: mergeAndJumble 0.3s forwards;
             }
@@ -139,46 +160,72 @@
                 border-radius: 5px;
             }
 
-            .home-hover:hover {
-                transform: scale(1.01);
-                cursor: pointer;
-                background-color: #fff;
-                box-shadow: 1px 2px rgba(0, 0, 0, 0.2);
-            }
-        </style>
-    </head>
-
-    <body>
-        <div class="container">
-            @if (session()->has('success'))
-
-            <div class="custom-alert alert-success" style="text-align: center;margin-left:25%;width: 500px;">
-                {{ session('success') }}
-            </div>
-            <script>
-                setTimeout(function() {
-                    const successMessage = document.querySelector('.custom-alert');
-                    if (successMessage) {
-                        successMessage.style.display = 'none';
-                    }
-                }, 5000);
-            </script>
-            @endif
-
-
-            <div class="left-menu">
-
-                <h2>Home</h2>
-                <!-- Add your menu items here -->
-            </div>
+    .home-hover:hover {
+        transform: scale(1.01);
+        cursor: pointer;
+        background-color: #fff;
+        box-shadow: 1px 2px rgba(0, 0, 0, 0.2);
+    }
+    .leave-display{
+        padding: 5px 10px; 
+        display: flex; 
+        flex-direction:row;
+        align-items: center; 
+        white-space: nowrap; 
+        overflow: hidden; 
+        background:#fafafa;
+        text-overflow: ellipsis; 
+        border-top:1px solid #ccc;
+        font-size: 12px;
+        gap:15px;
+    }
+    .team-leave{
+        display: flex; 
+        flex-direction:row;
+        align-items: center; 
+        white-space: nowrap; 
+        overflow: hidden; 
+        text-overflow: ellipsis; 
+        font-size: 12px;
+        gap:12px;
+    }
+    .net-salary{
+        display: flex; 
+        flex-direction:row;
+        align-items: center; 
+        white-space: nowrap; 
+        overflow: hidden; 
+        justify-content:space-between;
+        text-overflow: ellipsis; 
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+    @if (session()->has('success'))
+        <div class="custom-alert alert-success" style="text-align: center;margin-left:20%;width: 500px;">
+            {{ session('success') }}
+        </div>
+        <script>
+            setTimeout(function() {
+                const successMessage = document.querySelector('.custom-alert');
+                if (successMessage) {
+                    successMessage.style.display = 'none';
+                }
+            }, 5000);
+        </script>
+        @endif
 
         </div>
         <div class="content">
             <div style="display:flex; padding:10px 20px;">
                 <div>
                     <div class="greet">
-                        <h1 class="text-secondary-500 pb-1.5x" id="greetingText" style="font-size: 24px; font-family: montserrat;width:45%">Good Evening</h1>
+                    @if($this->greetingText)
+                        <h1 class="text-secondary-500 pb-1.5x" style="font-size: 24px; font-family: montserrat;width:45%">{{$greetingText}}</h1>
+                     @endif
                     </div>
+
                     <div class="banner-ad text-base max-w-lg text-secondary-400">
                         <carousel class="ng-star-inserted" style="width:470px">
                             <!-- Carousel content goes here -->
@@ -195,181 +242,199 @@
                         </div>
                     </div>
                 </div>
-                <img id="greeting-image" src="" alt="Greeting Image" style="height: 200px; width:300px ;margin-left:50px; ">
+
+                @if($this->greetingImage)
+                    <img src="{{ asset('/images/' . $greetingImage) }}" alt=" " style="width:300px;height:170px;margin-left:70px;">
+                @endif
+                <!-- <img id="greeting-image" src="" alt="Greeting Image" style="height: 200px; width:300px ;margin-left:50px; "> -->
             </div>
             <!-- main content -->
             <div class="container" style="display:flex; flex-direction:row; gap:5px; padding:10px 5pxx;">
-                <div class="first-col col-md-4" style=" padding:0;  display:flex; flex-direction:column;gap:5px;">
-                    <div class="home-hover">
-                        <div class="reviews">
-                            <div style="border-radius: 5px; border: 1px solid #CFCACA;  background-color: white;">
-                                <div class="heading" style="display:flex; justify-content:space-between;padding:5px 10px;">
-                                    <div style="color: #677A8E;font-weight:500;">
-                                        Review
+                    <div class="first-col col-md-4" style=" padding:0;  display:flex; flex-direction:column;gap:5px;" >
+                        <div class="home-hover">
+                               <div class="reviews">
+                                  <div style="border-radius: 5px; border: 1px solid #CFCACA;  background-color: white;">
+                                    <div class="heading" style="display:flex; justify-content:space-between;padding:5px 10px;">
+                                       <div style="color: #677A8E;font-weight:500;">
+                                            Review
+                                        </div>
+                                        <div >
+                                          <i class="fa fa-long-arrow-right" aria-hidden="true" style="color: #bbbbba;"></i>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <i class="fa fa-long-arrow-right" aria-hidden="true" style="color: #bbbbba;"></i>
-                                    </div>
-                                </div>
-                                @if($showLeaveApplies)
-                                <div class="notify">
-                                    <p style="color: black; font-size: 1.2rem; font-weight: 500;">
-                                        {{$count}} <br>
-                                        <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">Things to review</span>
-                                    </p>
-                                    <img src="https://png.pngtree.com/png-vector/20190214/ourlarge/pngtree-vector-notes-icon-png-image_509622.jpg" alt="" style="height: 50px; width: 50px;">
-                                </div>
-                                <div class="leave-display" style="background: #fafafa; padding: 5px 10px; display: flex; align-items: center;">
-                                    @for ($i = 0; $i < min($count, 2); $i++) <div class="circle-notify" style="height: 50px; width: 50px; border-radius: 60%; border: 2px solid #dcdcdc; margin-right: 5px;">
-                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDDbrRPghufD20Fgaa0IFT62n3vLc5lI5B_w&usqp=CAU" alt="" style="height: 45px; width: 45px; border-radius: 45%;"> <span>Leave</span>
-                                </div>
+                                    @if(($this->count) > 0)
+                                    
+                                          <div class="notify">
+                                                <p style="color: black; font-size: 1.2rem; font-weight: 500;">
+                                                    {{$count}} <br>
+                                                    <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">Things to review</span>
+                                                </p>
+                                                         
+                                                <img src="https://png.pngtree.com/png-vector/20190214/ourlarge/pngtree-vector-notes-icon-png-image_509622.jpg" alt="" style="height: 50px; width: 50px;">
+                                            </div>
+                                            <div class="leave-display" >
+                                           
+                                                @for ($i = 0; $i < min($count, 2); $i++)
+                                                    <div class="circle-notify" style="margin-right: 5px; display:flex; flex-direction:column;">
+                                                        @php
+                                                            function getRandomColor() {
+                                                                $colors = ['#FFD1DC', '#B0E57C', '#ADD8E6', '#E6E6FA', '#FFB6C1'];
+                                                                return $colors[array_rand($colors)];
+                                                            }
+                                                        @endphp
+                                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDDbrRPghufD20Fgaa0IFT62n3vLc5lI5B_w&usqp=CAU" alt="" style="height: 40px; width: 40px; border-radius: 50%;  border: 2px solid {{ getRandomColor() }};"><span>Leave</span>
+                                                    </div>
 
-                                @endfor
-                                @if ($count > 2)
-                                <div class="circle-notify" style="color:blue;cursor:pointer;">
-                                    +{{ $count - 2 }}
+                                                @endfor
+                                                @if ($count > 4)
+                                                    <div class="circle-notify" style="color:blue;cursor:pointer; margin-top:20px;display:flex;flex-direction:column;align-items:center;">
+                                                      <a href="#" style="color:blue;font-size:0.725rem;">+{{ $count - 4 }}</a>
+                                                       <p style="font-size:0.725rem;margin-top:-5px;"><span class="remaining" >More</span></p>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        @else
+                                           <img src="https://ftl.technology/images/theme-pics/case.png" alt="Image Description" style="height: 100px; width: 100px; margin-top: 10px; margin-left: 80px;">
+                                            <p style="color: #677A8E; margin-left: 50px; font-size: 14px; ">
+                                                Hurrah! You've nothing to review.
+                                            </p>
+                                        @endif
+                                    </div>
                                 </div>
-                                @endif
+                        </div>
+                        <div class="home-hover">
+                            <div style="border-radius: 5px; border: 1px solid #CFCACA;background-color: white;">
+                                  <div style="color: #677A8E; margin-left: 20px;font-weight:500; margin-top:10px;">
+                                                IT Declaration
+                                            </div>
+                                            <div style="display: flex;">
+                                                <img src="https://th.bing.com/th/id/OIP.ISoRyxX3652noSb_DpscdAHaHa?pid=ImgDet&rs=1" alt="Image Description" style="height: 60px; width: 60px; margin-top: 20px; margin-left: 20px;">
+                                                <div class="B" style="color:  #677A8E; margin-left: 20px;  font-size: 14px;margin-top:10px">
+                                                    <br>Hurrah! Considered your IT declaration for Apr 2023.</br>
+                                                    <a href="/formdeclaration" class="button-link">
+                                                        <button class="custom-button view-button" style="width:60px;border:1px solid blue;border-radius:5px;margin-bottom:10px;margin-left:120px;color:blue;background:#fff;margin-top:10px;">View</button>
+                                                    </a>
+                                                </div>
+                                             </div>
+                                        </div>
+                                    </div>
+                            <div class="home-hover">
+                                   <div style=" border-radius: 5px; border: 1px solid #CFCACA; background-color: white;">
+                                                <div style="color: #677A8E;font-weight:500; margin-left: 20px;  margin-top: 20px;">
+                                                    POI
+                                                </div>
+                                                <div style="display:flex; margin-top: 20px;"> <!-- Added margin-top here -->
+                                                    <img src="https://th.bing.com/th/id/OIP.So8FF1OSJHwqUi-IcIgQIgAAAA?pid=ImgDet&w=104&h=109&c=7&dpr=1.5" alt="Image Description" style="height: 30px; width: 30px; margin-top: 10px; margin-left: 20px;">
+                                                    <p style="color: #677A8E; margin-left: 20px; font-size: 14px;">Hold on! You can submit your Proof of Investments (POI) once released.</p>
+                                                </div>
+                                    </div>
+                              </div>
+
+                              <!-- TEAM ON LEAVE -->
+                              @if($this->showLeaveApplies)
+                               <div class="home-hover">
+                               <div class="reviews">
+                                  <div style="border-radius: 5px; border: 1px solid #CFCACA;  background-color: white;">
+                                    <div class="heading" style="display:flex; justify-content:space-between;padding:5px 10px;">
+                                       <div style="color: #677A8E;font-weight:500;">
+                                            Team On Leave
+                                        </div>
+                                        <div >
+                                          <i class="fa fa-long-arrow-right" aria-hidden="true" style="color: #bbbbba;"></i>
+                                        </div>
+                                    </div>
+                                    @if(($this->teamCount) > 0)
+                                          <div class="team-Notify">
+                                                <p style="color: #778899; font-size: 0.875rem; font-weight: 500;">
+                                                    Today({{$teamCount}}) </p>
+                                                    <div class="team-leave" >
+                                                        @php
+                                                            function getRandomLightColor() {
+                                                                $colors = ['#FFD1DC', '#B0E57C', '#ADD8E6', '#E6E6FA', '#FFB6C1'];
+                                                                return $colors[array_rand($colors)];
+                                                            }
+                                                        @endphp
+
+                                                        @for ($i = 0; $i < min($teamCount, 4); $i++)
+                                                                <?php
+                                                                    $teamLeave = $this->teamOnLeave[$i] ?? null;
+                                                                    if ($teamLeave) {
+                                                                        $initials = strtoupper(substr($teamLeave->employee->first_name, 0, 1) . substr($teamLeave->employee->last_name, 0, 1));
+                                                                ?>
+                                                                    <div class="circle-notify" style="margin-right: 5px; border-radius: 50%; background: #fcfdfe; padding: 8px 8px; border: 2px solid {{ getRandomLightColor() }};">
+                                                                        <span>{{$initials}}</span>
+                                                                    </div> 
+                                                                <?php
+                                                                    }
+                                                                ?>
+                                                            @endfor
+                                                            @if ($teamCount > 4)
+                                                                <div class="circle-notify" style="color:blue;cursor:pointer; margin-top:20px;display:flex;flex-direction:column;align-items:center;">
+                                                                <a href="#" style="color:blue;font-size:0.725rem;">+{{ $teamCount - 4 }}</a>
+                                                                <p style="font-size:0.725rem;margin-top:-5px;"><span class="remaining" >More</span></p>
+                                                                </div>
+                                                            @endif
+                                                        </div>
+                                                        
+                                                    <div style="margin-top:20px;">
+                                                    <p style="color: #778899; font-size: 0.875rem; font-weight: 500;">
+                                                    This month({{$upcomingLeaveApplications}}) </p>
+                                                    <p style="color: #778899; font-size: 0.825rem; font-weight: 400;"><a href="/team-on-leave-chart">Click here</a> to see who will be on leave in the upcoming days!</p>
+                                                    </div>
+                                            </div>
+                                        @else
+                                           <img src="https://ftl.technology/images/theme-pics/case.png" alt="Image Description" style="height: 100px; width: 100px; margin-top: 10px; margin-left: 80px;">
+                                            <p style="color: #677A8E; margin-left: 50px; font-size: 14px; ">
+                                                Wow!No leaves planned today.
+                                            </p>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
-                            @else
-                            <img src="https://ftl.technology/images/theme-pics/case.png" alt="Image Description" style="height: 100px; width: 100px; margin-top: 10px; margin-left: 80px;">
-                            <p style="color: #677A8E; margin-left: 50px; font-size: 14px; ">
-                                Hurrah! You've nothing to review.
-                            </p>
                             @endif
                         </div>
-                    </div>
-                </div>
-                <div class="home-hover">
-                    <div style="border-radius: 5px; border: 1px solid #CFCACA;background-color: white;">
-                        <div style="color: #677A8E; margin-left: 20px;font-weight:500; margin-top:10px;">
-                            IT Declaration
-                        </div>
-                        <div style="display: flex;">
-                            <img src="https://th.bing.com/th/id/OIP.ISoRyxX3652noSb_DpscdAHaHa?pid=ImgDet&rs=1" alt="Image Description" style="height: 60px; width: 60px; margin-top: 20px; margin-left: 20px;">
-                            <div class="B" style="color:  #677A8E; margin-left: 20px;  font-size: 14px;margin-top:10px">
-                                <br>Hurrah! Considered your IT declaration for Apr 2023.</br>
-                                <a href="/formdeclaration" class="button-link">
-                                    <button class="custom-button view-button" style="width:60px;border:1px solid blue;border-radius:5px;margin-bottom:10px;margin-left:120px;color:blue;background:#fff;margin-top:10px;">View</button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="home-hover">
-                    <div style=" border-radius: 5px; border: 1px solid #CFCACA; background-color: white;">
-                        <div style="color: #677A8E;font-weight:500; margin-left: 20px;  margin-top: 20px;">
-                            POI
-                        </div>
-                        <div style="display:flex; margin-top: 20px;"> <!-- Added margin-top here -->
-                            <img src="https://th.bing.com/th/id/OIP.So8FF1OSJHwqUi-IcIgQIgAAAA?pid=ImgDet&w=104&h=109&c=7&dpr=1.5" alt="Image Description" style="height: 30px; width: 30px; margin-top: 10px; margin-left: 20px;">
-                            <p style="color: #677A8E; margin-left: 20px; font-size: 14px;">Hold on! You can submit your Proof of Investments (POI) once released.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- TEAM ON LEAVE -->
-                @if($this->showLeaveApplies)
-                <div class="home-hover">
-                    <div class="reviews">
-                        <div style="border-radius: 5px; border: 1px solid #CFCACA;  background-color: white;">
-                            <div class="heading" style="display:flex; justify-content:space-between;padding:5px 10px;">
-                                <div style="color: #677A8E;font-weight:500;">
-                                    Team On Leave
+                        <!-- second column -->
+                    <div class="first-col col-md-4" style=" padding:0; display:flex; flex-direction:column;gap:5px;">
+                        <div class="home-hover">
+                           <div style=" border-radius: 5px; border: 1px solid #CFCACA;  background-color: #EDF3FF;">
+                                    <div style="color: black; padding:10px 15px;">
+                                        <p style="font-weight: normal;">{{$currentDate}}</p>
+                                        <p style="margin-top: 10px; color: #9E9696; font-size: 12px;">{{$currentDay}} | 10:00 AM to 07:00 PM</p>
+                                        <div style=" font-size: 14px;" id="current-time">15 : 19 : 00</div>
+                                        <script>
+                                            function updateTime() {
+                                                const currentTimeElement = document.getElementById('current-time');
+                                                const now = new Date();
+                                                const hours = String(now.getHours()).padStart(2, '0');
+                                                const minutes = String(now.getMinutes()).padStart(2, '0');
+                                                const seconds = String(now.getSeconds()).padStart(2, '0');
+                                                const currentTime = `${hours} : ${minutes} : ${seconds}`;
+                                                currentTimeElement.textContent = currentTime;
+                                            }
+                                            updateTime();
+                                            setInterval(updateTime, 1000);
+                                        </script>
+                                        <div class="A" style="display: flex;flex-direction:row;justify-content:space-between; align-items:center;margin-top:10px;">
+                                            <a style="width:40%;font-size:0.855rem;cursor: pointer;color:blue" wire:click="open">View Swipes</a>
+                                
+                                            <button id="signButton" style="color: white; width: 100px; height: 30px; background-color: rgb(2, 17, 79); border: 1px solid #CFCACA; border-radius: 5px; " wire:click="toggleSignState">
+                                                @if ($signIn)
+                                                Sign In
+                                                @else
+                                                Sign Out
+                                                @endif
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <i class="fa fa-long-arrow-right" aria-hidden="true" style="color: #bbbbba;"></i>
-                                </div>
-                            </div>
-                            @if(($this->teamCount) > 0)
-                            <div class="team-Notify">
-                                <p style="color: #778899; font-size: 0.875rem; font-weight: 500;">
-                                    Today({{$teamCount}}) </p>
-                                <div class="team-leave">
-                                    @php
-                                    function getRandomLightColor() {
-                                    $colors = ['#FFD1DC', '#B0E57C', '#ADD8E6', '#E6E6FA', '#FFB6C1'];
-                                    return $colors[array_rand($colors)];
-                                    }
-                                    @endphp
-
-                                    @for ($i = 0; $i < min($teamCount, 4); $i++) <?php
-                                                                                    $teamLeave = $this->teamOnLeave[$i] ?? null;
-                                                                                    if ($teamLeave) {
-                                                                                        $initials = strtoupper(substr($teamLeave->employee->first_name, 0, 1) . substr($teamLeave->employee->last_name, 0, 1));
-                                                                                    ?> <div class="circle-notify" style="margin-right: 5px; border-radius: 50%; background: #fcfdfe; padding: 8px 8px; border: 2px solid {{ getRandomLightColor() }};">
-                                        <span>{{$initials}}</span>
-                                </div>
-                            <?php
-                                                                                    }
-                            ?>
-                            @endfor
-                            @if ($teamCount > 4)
-                            <div class="circle-notify" style="color:blue;cursor:pointer; margin-top:20px;display:flex;flex-direction:column;align-items:center;">
-                                <a href="#" style="color:blue;font-size:0.725rem;">+{{ $teamCount - 4 }}</a>
-                                <p style="font-size:0.725rem;margin-top:-5px;"><span class="remaining">More</span></p>
-                            </div>
-                            @endif
-                            </div>
-
-                            <div style="margin-top:20px;">
-                                <p style="color: #778899; font-size: 0.875rem; font-weight: 500;">
-                                    This month({{$upcomingLeaveApplications}}) </p>
-                                <p style="color: #778899; font-size: 0.825rem; font-weight: 400;"><a href="/team-on-leave-chart">Click here</a> to see who will be on leave in the upcoming days!</p>
-                            </div>
                         </div>
-                        @else
-                        <img src="https://ftl.technology/images/theme-pics/case.png" alt="Image Description" style="height: 100px; width: 100px; margin-top: 10px; margin-left: 80px;">
-                        <p style="color: #677A8E; margin-left: 50px; font-size: 14px; ">
-                            Wow!No leaves planned today.
-                        </p>
-                        @endif
-                    </div>
-                </div>
-            </div>
-            @endif
-
-        </div>
-        <!-- second column -->
-        <div class="first-col col-md-4" style=" padding:0; display:flex; flex-direction:column;gap:5px;">
-            <div class="home-hover">
-                <div style=" border-radius: 5px; border: 1px solid #CFCACA;  background-color: #EDF3FF;">
-                    <div style="color: black; padding:10px 15px;">
-                        <p style="font-weight: normal;">{{$currentDate}}</p>
-                        <p style="margin-top: 10px; color: #9E9696; font-size: 12px;">{{$currentDay}} | 10:00 AM to 07:00 PM</p>
-                        <div style=" font-size: 14px;" id="current-time">15 : 19 : 00</div>
-                        <script>
-                            function updateTime() {
-                                const currentTimeElement = document.getElementById('current-time');
-                                const now = new Date();
-                                const hours = String(now.getHours()).padStart(2, '0');
-                                const minutes = String(now.getMinutes()).padStart(2, '0');
-                                const seconds = String(now.getSeconds()).padStart(2, '0');
-                                const currentTime = `${hours} : ${minutes} : ${seconds}`;
-                                currentTimeElement.textContent = currentTime;
-                            }
-                            updateTime();
-                            setInterval(updateTime, 1000);
-                        </script>
-                        <div class="A" style="display: flex;flex-direction:row;justify-content:space-between; align-items:center;margin-top:10px;">
-                            <a style="width:40%;font-size:0.855rem;cursor: pointer;color:blue" wire:click="open">View Swipes</a>
-                            <button id="signButton" style="color: white; width: 100px; height: 30px; background-color: rgb(2, 17, 79); border: 1px solid #CFCACA; border-radius: 5px; " wire:click="toggleSignState">
-                                @if ($signIn)
-                                Sign In
-                                @else
-                                Sign Out
-                                @endif
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="home-hover">
-                @forelse($salaryRevision as $salaries)
-                <div style="border-radius: 5px; border: 1px solid #CFCACA;background-color:white">
-                    <div style="color: #677A8E; margin-left: 10px; font-weight:500; margin-top: 20px;">
-                        Payslip
-                        <a href="/slip" style="font-size:16px; margin-left: 180px;">&rarr;</a>
-                    </div>
+                        <div class="home-hover">
+                          @forelse($salaryRevision as $salaries)
+                             <div style="border-radius: 5px; border: 1px solid #CFCACA;background-color:white;padding:10px 20px;">
+                                            <div style="color: #677A8E;  font-weight:500; display:flex;justify-content:space-between;">
+                                                Payslip
+                                                <a href="/slip" style="font-size:16px; ">&rarr;</a>
+                                            </div>
 
                     <div style="display:flex">
                         <div style="position: relative;">
@@ -432,7 +497,7 @@
                                 <span aria-hidden="true" style="color: white;">×</span>
                             </button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body" style="max-height:500;overflow-y:auto">
                             <div class="row">
                                 <div class="col" style="font-size: 10px;">Date : <b>{{$currentDate}}</b></div>
                                 <div class="col" style="font-size: 10px;">Shift Time : <b>10:00 to 19:00</b></div>
@@ -521,36 +586,6 @@
 </html>
 </div>
 <script>
-    // Get the current hour of the day (0-23)
-    const currentHour = new Date().getHours();
-
-    // Get the greeting element by its ID
-    const greetingElement = document.getElementById('greetingText');
-
-    // Define an array of greetings based on the time of day
-    const greetings = [
-        'Good Morning',
-        'Good Afternoon',
-        'Good Evening',
-        'Good Night'
-    ];
-
-    // Determine the appropriate greeting based on the time of day
-    let greeting;
-    if (currentHour >= 5 && currentHour < 12) {
-        greeting = greetings[0]; // Morning
-    } else if (currentHour >= 12 && currentHour < 17) {
-        greeting = greetings[1]; // Afternoon
-    } else if (currentHour >= 17 && currentHour < 20) {
-        greeting = greetings[2]; // Evening
-    } else {
-        greeting = greetings[3]; // Night
-    }
-
-    // Update the greeting text
-    greetingElement.textContent = greeting;
-</script>
-<script>
     // Function to change the quote text
     function changeQuote() {
         const quotes = [{
@@ -582,9 +617,7 @@
 
     // Set an interval to change the quote every 5 seconds (5000 milliseconds)
     setInterval(changeQuote, 5000);
- 
- 
- 
+
  
     var data = {
     labels: ['Gross Pay'],

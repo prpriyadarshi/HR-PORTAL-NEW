@@ -76,8 +76,8 @@ class LoginAndRegisterForJobs extends Component
             'user_address' => 'required',
             'user_type' => 'required'
         ]);
-        $resumePath = $this->user_resume->store('resumes', 'public');
-        User::create([
+
+        $userData = [
             'company_id' => $this->company_id,
             'company_name' => $this->company_name,
             'company_logo' => $this->company_logo,
@@ -88,8 +88,19 @@ class LoginAndRegisterForJobs extends Component
             'mobile_no' => $this->user_mobile_no,
             'work_status' => $this->user_work_status,
             'address' => $this->user_address,
-            'resume' => $resumePath,
-        ]);
+        ];
+
+        if ($this->user_resume) {
+            $resumePath = $this->user_resume->store('resumes', 'public');
+            $userData['resume'] = $resumePath;
+        }
+
+        if ($this->company_logo) {
+            $companyLogoPath = $this->company_logo->store('vendor_company_logo', 'public');
+            $userData['company_logo'] = $companyLogoPath;
+        }
+
+        User::create($userData);
         return redirect('/Jobs');
     }
 

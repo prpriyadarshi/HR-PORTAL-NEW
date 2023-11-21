@@ -39,6 +39,27 @@ class Home extends Component
     public $netPay;
     public $leaveRequests;
     public $showLeaveApplies;
+    public $greetingImage;
+    public $greetingText;
+ 
+    public function mount()
+    {
+        $currentHour = date('G');
+ 
+        if ($currentHour >= 4 && $currentHour < 12) {
+            $this->greetingImage = 'sunrise.png';
+            $this->greetingText = 'Good Morning';
+        } elseif ($currentHour >= 12 && $currentHour < 17) {
+            $this->greetingImage = 'afternoon.png';
+            $this->greetingText = 'Good Afternoon';
+        } elseif ($currentHour >= 17 && $currentHour < 20) {
+            $this->greetingImage = 'sunset.png';
+            $this->greetingText = 'Good Evening';
+        } else {
+            $this->greetingImage = 'goodnight.png';
+            $this->greetingText = 'Good Night';
+        }
+    }
     public function toggleSignState()
     {
         $employeeId = auth()->guard('emp')->user()->emp_id;

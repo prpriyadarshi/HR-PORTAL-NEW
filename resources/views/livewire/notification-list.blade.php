@@ -75,31 +75,40 @@
         <div class="card">
             <div class="row">
                 <div class="col">
-                    <h6 style="font-size:13px;text-align: center;background-color:#02134F;color:white;padding:5px">{{$list->job->company_name}} Job Interview Invitation</h6>
+                    <h6 style="font-size: 13px; text-align: center; background-color: #02134F; color: white; padding: 5px">
+                        {{$list->job->company_name}} Online Exam Invitation
+                    </h6>
                 </div>
             </div>
             <p>Dear <strong>{{$list->user->full_name}}</strong>,</p>
-            <p>We are pleased to invite you for an interview for the position of <strong>{{$list->job->title}}</strong> at <strong>{{$list->job->company_name}}</strong> comapany.</p>
-            <button wire:click="showJobDetails('{{$list->job->job_id}}')" style="background-color: #02134F;color:white;width:150px;border:none;border-radius:5px;font-size:12px">View full job details</button>
-            <p><strong>Interview Details:</strong></p>
-            <ul>
-                <li><strong>Date:</strong> {{ date('d-M-Y', strtotime($list->interview_date)) }}</li>
-                <li><strong>Time:</strong> {{$list->interview_time}} (Railway Time)</li>
-                <li><strong>Location:</strong> {{$list->job->location}}</li>
-            </ul>
+            <p>We are pleased to invite you to participate in an online examination for the position of <strong>{{$list->job->title}}</strong> at <strong>{{$list->job->company_name}}</strong> company.</p>
+            <button wire:click="showJobDetails('{{$list->job->job_id}}')" style="background-color: #02134F; color: white; width: 150px; border: none; border-radius: 5px; font-size: 12px">
+                View full job details
+            </button>
+            <strong style="margin-top: 5px;margin-bottom:5px">Exam Details:</strong>
+            <li><strong>Date:</strong> {{ date('d-M-Y', strtotime($list->exam_date)) }}</li>
+            <li><strong>Time:</strong> {{$list->interview_time}} (Railway Time)</li>
+            <li><strong>Location:</strong> <a href="{{$list->location_link}}"><strong>location link</strong></a></li> <!-- Add this line for location -->
+            <li><strong>Platform:</strong> Online</li>
+
             <p><strong>Instructions:</strong></p>
             <p>{{$list->instructions}}</p>
-            <p><strong>Location:</strong></p>
-            <p>You can find our office location on Google Maps by following this link: <a href="{{$list->location_link}}" target="_blank"><strong>Google Maps</strong></a></p>
+
             <p><strong>Company Website:</strong></p>
-            <p>For more information about <strong>{{$list->job->company_name}}</strong> Company, please visit our <a href="{{$list->company_website}}" target="_blank"><strong>website</strong></a></p>
-            <p>Please confirm your attendance by replying to this email or by calling us at <strong>{{$list->job->contact_phone}}</strong>. If the provided date and time are not convenient for you, let us know, and we will try to accommodate your schedule.</p>
-            <p>Attached to this email, you will find the interview agenda and additional information about our company.</p>
-            <p>If you have any questions or require further information, please do not hesitate to contact me at <strong>{{$list->job->contact_email}}</strong> or <strong>{{$list->job->contact_phone}}</strong>.</p>
-            <p>We look forward to meeting you and discussing your potential contribution to our team.</p>
+            <p>For more information about <strong>{{$list->job->company_name}}</strong> Company, please visit our <a href="{{$list->company_website}}" target="_blank"><strong>website link</strong></a></p>
+
+            <p>Please confirm your participation by replying to this email or by following the instructions provided in the online exam portal. If the provided date and time are not convenient for you, please let us know, and we will make arrangements accordingly.</p>
+
+            <p>If you have any questions or require further information, please do not hesitate to contact us at <strong>{{$list->job->contact_email}}</strong> or <strong>{{$list->job->contact_phone}}</strong>.</p>
+
+            <p>We look forward to your participation in the online examination.</p>
+
             <p>Sincerely,<br><strong>{{$list->job->hr_name}}</strong><br><strong>HR Manager</strong><br>{{$list->job->company}}</p>
+
         </div>
         @endforeach
+
     </body>
+
     </html>
 </div>

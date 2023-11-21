@@ -118,10 +118,10 @@
 @endif
 </div>
 @foreach($employees as $employee)
-<div class="card" style="width: 60%;margin-top:20px;padding:10px">
+<div class="card" style="width: 800px;margin-top:20px;padding:10px">
         <div class="row">
-            <div class="col-md-2">
-                <img style="border-radius: 50%;" height="80" width="80" src="{{ asset($employee->image) }}">
+            <div class="col-md-2" >
+                <img style="border-radius: 50%;padding:8px" height="80" width="80" src="{{ asset($employee->image) }}">
             </div>
             <div class="col-md-5">
                 <div style="font-size:12px;"><strong>{{$employee->first_name}} {{$employee->last_name}}</strong></div>
@@ -148,7 +148,7 @@
         </div>
     </div>
     <div class="card" style="margin-top: 20px;height:auto;width:800px;margin-bottom:10px">
-        <div class="card-header" style="background-color: rgb(2, 17, 79);color:white;font-size: 15px;">
+        <div class="card-header" style="background-color: rgb(2, 17, 79);color:white;font-size: 15px;width:787px">
             My Profile
         </div>
         <div class="container">
@@ -156,10 +156,10 @@
                 <div class="col" style="color: grey;font-size: 12px;">
                     Nick Name
                 </div>
-                <div class="col" style="color: grey;font-size: 12px;">
+                <div class="col" style="color: grey;font-size: 12px;margin-left:80px">
                     Wish Me On
                 </div>
-                <div class="col" style="margin-left: 54%;font-size:12px">
+                <div class="col" style="margin-left: 44%;font-size:12px">
                     @if($editingNickName)
                     <i wire:click="editProfile" class="fas fa-edit"></i>
                     <i wire:click="cancelProfile" class="fas fa-times"></i>
@@ -174,14 +174,14 @@
                 <div class="col">
                     <input style="width:150px;font-size:12px" type="text" class="form-control" wire:model="nickName" placeholder="Enter Nick Name">
                 </div>
-                <div class="col">
+                <div class="col" style="margin-right: 50%;">
                     <input style="width: 150px; font-size: 12px;" type="date" id="date_of_birth" placeholder="Select Wish Me On" name="date_of_birth" wire:model="wishMeOn" max="{{ date('Y-m-d') }}">
                 </div>
             </div>
             @else
             <div class="row" style="margin-top: 10px;">
                 <div class="col" style="color: black; font-size: 12px;">{{$employee->nick_name}}</div>
-                <div class="col" style="color: black; font-size: 12px;">{{ \Carbon\Carbon::parse($employee->date_of_birth)->format('d-M-Y') }}</div>
+                <div class="col" style="color: black; font-size: 12px;margin-right:50%">{{ \Carbon\Carbon::parse($employee->date_of_birth)->format('d-M-Y') }}</div>
             </div>
             @endif
         </div>
@@ -234,7 +234,7 @@
             @if ($editingBiography)
             <div class="row" style="margin-top: 10px;">
                 <div class="col" style="color: black; font-size: 12px;">
-                    <textarea style="width:250px;font-size:12px" wire:model="biography" id="biography" class="form-control" placeholder="Enter Biography" rows="4"></textarea>
+                    <textarea style="width:100%;font-size:12px" wire:model="biography" id="biography" class="form-control" placeholder="Enter Biography" rows="4"></textarea>
                 </div>
             </div>
             @else
