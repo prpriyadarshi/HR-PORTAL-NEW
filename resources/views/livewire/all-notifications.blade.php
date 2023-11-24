@@ -122,6 +122,9 @@
                 <label class="radio-option">
                     <input type="radio" name="formType" value="register" wire:click="$set('activeTab', 'Examinations')"> Examinations
                 </label>
+                <label class="radio-option">
+                    <input type="radio" name="formType" value="register" wire:click="$set('activeTab', 'Interviews')"> Interviews
+                </label>
             </div>
 
             @if($activeTab=="Shorlisted")
@@ -167,7 +170,7 @@
 
             @endforeach
             @else
-            <div class="not-found-message">No examinations found at the moment.</div>
+            <div style="margin-top: 10px;" class="not-found-message">No examinations found at the moment.</div>
             @endif
             @endif
 

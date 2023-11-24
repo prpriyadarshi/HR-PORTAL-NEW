@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\AppliedJob;
 use App\Models\Job;
+use App\Models\JobseekersExamDetails;
 use App\Models\JobseekersInterviewDetail;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -28,7 +29,7 @@ class NotificationList extends Component
     {
         $this->user = auth()->user();
 
-        $this->notificationList = JobseekersInterviewDetail::with('user', 'job', 'company')
+        $this->notificationList = JobseekersExamDetails::with('user', 'job', 'company')
             ->where('user_id', $this->user->user_id)
             ->where('job_id', $jobId) // Add this condition to filter by the specific job_id
             ->orderBy('created_at', 'desc')

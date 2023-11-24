@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\AppliedJob;
 use App\Models\Company;
 use App\Models\Job;
+use App\Models\JobseekersExamDetails;
 use App\Models\JobseekersInterviewDetail;
 use App\Models\User;
 use Illuminate\Database\QueryException;
@@ -108,7 +109,7 @@ class Jobs extends Component
             ->orderBy('created_at', 'desc')
             ->get();
         $this->user = auth()->user();
-        $this->notificationList = JobseekersInterviewDetail::with('user', 'job', 'company')
+        $this->notificationList = JobseekersExamDetails::with('user', 'job', 'company')
             ->where('user_id', $this->user->user_id)
             ->orderBy('created_at', 'desc')
             ->get();
@@ -118,10 +119,9 @@ class Jobs extends Component
             ->whereIn('application_status', ['Shortlisted', 'Rejected'])
             ->count();
 
-        $this->examinationCount = JobseekersInterviewDetail::with('user', 'job')
+        $this->examinationCount = JobseekersExamDetails::with('user', 'job')
             ->where('user_id', $this->user->user_id)
             ->whereNotNull('exam_link')
-            ->whereDate('interview_date', now()->toDateString())
             ->count();
 
         $this->allNotificationCount = $this->selectOrNot + $this->examinationCount;

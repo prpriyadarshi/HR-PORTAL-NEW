@@ -323,10 +323,9 @@
                     <td> {{ date('d-M-Y', strtotime($appliedJob->job->expire_date)) }}</td>
                     <td>
                         @if($appliedJob->application_status == "Shortlisted")
-                        <button class="status" style="background-color: lightgreen;color:white;width:90px" disabled>Shortlist</button>
+                        <button class="status" style="background-color: lightgreen;color:white;width:90px;margin-bottom:5px" disabled>Shortlist</button>
                         <button wire:click="openExamPopUp('{{$appliedJob->job_id}}')" class="status" style="background-color:  blue;color:white;width:90px">Examination</button> <br>
-                        <button wire:click="openExamPopUp('{{$appliedJob->job_id}}')" class="status" style="background-color:  grey;color:white;width:90px">Interview</button>
-                    
+                        <button wire:click="openInterview('{{$appliedJob->job_id}}')" class="status" style="background-color:  grey;color:white;width:90px;margin-bottom:5px">Interview</button>
                         @else
                         <button wire:click="open('{{$appliedJob->id}}')" class="status" style="background-color: green;color:white;width:90px">Shortlist</button>
                         @endif
@@ -428,6 +427,47 @@
             </div>
         </div>
     </div>
+</div>
+@endif
+
+
+@if($interviewPopup=="true")
+<div class="modal" tabindex="-1" role="dialog" style="display: block;overflow-y:auto">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: rgb(2, 17, 79); height: 50px">
+                <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title"><b>Interview Details</b></h5>
+                <button type="button" wire:click="closeInterview">
+                    <span aria-hidden="true" style="color: black;">×</span>
+                </button>
+            </div>
+            <div style="padding: 5px;">
+                <label style="font-size: 12px;" for="date">Date:</label>
+                <input style="font-size: 12px;" class="input-fields" wire:model="examDate" type="date" id="date" readonly><br>
+                @error('examDate') <span class="text-danger">{{ $message }}</span> @enderror <br>
+
+                <label style="font-size: 12px;" for="time">Time:</label>
+                <input style="font-size: 12px;" class="input-fields" wire:model="examTime" type="time" readonly><br>
+                @error('examTime') <span class="text-danger">{{ $message }}</span> @enderror <br>
+
+                <label style="font-size: 12px;" for="location">Examination Link:</label>
+                <input style="font-size: 12px;" class="input-fields" wire:model="examLink" type="text"><br>
+                @error('examLink') <span class="text-danger">{{ $message }}</span> @enderror <br>
+
+                <div class="row" style="text-align: center">
+                    <div class="col">
+                        <button type="button" wire:click="sendExamLink" style="background-color: blue;color:white;border:none;border-radius:5px">
+                            Send
+                        </button>
+                    </div>
+                    <div class="col">
+                        <button type="button" wire:click="closeInterview" style="background-color: red;color:white;border:none;border-radius:5px">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 @endif
 </div>

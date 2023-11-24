@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('user_id');
             $table->string('job_id');
-            $table->date('interview_date');
-            $table->time('interview_time');
+            $table->date('exam_date');
+            $table->time('exam_time');
             $table->text('instructions')->nullable();
             $table->string('company_website')->nullable();
             $table->string('location_link')->nullable();
@@ -41,6 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jobseekers_interview_details');
+        Schema::dropIfExists('jobseekers_exam_details');
     }
 };
