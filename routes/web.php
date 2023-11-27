@@ -120,6 +120,12 @@ Route::middleware(['auth:com'])->group(function () {
     Route::get('/JobSeekersAppliedJobs', function () {
         return view('job-seekers-applied-jobs');
     });
+
+    Route::get('/empregister', function () {
+        return view('emp-register-view');
+    });
+
+
 });
 
 Route::middleware(['auth:emp'])->group(function () {

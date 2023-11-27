@@ -16,9 +16,9 @@ return new class extends Migration
             $table->id();
             $table->string('user_id')->unique();
             $table->enum('user_type', ['Job Seeker', 'Vendor']);
-            $table->string('company_id');
-            $table->string('company_name');
-            $table->string('company_logo');
+            $table->string('company_id')->nullable();
+            $table->string('company_name')->nullable();
+            $table->string('company_logo')->nullable();
             $table->string('image')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
