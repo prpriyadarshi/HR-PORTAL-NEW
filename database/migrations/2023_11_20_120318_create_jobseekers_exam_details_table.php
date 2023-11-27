@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jobseekers_interview_details', function (Blueprint $table) {
+        Schema::create('jobseekers_exam_details', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
             $table->string('job_id');
