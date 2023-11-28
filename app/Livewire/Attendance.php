@@ -57,15 +57,15 @@ private function calculateActualHours($swipe_records)
 }
   public function viewDetails($id)
   {
+   
+    $student = SwipeRecord::find($id);
     
-    $student = SwipeRecord::where('id', $id)->first();
- 
-
+   
     // $this->view_student_id = $student->student_id;
     $this->view_student_emp_id = $student->emp_id;
-   
+    
     $this->view_student_swipe_time= $student->swipe_time;
-   
+    
     $this->view_student_in_or_out= $student->in_or_out;
     
   }

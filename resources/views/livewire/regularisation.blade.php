@@ -124,7 +124,7 @@
 }
  /* Style for the Submit button */
  #submitButton {
-        background-color: #4CAF50; /* Green background */
+        background-color:rgb(2, 17, 79);
         color: white; /* White text */
         padding: 10px 20px; /* Padding around the text */
         border: none; /* No border */
@@ -134,8 +134,8 @@
 
     /* Style for the Cancel button */
     #cancelButton {
-        background-color: #f44336; /* Red background */
-        color: white; /* White text */
+        /* Red background */
+        color:rgb(2, 17, 79);/* White text */
         padding: 10px 20px; /* Padding around the text */
         border: none; /* No border */
         cursor: pointer; /* Cursor style on hover */
@@ -257,9 +257,9 @@ button#saveReasonButton:hover {
 
 .hidden-pending-box
 {
-    display: none;
+    
     background-color: #fff;
-    margin-top:300px;
+    margin-top:10px;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
@@ -267,7 +267,7 @@ button#saveReasonButton:hover {
     margin-left:30px;
     position: absolute;
     top: 50%;
-    left: 50%;
+    left:40%;
     height:320px;
     width:900px;
     transform: translate(-50%, -50%);
@@ -472,6 +472,9 @@ thead th:nth-child(2) {
 
         }
 </style>   
+@if($isManager1)
+    <p>hii</p>
+@endif    
 @if (session('success'))
     <div class="alert alert-success" id="success-message">
         {{ session('success') }}
@@ -502,14 +505,17 @@ thead th:nth-child(2) {
     <div class="selected-option">
       <!-- Initial content of selected option -->
       <img class="manager-image" src="images/manager1.jpg" alt="Manager 1 Image">
-      <span>{{$manager1[0]->report_to}}  #{{$manager1[0]->manager_id}}</span>
+      <span style="text-align:start;">{{$manager2->report_to}} #{{$manager2->manager_id}}</span>
+      
     </div>
    
     <div class="dropdown-options" style="justify-content:space-between;text-align:start; gap:10px;margin-bottom:20px;">
-     @foreach($manager1 as $m)
+     @foreach($manager11 as $m)
       <div class="manager-info" data-value="1"style="display:flex;flex-direction:row;text-align:start;"   >
         <img class="manager-image" src="images/manager1.jpg" alt="Manager 1 Image"style=" width: 35px;height:35px; ">
+        
         <span style="text-align:start;">{{$m->report_to}} #{{$m->manager_id}}</span>
+
       </div>
      @endforeach
     </div>
@@ -519,8 +525,8 @@ thead th:nth-child(2) {
         <div class="mother-box"id="motherbox"style="display:none;align-items: center;height:260px;">
            <div id="dateAndDay"style="margin-right:30px;">
                <div style="display:flex;flex-direction:row;margin-top:-60px;margin-right:20px;">
-                <p id="currentDate1" style="margin-right: 80px; display: inline-block;"></p>
-                <p id="currentDay1" style="margin-left: 20px; display: inline-block;"></p>
+                 <p id="currentDate1" style="margin-right: 80px; display: inline-block;"></p>
+                 <p id="currentDay1" style="margin-left: 20px; display: inline-block;"></p>
 
                  <label for="timeSlot"></label>
                  <select id="timeSlot" disabled>
@@ -535,6 +541,7 @@ thead th:nth-child(2) {
       <th style="width: 20%;">From</th>
       <th style="width: 20%;">To</th>
       <th style="width: 100%;">Reason</th>
+      <th style="width: 100%;">Date</th>
     </tr>
   </thead>
   <tbody>
@@ -547,6 +554,9 @@ thead th:nth-child(2) {
       </td>
       <td style="width: 150%">
         <input type="text" name="reason" id="reason" placeholder="Reason" wire:model="reason" style="width: 100%; padding: 20px;">
+      </td>
+      <td style="width: 150%">
+        <input type="date" name="date" id="date" placeholder="Enter Date" wire:model="date" style="width: 100%; padding: 20px;">
       </td>
     </tr>
   </tbody>
@@ -562,9 +572,9 @@ thead th:nth-child(2) {
                 </button>
             </div>   
             <div class="row">
-            <div style="margin-top:190px;display:flex;flex-direction:row;margin-left:-250px;">   
-                  <button type="submit"wire:click.prevent="storePost()" id="submitButton">Submit</button>
-                  <button type="button" id="cancelButton">Cancel</button>
+            <div style="margin-top:190px;display:flex;flex-direction:row;margin-left:-360px;">   
+                  <button type="submit"wire:click.prevent="storePost" id="submitButton"><span style="font-weight:24px;">Submit</span></button>
+                  <a href="/Attendance" class="button view-details-button"style="margin-left:30px;margin-top:10px;font-weight:14px;">Cancel</a>
                </div>
             </div> 
         </div> 
@@ -598,7 +608,7 @@ thead th:nth-child(2) {
 
     <!-- Calendar Dates -->
       <div class="calendar-dates" id="calendarDates">
-     
+           
       </div>
       <div class="calendar-footer" id="calendarFooter">
    
@@ -617,16 +627,20 @@ thead th:nth-child(2) {
             
           </div>  
           <div style="display:flex;flex-direction:row;"> 
-            <p class="highlight"style=" color: rgb(2, 17, 79);margin-right:60px;">{{$manager3->first_name}}&nbsp;&nbsp;{{$manager3->last_name}}</p>
-            <p class="days"style="font-size:24px;color:  rgb(2, 17, 79);margin-top:-10px;margin-left:195px;">{{$count1}}</p>
+          @if ($manager2)
+            <p class="highlight" style="color: rgb(2, 17, 79); margin-right: 60px;">{{ $manager2->report_to}}</p>
+          @else
+            <p class="highlight" style="color: rgb(2, 17, 79); margin-right: 60px;">Not Available</p>
+          @endif
+            <p class="days"style="font-size:20px;color:  rgb(2, 17, 79);margin-top:-10px;margin-left:80px;margin-top:-5px;">{{$count1}}</p>
           </div>  
           <div class="arrow-button"style="float:right;margin-top:-40px;margin-right:20px;"id="toggleButton"></div> 
             
             <div class="container-body" style="display:none;"id="myContainerBody">
-             @foreach($data10 as $d)
-                <div style="width: 500px;height: 180px;background-color: #fff;margin-bottom: 20px;text-align: center;padding: 10px;margin-right:4px;">
+             @foreach($withdraw as $d)
+                <div style="width: 500px;height: 180px;background-color: #fff;margin-bottom: 20px;text-align: center;padding: 10px;margin-left:-10px;">
                    <p class="title"style="font-weight: bold;">Dates Applied:</p>
-                   <p class="highlight"style=" color: rgb(2, 17, 79);"id="applied-date"></p>
+                   <p class="highlight"style=" color: rgb(2, 17, 79);"id="applied-date">{{$d->regularisation_date}}</p>
                    <div class="horizontal-line"></div>
                  
                     <div style="margin-top:30px;margin-left:-320px;"> 
@@ -634,13 +648,29 @@ thead th:nth-child(2) {
                         <p class="highlight"style=" color: rgb(2, 17, 79);">{{ $d->created_at->format('j M Y') }}</p>
                     </div> 
                     <div style="margin-top:-60px;margin-left:220px;"> 
-                          <button class="withdraw-button"data-toggle="modal"data-target="#withdrawModal">Withdraw</button>
+                       
+
+                        
+                          <button class="withdraw-button"data-toggle="modal"data-target="#withdrawModal"wire:click="withdraw({{$d->id}})">Withdraw</button>
                           <a href="/regularisation-pending" class="button view-details-button">View Details</a>
                     </div>
                 </div>
              @endforeach  
             </div>
-            
+        @foreach($data11 as $key => $value)
+        <tr>
+            <td>{{ $value->id }}</td>
+            <td>{{ $value->name }}</td>
+            <!-- Additional fields here -->
+
+            @if($value->manager_id == $manager2->emp_id)
+                <td>
+                    <button wire:click="approve({{ $value->id }})" class="btn btn-success">Approve</button>
+                    <button wire:click="reject({{ $value->id }})" class="btn btn-danger">Reject</button>
+                </td>
+            @endif
+        </tr>
+        @endforeach      
       
        
     </div>
@@ -665,7 +695,7 @@ thead th:nth-child(2) {
           </div>  
           <div style="display:flex;flex-direction:row;margin-top:-15px;"> 
               <p class="highlight"style=" color: #ff9900;margin-right:60px;">Me</p>
-              <p class="days"style="font-size:20px;color: #ff9900;margin-top:-2px;margin-left:120px;">2</p>
+              <p class="days"style="font-size:20px;color: #ff9900;margin-top:-2px;margin-left:160px;">2</p>
           </div>
          
           <div class="arrow-button"style="float:right;margin-top:-40px;margin-right:20px;"id="toggleButton1"></div> 
@@ -928,9 +958,13 @@ const days= ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 // Function to update the date and day in the mother-box container
 function updateDateAndDay(date, day) {
-    currentDateElement1.textContent = date;
+    // currentDateElement1.textContent = date;
     
-    currentDayElement1.textContent = day;
+    // currentDayElement1.textContent = day;
+    const livewireEvent = new CustomEvent('livewire:update', {
+            detail: { date, day }
+        });
+        document.dispatchEvent(livewireEvent);
     motherBox.style.display = "flex"; 
     // Show the mother-box container
     
@@ -955,9 +989,10 @@ calendarDates1.forEach(dateElement => {
         selectedDate.setDate(parseInt(clickedDate, 10));
         
         const clickedDay = days[selectedDate.getDay()];
-        console.log(selectedDate);  
+      
         // Update the date and day in the mother-box container
         updateDateAndDay( clickedDate + clickedDay);
+        
     });
    }
    else {

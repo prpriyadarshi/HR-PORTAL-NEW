@@ -12,7 +12,7 @@ use App\Livewire\LeavePending;
 use App\Livewire\Payslip;
 use App\Livewire\Regularisation;
 
-
+use App\Livewire\RegularisationPending;
 use App\Livewire\HelpDesk;
 use App\Livewire\Home;
 use App\Livewire\Peoples;
@@ -119,7 +119,7 @@ Route::middleware(['auth:emp'])->group(function () {
     // Attendance Routes
     Route::get('/Attendance', Attendance::class)->name('Attendance');
     Route::get('/regularisation', Regularisation::class)->name('regularisation');
-
+    Route::get('/regularisation-pending', RegularisationPending::class)->name('regularisation-pending');
     Route::get('/ProfileInfo', ProfileInfo::class)->name('profile.info');
     Route::get('/Settings', Settings::class);
 

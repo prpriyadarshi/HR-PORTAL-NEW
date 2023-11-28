@@ -1,6 +1,11 @@
 <div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+JqAcKMpZ0Kw0fF0Zr5l5f8r5E5Xn2ThIv2+1Jq2i/C5EdDX" crossorigin="anonymous">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.0/css/pikaday.min.css" integrity="sha512-1a1WjkWvD/RB5mK2RlqXeBz1p9j2NB5s75xP+mu4+ILCZaP5l1MLZDP1jz6wqJzZ3jLmYGLVbQ7ROi7w3QpbHw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -9,6 +14,10 @@
     
     
 <style>
+    .date-range-container12
+    {
+      margin-right:62px;
+    }
      .my-button {
     
     padding: 10px 20px;
@@ -163,13 +172,16 @@ a{
     background-color: rgba(255,255,255,var(--tw-bg-opacity));
 }
 .calendar {
-    max-width: 600px;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
     padding: 20px;
-    margin-left:10px;
-    margin-top:30px;
-
-    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width:700px;
+    margin-left:20px;
+    margin-top:10px;
   }
   .large-box {
     max-width: 900px;
@@ -184,11 +196,12 @@ a{
 
   /* Month header */
   .calendar-header {
-    text-align: center;
-    background-color: #888;
-    color: white;
-    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
   }
+  
   
 #calendar-icon {
     border-top-left-radius: 5px; /* Adjust the value as needed */
@@ -199,18 +212,17 @@ a{
     border-top-right-radius: 5px; /* Adjust the value as needed */
     border-bottom-right-radius: 5px; /* Adjust the value as needed */
 }
-  /* Days of the week */
-  .calendar-weekdays {
-    display: flex;
-    justify-content: space-between;
-    background-color: #ddd;
-    padding: 5px;
-  }
 
-  .calendar-weekdays div {
-    text-align: center;
-    width: calc(100% / 7);
+.calendar-weekdays {
+    display: flex;
+    justify-content: space-around;
+    background-color:rgb(2, 17, 79);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
   }
+  
   .centered-modal {
     display: flex;
     align-items: center;
@@ -220,8 +232,26 @@ a{
   .calendar-days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    justify-items: center; 
   }
+  .calendar-date {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
 
+
+
+ .calendar-date:hover {
+  background-color:rgb(2, 17, 79);/* Change this to your preferred shade of blue */
+  color: white; /* Add this to ensure text is visible on the blue background */
+}
   .calendar-day {
     text-align: center;
     padding: 10px;
@@ -229,6 +259,24 @@ a{
     background-color: white;
   }
 
+  #prevMonth,
+  #nextMonth {
+    background-color:rgb(2, 17, 79);
+    color: white;
+    border: none;
+    padding: 5px 10px; 
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  #currentMonth {
+    font-size: 24px;
+    margin: 0;
+  }
+  .today {
+      background-color:rgb(2, 17, 79);
+      color: white;
+    }
   /* Today's date */
   .calendar-day.today {
     background-color: #0099cc;
@@ -237,7 +285,7 @@ a{
   .container1 {
     width: 600px; /* Adjust the width as needed */
     height: 180px;
-    margin-right:-120px;
+    margin-right:320px;
     background-color: #FFFFFF;
     margin-top:30px;
     /* margin-top:420px; */
@@ -250,7 +298,7 @@ a{
   .container2 {
     width: 600px; /* Adjust the width as needed */
     height: 140px;
-    margin-right:-120px;
+    margin-right:320px;
     background-color:#FFFFFF;
     margin-top:40px;
     border-radius:10px;
@@ -265,7 +313,7 @@ a{
   .container6 {
     width: 600px; /* Adjust the width as needed */
     height: 45px;
-    margin-right:-120px;
+    margin-right:320px;
     background-color:#FFFFFF;
     margin-top:30px;
     border-radius:2px;
@@ -326,7 +374,7 @@ a{
   .container3 {
     width: 600px; /* Adjust the width as needed */
     height: 180px;
-    margin-right:-120px;
+    margin-right:320px;
     background-color:#FFFFFF;
     margin-top:30px;
     border-radius:10px;
@@ -480,6 +528,7 @@ table {
     margin-top: -40px;
     padding: 5.5px 6px; /* Adjust padding as needed */
 }
+
 
 .toggle-box i {
     color: grey; /* Set the icon color */
@@ -713,6 +762,7 @@ table {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
 </style>    
 <div style="width:450">
    <a href="/regularisation"class="my-button" id="myButton">My Regularisations</a>
@@ -764,20 +814,32 @@ table {
                        +3 Insights
                    </a> 
                    <div wire:ignore.self class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                   
+                       
+                           
+                     
                         <div class="modal-dialog custom-modal-lg centered-modal custom-modal"role="document">
                             <div class="modal-content">
+                                  
                                 <div class="modal-header" style="background-color: #a3b2c7;">
+                                  
                                     <h5 class="modal-title" id="exampleModalLabel">Insights&nbsp;for&nbsp;Attendance&nbsp;Period&nbsp;01 Oct - 01 Oct</h5>
+                                    
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                          <span aria-hidden="true close-btn">×</span>
                                     </button>
                                 </div>
-                               <div class="modal-body">
-                                   <div class="date-range-container">
-                                      
-                                       <input class="date-range-input" type="text" placeholder="Select date range">
-                                       <span><i class="fas fa-calendar"></i></span>
-                                    </div>
+                                <div class="modal-body">
+                                        <div class="form-row" style="margin-top: -100px; margin-left: 200px; display: flex; justify-content: flex-end;">
+                                                       <div class="form-group col-md-6">
+                                                             <label for="fromDate" style="color: #778899; font-size: 14px; font-weight: 500;">From date</label>
+                                                             <input type="date" class="form-control" id="fromDate" name="fromDate" style="color: #778899;">
+                                                       </div>
+                                                      <div class="form-group col-md-6">
+                                                          <label for="toDate" style="color: #778899; font-size: 14px; font-weight: 500;">To date</label>
+                                                          <input type="date" class="form-control" id="toDate" name="toDate" style="color: #778899;">
+                                                      </div>
+                                        </div>
                                     <p style="margin-left:-90px;font-size:12px;">Total Working Days:<span style="font-weight:bold;">0</span></p>
                                     
                                     <div class="chart-range-container">
@@ -912,8 +974,7 @@ table {
         <i class="fas fa-calendar"id="calendar-icon" onclick="showCalendar()" ></i>
         <i class="fas fa-bars" id="bars-icon" onclick="showMessage()"></i>
      </div>
-     
-<div class="calendar"style="display:none;">
+<div class="calendar">
   <div class="calendar-header">
     <button id="prevMonth">Previous</button>
     <h1 id="currentMonth">September 2023</h1>
@@ -928,8 +989,9 @@ table {
     <div>Fri</div>
     <div>Sat</div>
   </div>
-  <div class="calendar-days" id="calendar-days">
+  <div  class="calendar-days"  id="calendar-days">
     <!-- Calendar days will be generated here -->
+    <!-- For example, you can generate calendar days dynamically using JavaScript -->
   </div>
 </div>
 <div class="container1">
@@ -951,7 +1013,7 @@ table {
     
    
   <div class="horizontal-line"></div>
-  <div class="text-muted">Processed On</div>
+  <div class="text-muted"style="margin-left:20px;">Processed On</div>
   <div class="horizontal-line1"></div>
   <div style=" overflow-x: auto;
     max-width: 100%;">
@@ -1012,11 +1074,11 @@ table {
 </div>
 </div> 
 <div class="container3">
-  <h3 style="margin-left:20px;margin-bottom:10px;color: #7f8fa4;font-size:20px;">Session Details</h3> 
+  <h3 style="margin-left:20px;margin-bottom:15px;color: #7f8fa4;font-size:20px;">Session Details</h3> 
   
   <div style=" overflow-x: auto;
     max-width: 100%;">
-  <table style="margin-top:20px">
+  <table style="margin-top:-10px">
   <thead>
     <tr>
       <th>Session</th>
@@ -1096,7 +1158,7 @@ table {
                     </td>
                     <td>-</td>
                                              
-                    <td><button class="info-button"style="background-color: rgb(2, 17, 79); border: 2px solid rgb(2, 17, 79);height:20px; color: white; border-radius: 5px;font-size:12px;margin-top:-10px"data-toggle="modal"data-target="#viewStudentModal"wire:click="viewDetails({{$swiperecord->id}})">Info{{$swiperecord->id}}</button></td>
+                    <td><button class="info-button"style="background-color: rgb(2, 17, 79); border: 2px solid rgb(2, 17, 79);height:20px; color: white; border-radius: 5px;font-size:12px;margin-top:-10px"data-toggle="modal"data-target="#viewStudentModal"wire:click="viewDetails({{$swiperecord->id}})">Info</button></td>
                                             
               </tr>
               @if (($index + 1) % 2 == 0)
@@ -1119,9 +1181,7 @@ table {
 </table>
 
 </div>
-    <!-- <img src="https://gt-linckia.s3.amazonaws.com/static-ess-v6.3.0-prod-144/attendace_swipe_empty.svg"style="margin-left:200px;margin-top:30px;">
-    <div class="text-muted"style="margin-left:175px;margin-top:-10px;">No record Found</div> -->
-    
+   
   </div>
  
   <div wire:ignore.self class="modal fade" id="viewStudentModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
@@ -1137,15 +1197,15 @@ table {
                     <table class="table table-bordered">
                         <tbody>
                           @if($swiperecord)
-                           @if ($data->isNotEmpty())
-                            <tr>
-                                <th>Employee&nbsp;Name: </th>
-                                <td>{{ $data[0]->first_name }} {{ $data[0]->last_name }}</td>
-                            </tr>
-                           @endif
+                               @if ($data->isNotEmpty())
+                               <tr>
+                                   <th>Employee&nbsp;Name: </th>
+                                   <td>{{ $data[0]->first_name }} {{ $data[0]->last_name }}</td>
+                               </tr>
+                               @endif
                             <tr>
                                 <th>Employee&nbsp;Id</th>
-                                <td >{{ $view_student_emp_id }}</td>
+                                <td >{{ $swiperecord->emp_id }}</td>
                             </tr>
 
                             <tr>
@@ -1518,6 +1578,90 @@ calendarIcon.addEventListener('click', hideBoxContainer);
   // Initial calendar rendering
   updateCalendar(currentDate.getFullYear(), currentDate.getMonth());
 });
-  </script>  
+  </script> 
+ <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-daterangepicker@3.1.0/daterangepicker.js"></script>
 
+<script>
+  $(document).ready(function() {
+    // Initialize the daterangepicker
+    $('.date-range-input12').daterangepicker({
+      opens: 'left', // Position the calendars side-by-side
+    });
+  });
+</script> -->
+<script>
+  $(function() {
+    $("#datepicker1, #datepicker2").datepicker();
+  });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const calendarDays = document.getElementById("calendar-days");
+      const prevMonthButton = document.getElementById("prevMonth");
+      const nextMonthButton = document.getElementById("nextMonth");
+      const currentMonthElement = document.getElementById("currentMonth");
+
+      let currentMonth = new Date().getMonth();
+      let currentYear = new Date().getFullYear();
+
+      function generateCalendarDays(year, month) {
+        const firstDayOfMonth = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const today = new Date().getDate();
+
+        calendarDays.innerHTML = "";
+
+        for (let i = 0; i < firstDayOfMonth; i++) {
+          createEmptyDay();
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+          createCalendarDay(day, today);
+        }
+      }
+
+      function createEmptyDay() {
+        const emptyDayElement = document.createElement("div");
+        emptyDayElement.classList.add("calendar-date", "empty");
+        calendarDays.appendChild(emptyDayElement);
+      }
+
+      function createCalendarDay(day, today) {
+        const calendarDayElement = document.createElement("div");
+        calendarDayElement.classList.add("calendar-date");
+        calendarDayElement.textContent = day;
+
+        if (day === today) {
+          calendarDayElement.classList.add("today");
+        }
+
+        calendarDays.appendChild(calendarDayElement);
+      }
+
+      function updateCalendar() {
+        generateCalendarDays(currentYear, currentMonth);
+        currentMonthElement.textContent = new Date(currentYear, currentMonth, 1).toLocaleString('default', { month: 'long', year: 'numeric' });
+      }
+
+      prevMonthButton.addEventListener("click", function () {
+        currentMonth = (currentMonth - 1 + 12) % 12;
+        if (currentMonth === 11) {
+          currentYear--;
+        }
+        updateCalendar();
+      });
+
+      nextMonthButton.addEventListener("click", function () {
+        currentMonth = (currentMonth + 1) % 12;
+        if (currentMonth === 0) {
+          currentYear++;
+        }
+        updateCalendar();
+      });
+
+      updateCalendar();
+    });
+  </script>
 </div> 
