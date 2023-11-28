@@ -28,7 +28,7 @@ class Settings extends Component
     public $oldPassword;
     public $newPassword;
     public $confirmNewPassword;
-
+    public $passwordChanged = false;
     public function editBiography()
     {
         $employeeId = auth()->guard('emp')->user()->emp_id;
@@ -36,19 +36,19 @@ class Settings extends Component
         $this->editingBiography = true;
         $this->biography = $this->employeeDetails->biography??'';
     }
-
+ 
     public function cancelBiography()
     {
         $this->editingBiography = false;
     }
-
+ 
     public function saveBiography()
     {
         $employeeId = auth()->guard('emp')->user()->emp_id;
         $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
         $this->employeeDetails->biography = $this->biography;
         $this->employeeDetails->save();
-
+ 
         $this->editingBiography = false;
     }
     public function editSocialMedia()
@@ -60,12 +60,12 @@ class Settings extends Component
         $this->twitter = $this->employeeDetails->twitter??'';
         $this->linkedIn = $this->employeeDetails->linked_in??'';
     }
-
+ 
     public function cancelSocialMedia()
     {
         $this->editingSocialMedia = false;
     }
-
+ 
     public function saveSocialMedia()
     {
         $employeeId = auth()->guard('emp')->user()->emp_id;
@@ -80,12 +80,12 @@ class Settings extends Component
     {
         $employeeId = auth()->guard('emp')->user()->emp_id;
         $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
-
+ 
         $this->nickName = $this->employeeDetails->nick_name??'';
         $this->wishMeOn = $this->employeeDetails->date_of_birth??'';
         $this->editingNickName=true;
     }
-
+ 
     public function cancelProfile()
     {
         $this->editingNickName = false;
@@ -94,13 +94,13 @@ class Settings extends Component
     {
         $employeeId = auth()->guard('emp')->user()->emp_id;
         $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
-
+ 
         $this->employeeDetails->nick_name = $this->nickName;
         $this->employeeDetails->date_of_birth = $this->wishMeOn;
         $this->employeeDetails->save();
         $this->editingNickName = false;
     }
-
+ 
     public function editTimeZone()
     {
         $employeeId = auth()->guard('emp')->user()->emp_id;
@@ -108,12 +108,12 @@ class Settings extends Component
         $this->editingTimeZone = true;
         $this->selectedTimeZone = $this->employeeDetails->time_zone??'';
     }
-
+ 
     public function cancelTimeZone()
     {
         $this->editingTimeZone = false;
     }
-
+ 
     public function saveTimeZone()
     {
         $employeeId = auth()->guard('emp')->user()->emp_id;
@@ -124,7 +124,7 @@ class Settings extends Component
     }
     public $showAlertDialog = false;
     public $showDialog = false;
-
+ 
     public function open()
     {
         $this->showAlertDialog = true;
@@ -133,7 +133,7 @@ class Settings extends Component
     {
         $this->resetForm();
         $this->showDialog = true;
-
+ 
     }
     public function remove()
     {
@@ -142,41 +142,46 @@ class Settings extends Component
     }
     public function close()
     {
-        $this->showAlertDialog = false;
+        $this->resetForm();
+       $this->showAlertDialog = false;
     }
-
-
-
-    private function resetForm()
+ 
+ 
+ 
+    public function resetForm()
     {
-        $this->oldPassword = '';
-        $this->newPassword = '';
-        $this->confirmNewPassword = '';
+        $this->resetErrorBag();
+        $this->resetValidation();
+        $this->oldPassword='';
+        $this->newPassword='';
+        $this->confirmNewPassword='';
     }
-
-    public function changePassword(){
+ 
+public function changePassword(){
         $this->validate([
-
+ 
             'oldPassword' => 'required',
             'newPassword' => 'required|min:8',
             'confirmNewPassword' => 'required|same:newPassword',
         ]);
+ 
         $employeeId = auth()->guard('emp')->user()->emp_id;
         $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
- if (!Hash::check($this->oldPassword,  $this->employeeDetails->password)) {
-        $this->addError('oldPassword', 'The old password is incorrect.');
-        return;
-    }
-
+         if (!Hash::check($this->oldPassword,  $this->employeeDetails->password)) {
+            $this->addError('oldPassword', 'The old password is incorrect.');
+           return;
+        }
+ 
     // Update the password
     $this->employeeDetails->password = Hash::make($this->newPassword);
     $this->employeeDetails->save();
-
+ 
     session()->flash('success', 'Password changed successfully.');
     $this->resetForm();
     $this->showDialog = false;
+    $this->passwordChanged =true;
     }
-
+ 
     public function render()
     {
         $this->timeZones = timezone_identifiers_list();

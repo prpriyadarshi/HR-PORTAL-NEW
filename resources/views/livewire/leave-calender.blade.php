@@ -1,3 +1,4 @@
+<div>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,24 +14,24 @@
             padding: 0;
             margin: 0;
         }
-
+ 
         .table td {
             vertical-align: top; /* Align dates to the top */
             text-align: left; /* Align dates to the left */
         }
-
+ 
         .table th {
             text-align: center; /* Center days of the week */
             height: 20px;
             border: none;
             /* Adjust the height of days of the week cells */
         }
-
+ 
         .table td:hover {
             background-color: #ecf7fe; /* Hover background color */
             cursor: pointer;
         }
-
+ 
         /* Add styles for the navigation buttons */
         .nav-btn {
             background: none;
@@ -39,11 +40,11 @@
             margin-top: -6px;
             cursor: pointer;
         }
-
+ 
         .nav-btn:hover {
             color: blue;
         }
-
+ 
         /* Increase the size of tbody cells and align text to top-left */
         .table tbody td {
             width: 75px;
@@ -52,14 +53,14 @@
             vertical-align: top;
             text-align: left;
         }
-
+ 
         /* Add style for the current date cell */
         .current-date {
             background-color: #ff0000; /* Highlight color for the current date */
             color: #fff; /* Text color for the current date */
             font-weight: bold;
         }
-
+ 
         .calendar-heading-container {
             background: #fff;
             padding: 5px;
@@ -68,12 +69,12 @@
             justify-content: space-between;
             /* Add spacing between heading and icons */
         }
-
+ 
         .table {
             width: 500px; /* Adjust the width as needed */
             overflow-x: hidden; /* Add horizontal scrolling if the table overflows the container */
         }
-
+ 
         .tol-calendar-legend {
             display: flex;
             font-size: 0.875rem;
@@ -83,7 +84,7 @@
             font-weight: 500;
             color: #778899;
         }
-
+ 
         /* CSS for legend circles */
         .legend-circle {
             display: inline-block;
@@ -96,11 +97,11 @@
             font-weight: bold; /* Make the text bold */
             color: white; /* Text color */
         }
-
+ 
         .circle-pale-yellow {
             background-color: #ffeb3b; /* Define the yellow color */
         }
-
+ 
         /* CSS for the pink circle */
         .circle-pale-pink {
             background-color: #ff4081; /* Define the pink color */
@@ -113,26 +114,26 @@
         left:0;/* Adjust the top position as needed */
       /* Adjust the right position as needed */
       }
-
+ 
       .accordion-heading {
         background-color: #fff;
         padding: 5px;
         cursor: pointer;
       }
-
+ 
       .accordion-body {
         background-color: #fff;
         display: none;
         padding: 10px;
       }
-
+ 
       .accordion-content {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
       }
-
+ 
       .content {
         display: flex;
         flex-direction: row;
@@ -144,30 +145,30 @@
         color:#778899;
         font-weight:500;
       }
-
+ 
       .accordion-title {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
       }
-
+ 
       .active .leave-container {
         border-color: #3a9efd; /* Blue border when active */
       }
-
+ 
       .accordion-button {
         color: #DCDCDC;
         border: 1px solid #DCDCDC;
       }
-
+ 
       .active .accordion-button {
         color: #3a9efd;
         border: 1px solid #3a9efd;
       }
-
+ 
       @media (max-width: 760px) {
-
-
+ 
+ 
         .accordion {
           width: 65%;
           top: auto;
@@ -183,7 +184,7 @@
         .filter-container a{
           text-decoration:none;
         }
-
+ 
         /* Styles for the button */
         .filter-button {
             padding: 3px;
@@ -199,7 +200,7 @@
         .filter-button:hover{
           border:1px solid #007bff;
         }
-
+ 
         /* Styles for the dropdown */
         .filter-dropdown {
             display: none;
@@ -209,7 +210,7 @@
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
         }
-
+ 
         /* Styles for dropdown items */
         .filter-item {
             padding: 12px 16px;
@@ -217,11 +218,11 @@
             display: block;
             color: #333;
         }
-
+ 
         .filter-item:hover {
             background-color: #fff;
         }
-
+ 
         /* Show the dropdown when hovering over the container */
         .filter-container:hover .filter-dropdown {
             display: block;
@@ -229,7 +230,7 @@
         .button-container{
           display:flex;
           justify-content:end;
-
+ 
         }
         .custom-button{
           padding: 2px;
@@ -244,25 +245,25 @@
         .search-container {
             display: flex;
         }
-
+ 
         /* Styles for the form group */
         .form-group {
             margin-right: 10px; /* Add spacing between search input and other elements */
         }
-
+ 
         /* Styles for the search input */
         .search-input {
           border:none;
             position: relative;
         }
-
+ 
         .search-input input[type="text"] {
             padding: 5px;
             border: 1px solid #ccc;
             border-radius: 4px;
             width: 200px; /* Adjust width as needed */
         }
-
+ 
         /* Styles for the search icon */
         .search-icon {
             position: absolute;
@@ -272,7 +273,7 @@
             transform: translateY(-50%);
             cursor: pointer;
         }
-
+ 
         .search-icon::before {
              /* Unicode character for a magnifying glass */
             font-size: 16px;
@@ -286,26 +287,36 @@
             padding:5px;
             border:1px solid #ccc;
         }
-
+ 
         /* Styles for the filter group */
         .filter-group {
             display: flex;
             align-items: center;
         }
-
+ 
         /* Styles for the Font Awesome icon */
         .fa-icon {
             font-size: 14px;
             color:#778899;
              /* Add spacing between icon and text */
         }
-
-
-
+ 
+        .calendar-date {
+            cursor: pointer;
+        }
+ 
+        .event-container {
+            display: none;
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            position: absolute;
+        }
+ 
     </style>
 </head>
 <body>
-    <div class="container-leave mt-5" style="width: 95%; ">
+    <div class="container-leave mt-5" style="width: 95%;margin-top:-30px ">
     <div class="filter-container">
         <button class="filter-button">Filter Type</button>
         <div class="filter-dropdown">
@@ -314,13 +325,13 @@
             <!-- Add more items as needed -->
         </div>
     </div>
-    <div class="button-container">
+    <div class="button-container" style="margin-top:-70px">
         <button class="custom-button">
         <i class="fa fa-download" aria-hidden="true"></i>
         </button>
     </div>
         <div class="row" >
-            <div class="col-md-8">
+            <div class="col-md-8" style="margin-top:40px">
                 <div class="d-flex justify-content-between align-items-center mb-6">
                     <div class="calendar-heading-container">
                         <button wire:click="previousMonth" class="nav-btn">&lt; Prev</button>
@@ -329,51 +340,58 @@
                     </div>
                 </div>
                 <!-- Calendar -->
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th class="text-secondary text-semi-bold">Sun</th>
-                                <th class="text-secondary text-semi-bold">Mon</th>
-                                <th class="text-secondary text-semi-bold">Tue</th>
-                                <th class="text-secondary text-semi-bold">Wed</th>
-                                <th class="text-secondary text-semi-bold">Thu</th>
-                                <th class="text-secondary text-semi-bold">Fri</th>
-                                <th class="text-secondary text-semi-bold">Sat</th>
-                            </tr>
-                        </thead>
-                        <tbody id="calendar-body">
-                            @foreach ($calendar as $week)
-                                <tr>
-                                    @foreach ($week as $day)
-                                    <td>
-                                        @if ($day)
-                                            @if ($day['isToday'])
-                                                <div style="background-color: #007bff; color: white; border-radius: 50%; width: 24px; height: 24px; text-align: center; line-height: 24px;">
-                                                    {{ $day['day'] }}
-                                                </div>
-                                            @else
-                                                {{ $day['day'] }}
-                                            @endif
-                                        @endif
-                                        @if ($day && isset($day['teamOnLeave']) && count($day['teamOnLeave']) > 0)
-                                            <div style="background-color: grey; border-radius: 50%; width: 24px; height: 24px; text-align: center; margin-top: 5px;">
-                                                <span style="color: white; display: block; line-height: 24px;">
-                                                    {{ count($day['teamOnLeave']) }}
-                                                </span>
-                                            </div>
-                                        @endif
-                                    </td>
-                                @endforeach
-
-
-                                </tr>
-                            @endforeach
-                        </tbody>
-
-                    </table>
-                </div>
-
+                <div class="table-responsive"  >
+    <table class="table table-bordered" >
+        <thead >
+            <tr>
+                <th class="text-secondary text-semi-bold">Sun</th>
+                <th class="text-secondary text-semi-bold">Mon</th>
+                <th class="text-secondary text-semi-bold">Tue</th>
+                <th class="text-secondary text-semi-bold">Wed</th>
+                <th class="text-secondary text-semi-bold">Thu</th>
+                <th class="text-secondary text-semi-bold">Fri</th>
+                <th class="text-secondary text-semi-bold">Sat</th>
+            </tr>
+        </thead>
+        <tbody id="calendar-body">
+        <div id="calendar">
+            @foreach ($calendar as $week)
+                <tr>
+                    @foreach ($week as $day)
+                    <td>
+                        @if ($day)
+                            <div class="calendar-date" data-date="{{ $day['day'] }}">
+                                @if ($day['isToday'])
+                                    <div style="background-color: #007bff; color: white; border-radius: 50%; width: 24px; height: 24px; text-align: center; line-height: 24px;">
+                                        {{ $day['day'] }}
+                                    </div>
+                                @else
+                                    {{ $day['day'] }}
+                                @endif
+                                @if ($day && isset($day['teamOnLeave']) && count($day['teamOnLeave']) > 0)
+                                    <div style="background-color: grey; border-radius: 50%; width: 24px; height: 24px; text-align: center; margin-top: 5px;">
+                                        <span style="color: white; display: block; line-height: 24px;">
+                                            {{ count($day['teamOnLeave']) }}
+                                        </span>
+                                    </div>
+                                @endif
+                            </div>
+                        @endif
+                    </td>
+                    @endforeach
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+    </div>
+ 
+<div id="event-container" class="event-container" style="height:70px;width:400px;margin-left:550px;margin-top:-500px">
+<div id="event-details" style="display: flex; flex-direction: column; align-items: center;">
+ 
+ 
+    </div>
+ 
+</div>
                 <div class="tol-calendar-legend mt-2">
                     <div>
                         Team on Leave
@@ -391,20 +409,20 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4" >
-        <div class="cont" style="display:flex; margin-top:30px;">
-        <div class="search-container">
-                <div class="form-group">
-                    <div class="search-input">
-                        <input type="text" placeholder="Search Employee" class="search-text">
+            <div class="col-md-4" style="margin-top:50px" >
+        <div class="cont" style="display:flex; margin-top:50px;">
+        <div class="search-container" >
+                <div class="form-group"  >
+                    <div class="search-input"  >
+                        <input type="text" placeholder="Search Employee" class="search-text" style="margin-top:50px">
                         <div class="search-icon">
-                        <i class="fa fa-search" aria-hidden="true"></i>
+                        <i class="fa fa-search" aria-hidden="true"  style="margin-top:50px"></i>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="filter-container1">
-              <div class="filter-group">
+            <div class="filter-container1" style="margin-top:50px">
+              <div class="filter-group" style="margin-top:0px">
                   <i class="fa-icon fas fa-filter"></i> <!-- Font Awesome filter icon -->
                   <gt-filter-group>
                       <!-- Add more content as needed -->
@@ -412,7 +430,7 @@
               </div>
           </div>
         </div>
-
+ 
         <div class="accordion" style="margin-top: 20px;">
             <div class="accordion-heading" onclick="toggleAccordion(this)">
               <div class="accordion-title">
@@ -447,16 +465,16 @@
 @endif
             </div>
           </div>
-
+ 
         </div>
-
+ 
     </div>
-
+ 
     <!-- Add Bootstrap JS scripts if needed -->
-
+ 
     <!-- Add jQuery library -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script>
+    <!-- <script>
 function toggleAccordion(element) {
 const accordionBody = element.nextElementSibling;
     if (accordionBody.style.display === 'block') {
@@ -469,6 +487,38 @@ const accordionBody = element.nextElementSibling;
       element.closest('.wrapper').classList.add('fixed'); // Add fixed class
     }
   }
-</script>
+</script> -->
+<script>
+        // Sample calendar dates
+        const calendarDates = document.querySelectorAll(".calendar-date");
+       
+        const eventContainer = document.getElementById("event-container");
+ 
+        calendarDates.forEach((dateElement) => {
+            dateElement.addEventListener("click", () => {
+                const date = dateElement.textContent;
+                // Sample event details for the clicked date (replace with your own logic)
+                const eventDetails = getEventDetailsForDate(date);
+               
+                // Update the event container content and display it
+                eventContainer.innerHTML = eventDetails;
+                eventContainer.style.display = 'block';
+            });
+        });
+     
+       
+ 
+        // Sample function to fetch event details (replace with your own logic)
+        function getEventDetailsForDate(date) {
+           
+            // This is a placeholder function; you can fetch event details from your data source
+            return `Event details for ${date}`;
+        }
+    </script>
+ 
+   
+ 
 </body>
 </html>
+ 
+</div>

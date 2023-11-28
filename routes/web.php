@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\ApprovedDetails;
 use App\Livewire\Delegates;
 use App\Livewire\EmpLogin;
 use App\Livewire\EmployeesReview;
@@ -43,7 +44,8 @@ use App\Livewire\LeaveBalances;
 use App\Livewire\LeaveCancel;
 use App\Livewire\TeamOnLeave;
 use App\Livewire\HolidayCalender;
-
+use App\Livewire\LeaveBalanaceAsOnADay;
+use App\Livewire\TeamOnLeaveChart;
 use App\Livewire\ViewDetails;
 use App\Livewire\ViewDetails1;
 use App\Livewire\ListOfAppliedJobs;
@@ -66,11 +68,13 @@ Route::group(['middleware' => 'checkAuth'], function () {
         return view('company_login_view');
     });
 
+
     
 
     Route::get('/CreateCV', function () {
         return view('create_cv_view');
     });
+
 });
 Route::get('/Login&Register', function () {
     return view('login_and_register_view');
@@ -79,10 +83,22 @@ Route::get('/Login&Register', function () {
 
 
 Route::middleware(['auth:web'])->group(function () {
+    Route::get('/CreateCV', function () {
+        return view('create_cv_view');
+    });
     Route::get('/Jobs', function () {
         return view('jobs_view');
     });
+
      
+
+    Route::get('/AllNotifications', function () {
+        return view('all-notifications_view');
+    });
+    Route::get('/NotificationList{jobId}', function ($jobId) {
+        return view('notification_list_view', compact('jobId'));
+    })->name('job-interview-details');
+
     Route::get('/UserProfile', function () {
         return view('user_profile_view');
     });
@@ -110,11 +126,26 @@ Route::middleware(['auth:com'])->group(function () {
     Route::get('/PostJobs', function () {
         return view('post_jobs_view');
     });
+
+
+    Route::get('/VendorsSubmittedCVs', function () {
+        return view('vendors-submitted-cvs');
+    });
+    Route::get('/JobSeekersAppliedJobs', function () {
+        return view('job-seekers-applied-jobs');
+    });
+
+    Route::get('/empregister', function () {
+        return view('emp-register-view');
+    });
+
+
+>>>>>>> 8f8c966c0df71aefad3367a2403663fd3b1dfcb8
 });
 
 Route::middleware(['auth:emp'])->group(function () {
     Route::get('/', Home::class)->name('home');
-
+    Route::get('/LeaveBalanceAsOnADay', LeaveBalanaceAsOnADay::class);
 
     // Attendance Routes
     Route::get('/Attendance', Attendance::class)->name('Attendance');
@@ -135,19 +166,15 @@ Route::middleware(['auth:emp'])->group(function () {
     //Helpdesk module
     Route::get('/HelpDesk', HelpDesk::class);
 
-   
+
     // Related salary module and ITdeclaration Document center
     Route::get('/payslip', Payroll::class);
-    Route::get('/slip', Payslip::class);
+    Route::get('/slip', SalarySlips::class);
     Route::get('/itdeclaration', Itdeclaration::class);
     Route::get('/itstatement', Itstatement1::class);
     Route::get('/document', Documentcenter::class);
     Route::get('/documents', Documents::class);
-
-
-
-
-
+    Route::get('/team-on-leave-chart', TeamOnLeaveChart::class);
 
 
     Route::get('/plan-A', PlanA::class)->name('plan-a');
@@ -183,14 +210,15 @@ Route::middleware(['auth:emp'])->group(function () {
 
 
     Route::get('/leave-apply', LeaveApply::class)->name('leave-apply');
+    Route::get('/approved-details/{leaveRequestId}', ApprovedDetails::class)->name('approved-details');
 
     Route::get('/holiday-calender', HolidayCalender::class)->name('holiday-calender');
 
 
     Route::get('/view-pending-details', ViewPendingDetails::class)->name('view-pending-details');
-    Route::get('/delegatesddb', Delegates::class);
+    Route::get('/delegates', Delegates::class);
 
-    Route::get('/view-details', ViewDetails::class)->name('view-details');
+    Route::get('/view-details/{leaveRequestId}', ViewDetails::class)->name('view-details');
 
     Route::get('/leave-balances', LeaveBalances::class)->name('leave-balances');
     Route::get('/leave-cancel', LeaveCancel::class)->name('leave-cancel');
@@ -208,6 +236,7 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/reimbursement', Reimbursement::class);
     Route::get('/investment', Investment::class);
     Route::get('/documents', Documents::class);
+    Route::get('/tasks', Tasks::class);
 
 
     
@@ -220,7 +249,6 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/review-leave', ReviewLeave::class)->name('ReviewLeave');
     Route::get('/view-details1', ViewDetails1::class)->name('view-details1');
     Route::get('/review-regularizations', ReviewRegularizations::class)->name('review-regularizations');
-    // Route::get('/salary-revision', SalaryRevision::class)->name('salary-revision');
 });
 
 

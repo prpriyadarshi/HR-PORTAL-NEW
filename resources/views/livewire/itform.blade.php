@@ -207,7 +207,7 @@
             </tr>
             <!-- Add more pay items here -->
         </table>
-        <p style="margin-left:20px">B) Deductions</p>
+        <p style="margin-left:20px">B Deductions</p>
         <table style="margin-top:20px;font-size:10px">
     <tr>
         <th>Pay Items</th>

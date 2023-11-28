@@ -13,18 +13,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/hr.png') }}">
+    @guest
+    <link rel="icon" type="image/x-icon" href="{{ asset('/images/hr_expert.png') }}">
     <title>
         HR Strategies Pro
     </title>
-    <style>
-        /* Style for the grey horizontal rule */
-        hr.grey {
-            border: 1px solid #ccc;
-            /* Adjust the color and style as needed */
-        }
-    </style>
+    @else
+    @php
+    $employeeId = auth()->guard('emp')->user()->emp_id;
+    $employee = DB::table('employee_details')
+    ->join('companies', 'employee_details.company_id', '=', 'companies.company_id')
+    ->where('employee_details.emp_id', $employeeId)
+    ->select('companies.company_logo','companies.company_name')
+    ->first();
+    @endphp
+    <link rel="icon" type="image/x-icon" href="{{ asset($employee->company_logo) }}">
+    <title>
+        {{$employee->company_name}}
+    </title>
+    @livewireScripts
+    @endguest
+
+
+
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -82,9 +93,10 @@
     <div>
 
         <style>
-            body{
+            body {
                 font-family: 'Montserrat', sans-serif;
             }
+
             .profile-container {
 
                 display: flex;
@@ -207,12 +219,12 @@
 
 
 
-        <div class="row" style="height: auto;width:auto;background-color: #f0f0f0;">
+        <div class="row" style="height: 100%;width:100%;background-color: #f0f0f0;">
 
             <div class="card" style="border-radius:0px;height: auto; width: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
- 
+
                 <div class="card-body" style="height: auto;width:auto;margin-top:0px">
- 
+
                     <ul class="nav flex-column">
 
                         <div style="margin-bottom: 10px;margin-top:0px">
@@ -243,6 +255,15 @@
                             </a>
 
                         </li>
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle8()">
+
+                            <a class="nav-link" href="/PeoplesList">
+
+                                <i class="fas fa-users"></i> People
+
+                            </a>
+
+                        </li>
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle3(item)">
                             <a class="nav-link" onclick="toggleToDoDropdown()">
@@ -250,26 +271,65 @@
                             </a>
                             <div id="todo-options" style="display: none;">
                                 <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
-                                <li class="nav-item" style="text-decoration: none;">
-                                    <a class="nav-link" href="/tasks" onclick="changePageTitle3('task');">
-                                        Tasks
-                                    </a>
-                                </li>
-                                <li class="nav-item" style="text-decoration: none;">
-                                    <a class="nav-link" href="/employees-review" onclick="changePageTitle3('review');">
-                                      Review
-                                    </a>
-                                </li>
-                               
+                                    <li class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/tasks" onclick="changePageTitle3('task');">
+                                            Tasks
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/employees-review" onclick="changePageTitle3('review');">
+                                            Review
+                                        </a>
+                                    </li>
+
                                 </ul>
                             </div>
                         </li>
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
 
-                            <a class="nav-link" href="/Attendance">
 
-                                <i class="fas fa-clock"></i> Attendance</a>
+
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle12(item)">
+                            <a class="nav-link" href="#" onclick="toggleSalaryDropdown()">
+                                <i class="fas fa-solid fa-money-bill-transfer" id="salary-icon"></i> Salary <i class="fas fa-caret-down" id="salary-caret"></i>
+                            </a>
+                            <div id="salary-options" style="display: none;">
+                                <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle12('itdeclaration')">
+                                        <a class="nav-link" href="/formdeclaration" id="itdeclaration" onclick="selectOption(this, 'IT Declaration')">
+                                            IT Declaration
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle13('itstatement')">
+                                        <a class="nav-link" href="/itstatement" id="itstatement" onclick="selectOption(this, 'IT Statement')">
+                                            IT Statement
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('slip')">
+                                        <a class="nav-link" href="/slip" id="slip" onclick="selectOption(this, 'Pay Slip')">
+                                            Payslips
+                                        </a>
+                                    </li>
+
+
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('reimbursement')">
+                                        <a class="nav-link" href="/reimbursement" id="reimbursement" onclick="selectOption(this, 'Reimbursement')">
+                                            Reimbursement
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('investment')">
+                                        <a class="nav-link" href="/investment" id="investment" onclick="selectOption(this, 'Proof of Investment')">
+                                            Proof of Investment
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle15('salary-revision')">
+                                        <a class="nav-link" href="/salary-revision" id="slip" onclick="selectOption(this, 'Salary Revision')">
+                                            Salary Revision
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5(item)">
@@ -307,6 +367,14 @@
                             </div>
                         </li>
 
+
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
+
+                            <a class="nav-link" href="/Attendance">
+
+                                <i class="fas fa-clock"></i> Attendance</a>
+                        </li>
+
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle7()">
 
                             <a class="nav-link" href="/document">
@@ -316,63 +384,7 @@
                             </a>
 
                         </li>
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle12(item)">
-                            <a class="nav-link" href="#" onclick="toggleSalaryDropdown()">
-                                <i class="fas fa-solid fa-money-bill-transfer" id="salary-icon"></i> Salary <i class="fas fa-caret-down" id="salary-caret"></i>
-                            </a>
-                            <div id="salary-options" style="display: none;">
-                                <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle12('itdeclaration')">
-                                        <a class="nav-link" href="/formdeclaration" id="itdeclaration" onclick="selectOption(this, 'IT Declaration')">
-                                            IT Declaration
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle13('itstatement')">
-                                        <a class="nav-link" href="/itstatement" id="itstatement" onclick="selectOption(this, 'IT Statement')">
-                                            IT Statement
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('slip')">
-                                        <a class="nav-link" href="/slip" id="slip" onclick="selectOption(this, 'Pay Slip')">
-                                            Payslips
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('proofofinvestment')">
-                                        <a class="nav-link" href="/proofofinvestment" id="proofofinvestment" onclick="selectOption(this,   'Proof Of Investment')">
-                                            Proof Of Investment
 
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('reimbursement')">
-                                        <a class="nav-link" href="/reimbursement" id="reimbursement" onclick="selectOption(this, 'Reimbursement')">
-                                            Reimbursement
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('investment')">
-                                        <a class="nav-link" href="/investment" id="investment" onclick="selectOption(this, 'Proof of Investment')">
-                                            Proof of Investment
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('loan')">
-                                        <a class="nav-link" href="/loan" id="slip" onclick="selectOption(this, 'Loan and Advances')">
-                                            Loan and Advances
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle15('salary-revision')">
-                                        <a class="nav-link" href="/salary-revision" id="slip" onclick="selectOption(this, 'Salary Revision')">
-                                            Salary Revision
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle8()">
-
-                            <a class="nav-link" href="/PeoplesList">
-
-                                <i class="fas fa-users"></i> People
-
-                            </a>
-
-                        </li>
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle9()">
 
@@ -386,7 +398,7 @@
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle10()">
 
-                            <a class="nav-link" href="/delegatesddb">
+                            <a class="nav-link" href="/delegates">
 
                                 <i class="fas fa-user-friends"></i> Workflow Delegates
 
@@ -424,9 +436,7 @@
                 </div>
 
                 <div style="margin-top: 3%; margin-left: 1%; height: 490px; overflow-y: auto;overflow-x:auto">
-
                     {{ $slot }}
-
                 </div>
 
             </div>
@@ -466,6 +476,21 @@
 
             }
 
+            function changePageTitle123() {
+
+                var newIcon = '<i style="color: white;" class="fas fa-cog"></i>'
+
+                var newTitle = "Settings";
+
+                document.getElementById("pageTitle").textContent = newTitle;
+
+                document.getElementById("pageIcon").innerHTML = newIcon;
+
+                localStorage.setItem("pageIcon", newIcon);
+
+                localStorage.setItem("pageTitle", newTitle);
+
+            }
 
 
             function changePageTitle1() {
@@ -509,14 +534,14 @@
                 var newIcon = '<i style="color: white;" class="fas fa-tasks"></i>'
 
                 var newTitle = "To do";
-            
+
                 if (item === 'task') {
                     newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
                     newTitle = "Tasks";
                 } else if (item === 'review') {
                     newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
                     newTitle = "Review";
-                } 
+                }
 
                 document.getElementById("pageTitle").textContent = newTitle;
 
@@ -771,7 +796,7 @@
 
                 if (todoOptions.style.display === "block") {
                     todoOptions.style.display = "none";
-                    leaveOptions.style.display="none";
+                    leaveOptions.style.display = "none";
                     todoCaret.classList.remove("fa-caret-up");
                     todoCaret.classList.add("fa-caret-down");
                 } else {

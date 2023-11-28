@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Container Layout</title>
-  
+ 
     <!-- Include Open Sans font -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
@@ -17,10 +17,10 @@
             font-family: 'Montserrat', sans-serif;
         }
       .bal-container{
-        margin-top: 20px; 
+        margin-top: 20px;
         width: 100%;
       }
-
+ 
         /* Buttons and dropdown */
         .buttons-container {
             display: flex;
@@ -29,7 +29,7 @@
             margin-top: 20px; /* Add some distance from the top */
             margin-right: 20px; /* Add some distance from the right */
         }
-
+ 
         .button2 {
             margin-right: 10px;
             padding:5px 5px ;
@@ -43,7 +43,7 @@
             font-size: 14px;
             cursor: pointer;
         }
-
+ 
         .button1 {
             margin-right: 10px;
             padding: 5px 5px;
@@ -57,7 +57,7 @@
             font-size: 14px;
             cursor: pointer;
         }
-
+ 
         .buttons-container .dropdown {
             background-color: #fff;
             border: 1px solid #ccc;
@@ -66,40 +66,39 @@
             border-radius: 5px; /* Add some rounded corners */
             font-size: 14px; /* Adjust font size */
         }
-
+ 
         /* Style for hover effect on options */
         .buttons-container .dropdown:hover {
             cursor: pointer;
             border: 1px solid #00BFFF;
             padding: 5px; /* Add space between options */
         }
-
+ 
         .dropdown option {
             padding: 5px 10px; /* Add space around the text in each option */
         }
-
+ 
         .view {
             text-decoration: none;
         }
-
+ 
         .view:hover {
             color: #007BFF;
         }
         .leave-bal{
             border: 1px solid #bfcee3;
-             padding: 5px 10px; 
+             padding: 5px 10px;
              border-radius: 5px;
-              text-align: center; 
-              height: 200px; 
+              text-align: center;
+              height: 200px;
               background-color:#fff;
         }
         .balance{
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            
         }
-
+ 
         /* Tube-like container */
         .tube-container {
             position: relative;
@@ -110,7 +109,7 @@
             border:1px solid #ccc;
             border-radius:10px;
         }
-
+ 
         .tube {
             position: absolute;
             bottom: 0;
@@ -128,27 +127,25 @@
         .center{
             text-align: center;
             align-items:center;
-             margin-top: 20px; 
+             margin-top: 20px;
              font-size: 16px;
         }
         .center span{
-            color: #778899; 
-            font-size: 12px; 
+            color: #778899;
+            font-size: 12px;
             font-weight: 400;
              text-transform: capitalize;
         }
+     
         .leave-type{
             color: #778899;
             font-size: 14px;
             font-weight: 500;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
         .leave-gran{
-            color: #778899; 
-            font-size: 14px; 
-            font-weight: 500; 
+            color: #778899;
+            font-size: 14px;
+            font-weight: 500;
             text-transform: capitalize;
         }
         .remaining{
@@ -182,9 +179,168 @@
          font-weight:600;
          font-size:0.9rem;
         }
+ 
     </style>
 </head>
 <body>
+<div class="container" id="card-content" style="display:none;margin:0 auto; align-items:center;background:#fcfcfc; width:100%;">
+        <!DOCTYPE html>
+<head>
+    <style>
+        .leave-transctions{
+            background:#fff;
+            margin:0 auto;
+            width:100%;
+            padding:20px 30px;
+            box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2);
+        }
+        .pdf-heading{
+            text-align:center;
+            display:flex;
+            flex-direction:row;
+            gap:10px;
+        }
+ 
+        /* Header Styles */
+       .pdf-heading h2 {
+            color: black;
+            font-size:1.1rem;
+            font-weight:600;
+        }
+       .pdf-heading span p{
+            font-size:0.700rem;
+            font-weight:500;
+            margin-top:2px;
+            color:#36454F;
+        }
+       .pdf-heading h3 {
+            font-weight:500;
+            margin-top:-5px;
+            font-size:0.895rem;
+        }
+        .emp-details{
+            padding: 5px 10px;
+        }
+       
+        .emp-details span{
+            font-size:0.835rem;
+            color:#333;
+           font-weight:400;
+           margin-left:5px;
+        }
+        .emp-details p{
+            font-size:0.875rem;
+            font-weight:600;
+        }
+        .emp-info{
+            display:flex;
+            flex-direction:row;
+            border:1px solid #333;
+           gap: 100px;
+           
+        }
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1.2px solid #808080;
+            padding: 8px;
+            width:100px;
+           text-align:center;
+        }
+        td{
+            font-size:0.795rem;
+        }
+        th {
+            font-size:0.825rem;
+            background-color: #C0C0C0;
+        }
+    </style>
+</head>
+<body>
+    <div class="leave-transctions">
+        <div class="pdf-heading">
+          @if($employeeDetails->company_id === 'XSS-12345')
+                <img src="https://media.licdn.com/dms/image/C4D0BAQHZsEJO8wdHKg/company-logo_200_200/0/1677514035093/xsilica_software_solutions_logo?e=2147483647&v=beta&t=rFgO4i60YIbR5hKJQUL87_VV9lk3hLqilBebF2_JqJg" alt="" style="width:200px;height:125px;">
+            <div>
+               <h2>XSILICA SOFTWARE SOLUTIONS P LTD <br>
+               <span><p>3rd Floor, Unit No.4, Kapil Kavuri Hub IT Block, Nanakramguda Main Road, Hyderabad, Rangareddy, <br> Telangana, 500032</p></span></h2>
+               <h3>Leave Transactions From 01 Jan 2023 To 31 Dec 2023</h3>
+            </div>
+            <!-- payglogo -->
+            @elseif($employeeDetails->company_id === 'PAYG-12345')
+                <img src="https://play-lh.googleusercontent.com/qUGkF93p010_IHxbn8FbnFWZfqb2lk_z07i6JkpOhC9zf8hLzxTdRGv2oPpNOOGVaA=w600-h300-pc0xffffff-pd" style="width:200px;height:125px;">
+             <div >
+               <h2> PayG <br>
+               <span><p>3rd Floor, Unit No.4, Kapil Kavuri Hub IT Block, Nanakramguda Main Road, Hyderabad, Rangareddy, <br> Telangana, 500032</p></span></h2>
+               <h3>Leave Transactions From 01 Jan 2023 To 31 Dec 2023</h3>
+            </div>
+            <!-- attune golabal logo -->
+            @elseif($employeeDetails->company_id === 'AGS-12345')
+                <img src="https://images.crunchbase.com/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/rxyycak6d2ydcybdbb3e" alt="" style="width:200px;height:125px;">
+            <div>
+               <h2>Attune Global Solutions<br>
+               <span><p>3rd Floor, Unit No.4, Kapil Kavuri Hub IT Block, Nanakramguda Main Road, Hyderabad, Rangareddy, <br> Telangana, 500032</p></span></h2>
+               <h3>Leave Transactions From 01 Jan 2023 To 31 Dec 2023</h3>
+            </div>
+            @endif
+        </div>
+ 
+        <!-- Employee Details -->
+      <div class="emp-info">
+        <div class="emp-details">
+                <p > Name: <span>{{ $employeeDetails->first_name}}  {{ $employeeDetails->last_name}}</span></p>
+                <p>Date of Join: <span>{{ optional(\Carbon\Carbon::parse($employeeDetails->hire_date))->format('d M, Y') }}
+</span></p>
+             
+<p>Reporting Manager: <span style="text-transform: uppercase;">{{ $employeeDetails->report_to}} ({{ $employeeDetails->manager_id}}) </span></p>
+ 
+        </div>
+        <div class="emp-details">
+                <p>Employee No: <span>{{ $employeeDetails->emp_id}}</span></p>
+                <p>Date of Birth: <span>{{ optional(\Carbon\Carbon::parse($employeeDetails->date_of_birth))->format('d M, Y') }}
+</span></p>
+                <p>Gender: <span>{{ $employeeDetails->gender}}</span></p>
+        </div>
+      </div>
+        <!-- Add more details as needed -->
+ 
+        <!-- Leave Transactions Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>SI No</th>
+                    <th>Posted Date</th>
+                    <th>From Date</th>
+                    <th>To Date</th>
+                    <th>Days</th>
+                    <th>Leave Type</th>
+                    <th>Transaction Type</th>
+                    <th>Reason</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through leave transactions and populate the table -->
+                @foreach($this->leaveTransactions as $transaction)
+                    <tr>
+                    <td>{{ $loop->index + 1 }}</td>
+                    <td>{{ optional(\Carbon\Carbon::parse( $transaction->leave_created_at ))->format('d M, Y  H:i') }}</td>
+                    <td>{{ optional(\Carbon\Carbon::parse( $transaction->from_date ))->format('d M, Y') }}</td>
+                    <td>{{ optional(\Carbon\Carbon::parse( $transaction->to_date ))->format('d M, Y') }}</td>
+                    <td>{{ $this->calculateNumberOfDays($transaction->from_date, $transaction->from_session, $transaction->to_date, $transaction->to_session) }}</td>
+                    <td>{{ $transaction->leave_type }}</td>
+                    <td>{{ $transaction->status }}</td>
+                    <td>{{ $transaction->reason }}</td>
+                    </tr>
+                    @endforeach
+            </tbody>
+        </table>
+    </div>
+</body>
+        </div>
     <div class="buttons-container">
         <button class="button1">Apply</button>
         <button type="button" class="button2" data-toggle="modal" data-target="#exampleModalCenter">
@@ -206,7 +362,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form novalidate class="ng-valid ng-touched ng-dirty" wire:submit.prevent="generatePdf">
+            <form novalidate class="ng-valid ng-touched ng-dirty" wire:submit.prevent="generatePdf($event)">
             @csrf
                 <div class="modal-body">
                     <div class="row">
@@ -246,7 +402,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="label-style">Transaction</label>
-                                <select name="transactionType" wire:model="transactionType" class="form-control">
+                                <select name="transactionType" wire:model="transactionType"  class="form-control">
                                     <option value="all"  selected>All Transactions</option>
                                     <option value="casual">Granted</option>
                                     <option value="lop">Availed</option>
@@ -260,20 +416,23 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
+                        <div wire:loading wire:target="fetchLeaveTransactions">
+                                <i class="fa fa-spinner fa-spin"></i> Loading...
+                            </div>
                             <div class="form-group">
                                 <label class="label-style">Sort by</label>
-                                <select name="sortBy" class="form-control" wire:model="sortBy">
-                                    <option value="all"  selected>Date(Oldest First)</option>
-                                    <option value="casual">Leave Type</option>
-                                    <option value="lop">Transction Type</option>
-                                    <option value="sick">Date(Newest First)</option>
+                                <select name="sortBy" class="form-control" wire:model="sortBy" >
+                                    <option value="oldest_first" {{ $sortBy == 'oldest_first' ? 'selected' : '' }}>Date (Oldest First)</option>
+                                    <option value="newest_first" {{ $sortBy == 'newest_first' ? 'selected' : '' }}>Date (Newest First)</option>
                                 </select>
                             </div>
+ 
+ 
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary text-capitalize ng-star-inserted">Download</button>
+                    <button  onclick="generatePDF(event)" class="btn btn-primary text-capitalize ng-star-inserted">Download</button>
                     <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
                     <button hidden=""></button>
                 </div>
@@ -281,12 +440,12 @@
         </div>
     </div>
 </div>
-
+ 
 <!-- leave  -->
     <div class="bal-container" >
-        <div class="row" style="margin:0 auto;">
-            <div class="col-md-3">
-                <div class="leave-bal" >
+        <div class="row" style="margin:10px auto;">
+            <div class="col-md-4">
+                <div class="leave-bal">
                     <div class="balance">
                         <div class="field">
                             <span class="leave-type" >Loss Of Pay</span>
@@ -302,17 +461,17 @@
                 </div>
             </div>
          <!-- ... (previous code) ... -->
-            <div class="col-md-3">
+            <div class="col-md-4">
                <div class="leave-bal">
                 <div class="balance">
-                    <div class="field" style="width: 100px;overflow: hidden;">
+                    <div class="field">
                         <span class="leave-type">
                             @if($gender === 'Female')
                             Maternity Leave
                             @elseif($gender === 'Male')
-                                Paternity Leave
+                            Paternity Leave
                             @else
-                                Leave Type
+                            Leave Type
                             @endif
                         </span>
                     </div>
@@ -331,13 +490,13 @@
                 </div>
             </div>
               </div>
-
-
-                <div class="col-md-3">
+ 
+ 
+                <div class="col-md-4">
                     <div class="leave-bal">
                         <div class="balance">
                                 <div class="field">
-                                    <span class="leave-type">Casual Leave 
+                                    <span class="leave-type">Casual Leave
                                 </div>
                                 <div>
                                     <span class="leave-gran">Granted:{{ $casualLeavePerYear }}</span>
@@ -360,9 +519,11 @@
                             </div>
                         </div>
                     </div>
-                      
-                    <div class="col-md-3">
-                    <div class="leave-bal">
+                </div>
+            </div>
+            <div class="row" style="margin:10px auto;">
+              <div class="col-md-4">
+                    <div class="leave-bal" style="margin-top">
                         <div class="balance">
                                 <div class="field">
                                     <span class="leave-type">Sick Leave
@@ -388,57 +549,92 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
+ 
+       
         <!-- modal container -->
-        
+       
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-
+ 
 <!-- Initialize Datepicker -->
 <script>
     $(document).ready(function() {
         console.log("Document ready!");
-
+ 
         // Check if jQuery is loaded
         if (typeof jQuery == 'undefined') {
             console.error('jQuery is not loaded!');
         } else {
             console.log('jQuery is loaded!');
         }
-
+ 
         // Check if Bootstrap is loaded
         if (typeof bootstrap == 'undefined') {
             console.error('Bootstrap is not loaded!');
         } else {
             console.log('Bootstrap is loaded!');
         }
-
+ 
         // Check if Bootstrap Datepicker is loaded
         if (typeof $.fn.datepicker == 'undefined') {
             console.error('Bootstrap Datepicker is not loaded!');
         } else {
             console.log('Bootstrap Datepicker is loaded!');
         }
-
+ 
         // Initialize Datepicker
         $('.date input').datepicker({
             autoclose: true,
             format: 'dd/mm/yyyy'
         });
     });
-
-
-
+    function generatePDF(event) {
+    // Prevent the default form submission behavior
+    event.preventDefault();
+ 
+    // Close the modal
+    $('#exampleModalCenter').modal('hide');
+ 
+    // Delay to wait for the modal to close
+    setTimeout(function () {
+        const cardContent = document.getElementById('card-content').innerHTML;
+ 
+        // Create a Blob from the HTML content
+        const blob = new Blob([`<div style="max-width: 800px; margin:0 auto;">${cardContent}</div>`], {
+            type: 'text/html'
+        });
+ 
+        // Create a URL for the Blob
+        const url = URL.createObjectURL(blob);
+ 
+        // Create an <a> element for downloading the PDF
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'leave_transactions.html'; // Specify the filename with .html extension
+        a.style.display = 'none';
+ 
+        // Append the <a> element to the document and trigger the download
+        document.body.appendChild(a);
+        a.click();
+ 
+        // Clean up by revoking the object URL
+        window.URL.revokeObjectURL(url);
+ 
+        // Remove the <a> element from the document
+        document.body.removeChild(a);
+    }, 500); // Adjust the delay as needed
+}
+ 
+ 
+   
+ 
 </script>
-
-<!-- Include Bootstrap Datepicker CSS -->
-
-
+ 
     </body>
     </html>
-
+ 
 </div>

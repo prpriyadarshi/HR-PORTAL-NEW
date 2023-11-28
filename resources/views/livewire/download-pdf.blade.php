@@ -11,7 +11,7 @@
             min-height: 50vh;
             font-size:12px;
         }
-
+ 
         .salary-slip {
             background: #fff;
             max-width: 800px;
@@ -22,59 +22,59 @@
             border-radius: 5px;
             padding: 20px;
         }
-
+ 
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-
+ 
         }
-
+ 
         .header img {
             height: 80px;
             width: auto;
         }
-
+ 
         .company-name {
           font-size:12px;
         }
-
+ 
         .empDetail {
             width: 100%;
             font-size:12px;
-      
+     
         }
-
+ 
         .empDetail th,
         .empDetail td {
-          
+         
             padding: 8px;
             font-size:12px;
         }
-
+ 
         .myBackground {
-            background-color: #c2d69b;
+            background-color: white;
             font-weight: 300;
         }
-
+ 
         .myAlign {
             text-align: right;
         }
-
+ 
        
     </style>
-
-
-
+ 
+ 
+ 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap">
-
+ 
 <div>
     @foreach($employees as $employeeData)
     @foreach($empBankDetails as  $employee)
-      
+     
     <div class="salary-slip">
         <table class="empDetail">
-            <tr style="background-color: #c2d69b">
+            <tr style="background-color: white">
                 <td colspan='3'>
                 @livewire('company-logo')
                 </td>
@@ -98,7 +98,7 @@
                 <th>Bank Account Number</th>
                 <td>{{ $employee->account_number }}</td>
             </tr>
-            
+           
             <tr>
                 <th>Mobile</th>
                 <td>{{ $employeeData->mobile_number }}</td>
@@ -124,10 +124,10 @@
         <table class="empDetail">
             <tr class="myBackground">
                 <th colspan="2">Payments</th>
-                <th>Particular</th>
+                <th>Particulars</th>
                 <th class="table-border-center">Amount (Rs.)</th>
                 <th colspan="2">Deductions</th>
-                <th>Particular</th>
+                <th>Particulars</th>
                 <th class="table-border-center">Amount (Rs.)</th>
             </tr>
             <tr>
@@ -177,3 +177,4 @@
     </div>
     @endforeach
 </div>
+ 

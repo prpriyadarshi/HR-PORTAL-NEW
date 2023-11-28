@@ -3,18 +3,20 @@
     <html>
 
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.2.3/html2canvas.min.js"></script>
         <style>
             body {
-                background-color: #f4f4f4;
-                padding: 20px;
-                font-family: Montserrat;
-
+                font-family: 'Montserrat';
+                background-color: #f0f0f0;
+                margin: 0;
+                padding: 0;
             }
 
             .cv-container {
-                display: flex;
+                /* display: flex; */
                 background-color: #f0f0f0;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
                 font-family: Montserrat;
@@ -149,12 +151,37 @@
     </head>
 
     <body>
-        <a href="/emplogin" style="text-decoration:none;
-            font-family: Montserrat;background-color:rgb(2, 17, 79);color:white;padding:5px;border-radius:5px
-        ">Back</a>
-        <div class="cv-container" style="margin-top: 10px;">
-            <div class="col" style="background-color: white; width: 45%; height: 835px; overflow: auto;">
-                <div style="margin-left: 40%; margin-top: 20px; font-size: 24px;"><strong>Create CV</strong></div>
+        <div class="container-11" style="background-color: #02134F; color: white; padding: 8px;">
+            <div style="display: flex; align-items: start; justify-content: start;">
+                <img src="https://xsilica.com/images/xsilica_broucher_final_modified_05082016-2.png" alt="Logo" style="width: 200px; height: 50px; margin-right: 10px;">
+                <h1 style="font-size: 21px; margin-left: 21%">Job Seeker - {{$user->full_name}}</h1>
+            </div>
+        </div>
+
+
+        <div class="row-11" style="margin-left: 48%;margin-top:10px">
+            <a href="/Jobs" style="text-decoration: none;">
+                <button style="font-size:12px;width: 130px;height:30px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white;margin-left: 5px;">
+                    <i class="fas fa-briefcase" style="margin-right: 5px;"></i>
+                    Jobs</button>
+            </a>
+            <a href="/Companies" style="text-decoration: none;">
+                <button style="font-size:12px;width: 130px;height:30px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white;margin-left: 5px;">
+                    <i class="fas fa-building" style="margin-right: 5px;"></i>
+                    Companies</button>
+            </a>
+            <a href="/AppliedJobs" style="text-decoration: none;">
+                <button style="font-size:12px;width: 130px;height:30px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white;margin-left: 5px;">
+                    <i class="fas fa-check" style="margin-right: 5px;"></i> Applied Jobs</button>
+            </a>
+            <button style="font-size:12px;width: 100px; border-radius: 5px;height:30px; background-color: rgb(2, 17, 79); color: white;margin-left: 5px;">
+                <a href="/UserProfile" style="text-decoration: none;color:white"> <i class="fa fa-user" style="margin-right: 5px;"></i> Profile</a>
+            </button>
+            <button style="font-size:12px;margin-left: 5px;width: 100px; border-radius: 5px;height:30px; background-color: rgb(2, 17, 79); color: white;" wire:click="logout"> <i class="fas fa-sign-out-alt" style="margin-right: 5px;"></i> Logout</button>
+        </div>
+        <div class="cv-container row m-0 mt-3">
+            <div class="col-md-6" style="background-color: white; height: 230vh; overflow: auto;">
+                <div style="text-align: center; margin-top: 20px; font-size: 24px;"><strong>Create CV</strong></div>
                 <div class="row" style="padding: 15px; margin: 0px;">
                     <form wire.submit.prevent="submit" style="border: 1px solid rgb(2, 17, 79); background-color: rgb(2, 17, 79); height: 100%;width:100%; overflow: auto;padding:8px;">
                         <div style="text-align: center;">
@@ -175,18 +202,9 @@
                             <input type="email" wire:model="email">
                             @error('email') <span class="error">{{ $message }}</span> @enderror <br>
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label style="font-size: 12px" for="phone">Phone:</label>
-                                    <input style="width: 250px;" type="tel" wire:model="phone">
-                                    @error('phone') <span class="error">{{ $message }}</span> @enderror <br>
-                                </div>
-                                <div class="col-md-6">
-                                    <label style="font-size: 12px" for="date_of_birth">Date of Birth:</label>
-                                    <input  style="margin-left: 5px;width:220px" type="date" wire:model="date_of_birth" max="<?php echo date('Y-m-d'); ?>">
-                                    @error('date_of_birth') <span class="error">{{ $message }}</span> @enderror <br>
-                                </div>
-                            </div>
+                            <label style="font-size:12px" for="phone">Phone:</label>
+                            <input type="tel" wire:model="phone">
+                            @error('phone') <span class="error">{{ $message }}</span> @enderror <br>
 
                             <label style="font-size:12px" for="country">Country:</label>
                             <input type="text" wire:model="country">
@@ -199,6 +217,10 @@
                             <label style="font-size:12px" for="address">Address:</label>
                             <input type="text" wire:model="address">
                             @error('address') <span class="error">{{ $message }}</span> @enderror <br>
+
+                            <label style="font-size:12px" for="date_of_birth">Date of Birth:</label>
+                            <input type="date" wire:model="date_of_birth" max="<?php echo date('Y-m-d'); ?>">
+                            @error('date_of_birth') <span class="error">{{ $message }}</span> @enderror <br>
 
                             <label style="font-size:12px" for="image">Image:</label>
                             <input type="file" wire:model="image" accept="image/*">
@@ -215,7 +237,7 @@
                             ">Education</h2>
                         </div>
                         <!-- Education Entries -->
-                        <div class="education-entries">
+                        <div class="education-entries">kiwmaduhjkcndw
                             @foreach($educationEntries as $index => $educationEntry)
                             <div class="education-entry">
                                 <label style="font-size:12px" for="degree">Degree:</label>
@@ -307,38 +329,42 @@
                 </div>
             </div>
 
-            <div class="col" style="background-color: rgb(2, 17, 79); width: 55%; height: 835px;overflow: auto;">
+            <div class="col-md-6" style="background-color: rgb(2, 17, 79);height: 230vh;overflow: auto;">
 
-                <div id="card-content" class="card" style="margin-top: 15px;margin-bottom:15px;width:595px">
+                <div id="card-content" style="margin-top: 15px;margin-bottom:15px;">
                     <!DOCTYPE html>
                     <html>
 
                     <head>
+                        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
                         <style>
                             body {
                                 background-color: #f4f4f4;
-                                padding: 20px;
                                 font-family: Montserrat;
                             }
 
                             .cv-container {
-                                display: flex;
-                                width: 100%;
+                                /* display: flex;
+                            width: 100%; */
                                 margin: 0 auto;
                                 background-color: #f0f0f0;
                                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
                                 font-family: Montserrat;
                             }
 
-                            .row {
-                                display: flex;
-                                align-items: center;
-                                font-family: Montserrat;
-                            }
+                            /* .row {
+                            display: flex;
+                            align-items: center;
+                            font-family: Montserrat;
+                        } */
 
                             .col {
                                 flex: 1;
                                 font-family: Montserrat;
+                                width: 50%
                             }
 
                             img {
@@ -362,7 +388,7 @@
                             }
 
                             .profile-image {
-                                width: 250px;
+                                /* width: 250px; */
                                 height: 160px;
                                 font-family: Montserrat;
                             }
@@ -389,18 +415,18 @@
                     </head>
 
                     <body>
-                        <div class="row" style="margin-top: -15px; background-color: white; position: relative;">
-                            <div class="col">
+                        <div class="m-0 row" style="margin:0px !important">
+                            <div class="col-md-6 p-0" style="padding:0px; color:#fff">
                                 <div class="profile-image" style="padding: 10px; background-color: rgb(2, 17, 79)">
                                     @if($image)
-                                    <img style="width: 160px;height:150px;margin-left:37px;border:5px solid white;" src="{{ $image->temporaryUrl() }}" alt="Your Photo">
+                                    <img style="width: 130px;height:130px;border:5px solid white;" src="{{ $image->temporaryUrl() }}" alt="Your Photo">
                                     @else
                                     <div></div>
                                     @endif
 
                                 </div>
                             </div>
-                            <div class="col-5" style="margin-right:50px;">
+                            <div class="col-md-6 p-0" style="background: #fff;height:160px; padding:0px">
                                 <p class="name">{{$first_name}} {{$last_name}}</p>
                                 @if(!empty($workExperienceEntries) && count($workExperienceEntries) > 0)
                                 <p class="job-title">{{ $workExperienceEntries[0]['job_title'] }}</p>
@@ -408,11 +434,8 @@
                             </div>
                         </div>
 
-                        <div class="cv-container">
-                            <div class="left-column" style="height: 600px;
-                                padding: 2px;
-                                margin: 0px;background-color: #fff;
-                                max-width: 266px;flex:1">
+                        <div class="cv-container row m-0">
+                            <div class="col-md-6 p-0" style="background-color: #fff; padding:0px; height: 600px;">
                                 <h6 style="text-align: center;font-size:12px;margin-top:10px;background-color:rgb(2, 17, 79);color:white;padding:5px;font-family: Montserrat;">
                                     <strong style="font-family: Montserrat;">PROFESSIONAL SUMMARY</strong>
                                 </h6>
@@ -456,10 +479,7 @@
                                     @endif
                                 </ul>
                             </div>
-                            <div class="right-column" style="height: 600px;
-                                padding: 2px;
-                                background-color: #f0f0f0;
-                                margin: 0px;flex:1">
+                            <div class="col-md-6 p-0" style="background-color: #f0f0f0;padding:0px; padding-left:4px !important;">
 
                                 <h6 style="font-size:12px;text-align: center;margin-top:10px;background-color:rgb(2, 17, 79);color:white;padding:5px">
                                     <strong style="font-family: Montserrat;">TECHNICAL SKILLS</strong>
@@ -518,9 +538,11 @@
 
                     </html>
                 </div>
-                <button onclick="generatePDF()"> <a style="text-decoration: none;
+                <div style="text-align: center;">
+                    <button onclick="generatePDF()" class="btn btn-warning"> <a style="color: #fff; text-decoration: none;
             font-family: Montserrat;
                 ">Download</a></button>
+                </div>
             </div>
         </div>
     </body>
@@ -603,12 +625,30 @@
     }
 
     function generatePDF() {
-        const cardContent = document.getElementById('card-content').innerHTML;
-
         // Create a Blob from the HTML content
-        const blob = new Blob([`<div style="max-width: 600px;">${cardContent}</div>`], {
+        const cardContent = document.getElementById('card-content').innerHTML;
+        const blob = new Blob([`<div style="max-width: 600px;margin:16px;">${cardContent}</div>`], {
             type: 'text/html'
         });
+
+        // Add Bootstrap CDN links to the head of the HTML document
+        const head = document.head;
+        // const body = document.body;
+
+        // Bootstrap CSS link
+        const bootstrapCssLink = document.createElement('link');
+        bootstrapCssLink.rel = 'stylesheet';
+        bootstrapCssLink.href = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css';
+        bootstrapCssLink.integrity = 'sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN';
+        bootstrapCssLink.crossorigin = 'anonymous';
+        document.head.appendChild(bootstrapCssLink);
+
+        // Bootstrap JS script
+        const bootstrapJsScript = document.createElement('script');
+        bootstrapJsScript.src = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js';
+        bootstrapJsScript.integrity = 'sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL';
+        bootstrapJsScript.crossOrigin = 'anonymous';
+        document.head.appendChild(bootstrapJsScript);
 
         // Create a URL for the Blob
         const url = URL.createObjectURL(blob);
@@ -625,5 +665,8 @@
 
         // Clean up by revoking the object URL
         window.URL.revokeObjectURL(url);
+
+
     }
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

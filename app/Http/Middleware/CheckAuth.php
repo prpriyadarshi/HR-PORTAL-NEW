@@ -5,7 +5,8 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 class CheckAuth
 {
   /**
@@ -15,40 +16,42 @@ class CheckAuth
    */
   public function handle(Request $request, Closure $next): Response
   {
+          // Check if the user is an employee
+      if (auth()->guard('emp')->check()) {
+          // Check if the session has expired
+          if (Session::has('lastActivityTime')) {
+              $maxSessionLifetime = config('session.lifetime');
+              $lastActivityTime = Session::get('lastActivityTime');
+              $currentTime = now();
+              if ($currentTime->diffInMinutes($lastActivityTime) > $maxSessionLifetime) {
+                  // Session has expired
+                  Session::flash('sessionExpired', 'Your session has expired. Please log in again.');
+                  Session::forget('lastActivityTime');
 
-    //    This is also working fine.........
-    // if($request->user()){
-    //         session(['user_type' => 'admin']);
-    //         return redirect(route('home'));
+                  // Redirect to the login page
+                  return redirect(route('emplogin'));
+              }
+          }
 
-    //    }
-    // if (auth()->user() && auth()->check()) {
-    //     // Set the navigation bar for admin users
-    //     view()->share('navbar', 'navbar-admin');
-    // } elseif (auth()->guard('staff')->check()) {
-    //     // Set the navigation bar for staff users
-    //     view()->share('navbar', 'navbar-staff');
-    // } elseif (auth()->guard('student')->check()) {
-    //     // Set the navigation bar for student users
-    //     view()->share('navbar', 'navbar-student');
-    // } else {
-    //     // Set a default navigation bar for guests
-    //     view()->share('navbar', 'navbar-guest');
-    // }
+          // Update the last activity time
+          Session::put('lastActivityTime', now());
+          // Set user type and emp_id in the session
+          $emp_id = auth()->guard('emp')->user()->emp_id;
+          Session::put('emp_id', $emp_id);
+          Session::put('user_type', 'emp');
 
-    // return $next($request);
-    if (auth()->guard('emp')->check()) {
-      session(['user_type' => 'emp']);
-      return redirect(route('profile.info'));
-    } elseif (auth()->user() && auth()->check()) {
-      return redirect('/Jobs');
-    }elseif (auth()->guard('com')->check()) {
-      return redirect('/PostJobs');
-    }
-     else {
-      session(['user_type' => 'guest']);
-    }
+          return redirect(route('profile.info'));
+      }elseif (auth()->user() && auth()->check()) {
+        return redirect('/Jobs');
+      }elseif (auth()->guard('com')->check()) {
+        return redirect('/PostJobs');
+      }
+       else {
+        session(['user_type' => 'guest']);
+      }
 
-    return $next($request);
+      // Handle other user types and session expiration logic if needed
+
+      return $next($request);
   }
 }

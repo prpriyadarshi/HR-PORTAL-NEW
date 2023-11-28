@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+
 class SalaryRevision extends Model
 {
     use HasFactory;
@@ -17,14 +19,16 @@ class SalaryRevision extends Model
 
     protected $fillable = [
         'emp_id',
+        'company_id',
         'salary',
+        'salary_month',
         'last_revision_period',
         'present_revision_period',
         'previous_monthly_ctc',
         'revised_monthly_ctc',
     ];
 
-    protected $appends = ['basic', 'hra', 'medical', 'special', 'conveyance','pf'];
+    protected $appends = ['basic', 'hra', 'medical', 'special', 'conveyance', 'pf'];
 
     public function getBasicAttribute()
     {
@@ -58,6 +62,7 @@ class SalaryRevision extends Model
 
     public function calculateHRA()
     {
+
         return ($this->basic * 0.4); // 40% of basic as HRA
     }
 
@@ -68,38 +73,38 @@ class SalaryRevision extends Model
 
     public function calculateSpecial()
     {
-        $remainingSalary = $this->salary - ($this->basic + $this->hra + $this->conveyance + $this->medical+$this->calculatePf()); 
-        return max($remainingSalary, 0);// Fixed amount for Special Allowance
+        $remainingSalary = $this->salary - ($this->basic + $this->hra + $this->conveyance + $this->medical + $this->calculatePf());
+        return max($remainingSalary, 0); // Fixed amount for Special Allowance
     }
 
     public function calculatePf()
-{
-    $basic = $this->calculateBasic();
-    if ($basic) {
-        // Calculate PF as 12% of Basic
-        return ($basic * 0.12);
-    } else {
-        // If Basic is not set, PF is 0
-        return 0;
+    {
+        $basic = $this->calculateBasic();
+        if ($basic) {
+            // Calculate PF as 12% of Basic
+            return ($basic * 0.12);
+        } else {
+            // If Basic is not set, PF is 0
+            return 0;
+        }
     }
-}
-public function calculateEsi()
-{
-    $basic = $this->calculateBasic();
-    if ($basic) {
-        // Calculate PF as 12% of Basic
-        return ($basic * 0.0075);
-    } else {
-        // If Basic is not set, PF is 0
-        return 0;
+    public function calculateEsi()
+    {
+        $basic = $this->calculateBasic();
+        if ($basic) {
+            // Calculate PF as 12% of Basic
+            return ($basic * 0.0075);
+        } else {
+            // If Basic is not set, PF is 0
+            return 0;
+        }
     }
-}
 
-public function calculateProfTax()
-{
-    return 150; // Fixed amount for Medical Allowance
-}
-public function calculateTotalDeductions()
+    public function calculateProfTax()
+    {
+        return 150; // Fixed amount for Medical Allowance
+    }
+    public function calculateTotalDeductions()
     {
         return $this->calculatePf() + $this->calculateEsi() + $this->calculateProfTax();
     }
@@ -108,9 +113,9 @@ public function calculateTotalDeductions()
     {
         return $this->where('emp_id', $emp_id)->first();
     }
-    
 
-  
+
+
 
     public function calculateTotalAllowance()
     {
@@ -133,4 +138,8 @@ public function calculateTotalDeductions()
         return $this->belongsTo(EmployeeDetails::class, 'emp_id', 'emp_id');
     }
 
+    public function company()
+    {
+        return $this->belongsTo(Company::class, 'company_id');
+    }
 }

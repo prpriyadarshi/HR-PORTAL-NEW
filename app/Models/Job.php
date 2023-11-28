@@ -18,6 +18,7 @@ class Job extends Model
         'salary',
         'company_id',
         'company_name',
+        'hr_name',
         'expire_date',
         'contact_email',
         'contact_phone',

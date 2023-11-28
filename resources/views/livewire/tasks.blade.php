@@ -358,7 +358,7 @@
                                         <div class="form-group" style="margin-top: 20px;">
                                             <label class="form-label" style="font-size: 14px;">Due Date</label>
                                             <br>
-                                            <input type="date" wire:model="due_date" style="width: 100%;font-size:12px" max="<?= date('Y-m-d'); ?>">
+                                            <input type="date" wire:model="due_date" style="width: 100%;font-size:12px" min="<?= date('Y-m-d'); ?>">
                                         </div>
                                         @error('due_date') <span class="text-danger">{{ $message }}</span> @enderror
 
@@ -453,9 +453,10 @@
                                         @endif
                                         @error('file_path') <span class="text-danger">{{ $message }}</span> @enderror
                                         <div style="margin-top: 30px; text-align: center;">
-                                            <button wire:click="close" class="btn btn-danger btn-medium" type="button" name="link" style="background-color: #FF3D57; color: white; width: 100px;font-size:13px">Cancel</button>
                                             <button wire:click="submit" class="btn btn-success btn-medium" type="button" name="link" style="background-color: #4CAF50; color: white; margin-left: 20px;font-size:13px">Save
                                                 Changes</button>
+                                            <button wire:click="close" class="btn btn-danger btn-medium" type="button" name="link" style="background-color: #FF3D57; color: white; width: 100px;font-size:13px">Cancel</button>
+
                                         </div>
                                     </div>
                                 </div>
