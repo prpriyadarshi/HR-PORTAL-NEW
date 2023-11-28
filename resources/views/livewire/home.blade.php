@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <script src="{{ asset('livewire/livewire.js') }}" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -133,13 +134,13 @@
             align-items:center;
         }
         .team-Notify{
-            display:flex; 
+            display:flex;
             flex-direction:column;
             justify-content:start;
-            padding:5px 10px; 
-            
+            padding:5px 10px;
+
         }
-        
+
         .home-hover {
     transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
     border-radius:5px;
@@ -167,36 +168,36 @@
         box-shadow: 1px 2px rgba(0, 0, 0, 0.2);
     }
     .leave-display{
-        padding: 5px 10px; 
-        display: flex; 
+        padding: 5px 10px;
+        display: flex;
         flex-direction:row;
-        align-items: center; 
-        white-space: nowrap; 
-        overflow: hidden; 
+        align-items: center;
+        white-space: nowrap;
+        overflow: hidden;
         background:#fafafa;
-        text-overflow: ellipsis; 
+        text-overflow: ellipsis;
         border-top:1px solid #ccc;
         font-size: 12px;
         gap:15px;
     }
     .team-leave{
-        display: flex; 
+        display: flex;
         flex-direction:row;
-        align-items: center; 
-        white-space: nowrap; 
-        overflow: hidden; 
-        text-overflow: ellipsis; 
+        align-items: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         font-size: 12px;
         gap:12px;
     }
     .net-salary{
-        display: flex; 
+        display: flex;
         flex-direction:row;
-        align-items: center; 
-        white-space: nowrap; 
-        overflow: hidden; 
+        align-items: center;
+        white-space: nowrap;
+        overflow: hidden;
         justify-content:space-between;
-        text-overflow: ellipsis; 
+        text-overflow: ellipsis;
     }
     </style>
 </head>
@@ -218,8 +219,8 @@
 
         </div>
         <div class="content">
-            <div style="display:flex; padding:10px 20px;">
-                <div>
+            <div class="row m-0 mb-3">
+                <div class="col-md-8">
                     <div class="greet">
                     @if($this->greetingText)
                         <h1 class="text-secondary-500 pb-1.5x" style="font-size: 24px; font-family: montserrat;width:45%">{{$greetingText}}</h1>
@@ -243,14 +244,16 @@
                     </div>
                 </div>
 
+                <div class="col-md-4">
                 @if($this->greetingImage)
-                    <img src="{{ asset('/images/' . $greetingImage) }}" alt=" " style="width:300px;height:170px;margin-left:70px;">
+                    <img src="{{ asset('/images/' . $greetingImage) }}" alt=" " style="height: 200px; width:280px;">
                 @endif
                 <!-- <img id="greeting-image" src="" alt="Greeting Image" style="height: 200px; width:300px ;margin-left:50px; "> -->
+        </div>
             </div>
             <!-- main content -->
-            <div class="container" style="display:flex; flex-direction:row; gap:5px; padding:10px 5pxx;">
-                    <div class="first-col col-md-4" style=" padding:0;  display:flex; flex-direction:column;gap:5px;" >
+            <div class="row m-0">
+                    <div class="first-col col-md-4 p-1" style="display:flex; flex-direction:column;gap:10px;" >
                         <div class="home-hover">
                                <div class="reviews">
                                   <div style="border-radius: 5px; border: 1px solid #CFCACA;  background-color: white;">
@@ -263,17 +266,17 @@
                                         </div>
                                     </div>
                                     @if(($this->count) > 0)
-                                    
+
                                           <div class="notify">
                                                 <p style="color: black; font-size: 1.2rem; font-weight: 500;">
                                                     {{$count}} <br>
                                                     <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">Things to review</span>
                                                 </p>
-                                                         
+
                                                 <img src="https://png.pngtree.com/png-vector/20190214/ourlarge/pngtree-vector-notes-icon-png-image_509622.jpg" alt="" style="height: 50px; width: 50px;">
                                             </div>
                                             <div class="leave-display" >
-                                           
+
                                                 @for ($i = 0; $i < min($count, 2); $i++)
                                                     <div class="circle-notify" style="margin-right: 5px; display:flex; flex-direction:column;">
                                                         @php
@@ -363,7 +366,7 @@
                                                                 ?>
                                                                     <div class="circle-notify" style="margin-right: 5px; border-radius: 50%; background: #fcfdfe; padding: 8px 8px; border: 2px solid {{ getRandomLightColor() }};">
                                                                         <span>{{$initials}}</span>
-                                                                    </div> 
+                                                                    </div>
                                                                 <?php
                                                                     }
                                                                 ?>
@@ -375,7 +378,7 @@
                                                                 </div>
                                                             @endif
                                                         </div>
-                                                        
+
                                                     <div style="margin-top:20px;">
                                                     <p style="color: #778899; font-size: 0.875rem; font-weight: 500;">
                                                     This month({{$upcomingLeaveApplications}}) </p>
@@ -394,7 +397,7 @@
                             @endif
                         </div>
                         <!-- second column -->
-                    <div class="first-col col-md-4" style=" padding:0; display:flex; flex-direction:column;gap:5px;">
+                    <div class="first-col col-md-4 p-1" style="display:flex; flex-direction:column;gap:10px;">
                         <div class="home-hover">
                            <div style=" border-radius: 5px; border: 1px solid #CFCACA;  background-color: #EDF3FF;">
                                     <div style="color: black; padding:10px 15px;">
@@ -416,7 +419,7 @@
                                         </script>
                                         <div class="A" style="display: flex;flex-direction:row;justify-content:space-between; align-items:center;margin-top:10px;">
                                             <a style="width:40%;font-size:0.855rem;cursor: pointer;color:blue" wire:click="open">View Swipes</a>
-                                
+
                                             <button id="signButton" style="color: white; width: 100px; height: 30px; background-color: rgb(2, 17, 79); border: 1px solid #CFCACA; border-radius: 5px; " wire:click="toggleSignState">
                                                 @if ($signIn)
                                                 Sign In
@@ -438,8 +441,8 @@
 
                     <div style="display:flex">
                         <div style="position: relative;">
-                            <canvas id="outerPieChart" width="200" height="250"></canvas>
-                            <canvas id="innerPieChart" style="position: absolute; top: -10px; left: 0px;"></canvas>
+                            <canvas id="outerPieChart" width="150" height="150"></canvas>
+                            <canvas id="innerPieChart" width="150" height="150" style="position: absolute; top: -10px; left: 0px;"></canvas>
                         </div>
 
 
@@ -452,7 +455,7 @@
 
                     </div>
 
-                    <div style="display:flex ;color: #677A8E; margin-left: 20px; font-size: 14px;  font-weight:100px;margin-top:-2px">
+                    <div style="display:flex ;color: #677A8E; font-size: 14px;  font-weight:100px;margin-top:-2px">
                         <br style="margin-top:-10px">Gross Pay</br>
                         <br>Deduction</br>
                         <br>Net Pay</br>
@@ -466,7 +469,7 @@
 
                         </div>
                     </div>
-                    <div class="column" style="display: flex; color: #1090D8; margin-left: 20px; font-size: 14px;  margin-top: 20px; font-weight: 100;">
+                    <div class="column" style="display: flex; color: #1090D8; font-size: 14px;  margin-top: 20px; font-weight: 100;">
 
                         <a href="/your-download-route" id="pdfLink2023_4" class="pdf-download" download style="margin-left: 10px; display: inline-block;">Download PDF</a>
                         <p style="margin-left: 80px;">Show Salary</p>
@@ -530,7 +533,7 @@
             @endif
         </div>
         <!-- third column -->
-        <div class="first-col col-md-4" style=" padding:0; display:flex; flex-direction:column;gap:5px;">
+        <div class="first-col col-md-4 p-1" style="display:flex; flex-direction:column;gap:10px;">
             <div class="home-hover">
                 <div style="border-radius: 5px; border: 1px solid #CFCACA; background-color: white;padding:10px 15px;">
                     <div style="display:flex; justify-content:space-between;">
@@ -581,6 +584,8 @@
             </div>
         </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
@@ -618,7 +623,7 @@
     // Set an interval to change the quote every 5 seconds (5000 milliseconds)
     setInterval(changeQuote, 5000);
 
- 
+
     var data = {
     labels: ['Gross Pay'],
     datasets: [{
@@ -626,7 +631,7 @@
         backgroundColor: ['#FF5733'], // Color for Gross Pay
     }],
 };
- 
+
 var innerData = {
    labels: ['Deductions', 'Net Pay'],
     datasets: [{
@@ -634,7 +639,7 @@ var innerData = {
         backgroundColor: ['#3399FF', '#33FF33'], // Colors for Deductions and Net Pay
     }],
 };
- 
+
 var ctx = document.getElementById('outerPieChart').getContext('2d');
 var outerPieChart = new Chart(ctx, {
     type: 'doughnut',
@@ -643,7 +648,7 @@ var outerPieChart = new Chart(ctx, {
         cutout: '70%', // Adjust the cutout to control the size of the inner circle
     },
 });
- 
+
 var innerCtx = document.getElementById('innerPieChart').getContext('2d');
 var innerPieChart = new Chart(innerCtx, {
     type: 'doughnut',

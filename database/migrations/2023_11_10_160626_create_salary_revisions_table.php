@@ -14,7 +14,7 @@ return new class extends Migration
 
         Schema::create('salary_revisions', function (Blueprint $table) {
             $table->id();
-            $table->string('emp_id');
+            $table->string('emp_id')->unique();
             $table->string('company_id');
             $table->decimal('salary', 10, 2);
             $table->date('salary_month');

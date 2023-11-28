@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Database\QueryException;
 class EmpLogin extends Component
 {
     public $showDialog = false;
@@ -24,6 +26,10 @@ class EmpLogin extends Component
         'password' => '',
     ];
     public $error = '';
+    protected $messages = [
+        'form.emp_id.required' => 'ID is required.',
+        'form.password.required' => 'Password is required.',
+    ];
     public function jobs(){
         return redirect()->to('/Login&Register');
     }
@@ -33,6 +39,8 @@ class EmpLogin extends Component
     }
     public function empLogin()
     {
+
+        try{
         $this->validate([
             "form.emp_id" => 'required',
             "form.password" => "required"
@@ -53,6 +61,15 @@ class EmpLogin extends Component
         } else {
             $this->error = "Employee ID or Password Wrong!!";
         }
+    }catch (QueryException $e) {
+        // Handle database connection exceptions
+        Log::error('Database Error: ' . $e->getMessage());
+        $this->error = "Database Error: Unable to connect to the database. Please check your database credentials.";
+    } catch (\Exception $e) {
+        // Handle other exceptions
+        Log::error('Exception: ' . $e->getMessage());
+        $this->error = "An error occurred: " . $e->getMessage();
+    }
     }
 
     public function resetForm()
