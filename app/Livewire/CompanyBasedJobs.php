@@ -6,12 +6,19 @@ use App\Models\AppliedJob;
 use App\Models\Job;
 use App\Models\User;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
 class CompanyBasedJobs extends Component
 {
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/emplogin');
+    }
+
     public $jobList = [];
 
     use WithFileUploads;
@@ -79,8 +86,11 @@ class CompanyBasedJobs extends Component
             ->get();
     }
 
+    public $user;
     public function render()
     {
+        $this->user = auth()->user();
+
         return view('livewire.company-based-jobs');
     }
 }

@@ -78,6 +78,7 @@ class LoginAndRegisterForJobs extends Component
             'user_address' => 'required',
             'user_type' => 'required'
         ]);
+        $resumePath = $this->user_resume->store('resumes', 'public');
         User::create([
             'company_id' => $this->company_id,
             'company_name' => $this->company_name,
@@ -89,7 +90,7 @@ class LoginAndRegisterForJobs extends Component
             'mobile_no' => $this->user_mobile_no,
             'work_status' => $this->user_work_status,
             'address' => $this->user_address,
-            'resume' => $this->user_resume,
+            'resume' => $resumePath,
         ]);
         return redirect('/Jobs');
     }

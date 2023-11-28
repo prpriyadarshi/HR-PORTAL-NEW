@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\AppliedJob;
 use App\Models\Company;
 use App\Models\Job;
 use Livewire\Component;
@@ -28,7 +29,7 @@ class PostJobs extends Component
     public $application_instructions;
     public $company_details;
     public $job_id;
-    public $company_id; 
+    public $company_id;
     public $companies;
 
     public $companyDetails;
@@ -36,8 +37,8 @@ class PostJobs extends Component
     {
 
         $this->validate([
-            'company_id'=>'required',
-            'company_name'=>'required',
+            'company_id' => 'required',
+            'company_name' => 'required',
             'title' => 'required',
             'description' => 'required',
             'location' => 'required',
@@ -88,15 +89,21 @@ class PostJobs extends Component
         auth()->guard('com')->logout();
         return redirect('/Login&Register');
     }
-    public function selectedCompanyId(){
+    public function selectedCompanyId()
+    {
         $selectedCompany = $this->companies->firstWhere('company_id', $this->company_id);
         $this->company_name = $selectedCompany ? $selectedCompany->company_name : null;
     }
+    public $hrDetails;
+    public $appliedJobs;
     public function render()
     {
         $hrEmail = auth()->guard('com')->user()->contact_email;
         $hrCompanies = Company::where('contact_email', $hrEmail)->get();
+        $hrDetails = Company::where('contact_email', $hrEmail)->first();
         $this->companies = $hrCompanies;
+        $this->hrDetails = $hrDetails;
+     
         return view('livewire.post-jobs');
     }
 }

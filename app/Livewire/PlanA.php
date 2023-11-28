@@ -117,10 +117,10 @@ public function submitsec80()
     }
  
         // Set a default value for '5_years_fixed_deposit' if not provided by the user
-        // if (!isset($this->fields['5_years_fixed_deposit'])) {
-        //     $this->fields['5_years_fixed_deposit'] = 0; // You can change 0 to the appropriate default value.
-        // }
- 
+        if (!isset($this->fields['5_years_fixed_deposit'])) {
+            $this->fields['5_years_fixed_deposit'] = 0; // You can change 0 to the appropriate default value.
+        }
+
         $rules = [
             'fields.5_years_fixed_deposit' => 'numeric|between:0,50000',
             'fields.5_years_deposit' => 'numeric|between:0,50000',
@@ -205,9 +205,35 @@ public function submitotherdeductions()
     }
     session(['submitted' => true]);
 }
- 
- 
- 
+
+
+
+public $fieldsmedical = [
+    
+        'medical' => null,
+        'Health Checkup' => null,
+        'Dependant Parents' => null,
+];
+public function submitmedical()
+    {
+        $this->validate([
+            'fieldsmedical.medical' => 'numeric',
+            'fieldsmedical.Health Checkup' => 'numeric',
+            'fieldsmedical.Dependant Parents' => 'numeric',
+        ]);
+
+        // Calculate the total or perform other operations if needed
+
+        $this->totalmedical = array_sum($this->fieldsmedical);
+   
+        medical::create($this->fieldsmedical);
+
+        // Reset the form or take any necessary actions
+  
+
+        // Optionally, you can add a success message or redirect
+    }
+
     public function render()
     {
         $employeeId = auth()->guard('emp')->user()->emp_id;

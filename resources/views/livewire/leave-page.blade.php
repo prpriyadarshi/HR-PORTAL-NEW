@@ -1,5 +1,8 @@
 <div>
     <style>
+        body{
+            font-family: 'Montserrat', sans-serif;
+        }
         .nav-buttons {
             font-family: Montserrat;
             text-decoration: none;
@@ -70,7 +73,7 @@
         display: flex;
         font-size: 0.875rem;
         flex-direction: row; /* Change from 'row' to 'column' */
-        width: 45%;
+        width: 55%;
         padding: 5px;
         border-radius: 5px;
         justify-content: space-between;
@@ -350,7 +353,7 @@
 
                     <div class="content">
 
-                        <a href="/view-details">
+                        <a href="{{ route('leave-history', ['leaveRequestId' => $leaveRequest->id]) }}">
 
                             <span style="color: #3a9efd; font-size: 0.875rem; font-weight: 500;">View Details</span>
 
