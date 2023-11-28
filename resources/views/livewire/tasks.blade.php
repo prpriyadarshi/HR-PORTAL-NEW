@@ -127,35 +127,37 @@
         </style>
 
 
-        <div class="container" style="margin-top:15px;width: 800px; height: 450px; margin-left: 20px; border: 1px solid silver; border-radius: 5px;background-color:white">
+        <div class="container" style="margin-top:15px;width: 90%; height: 450px; border: 1px solid silver; border-radius: 5px;background-color:white">
             <div class="row">
-                <div class="col" style="margin-left:30%;margin-top:15px">
-                    <div class="card" style="width:250px;">
+                <div class="col-md-9" style="margin-top: 15px; text-align: -webkit-center; padding: 0px;">
+                    <div class="card" style="width:fit-content;">
                         <div class="card-header">
                             <div class="row">
-                                <button wire:click="$set('activeTab', 'open')" class="col btn @if($activeTab === 'open') btn-primary active @else btn-light @endif" style="border-radius: 5px; margin-right: 5px">
+                                <button wire:click="$set('activeTab', 'open')" class="col btn @if($activeTab === 'open') btn-success active @else btn-light @endif" style="border-radius: 5px; margin-right: 5px">
                                     Open
                                 </button>
-                                <button wire:click="$set('activeTab', 'completed')" class="col btn @if($activeTab === 'completed') btn-success active @else btn-light @endif" style="border-radius: 5px;">
+                                <button wire:click="$set('activeTab', 'completed')" class="col btn @if($activeTab === 'completed') btn-danger active @else btn-light @endif" style="border-radius: 5px;">
                                     Completed
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col" style="margin-left:20%">
+                <div class="col-md-3" style="padding: 0px; text-align: center;">
                     <button wire:click="show" style="background-color:rgb(2, 17, 79); border: none; border-radius: 5px; color: white; font-size: 12px; height: 30px; cursor: pointer; margin-top: 5px;margin-top:15px">Add
                         New Task</button>
                 </div>
             </div>
             @if ($activeTab == "open")
-            <div class="card-body" style="background-color:white;width:100%;margin-top:30px;border-radius:5px">
+            <div class="card-body" style="background-color:white;width:100%;margin-top:30px;border-radius:5px;padding: 0px">
 
 
                 @if ($records->isEmpty())
-                <div> <img style="margin-top:15%;margin-left:30%" height="200" width="300" src="https://media.istockphoto.com/id/1357284048/vector/no-item-found-vector-flat-icon-design-illustration-web-and-mobile-application-symbol-on.jpg?s=612x612&w=0&k=20&c=j0V0ww6uBl1LwQLH0U9L7Zn81xMTZCpXPjH5qJo5QyQ=" alt="">
+                <div style="text-align: center">
+                    <img style="width: 10em" src="https://media.istockphoto.com/id/1357284048/vector/no-item-found-vector-flat-icon-design-illustration-web-and-mobile-application-symbol-on.jpg?s=612x612&w=0&k=20&c=j0V0ww6uBl1LwQLH0U9L7Zn81xMTZCpXPjH5qJo5QyQ=" alt="">
                 </div>
                 @else
+        <div class="table-responsive">
                 <table style="width: 100%; border-collapse: collapse;">
                     <thead>
                         <tr style="background-color: rgb(2, 17, 79); color: white;">
@@ -189,8 +191,8 @@
                                 @endif
                             </td>
                             <td style="padding: 5px; font-size: 12px; text-align: center; width: 100px;">
-                                <div class="row" style="display: flex; justify-content: space-between;">
-                                    <button wire:click="openForTasks('{{$record->id}}')" style="background-color: orange; color: white; border-radius: 5px;">Close</button>
+                                <div class="m-0 row" style="display: flex; justify-content: space-between;">
+                                    <button wire:click="openForTasks('{{$record->id}}')" style="background-color: red; color: white; border-radius: 5px;">Close</button>
                                 </div>
                             </td>
                         </tr>
@@ -198,18 +200,21 @@
                         @endforeach
                     </tbody>
                 </table>
+        </div>
 
                 @endif
                 @endif
 
                 @if ($activeTab == "completed")
-                <div class="card-body" style="background-color:white;width:100%;margin-top:30px;border-radius:5px">
+                <div class="card-body" style="background-color:white;width:100%;margin-top:30px;border-radius:5px; padding: 0px">
 
 
                     @if ($records->isEmpty())
-                    <div> <img style="margin-top:15%;margin-left:30%" height="200" width="300" src="https://media.istockphoto.com/id/1357284048/vector/no-item-found-vector-flat-icon-design-illustration-web-and-mobile-application-symbol-on.jpg?s=612x612&w=0&k=20&c=j0V0ww6uBl1LwQLH0U9L7Zn81xMTZCpXPjH5qJo5QyQ=" alt="">
+                    <div style="text-align: center">
+                        <img style="width:10em" src="https://media.istockphoto.com/id/1357284048/vector/no-item-found-vector-flat-icon-design-illustration-web-and-mobile-application-symbol-on.jpg?s=612x612&w=0&k=20&c=j0V0ww6uBl1LwQLH0U9L7Zn81xMTZCpXPjH5qJo5QyQ=" alt="">
                     </div>
                     @else
+                    <div class="table-responsive">
                     <table style="width: 100%; border-collapse: collapse;">
                         <thead>
                             <tr style="background-color: rgb(2, 17, 79); color: white;">
@@ -220,7 +225,7 @@
                                 <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Due Date</th>
                                 <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Subject</th>
                                 <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Description</th>
-                                <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Attach File</th>
+                                <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Attch File</th>
                                 <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Status</th>
                             </tr>
                         </thead>
@@ -244,7 +249,7 @@
                                     @endif
                                 </td>
                                 <td style="padding: 5px; font-size: 12px; text-align: center; width: 100px;">
-                                    <div class="row" style="display: flex; justify-content: space-between;">
+                                    <div class="m-0 row" style="display: flex; justify-content: space-between;">
                                         <button wire:click="closeForTasks('{{$record->id}}')" style="background-color: green; color: white; border-radius: 5px;">Open</button>
                                     </div>
                                 </td>
@@ -253,14 +258,15 @@
                             @endforeach
                         </tbody>
                     </table>
+        </div>
                     @endif
                     @endif
                     @if($showDialog)
-                    <div class="modal" tabindex="-1" role="dialog" style="display: block;overflow-y:auto">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal" tabindex="-1" role="dialog" style="display: block;">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                             <div class="modal-content">
                                 <div class="modal-header" style="background-color: #02114F; height: 50px;">
-                                    <h5 style="padding: 10px; color: white; font-size: 18px;" class="modal-title"><b>Add
+                                    <h5 style="color: white; font-size: 18px;" class="modal-title"><b>Add
                                             Task</b></h5>
                                     <button wire:click="close" type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true" style="color: white; font-size: 24px;">×</span>
@@ -332,10 +338,10 @@
                                         <!-- Priority -->
                                         <div class="priority-container" style="margin-top: 20px;">
                                             <div class="row">
-                                                <div class="col-4">
+                                                <div class="col-md-4">
                                                     <label for="priority" style="font-size: 14px; margin-left: 0px; margin-top: 0px; padding: 0 10px 0 0;">Priority*</label>
                                                 </div>
-                                                <div class="col-8">
+                                                <div class="col-md-8">
                                                     <div id="priority" style="display: flex; align-items: center; margin-top: 0px;">
                                                         <div class="priority-option" style="margin-left: 0px; padding: 0;">
                                                             <input type="radio" id="low-priority" name="priority" wire:model="priority" value="low">
@@ -358,7 +364,7 @@
                                         <div class="form-group" style="margin-top: 20px;">
                                             <label class="form-label" style="font-size: 14px;">Due Date</label>
                                             <br>
-                                            <input type="date" wire:model="due_date" style="width: 100%;font-size:12px" min="<?= date('Y-m-d'); ?>">
+                                            <input type="date" wire:model="due_date" style="width: 100%;font-size:12px" max="<?= date('Y-m-d'); ?>">
                                         </div>
                                         @error('due_date') <span class="text-danger">{{ $message }}</span> @enderror
 
@@ -452,13 +458,17 @@
                                         </div>
                                         @endif
                                         @error('file_path') <span class="text-danger">{{ $message }}</span> @enderror
-                                        <div style="margin-top: 30px; text-align: center;">
+                                        <!-- <div style="margin-top: 30px; text-align: center;">
+                                            <button wire:click="close" class="btn btn-danger btn-medium" type="button" name="link" style="background-color: #FF3D57; color: white; width: 100px;font-size:13px">Cancel</button>
                                             <button wire:click="submit" class="btn btn-success btn-medium" type="button" name="link" style="background-color: #4CAF50; color: white; margin-left: 20px;font-size:13px">Save
                                                 Changes</button>
-                                            <button wire:click="close" class="btn btn-danger btn-medium" type="button" name="link" style="background-color: #FF3D57; color: white; width: 100px;font-size:13px">Cancel</button>
-
-                                        </div>
+                                        </div> -->
                                     </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button wire:click="close" class="btn btn-danger btn-medium" type="button" name="link" style="background-color: #FF3D57; color: white; width: 100px;font-size:13px">Cancel</button>
+                                            <button wire:click="submit" class="btn btn-success btn-medium" type="button" name="link" style="background-color: #4CAF50; color: white; margin-left: 20px;font-size:13px">Save
+                                                Changes</button>
                                 </div>
                             </div>
                         </div>

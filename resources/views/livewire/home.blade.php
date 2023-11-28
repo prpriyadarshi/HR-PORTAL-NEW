@@ -138,9 +138,9 @@
             flex-direction:column;
             justify-content:start;
             padding:5px 10px;
- 
+
         }
- 
+
         .home-hover {
     transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
     border-radius:5px;
@@ -243,7 +243,7 @@
                         </div>
                     </div>
                 </div>
- 
+
                 <div class="col-md-4">
                 @if($this->greetingImage)
                     <img src="{{ asset('/images/' . $greetingImage) }}" alt=" " style="height: 200px; width:280px;">
@@ -266,17 +266,17 @@
                                         </div>
                                     </div>
                                     @if(($this->count) > 0)
- 
+
                                           <div class="notify">
                                                 <p style="color: black; font-size: 1.2rem; font-weight: 500;">
                                                     {{$count}} <br>
                                                     <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">Things to review</span>
                                                 </p>
- 
+
                                                 <img src="https://png.pngtree.com/png-vector/20190214/ourlarge/pngtree-vector-notes-icon-png-image_509622.jpg" alt="" style="height: 50px; width: 50px;">
                                             </div>
                                             <div class="leave-display" >
- 
+
                                                 @for ($i = 0; $i < min($count, 2); $i++)
                                                     <div class="circle-notify" style="margin-right: 5px; display:flex; flex-direction:column;">
                                                         @php
@@ -378,7 +378,7 @@
                                                                 </div>
                                                             @endif
                                                         </div>
- 
+
                                                     <div style="margin-top:20px;">
                                                     <p style="color: #778899; font-size: 0.875rem; font-weight: 500;">
                                                     This month({{$upcomingLeaveApplications}}) </p>
@@ -419,7 +419,7 @@
                                         </script>
                                         <div class="A" style="display: flex;flex-direction:row;justify-content:space-between; align-items:center;margin-top:10px;">
                                             <a style="width:40%;font-size:0.855rem;cursor: pointer;color:blue" wire:click="open">View Swipes</a>
- 
+
                                             <button id="signButton" style="color: white; width: 100px; height: 30px; background-color: rgb(2, 17, 79); border: 1px solid #CFCACA; border-radius: 5px; " wire:click="toggleSignState">
                                                 @if ($signIn)
                                                 Sign In
@@ -454,7 +454,7 @@
                         </div>
  
                     </div>
- 
+
                     <div style="display:flex ;color: #677A8E; font-size: 14px;  font-weight:100px;margin-top:-2px">
                         <br style="margin-top:-10px">Gross Pay</br>
                         <br>Deduction</br>
@@ -470,7 +470,7 @@
                         </div>
                     </div>
                     <div class="column" style="display: flex; color: #1090D8; font-size: 14px;  margin-top: 20px; font-weight: 100;">
- 
+
                         <a href="/your-download-route" id="pdfLink2023_4" class="pdf-download" download style="margin-left: 10px; display: inline-block;">Download PDF</a>
                         <p style="margin-left: 80px;">Show Salary</p>
                     </div>
@@ -585,7 +585,7 @@
         </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
- 
+
 </body>
  
 </html>
@@ -622,8 +622,8 @@
  
     // Set an interval to change the quote every 5 seconds (5000 milliseconds)
     setInterval(changeQuote, 5000);
- 
- 
+
+
     var data = {
     labels: ['Gross Pay'],
     datasets: [{
@@ -631,7 +631,7 @@
         backgroundColor: ['#FF5733'], // Color for Gross Pay
     }],
 };
- 
+
 var innerData = {
    labels: ['Deductions', 'Net Pay'],
     datasets: [{
@@ -639,7 +639,7 @@ var innerData = {
         backgroundColor: ['#3399FF', '#33FF33'], // Colors for Deductions and Net Pay
     }],
 };
- 
+
 var ctx = document.getElementById('outerPieChart').getContext('2d');
 var outerPieChart = new Chart(ctx, {
     type: 'doughnut',
@@ -648,7 +648,7 @@ var outerPieChart = new Chart(ctx, {
         cutout: '70%', // Adjust the cutout to control the size of the inner circle
     },
 });
- 
+
 var innerCtx = document.getElementById('innerPieChart').getContext('2d');
 var innerPieChart = new Chart(innerCtx, {
     type: 'doughnut',
@@ -658,4 +658,3 @@ var innerPieChart = new Chart(innerCtx, {
     },
 });
 </script>
- 
