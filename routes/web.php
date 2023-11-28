@@ -140,7 +140,7 @@ Route::middleware(['auth:com'])->group(function () {
     });
 
 
->>>>>>> 8f8c966c0df71aefad3367a2403663fd3b1dfcb8
+
 });
 
 Route::middleware(['auth:emp'])->group(function () {
