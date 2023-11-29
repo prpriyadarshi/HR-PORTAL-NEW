@@ -700,7 +700,7 @@ table {
     background-color: #fff;
     padding: 20px;
     border: 1px solid #888;
-    width: 60%;
+    width: 80%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 .fa-info-circle:hover {
@@ -1158,7 +1158,7 @@ table {
                     </td>
                     <td>-</td>
                                              
-                    <td><button class="info-button"style="background-color: rgb(2, 17, 79); border: 2px solid rgb(2, 17, 79);height:20px; color: white; border-radius: 5px;font-size:12px;margin-top:-10px"data-toggle="modal"data-target="#viewStudentModal"wire:click="viewDetails({{$swiperecord->id}})">Info</button></td>
+                    <td><button class="info-button"style="background-color: rgb(2, 17, 79); border: 2px solid rgb(2, 17, 79);height:20px; color: white; border-radius: 5px;font-size:12px;margin-top:-10px"data-toggle="modal"data-target="#viewStudentModal"wire:click="viewDetails('{{$swiperecord->id}}')">Info</button></td>
                                             
               </tr>
               @if (($index + 1) % 2 == 0)
@@ -1184,17 +1184,18 @@ table {
    
   </div>
  
-  <div wire:ignore.self class="modal fade" id="viewStudentModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content"style="width:100%"> 
+@if($show=="true")
+<div wire:ignore.self class="modal fade" id="viewStudentModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Swipe Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="closeViewStudentModal">
-                        <span aria-hidden="true">&times;</span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span wire:click="close" aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <table class="table table-bordered">
+                <div class="modal-body pt-4 pb-4">
+                <table class="table table-bordered">
                         <tbody>
                           @if($swiperecord)
                                @if ($data->isNotEmpty())
@@ -1232,14 +1233,17 @@ table {
                             </tr>
                             @endif
                     </table>
+               
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-sm btn-danger" wire:click="cancel()" data-dismiss="modal" aria-label="Close">Cancel</button>
-                   
+                    <button class="btn btn-sm btn-danger" wire:click="close" >Cancel</button>
                 </div>
             </div>
         </div>
-  </div>
+
+</div>
+
+@endif
   
 </div>
 
@@ -1288,7 +1292,7 @@ table {
             <tr>
                 
 
-                 <td class="date">{{$swiperecords1->created_at->format('d M Y')}}</td>
+                 <td class="date">{{$swiperecords1->created_at->format('d M Y')}} </td>
                  <td>10:(GS)</td>
                  <td>10:00 am to 07:00pm</td>
                   @if ($swiperecords1->in_or_out === 'Sign In'||$swiperecords1->in_or_out === 'IN')
@@ -1314,9 +1318,14 @@ table {
               
                   <td>00:00</td>
                   <td>00:00</td>
-                  
-                  <td>-</td>
-                  <td>Swipe&nbsp;Details</td>
+                  @if($swiperecords1->in_or_out=="IN")
+                      <td  style=" color:#a3b2c7;;margin-left:10px;margin-top:20px;">P</td>
+                  @elseif($swiperecords1->created_at->format('l') == 'Saturday' || $swiperecords1->created_at->format('l') == 'Sunday') 
+                      <td style=" color: #a3b2c7;;margin-left:10px;margin-top:20px;">O</td>
+                  @else
+                      <td  style=" color: #f66;margin-left:10px;margin-top:20px;">A</td>
+                  @endif      
+                  <td><button class="info-button"style="background-color: rgb(2, 17, 79); border: 2px solid rgb(2, 17, 79);height:20px; color: white; border-radius: 5px;font-size:12px;margin-top:-10px"data-toggle="modal"data-target="#largeBoxModal"wire:click="viewTableDetails('{{$swiperecords1->id}}')">Info</button></td>
                   <td>No&nbsp;attention&nbsp;required</td>
                   <td>-</td>
                   <td>10:00-14:00</td>
@@ -1345,6 +1354,84 @@ table {
         </table>
    </div>
 </div>
+
+<div  class="modal fade" id="largeBoxModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content"style="width:100%"> 
+                <div class="modal-header">
+                    <h5 class="modal-title">Swipe Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="closeViewStudentModal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <tbody>
+                          @if($swiperecord)
+                               @if ($data->isNotEmpty())
+                               <tr>
+                                   <th>Employee&nbsp;Name: </th>
+                                   <td>{{ $data[0]->first_name }} {{ $data[0]->last_name }}</td>
+                               </tr>
+                               @endif
+                            <tr>
+                                <th>Employee&nbsp;Id</th>
+                                <td >{{ $swiperecord->emp_id }}</td>
+                            </tr>
+
+                           
+                            <tr>
+                                <th>Access&nbsp;Card&nbsp;Number:</th>
+                                <td>-</td>
+                            </tr>
+                            
+                            @endif
+                    </table>
+                    <div style=" overflow-x: auto;
+    max-width: 100%;">
+  <table>
+ 
+  <thead>
+    <tr>
+      <th>In/Out</th>
+      <th>Swipe&nbsp;Time</th>
+      <th>Location</th>
+      <th>Status</th>
+      <th>Last&nbsp;Updated&nbsp;On</th>
+      <th>Modified&nbsp;Time</th>
+      <th>Updated&nbsp;By</th>
+      <th>Longitude</th>
+      <th>Latitude</th>
+      <th>Mobile ID</th>
+      <th>Remarks</th>
+    </tr>
+   
+  </thead>
+  <tbody>
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <!-- Add more rows with dashes as needed -->
+  </tbody>
+  <!-- Add table rows (tbody) and data here if needed -->
+</table>
+
+</div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-danger" wire:click="cancel()" data-dismiss="modal" aria-label="Close">Cancel</button>
+                   
+                </div>
+            </div>
+        </div>
+  </div>
 <div id="box-container" style="display: none;margin-left:300px;">
 <div class="box">
     <div class="box-content">
