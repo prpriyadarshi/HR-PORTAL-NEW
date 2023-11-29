@@ -5,7 +5,9 @@ namespace App\Livewire;
 use App\Models\AppliedJob;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use App\Models\Company;
 use Livewire\WithFileUploads;
 
 class LoginAndRegisterForJobs extends Component
@@ -106,6 +108,9 @@ class LoginAndRegisterForJobs extends Component
 
     public function render()
     {
+        //  $companyId=auth()->guard('com')->user()->company_id;
+        //  $company = Company::where('company_id', $companyId)->first();
+        //  dd($company);
         return view('livewire.login-and-register-for-jobs');
     }
 }
