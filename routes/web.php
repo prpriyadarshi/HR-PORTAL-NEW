@@ -175,7 +175,7 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/document', Documentcenter::class);
     Route::get('/documents', Documents::class);
     Route::get('/team-on-leave-chart', TeamOnLeaveChart::class);
-
+    Route::get('/salary-revision', SalaryRevisions::class)->name('salary-revision');
 
     Route::get('/plan-A', PlanA::class)->name('plan-a');
 
@@ -201,7 +201,7 @@ Route::middleware(['auth:emp'])->group(function () {
 
 
 
-    Route::get('/salary-revisions', SalaryRevisions::class)->name('salary-revisions');
+ 
 
 
 
