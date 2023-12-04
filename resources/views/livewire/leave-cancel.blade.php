@@ -311,7 +311,7 @@
                     </div>
                     
                     @foreach($employeeDetails as $employee)
-                        <div style="display:flex; gap:10px;" onclick="updateApplyingTo('{{ $employee['report_to'] }}', '{{ $employee['manager_id'] }}')">
+                        <div style="display:flex; gap:10px;" onclick="updateApplyingTo"({{ $employee['report_to'] }}, {{ $employee['manager_id'] }})">
                               <input type="checkbox" wire:model="selectedManager" value="{{ $employee['manager_id'] }}">
                                <img src="https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars.png" alt="Default User Image" style="width: 40px; height: 40px; border-radius: 50%;">
                             <div class="center">

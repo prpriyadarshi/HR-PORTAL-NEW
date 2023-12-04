@@ -188,7 +188,7 @@
 
             .nav-link {
 
-                color: black;
+                color: black !important;
 
             }
 
@@ -215,19 +215,52 @@
                 color: #3a9efd;
 
             }
+            @media only screen and (max-width: 768px) {
+                .displayNone {
+                    display: none !important;
+                }
+                .displayBlock {
+                    display: block !important;
+                }
+                #menu-popup {
+                    position: absolute;
+                    background: #fff;
+                    border: 1px solid #e0dddd;
+                    border-radius:0px;
+                    height: auto;
+                    width: fit-content;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                    top: 3.8em;
+                    z-index: 1000;
+                }
+            }
+            @media only screen and (min-width: 769px) {
+                .hideHamburger {
+                    display: none !important;
+                }
+            }
+            li a {
+                color: black;
+            }
+            a {
+                text-decoration: none
+            }
+            .nav-link:focus, .nav-link:hover {
+                    color: var(--bs-nav-link-hover-color) !important;
+                }
         </style>
 
 
 
-        <div class="row" style="height: 100%;width:100%;background-color: #f0f0f0;">
+        <div class="row m-0" style="height: 100%;width:100%;background-color: #f0f0f0;">
 
-            <div class="card" style="border-radius:0px;height: auto; width: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            <div class="card displayNone" id="menu-popup" style="border-radius:0px;height: auto; width: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
 
                 <div class="card-body" style="height: auto;width:auto;margin-top:0px">
 
                     <ul class="nav flex-column">
 
-                        <div style="margin-bottom: 10px;margin-top:0px">
+                        <div style="margin-bottom: 30px;margin-top:0px">
 
                             @livewire('company-logo')
                         </div>
@@ -236,7 +269,7 @@
 
 
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle1()">
+                        <li class="nav-item" style="text-decoration: none; margin-top: 10px" onclick="changePageTitle1()">
 
                             <a class="nav-link" href="/">
 
@@ -414,11 +447,12 @@
 
             <div class="col" style="height: 60px; width: auto; background-color:rgb(2, 17, 79)">
 
-                <div class="col" style="display: flex; align-items: center; margin-top:2%;justify-content: start;">
+            <div class="col" style="display: flex; align-items: center; margin-top:2%;justify-content: start;">
+                <i class="fas fa-bars hideHamburger" style="color: #fff; font-size: 20px; margin: 0px 10px;; cursor: pointer;" onclick="myMenu()"></i>
 
                     <i style="margin-bottom: 5px; color: white" id="pageIcon"></i>
 
-                    <h6 style="color: white; width: 300px; margin-right: 50%;" id="pageTitle">Home</h6>
+                    <h6 style="color: white; width: -webkit-fill-available;" id="pageTitle">Home</h6>
 
                     <h6 style="color: grey; margin-right: 20px;margin-top:5px;width:150px">Quick Links</h6>
 
@@ -435,7 +469,7 @@
 
                 </div>
 
-                <div style="margin-top: 3%; margin-left: 1%; height: 490px; overflow-y: auto;overflow-x:auto">
+                <div style="margin-top: 3%; margin-left: 1%; height: 490px; overflow-y: auto;">
                     {{ $slot }}
                 </div>
 
@@ -446,6 +480,9 @@
         @livewireScripts
 
         <script>
+            function myMenu() {
+                document.getElementById("menu-popup").classList.toggle("displayBlock");
+            }
             if (localStorage.getItem("pageIcon") && localStorage.getItem("pageTitle")) {
 
                 var storedIcon = localStorage.getItem("pageIcon");

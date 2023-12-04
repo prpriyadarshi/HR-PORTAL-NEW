@@ -77,10 +77,13 @@
         </div>
     </div>
     <div style="margin-top:5px;margin-bottom:5px">
-        <button style="width: 200px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;margin-left:60%"><a href="/JobSeekersAppliedJobs" style="text-decoration: none;color:white">Job Seekers Applied Jobs</a></button>
+        <button style="width: 200px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;margin-left:45%"><a href="/JobSeekersAppliedJobs" style="text-decoration: none;color:white">Job Seekers Applied Jobs</a></button>
         <button style="width:200px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;"><a href="/VendorsSubmittedCVs" style="text-decoration: none;color:white">Vendors Submitted CVs</a></button>
+        <button style="width:200px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;"><a href="/empregister" style="text-decoration: none;color:white">Employee Register</a></button>
         <button style="width: 80px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;" wire:click="logout">Logout</button>
     </div>
+    <button style="width: 80px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;margin-left:90%"
+        wire:click="logout">Logout</button>
     @if(Session::has('success'))
     <div id="success-alert" class="alert alert-success alert-dismissible fade show" style="
             height: 30px;

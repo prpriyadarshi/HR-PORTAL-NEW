@@ -24,6 +24,7 @@ class LeavePending extends Component
     {
         // Fetch leave request details based on $leaveRequestId with employee details
         $this->leaveRequest = LeaveRequest::with('employee')->find($leaveRequestId);
+
         $this->leaveRequest->from_date = Carbon::parse($this->leaveRequest->from_date);
         $this->leaveRequest->to_date = Carbon::parse($this->leaveRequest->to_date);
     }
@@ -125,6 +126,7 @@ class LeavePending extends Component
         $employeeId = auth()->guard('emp')->user()->emp_id; 
         // Call the getLeaveBalances function to get leave balances
         $leaveBalances = LeaveBalances::getLeaveBalances($employeeId);
+        
         
         try {
                 // Attempt to decode applying_to

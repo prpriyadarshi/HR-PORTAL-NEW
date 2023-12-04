@@ -68,7 +68,7 @@ class Home extends Component
         SwipeRecord::create([
             'emp_id' => $this->employeeDetails->emp_id,
             'swipe_time' => now()->format('H:i:s'),
-            'in_or_out' => $this->signIn ? "Sign Out" : "Sign In",
+            'in_or_out' => $this->signIn ? "OUT" : "IN",
         ]);
         $flashMessage = $this->signIn ? "You have successfully signed out." : "You have successfully signed in.";
         session()->flash('success', $flashMessage);

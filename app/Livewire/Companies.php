@@ -28,7 +28,7 @@ class Companies extends Component
         $this->user = auth()->user();
 
         $this->companies = Company::orderBy('created_at', 'desc')->get();
-    
+         
         return view('livewire.companies');
     }
 }

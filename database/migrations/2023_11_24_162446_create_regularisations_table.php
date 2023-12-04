@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('to');
             $table->string('reason');
             $table->integer('is_withdraw');
+            $table->date('regularisation_date')->nullable();
             $table->enum('status', ['approved', 'pending','rejected'])->default('pending');
             $table->string('approved_by')->nullable();
             $table->foreign('emp_id')
@@ -25,7 +26,6 @@ return new class extends Migration
             ->on('employee_details')
             ->onDelete('restrict')
             ->onUpdate('cascade');
-            
             $table->timestamps();
         });
     }

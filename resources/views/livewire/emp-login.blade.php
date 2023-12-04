@@ -1,7 +1,7 @@
     <div class="container-fluid p-0">
         <div class="m-0 mt-3 row">
             <div class="col-md-12" style="text-align: end;">
-                <button wire:click="jobs" style="background-color: rgb(2, 17, 79);color:white;border-radius:5px;border:none">
+                <button  class="btn btn-primary" wire:click="jobs" style="background-color: rgb(2, 17, 79);color:white;border-radius:5px;border:none">
                     Recruitment</button>
             </div>
         </div>
@@ -63,7 +63,7 @@
                         <span><a href="#" wire:click="show" style="color: rgb(2, 17, 79);">Forgot Password?</a></span>
                     </div>
                     <div class="form-group" style="text-align:center; margin-top:10px;">
-                        <input style="background-color:rgb(2,17,79); font-size:small; width:20%; margin: 0 auto;" type="submit" class="btn btn-primary btn-block" value="Login" />
+                        <input style="background-color:rgb(2,17,79); font-size:small; width:fit-content; margin: 0 auto;" type="submit" class="btn btn-primary btn-block" value="Login" />
                     </div>
 
 

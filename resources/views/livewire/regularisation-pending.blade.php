@@ -149,7 +149,7 @@
 
     <div class="detail-container ">
         <div class="header" style="font-size: 1rem; font-weight: 500; text-align:start; margin-left:150px; ">
-            <h6 >Leave Applied on {{ $leaveRequest->created_at->format('d M, Y') }} </h6>
+            <h6 >Date Applied for Regularisation</h6>
         </div>
         <div class="approved-leave">
             <div class="heading">
@@ -157,42 +157,12 @@
                     <div style="display:flex; flex-direction:row; justify-content:space-between;">
                     <div class="field">
                             <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">
-                                @if(strtoupper($leaveRequest->status) == 'WITHDRAWN')
-                                    Withdrawn by
-                                @elseif(strtoupper($leaveRequest->status) == 'APPROVED')
-                                    Approved by
-                                @else
-                                    Rejected by
-                                @endif
-                            </span>
-                            @if(strtoupper($leaveRequest->status) == 'WITHDRAWN')
-                                <span style="color: #333; font-weight: 500; text-transform: uppercase;">
-                                    {{ $this->leaveRequest->employee->first_name }} {{ $this->leaveRequest->employee->last_name }}
-                                </span>
-                            @elseif(!empty($leaveRequest['applying_to']))
-                                @foreach($leaveRequest['applying_to'] as $applyingTo)
-                                    <span style="color: #333; font-weight: 500; text-transform:uppercase;">
-                                        {{ $applyingTo['report_to'] }}
-                                    </span>
-                                @endforeach
-                            @endif
+                          
                         </div>
 
                      <div>
                         <span style="color: #32CD32; font-size: 0.875rem; font-weight: 500; text-transform:uppercase;">
-                        @if(strtoupper($leaveRequest->status) == 'APPROVED')
-
-                                    <span style="margin-top:0.625rem; font-size: 1rem; font-weight: 500; color:#32CD32;">{{ strtoupper($leaveRequest->status) }}</span>
-
-                                @elseif(strtoupper($leaveRequest->status) == 'REJECTED')
-
-                                    <span style="margin-top:0.625rem; font-size: 1rem; font-weight: 500; color:#FF0000;">{{ strtoupper($leaveRequest->status) }}</span>
-
-                                @else
-
-                                    <span style="margin-top:0.625rem; font-size: 1rem; font-weight: 500; color:#778899;">{{ strtoupper($leaveRequest->status) }}</span>
-
-                                @endif
+                      
                         </span>
                    </div>
                 </div>
@@ -200,67 +170,41 @@
                 <div class="view-container">
                      <div class="first" style="display:flex; gap:40px;padding:5px; ">
                             <div class="field">
-                                <span style="color: #778899; font-size: 0.825rem; font-weight: 500;">From date</span>
-                                <span style="font-size: 1rem; font-weight: 600;"> {{ $leaveRequest->from_date->format('d M, Y') }}<br><span style="color: #494F55;font-size: 0.825rem; font-weight: 600;">{{ $leaveRequest->from_session }}</span></span>
+                                <span style="color: #778899; font-size: 0.825rem; font-weight: 500;">Remarks</span>
+                                <span style="font-size: 1rem; font-weight: 600;">-<br></span>
                             </div>
-                            <div class="field">
-                                <span style="color: #778899; font-size: 0.825rem; font-weight: 500;">To date</span>
-                                <span style="font-size: 1rem; font-weight: 600;">{{ $leaveRequest->to_date->format('d M, Y') }} <br><span style="color: #494F55;font-size: 0.825rem; font-weight: 600;">{{ $leaveRequest->to_session }}</span></span>
-                            </div>
+                            
                             <div class="vertical-line"></div>
                          </div>
                          <div class="box" style="display:flex;  margin-left:30px;  text-align:center; padding:5px;">
                             <div class="field">
                                 <span style="color: #778899; font-size: 0.825rem; font-weight: 500;">No. of days</span>
-                                <span style=" font-size: 0.875rem; font-weight: 600;"> {{ $this->calculateNumberOfDays($leaveRequest->from_date, $leaveRequest->from_session, $leaveRequest->to_date, $leaveRequest->to_session) }}</span>
+                                <span style=" font-size: 0.875rem; font-weight: 600;"> 1</span>
                             </div>
                         </div>
                      </div>
                  </div>
-                    <div class="leave">
-                        <div class="pay-bal">
-                            <span style=" font-size: 0.975rem; font-weight: 500;">Balance:</span>
-                            @if(!empty($leaveBalances))
-                                @if($leaveRequest->leave_type === 'Sick Leave')
-                                <span style=" font-size: 0.875rem; font-weight: 500;">{{ $leaveBalances['sickLeaveBalance'] }}</span>
-                                @elseif($leaveRequest->leave_type === 'Causal Leave Probation')
-                                <span style=" font-size: 0.875rem; font-weight: 500;">{{ $leaveBalances['casualLeaveBalance'] }}</span>
-                                @elseif($leaveRequest->leave_type === 'Loss Of Pay')
-                                <span style=" font-size: 0.875rem; font-weight: 500;">{{ $leaveBalances['lossOfPayBalance'] }}</span>
-                                @endif
-                            @endif
-                        </div>
-                        <div class="leave-type">
-                            <span style=" color: #605448; font-size: 1rem; font-weight: 600;">{{ $leaveRequest->leave_type }}</span>
-                        </div>
-                  </div>
+                   
               </div>
 
         <div class="details">
            <div class="data">
            <p><span style="color: #333; font-weight: 500; font-size:1rem;">Details</span></p>
-           @if(!empty($leaveRequest['applying_to']))
-            @foreach($leaveRequest['applying_to'] as $applyingTo)
-            <p style=" font-size: 0.90rem; "><span style="color: #778899; font-size: 0.875rem; font-weight: 400;padding-right: 58px;">Applying to</span  >{{ $applyingTo['report_to'] }}</p>
-            @endforeach
-            @endif
+          
+            <p style=" font-size: 0.90rem; margin-right:60px;"><span style="color: #778899; font-size: 0.875rem; font-weight: 400;padding-right: 58px;">Date</span>27-11-2023</p>
+           
              <div style="display:flex; flex-direction:row; justify-content:space-between;">
-             <span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 88px;">Reason</span>
-             <p>{{ $leaveRequest->reason }}</p>
+             <span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 88px;">Approve/Reject</span>
+             <p>PENDING</p>
         
              </div>
-            <p style="margin-top:10px;"><span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 82px;">Contact</span>{{ $leaveRequest->contact_details }} </p>
-            @if(!empty($leaveRequest->cc_to))
+            <p style="margin-top:10px;"><span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 82px;">Approver Remarks</span>-</p>
+         
                 <p style="font-size: 0.975rem; font-weight: 500;">
                     <span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 90px;">CC to</span>
-                    @foreach($leaveRequest->cc_to as $ccToItem)
-                    {{ $ccToItem['full_name'] }} (#{{ $ccToItem['emp_id'] }})
-                    @if(!$loop->last)
-                        ,
-                    @endif
-                    @endforeach
+                    
                 </p>
-            @endif
+          
 
            </div>
         </div>
@@ -277,27 +221,15 @@
               <div class="group">
               <div>
                 <h5 style="color: #333; font-size: 0.825rem; font-weight: 400; text-align:start;">
-                    @if(strtoupper($leaveRequest->status) == 'WITHDRAWN')
-                        Withdrawn <br><span style="color: #778899; font-size: 0.825rem; font-weight: 400; text-align:start;">by</span> 
+      
+                        Pending <br><span style="color: #778899; font-size: 0.825rem; font-weight: 400; text-align:start;">with</span> 
                         <span style="color: #778899; font-weight: 500; text-transform: uppercase;">
-                            {{ $this->leaveRequest->employee->first_name }}  {{ $this->leaveRequest->employee->last_name }}
+                           pranita priyadarshi
                         </span>
-                    @elseif(strtoupper($leaveRequest->status) == 'APPROVED')
-                        Approved by 
-                        @if(!empty($leaveRequest['applying_to']))
-                            @foreach($leaveRequest['applying_to'] as $applyingTo)
-                                <span style="color: #778899; font-size: 0.825rem; font-weight: 500;text-align:start;">
-                                    {{ $applyingTo['report_to'] }}
-                                </span>
-                            @endforeach
-                        @endif
-                    @else
-                        Rejected by
-                        <!-- Add your logic for rejected by -->
-                    @endif
+                  
                     <br>
                     <span style="color: #778899; font-size: 0.725rem; font-weight: 400;text-align:start;">
-                        {{ $leaveRequest->updated_at->format('d M, Y g:i A') }}
+                        26-11-2023
                     </span>
                 </h5>
             </div>
@@ -306,7 +238,7 @@
            <div class="group">
                <div >
                   <h5 style="color: #333; font-size: 0.825rem; font-weight: 400; text-align:start;">Submitted<br>
-                <span style="color: #778899; font-size: 0.725rem; font-weight: 400;text-align:start;">{{ $leaveRequest->created_at->format('d M, Y g:i A') }}</span>
+                <span style="color: #778899; font-size: 0.725rem; font-weight: 400;text-align:start;">26-11-2023</span>
                     </h5>
                </div>
            </div>

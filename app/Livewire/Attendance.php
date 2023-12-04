@@ -20,10 +20,12 @@ class Attendance extends Component
     public $view_student_emp_id; 
     public $view_student_swipe_time;
     public $view_student_in_or_out;
+    public $view_table_in_or_out;
     public $employeeDetails;
     public $student;
     public $selectedRecordId = null;
     
+    public $table;
 
     public function mount()
     {
@@ -57,25 +59,53 @@ private function calculateActualHours($swipe_records)
 }
   public function viewDetails($id)
   {
+   
+    $student = SwipeRecord::find($id);
     
-    $student = SwipeRecord::where('id', $id)->first();
- 
-
+   
     // $this->view_student_id = $student->student_id;
     $this->view_student_emp_id = $student->emp_id;
-   
-    $this->view_student_swipe_time= $student->swipe_time;
-   
-    $this->view_student_in_or_out= $student->in_or_out;
     
+    $this->view_student_swipe_time= $student->swipe_time;
+    $this->view_student_in_or_out= $student->in_or_out;
+    // $check=$this->view_student_emp_id.''.$this->view_student_swipe_time.''.$this->view_student_in_or_out;
+    $this->showViewStudentModal();
   }
- 
+  public function viewTableDetails($id)
+  {
+    $table = SwipeRecord::find($id);
+   
+    
+    // $this->view_student_id = $student->student_id;
+    $this->view_table_in_or_out = $table->in_or_out;
+    $this->showViewTableModal();
+  }
   public function closeViewStudentModal()
   {
       $this->view_student_emp_id = '';
       $this->view_student_swipe_time = '';
       $this->view_student_in_or_out = '';
      
+  }
+  public function closeViewTableModal()
+  {
+    $this->view_table_in_or_out = '';
+     
+     
+  }
+  public $show=false;  
+  public $show1=false;   
+  public function showViewStudentModal(){
+    $this->show=true;
+  }
+  public function showViewTableModal(){
+    $this->show1=true;
+  }
+  public function close(){
+    $this->show=false;  
+  }
+  public function close1(){
+    $this->show1=false;  
   }
     public function render()
     {
@@ -92,8 +122,8 @@ private function calculateActualHours($swipe_records)
         //$swipe_records = SwipeRecord::all();
            $swipe_records = SwipeRecord::where('emp_id',auth()->guard('emp')->user()->emp_id)->whereDate('created_at', $currentDate)->get();
            $swipe_records1 = SwipeRecord::where('emp_id',auth()->guard('emp')->user()->emp_id)->orderBy('created_at', 'desc')->get(); 
-                 
-                 
+              
+              
             // $this->calculateActualHours();
             
             $this->calculateActualHours($swipe_records);

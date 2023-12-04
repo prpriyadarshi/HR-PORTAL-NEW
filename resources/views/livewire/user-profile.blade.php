@@ -60,7 +60,7 @@
             color: rgb(2, 17, 79);
             font-size: 18px;
             /* Increase font size */
-            margin-top: 20px;
+            /* margin-top: 20px; */
         }
 
         .section-content {
@@ -86,30 +86,33 @@
     </style>
 
     <body>
-        <div class="container-1" style="background-color: #02134F; color: white; padding: 8px;">
-            <div style="display: flex; align-items: start; justify-content: start;">
-                <img src="https://xsilica.com/images/xsilica_broucher_final_modified_05082016-2.png" alt="Logo" style="width: 200px; height: 50px; margin-right: 10px;">
-                <h1 style="font-size: 21px; margin-left:21%;margin-top:10px">Job Seeker - {{$user->full_name}}</h1>
+        <div class="row m-0" style="background-color: #02134F; color: white; padding: 8px;">
+            <div class="col-md-2 mb-3" style="text-align: center; margin: auto;">
+                <img src="https://xsilica.com/images/xsilica_broucher_final_modified_05082016-2.png" alt="Logo" style="height: 50px; margin-right: 10px;">
             </div>
+            <div class="col-md-10 mb-3" style="text-align: center; margin: auto;">
+            <h1 style="font-size: 21px;">Job Seeker - {{$user->full_name}}</h1>
 
         </div>
 
-        <div class="row-1" style="margin-left: 58%;margin-top:10px">
+        </div>
+
+        <div class="row-1" style="margin-top: 10px; text-align: end; margin-right: 10px;">
             <a href="/Jobs" style="text-decoration: none;">
-                <button style="font-size:12px;width: 130px;height:30px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white;margin-left: 5px;">
-                <i class="fas fa-briefcase" style="margin-right: 5px;"></i> 
+                <button class="btn btn-primary mb-2" style="font-size:12px;background-color: rgb(2, 17, 79); color: white;margin-left: 5px;">
+                <i class="fas fa-briefcase" style="margin-right: 5px;"></i>
                     Jobs</button>
             </a>
             <a href="/Companies" style="text-decoration: none;">
-                <button style="font-size:12px;width: 130px;height:30px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white;margin-left: 5px;">
+                <button class="btn btn-primary mb-2" style="font-size:12px;background-color: rgb(2, 17, 79); color: white;margin-left: 5px;">
                     <i class="fas fa-building" style="margin-right: 5px;"></i>
                     Companies</button>
             </a>
             <a href="/AppliedJobs" style="text-decoration: none;">
-                <button style="font-size:12px;width: 130px;height:30px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white;margin-left: 5px;">
+                <button class="btn btn-primary mb-2" style="font-size:12px;background-color: rgb(2, 17, 79); color: white;margin-left: 5px;">
                     <i class="fas fa-check" style="margin-right: 5px;"></i> Applied Jobs</button>
             </a>
-            <button style="font-size:12px;margin-left: 5px;width: 100px; border-radius: 5px;height:30px; background-color: rgb(2, 17, 79); color: white;" wire:click="logout"> <i class="fas fa-sign-out-alt" style="margin-right: 5px;"></i> Logout</button>
+            <button class="btn btn-primary mb-2" style="font-size:12px;background-color: rgb(2, 17, 79); color: white;margin-left: 5px;" wire:click="logout"> <i class="fas fa-sign-out-alt" style="margin-right: 5px;"></i> Logout</button>
         </div>
         <h4 style="text-align: center;margin-top:5px">Profile</h4>
         <div style="max-width: 800px; margin: 0 auto;border:1px solid black;padding:5px">
@@ -134,10 +137,10 @@
                                     </div>
                                     <div class="col-md-2">
                                         @if($editProfile)
-                                        <button wire:click="cancelProfileDetails" style="background-color: red;color:white;border:none;border-radius:5px;font-size:12px">Cancel</button>
-                                        <button wire:click="saveProfileDetails" style="background-color: green;color:white;border:none;border-radius:5px;font-size:12px">Save</button>
+                                        <button class="btn btn-primary mb-2" wire:click="cancelProfileDetails" style="background-color: red;color:white;border:none;border-radius:5px;font-size:12px">Cancel</button>
+                                        <button class="btn btn-primary mb-2" wire:click="saveProfileDetails" style="background-color: green;color:white;border:none;border-radius:5px;font-size:12px">Save</button>
                                         @else
-                                        <button wire:click="editProfileDetails" style="background-color: blue;color:white;border:none;border-radius:5px;font-size:12px">Edit</button>
+                                        <button class="btn btn-primary mb-2" wire:click="editProfileDetails" style="background-color: blue;color:white;border:none;border-radius:5px;font-size:12px">Edit</button>
                                         @endif
                                     </div>
                                 </div>
@@ -170,7 +173,7 @@
                                         <input style="font-size: 12px" type="text" wire:model="email" placeholder="Email">
                                         @else
                                         <div style="font-size: 12px;" class="phoneOneTheme"><strong><i class="fas fa-phone"></i></strong> {{$userDetails->mobile_no}}</div>
-                                        <div style="font-size: 12px;" class="verifiedOneTheme"><strong><i class="fas fa-envelope"></i></strong> {{$userDetails->email}}</div>
+                                        <div style="font-size: 12px; word-break: break-all;" class="verifiedOneTheme"><strong><i class="fas fa-envelope"></i></strong> {{$userDetails->email}}</div>
                                         @endif
                                     </div>
                                 </div>
@@ -183,15 +186,15 @@
 
             <div class="resume-section">
                 <div class="row">
-                    <div class="col">
-                        <h2 style="width:200px" class="section-title">Profile Summary</h2>
+                    <div class="col-9">
+                        <h2 class="section-title">Profile Summary</h2>
                     </div>
-                    <div class="col" style="margin-left: 59%;">
+                    <div class="col-3 m-auto" style="text-align: end">
                         @if($editProfileSummary)
-                        <button wire:click="cancelProfileSummary" style="background-color: red;color:white;border:none;border-radius:5px;font-size:12px">Cancel</button>
-                        <button wire:click="saveProfileSummary" style="background-color: green;color:white;border:none;border-radius:5px;font-size:12px">Save</button>
+                        <button class="btn btn-primary mb-2" wire:click="cancelProfileSummary" style="background-color: red;color:white;border:none;border-radius:5px;font-size:12px">Cancel</button>
+                        <button class="btn btn-primary mb-2" wire:click="saveProfileSummary" style="background-color: green;color:white;border:none;border-radius:5px;font-size:12px">Save</button>
                         @else
-                        <button wire:click="editProfileSummaryDetails" style="background-color: blue;color:white;border:none;border-radius:5px;font-size:12px">Edit</button>
+                        <button class="btn btn-primary mb-2" wire:click="editProfileSummaryDetails" style="background-color: blue;color:white;border:none;border-radius:5px;font-size:12px">Edit</button>
                         @endif
                     </div>
                 </div>
@@ -213,8 +216,8 @@
                     @foreach ($technicalEntries as $index => $entry)
                     <div class="education-entry">
                         <p style="font-size: 12px;">{{ $entry['technical_skills'] }}</p>
-                        <button style="background-color: blue;color:white;border:none;border-radius:5px;font-size:12px" wire:click="editTechnical({{ $index }})">Edit</button>
-                        <button style="background-color: red; color: white; border: none; border-radius: 5px; font-size: 12px" wire:click="deleteTechnical({{ $index }})">Delete</button>
+                        <button class="btn btn-primary mb-2" style="background-color: blue;color:white;border:none;border-radius:5px;font-size:12px" wire:click="editTechnical({{ $index }})">Edit</button>
+                        <button class="btn btn-primary mb-2" style="background-color: red; color: white; border: none; border-radius: 5px; font-size: 12px" wire:click="deleteTechnical({{ $index }})">Delete</button>
                     </div>
                     @endforeach
                     @else
@@ -223,12 +226,12 @@
                         <input style="font-size: 12px;" type="text" wire:model="technicalEntries.{{ $selectedTechnicalIndex }}.technical_skills" placeholder="Skills">
                     </div>
                     @endif
-                    <button style="background-color: red;color:white;border:none;border-radius:5px;font-size:12px" wire:click="cancelTechnical">Cancel</button>
-                    <button style="background-color: green;color:white;border:none;border-radius:5px;font-size:12px" wire:click="saveTechnical">Save</button>
+                    <button class="btn btn-primary mb-2" style="background-color: red;color:white;border:none;border-radius:5px;font-size:12px" wire:click="cancelTechnical">Cancel</button>
+                    <button class="btn btn-primary mb-2" style="background-color: green;color:white;border:none;border-radius:5px;font-size:12px" wire:click="saveTechnical">Save</button>
                     @endif
 
                     @if($editingTechnical==false)
-                    <button style="background-color: green;color:white;border:none;border-radius:5px;font-size:12px" wire:click="addTechnical">Add Skills</button>
+                    <button class="btn btn-primary mb-2" style="background-color: green;color:white;border:none;border-radius:5px;font-size:12px" wire:click="addTechnical">Add Skills</button>
                     @endif
                 </div>
                 </p>
@@ -236,15 +239,15 @@
 
             <div class="resume-section">
                 <div class="row">
-                    <div class="col">
-                        <h2 style="width:200px" class="section-title">Contact Information</h2>
+                    <div class="col-9">
+                        <h2 class="section-title">Contact Information</h2>
                     </div>
-                    <div class="col" style="margin-left: 59%;">
+                    <div class="col-3 m-auto" style="text-align: end">
                         @if($editContactDetails)
-                        <button wire:click="cancelContactInfo" style="background-color: red;color:white;border:none;border-radius:5px;font-size:12px">Cancel</button>
-                        <button wire:click="saveContactInfo" style="background-color: green;color:white;border:none;border-radius:5px;font-size:12px">Save</button>
+                        <button class="btn btn-primary mb-2" wire:click="cancelContactInfo" style="background-color: red;color:white;border:none;border-radius:5px;font-size:12px">Cancel</button>
+                        <button class="btn btn-primary mb-2" wire:click="saveContactInfo" style="background-color: green;color:white;border:none;border-radius:5px;font-size:12px">Save</button>
                         @else
-                        <button wire:click="editContactInfo" style="background-color: blue;color:white;border:none;border-radius:5px;font-size:12px">Edit</button>
+                        <button class="btn btn-primary mb-2" wire:click="editContactInfo" style="background-color: blue;color:white;border:none;border-radius:5px;font-size:12px">Edit</button>
                         @endif
                     </div>
                 </div>
@@ -276,8 +279,8 @@
                         <p style="font-size: 12px;"><strong>Degree:</strong> {{ $entry['degree'] }}</p>
                         <p style="font-size: 12px;"><strong>University:</strong> {{ $entry['university'] }}</p>
                         <p style="font-size: 12px;"><strong>Graduation Year:</strong> {{ $entry['graduation_year'] }}</p>
-                        <button style="background-color: blue;color:white;border:none;border-radius:5px;font-size:12px" wire:click="editEntry({{ $index }})">Edit</button>
-                        <button style="background-color: red;color:white;border:none;border-radius:5px;font-size:12px" wire:click="removeEntry({{ $index }})">Delete</button>
+                        <button class="btn btn-primary mb-2" style="background-color: blue;color:white;border:none;border-radius:5px;font-size:12px" wire:click="editEntry({{ $index }})">Edit</button>
+                        <button class="btn btn-primary mb-2" style="background-color: red;color:white;border:none;border-radius:5px;font-size:12px" wire:click="removeEntry({{ $index }})">Delete</button>
                     </div>
                     @endforeach
                     @else
@@ -288,12 +291,12 @@
                         <input style="font-size: 12px;" type="text" wire:model="educationEntries.{{ $selectedEntryIndex }}.graduation_year" placeholder="Graduation Year">
                     </div>
                     @endif
-                    <button style="background-color: red;color:white;border:none;border-radius:5px;font-size:12px" wire:click="cancelEntry">Cancel</button>
-                    <button style="background-color: green;color:white;border:none;border-radius:5px;font-size:12px" wire:click="saveEducation">Save</button>
+                    <button class="btn btn-primary mb-2" style="background-color: red;color:white;border:none;border-radius:5px;font-size:12px" wire:click="cancelEntry">Cancel</button>
+                    <button class="btn btn-primary mb-2" style="background-color: green;color:white;border:none;border-radius:5px;font-size:12px" wire:click="saveEducation">Save</button>
                     @endif
 
                     @if($editing==false)
-                    <button style="background-color: green;color:white;border:none;border-radius:5px;font-size:12px" wire:click="addEntry">Add Education</button>
+                    <button class="btn btn-primary mb-2" style="background-color: green;color:white;border:none;border-radius:5px;font-size:12px" wire:click="addEntry">Add Education</button>
                     @endif
                 </div>
             </div>
@@ -304,15 +307,15 @@
 
             <div class="resume-section">
                 <div class="row">
-                    <div class="col">
-                        <h2 style="width:200px" class="section-title">Career Profile</h2>
+                    <div class="col-9">
+                        <h2 class="section-title">Career Profile</h2>
                     </div>
-                    <div class="col" style="margin-left: 59%;">
+                    <div class="col-3 m-auto" style="text-align: end;">
                         @if($editCareerProfile)
-                        <button wire:click="cancelCareerProfileDetails" style="background-color: red;color:white;border:none;border-radius:5px;font-size:12px">Cancel</button>
-                        <button wire:click="saveCareerProfileDetails" style="background-color: green;color:white;border:none;border-radius:5px;font-size:12px">Save</button>
+                        <button class="btn btn-primary mb-2" wire:click="cancelCareerProfileDetails" style="background-color: red;color:white;border:none;border-radius:5px;font-size:12px">Cancel</button>
+                        <button class="btn btn-primary mb-2" wire:click="saveCareerProfileDetails" style="background-color: green;color:white;border:none;border-radius:5px;font-size:12px">Save</button>
                         @else
-                        <button wire:click="editCareerProfileDetails" style="background-color: blue;color:white;border:none;border-radius:5px;font-size:12px">Edit</button>
+                        <button class="btn btn-primary mb-2" wire:click="editCareerProfileDetails" style="background-color: blue;color:white;border:none;border-radius:5px;font-size:12px">Edit</button>
                         @endif
                     </div>
                 </div>
@@ -355,15 +358,15 @@
 
             <div class="resume-section">
                 <div class="row">
-                    <div class="col">
-                        <h2 style="width:200px" class="section-title">Personal Details</h2>
+                    <div class="col-9">
+                        <h2 class="section-title">Personal Details</h2>
                     </div>
-                    <div class="col" style="margin-left: 59%;">
+                    <div class="col-3 m-auto" style="text-align: end;">
                         @if($editPersonalInfo)
-                        <button wire:click="cancelPersonalDetails" style="background-color: red;color:white;border:none;border-radius:5px;font-size:12px">Cancel</button>
-                        <button wire:click="savePersonalDetails" style="background-color: green;color:white;border:none;border-radius:5px;font-size:12px">Save</button>
+                        <button class="btn btn-primary mb-2" wire:click="cancelPersonalDetails" style="background-color: red;color:white;border:none;border-radius:5px;font-size:12px">Cancel</button>
+                        <button class="btn btn-primary mb-2" wire:click="savePersonalDetails" style="background-color: green;color:white;border:none;border-radius:5px;font-size:12px">Save</button>
                         @else
-                        <button wire:click="editPersonalDetails" style="background-color: blue;color:white;border:none;border-radius:5px;font-size:12px">Edit</button>
+                        <button class="btn btn-primary mb-2" wire:click="editPersonalDetails" style="background-color: blue;color:white;border:none;border-radius:5px;font-size:12px">Edit</button>
                         @endif
                     </div>
                 </div>
@@ -403,8 +406,8 @@
                     <div class="education-entry">
                         <p style="font-size: 12px;"><strong>Language:</strong> {{ $entry['language'] }}</p>
                         <p style="font-size: 12px;"><strong>Proficiency:</strong> {{ $entry['proficiency'] }}</p>
-                        <button style="background-color: blue;color:white;border:none;border-radius:5px;font-size:12px" wire:click="editLanguage({{ $index }})">Edit</button>
-                        <button style="background-color: red; color: white; border: none; border-radius: 5px; font-size: 12px" wire:click="removeLanguage({{ $index }})">Delete</button>
+                        <button class="btn btn-primary mb-2" style="background-color: blue;color:white;border:none;border-radius:5px;font-size:12px" wire:click="editLanguage({{ $index }})">Edit</button>
+                        <button class="btn btn-primary mb-2" style="background-color: red; color: white; border: none; border-radius: 5px; font-size: 12px" wire:click="removeLanguage({{ $index }})">Delete</button>
 
                     </div>
                     @endforeach
@@ -415,12 +418,12 @@
                         <input style="font-size: 12px;" type="text" wire:model="languageEntries.{{ $selectedLanguageIndex }}.proficiency" placeholder="Proficiency">
                     </div>
                     @endif
-                    <button style="background-color: red;color:white;border:none;border-radius:5px;font-size:12px" wire:click="cancelLanguage">Cancel</button>
-                    <button style="background-color: green;color:white;border:none;border-radius:5px;font-size:12px" wire:click="saveLanguage">Save</button>
+                    <button class="btn btn-primary mb-2" style="background-color: red;color:white;border:none;border-radius:5px;font-size:12px" wire:click="cancelLanguage">Cancel</button>
+                    <button class="btn btn-primary mb-2" style="background-color: green;color:white;border:none;border-radius:5px;font-size:12px" wire:click="saveLanguage">Save</button>
                     @endif
 
                     @if($editingLanguage==false)
-                    <button style="background-color: green;color:white;border:none;border-radius:5px;font-size:12px" wire:click="addLanguage">Add Language</button>
+                    <button class="btn btn-primary mb-2" style="background-color: green;color:white;border:none;border-radius:5px;font-size:12px" wire:click="addLanguage">Add Language</button>
                     @endif
                 </div>
             </div>
