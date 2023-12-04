@@ -63,16 +63,16 @@ class Jobs extends Component
                 'company_name' => $this->selectedJob->company_name,
                 'applied_to' => $this->selectedJob->contact_email,
                 'user_id' => $this->userDetails->user_id,
-                'full_name' => $this->userDetails->full_name,
-                'email' => $this->userDetails->email,
-                'address' => $this->userDetails->address,
+                'resume' => $this->user_resume,
             ];
+
             if ($this->user_resume) {
                 $resumePath = $this->user_resume->store('resumes', 'public');
                 $userData['resume'] = $resumePath;
                 $this->userDetails->update(['resume' => $resumePath]);
             }
-            AppliedJob::create($userData);
+           AppliedJob::create($userData);
+
             $this->showSuccessMessage = true;
         } catch (QueryException $e) {
             $this->addError('duplicate', 'You have already applied to this job.');
