@@ -7,6 +7,8 @@ use App\Livewire\EmployeesReview;
 use App\Livewire\Feeds;
 
 use App\Livewire\Attendance;
+use App\Livewire\AuthChecking;
+use App\Livewire\GoogleLogins;
 use App\Livewire\LeaveCalender;
 use App\Livewire\LeaveHistory;
 use App\Livewire\LeavePending;
@@ -57,7 +59,8 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'checkAuth'], function () {
 
     Route::get('/emplogin', EmpLogin::class)->name('emplogin');
-
+    Route::get('/login', [GoogleLogins::class,'redirectToGoogle'])->name('login');
+    Route::get('/auth/google/callback', [GoogleLogins::class, 'handleGoogleCallback'])->name('auth/google/callback');
     Route::get('/Login&Register', function () {
         return view('login_and_register_view');
     });
@@ -69,12 +72,11 @@ Route::group(['middleware' => 'checkAuth'], function () {
     });
 
 
-    
+
 
     Route::get('/CreateCV', function () {
         return view('create_cv_view');
     });
-
 });
 Route::get('/Login&Register', function () {
     return view('login_and_register_view');
@@ -90,7 +92,7 @@ Route::middleware(['auth:web'])->group(function () {
         return view('jobs_view');
     });
 
-     
+
 
     Route::get('/AllNotifications', function () {
         return view('all-notifications_view');
@@ -108,7 +110,7 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/AppliedJobs', function () {
         return view('applied_jobs_view');
     });
-    Route::get('/list-of-applied-jobs', ListOfAppliedJobs::class)->name('list-of-applied-jobs');     
+    Route::get('/list-of-applied-jobs', ListOfAppliedJobs::class)->name('list-of-applied-jobs');
     Route::get('/Companies', function () {
         return view('companies_view');
     });
@@ -138,10 +140,20 @@ Route::middleware(['auth:com'])->group(function () {
     Route::get('/empregister', function () {
         return view('emp-register-view');
     });
-
-
-
 });
+
+Route::middleware(['auth:hr'])->group(function () {  
+    Route::get('/hrPage', AuthChecking::class)->name('home');
+});
+
+Route::middleware(['auth:finance'])->group(function () {
+    Route::get('/financePage', AuthChecking::class)->name('home');
+});
+
+Route::middleware(['auth:it'])->group(function () {  
+    Route::get('/itPage', AuthChecking::class)->name('home');
+});
+
 
 Route::middleware(['auth:emp'])->group(function () {
     Route::get('/', Home::class)->name('home');
@@ -239,7 +251,7 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/tasks', Tasks::class);
 
 
-    
+
     Route::get('/leave-page', LeavePage::class)->name('leave-page');
     Route::get('/leave-apply', LeaveApply::class)->name('leave-apply');
     Route::get('/holiday-calender', HolidayCalender::class)->name('holiday-calender');

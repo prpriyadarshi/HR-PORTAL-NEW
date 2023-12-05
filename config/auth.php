@@ -49,6 +49,18 @@ return [
             'driver' => 'session',
             'provider' => 'com',
         ],
+        'finance' => [
+            'driver' => 'session',
+            'provider' => 'finance',
+        ],
+        'hr' => [
+            'driver' => 'session',
+            'provider' => 'hr',
+        ],
+        'it' => [
+            'driver' => 'session',
+            'provider' => 'it',
+        ],
     ],
 
     /*
@@ -79,14 +91,26 @@ return [
         //     'table' => 'users',
         // ],
 
-            'emp' => [
-                'driver' => 'eloquent',
-                'model' => App\Models\EmployeeDetails::class, // Update this to your Employee model
-            ],
-            'com' => [
-                'driver' => 'eloquent',
-                'model' => App\Models\Company::class, // Update this to your Employee model
-            ],
+        'emp' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\EmployeeDetails::class, // Update this to your Employee model
+        ],
+        'com' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Company::class, // Update this to your Employee model
+        ],
+        'finance' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Finance::class, // Update this to your Employee model
+        ],
+        'hr' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Hr::class, // Update this to your Employee model
+        ],
+        'it' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\IT::class, // Update this to your Employee model
+        ],
     ],
 
     /*
@@ -124,7 +148,19 @@ return [
 
         'com' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Company::class, 
+            'model' => App\Models\Company::class,
+        ],
+        'finance' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Finance::class,
+        ],
+        'hr' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Hr::class,
+        ],
+        'it' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\IT::class,
         ],
     ],
 

@@ -167,6 +167,9 @@
                             <div style="text-align: center;margin:15px">
                                 <button class="btn" type="button" wire:click="register" style="background-color:rgb(2, 17, 79);color:white">Register</button>
                             </div>
+                            <button onclick="window.location.href = '{{ url('/login') }}'" class="google-login-btn">
+<image src="https://pbs.twimg.com/profile_images/1605297940242669568/q8-vPggS_400x400.jpg" style="height:30px;width:30px;" ><div style="margin-left:10px"> Login with Google</div>
+</button>
                         </form>
                     </div>
                     @endif
@@ -271,6 +274,28 @@
             .text-danger {
                 font-size: 12px;
             }
+            .google-login-btn {
+    /* Google's red color */
+
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    margin-left:60px;
+    justify-content: center;
+    background:white;
+    border:1px solid silver;
+    border-radius:5px;
+}
+
+/* Adjust icon size and spacing */
+.fa-google {
+
+    font-size: 24px;
+    margin-right: 8px;
+}
         </style>
         @livewireScripts
 
