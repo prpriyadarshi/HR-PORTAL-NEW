@@ -461,7 +461,7 @@
                         <br>Net Pay</br>
  
                         <div style="margin-left:120px;margin-top:22px">
-                            <p>₹{{$salaries->calculateTotalAllowance(), 2}}</p>
+                            <p>₹{{$salaries->calculateTotalAllowance(),2}}</p>
                             <p>₹{{$salaries->calculateTotalDeductions(), 2}}</p>
                             @if ($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions() > 0)
                             <p style="margin-top:5px"> ₹{{ number_format($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions(), 2) }}</p>
