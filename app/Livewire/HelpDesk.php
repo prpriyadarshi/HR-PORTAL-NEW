@@ -32,11 +32,7 @@ class HelpDesk extends Component
     public $employeeDetails;
     public $showDialog = false;
     public $record;
-    public $activeTab='active';
-    public function toggleRotation()
-    {
-        $this->isRotated = true;
-    }
+    public $activeTab = 'active';
     protected function resetInputFields()
     {
         $this->category = '';
@@ -86,7 +82,7 @@ class HelpDesk extends Component
             'subject' => 'required|string|max:255',
             'description' => 'required|string',
             'file_path' => 'nullable|file|mimes:pdf,xls,xlsx,doc,docx,txt,ppt,pptx,gif,jpg,jpeg,png|max:2048',
-            'cc_to' => 'nullable|string|max:255',
+            'cc_to' => 'required',
             'priority' => 'required|in:High,Medium,Low',
             'image' => 'image|max:2048',
         ]);
@@ -118,23 +114,43 @@ class HelpDesk extends Component
     {
         $this->showDialog = true;
     }
+    public $selectedPeople = [];
+
+
     public function close()
     {
         $this->showDialog = false;
     }
-    public function closePeoples(){
-        $this->isRotated=false;
+    public function closePeoples()
+    {
+        $this->isRotated = false;
     }
-    
+
+    public function updatedSelectedPeople()
+    {
+        $this->cc_to = implode(', ', array_unique($this->selectedPeopleNames));
+    }
+
     public function selectPerson($personId)
     {
         $selectedPerson = $this->peoples->where('emp_id', $personId)->first();
 
         if ($selectedPerson) {
-            $this->selectedPeopleNames[] = $selectedPerson->first_name;
-
+            if (in_array($personId, $this->selectedPeople)) {
+                $this->selectedPeopleNames[] = $selectedPerson->first_name . ' #(' . $selectedPerson->emp_id . ')';
+            } else {
+                $this->selectedPeopleNames = array_diff($this->selectedPeopleNames, [$selectedPerson->first_name . ' #(' . $selectedPerson->emp_id . ')']);
+            }
             $this->cc_to = implode(', ', array_unique($this->selectedPeopleNames));
         }
+    }
+
+    public function toggleRotation()
+    {
+        $this->isRotated = true;
+
+        $this->selectedPeopleNames = [];
+        $this->cc_to = '';
     }
 
 
@@ -163,8 +179,13 @@ class HelpDesk extends Component
         $this->peoples = EmployeeDetails::where('company_id', $companyId)->get();
         $peopleData = $this->filteredPeoples ? $this->filteredPeoples : $this->peoples;
         $this->record = HelpDesks::all();
-        $this->records = DB::table('help_desks')
-            ->where('emp_id', $employeeId)
+        $employeeName = auth()->user()->first_name . ' #(' . $employeeId . ')';
+
+        $this->records = HelpDesks::with('emp')
+            ->where(function ($query) use ($employeeId, $employeeName) {
+                $query->where('emp_id', $employeeId)
+                    ->orWhere('cc_to', 'LIKE', "%$employeeName%");
+            })
             ->orderBy('created_at', 'desc')
             ->get();
         return view('livewire.help-desk', [

@@ -48,7 +48,7 @@
                     </div>
                     @endif
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Employee ID" wire:model="form.emp_id" />
+                        <input type="text" class="form-control" placeholder="ID / Mail" wire:model="form.emp_id" />
                         @error('form.emp_id')
                         <p class="pt-2 px-1 text-danger">{{ str_replace('form.emp id', 'Employee ID', $message) }}</p>
                         @enderror
