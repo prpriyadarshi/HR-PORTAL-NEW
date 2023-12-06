@@ -170,6 +170,7 @@ return [
         /*
          * Application Service Providers...
          */
+        'Anhskohbo\NoCaptcha\NoCaptchaServiceProvider',
         Barryvdh\DomPDF\ServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
@@ -193,6 +194,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'NoCaptcha' => 'Anhskohbo\NoCaptcha\Facades\NoCaptcha',
         'PDF' => Barryvdh\DomPDF\Facade::class,
     ])->toArray(),
 
