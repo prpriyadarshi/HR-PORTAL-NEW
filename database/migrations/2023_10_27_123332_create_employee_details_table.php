@@ -36,7 +36,7 @@ return new class extends Migration
             $table->string('report_to');
             $table->enum('employee_status', ['active', 'on-leave', 'terminated']);
             $table->string('emergency_contact')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('image');
             $table->string('blood_group');
             $table->string('nationality');

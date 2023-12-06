@@ -35,6 +35,7 @@ use App\Livewire\Documents;
 use App\Livewire\Declaration;
 use App\Livewire\Downloadform;
 use App\Livewire\Documentcenter;
+use App\Livewire\EmpList;
 use App\Livewire\Investment;
 use App\Livewire\LeaveApply;
 use App\Livewire\LeavePage;
@@ -138,9 +139,13 @@ Route::middleware(['auth:com'])->group(function () {
     Route::get('/empregister', function () {
         return view('emp-register-view');
     });
+   // Route::get('/emplist', EmpList::class)->name('emplist');
+    Route::get('/emplist', function () {
+        return view('emp-list-view');
+    });
 });
 
-Route::middleware(['auth:hr'])->group(function () {  
+Route::middleware(['auth:hr'])->group(function () {
     Route::get('/hrPage', AuthChecking::class)->name('home');
 });
 
@@ -148,7 +153,7 @@ Route::middleware(['auth:finance'])->group(function () {
     Route::get('/financePage', AuthChecking::class)->name('home');
 });
 
-Route::middleware(['auth:it'])->group(function () {  
+Route::middleware(['auth:it'])->group(function () {
     Route::get('/itPage', AuthChecking::class)->name('home');
 });
 
