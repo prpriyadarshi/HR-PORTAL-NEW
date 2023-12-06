@@ -8,6 +8,7 @@ use App\Livewire\Feeds;
 
 use App\Livewire\Attendance;
 use App\Livewire\AuthChecking;
+use App\Livewire\GoogleLogins;
 use App\Livewire\LeaveCalender;
 use App\Livewire\LeaveHistory;
 use App\Livewire\LeavePending;
@@ -58,11 +59,9 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'checkAuth'], function () {
 
     Route::get('/emplogin', EmpLogin::class)->name('emplogin');
-
-    Route::get('/Login&Register', function () {
-        return view('login_and_register_view');
-    });
-
+  
+    
+   
 
 
     Route::get('/CompanyLogin', function () {
@@ -70,8 +69,11 @@ Route::group(['middleware' => 'checkAuth'], function () {
     });
 
 
-
-
+    Route::get('/login', [GoogleLogins::class, 'redirectToGoogle'])->name('login');
+    Route::get('/auth/google/callback', [GoogleLogins::class, 'handleGoogleCallback'])->name('auth/google/callback');
+    Route::get('/Jobs', function () {
+        return view('jobs_view');
+    });
     Route::get('/CreateCV', function () {
         return view('create_cv_view');
     });
@@ -89,8 +91,7 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/Jobs', function () {
         return view('jobs_view');
     });
-
-
+  
 
     Route::get('/AllNotifications', function () {
         return view('all-notifications_view');
@@ -185,7 +186,7 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/document', Documentcenter::class);
     Route::get('/documents', Documents::class);
     Route::get('/team-on-leave-chart', TeamOnLeaveChart::class);
-
+    Route::get('/salary-revision', SalaryRevisions::class)->name('salary-revision');
 
     Route::get('/plan-A', PlanA::class)->name('plan-a');
 
@@ -211,7 +212,7 @@ Route::middleware(['auth:emp'])->group(function () {
 
 
 
-    Route::get('/salary-revisions', SalaryRevisions::class)->name('salary-revisions');
+ 
 
 
 
@@ -272,3 +273,4 @@ Route::get('/your-download-route', function () {
 Route::get('/downloadform', function () {
     return view('downloadform');
 });
+

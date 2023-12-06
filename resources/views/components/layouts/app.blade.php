@@ -365,12 +365,12 @@
                                             Proof of Investment
                                         </a>
                                     </li>
-
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle15('salary-revision')">
-                                        <a class="nav-link" href="/salary-revision" id="slip" onclick="selectOption(this, 'Salary Revision')">
-                                            Salary Revision
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('salary-revision')">
+                                        <a class="nav-link" href="/salary-revision" id="salary-revision" onclick="selectOption(this, 'Salary Revision')">
+                                           Salary Revision
                                         </a>
                                     </li>
+                                
                                 </ul>
                             </div>
                         </li>
