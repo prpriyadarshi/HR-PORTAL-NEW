@@ -167,11 +167,15 @@
                             <div style="text-align: center;margin:15px">
                                 <button class="btn" type="button" wire:click="register" style="background-color:rgb(2, 17, 79);color:white">Register</button>
                             </div>
-                            <button onclick="window.location.href = '{{ url('/login') }}'" class="google-login-btn">
-<image src="https://pbs.twimg.com/profile_images/1605297940242669568/q8-vPggS_400x400.jpg" style="height:30px;width:30px;" ><div style="margin-left:10px"> Login with Google</div>
-</button>
+        
+
                         </form>
+                        <button onclick="window.location.href = '{{ url('/login') }}'" class="google-login-btn" style="width: 165px; margin-left: 210px; font-size: 12px;height:30px">
+    <img src="https://pbs.twimg.com/profile_images/1605297940242669568/q8-vPggS_400x400.jpg" style="height: 20px; width: 20px;">
+    <div style="margin-left: 2px;">Login with Google</div>
+</button>
                     </div>
+ 
                     @endif
                     @if($activeTab=="login")
 
@@ -221,15 +225,26 @@
                             <div style="text-align: center;margin:15px">
                                 <button class="btn" type="button" wire:click="vendorLogin" style="background-color:rgb(2, 17, 79);color:white">Login</button>
                             </div>
+     
                             @endif
-                        </form>
+                            <button onclick="window.location.href = '{{ url('/login') }}'" class="google-login-btn" style="width: 165px; margin-left: 210px; font-size: 12px;height:30px">
+    <img src="https://pbs.twimg.com/profile_images/1605297940242669568/q8-vPggS_400x400.jpg" style="height: 20px; width: 20px;">
+    <div style="margin-left: 2px;">Login with Google</div>
+</button>
+                 </form>
+      
+
+
+          
                     </div>
+     
                     <div style="margin-top:10px;margin-left:15%">
                         <h6 style="font-size: 12px;"><strong style="color: red;">NOTE : </strong>Before appling any job,
                             Job Seeker login is required.</h6>
                     </div>
                     @endif
                 </div>
+  
             </div>
         </div>
         <!-- Right Side (Carousel) -->

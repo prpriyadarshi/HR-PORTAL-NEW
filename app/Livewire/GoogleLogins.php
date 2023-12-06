@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\EmployeeDetails;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class GoogleLogins extends Component
 {
@@ -16,44 +17,61 @@ class GoogleLogins extends Component
     {
         return Socialite::driver('google')
             ->redirectUrl('http://127.0.0.1:8000/auth/google/callback')
-            ->redirect('/');
+            ->redirect();
     }
-  
 
     public function handleGoogleCallback()
     {
+        $googleClientId = config('services.google.client_id');
+        $googleClientSecret = config('services.google.client_secret');
+        $googleRedirectUri = config('services.google.redirect');
+    
+ 
         try {
             $googleUser = Socialite::driver('google')->user();
+         // dd( $googleUser);
+            if ($googleUser && $googleUser->id) {
+                $existingUser = User::where('email', $googleUser->email)->first();
+               
+                if ($existingUser) {
+                    // Existing user found; update details if needed (such as full name)
+                    $existingUser->full_name = $googleUser->name;
+                    // Update other fields as needed
     
-            if ($googleUser && $googleUser->emp_id) {
-                // Check if the Google email matches an existing emp_id
-                $employeeDetails = EmployeeDetails::where('email', $googleUser->email)->first();
+                    $existingUser->save();
     
-                if ($employeeDetails) {
-                    // Set a session variable to indicate a match is found
-                    session(['emp_id' => $employeeDetails->emp_id]);
+                    Auth::login($existingUser);
+    
+                    return redirect('/Jobs'); // Redirect to Jobs if the user exists
                 } else {
-                    // Store or update the Google user details in your EmpDetails model using Google's unique ID
-                    $this->storeGoogleDetails($googleUser);
+                    // No existing user found; redirect to register with Google details
+                    $userData = [
+                        'full_name' => $googleUser->name,
+                        'email' => $googleUser->email,
+                    ];
+                     //dd($userData);
+                    User::create($userData);
+                   Auth::login(User::where('email', $googleUser->email)->first());
+    
+                    return redirect('/Jobs'); // Redirect to Jobs after registration
+                
                 }
             } else {
-                // Handle scenario when ID is not obtained from Google user data
                 session()->flash('error', 'ID not found in Google user data.');
-                return redirect('/');
+                return redirect('/Login&Register'); // Redirect to Jobs if ID not found
             }
         } catch (\Exception $e) {
-            // Handle exceptions that might occur during Google authentication
+            Log::error('Exception caught: ' . $e->getMessage());
             session()->flash('error', 'Error occurred during Google authentication.');
-            return redirect('/');
+            return redirect('/Login&Register');
         }
-    
-        // Redirect to the home page after Google login
-        return redirect('/'); // Replace '/home' with the desired URL for the home page
     }
+    
+
     
     
     public function render()
     {
-        return view('livewire.google-logins');
+        return view('livewire.google-logins')->with('profilePictureUrl', $profilePictureUrl);;
     }
 }
