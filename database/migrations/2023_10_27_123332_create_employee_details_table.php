@@ -70,14 +70,14 @@ return new class extends Migration
         });
 
 
-    //     DB::unprepared('
-    //     CREATE TRIGGER set_employee_id BEFORE INSERT ON employee_details FOR EACH ROW
-    //     BEGIN
-    //         IF NEW.emp_id IS NULL THEN
-    //             SET NEW.emp_id = CONCAT(NEW.company_name, "-", LPAD((SELECT IFNULL(MAX(SUBSTRING_INDEX(emp_id, "-", -1) + 1), 1) FROM employee_details WHERE company_name = NEW.company_name), 4, "0"));
-    //         END IF;
-    //     END;
-    // ');
+        DB::unprepared('
+        CREATE TRIGGER set_employee_id BEFORE INSERT ON employee_details FOR EACH ROW
+        BEGIN
+            IF NEW.emp_id IS NULL THEN
+                SET NEW.emp_id = CONCAT(NEW.company_name, "-", LPAD((SELECT IFNULL(MAX(SUBSTRING_INDEX(emp_id, "-", -1) + 1), 1) FROM employee_details WHERE company_name = NEW.company_name), 4, "0"));
+            END IF;
+        END;
+    ');
 
         // Add a unique constraint for mobile_number and alternate_mobile_number
         DB::unprepared('ALTER TABLE employee_details ADD CONSTRAINT unique_mobile_numbers UNIQUE (mobile_number, alternate_mobile_number)');

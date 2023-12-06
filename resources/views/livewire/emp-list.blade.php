@@ -20,8 +20,8 @@
         border: 1px solid #e2e8f0;
         padding: 0.75rem;
         text-align: center;
-        background-color: #f7fafc;
-        color: #1a202c;
+        background-color:#02134F;
+        color: #f0f4f8;
         font-weight: bold;
         white-space: nowrap;
     }
@@ -44,7 +44,7 @@
         <button style="width:200px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;"><a href="/emplist" style="text-decoration: none;color:white">Employees List</a></button>
         <button style="width: 100px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;" wire:click="logout">Logout</button>
     </div>
-    <h1 class="text-3xl font-bold mb-4 text-center">All Employee Details</h1>
+    <h3 class="text-3xl font-bold mb-2 text-center">All Employee Details</h3>
 <div class="table-responsive" >
     <table class="empTable" >
         <thead>

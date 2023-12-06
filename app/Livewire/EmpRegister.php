@@ -63,6 +63,7 @@ class EmpRegister extends Component
 
     public $companies;
     public $hrDetails;
+
     public function register(){
         $this->validate([
             'first_name' => 'required|string|max:255',
@@ -87,13 +88,13 @@ class EmpRegister extends Component
             'company_id' => 'required|string|max:255',
             'job_title' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'inter_emp'=>'required',
+            'marital_status'=>'required',
         ]);
 
        $imagePath = $this->image->store('employee_image', 'public');
        $this->savedImage = $imagePath;
          EmployeeDetails::create([
-
-            'emp_id' => $this->emp_id,
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
             'date_of_birth' => $this->date_of_birth,
@@ -149,6 +150,16 @@ class EmpRegister extends Component
         $this->reset();
 
     }
+    public function updatedImage()
+    {
+        $this->validate([
+            'image' => 'image|max:1024', // Adjust the validation rules as needed
+        ]);
+
+        $this->savedImage = $this->image->store('employee_images', 'public');
+    }
+
+
 
     public function logout()
     {
