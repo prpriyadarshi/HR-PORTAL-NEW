@@ -19,8 +19,7 @@
       margin-right:62px;
     }
      .my-button {
-    
-    padding: 10px 20px;
+      padding: 5px 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -28,8 +27,8 @@
     margin-right:30px;
     margin-top:20px;
     color: #fff;
-    border-color: #24a7f8;
-    background: #24a7f8;
+    border-color: rgb(2, 17, 79);
+    background: rgb(2, 17, 79);
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
@@ -38,7 +37,7 @@
   .my-button:hover {
     /* Styles for hover state */
     text-decoration: none;
-    background-color:rgb(2, 17, 79);
+    background-color:#24a7f8;
     color: #fff !important; /* Remove underline on hover */
 }
 
@@ -218,7 +217,8 @@ a{
     justify-content: space-around;
     background-color:rgb(2, 17, 79);
     color: white;
-    padding: 10px;
+    gap: 5px;
+    padding: 5px 10px;
     border-radius: 5px;
     margin-bottom: 10px;
   }
@@ -232,12 +232,14 @@ a{
   .calendar-days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
+    gap: 5px;
     justify-items: center; 
   }
   .calendar-date {
       width: 30px;
       height: 30px;
+      font-weight:normal;
+      font-size:12px;
       border-radius: 50%;
       display: flex;
       justify-content: center;
@@ -264,13 +266,15 @@ a{
     background-color:rgb(2, 17, 79);
     color: white;
     border: none;
-    padding: 5px 10px; 
+    padding: 2px 5px; 
     border-radius: 5px;
+    font-size:12px;
     cursor: pointer;
+
   }
 
   #currentMonth {
-    font-size: 24px;
+    font-size: 16px;
     margin: 0;
   }
   .today {
@@ -284,8 +288,8 @@ a{
   }
   .container1 {
     width: 600px; /* Adjust the width as needed */
-    height: 180px;
-    margin-right:320px;
+    height: 200px;
+    margin-right:300px;
     background-color: #FFFFFF;
     margin-top:30px;
     /* margin-top:420px; */
@@ -298,7 +302,7 @@ a{
   .container2 {
     width: 600px; /* Adjust the width as needed */
     height: 140px;
-    margin-right:320px;
+    margin-right:300px;
     background-color:#FFFFFF;
     margin-top:40px;
     border-radius:10px;
@@ -313,10 +317,10 @@ a{
   .container6 {
     width: 600px; /* Adjust the width as needed */
     height: 45px;
-    margin-right:320px;
+    margin-right:300px;
     background-color:#FFFFFF;
     margin-top:30px;
-    border-radius:2px;
+   border-radius:10px;
     float:right;/* Adjust the height as needed */
     /* Background color of the container */
     border: 1px solid #ccc; /* Border style for the container */
@@ -326,8 +330,9 @@ a{
     width: 600px; /* Adjust the width as needed */
     height: 105px;
     margin-right:0px;
+    margin-bottom:30px;
     background-color:#FFFFFF;
-  
+    border-radius: 10px;
     display:none;
     /* border-radius:10px; */
     float:right;/* Adjust the height as needed */
@@ -374,7 +379,7 @@ a{
   .container3 {
     width: 600px; /* Adjust the width as needed */
     height: 180px;
-    margin-right:320px;
+    margin-right:300px;
     background-color:#FFFFFF;
     margin-top:30px;
     border-radius:10px;
@@ -425,7 +430,7 @@ a{
   height:200px;
 }
 .large-box th {
-    background-color: #24a7f8;
+  background-color:rgb(2, 17, 79);
     color: white;
     width: 600px; /* Adjust the width as needed */
     padding-right: 50px;
@@ -433,16 +438,20 @@ a{
 
 /* CSS for the second header row */
 .large-box .second-header-row {
-    background-color: #3498db;
+    background-color:rgb(2, 17, 79);
+    color: white;
+}
+.large-box .first-header-row {
+    background-color:rgb(2, 17, 79);
     color: white;
 }
   .vertical-line {
   border-left: 1px solid black; /* Adjust the width and color as needed */
-  height: 70px; /* Adjust the height as needed */
-  margin-top: -70px;
-  
+ /* Adjust the height as needed */
+  margin-top: -68px;
+  height:70px;
   padding: 0;
-  margin-left:60px;
+  margin-left:70px;
 }
 
 
@@ -504,7 +513,7 @@ table {
   /* CSS for the table header (thead) */
   thead {
   
-    background-color:#B6D0E2;
+    background-color: rgb(2, 17, 79);
     color: white;
   }
 
@@ -548,13 +557,12 @@ table {
 
 
 .toggle-box i.fas.fa-calendar:hover {
-  color:  #24a7f8;/* Icon color on hover */
+  color:  rgb(2, 17, 79);/* Icon color on hover */
   /* Background color for icon on hover */
-  border-color:  #24a7f8; /* Border color on hover */
+  border-color:  rgb(2, 17, 79); /* Border color on hover */
 }
 .toggle-box i.fas.fa-bars {
-  color: g
-  rey; /* Initial icon color */
+  color: grey; /* Initial icon color */
   /* Initial background color for icon */
   padding: 7px 7px; /* Initial padding for icon */
   margin-right: 0px; /* Initial spacing between icons */
@@ -562,17 +570,17 @@ table {
 }
 
 .toggle-box i.fas.fa-bars:hover {
-  color:  #24a7f8;; /* Icon color on hover */
+  color:  rgb(2, 17, 79); /* Icon color on hover */
   /* Background color for icon on hover */
-  border-color: #24a7f8;; /* Border color on hover */
+  border-color: rgb(2, 17, 79);/* Border color on hover */
 }
 .toggle-box i.fas.fa-calendar.active {
   color: white; /* Icon color when active (clicked) */
-  background-color:#24a7f8 ; /* Background color when active (clicked) */
+  background-color:rgb(2, 17, 79); /* Background color when active (clicked) */
 }
 .toggle-box i.fas.fa-bars.active {
   color: white; /* Icon color when active (clicked) */
-  background-color: #24a7f8; /* Background color when active (clicked) */
+  background-color: rgb(2, 17, 79);/* Background color when active (clicked) */
 }
 
 
@@ -782,13 +790,13 @@ table {
   </div>  
   <div style="display:flex;flex-direction:row;margin-top:140px;margin-left:20px;">
     <div _ngcontent-hbw-c670="" class="insight-card bg-white ng-star-inserted">
-      <h6 _ngcontent-hbw-c670="" class="text-secondary text-regular text-center"> Penalty Days </h6>
+      <h6 _ngcontent-hbw-c670="" class="text-secondary text-regular text-center"style="font-size:12px;"> Penalty Days </h6>
       <section _ngcontent-hbw-c670="">
         <p _ngcontent-hbw-c670="" style="margin-left:80px;"class="text-2"> 0 </p>
       </section>
     </div>
     <div _ngcontent-hbw-c670="" class="insight-card bg-white ng-star-inserted"style="width:250px;">
-      <h6 _ngcontent-hbw-c670="" class="text-secondary text-regular text-center">Avg.&nbsp;Actual&nbsp;Work&nbsp;Hrs</h6>
+      <h6 _ngcontent-hbw-c670="" class="text-secondary text-regular text-center"style="font-size:12px;">Avg.&nbsp;Actual&nbsp;Work&nbsp;Hrs</h6>
       <section _ngcontent-hbw-c670="">
      
         <p _ngcontent-hbw-c670="" style="margin-left:100px;"class="text-2">02:00</p>
@@ -799,7 +807,7 @@ table {
      </section>
     </div>
     <div _ngcontent-hbw-c670="" class="insight-card bg-white ng-star-inserted">
-      <h6 _ngcontent-hbw-c670="" class="text-secondary text-regular text-center">Avg. Work Hrs</h6>
+      <h6 _ngcontent-hbw-c670="" class="text-secondary text-regular text-center"style="font-size:12px;">Avg. Work Hrs</h6>
       <section _ngcontent-hbw-c670="">
         <p _ngcontent-hbw-c670="" style="margin-left:60px;"class="text-2">02:00</p>
         <div style="margin-left:40px;margin-top:-10px;">
@@ -810,7 +818,7 @@ table {
   </div>
      
 
-     <a href="#"  data-toggle="modal" data-target="#exampleModal" style="text-transform:uppercase;margin-top:40px;">
+     <a href="#"  data-toggle="modal" data-target="#exampleModal" style="text-transform:uppercase;margin-top:40px;color:rgb(2, 17, 79);">
                        +3 Insights
                    </a> 
                    <div wire:ignore.self class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -876,7 +884,7 @@ table {
                         </div>
                     </div>  
            
-     <a href="#" id="toggleSidebar" class="gt-overlay-toggle" style="margin-top:69px;color:#24a7f8;margin-left:50px;">Legend</a>
+     <a href="#" id="toggleSidebar" class="gt-overlay-toggle" style="margin-top:69px;color:rgb(2, 17, 79);margin-left:50px;">Legend</a>
      <div class="sidebar">
         <!-- Sidebar content goes here -->
         <div class="sidebar-header"style="display: flex; justify-content: space-between; align-items: center;">
@@ -981,13 +989,13 @@ table {
     <button id="nextMonth">Next</button>
   </div>
   <div class="calendar-weekdays">
-    <div>Sun</div>
-    <div>Mon</div>
-    <div>Tue</div>
-    <div>Wed</div>
-    <div>Thu</div>
-    <div>Fri</div>
-    <div>Sat</div>
+    <div style="font-weight:normal;font-size:12px;">Sun</div>
+    <div style="font-weight:normal;font-size:12px;">Mon</div>
+    <div style="font-weight:normal;font-size:12px;">Tue</div>
+    <div style="font-weight:normal;font-size:12px;">Wed</div>
+    <div style="font-weight:normal;font-size:12px;">Thu</div>
+    <div style="font-weight:normal;font-size:12px;">Fri</div>
+    <div style="font-weight:normal;font-size:12px;margin-left:-2px;">Sat</div>
   </div>
   <div  class="calendar-days"  id="calendar-days">
     <!-- Calendar days will be generated here -->
@@ -997,37 +1005,37 @@ table {
 <div class="container1">
   <!-- Content goes here -->
   <div>
-    <p style="margin-left:20px;font-weight:bold;">{{ $currentDate }}</p>
-    <p style="margin-left:15px;margin-top:-10px;font-weight:bold;">{{$currentWeekday}}</p>
+    <p style="margin-left:25px;font-weight:bold;font-size:20px;">{{ $currentDate }}</p>
+    <p class="text-muted"style="margin-left:25px;margin-top:-15px;font-weight:600;font-size:14px;">{{$currentWeekday}}</p>
 </div> 
   <div class="vertical-line">
     <div>
-     <p class="text-overflow" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-weight:bold;">10:00 Am to 07:00 pm</p> 
-     <p class="text-muted"style="margin-top:-10px;">Shift:10:00 to 19:00</p> 
+     <p class="text-overflow" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-weight: 600;margin-left:40px;">10:00 Am to 07:00 pm</p> 
+     <p class="text-muted"style="margin-top:-10px;margin-left:40px;font-size:14px;">Shift:10:00 to 19:00</p> 
     </div>
-    <div style="margin-left:200px;margin-top:-68px;"> 
-     <p style="font-weight:bold;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">10:00 Am to 07:00 pm</p> 
-     <p class="text-muted"style="margin-top:-10px;">Attendance Scheme</p>
+    <div style="margin-left:200px;margin-top:-65px;"> 
+     <p style="overflow: hidden;font-weight: 600;text-overflow: ellipsis;margin-top:-10px;white-space: nowrap;margin-left:60px;">10:00 Am to 07:00 pm</p> 
+     <p class="text-muted"style="margin-top:-10px;margin-left:60px;font-size:14px;">Attendance Scheme</p>
     </div> 
   </div>
     
    
   <div class="horizontal-line"></div>
-  <div class="text-muted"style="margin-left:20px;">Processed On</div>
+  <div class="text-muted"style="margin-left:20px;font-weight: 400;font-size: 12px;">Processed On</div>
   <div class="horizontal-line1"></div>
   <div style=" overflow-x: auto;
     max-width: 100%;">
   <table>
   <thead>
     <tr>
-      <th>First&nbsp;In</th>
-      <th>Last&nbsp;Out</th>
-      <th>Total&nbsp;Work&nbsp;Hrs</th>
-      <th>Break&nbsp;Hrs</th>
-      <th>Actual&nbsp;Work&nbsp;Hrs</th>
-      <th>Work&nbsp;Hours&nbsp;in&nbsp;Shift&nbsp;Time</th>
-      <th>Shortfall&nbsp;Hrs</th>
-      <th>Excess&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;">First&nbsp;In</th>
+      <th style="font-weight:normal;font-size:12px;">Last&nbsp;Out</th>
+      <th style="font-weight:normal;font-size:12px;">Total&nbsp;Work&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;">Break&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;">Actual&nbsp;Work&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;">Work&nbsp;Hours&nbsp;in&nbsp;Shift&nbsp;Time</th>
+      <th style="font-weight:normal;font-size:12px;">Shortfall&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;">Excess&nbsp;Hrs</th>
     </tr>
   </thead>
   <tbody>
@@ -1049,15 +1057,15 @@ table {
 </div>
 </div>
 <div class="container2">
-  <h3 style="margin-left:20px;margin-top:20px;color: #7f8fa4;font-size:20px;">Status Details</h3> 
+  <h3 style="margin-left:20px;margin-top:10px;color: #7f8fa4;font-size:18px;">Status Details</h3> 
   
   <div style=" overflow-x: auto;
     max-width: 100%;">
   <table style="margin-top:-10px;">
   <thead>
     <tr>
-      <th>Status</th>
-      <th>Remarks</th>
+      <th  style="font-weight:normal;font-size:12px;padding-top:16px;">Status</th>
+      <th  style="font-weight:normal;font-size:12px;padding-top:16px;">Remarks</th>
      
     </tr>
   </thead>
@@ -1074,52 +1082,52 @@ table {
 </div>
 </div> 
 <div class="container3">
-  <h3 style="margin-left:20px;margin-bottom:15px;color: #7f8fa4;font-size:20px;">Session Details</h3> 
+  <h3 style="margin-left:20px;margin-top:20px;color: #7f8fa4;font-size:18px;">Session Details</h3> 
   
   <div style=" overflow-x: auto;
     max-width: 100%;">
   <table style="margin-top:-10px">
   <thead>
     <tr>
-      <th>Session</th>
-      <th>Session&nbsp;Timing</th>
-      <th>First&nbsp;In</th>
-      <th>Last&nbsp;Out</th>
-      <th>Late&nbsp;In&nbsp;Hrs</th>
-      <th>Early&nbsp;Out&nbsp;Hrs</th>
-      <th>Total&nbsp;Work&nbsp;Hrs</th>
-      <th>Actual&nbsp;Work&nbsp;Hrs</th>
-      <th>Excess&nbsp;Hrs</th>
-      <th>Shortfall&nbsp;Hrs</th>
-      <th>Break&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Session</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Session&nbsp;Timing</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">First&nbsp;In</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Last&nbsp;Out</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Late&nbsp;In&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Early&nbsp;Out&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Total&nbsp;Work&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Actual&nbsp;Work&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Excess&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Shortfall&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Break&nbsp;Hrs</th>
     </tr>
   </thead>
   <tbody>
     <tr style="border-bottom: 1px solid #ddd;">
-      <td>Session&nbsp;1</td>
-      <td>10:00 - 14:00</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>+00:00</td>
-      <td>00:00</td>
-      <td>00:00</td>
-      <td>00:00</td>
-      <td>00:00</td>
-      <td>00:00</td>
+      <td style="font-weight:normal;font-size:12px;">Session&nbsp;1</td>
+      <td style="font-weight:normal;font-size:12px;">10:00 - 14:00</td>
+      <td style="font-weight:normal;font-size:12px;">-</td>
+      <td style="font-weight:normal;font-size:12px;">-</td>
+      <td style="font-weight:normal;font-size:12px;">-</td>
+      <td style="font-weight:normal;font-size:12px;">+00:00</td>
+      <td style="font-weight:normal;font-size:12px;">00:00</td>
+      <td style="font-weight:normal;font-size:12px;">00:00</td>
+      <td style="font-weight:normal;font-size:12px;">00:00</td>
+      <td style="font-weight:normal;font-size:12px;">00:00</td>
+      <td style="font-weight:normal;font-size:12px;">00:00</td>
     </tr>
     <tr style="border-bottom: 1px solid #ddd;">
-      <td>Session&nbsp;2</td>
-      <td>10:00 - 14:00</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>+00:00</td>
-      <td>00:00</td>
-      <td>00:00</td>
-      <td>00:00</td>
-      <td>00:00</td>
-      <td>00:00</td>
+      <td style="font-weight:normal;font-size:12px;">Session&nbsp;2</td>
+      <td style="font-weight:normal;font-size:12px;">10:00 - 14:00</td>
+      <td style="font-weight:normal;font-size:12px;">-</td>
+      <td style="font-weight:normal;font-size:12px;">-</td>
+      <td style="font-weight:normal;font-size:12px;">-</td>
+      <td style="font-weight:normal;font-size:12px;">+00:00</td>
+      <td style="font-weight:normal;font-size:12px;">00:00</td>
+      <td style="font-weight:normal;font-size:12px;">00:00</td>
+      <td style="font-weight:normal;font-size:12px;">00:00</td>
+      <td style="font-weight:normal;font-size:12px;">00:00</td>
+      <td style="font-weight:normal;font-size:12px;">00:00</td>
     </tr>
     <!-- Add more rows with dashes as needed -->
   </tbody>
@@ -1129,8 +1137,8 @@ table {
 
 </div>
 <div class="container6">
-  <h3 style="margin-left:20px;color: #7f8fa4;">Swipes</h3>
-  <div class="arrow-button"style="float:right;margin-top:-40px;margin-right:20px;"id="toggleButton"></div> 
+  <h3 style="margin-left:20px;color: #7f8fa4;font-size:18px;">Swipes</h3>
+  <div class="arrow-button"style="float:right;margin-top:-30px;margin-right:20px;"id="toggleButton"></div> 
   
 <div class="container-body" style="margin-top:2px;height:auto;"id="myContainerBody">
     <!-- Content of the container body -->
@@ -1139,9 +1147,9 @@ table {
       <thead>
          @if ($Swiperecords->count() > 0)
         <tr>
-             <th>In/Out</th>
-             <th>Swipe&nbsp;Time</th>
-             <th>Location</th>
+             <th style="font-weight:normal;font-size:12px;">In/Out</th>
+             <th style="font-weight:normal;font-size:12px;">Swipe&nbsp;Time</th>
+             <th style="font-weight:normal;font-size:12px;">Location</th>
              <th></th> 
         </tr>
      </thead>
@@ -1149,10 +1157,10 @@ table {
                
                @foreach ($Swiperecords as $index =>$swiperecord)
                <tr>
-                    <td>{{ $swiperecord->in_or_out }}</td>
+                    <td style="font-weight:normal;font-size:12px;">{{ $swiperecord->in_or_out }}</td>
                     <td>
                         <div style="display:flex;flex-direction:column;">
-                            <p style="margin-bottom: 0;">{{ date('h:i:s A', strtotime($swiperecord->swipe_time)) }}</p>
+                            <p style="margin-bottom: 0;font-weight:normal;font-size:12px;">{{ date('h:i:s A', strtotime($swiperecord->swipe_time)) }}</p>
                             <p style="margin-bottom: 0;font-size: 10px;color: #a3b2c7;"> {{ date('d M Y', strtotime($currentDate1)) }}</p>
                         </div>     
                     </td>
@@ -1253,8 +1261,8 @@ table {
   <div class="table-container"style=" width: 100%;
     overflow-x: auto;">
 <table>
-            <tr class="first-header-row"style="background-color: #24a7f8;">
-                <th class="date">Genaral&nbsp;Details</th>
+            <tr class="first-header-row"style="background-color:rgb(2, 17, 79);">
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Genaral&nbsp;Details</th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -1271,20 +1279,20 @@ table {
                 
             </tr>
             <tr class="second-header-row">
-                <th class="date">Date</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Date</th>
               
-                <th class="date">Shift</th>
-                <th class="date">Attendance&nbsp;Scheme</th>
-                <th class="date">First&nbsp;In</th>
-                <th class="date">Last&nbsp;Out</th>
-                <th class="date">Work&nbsp;Hrs</th>
-                <th class="date">Actual&nbsp;Hrs</th>
-                <th class="date">Status</th>
-                <th class="date">Swipe&nbsp;Details</th>
-                <th class="date">Exception</th>
-                <th class="date">Shortfall/Excess&nbsp;Hrs.</th>
-                <th class="date">Shift&nbsp;Timings</th>
-                <th class="date">Shift&nbsp;Timings</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Shift</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Attendance&nbsp;Scheme</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">First&nbsp;In</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Last&nbsp;Out</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Work&nbsp;Hrs</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Actual&nbsp;Hrs</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Status</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Swipe&nbsp;Details</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Exception</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Shortfall/Excess&nbsp;Hrs.</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Shift&nbsp;Timings</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Shift&nbsp;Timings</th>
               
             </tr>
             @foreach($Swiperecords1 as $index=>$swiperecords1)
@@ -1292,44 +1300,50 @@ table {
             <tr>
                 
 
-                 <td class="date">{{$swiperecords1->created_at->format('d M Y')}} </td>
-                 <td>10:(GS)</td>
-                 <td>10:00 am to 07:00pm</td>
+                 <td class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">{{$swiperecords1->created_at->format('d M Y')}} </td>
+                 <td style="font-weight:normal;font-size:12px;padding-top:16px;">10:(GS)</td>
+                 <td style="font-weight:normal;font-size:12px;padding-top:16px;">10:00 am to 07:00pm</td>
                   @if ($swiperecords1->in_or_out === 'Sign In'||$swiperecords1->in_or_out === 'IN')
-                     <td>{{\Carbon\Carbon::parse($swiperecords1->swipe_time)->format('H:i')}}</td>
+                     <td style="font-weight:normal;font-size:12px;padding-top:16px;">{{\Carbon\Carbon::parse($swiperecords1->swipe_time)->format('H:i')}}</td>
 
                   @endif
                   @if ($index < count($Swiperecords1) - 1)
                      <?php $nextRecord = $Swiperecords1[$index + 1]; ?>
                       @if ($nextRecord->in_or_out === 'Sign Out' || $nextRecord->in_or_out === 'OUT')
-                          <td>{{ \Carbon\Carbon::parse($nextRecord->swipe_time)->format('H:i')}}</td>
+                          <td style="font-weight:normal;font-size:12px;padding-top:16px;">{{ \Carbon\Carbon::parse($nextRecord->swipe_time)->format('H:i')}}</td>
                           
                           
                           
                       @else
-                          <td>00:00</td>
+                          <td style="font-weight:normal;font-size:12px;padding-top:16px;">00:00</td>
                       @endif
                   @else
-                    <td>00:00</td>
+                    <td style="font-weight:normal;font-size:12px;padding-top:16px;">00:00</td>
 
 
                   @endif  
                  
               
-                  <td>00:00</td>
-                  <td>00:00</td>
-                  @if($swiperecords1->in_or_out=="IN")
-                      <td  style=" color:#a3b2c7;;margin-left:10px;margin-top:20px;">P</td>
-                  @elseif($swiperecords1->created_at->format('l') == 'Saturday' || $swiperecords1->created_at->format('l') == 'Sunday') 
-                      <td style=" color: #a3b2c7;;margin-left:10px;margin-top:20px;">O</td>
+                  <td style="font-weight:normal;font-size:12px;padding-top:16px;">00:00</td>
+                  <td style="font-weight:normal;font-size:12px;padding-top:16px;">00:00</td>
+                  @if($swiperecords1->created_at->format('l') == 'Saturday' || $swiperecords1->created_at->format('l') == 'Sunday')
+    
+
+                        <td style=" color: #a3b2c7;;margin-left:10px;margin-top:20px;font-size:12px;">O</td>
+    
+
+                  @elseif($swiperecords1->in_or_out=="IN")
+     
+
+                       <td  style=" color:#a3b2c7;;margin-left:10px;margin-top:20px;font-size:12px;">P</td>
                   @else
-                      <td  style=" color: #f66;margin-left:10px;margin-top:20px;">A</td>
+                      <td  style=" color: #f66;margin-left:10px;margin-top:20px;font-size:12px;">A</td>
                   @endif      
                   <td><button class="info-button"style="background-color: rgb(2, 17, 79); border: 2px solid rgb(2, 17, 79);height:20px; color: white; border-radius: 5px;font-size:12px;margin-top:-10px"data-toggle="modal"data-target="#largeBoxModal"wire:click="viewTableDetails('{{$swiperecords1->id}}')">Info</button></td>
-                  <td>No&nbsp;attention&nbsp;required</td>
-                  <td>-</td>
-                  <td>10:00-14:00</td>
-                  <td>14:01-19:00</td>
+                  <td style="font-weight:normal;font-size:12px;padding-top:16px;">No&nbsp;attention&nbsp;required</td>
+                  <td style="font-weight:normal;font-size:12px;padding-top:16px;">-</td>
+                  <td style="font-weight:normal;font-size:12px;padding-top:16px;">10:00-14:00</td>
+                  <td style="font-weight:normal;font-size:12px;padding-top:16px;">14:01-19:00</td>
 
             </tr>
             @endif
@@ -1337,17 +1351,17 @@ table {
             
             
             <tr>
-                <td class="date">Total </td>
+                <td class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Total </td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>00:00</td>
-                <td>00:00</td>
+                <td style="font-weight:normal;font-size:12px;padding-top:16px;">00:00</td>
+                <td style="font-weight:normal;font-size:12px;padding-top:16px;">00:00</td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>00:00</td>
+                <td style="font-weight:normal;font-size:12px;padding-top:16px;">00:00</td>
                 <td></td>
                 <td></td>
             </tr>
@@ -1360,7 +1374,7 @@ table {
             <div class="modal-content"style="width:100%"> 
                 <div class="modal-header">
                     <h5 class="modal-title">Swipe Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="closeViewStudentModal">
+                    <button type="button" class="close"  aria-label="Close" wire:click="closeViewStudentModal">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -1426,7 +1440,7 @@ table {
 </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-sm btn-danger" wire:click="cancel()" data-dismiss="modal" aria-label="Close">Cancel</button>
+                    <button class="btn btn-sm btn-danger" wire:click="cancel()"  aria-label="Close">Cancel</button>
                    
                 </div>
             </div>

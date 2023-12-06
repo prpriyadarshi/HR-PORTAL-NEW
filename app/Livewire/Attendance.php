@@ -24,12 +24,30 @@ class Attendance extends Component
     public $employeeDetails;
     public $student;
     public $selectedRecordId = null;
-    
+    public $distinctDates;
     public $table;
 
     public function mount()
     {
-        
+      
+     $swipeRecords = SwipeRecord::where('emp_id', auth()->guard('emp')->user()->emp_id)->get();
+
+  // Group the swipe records by the date part only
+      $groupedDates = $swipeRecords->groupBy(function ($record) {
+         return \Carbon\Carbon::parse($record->created_at)->format('Y-m-d');
+      });
+      $this->distinctDates = $groupedDates->mapWithKeys(function ($records, $key) {
+        $inRecord = $records->where('in_or_out', 'IN')->first();
+        $outRecord = $records->where('in_or_out', 'OUT')->last();
+
+        return [$key => [
+            'first_in_time' => optional($inRecord)->swipe_time,
+            'last_out_time' => optional($outRecord)->swipe_time,
+        ]];
+    });
+    
+
+
         // Get the current date and store it in the $currentDate property
         $this->currentDate = date('d');
         $this->currentWeekday = date('D');
