@@ -93,7 +93,7 @@
         <p class="text-semi-bold text-4 plan-title ng-star-inserted">
             <span>Plan A</span>
             <span class="plan-view-btn">
-              <a href="/plan-C" style="margin-left:120px"> View Plan </a>
+              <a href="/plan-C" style="margin-left:120px;font-size:14px"> View Plan </a>
             </span>
             <span dropdown class="plan-options gt-pl-3">
                 <i dropdowntoggle class="icon-gt-options dropdown-button" aria-haspopup="true"></i>
@@ -138,7 +138,7 @@
           <p class="text-semi-bold text-4 plan-title ng-star-inserted">
             <span>Plan B</span>
             <span class="plan-view-btn">
-              <a href="/plan-C" style="margin-left:120px"> View Plan </a>
+              <a href="/plan-C" style="margin-left:120px;font-size:14px"> View Plan </a>
             </span>
             <span dropdown class="plan-options gt-pl-3">
               <i dropdowntoggle class="icon-gt-options dropdown-button" aria-haspopup="true"></i>
@@ -183,7 +183,7 @@
           <p class="text-semi-bold text-4 plan-title ng-star-inserted">
             <span>Plan C</span>
             <span class="plan-view-btn">
-              <a href="/plan-C" style="margin-left:120px"> View Plan </a>
+              <a href="/plan-C" style="margin-left:120px;font-size:14px"> View Plan </a>
             </span>
             <span dropdown class="plan-options gt-pl-3">
               <i dropdowntoggle class="icon-gt-options dropdown-button" aria-haspopup="true"></i>
