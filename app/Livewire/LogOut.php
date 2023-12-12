@@ -9,7 +9,6 @@ class LogOut extends Component
 {
     public function handleLogout()
     {
-
         //Session::pull('emp_id');
         session()->forget('emp_id');
         session()->flush();

@@ -128,7 +128,7 @@ class EmployeesReview extends Component
             }
         }
 
-        $this->approvedLeaveRequests = LeaveRequest::where('status', 'approved')
+        $this->approvedLeaveRequests = LeaveRequest::where('leave_applies.status', 'approved')
         ->where(function ($query) use ($employeeId) {
             $query->whereJsonContains('applying_to', [['manager_id' => $employeeId]])
                 ->orWhereJsonContains('cc_to', [['emp_id' => $employeeId]]);

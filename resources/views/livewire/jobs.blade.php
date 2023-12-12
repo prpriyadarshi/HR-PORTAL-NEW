@@ -228,7 +228,8 @@
                 <img src="https://xsilica.com/images/xsilica_broucher_final_modified_05082016-2.png" alt="Logo" style="height: 50px; margin-right: 10px;">
             </div>
             <div class="col-md-8 mb-3" style="text-align: center; margin: auto;">
-                <h1 style="font-size: 21px;">Job Seeker - {{$user->full_name}}</h1>
+            <h1 style="font-size: 21px;">Job Seeker - {{ optional($user)->full_name }}</h1>
+
             </div>
             <div class="col-md-2 mb-3" style="text-align: center; margin: auto;">
                 <a href="/AllNotifications" style="text-decoration: none; color: white">

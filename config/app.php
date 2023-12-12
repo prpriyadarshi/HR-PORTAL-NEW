@@ -196,6 +196,7 @@ return [
         // 'Example' => App\Facades\Example::class,
         'NoCaptcha' => 'Anhskohbo\NoCaptcha\Facades\NoCaptcha',
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ])->toArray(),
 
 ];

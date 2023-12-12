@@ -8,6 +8,7 @@ use App\Livewire\Feeds;
 
 use App\Livewire\Attendance;
 use App\Livewire\AuthChecking;
+use App\Livewire\GoogleLogins;
 use App\Livewire\LeaveCalender;
 use App\Livewire\LeaveHistory;
 use App\Livewire\LeavePending;
@@ -35,6 +36,7 @@ use App\Livewire\Documents;
 use App\Livewire\Declaration;
 use App\Livewire\Downloadform;
 use App\Livewire\Documentcenter;
+use App\Livewire\EmpList;
 use App\Livewire\Investment;
 use App\Livewire\LeaveApply;
 use App\Livewire\LeavePage;
@@ -59,9 +61,7 @@ Route::group(['middleware' => 'checkAuth'], function () {
 
     Route::get('/emplogin', EmpLogin::class)->name('emplogin');
 
-    Route::get('/Login&Register', function () {
-        return view('login_and_register_view');
-    });
+
 
 
 
@@ -70,8 +70,11 @@ Route::group(['middleware' => 'checkAuth'], function () {
     });
 
 
-
-
+    Route::get('/login', [GoogleLogins::class, 'redirectToGoogle'])->name('login');
+    Route::get('/auth/google/callback', [GoogleLogins::class, 'handleGoogleCallback'])->name('auth/google/callback');
+    Route::get('/Jobs', function () {
+        return view('jobs_view');
+    });
     Route::get('/CreateCV', function () {
         return view('create_cv_view');
     });
@@ -89,7 +92,6 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/Jobs', function () {
         return view('jobs_view');
     });
-
 
 
     Route::get('/AllNotifications', function () {
@@ -138,9 +140,17 @@ Route::middleware(['auth:com'])->group(function () {
     Route::get('/empregister', function () {
         return view('emp-register-view');
     });
+   // Route::get('/emplist', EmpList::class)->name('emplist');
+    Route::get('/emplist', function () {
+        return view('emp-list-view');
+    });
+
+    Route::get('/emp-update/{$empId}', function ($empId) {
+        return view('emp-update-view', compact('$empId'));
+    })->name('emp-update');
 });
 
-Route::middleware(['auth:hr'])->group(function () {  
+Route::middleware(['auth:hr'])->group(function () {
     Route::get('/hrPage', AuthChecking::class)->name('home');
 });
 
@@ -148,7 +158,7 @@ Route::middleware(['auth:finance'])->group(function () {
     Route::get('/financePage', AuthChecking::class)->name('home');
 });
 
-Route::middleware(['auth:it'])->group(function () {  
+Route::middleware(['auth:it'])->group(function () {
     Route::get('/itPage', AuthChecking::class)->name('home');
 });
 
@@ -185,7 +195,7 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/document', Documentcenter::class);
     Route::get('/documents', Documents::class);
     Route::get('/team-on-leave-chart', TeamOnLeaveChart::class);
-
+    Route::get('/salary-revision', SalaryRevisions::class)->name('salary-revision');
 
     Route::get('/plan-A', PlanA::class)->name('plan-a');
 
@@ -211,7 +221,7 @@ Route::middleware(['auth:emp'])->group(function () {
 
 
 
-    Route::get('/salary-revisions', SalaryRevisions::class)->name('salary-revisions');
+
 
 
 
@@ -272,3 +282,4 @@ Route::get('/your-download-route', function () {
 Route::get('/downloadform', function () {
     return view('downloadform');
 });
+

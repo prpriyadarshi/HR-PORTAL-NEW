@@ -1,7 +1,7 @@
 <div>
     <!DOCTYPE html>
     <html lang="en">
- 
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,42 +10,42 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <script src="{{ asset('livewire/livewire.js') }}" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
- 
+
         <style>
             body {
                 font-family: 'Montserrat', sans-serif;
             }
- 
+
             .left-menu {
                 width: 150px;
                 font-family: 'Montserrat', sans-serif;
                 background-color: #f0f0f0;
                 padding: auto 30px;
- 
+
                 /* Add a vertical line to the right of the left menu */
             }
- 
+
             .left-menu h2 {
                 font-family: 'Montserrat', sans-serif;
             }
- 
+
             table {
                 border-collapse: collapse;
                 width: 100%;
             }
- 
+
             th,
             td {
                 border: 1px solid black;
                 padding: 8px;
                 text-align: center;
             }
- 
- 
+
+
             th {
                 background-color: #f2f2f2;
             }
- 
+
             .greet {
                 -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
                 tab-size: 4;
@@ -69,7 +69,7 @@
                 --tw-ring-offset-shadow: 0 0 transparent;
                 --tw-ring-shadow: 0 0 transparent;
             }
- 
+
             .banner-ad {
                 -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
                 tab-size: 4;
@@ -96,34 +96,34 @@
                 --tw-text-opacity: 1;
                 color: rgba(103, 122, 142, var(--tw-text-opacity));
             }
- 
- 
+
+
             @keyframes mergeAndJumble {
                 0% {
                     transform: translate(0, 0);
                 }
- 
+
                 25% {
                     transform: translate(100px, 0);
                 }
- 
+
                 50% {
                     transform: translate(100px, 100px);
                 }
- 
+
                 75% {
                     transform: translate(0, 100px);
                 }
- 
+
                 100% {
                     transform: translate(0, 0);
                 }
             }
- 
+
             .animate {
                 animation: mergeAndJumble 0.3s forwards;
             }
- 
+
         .animate {
             animation: mergeAndJumble 0.3s forwards;
         }
@@ -148,19 +148,19 @@
             .animate {
                 animation: mergeAndJumble 0.3s forwards;
             }
- 
+
             .notify {
                 display: flex;
                 justify-content: space-between;
                 padding: 5px 10px;
                 align-items: center;
             }
- 
+
             .home-hover {
                 transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
                 border-radius: 5px;
             }
- 
+
     .home-hover:hover {
         transform: scale(1.01);
         cursor: pointer;
@@ -216,7 +216,7 @@
             }, 5000);
         </script>
         @endif
- 
+
         </div>
         <div class="content">
             <div class="row m-0 mb-3">
@@ -226,7 +226,7 @@
                         <h1 class="text-secondary-500 pb-1.5x" style="font-size: 24px; font-family: montserrat;width:45%">{{$greetingText}}</h1>
                      @endif
                     </div>
- 
+
                     <div class="banner-ad text-base max-w-lg text-secondary-400">
                         <carousel class="ng-star-inserted" style="width:470px">
                             <!-- Carousel content goes here -->
@@ -287,7 +287,7 @@
                                                         @endphp
                                                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDDbrRPghufD20Fgaa0IFT62n3vLc5lI5B_w&usqp=CAU" alt="" style="height: 40px; width: 40px; border-radius: 50%;  border: 2px solid {{ getRandomColor() }};"><span>Leave</span>
                                                     </div>
- 
+
                                                 @endfor
                                                 @if ($count > 4)
                                                     <div class="circle-notify" style="color:blue;cursor:pointer; margin-top:20px;display:flex;flex-direction:column;align-items:center;">
@@ -332,7 +332,7 @@
                                                 </div>
                                     </div>
                               </div>
- 
+
                               <!-- TEAM ON LEAVE -->
                               @if($this->showLeaveApplies)
                                <div class="home-hover">
@@ -357,7 +357,7 @@
                                                                 return $colors[array_rand($colors)];
                                                             }
                                                         @endphp
- 
+
                                                         @for ($i = 0; $i < min($teamCount, 4); $i++)
                                                                 <?php
                                                                     $teamLeave = $this->teamOnLeave[$i] ?? null;
@@ -438,35 +438,35 @@
                                                 Payslip
                                                 <a href="/slip" style="font-size:16px; ">&rarr;</a>
                                             </div>
- 
+
                     <div style="display:flex">
                         <div style="position: relative;">
                             <canvas id="outerPieChart" width="150" height="150"></canvas>
                             <canvas id="innerPieChart" width="150" height="150" style="position: absolute; top: -10px; left: 0px;"></canvas>
                         </div>
- 
- 
- 
+
+
+
                         <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 60px;margin-top: 30px; font-weight: 100; color: #9E9696">
                             <br>{{ date('M Y', strtotime('-1 month')) }}</br>
                             <br>{{ date('t', strtotime('-1 month')) }}</br>
                             <br>Paid Days</br>
                         </div>
- 
+
                     </div>
 
                     <div style="display:flex ;color: #677A8E; font-size: 14px;  font-weight:100px;margin-top:-2px">
                         <br style="margin-top:-10px">Gross Pay</br>
                         <br>Deduction</br>
                         <br>Net Pay</br>
- 
+
                         <div style="margin-left:120px;margin-top:22px">
                             <p>₹{{$salaries->calculateTotalAllowance(), 2}}</p>
                             <p>₹{{$salaries->calculateTotalDeductions(), 2}}</p>
                             @if ($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions() > 0)
                             <p style="margin-top:5px"> ₹{{ number_format($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions(), 2) }}</p>
                             @endif
- 
+
                         </div>
                     </div>
                     <div class="column" style="display: flex; color: #1090D8; font-size: 14px;  margin-top: 20px; font-weight: 100;">
@@ -474,7 +474,7 @@
                         <a href="/your-download-route" id="pdfLink2023_4" class="pdf-download" download style="margin-left: 10px; display: inline-block;">Download PDF</a>
                         <p style="margin-left: 80px;">Show Salary</p>
                     </div>
- 
+
                 </div>
                 @empty
                 <div style="border-radius: 5px; border: 1px solid #CFCACA;background-color:white;">
@@ -486,7 +486,7 @@
                             <p style="color: #677A8E;  margin-bottom: 20px; font-size:0.875rem;"> We are working on your payslip!</p>
                         </div>
                     </div>
- 
+
                 </div>
                 @endforelse
             </div>
@@ -510,7 +510,7 @@
                                     <th style="font-size: 12px; color: grey;">Swipe Time</th>
                                     <th style="font-size: 12px; color: grey">Sign-In / Sign-Out</th>
                                 </tr>
- 
+
                                 @if (!is_null($swipeDetails) && $swipeDetails->count() > 0)
                                 @foreach ($swipeDetails as $swipe)
                                 <tr>
@@ -523,7 +523,7 @@
                                     <td style="font-size:12px;"                                                                                                                                                                                                                                                                                                                                                                                          colspan="2">No swipe records found for today.</td>
                                 </tr>
                                 @endif
- 
+
                             </table>
                         </div>
                     </div>
@@ -573,7 +573,7 @@
                     <div style="color: #677A8E;font-weight:500; margin-left: 20px;  margin-top: 20px;">
                         Track
                     </div>
- 
+
                     <div>
                         <img src="https://resumekit.com/blog/wp-content/uploads/2023/02/Optimal-outline-for-a-cover-letter-2-1.png" alt="Image Description" style="height: 100px; width: 160px; margin-top: 20px; margin-left: 80px;">
                         <div class="B" style="color: black; margin-left: 20px;  font-size: 14px;">
@@ -587,7 +587,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 </body>
- 
+
 </html>
 </div>
 <script>
@@ -607,19 +607,19 @@
             }
             // Add more quotes here as needed
         ];
- 
+
         const quoteElement = document.querySelector('.quote-text');
         const authorElement = document.querySelector('.author-text');
         const randomIndex = Math.floor(Math.random() * quotes.length);
         const randomQuote = quotes[randomIndex];
- 
+
         quoteElement.textContent = randomQuote.text;
         authorElement.textContent = `- ${randomQuote.author}`;
     }
- 
+
     // Call the function to initially set the quote
     changeQuote();
- 
+
     // Set an interval to change the quote every 5 seconds (5000 milliseconds)
     setInterval(changeQuote, 5000);
 

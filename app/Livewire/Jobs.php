@@ -108,28 +108,33 @@ class Jobs extends Component
             })
             ->orderBy('created_at', 'desc')
             ->get();
-        $this->user = auth()->user();
-        $this->notificationList = JobseekersExamDetails::with('user', 'job', 'company')
-            ->where('user_id', $this->user->user_id)
-            ->orderBy('created_at', 'desc')
-            ->get();
-
-        $this->appliedJobs = AppliedJob::where('user_id', $this->user->user_id)->get();
-        $this->selectOrNot = AppliedJob::where('user_id', $this->user->user_id)
-            ->whereIn('application_status', ['Shortlisted', 'Rejected'])
-            ->count();
-
-        $this->examinationCount = JobseekersExamDetails::with('user', 'job')
-            ->where('user_id', $this->user->user_id)
-            ->whereNotNull('exam_link')
-            ->count();
-
-        $this->allNotificationCount = $this->selectOrNot + $this->examinationCount;
-
-        $this->rejectedJobs = AppliedJob::where('user_id', $this->user->user_id)
-            ->whereIn('application_status', ['Rejected'])
-            ->get();
-
+    
+        // Check if user is authenticated before accessing user-related data
+        if (auth()->check()) {
+            $this->user = auth()->user();
+    
+            $this->notificationList = JobseekersExamDetails::with('user', 'job', 'company')
+                ->where('user_id', $this->user->user_id)
+                ->orderBy('created_at', 'desc')
+                ->get();
+    
+            $this->appliedJobs = AppliedJob::where('user_id', $this->user->user_id)->get();
+            $this->selectOrNot = AppliedJob::where('user_id', $this->user->user_id)
+                ->whereIn('application_status', ['Shortlisted', 'Rejected'])
+                ->count();
+    
+            $this->examinationCount = JobseekersExamDetails::with('user', 'job')
+                ->where('user_id', $this->user->user_id)
+                ->whereNotNull('exam_link')
+                ->count();
+    
+            $this->allNotificationCount = $this->selectOrNot + $this->examinationCount;
+    
+            $this->rejectedJobs = AppliedJob::where('user_id', $this->user->user_id)
+                ->whereIn('application_status', ['Rejected'])
+                ->get();
+        }
+    
         return view('livewire.jobs');
     }
-}
+}    

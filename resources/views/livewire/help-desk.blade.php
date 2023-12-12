@@ -162,7 +162,7 @@
                                     </div>
                                 </div>
                                 @if($isRotated)
-                                <div style="border-radius:5px;background-color:grey;padding:8px;width:220px;margin-top:10px">
+                                <div style="border-radius:5px;background-color:grey;padding:8px;width:320px;margin-top:10px">
                                     <div class="input-group" style="margin-bottom: 10px;">
                                         <input wire:model="searchTerm" style="font-size: 10px;cursor: pointer; border-radius: 5px 0 0 5px;" type="text" class="form-control" placeholder="Search for Emp.Name or ID" aria-label="Search" aria-describedby="basic-addon1">
                                         <div class="input-group-append">
@@ -179,7 +179,7 @@
                                     </div>
                                     @else
                                     @foreach($peopleData as $people)
-                                    <div wire:model="cc_to" wire:click="selectPerson('{{ $people->emp_id }}')" class="container" style="cursor: pointer; background-color: darkgrey; padding: 5px; margin-bottom: 8px; width: 200px; border-radius: 5px;">
+                                    <div wire:model="cc_to" wire:click="selectPerson('{{ $people->emp_id }}')" class="container" style="cursor: pointer; background-color: darkgrey; padding: 5px; margin-bottom: 8px; width: 300px; border-radius: 5px;">
                                         <div class="row align-items-center">
                                             <div class="col-auto">
                                                 <input type="checkbox" wire:model="selectedPeople" value="{{ $people->emp_id }}" wire:click="selectPerson({{ $people->emp_id }})">
@@ -236,7 +236,7 @@
 
         @if ($activeTab == "active")
         <div class="card-body" style="background-color:white;width:95%;height:400px;margin-top:30px;border-radius:5px;max-height:400px;overflow-y:auto">
-        
+
             <table style="width: 100%; border-collapse: collapse;">
                 <thead>
                     <tr style="background-color: #007BFF; color: white;">
@@ -285,7 +285,7 @@
 
         @if ($activeTab == "closed")
         <div class="card-body" style="background-color:white;width:95%;margin-top:30px;border-radius:5px;max-height:400px;height:400px;overflow-y:auto">
-         
+
             <table style="width: 100%; border-collapse: collapse;">
                 <thead>
                     <tr style="background-color: #007BFF; color: white;">
@@ -334,7 +334,7 @@
 
         @if ($activeTab == "pending")
         <div class="card-body" style="background-color:white;width:95%;margin-top:30px;border-radius:5px;max-height:400px;height:400px;overflow-y:auto">
-           
+
             <table style="width: 100%; border-collapse: collapse;">
                 <thead>
                     <tr style="background-color: #007BFF; color: white;">
