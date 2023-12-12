@@ -36,6 +36,7 @@ use App\Livewire\Documents;
 use App\Livewire\Declaration;
 use App\Livewire\Downloadform;
 use App\Livewire\Documentcenter;
+use App\Livewire\EmpList;
 use App\Livewire\Investment;
 use App\Livewire\LeaveApply;
 use App\Livewire\LeavePage;
@@ -59,9 +60,9 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'checkAuth'], function () {
 
     Route::get('/emplogin', EmpLogin::class)->name('emplogin');
-  
-    
-   
+
+
+
 
 
     Route::get('/CompanyLogin', function () {
@@ -91,7 +92,7 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/Jobs', function () {
         return view('jobs_view');
     });
-  
+
 
     Route::get('/AllNotifications', function () {
         return view('all-notifications_view');
@@ -139,9 +140,17 @@ Route::middleware(['auth:com'])->group(function () {
     Route::get('/empregister', function () {
         return view('emp-register-view');
     });
+   // Route::get('/emplist', EmpList::class)->name('emplist');
+    Route::get('/emplist', function () {
+        return view('emp-list-view');
+    });
+
+    Route::get('/emp-update/{$empId}', function ($empId) {
+        return view('emp-update-view', compact('$empId'));
+    })->name('emp-update');
 });
 
-Route::middleware(['auth:hr'])->group(function () {  
+Route::middleware(['auth:hr'])->group(function () {
     Route::get('/hrPage', AuthChecking::class)->name('home');
 });
 
@@ -149,7 +158,7 @@ Route::middleware(['auth:finance'])->group(function () {
     Route::get('/financePage', AuthChecking::class)->name('home');
 });
 
-Route::middleware(['auth:it'])->group(function () {  
+Route::middleware(['auth:it'])->group(function () {
     Route::get('/itPage', AuthChecking::class)->name('home');
 });
 
@@ -212,7 +221,7 @@ Route::middleware(['auth:emp'])->group(function () {
 
 
 
- 
+
 
 
 
