@@ -27,6 +27,7 @@ class LoginAndRegisterForJobs extends Component
     public $password;
     public $login_email;
     public $credentials;
+    public $user_confirm_password;
     public $user_type = "Job Seeker";
     public $activeTab = 'register';
 
@@ -62,19 +63,22 @@ class LoginAndRegisterForJobs extends Component
             'company_id' => $this->company_id,
             'password' => $this->password,
         ];
-        if (Auth::attempt($this->vendor_credentials)) {
-            return redirect('/VendorScreen');
-        }
-        $this->addError('company_id', 'Invalid company id or password');
-    }
 
+        if (Auth::attempt(['company_id' => $this->vendor_credentials['company_id'], 'password' => $this->vendor_credentials['password']])
+        || Auth::attempt(['email' => $this->vendor_credentials['company_id'], 'password' => $this->vendor_credentials['password']])) {
+        return redirect('/VendorScreen');
+    }
+        $this->addError('company_id', 'Invalid company id/Email or password');
+
+    }
     public function register()
     {
         $this->validate([
             'user_full_name' => 'required',
             'user_email' => 'required|email|unique:users,email',
             'user_password' => 'required',
-            'user_mobile_no' => 'required',
+            'user_confirm_password' => 'required|same:user_password',
+            'user_mobile_no' => 'required|unique:users,mobile_no',
             'user_address' => 'required',
             'user_type' => 'required'
         ]);

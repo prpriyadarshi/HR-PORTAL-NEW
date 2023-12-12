@@ -7,7 +7,9 @@ use Livewire\WithFileUploads;
 use App\Models\EmployeeDetails;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Company;
+use App\Models\EmpBankDetail;
 use App\Models\Job;
+
 class EmpRegister extends Component
 {
     use WithFileUploads;
@@ -33,7 +35,7 @@ class EmpRegister extends Component
     public $job_title;
     public $manager_id;
     public $report_to;
-    public $employee_status;
+
     public $emergency_contact;
     public $password;
     public $image;
@@ -50,6 +52,8 @@ class EmpRegister extends Component
     public $pan_no;
     public $aadhar_no;
     public $pf_no;
+    public $employee_status;
+
     public $nick_name;
     public $time_zone;
     public $biography;
@@ -64,15 +68,16 @@ class EmpRegister extends Component
     public $companies;
     public $hrDetails;
 
-    public function register(){
+    public function register()
+    {
         $this->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'date_of_birth' => 'required|date',
             'gender' => 'required|in:Male,Female',
-            'email' => 'required|email|unique:emp_details',
+            'email' => 'required|email|unique:employee_details',
             'company_name' => 'required|string|max:255',
-            'company_email' => 'required|email|unique:emp_details',
+            'company_email' => 'required|email|unique:employee_details',
             'mobile_number' => 'required|string|max:15',
             'alternate_mobile_number' => 'nullable|string|max:15',
             'address' => 'required|string|max:255',
@@ -81,20 +86,22 @@ class EmpRegister extends Component
             'postal_code' => 'required|string|max:20',
             'country' => 'required|string|max:255',
             'hire_date' => 'required|date',
-            'employee_type' => 'required|string|max:255',
             'department' => 'required|string|max:255',
-            'manager_id' => 'required|string|max:255',
-            'report_to' => 'required|string|max:255',
             'company_id' => 'required|string|max:255',
             'job_title' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'inter_emp'=>'required',
-            'marital_status'=>'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'inter_emp' => 'required',
+            'marital_status' => 'required',
+            'employee_type'=>'required',
+            'nationality'=>'required',
+            'religion'=>'required',
+            'blood_group'=>'required',
+            'job_location'=>'required'
         ]);
 
-       $imagePath = $this->image->store('employee_image', 'public');
-       $this->savedImage = $imagePath;
-         EmployeeDetails::create([
+        $imagePath = $this->image->store('employee_image', 'public');
+        $this->savedImage = $imagePath;
+        EmployeeDetails::create([
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
             'date_of_birth' => $this->date_of_birth,
@@ -141,14 +148,13 @@ class EmpRegister extends Component
             'company_id' => $this->company_id,
             'is_starred' => $this->is_starred,
             'skill_set' => $this->skill_set,
-           ]);
+        ]);
 
 
         session()->flash('emp_success', 'Employee registered successfully!');
 
         // Clear the form fields
         $this->reset();
-
     }
     public function updatedImage()
     {
@@ -161,13 +167,45 @@ class EmpRegister extends Component
 
 
 
+    public $companieIds, $managerIds;
     public function logout()
     {
         auth()->guard('com')->logout();
         return redirect('/Login&Register');
     }
+    public $selectedId;
+    public $reportTos, $selectedEmployees;
+
+    public function selectedCompany()
+    {
+        if ($this->company_id) {
+            $this->selectedId = Company::find($this->company_id);
+            $this->company_name = $this->selectedId->company_name;
+            $this->selectedEmployees = EmployeeDetails::where('company_id', $this->company_id)->first();
+            if($this->selectedEmployees->emp_id!=null){
+                $this->managerIds = EmployeeDetails::where('emp_id', $this->selectedEmployees->emp_id)->get();
+            }
+            if ($this->manager_id != null) {
+                $this->reportTos = EmployeeDetails::where('emp_id', $this->manager_id)->first();
+                $this->report_to = $this->reportTos->first_name . ' ' . $this->reportTos->last_name.' '.$this->reportTos->emp_id;
+            }
+        }
+    }
+
+    public function mount()
+    {
+        // Set a default value for employee_status if not set
+        $this->employee_status = $this->employee_status ?? 'active';
+        $this->employee_type = $this->employee_type ?? 'full-time';
+        $this->physically_challenge=$this->physically_challenge ?? 'No';
+        $this->inter_emp=$this->inter_emp ?? 'no';
+        
+    }
     public function render()
     {
+
+        $this->companieIds = Company::all();
+
         $hrEmail = auth()->guard('com')->user()->contact_email;
         $hrCompanies = Company::where('contact_email', $hrEmail)->get();
         $hrDetails = Company::where('contact_email', $hrEmail)->first();

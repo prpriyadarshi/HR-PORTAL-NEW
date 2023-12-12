@@ -15,7 +15,7 @@
 <body>
     <!-- Your content goes here -->
 
-    @livewire('emp-list')
+    @livewire('emp-update', ['$empId' => $$empId])
     @livewireScripts
 </body>
 

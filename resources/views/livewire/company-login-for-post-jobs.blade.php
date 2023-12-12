@@ -15,7 +15,7 @@
             <div>
             </div>
             <div class="form-group">
-                <label style="font-size:12px" for="companyId">HR Mail:</label><br>
+                <label style="font-size:12px" for="companyId">HR Mail ID:</label><br>
                 <input wire:model="contact_mail" style="font-size:12px" type="email" class="form-control">
                 @error('contact_mail') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
@@ -33,8 +33,8 @@
             </div>
         </form>
     </div>
-    <div style="text-align: center;margin-top:10px">
+    {{-- <div style="text-align: center;margin-top:10px">
         <h6 style="font-size: 12px;"><strong style="color: red;">NOTE : </strong>Before posting any job, HR login is
             required.</h6>
-    </div>
+    </div> --}}
 </div>

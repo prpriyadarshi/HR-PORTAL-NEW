@@ -60,9 +60,9 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'checkAuth'], function () {
 
     Route::get('/emplogin', EmpLogin::class)->name('emplogin');
-  
-    
-   
+
+
+
 
 
     Route::get('/CompanyLogin', function () {
@@ -92,7 +92,7 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/Jobs', function () {
         return view('jobs_view');
     });
-  
+
 
     Route::get('/AllNotifications', function () {
         return view('all-notifications_view');
@@ -144,6 +144,10 @@ Route::middleware(['auth:com'])->group(function () {
     Route::get('/emplist', function () {
         return view('emp-list-view');
     });
+
+    Route::get('/emp-update/{$empId}', function ($empId) {
+        return view('emp-update-view', compact('$empId'));
+    })->name('emp-update');
 });
 
 Route::middleware(['auth:hr'])->group(function () {
@@ -217,7 +221,7 @@ Route::middleware(['auth:emp'])->group(function () {
 
 
 
- 
+
 
 
 
