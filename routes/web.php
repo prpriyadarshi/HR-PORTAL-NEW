@@ -40,7 +40,7 @@ use App\Livewire\EmpList;
 use App\Livewire\Investment;
 use App\Livewire\LeaveApply;
 use App\Livewire\LeavePage;
-use App\Livewire\ApprovedDetails;
+
 // use App\Livewire\SalaryRevisions;
 use App\Livewire\Reimbursement;
 use App\Livewire\LeaveBalances;
@@ -50,7 +50,7 @@ use App\Livewire\TeamOnLeave;
 use App\Livewire\HolidayCalender;
 use App\Livewire\LeaveBalanaceAsOnADay;
 use App\Livewire\TeamOnLeaveChart;
-use App\Livewire\HolidayCalender;
+
 use App\Livewire\ViewDetails;
 use App\Livewire\ViewDetails1;
 use App\Livewire\ListOfAppliedJobs;

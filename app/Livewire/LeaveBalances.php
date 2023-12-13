@@ -8,7 +8,7 @@ use App\Helpers\LeaveHelper;
 use App\Models\EmployeeDetails;
 use App\Models\LeaveRequest;
 use PDF;
-use Carbon\Carbon;
+
 
 class LeaveBalances extends Component
 {
@@ -26,12 +26,8 @@ class LeaveBalances extends Component
     public $status;
     public $fromDateModal;
     public $toDateModal;
-    public $status;
-    public $fromDateModal;
-    public $toDateModal;
     public $leaveType;
     public $transactionType;
-    public $sortBy;
     public $consumedSickLeaves;
     public $consumedCasualLeaves;
     public $consumedLossOfPayLeaves;
@@ -154,7 +150,7 @@ class LeaveBalances extends Component
         ];
     }
     public  function calculateNumberOfDays($fromDate, $fromSession, $toDate, $toSession)
-    public  function calculateNumberOfDays($fromDate, $fromSession, $toDate, $toSession)
+
     {
         try {
         
