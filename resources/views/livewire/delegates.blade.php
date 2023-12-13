@@ -1,55 +1,17 @@
+<div>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
     <title>Workflow Delegates</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-family: "montserrat", sans-serif;
             background-color: #f5f5f5;
         }
  
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
- 
-        .header {
-            background-color: #3771C8;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
- 
-        .header img {
-            height: 40px;
-            width: auto;
-            vertical-align: middle;
-        }
- 
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-        }
- 
-        .nav a {
-            text-decoration: none;
-            color: #333;
-            margin-left: 20px;
-        }
- 
-        .nav b {
-            font-weight: bold;
-            margin-left: 20px;
-        }
  
         .content {
             margin-top: 20px;
@@ -115,14 +77,21 @@
         .btn {
             font-family: 'Montserrat';
         }
+          .header {
+            background-color: #3771C8;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+ 
     </style>
 </head>
 <body>
 @foreach($employees as $employee)
 <div class="container">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap">
-
-
+ 
+ 
    
     <h1 class="form-header" style="margin-right: 500px; font-family: 'Montserrat';margin-top:20px;font-size:17px">Workflow Delegates</h1>
     <div class="nav">
@@ -250,3 +219,5 @@
     </script>
 </body>
 </html>
+ 
+</div>

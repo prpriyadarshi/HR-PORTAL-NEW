@@ -46,7 +46,6 @@ use App\Livewire\LeaveCancel;
 use App\Livewire\TeamOnLeave;
 use App\Livewire\TeamOnLeaveChart;
 use App\Livewire\HolidayCalender;
-
 use App\Livewire\ViewDetails;
 use App\Livewire\ViewDetails1;
 use App\Livewire\ViewPendingDetails;
@@ -82,6 +81,12 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/Jobs', function () {
         return view('jobs_view');
     });
+    Route::get('/AllNotifications', function () {
+        return view('all-notifications_view');
+    });
+    Route::get('/NotificationList{jobId}', function ($jobId) {
+        return view('notification_list_view',compact('jobId'));
+    })->name('job-interview-details');
     Route::get('/UserProfile', function () {
         return view('user_profile_view');
     });
@@ -144,51 +149,30 @@ Route::middleware(['auth:emp'])->group(function () {
    
     // Related salary module and ITdeclaration Document center
     Route::get('/payslip', Payroll::class);
-    Route::get('/slip', Payslip::class);
+    Route::get('/slip', SalarySlips::class);
     Route::get('/itdeclaration', Itdeclaration::class);
     Route::get('/itstatement', Itstatement1::class);
     Route::get('/document', Documentcenter::class);
     Route::get('/documents', Documents::class);
     Route::get('/plan-A', PlanA::class)->name('plan-a');
     Route::get('/salary-revisions', SalaryRevisions::class)->name('salary-revisions');
-
-
-
-    Route::get('/leave-page', LeavePage::class)->name('leave-page');
-
-
-
-    Route::get('/leave-apply', LeaveApply::class)->name('leave-apply');
-
-    Route::get('/holiday-calender', HolidayCalender::class)->name('holiday-calender');
-
-
-    Route::get('/view-pending-details', ViewPendingDetails::class)->name('view-pending-details');
-    Route::get('/delegatesddb', Delegates::class);
-
+    Route::get('/delegates', Delegates::class);
     Route::get('/view-details', ViewDetails::class)->name('view-details');
-
-    Route::get('/leave-balances', LeaveBalances::class)->name('leave-balances');
-    Route::get('/leave-cancel', LeaveCancel::class)->name('leave-cancel');
-    Route::get('/leave-calender', LeaveCalender::class)->name('leave-calender');
-    Route::get('/leave-history', LeaveHistory::class)->name('leave-history');
-    Route::get('/leave-pending/{leaveRequestId}', LeavePending::class)->name('leave-pending');
-
-    Route::get('/team-on-leave', TeamOnLeave::class)->name('team-on-leave');
     Route::get('/salary-revision', SalaryRevisions::class)->name('salary-revision');
     Route::get('/plan-C', PlanA::class)->name('plan-a');
     Route::get('/formdeclaration', Declaration::class);
-
     Route::get('/itstatement', Itstatement1::class);
     Route::get('/document', Documentcenter::class);
     Route::get('/reimbursement', Reimbursement::class);
     Route::get('/investment', Investment::class);
     Route::get('/documents', Documents::class);
+    Route::get('/tasks', Tasks::class);
 
 
 
     Route::get('/leave-page', LeavePage::class)->name('leave-page');
     Route::get('/approved-details/{leaveRequestId}', ApprovedDetails::class)->name('approved-details');
+    Route::get('/view-details/{leaveRequestId}', ViewDetails::class)->name('view-details');
     Route::get('/leave-apply', LeaveApply::class)->name('leave-apply');
     Route::get('/holiday-calender', HolidayCalender::class)->name('holiday-calender');
     Route::get('/leave-balances', LeaveBalances::class)->name('leave-balances');

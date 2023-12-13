@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('jobseekers_interview_details', function (Blueprint $table) {
+        Schema::create('jobseekers_interview_details', function (Blueprint $table) {
             $table->string('user_id');
             $table->string('job_id');
             $table->date('interview_date');
@@ -19,8 +19,17 @@ return new class extends Migration
             $table->text('instructions')->nullable();
             $table->string('company_website')->nullable();
             $table->string('location_link')->nullable();
-            $table->foreign('user_id')->references('user_id')->on('users');
-            $table->foreign('job_id')->references('job_id')->on('jobs');
+            $table->foreign('user_id')
+                ->references('user_id') // Assuming the primary key of the companies table is 'id'
+                ->on('users')
+                ->onDelete('restrict')
+                ->onUpdate('cascade');
+            $table->foreign('job_id')
+                ->references('job_id') // Assuming the primary key of the companies table is 'id'
+                ->on('jobs')
+                ->onDelete('restrict')
+                ->onUpdate('cascade');
+            $table->unique(['user_id', 'job_id']);
         });
     }
 
@@ -29,8 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('jobseekers', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('jobseekers_interview_details');
     }
 };

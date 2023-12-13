@@ -145,7 +145,7 @@
         padding: 15px 12px 15px 12px;
         border-radius: 30px; 
         align-items:center;
-        width: 180px; 
+        width: 220px; 
         height: 55px; 
     }
         .reporting:hover{
@@ -158,9 +158,9 @@
     border-radius:3px;
     box-shadow: 2px 0 5px 0 #ccc;
     padding:12px 15px;
-    width:30%;
+    width:40%;
     margin-top:15px;
-    max-height: 100px; /* Adjust the maximum height as needed */
+    max-height: 200px; /* Adjust the maximum height as needed */
     overflow-y: auto;
 
    }
@@ -170,9 +170,9 @@
     border-radius:3px;
     box-shadow: 2px 0 5px 0 #ccc;
     padding:12px 15px;
-    width:30%;
+    width:40%;
     margin-top:15px;
-    max-height: 100px; /* Adjust the maximum height as needed */
+    max-height: 200px; /* Adjust the maximum height as needed */
     overflow-y: auto;
 
    }
@@ -183,7 +183,7 @@
          white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        max-width: 70px; /* Adjust the value based on your container width */
+        max-width: 100px; /* Adjust the value based on your container width */
         display: inline-block;
     }
     .reporting:hover .details {
@@ -257,11 +257,6 @@
                 <li>{{ $error }}</li>
             @endforeach
         </ul>
-    </div>
-@endif
-@if(session()->has('message'))
-    <div class="alert alert-success">
-        {{ session('message') }}
     </div>
 @endif
     <form wire:submit.prevent="leaveApply" enctype="multipart/form-data">
@@ -347,7 +342,9 @@
                     
                     @foreach($employeeDetails as $employee)
                         <div style="display:flex; gap:10px;" onclick="updateApplyingTo('{{ $employee['report_to'] }}', '{{ $employee['manager_id'] }}')">
+                            <div>
                               <input type="checkbox" wire:model="selectedManager" value="{{ $employee['manager_id'] }}">
+                            </div>
                                <img src="https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars.png" alt="Default User Image" style="width: 40px; height: 40px; border-radius: 50%;">
                             <div class="center">
                                 <p style=" font-size:0.875rem; font-weight:500;"value="{{ $employee['report_to'] }}">{{ $employee['report_to'] }}</p>

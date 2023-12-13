@@ -29,7 +29,6 @@
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Add a shadow effect */
   }
  
- 
   body{
             font-family: 'Montserrat', sans-serif;
             font-size: 15px;
@@ -49,6 +48,7 @@
             background-color: #fff;
             padding: 0.625rem;
             cursor: pointer;
+            border-radius:5px;
         }
 
         .accordion-body {
@@ -127,10 +127,6 @@
             <button type="button" class="btn" id="restrictedActiveButton">Active</button>
     <button type="button" class="btn" id="restrictedClosedButton">Closed</button>
 </div>
- 
- 
-           
- 
             <div class="form-group" style="margin-top: 25px;width:200px;margin-left:364px;">
                 <input type="date" class="form-control" wire:model="emp_dob" max="{{ date('Y-m-d') }}">
                 @error('emp_dob') <span class="text-danger">{{ $message }}</span> @enderror
@@ -143,8 +139,7 @@
             <div class="container">
                 <div class="container" id="restrictedActiveCard" style="display: none;">
                     <div class="card" style="height: 350px; width:540px; margin-left: 220px; margin-top: 20px;">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP2fBGQf4GHJcIn2SxSKmUPPStVmd22w5uig&usqp=CAU" alt="Sample Image" style="height: 300px; width: 300px; margin: 0 auto;">
-                        <p style="text-align: center;">Hey, you have no regularization records to view</p>
+                       
                     </div>
                 </div>
             </div>
@@ -187,9 +182,9 @@
         <div id="attendence-content" style="display: none; margin-top: -328px;">
             <!-- Content to be toggled -->
             <div class="btn-group leavewf-links" role="group" aria-label="Leave Workflow" style="margin-left: 300px;">
-    <button type="button" class="btn" id="attendenceActiveButton">Active</button>
-    <button type="button" class="btn" id="attendenceClosedButton">Closed</button>
-</div>
+            <button type="button" class="btn" id="attendenceActiveButton">Active</button>
+            <button type="button" class="btn" id="attendenceClosedButton">Closed</button>
+        </div>
             <div class="form-group" style="margin-top: 25px;width:200px;margin-left:364px;">
                 <input type="date" class="form-control" wire:model="emp_dob" max="{{ date('Y-m-d') }}">
                 @error('emp_dob') <span class="text-danger">{{ $message }}</span> @enderror
@@ -366,19 +361,19 @@
                                             <!-- Display leave details here based on $leaveRequest -->
                                             <div class="accordion-content">
                                                     <div class="accordion-profile" style="display:flex; gap:10px; margin:auto 0;">
-                                                    @if(isset($leaveRequest->image))
-                                                          <img src="{{ $leaveRequest->image }}" alt="User Profile Image" style="width: 40px; height: 40px; border-radius: 50%;">
+                                                    @if(isset($leaveRequest['approvedLeaveRequest']->image))
+                                                          <img src="{{ $leaveRequest['approvedLeaveRequest']->image }}" alt="User Profile Image" style="width: 40px; height: 40px; border-radius: 50%;">
                                                             @else
                                                             <img src="https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars.png" alt="Default User Image" style="width: 45px; height: 45px; border-radius: 50%;">
                                                             @endif
                                                             <div class="center">
-                                                            @if(isset($leaveRequest->first_name))
-                                                            <p style="font-size: 0.875rem; font-weight: 500;">{{ $leaveRequest->first_name }}  {{ $leaveRequest->last_name }}</p>
+                                                            @if(isset($leaveRequest['approvedLeaveRequest']->first_name))
+                                                            <p style="font-size: 0.875rem; font-weight: 500;">{{ $leaveRequest['approvedLeaveRequest']->first_name }}  {{ $leaveRequest['approvedLeaveRequest']->last_name }}</p>
                                                             @else
                                                                 <p style="font-size: 0.875rem; font-weight: 500;">Name Not Available</p>
                                                             @endif
-                                                            @if(isset($leaveRequest->emp_id))
-                                                                <p style="margin-top: -15px; color: #778899; font-size: 0.69rem;">#{{ $leaveRequest->emp_id }} </p>
+                                                            @if(isset($leaveRequest['approvedLeaveRequest']->emp_id))
+                                                                <p style="margin-top: -15px; color: #778899; font-size: 0.69rem;">#{{ $leaveRequest['approvedLeaveRequest']->emp_id }} </p>
                                                             @endif
                                                         </div>
                                                     </div>
@@ -388,7 +383,7 @@
 
                                                 <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">Leave Type</span>
 
-                                                <span style="color: #36454F; font-size: 1rem; font-weight: 500;">{{ $leaveRequest->leave_type}}</span>
+                                                <span style="color: #36454F; font-size: 1rem; font-weight: 500;">{{$leaveRequest['approvedLeaveRequest']->leave_type}}</span>
 
                                             </div>
 
@@ -398,7 +393,7 @@
 
                                                 <span style="color: #36454F; font-size: 1rem; font-weight: 500;">
 
-                                                    {{ $this->calculateNumberOfDays($leaveRequest->from_date, $leaveRequest->from_session, $leaveRequest->to_date, $leaveRequest->to_session) }}
+                                                    {{ $this->calculateNumberOfDays($leaveRequest['approvedLeaveRequest']->from_date, $leaveRequest['approvedLeaveRequest']->from_session, $leaveRequest['approvedLeaveRequest']->to_date, $leaveRequest['approvedLeaveRequest']->to_session) }}
 
                                                 </span>
 
@@ -408,21 +403,19 @@
 
                                             <!-- Add other details based on your leave request structure -->
 
-                
-
                                             <div class="accordion-content">
 
-                                                @if(strtoupper($leaveRequest->status) == 'APPROVED')
+                                                @if(strtoupper($leaveRequest['approvedLeaveRequest']->status) == 'APPROVED')
 
-                                                    <span style="margin-top:0.625rem; font-size: 0.9rem; font-weight: 500; color:#32CD32;">{{ strtoupper($leaveRequest->status) }}</span>
+                                                    <span style="margin-top:0.625rem; font-size: 0.9rem; font-weight: 500; color:#32CD32;">{{ strtoupper($leaveRequest['approvedLeaveRequest']->status) }}</span>
 
-                                                @elseif(strtoupper($leaveRequest->status) == 'REJECTED')
+                                                @elseif(strtoupper($leaveRequest['approvedLeaveRequest']->status) == 'REJECTED')
 
-                                                    <span style="margin-top:0.625rem; font-size: 0.9rem; font-weight: 500; color:#FF0000;">{{ strtoupper($leaveRequest->status) }}</span>
+                                                    <span style="margin-top:0.625rem; font-size: 0.9rem; font-weight: 500; color:#FF0000;">{{ strtoupper($leaveRequest['approvedLeaveRequest']->status) }}</span>
 
                                                 @else
 
-                                                    <span style="margin-top:0.625rem; font-size: 0.9rem; font-weight: 500; color:#778899;">{{ strtoupper($leaveRequest->status) }}</span>
+                                                    <span style="margin-top:0.625rem; font-size: 0.9rem; font-weight: 500; color:#778899;">{{ strtoupper($leaveRequest['approvedLeaveRequest']->status) }}</span>
 
                                                 @endif
 
@@ -448,13 +441,13 @@
 
                                             <span style="font-size: 0.8125rem;">
 
-                                                <span style="font-size: 0.8125rem; font-weight: 500;">{{ $leaveRequest->formatted_from_date }}</span>
+                                                <span style="font-size: 0.8125rem; font-weight: 500;">{{ $leaveRequest['approvedLeaveRequest']->formatted_from_date }}</span>
 
-                                                ({{ $leaveRequest->from_session }} ) to
+                                                ({{ $leaveRequest['approvedLeaveRequest']->from_session }} ) to
 
-                                                <span style="font-size: 0.8125rem; font-weight: 500;">{{ $leaveRequest->formatted_to_date }}</span>
+                                                <span style="font-size: 0.8125rem; font-weight: 500;">{{ $leaveRequest['approvedLeaveRequest']->formatted_to_date }}</span>
 
-                                            ( {{ $leaveRequest->to_session }} )
+                                            ( {{ $leaveRequest['approvedLeaveRequest']->to_session }} )
 
                                             </span>
 
@@ -464,7 +457,7 @@
 
                                             <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">Reason:</span>
 
-                                            <span style="font-size: 0.8125rem;">{{ $leaveRequest->reason }}</span>
+                                            <span style="font-size: 0.8125rem;">{{ $leaveRequest['approvedLeaveRequest']->reason }}</span>
 
                                         </div>
 
@@ -476,13 +469,38 @@
 
                                                 <span style="color: #778899; font-size: 0.875rem; font-weight: 400;">Applied on:</span>
 
-                                                <span style="color: #333; font-size: 1rem; font-weight: 500;">{{ $leaveRequest->created_at->format('d M, Y') }}</span>
+                                                <span style="color: #333; font-size: 0.875rem; font-weight: 500;">{{ $leaveRequest['approvedLeaveRequest']->created_at->format('d M, Y') }}</span>
 
                                             </div>
+                                            <div class="content">
+                                                <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">Leave Balance:</span>
+                                                @if(!empty($leaveRequest['leaveBalances']))
+                                                        <div style=" flex-direction:row; display: flex; align-items: center;justify-content:center;">
+                                                        <!-- Sick Leave -->
+                                                            <div style="width: 20px; height: 20px; border-radius: 50%; background-color: #e6e6fa; display: flex; align-items: center; justify-content: center; margin-left:15px;">
+                                                                <span style="font-size: 0.625rem; color: #50327c;font-weight:500;">SL</span>
+                                                        </div>
+                                                            <span style="font-size: 0.795rem; font-weight: 500; color: #333; margin-left: 5px;">{{ $leaveRequest['leaveBalances']['sickLeaveBalance'] }}</span>
+
+
+                                                        <!-- Casual Leave -->
+                                                        <div style="width: 20px; height: 20px; border-radius: 50%; background-color: #e7fae7; display: flex; align-items: center; justify-content: center; margin-left: 15px;">
+                                                                <span style="font-size: 0.625rem; color: #1d421e;font-weight:500;">CL</span>
+                                                        </div>
+                                                            <span style="font-size: 0.795rem; font-weight: 500; color: #333; margin-left: 5px;">{{ $leaveRequest['leaveBalances']['casualLeaveBalance'] }}</span>
+                                                        <!-- Loss of Pay -->
+                                                        <div style="width: 20px; height: 20px; border-radius: 50%; background-color: #ffebeb; display: flex; align-items: center; justify-content: center; margin-left: 15px;">
+                                                                <span style="font-size: 0.625rem; color: #890000;font-weight:500;">LP</span>
+                                                        </div>
+                                                            <span style="font-size: 0.795rem; font-weight: 500; color: #333; margin-left: 5px;">{{ $leaveRequest['leaveBalances']['lossOfPayBalance'] }}</span>
+                                                    </div>
+                                                @endif
+                                            </div>
+                            
 
                                             <div class="content">
 
-                                            <a href="{{ route('approved-details', ['leaveRequestId' => $leaveRequest->id]) }}">
+                                            <a href="{{ route('approved-details', ['leaveRequestId' => $leaveRequest['approvedLeaveRequest']->id]) }}">
                                                 <span style="color: #3a9efd; font-size: 0.875rem; font-weight: 500;">View Details</span>
                                             </a>
 
@@ -600,17 +618,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
  
     <script>
-       
-// function toggleDetails(id) {
-//     var element = document.getElementById(id);
- 
-//     if (element.style.display === "none" || element.style.display === "") {
-//         element.style.display = "block";
-//     } else {
-//         element.style.display = "none";
-//     }
-// }
- 
+        
 function toggleDetails(contentId) {
     // Get all the content sections
     const contentSections = [

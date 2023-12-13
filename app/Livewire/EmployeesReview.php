@@ -108,7 +108,6 @@ class EmployeesReview extends Component
 
     private function getSessionNumber($session)
     {
-        // You might need to customize this based on your actual session values
         return (int) str_replace('Session ', '', $session);
     }
 
@@ -135,7 +134,7 @@ class EmployeesReview extends Component
             }
         }
 
-        $this->approvedLeaveRequests = LeaveRequest::where('status', 'approved')
+        $this->approvedLeaveRequests = LeaveRequest::whereIn('leave_applies.status', ['approved','rejected'])
         ->where(function ($query) use ($employeeId) {
             $query->whereJsonContains('applying_to', [['manager_id' => $employeeId]])
                 ->orWhereJsonContains('cc_to', [['emp_id' => $employeeId]]);
@@ -158,23 +157,19 @@ class EmployeesReview extends Component
             $approvedLeaveRequest->formatted_to_date = Carbon::parse($approvedLeaveRequest->to_date)->format('d-m-Y');
     
             if ($isManagerInApplyingTo || $isEmpInCcTo) {
-                $approvedLeaveApplications[] = $approvedLeaveRequest;
+                $leaveBalances = LeaveBalances::getLeaveBalances($approvedLeaveRequest->emp_id);
+                $approvedLeaveApplications[] =  [
+                    'approvedLeaveRequest' => $approvedLeaveRequest,
+                    'leaveBalances' => $leaveBalances,
+                ];
             }
         }
         $this->approvedLeaveApplicationsList = $approvedLeaveApplications;
-
-        $approvedLeaveApplicationsList =  $filteredData = array_filter($this->approvedLeaveApplicationsList, function ($item) {
-            return stripos($item->first_name, $this->search) !== false ||
-                   stripos($item->emp_id, $this->search) !== false ||
-                   stripos($item->leave_type, $this->search) !== false;
-        });
  
         $this->leaveApplications = $matchingLeaveApplications;
            return view('livewire.employees-review', [
             'leaveApplications' => $this->leaveApplications,
             'approvedLeaveApplicationsList' => $this->approvedLeaveApplicationsList,
-            'approvedLeaveApplicationsList' => $filteredData
-
         ]);
     }
  

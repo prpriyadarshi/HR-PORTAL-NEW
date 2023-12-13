@@ -29,4 +29,9 @@ class JobseekersInterviewDetail extends Model
 
         return $this->belongsTo(Job::class, 'job_id', 'job_id');
     }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class, 'company_id', 'company_id');
+    }
 }

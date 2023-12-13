@@ -1,5 +1,29 @@
 <div>
     <style>
+        /* Style for the notification pop-up */
+        .card {
+            background-color: white;
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            margin-right: 11%;
+            width: 450px;
+            margin-top: 50px;
+            padding: 5px;
+            border: 1px solid grey;
+            border-radius: 10px;
+        }
+
+        /* Style for the badge (notification count) */
+        .badge {
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 5px 8px;
+            font-size: 8px;
+        }
+
         /* Global styles */
         body {
             font-family: 'Montserrat';
@@ -185,18 +209,28 @@
             cursor: pointer;
             color: red;
         }
+
+        .shortedList:hover {
+            background-color: white;
+            border-radius: 2px;
+            border: 1px solid rgb(2, 17, 79);
+        }
     </style>
     <div>
         <div class="container" style="background-color: #02134F; color: white; padding: 8px;">
             <div style="display: flex; align-items: start; justify-content: start;">
                 <img src="https://xsilica.com/images/xsilica_broucher_final_modified_05082016-2.png" alt="Logo" style="width: 200px; height: 50px; margin-right: 10px;">
-                <h1 style="font-size: 21px; margin-left:21%">Job Seeker - {{$user->full_name}}</h1>
-                <span style="margin-top: 18px;margin-left:5%"><i class="fas fa-bell"></i> <!-- FontAwesome bell icon for notifications -->
-                    <span class="badge">
-                       {{$selectOrNot}}
-                    </span></span>
+                <h1 style="font-size: 21px; margin-left: 21%">Job Seeker - {{$user->full_name}}</h1>
+                <a href="/AllNotifications" style="text-decoration: none; margin-top: 18px; margin-left: 5%; color: white">
+                    <span><i class="fas fa-bell"></i> <!-- FontAwesome bell icon for notifications -->
+                        <span class="badge">
+                            {{$selectOrNot}}
+                        </span>
+                    </span>
+                </a>
             </div>
         </div>
+
     </div>
 
     <div class="row" style="margin-left: 60%;margin-top:10px">

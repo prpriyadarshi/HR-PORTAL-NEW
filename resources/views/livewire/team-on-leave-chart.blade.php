@@ -32,7 +32,7 @@
     </style>
 </head>
 <body>
-    <div style="padding:10px 15px;">
+    <div style="padding:10px 15px; width:90%;">
         <label for="duration" style="color:#778899; font-weight:500;">Select Duration:</label>
         <select id="duration" wire:model="duration">
             <option value="this_month">This Month</option>
@@ -40,14 +40,14 @@
         </select>
     </div>
 
-   <div class="conatiner" style="display:flex; flex-direction:column;margin:0 auto;border:1px solid #ccc;">
+   <div class="conatiner" style="width:90%;display:flex; flex-direction:column;margin:0 auto;border:1px solid #ccc;">
     <!-- Other HTML content -->
     <div style="display:flex; flex-direction:row; background:white;padding:10px 15px; border-bottom:1px solid #ccc; gap:10px;">
         <p style="color:#778899; font-weight:500;">Duration Selected:</p>
          <p style="font-size:0.875rem;font-weight:500;">{{ \Carbon\Carbon::now()->startOfMonth()->format('d M, Y') }} <span style="color:#ccc;margin:0 10px;">TO </span> {{ \Carbon\Carbon::now()->endOfMonth()->format('d M, Y') }}</p>
     </div>
     @if (count($leaveApplications) > 0)
-        <canvas id="barChart" width="480" height="150" style="background: white;padding:10px 15px;"></canvas>
+        <canvas id="barChart" width="420" height="130" style="background: white;padding:10px 15px;"></canvas>
         
         <script>
             document.addEventListener("DOMContentLoaded", function () {

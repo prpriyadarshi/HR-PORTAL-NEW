@@ -79,6 +79,7 @@
         justify-content: space-between;
         margin-left: 100px;
         margin-top: 15px;
+        cursor:pointer;
     }
 
 
@@ -194,7 +195,7 @@
             </div>
 
  
-            <div class="row" id="leave" style="width:85%; margin-top:20px;display: none; margin-left:100px;">
+            <div class="row" id="leave" style="width:85%; margin-top:20px; margin-left:100px;">
         
                <div>@livewire('leave-apply')</div>
             </div>
@@ -583,8 +584,12 @@
         if (sectionId === 'accountDetails' || sectionId === 'familyDetails') {
             sideContainer.style.display = 'none';
         } else {
-            sideContainer.style.display = 'block';
+            sideContainer.style.display = 'flex';
+            sideContainer.style.flexDirection = 'row'
+            toggleOptions('leave', document.querySelector('.side a[data-section="leave"]'));
         }
+      
+
     }
  
  
@@ -607,8 +612,15 @@
 
     }
     }
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the default link for 'leave'
+    const defaultLink = document.querySelector('.side a[data-section="leave"]');
+    
+    // Call toggleOptions with 'leave' and the default link
+    toggleOptions('leave', defaultLink);
+});
 
-    function toggleOptions(sectionId, clickedLink) {
+function toggleOptions(sectionId, clickedLink) {
     const tabs = ['leave', 'restricted', 'leaveCancel', 'compOff'];
 
     const links = document.querySelectorAll('.side a');
@@ -626,12 +638,13 @@
     });
 
     // Hide the content of other containers
-    const otherContainers = [ 'accountDetails', 'familyDetails'];
+    const otherContainers = ['accountDetails', 'familyDetails'];
     otherContainers.forEach(container => {
         const containerElement = document.getElementById(container);
         containerElement.style.display = 'none';
     });
 }
+
 
 
 

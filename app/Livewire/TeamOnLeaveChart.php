@@ -173,7 +173,7 @@ class TeamOnLeaveChart extends Component
     {
         $employeeId = auth()->guard('emp')->user()->emp_id;
 
-        return LeaveRequest::where('status', 'approved')
+        return LeaveRequest::where('leave_applies.status', 'approved')
             ->where(function ($query) use ($employeeId) {
                 $query->whereJsonContains('applying_to', [['manager_id' => $employeeId]])
                     ->orWhereJsonContains('cc_to', [['emp_id' => $employeeId]]);

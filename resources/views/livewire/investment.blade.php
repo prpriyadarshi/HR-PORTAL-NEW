@@ -101,7 +101,7 @@
   </div>
   
 </div>
-<a href="/downloadform" id="pdfLink2023_4" class="pdf-download" download style="margin-left: 500px; display: inline-block;margin-top:20px">Download Form 12BB</a>
+<a href="/downloadform" id="pdfLink2023_4" class="pdf-download" download style="margin-left: 500px; display: inline-block;margin-top:20px;font-size:12px">Download Form 12BB</a>
 
 <ul class="side-page-nav" style="margin-left:-120px;margin-top:30px">
     <div class="text-muted">POI COMPONENTS</div>
@@ -133,7 +133,7 @@
 
 
 </div>
-<div class="container" style="height:380px;width:650px;border:1px solid silver;margin-top:40px; border-radius:5px;margin-left:300px;background:white;margin-top:50px">
+<div class="container" style="height:380px;width:650px;border:1px solid silver;margin-top:70px; border-radius:5px;margin-left:300px;background:white;margin-top:50px">
 <image src="https://th.bing.com/th/id/OIP.pjcjZqIOw0eb6GJ6NG58zQAAAA?pid=ImgDet&w=100&h=100&rs=1" style="margin-left:280px;height:40px;width:40px">
 <div class="row" style="display:flex">
 <p style="margin-left:190px;margin-top:2px">You have not declared any of the items.</p>

@@ -59,6 +59,7 @@ class PostJobs extends Component
         Job::create([
             'company_id' => $this->company_id,
             'contact_email' => $this->companyDetails->contact_email,
+            'hr_name' => $this->companyDetails->hr_name,
             'title' => $this->title,
             'description' => $this->description,
             'location' => $this->location,

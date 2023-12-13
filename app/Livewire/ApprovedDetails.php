@@ -26,6 +26,8 @@ class ApprovedDetails extends Component
         $this->leaveRequest = LeaveRequest::with('employee')->find($leaveRequestId);
         $this->leaveRequest->from_date = Carbon::parse($this->leaveRequest->from_date);
         $this->leaveRequest->to_date = Carbon::parse($this->leaveRequest->to_date);
+        $this->leaveBalances = LeaveBalances::getLeaveBalances($this->leaveRequest->emp_id);
+     
     }
     
     public  function calculateNumberOfDays($fromDate, $fromSession, $toDate, $toSession)
@@ -142,7 +144,7 @@ class ApprovedDetails extends Component
         // Pass the leaveRequest data and leaveBalances to the Blade view
         return view('livewire.approved-details', [
              'leaveRequest' => $this->leaveRequest,
-             'leaveBalances' => $leaveBalances,
+             'leaveBalances' => $this->leaveBalances,
         ]);
        
     }  

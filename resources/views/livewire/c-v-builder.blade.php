@@ -3,160 +3,163 @@
     <html>
 
     <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.2.3/html2canvas.min.js"></script>
         <style>
-            body {
-                background-color: #f4f4f4;
-                padding: 20px;
-                font-family: Montserrat;
+        body {
+            background-color: #f4f4f4;
+            padding: 20px;
+            font-family: Montserrat;
 
-            }
+        }
 
-            .cv-container {
-                display: flex;
-                background-color: #f0f0f0;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-                font-family: Montserrat;
+        .cv-container {
+            /* display: flex; */
+            background-color: #f0f0f0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            font-family: Montserrat;
 
-            }
+        }
 
-            .left-column,
-            .right-column {
-                flex: 1;
-                padding: 20px;
-                font-family: Montserrat;
+        .left-column,
+        .right-column {
+            flex: 1;
+            padding: 20px;
+            font-family: Montserrat;
 
-            }
+        }
 
-            .left-column {
-                background-color: #fff;
-                max-width: 350px;
-                padding: 40px;
-                font-family: Montserrat;
+        .left-column {
+            background-color: #fff;
+            max-width: 350px;
+            padding: 40px;
+            font-family: Montserrat;
 
-            }
+        }
 
-            .right-column {
-                background-color: #f0f0f0;
-                font-family: Montserrat;
+        .right-column {
+            background-color: #f0f0f0;
+            font-family: Montserrat;
 
-            }
+        }
 
-            .col {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                height: 100%;
-                font-family: Montserrat;
+        .col {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            font-family: Montserrat;
 
-            }
+        }
 
-            h1 {
-                font-size: 24px;
-                text-align: center;
-                margin: 20px 0;
-                font-family: Montserrat;
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin: 20px 0;
+            font-family: Montserrat;
 
-            }
+        }
 
-            h2 {
-                font-size: 20px;
-                margin-top: 20px;
-                font-family: Montserrat;
+        h2 {
+            font-size: 20px;
+            margin-top: 20px;
+            font-family: Montserrat;
 
-            }
+        }
 
-            label {
-                font-weight: bold;
-                font-family: Montserrat;
+        label {
+            font-weight: bold;
+            font-family: Montserrat;
 
-            }
+        }
 
-            input[type="text"],
-            input[type="email"],
-            input[type="tel"],
-            textarea,
-            input[type="file"],
-            input[type="date"] {
-                width: 96%;
-                padding: 10px;
-                margin: 5px 0;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                font-size: 16px;
-                font-family: Montserrat;
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea,
+        input[type="file"],
+        input[type="date"] {
+            width: 96%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            font-family: Montserrat;
 
-            }
+        }
 
-            input[type="submit"] {
-                background-color: #007BFF;
-                color: #fff;
-                padding: 10px 20px;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                font-size: 18px;
-                font-family: Montserrat;
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            font-family: Montserrat;
 
-            }
+        }
 
-            input[type="submit"]:hover {
-                background-color: #0056b3;
-                font-family: Montserrat;
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+            font-family: Montserrat;
 
-            }
+        }
 
-            /* Added styles for education and work experience entries */
-            .education-entry,
-            .work-experience-entry {
-                background-color: #fff;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                padding: 10px;
-                margin: 10px 0;
-                font-family: Montserrat;
+        /* Added styles for education and work experience entries */
+        .education-entry,
+        .work-experience-entry {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: Montserrat;
 
-            }
+        }
 
-            .remove-education,
-            .remove-work-experience {
-                background-color: #ff5555;
-                color: #fff;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                margin: 5px;
-                padding: 5px 10px;
-                font-family: Montserrat;
+        .remove-education,
+        .remove-work-experience {
+            background-color: #ff5555;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            padding: 5px 10px;
+            font-family: Montserrat;
 
-            }
+        }
 
-            .remove-education:hover,
-            .remove-work-experience:hover {
-                background-color: #cc0000;
-                font-family: Montserrat;
+        .remove-education:hover,
+        .remove-work-experience:hover {
+            background-color: #cc0000;
+            font-family: Montserrat;
 
-            }
+        }
 
-            .error {
-                font-size: 12px;
-                color: red;
-                font-family: Montserrat;
+        .error {
+            font-size: 12px;
+            color: red;
+            font-family: Montserrat;
 
-            }
+        }
         </style>
     </head>
 
     <body>
-        <a href="/emplogin" style="text-decoration:none;
+        <a href="/emplogin" class="btn" style="text-decoration:none;
             font-family: Montserrat;background-color:rgb(2, 17, 79);color:white;padding:5px;border-radius:5px
         ">Back</a>
-        <div class="cv-container" style="margin-top: 10px;">
-            <div class="col" style="background-color: white; width: 45%; height: 835px; overflow: auto;">
-                <div style="margin-left: 40%; margin-top: 20px; font-size: 24px;"><strong>Create CV</strong></div>
+        <div class="cv-container row m-0 mt-3">
+            <div class="col-md-6" style="background-color: white; height: 230vh; overflow: auto;">
+                <div style="text-align: center; margin-top: 20px; font-size: 24px;"><strong>Create CV</strong></div>
                 <div class="row" style="padding: 15px; margin: 0px;">
-                    <form wire.submit.prevent="submit" style="border: 1px solid rgb(2, 17, 79); background-color: rgb(2, 17, 79); height: 100%;width:100%; overflow: auto;padding:8px;">
+                    <form wire.submit.prevent="submit"
+                        style="border: 1px solid rgb(2, 17, 79); background-color: rgb(2, 17, 79); height: 100%;width:100%; overflow: auto;padding:8px;">
                         <div style="text-align: center;">
                             <h2 style="color:white;font-size:13px;
             font-family: Montserrat;
@@ -175,18 +178,9 @@
                             <input type="email" wire:model="email">
                             @error('email') <span class="error">{{ $message }}</span> @enderror <br>
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label style="font-size: 12px" for="phone">Phone:</label>
-                                    <input style="width: 250px;" type="tel" wire:model="phone">
-                                    @error('phone') <span class="error">{{ $message }}</span> @enderror <br>
-                                </div>
-                                <div class="col-md-6">
-                                    <label style="font-size: 12px" for="date_of_birth">Date of Birth:</label>
-                                    <input  style="margin-left: 5px;width:220px" type="date" wire:model="date_of_birth" max="<?php echo date('Y-m-d'); ?>">
-                                    @error('date_of_birth') <span class="error">{{ $message }}</span> @enderror <br>
-                                </div>
-                            </div>
+                            <label style="font-size:12px" for="phone">Phone:</label>
+                            <input type="tel" wire:model="phone">
+                            @error('phone') <span class="error">{{ $message }}</span> @enderror <br>
 
                             <label style="font-size:12px" for="country">Country:</label>
                             <input type="text" wire:model="country">
@@ -200,12 +194,17 @@
                             <input type="text" wire:model="address">
                             @error('address') <span class="error">{{ $message }}</span> @enderror <br>
 
+                            <label style="font-size:12px" for="date_of_birth">Date of Birth:</label>
+                            <input type="date" wire:model="date_of_birth" max="<?php echo date('Y-m-d'); ?>">
+                            @error('date_of_birth') <span class="error">{{ $message }}</span> @enderror <br>
+
                             <label style="font-size:12px" for="image">Image:</label>
                             <input type="file" wire:model="image" accept="image/*">
                             @error('image') <span class="error">{{ $message }}</span> @enderror <br>
                             @if ($image)
                             <div>
-                                <img style="height:90px;width:80px" src="{{ $image->temporaryUrl() }}" alt="Image Preview" style="max-width: 300px;">
+                                <img style="height:90px;width:80px" src="{{ $image->temporaryUrl() }}"
+                                    alt="Image Preview" style="max-width: 300px;">
                             </div>
                             @endif
                         </div>
@@ -215,7 +214,7 @@
                             ">Education</h2>
                         </div>
                         <!-- Education Entries -->
-                        <div class="education-entries">
+                        <div class="education-entries">kiwmaduhjkcndw
                             @foreach($educationEntries as $index => $educationEntry)
                             <div class="education-entry">
                                 <label style="font-size:12px" for="degree">Degree:</label>
@@ -228,16 +227,22 @@
                                 @error("educationEntries.$index.university") <span class="error">{{ $message }}</span>
                                 @enderror <br>
                                 <label style="font-size:12px" for="graduation_year">Graduation Year:</label>
-                                <input type="text" wire:model="educationEntries.{{ $index }}.graduation_year" required><br>
-                                @error("educationEntries.$index.graduation_year") <span class="error">{{ $message }}</span> @enderror <br>
-                                <button wire:click="removeEducation({{ $index }})" style="background-color:red;color:white;border-radius:5px;margin-bottom:8px" type="button" class="remove-education">Remove</button>
+                                <input type="text" wire:model="educationEntries.{{ $index }}.graduation_year"
+                                    required><br>
+                                @error("educationEntries.$index.graduation_year") <span
+                                    class="error">{{ $message }}</span> @enderror <br>
+                                <button wire:click="removeEducation({{ $index }})"
+                                    style="background-color:red;color:white;border-radius:5px;margin-bottom:8px"
+                                    type="button" class="remove-education">Remove</button>
                             </div>
                             @endforeach
 
                         </div>
 
                         <!-- Add Education Entry button -->
-                        <button wire:click="addEducation" id="add_education" style="background-color:green;color:white;border-radius:5px;margin-bottom:8px;margin-left:10px" type="button">Add</button>
+                        <button wire:click="addEducation" id="add_education"
+                            style="background-color:green;color:white;border-radius:5px;margin-bottom:8px;margin-left:10px"
+                            type="button">Add</button>
 
                         <div style="text-align: center;">
                             <h2 style="color:white;font-size:13px;
@@ -249,26 +254,36 @@
                             @foreach($workExperienceEntries as $index => $workExperienceEntry)
                             <div class="work-experience-entry">
                                 <label style="font-size:12px" for="job_title">Job Title:</label>
-                                <input type="text" wire:model="workExperienceEntries.{{ $index }}.job_title" required><br>
-                                @error("workExperienceEntries.$index.job_title") <span class="error">{{ $message }}</span> @enderror <br>
+                                <input type="text" wire:model="workExperienceEntries.{{ $index }}.job_title"
+                                    required><br>
+                                @error("workExperienceEntries.$index.job_title") <span
+                                    class="error">{{ $message }}</span> @enderror <br>
                                 <!-- Add similar error messages for other work experience fields -->
                                 <label style="font-size:12px" for="company">Company:</label>
                                 <input type="text" wire:model="workExperienceEntries.{{ $index }}.company" required><br>
                                 @error("workExperienceEntries.$index.company") <span class="error">{{ $message }}</span>
                                 @enderror <br>
                                 <label style="font-size:12px" for="start_date">Start Date:</label>
-                                <input type="date" wire:model="workExperienceEntries.{{ $index }}.start_date" max="<?php echo date('Y-m-d'); ?>" required><br>
-                                @error("workExperienceEntries.$index.start_date") <span class="error">{{ $message }}</span> @enderror <br>
+                                <input type="date" wire:model="workExperienceEntries.{{ $index }}.start_date"
+                                    max="<?php echo date('Y-m-d'); ?>" required><br>
+                                @error("workExperienceEntries.$index.start_date") <span
+                                    class="error">{{ $message }}</span> @enderror <br>
                                 <label style="font-size:12px" for="end_date">End Date:</label>
-                                <input type="date" wire:model="workExperienceEntries.{{ $index }}.end_date" max="<?php echo date('Y-m-d'); ?>" required><br>
-                                @error("workExperienceEntries.$index.end_date") <span class="error">{{ $message }}</span> @enderror <br>
-                                <button wire:click="removeWorkExperience({{ $index }})" style="background-color:red;color:white;border-radius:5px;margin-bottom:8px" type="button" class="remove-work-experience">Remove</button>
+                                <input type="date" wire:model="workExperienceEntries.{{ $index }}.end_date"
+                                    max="<?php echo date('Y-m-d'); ?>" required><br>
+                                @error("workExperienceEntries.$index.end_date") <span
+                                    class="error">{{ $message }}</span> @enderror <br>
+                                <button wire:click="removeWorkExperience({{ $index }})"
+                                    style="background-color:red;color:white;border-radius:5px;margin-bottom:8px"
+                                    type="button" class="remove-work-experience">Remove</button>
                             </div>
                             @endforeach
                         </div>
 
                         <!-- Add Work Experience Entry button -->
-                        <button wire:click="addWorkExperience" id="add_work_experience" style="margin-left:10px;background-color:green;color:white;border-radius:5px;margin-bottom:8px" type="button">Add</button>
+                        <button wire:click="addWorkExperience" id="add_work_experience"
+                            style="margin-left:10px;background-color:green;color:white;border-radius:5px;margin-bottom:8px"
+                            type="button">Add</button>
                         <div style="text-align: center;">
                             <h2 style="color:white;font-size:13px;
             font-family: Montserrat;
@@ -295,112 +310,122 @@
                             <input type="text" wire:model="languages">
                             @error('languages') <span class="error">{{ $message }}</span> @enderror <br>
                         </div>
-                        <div class="row" style="margin-top: -15px; background-color: #f0f0f0; padding: 10px; border-top: 1px solid #ccc;">
+                        <div class="row"
+                            style="margin-top: -15px; background-color: #f0f0f0; padding: 10px; border-top: 1px solid #ccc;">
                             <div class="col" style="margin-bottom: 10px;padding:5px">
-                                <button type="button" wire:click="preview" style="background-color: #007BFF; color: #fff; padding: 10px 20px; border: none; border-radius: 5px;">Preview</button>
+                                <button type="button" wire:click="preview"
+                                    style="background-color: #007BFF; color: #fff; padding: 10px 20px; border: none; border-radius: 5px;">Preview</button>
                             </div>
                             <div class="col" style="margin-bottom: 10px;padding:5px">
-                                <button type="button" wire:click="submit" style="background-color: #28A745; color: #fff; padding: 10px 20px; border: none; border-radius: 5px;">Save</button>
+                                <button type="button" wire:click="submit"
+                                    style="background-color: #28A745; color: #fff; padding: 10px 20px; border: none; border-radius: 5px;">Save</button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
 
-            <div class="col" style="background-color: rgb(2, 17, 79); width: 55%; height: 835px;overflow: auto;">
-
-                <div id="card-content" class="card" style="margin-top: 15px;margin-bottom:15px;width:595px">
+            <div  class="col-md-6"
+                style="background-color: rgb(2, 17, 79);height: 230vh;overflow: auto;">
+           
+                <div id="card-content" style="margin-top: 15px;margin-bottom:15px;">
                     <!DOCTYPE html>
                     <html>
 
                     <head>
+                    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
                         <style>
-                            body {
-                                background-color: #f4f4f4;
-                                padding: 20px;
-                                font-family: Montserrat;
-                            }
+                        body {
+                            background-color: #f4f4f4;
+                            padding: 20px;
+                            font-family: Montserrat;
+                        }
 
-                            .cv-container {
-                                display: flex;
-                                width: 100%;
-                                margin: 0 auto;
-                                background-color: #f0f0f0;
-                                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-                                font-family: Montserrat;
-                            }
+                        .cv-container {
+                            /* display: flex;
+                            width: 100%; */
+                            margin: 0 auto;
+                            background-color: #f0f0f0;
+                            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                            font-family: Montserrat;
+                        }
 
-                            .row {
-                                display: flex;
-                                align-items: center;
-                                font-family: Montserrat;
-                            }
+                        /* .row {
+                            display: flex;
+                            align-items: center;
+                            font-family: Montserrat;
+                        } */
 
-                            .col {
-                                flex: 1;
-                                font-family: Montserrat;
-                            }
+                        .col {
+                            flex: 1;
+                            font-family: Montserrat;
+                            width: 50%
+                        }
 
-                            img {
-                                width: 230px;
-                                height: 180px;
-                                font-family: Montserrat;
-                            }
+                        img {
+                            width: 230px;
+                            height: 180px;
+                            font-family: Montserrat;
+                        }
 
-                            .name {
-                                font-size: 24px;
-                                font-weight: bold;
-                                margin-left: 20px;
-                                font-family: Montserrat;
-                            }
+                        .name {
+                            font-size: 24px;
+                            font-weight: bold;
+                            margin-left: 20px;
+                            font-family: Montserrat;
+                        }
 
-                            .job-title {
-                                font-size: 18px;
-                                margin-left: 20px;
-                                font-family: Montserrat;
+                        .job-title {
+                            font-size: 18px;
+                            margin-left: 20px;
+                            font-family: Montserrat;
 
-                            }
+                        }
 
-                            .profile-image {
-                                width: 250px;
-                                height: 160px;
-                                font-family: Montserrat;
-                            }
+                        .profile-image {
+                            /* width: 250px; */
+                            height: 160px;
+                            font-family: Montserrat;
+                        }
 
-                            .contact-info {
-                                display: flex;
-                                align-items: center;
-                                font-size: 12px;
-                                font-family: Montserrat;
-                            }
+                        .contact-info {
+                            display: flex;
+                            align-items: center;
+                            font-size: 12px;
+                            font-family: Montserrat;
+                        }
 
-                            .contact-icon {
-                                margin-right: 10px;
-                                font-size: 24px;
-                                font-size: 12px;
-                                font-family: Montserrat;
-                            }
+                        .contact-icon {
+                            margin-right: 10px;
+                            font-size: 24px;
+                            font-size: 12px;
+                            font-family: Montserrat;
+                        }
 
-                            .col-5 {
-                                margin-right: 0px;
-                                font-family: Montserrat;
-                            }
+                        .col-5 {
+                            margin-right: 0px;
+                            font-family: Montserrat;
+                        }
                         </style>
                     </head>
 
                     <body>
-                        <div class="row" style="margin-top: -15px; background-color: white; position: relative;">
-                            <div class="col">
+                        <div class="m-0 row" style="margin:0px !important" >
+                            <div class="col-md-6 p-0" style="padding:0px; color:#fff">
                                 <div class="profile-image" style="padding: 10px; background-color: rgb(2, 17, 79)">
                                     @if($image)
-                                    <img style="width: 160px;height:150px;margin-left:37px;border:5px solid white;" src="{{ $image->temporaryUrl() }}" alt="Your Photo">
+                                    <img style="width: 130px;height:130px;border:5px solid white;"
+                                        src="{{ $image->temporaryUrl() }}" alt="Your Photo">
                                     @else
                                     <div></div>
                                     @endif
 
                                 </div>
                             </div>
-                            <div class="col-5" style="margin-right:50px;">
+                            <div class="col-md-6 p-0" style="background: #fff;height:160px; padding:0px">
                                 <p class="name">{{$first_name}} {{$last_name}}</p>
                                 @if(!empty($workExperienceEntries) && count($workExperienceEntries) > 0)
                                 <p class="job-title">{{ $workExperienceEntries[0]['job_title'] }}</p>
@@ -408,18 +433,17 @@
                             </div>
                         </div>
 
-                        <div class="cv-container">
-                            <div class="left-column" style="height: 600px;
-                                padding: 2px;
-                                margin: 0px;background-color: #fff;
-                                max-width: 266px;flex:1">
-                                <h6 style="text-align: center;font-size:12px;margin-top:10px;background-color:rgb(2, 17, 79);color:white;padding:5px;font-family: Montserrat;">
+                        <div class="cv-container row m-0">
+                            <div class="col-md-6 p-0" style="background-color: #fff; padding:0px; height: 600px;">
+                                <h6
+                                    style="text-align: center;font-size:12px;margin-top:10px;background-color:rgb(2, 17, 79);color:white;padding:5px;font-family: Montserrat;">
                                     <strong style="font-family: Montserrat;">PROFESSIONAL SUMMARY</strong>
                                 </h6>
                                 <p style="text-align:start;font-size: 13px;">
                                     {{$summary}}
                                 </p>
-                                <h6 style="text-align: center;font-size:12px;margin-top:10px;background-color:rgb(2, 17, 79);color:white;padding:5px">
+                                <h6
+                                    style="text-align: center;font-size:12px;margin-top:10px;background-color:rgb(2, 17, 79);color:white;padding:5px">
                                     <strong style="font-family: Montserrat;">PERSONAL DETAILS</strong>
                                 </h6>
                                 <ul style="text-align: start;">
@@ -445,7 +469,8 @@
                                     </li>
                                     @endif
                                 </ul>
-                                <h6 style="font-size:12px;text-align: center;background-color:rgb(2, 17, 79);color:white;margin-top:10px;padding:5px">
+                                <h6
+                                    style="font-size:12px;text-align: center;background-color:rgb(2, 17, 79);color:white;margin-top:10px;padding:5px">
                                     <strong style="font-family: Montserrat;">LANGUAGES</strong>
                                 </h6>
                                 <ul>
@@ -456,12 +481,10 @@
                                     @endif
                                 </ul>
                             </div>
-                            <div class="right-column" style="height: 600px;
-                                padding: 2px;
-                                background-color: #f0f0f0;
-                                margin: 0px;flex:1">
+                            <div class="col-md-6 p-0" style="background-color: #f0f0f0;padding:0px; padding-left:4px !important;">
 
-                                <h6 style="font-size:12px;text-align: center;margin-top:10px;background-color:rgb(2, 17, 79);color:white;padding:5px">
+                                <h6
+                                    style="font-size:12px;text-align: center;margin-top:10px;background-color:rgb(2, 17, 79);color:white;padding:5px">
                                     <strong style="font-family: Montserrat;">TECHNICAL SKILLS</strong>
                                 </h6>
                                 <ul>
@@ -471,7 +494,8 @@
                                     </li>
                                     @endif
                                 </ul>
-                                <h6 style="font-size: 12px; text-align: center; background-color: rgb(2, 17, 79); color: white;padding:5px">
+                                <h6
+                                    style="font-size: 12px; text-align: center; background-color: rgb(2, 17, 79); color: white;padding:5px">
                                     <strong style="font-family: Montserrat;">EXPERIENCE</strong>
                                 </h6>
                                 <ul>
@@ -485,15 +509,15 @@
                                         </div>
                                         <div style="font-size: 12px">{{ $workExperienceEntry['company'] }}</div>
                                         <div style="font-size: 12px">{{ $workExperienceEntry['start_date'] }} -
-                                            {{ $workExperienceEntry['end_date'] }}
-                                        </div>
+                                            {{ $workExperienceEntry['end_date'] }}</div>
                                         </p>
                                     </li>
                                     @endif
                                     @endforeach
                                 </ul>
 
-                                <h6 style="font-size: 12px; text-align: center; background-color: rgb(2, 17, 79); color: white;padding:5px">
+                                <h6
+                                    style="font-size: 12px; text-align: center; background-color: rgb(2, 17, 79); color: white;padding:5px">
                                     <strong style="font-family: Montserrat;">EDUCATION</strong>
                                 </h6>
                                 <ul>
@@ -518,9 +542,11 @@
 
                     </html>
                 </div>
-                <button onclick="generatePDF()"> <a style="text-decoration: none;
+                <div style="text-align: center;">
+                <button onclick="generatePDF()" class="btn btn-warning"> <a style="color: #fff; text-decoration: none;
             font-family: Montserrat;
                 ">Download</a></button>
+                </div>
             </div>
         </div>
     </body>
@@ -529,44 +555,44 @@
     </html>
 </div>
 <script>
-    // JavaScript to handle adding and removing education and work experience entries
+// JavaScript to handle adding and removing education and work experience entries
 
-    document.addEventListener("livewire:load", function() {
-        const addEducationButton = document.getElementById("add_education");
-        const addWorkExperienceButton = document.getElementById("add_work_experience");
+document.addEventListener("livewire:load", function() {
+    const addEducationButton = document.getElementById("add_education");
+    const addWorkExperienceButton = document.getElementById("add_work_experience");
 
-        // Event listener for adding education entry
-        addEducationButton.addEventListener("click", function() {
-            const educationContainer = document.querySelector(".education-entries");
-            const index = document.querySelectorAll(".education-entry").length;
-            educationContainer.appendChild(createEducationEntry(index));
-        });
-
-        // Event listener for adding work experience entry
-        addWorkExperienceButton.addEventListener("click", function() {
-            const workExperienceContainer = document.querySelector(".work-experience-entries");
-            const index = document.querySelectorAll(".work-experience-entry").length;
-            workExperienceContainer.appendChild(createWorkExperienceEntry(index));
-        });
-
-        // Event listener for removing education entry
-        document.addEventListener("click", function(event) {
-            if (event.target.classList.contains("remove-education")) {
-                event.target.parentElement.remove();
-            }
-        });
-
-        // Event listener for removing work experience entry
-        document.addEventListener("click", function(event) {
-            if (event.target.classList.contains("remove-work-experience")) {
-                event.target.parentElement.remove();
-            }
-        });
+    // Event listener for adding education entry
+    addEducationButton.addEventListener("click", function() {
+        const educationContainer = document.querySelector(".education-entries");
+        const index = document.querySelectorAll(".education-entry").length;
+        educationContainer.appendChild(createEducationEntry(index));
     });
 
-    // Function to create a new education entry
-    function createEducationEntry(index) {
-        const educationHTML = `
+    // Event listener for adding work experience entry
+    addWorkExperienceButton.addEventListener("click", function() {
+        const workExperienceContainer = document.querySelector(".work-experience-entries");
+        const index = document.querySelectorAll(".work-experience-entry").length;
+        workExperienceContainer.appendChild(createWorkExperienceEntry(index));
+    });
+
+    // Event listener for removing education entry
+    document.addEventListener("click", function(event) {
+        if (event.target.classList.contains("remove-education")) {
+            event.target.parentElement.remove();
+        }
+    });
+
+    // Event listener for removing work experience entry
+    document.addEventListener("click", function(event) {
+        if (event.target.classList.contains("remove-work-experience")) {
+            event.target.parentElement.remove();
+        }
+    });
+});
+
+// Function to create a new education entry
+function createEducationEntry(index) {
+    const educationHTML = `
             <div class="education-entry">
                 <label style="font-size:12px" for="degree">Degree:</label>
                 <input type="text" wire:model="educationEntries.${index}.degree" required><br>
@@ -577,14 +603,14 @@
                 <button wire:click="removeEducation(${index})" style="background-color:red;color:white;border-radius:5px;margin-bottom:8px" type="button" class="remove-education">Remove</button>
             </div>
         `;
-        const educationEntry = document.createElement("div");
-        educationEntry.innerHTML = educationHTML;
-        return educationEntry;
-    }
+    const educationEntry = document.createElement("div");
+    educationEntry.innerHTML = educationHTML;
+    return educationEntry;
+}
 
-    // Function to create a new work experience entry
-    function createWorkExperienceEntry(index) {
-        const workExperienceHTML = `
+// Function to create a new work experience entry
+function createWorkExperienceEntry(index) {
+    const workExperienceHTML = `
             <div class="work-experience-entry">
                 <label style="font-size:12px" for="job_title">Job Title:</label>
                 <input type="text" wire:model="workExperienceEntries.${index}.job_title" required><br>
@@ -597,33 +623,55 @@
                 <button wire:click="removeWorkExperience(${index})" style="background-color:red;color:white;border-radius:5px;margin-bottom:8px" type="button" class="remove-work-experience">Remove</button>
             </div>
         `;
-        const workExperienceEntry = document.createElement("div");
-        workExperienceEntry.innerHTML = workExperienceHTML;
-        return workExperienceEntry;
-    }
+    const workExperienceEntry = document.createElement("div");
+    workExperienceEntry.innerHTML = workExperienceHTML;
+    return workExperienceEntry;
+}
 
-    function generatePDF() {
-        const cardContent = document.getElementById('card-content').innerHTML;
+function generatePDF() {
+    // Create a Blob from the HTML content
+    const cardContent = document.getElementById('card-content').innerHTML;
+    const blob = new Blob([`<div style="max-width: 600px;margin:16px;">${cardContent}</div>`], {
+        type: 'text/html'
+    });
 
-        // Create a Blob from the HTML content
-        const blob = new Blob([`<div style="max-width: 600px;">${cardContent}</div>`], {
-            type: 'text/html'
-        });
+    // Add Bootstrap CDN links to the head of the HTML document
+    const head = document.head;
+    // const body = document.body;
 
-        // Create a URL for the Blob
-        const url = URL.createObjectURL(blob);
+    // Bootstrap CSS link
+    const bootstrapCssLink = document.createElement('link');
+    bootstrapCssLink.rel = 'stylesheet';
+    bootstrapCssLink.href = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css';
+    bootstrapCssLink.integrity = 'sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN';
+    bootstrapCssLink.crossorigin= 'anonymous';
+    document.head.appendChild(bootstrapCssLink);
 
-        // Create an <a> element for downloading the PDF
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'cv.html'; // Specify the filename with .html extension
-        a.style.display = 'none';
+    // Bootstrap JS script
+    const bootstrapJsScript = document.createElement('script');
+    bootstrapJsScript.src = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js';
+    bootstrapJsScript.integrity = 'sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL';
+    bootstrapJsScript.crossOrigin = 'anonymous';
+    document.head.appendChild(bootstrapJsScript);
 
-        // Append the <a> element to the document and trigger the download
-        document.body.appendChild(a);
-        a.click();
+    // Create a URL for the Blob
+    const url = URL.createObjectURL(blob);
 
-        // Clean up by revoking the object URL
-        window.URL.revokeObjectURL(url);
-    }
+    // Create an <a> element for downloading the PDF
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'cv.html'; // Specify the filename with .html extension
+    a.style.display = 'none';
+
+    // Append the <a> element to the document and trigger the download
+    document.body.appendChild(a);
+    a.click();
+
+    // Clean up by revoking the object URL
+    window.URL.revokeObjectURL(url);
+
+    
+}
+
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

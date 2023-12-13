@@ -2,27 +2,32 @@
     <div style="text-align: center;background-color: #02134F;color:white;padding:8px;margin-bottom:10px">
         Registration & Login Screen
     </div>
-    <a href="/emplogin" style="text-decoration:none;margin-left:10px;
-            font-family: Montserrat;background-color:rgb(2, 17, 79);color:white;padding:5px;border-radius:5px
-        ">Back</a>
-    <button
-        style="margin-left:85%;width: 120px;margin-top:5px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;">
-        <a style="text-decoration: none; color: white; "><a href="/CompanyLogin"
-                style="text-decoration: none;color:white">HR Login</a></a>
+    <div class="row m-0">
+        <div class="col-6 mb-3">
+            <a href="/emplogin" class="btn" style="text-decoration:none;
+                font-family: Montserrat;background-color:rgb(2, 17, 79);color:white;
+            ">Back</a>
+        </div>
+        <div class="col-6" style="text-align: end">
+        <button class="btn" style="background-color: rgb(2, 17, 79); color: white;">
+        <a href="/CompanyLogin" style="text-decoration: none;color:white">HR Login</a>
     </button>
-    <div class="row">
-        <div class="col" style="margin-left: 80px;">
-            <div class="form-group" style="padding: 20px;">
+        </div>
+    </div>
+    
+    <div class="row m-0">
+        <div class="col-md-6">
+            <div class="form-group">
                 <div>
-                    <div style="margin-left: 25%;margin-bottom:10px">
+                    <div style="text-align: center;margin-bottom:10px">
 
                         <input style="font-family: Montserrat;" type="radio" name="formType" value="register"
-                            wire:click="$set('activeTab', 'register')"> Register
+                            wire:click="$set('activeTab', 'register')" checked> Register
                         <input style="font-family: Montserrat;" type="radio" name="formType" value="login"
                             wire:click="$set('activeTab', 'login')"> Login
                     </div>
                     @if($activeTab=="register")
-                    <div class="card" style="width:400px;padding:10px">
+                    <div class="card" style="padding:10px">
                         <form>
                             <!-- Registration form fields -->
                             <div>
@@ -34,9 +39,9 @@
                                     <div class="col" style="font-size:12px;">
                                         <input style="font-size:12px;font-family: Montserrat;" type="radio"
                                             name="formType" value="jobSeeker"
-                                            wire:click="$set('user_type', 'Job Seeker')"> Job Seeker
+                                            wire:click="$set('user_type', 'Job Seeker')" checked> Job Seeker
                                     </div>
-                                    <div class="col" style="font-size:12px;margin-right:26%">
+                                    <div class="col" style="font-size:12px;">
                                         <input style="font-size:12px;font-family: Montserrat;" type="radio"
                                             name="formType" value="vendor" wire:click="$set('user_type', 'Vendor')">
                                         Vendor
@@ -175,16 +180,16 @@
                                 @error('user_password') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
                             @endif
-                            <div style="text-align: center;margin:0px">
-                                <button type="button" wire:click="register"
-                                    style="font-size:12px;background-color:rgb(2, 17, 79);color:white">Register</button>
+                            <div style="text-align: center;margin:15px">
+                                <button class="btn" type="button" wire:click="register"
+                                    style="background-color:rgb(2, 17, 79);color:white">Register</button>
                             </div>
                         </form>
                     </div>
                     @endif
                     @if($activeTab=="login")
 
-                    <div class="card" style="width: 400px;padding:10px">
+                    <div class="card" style="padding:10px">
                         <form>
                             <!-- Login form fields -->
                             <div class="row" style="display: flex;">
@@ -196,7 +201,7 @@
                                     <input style="font-size:12px;font-family: Montserrat;" type="radio" name="formType"
                                         value="jobSeeker" wire:click="$set('user_type', 'Job Seeker')"> Job Seeker
                                 </div>
-                                <div class="col" style="font-size:12px;margin-right:26%">
+                                <div class="col" style="font-size:12px;">
                                     <input style="font-size:12px;font-family: Montserrat;" type="radio" name="formType"
                                         value="vendor" wire:click="$set('user_type', 'Vendor')"> Vendor
                                 </div>
@@ -215,9 +220,9 @@
                                     class="form-control">
                                 @error('login_password') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
-                            <div style="text-align: center;margin:0px">
-                                <button type="button" wire:click="login"
-                                    style="font-size:12px;background-color:rgb(2, 17, 79);color:white">Login</button>
+                            <div style="text-align: center;margin:15px">
+                                <button class="btn" type="button" wire:click="login"
+                                    style="background-color:rgb(2, 17, 79);color:white">Login</button>
                             </div>
                             @endif
                             @if($user_type=="Vendor")
@@ -233,9 +238,9 @@
                                     class="form-control">
                                 @error('password') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
-                            <div style="text-align: center;margin:0px">
-                                <button type="button" wire:click="vendorLogin"
-                                    style="font-size:12px;background-color:rgb(2, 17, 79);color:white">Login</button>
+                            <div style="text-align: center;margin:15px">
+                                <button class="btn" type="button" wire:click="vendorLogin"
+                                    style="background-color:rgb(2, 17, 79);color:white">Login</button>
                             </div>
                             @endif
                         </form>
@@ -249,7 +254,7 @@
             </div>
         </div>
         <!-- Right Side (Carousel) -->
-        <div class="col" style="margin-right: 100px;">
+        <div class="col-md-6">
             <!-- Carousel -->
             <div id="demo" class="carousel slide" data-bs-ride="carousel"
                 style="background-color: f0f0f0; aspect-ratio: 16/9;border-radius:10px">

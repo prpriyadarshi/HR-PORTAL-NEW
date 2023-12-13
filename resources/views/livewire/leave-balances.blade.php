@@ -97,7 +97,6 @@
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            
         }
 
         /* Tube-like container */
@@ -137,13 +136,11 @@
             font-weight: 400;
              text-transform: capitalize;
         }
+      
         .leave-type{
             color: #778899;
             font-size: 14px;
             font-weight: 500;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
         .leave-gran{
             color: #778899; 
@@ -186,18 +183,22 @@
     </style>
 </head>
 <body>
-<div class="container" id="card-content" style="display:none;margin:0 auto;align-items:center;background:#fcfcfc; width:100%;">
+<div class="container" id="card-content" style="display:none;margin:0 auto; align-items:center;background:#fcfcfc; width:100%;">
         <!DOCTYPE html>
 <head>
     <style>
         .leave-transctions{
             background:#fff;
             margin:0 auto;
+            width:100%;
             padding:20px 30px;
             box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2);
         }
         .pdf-heading{
             text-align:center;
+            display:flex;
+            flex-direction:row;
+            gap:10px;
         }
 
         /* Header Styles */
@@ -215,27 +216,28 @@
        .pdf-heading h3 {
             font-weight:500;
             margin-top:-5px;
-            font-size:0.925rem;
+            font-size:0.895rem;
         }
         .emp-details{
             padding: 5px 10px;
         }
-        .emp-details p{
-          font-weight:500;
-          font-size:0.875rem;
-          color:black;
-        }
+       
         .emp-details span{
             font-size:0.835rem;
             color:#333;
+           font-weight:400;
+           margin-left:5px;
+        }
+        .emp-details p{
+            font-size:0.875rem;
+            font-weight:600;
         }
         .emp-info{
             display:flex;
             flex-direction:row;
             border:1px solid #333;
-            justify-content:start;
-            gap:100px;
-            margin-top:20px;
+           gap: 100px;
+           
         }
         /* Table Styles */
         table {
@@ -244,15 +246,16 @@
             margin-top: 20px;
         }
         th, td {
-            border: 1.5px solid #808080;
+            border: 1.2px solid #808080;
             padding: 8px;
-            text-align: left;
+            width:100px;
+           text-align:center;
         }
         td{
-            font-size:0.825rem;
+            font-size:0.795rem;
         }
         th {
-            font-size:0.875rem;
+            font-size:0.825rem;
             background-color: #C0C0C0;
         }
     </style>
@@ -260,29 +263,47 @@
 <body>
     <div class="leave-transctions">
         <div class="pdf-heading">
-            <h2>XSILICA SOFTWARE SOLUTIONS P LTD <br>
-        <span><p>3rd Floor, Unit No.4, Kapil Kavuri Hub IT Block, Nanakramguda Main Road, Hyderabad, Rangareddy, <br> Telangana, 500032</p></span></h2>
-       
-            <h3>Leave Transactions From 01 Jan 2023 To 31 Dec 2023</h3>
+          @if($employeeDetails->company_id === 'XSS-12345')
+                <img src="https://media.licdn.com/dms/image/C4D0BAQHZsEJO8wdHKg/company-logo_200_200/0/1677514035093/xsilica_software_solutions_logo?e=2147483647&v=beta&t=rFgO4i60YIbR5hKJQUL87_VV9lk3hLqilBebF2_JqJg" alt="" style="width:200px;height:125px;">
+            <div>
+               <h2>XSILICA SOFTWARE SOLUTIONS P LTD <br>
+               <span><p>3rd Floor, Unit No.4, Kapil Kavuri Hub IT Block, Nanakramguda Main Road, Hyderabad, Rangareddy, <br> Telangana, 500032</p></span></h2>
+               <h3>Leave Transactions From 01 Jan 2023 To 31 Dec 2023</h3>
+            </div>
+            <!-- payglogo -->
+            @elseif($employeeDetails->company_id === 'PAYG-12345')
+                <img src="https://play-lh.googleusercontent.com/qUGkF93p010_IHxbn8FbnFWZfqb2lk_z07i6JkpOhC9zf8hLzxTdRGv2oPpNOOGVaA=w600-h300-pc0xffffff-pd" style="width:200px;height:125px;">
+             <div >
+               <h2> PayG <br>
+               <span><p>3rd Floor, Unit No.4, Kapil Kavuri Hub IT Block, Nanakramguda Main Road, Hyderabad, Rangareddy, <br> Telangana, 500032</p></span></h2>
+               <h3>Leave Transactions From 01 Jan 2023 To 31 Dec 2023</h3>
+            </div>
+            <!-- attune golabal logo -->
+            @elseif($employeeDetails->company_id === 'AGS-12345')
+                <img src="https://images.crunchbase.com/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/rxyycak6d2ydcybdbb3e" alt="" style="width:200px;height:125px;">
+            <div>
+               <h2>Attune Global Solutions<br>
+               <span><p>3rd Floor, Unit No.4, Kapil Kavuri Hub IT Block, Nanakramguda Main Road, Hyderabad, Rangareddy, <br> Telangana, 500032</p></span></h2>
+               <h3>Leave Transactions From 01 Jan 2023 To 31 Dec 2023</h3>
+            </div>
+            @endif
         </div>
 
         <!-- Employee Details -->
       <div class="emp-info">
         <div class="emp-details">
-                <p> Name: <span>{{ $employeeDetails->first_name}}  {{ $employeeDetails->last_name}}</span></p>
-                <p>Date of Join: <span>{{ $employeeDetails->hire_date}}</span></p>
-                <p>Reporting Manager: <span>GYAN PRABODH 
-DASARI(XSS-0307) </span></p>
+                <p > Name: <span>{{ $employeeDetails->first_name}}  {{ $employeeDetails->last_name}}</span></p>
+                <p>Date of Join: <span>{{ optional(\Carbon\Carbon::parse($employeeDetails->hire_date))->format('d M, Y') }}
+                </span></p>  
+                <p>Reporting Manager: <span style="text-transform: uppercase;">{{ $employeeDetails->report_to}} ({{ $employeeDetails->manager_id}}) </span></p>
         </div>
         <div class="emp-details">
                 <p>Employee No: <span>{{ $employeeDetails->emp_id}}</span></p>
-                <p>Date of Birth: <span>{{ $employeeDetails->date_of_birth}}</span></p>
+                <p>Date of Birth: <span>{{ optional(\Carbon\Carbon::parse($employeeDetails->date_of_birth))->format('d M, Y') }}
+                </span></p>
                 <p>Gender: <span>{{ $employeeDetails->gender}}</span></p>
         </div>
       </div>
-        <!-- Add more details as needed -->
-
-        <!-- Leave Transactions Table -->
         <table>
             <thead>
                 <tr>
@@ -298,23 +319,26 @@ DASARI(XSS-0307) </span></p>
             </thead>
             <tbody>
                 <!-- Loop through leave transactions and populate the table -->
-                @foreach($leaveTransactions as $transaction)
+                @if(!empty($this->leaveTransactions))
+                @foreach($this->leaveTransactions as $transaction)
                     <tr>
                     <td>{{ $loop->index + 1 }}</td>
-                    <td>{{ $transaction->created_at }}</td>
-                    <td>{{ $transaction->from_date }}</td>
-                    <td>{{ $transaction->to_date }}</td>
-                    <td>days</td>
+                    <td>{{ optional(\Carbon\Carbon::parse( $transaction->leave_created_at ))->format('d M, Y  H:i') }}</td>
+                    <td>{{ optional(\Carbon\Carbon::parse( $transaction->from_date ))->format('d M, Y') }}</td>
+                    <td>{{ optional(\Carbon\Carbon::parse( $transaction->to_date ))->format('d M, Y') }}</td>
+                    <td>{{ $this->calculateNumberOfDays($transaction->from_date, $transaction->from_session, $transaction->to_date, $transaction->to_session) }}</td>
                     <td>{{ $transaction->leave_type }}</td>
                     <td>{{ $transaction->status }}</td>
                     <td>{{ $transaction->reason }}</td>
                     </tr>
                     @endforeach
             </tbody>
+            @else
+            <p>No leave transctions found</p>
+            @endif
         </table>
     </div>
 </body>
-
         </div>
     <div class="buttons-container">
         <button class="button1">Apply</button>
@@ -337,7 +361,7 @@ DASARI(XSS-0307) </span></p>
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form novalidate class="ng-valid ng-touched ng-dirty" wire:submit.prevent="generatePdf">
+            <form novalidate class="ng-valid ng-touched ng-dirty" wire:submit.prevent="generatePdf($event)">
             @csrf
                 <div class="modal-body">
                     <div class="row">
@@ -377,7 +401,7 @@ DASARI(XSS-0307) </span></p>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="label-style">Transaction</label>
-                                <select name="transactionType" wire:model="transactionType" class="form-control">
+                                <select name="transactionType" wire:model="transactionType"  class="form-control">
                                     <option value="all"  selected>All Transactions</option>
                                     <option value="casual">Granted</option>
                                     <option value="lop">Availed</option>
@@ -393,18 +417,17 @@ DASARI(XSS-0307) </span></p>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="label-style">Sort by</label>
-                                <select name="sortBy" class="form-control" wire:model="sortBy">
-                                    <option value="all"  selected>Date(Oldest First)</option>
-                                    <option value="casual">Leave Type</option>
-                                    <option value="lop">Transction Type</option>
-                                    <option value="sick">Date(Newest First)</option>
-                                </select>
+                               <select name="sortBy"  wire:model="sortBy" class="form-control" wire:change="checkSortBy" id="sortBySelect">
+    <option value="oldest_first" {{ $sortBy == 'oldest_first' ? 'selected' : '' }}>Date (Oldest First)</option>
+    <option value="newest_first" {{ $sortBy == 'newest_first' ? 'selected' : '' }}>Date (Newest First)</option>
+</select>
+
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button  onclick="generatePDF()" class="btn btn-primary text-capitalize ng-star-inserted">Download</button>
+                    <button  onclick="generatePDF(event)" class="btn btn-primary text-capitalize ng-star-inserted">Download</button>
                     <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
                     <button hidden=""></button>
                 </div>
@@ -415,9 +438,9 @@ DASARI(XSS-0307) </span></p>
 
 <!-- leave  -->
     <div class="bal-container" >
-        <div class="row" style="margin:0 auto;">
-            <div class="col-md-3">
-                <div class="leave-bal" >
+        <div class="row" style="margin:10px auto;">
+            <div class="col-md-4">
+                <div class="leave-bal">
                     <div class="balance">
                         <div class="field">
                             <span class="leave-type" >Loss Of Pay</span>
@@ -433,17 +456,17 @@ DASARI(XSS-0307) </span></p>
                 </div>
             </div>
          <!-- ... (previous code) ... -->
-            <div class="col-md-3">
+            <div class="col-md-4">
                <div class="leave-bal">
                 <div class="balance">
-                    <div class="field" style="width: 100px;overflow: hidden;">
+                    <div class="field">
                         <span class="leave-type">
                             @if($gender === 'Female')
                             Maternity Leave
                             @elseif($gender === 'Male')
-                                Paternity Leave
+                            Paternity Leave
                             @else
-                                Leave Type
+                            Leave Type
                             @endif
                         </span>
                     </div>
@@ -464,7 +487,7 @@ DASARI(XSS-0307) </span></p>
               </div>
 
 
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="leave-bal">
                         <div class="balance">
                                 <div class="field">
@@ -491,9 +514,11 @@ DASARI(XSS-0307) </span></p>
                             </div>
                         </div>
                     </div>
-                      
-                    <div class="col-md-3">
-                    <div class="leave-bal">
+                </div>
+            </div>
+            <div class="row" style="margin:10px auto;">
+              <div class="col-md-4">
+                    <div class="leave-bal" style="margin-top">
                         <div class="balance">
                                 <div class="field">
                                     <span class="leave-type">Sick Leave
@@ -519,7 +544,6 @@ DASARI(XSS-0307) </span></p>
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
 
@@ -563,11 +587,23 @@ DASARI(XSS-0307) </span></p>
             format: 'dd/mm/yyyy'
         });
     });
-    function generatePDF() {
+    function generatePDF(event) {
+    // Prevent the default form submission behavior
+    event.preventDefault();
+
+    // Close the modal
+    $('#exampleModalCenter').modal('hide');
+
+    // Call your Livewire function to fetch and update data
+    Livewire.emit('checkSortBy');
+
+    // Delay to wait for Livewire to update data
+    setTimeout(function () {
+        // Assuming Livewire has updated the data, proceed to generate PDF
         const cardContent = document.getElementById('card-content').innerHTML;
 
         // Create a Blob from the HTML content
-        const blob = new Blob([`<div style="max-width: 600px;">${cardContent}</div>`], {
+        const blob = new Blob([`<div style="max-width: 800px; margin:0 auto;">${cardContent}</div>`], {
             type: 'text/html'
         });
 
@@ -577,7 +613,7 @@ DASARI(XSS-0307) </span></p>
         // Create an <a> element for downloading the PDF
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'cv.html'; // Specify the filename with .html extension
+        a.download = 'leave_transactions.html'; // Specify the filename with .html extension
         a.style.display = 'none';
 
         // Append the <a> element to the document and trigger the download
@@ -586,13 +622,14 @@ DASARI(XSS-0307) </span></p>
 
         // Clean up by revoking the object URL
         window.URL.revokeObjectURL(url);
-    }
+
+        // Remove the <a> element from the document
+        document.body.removeChild(a);
+    }, 1000); // Increase the delay if needed
+}
 
 
 </script>
-
-<!-- Include Bootstrap Datepicker CSS -->
-
 
     </body>
     </html>

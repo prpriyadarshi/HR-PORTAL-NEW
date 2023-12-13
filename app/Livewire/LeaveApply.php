@@ -99,8 +99,7 @@ class LeaveApply extends Component
             ->get();
     }
    
-    public function leaveApply(){
-         
+    public function leaveApply(){    
         $this->validate([
             'leave_type' => 'required',
             'from_date' => 'required|date',
@@ -126,7 +125,7 @@ class LeaveApply extends Component
 
         $employeeId = auth()->guard('emp')->user()->emp_id;
         $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
-     
+      
         $ccToDetails = [];
         foreach ($this->selectedPeople as $selectedEmployeeId) {
             // Fetch additional details from EmployeeDetails table

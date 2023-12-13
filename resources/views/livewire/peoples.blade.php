@@ -116,7 +116,7 @@
         <!-- Everyone tab content -->
             <div class="row" style="margin-top: 15px; width: 100%;">
                 <!-- Search input and filter button -->
-                <div class="col" style="width: 150px; background-color: white; border-radius: 5px; height: 420px; margin-right: 20px; padding: 5px;">
+                <div class="col" style="width: 150px; background-color: white; border-radius: 5px; height: auto; margin-right: 20px; padding: 5px;">
                     <div class="container" style="margin-top: 10px">
                         <div class="row">
                             <div class="col" style="margin: 0px; padding: 0px">

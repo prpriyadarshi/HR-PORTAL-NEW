@@ -14,7 +14,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/hr.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/HR Portal.png') }}">
     <title>
         HR Strategies Pro
     </title>
@@ -29,10 +29,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <script src="{{ mix('js/app.js') }}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
     <link rel="stylesheet" type="text/css" href="path/to/your.css">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -337,9 +337,7 @@
                                             Payslips
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('proofofinvestment')">
-                                        <a class="nav-link" href="/proofofinvestment" id="proofofinvestment" onclick="selectOption(this,   'Proof Of Investment')">
-                                            Proof Of Investment
+                                   
 
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('reimbursement')">
                                         <a class="nav-link" href="/reimbursement" id="reimbursement" onclick="selectOption(this, 'Reimbursement')">
@@ -351,11 +349,7 @@
                                             Proof of Investment
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('loan')">
-                                        <a class="nav-link" href="/loan" id="slip" onclick="selectOption(this, 'Loan and Advances')">
-                                            Loan and Advances
-                                        </a>
-                                    </li>
+   
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle15('salary-revision')">
                                         <a class="nav-link" href="/salary-revision" id="slip" onclick="selectOption(this, 'Salary Revision')">
                                             Salary Revision
@@ -386,7 +380,7 @@
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle10()">
 
-                            <a class="nav-link" href="/delegatesddb">
+                            <a class="nav-link" href="/delegates">
 
                                 <i class="fas fa-user-friends"></i> Workflow Delegates
 
