@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Database\QueryException;
+
 class EmpLogin extends Component
 {
     public $showDialog = false;
@@ -24,7 +27,12 @@ class EmpLogin extends Component
         'password' => '',
     ];
     public $error = '';
-    public function jobs(){
+    protected $messages = [
+        'form.emp_id.required' => 'ID is required.',
+        'form.password.required' => 'Password is required.',
+    ];
+    public function jobs()
+    {
         return redirect()->to('/Login&Register');
     }
     public function createCV()
@@ -33,25 +41,36 @@ class EmpLogin extends Component
     }
     public function empLogin()
     {
-        $this->validate([
-            "form.emp_id" => 'required',
-            "form.password" => "required"
-        ]);
-        if (Auth::guard('emp')->attempt($this->form)) {
-            // Retrieve emp_id after successful login
-            $emp_id = Auth::guard('emp')->user()->emp_id;
 
-            // Store emp_id in the session
-            //Session::put('emp.emp_id', $emp_id);
-            //session(['emp.emp_id' => $emp_id]);
-            Session::put('emp_id', $emp_id);
-            //dd(Session::get('emp_id'));
-            Session::put('lastActivityTime', now());
-           // dd(Session::get('lastActivityTime'));
-            session()->flash('Success', 'You are logged in successfully!');
-            return redirect()->route('home');
-        } else {
-            $this->error = "Employee ID or Password Wrong!!";
+        try {
+            $this->validate([
+                "form.emp_id" => 'required',
+                "form.password" => "required"
+            ]);
+
+
+            if (Auth::guard('emp')->attempt(['emp_id' => $this->form['emp_id'], 'password' => $this->form['password']])) {
+                return redirect('/');
+            } elseif (Auth::guard('emp')->attempt(['email' => $this->form['emp_id'], 'password' => $this->form['password']])) {
+                return redirect('/');
+            } elseif (Auth::guard('hr')->attempt(['hr_emp_id' => $this->form['emp_id'], 'password' => $this->form['password']])) {
+                return redirect('/hrPage');
+            } elseif (Auth::guard('hr')->attempt(['email' => $this->form['emp_id'], 'password' => $this->form['password']])) {
+                return redirect('/hrPage');
+            } elseif (Auth::guard('finance')->attempt(['fi_emp_id' => $this->form['emp_id'], 'password' => $this->form['password']])) {
+                return redirect('/financePage');
+            } elseif (Auth::guard('finance')->attempt(['email' => $this->form['emp_id'], 'password' => $this->form['password']])) {
+                return redirect('/financePage');
+            } elseif (Auth::guard('it')->attempt(['it_emp_id' => $this->form['emp_id'], 'password' => $this->form['password']])) {
+                return redirect('/itPage');
+            } elseif (Auth::guard('it')->attempt(['email' => $this->form['emp_id'], 'password' => $this->form['password']])) {
+                return redirect('/itPage');
+            } else {
+                $this->error = "ID / Mail or Password Wrong!!";
+            }
+        } catch (\Exception $e) {
+            // Debugging
+            $this->error = "ID / Mail or Password Wrong!!";
         }
     }
 

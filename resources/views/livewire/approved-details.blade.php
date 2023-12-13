@@ -29,7 +29,7 @@
         padding: 5px;
         background-color: none;
           }
-
+ 
     .heading {
     flex: 8; /* Adjust the flex value to control the size of the heading container */
     padding: 20px;
@@ -38,7 +38,7 @@
     border: 1px solid #ccc;
     border-radius:5px;
 }
-
+ 
 .side-container {
     flex: 4; /* Adjust the flex value to control the size of the side container */
     background-color: #fff;
@@ -65,23 +65,23 @@
             justify-content:space-between;
             margin:0.975rem auto;
         }
-
+ 
         .field {
             display: flex;
             justify-content: start;
             flex-direction: column;
         }
-
+ 
         .pay-bal  {
          display:flex;
          gap:10px;
         }
-
+ 
         .details {
        
             line-height:2;
         }
-
+ 
         .details p {
             margin: 0;
         }
@@ -91,8 +91,8 @@
             background-color: #ccc;
             margin-left:-10px; /* Color of the vertical line */
         }
-
-
+ 
+ 
         .group h6{
             font-weight:600;
             font-size:0.875rem;
@@ -108,11 +108,11 @@
         .group {
             margin-left:10px;
         }
-      
+     
         .data{
             display:flex;
             flex-direction:column;
-    
+   
         }
         .cirlce{
             height:0.75rem; width:0.75rem; background: #778899; border-radius:50%;
@@ -135,11 +135,11 @@
         padding: 10px; /* Modify padding as needed */
         width: 100%;
     }
-
+ 
     .side-container {
         flex: 1; /* Change the flex value for the side container */
         padding: 10px; /* Modify padding as needed */
-        height: auto; 
+        height: auto;
         width: 100%;/* Allow the height to adjust based on content */
     }
 }
@@ -156,7 +156,7 @@
     </style>
 </head>
 <body>
-
+ 
     <div class="detail-container ">
         <div class="header" style="font-size: 1rem; font-weight: 500; text-align:start; margin-left:150px; ">
             <h6 >Leave Applied on {{ $leaveRequest->created_at->format('d M, Y') }} </h6>
@@ -179,7 +179,7 @@
                                 </span>
                             @endif
                         </div>
-
+ 
                      <div>
                         <span style="color: #32CD32; font-size: 0.875rem; font-weight: 500; text-transform:uppercase;">
                         @if(strtoupper($leaveRequest->status) == 'APPROVED')
@@ -249,7 +249,7 @@
                         </div>
                   </div>
               </div>
-
+ 
         <div class="details">
            <div class="data">
            <p><span style="color: #333; font-weight: 500; font-size:1rem;">Details</span></p>
@@ -275,7 +275,7 @@
                     @endforeach
                 </p>
             @endif
-
+ 
            </div>
         </div>
         </div>
@@ -292,12 +292,12 @@
               <div>
                 <h5 style="color: #333; font-size: 0.825rem; font-weight: 400; text-align:start;">
                     @if(strtoupper($leaveRequest->status) == 'WITHDRAWN')
-                        Withdrawn <br><span style="color: #778899; font-size: 0.825rem; font-weight: 400; text-align:start;">by</span> 
+                        Withdrawn <br><span style="color: #778899; font-size: 0.825rem; font-weight: 400; text-align:start;">by</span>
                         <span style="color: #778899; font-weight: 500; text-transform: uppercase;">
                             {{ $this->leaveRequest->employee->first_name }}  {{ $this->leaveRequest->employee->last_name }}
                         </span>
                     @elseif(strtoupper($leaveRequest->status) == 'APPROVED')
-                        Approved <br> by 
+                        Approved <br> by
                         @if(!empty($leaveRequest['applying_to']))
                             @foreach($leaveRequest['applying_to'] as $applyingTo)
                                 <span style="color: #778899; font-size: 0.825rem; font-weight: 500;text-align:start;">
@@ -317,7 +317,7 @@
                     </span>
                 </h5>
             </div>
-
+ 
            </div>
            <div class="group">
                <div >
@@ -336,5 +336,5 @@
    
 </body>
 </html>
-
+ 
 </div>

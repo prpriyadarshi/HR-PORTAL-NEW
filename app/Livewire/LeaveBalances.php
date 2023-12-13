@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Illuminate\Support\Carbon;
 use Livewire\Component;
 use App\Helpers\LeaveHelper;
 use App\Models\EmployeeDetails;
@@ -11,7 +12,6 @@ use Carbon\Carbon;
 
 class LeaveBalances extends Component
 {
-   
     public $employeeDetails;
     public $sickLeavePerYear = 12; // Assuming 12 days of sick leave per year
     public $casualLeavePerYear = 12; // Assuming 12 days of casual leave per year
@@ -26,8 +26,12 @@ class LeaveBalances extends Component
     public $status;
     public $fromDateModal;
     public $toDateModal;
+    public $status;
+    public $fromDateModal;
+    public $toDateModal;
     public $leaveType;
     public $transactionType;
+    public $sortBy;
     public $consumedSickLeaves;
     public $consumedCasualLeaves;
     public $consumedLossOfPayLeaves;
@@ -35,10 +39,11 @@ class LeaveBalances extends Component
     public $sortBy = 'oldest_first'; 
     
 
-    public function mount() {
+    public function mount()
+    {
         $employeeId = auth()->guard('emp')->user()->emp_id;
         $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
-    
+
         // Check if employeeDetails is not null before accessing its properties
         if ($this->employeeDetails) {
             // Get the logged-in employee's approved leave days for sick, causal, and loss of pay leave
@@ -48,32 +53,32 @@ class LeaveBalances extends Component
             $this->totalCausalDays = $approvedLeaveDays['totalCausalDays'];
             $this->totalSickDays = $approvedLeaveDays['totalSickDays'];
             $this->totalLossOfPayDays = $approvedLeaveDays['totalLossOfPayDays'];
-    
+
             // Calculate leave balances
             $this->sickLeaveBalance = $this->sickLeavePerYear - $this->totalSickDays;
             $this->casualLeaveBalance = $this->casualLeavePerYear - $this->totalCausalDays;
             $this->lossOfPayBalance = $this->lossOfPayPerYear - $this->totalLossOfPayDays;
             $this->consumedCasualLeaves = $this->casualLeavePerYear -  $this->casualLeaveBalance;
-            $this->consumedSickLeaves = $this->sickLeavePerYear -  $this->sickLeaveBalance;    
+            $this->consumedSickLeaves = $this->sickLeavePerYear -  $this->sickLeaveBalance;
         }
     }
 
     protected function getTubeColor($consumedLeaves, $leavePerYear, $leaveType)
     {
         $percentage = ($consumedLeaves / $leavePerYear) * 100;
-    
+
         // Define color thresholds based on the percentage consumed and leave type
         switch ($leaveType) {
             case 'Sick Leave':
                 return $this->getSickLeaveColor($percentage);
             case 'Causal Leave Probation':
                 return $this->getSickLeaveColor($percentage);
-            // Add more cases for other leave types if needed
+                // Add more cases for other leave types if needed
             default:
                 return '#000000'; // Default color
         }
     }
-    
+
     protected function getSickLeaveColor($percentage)
     {
         return '#0ea8fc';
@@ -98,6 +103,7 @@ class LeaveBalances extends Component
     public function render()
     {
         $employeeId = auth()->guard('emp')->user()->emp_id;
+
         $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
 
         $percentageCasual = ($this->consumedCasualLeaves / $this->casualLeavePerYear) * 100;
@@ -105,8 +111,8 @@ class LeaveBalances extends Component
         // Check if employeeDetails is not null before accessing its properties
         if ($this->employeeDetails) {
             $gender = $this->employeeDetails->gender;
-            $grantedLeave = ($gender === 'Female') ? 90 : 05; 
-        
+            $grantedLeave = ($gender === 'Female') ? 90 : 05;
+
             return view('livewire.leave-balances', [
                 'gender' => $gender,
                 'grantedLeave' => $grantedLeave,
@@ -116,7 +122,7 @@ class LeaveBalances extends Component
                 'employeeDetails' => $this->employeeDetails,
                 'leaveTransactions' => $this->leaveTransactions,
                 'percentageCasual' => $percentageCasual,
-                'percentageSick'=> $percentageSick,
+                'percentageSick' => $percentageSick,
             ]);
         }
     }
@@ -129,24 +135,25 @@ class LeaveBalances extends Component
         if (!$employeeDetails) {
             return null;
         }
-    
+
         $sickLeavePerYear = 12; // Assuming 12 days of sick leave per year
         $casualLeavePerYear = 12; // Assuming 12 days of casual leave per year
         $lossOfPayPerYear = 0;
-    
+
         // Get the logged-in employee's approved leave days for sick, causal, and loss of pay leave
         $approvedLeaveDays = LeaveHelper::getApprovedLeaveDays($employeeId);
-    
+
         // Calculate leave balances
         $sickLeaveBalance = $sickLeavePerYear - $approvedLeaveDays['totalSickDays'];
         $casualLeaveBalance = $casualLeavePerYear - $approvedLeaveDays['totalCausalDays'];
-        $lossOfPayBalance = $lossOfPayPerYear - $approvedLeaveDays['totalLossOfPayDays'];    
+        $lossOfPayBalance = $lossOfPayPerYear - $approvedLeaveDays['totalLossOfPayDays'];
         return [
             'sickLeaveBalance' => $sickLeaveBalance,
             'casualLeaveBalance' => $casualLeaveBalance,
             'lossOfPayBalance' => $lossOfPayBalance,
         ];
     }
+    public  function calculateNumberOfDays($fromDate, $fromSession, $toDate, $toSession)
     public  function calculateNumberOfDays($fromDate, $fromSession, $toDate, $toSession)
     {
         try {

@@ -5,19 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class JobseekersInterviewDetail extends Model
+class JobseekersExamDetails extends Model
 {
     use HasFactory;
-    protected $table = 'jobseekers_interview_details';
+    protected $table = 'jobseekers_exam_details';
 
     protected $fillable = [
         'user_id',
         'job_id',
-        'interview_date',
-        'interview_time',
+        'exam_date',
+        'exam_time',
         'instructions',
         'company_website',
         'location_link',
+        'exam_link',
     ];
       public function user()
     {

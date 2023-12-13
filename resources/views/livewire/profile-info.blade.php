@@ -1,57 +1,52 @@
 <div>
     <style>
-        .links {
-            font-size: 12px;
-            font-family: Montserrat;
-            text-decoration: none;
-            color: black;
+ 
+ 
+
+        .custom-nav-link {
+            color: rgb(2, 17, 79);
             cursor: pointer;
-            transition: color 0.3s;
+            margin-right:15px;
+            text-decoration: none;
+
+            /* Text color for inactive tabs */
         }
 
-        .links:hover {
-            color: blue;
+
+
+        .custom-nav-link.active {
+            margin-top: 5px;
+            color: white;
+            background-color: rgb(2, 17, 79);
+            border-radius: 5px;
+            padding: 5px;
+            text-decoration: none;
+            
+        }
+        .nav-item {
+            text-decoration: none;
+            
         }
     </style>
     <div class="row">
-        <style>
-            /* Define your custom CSS classes */
-            .custom-nav-tabs {
-                background-color: #f8f9fa;
-                /* Background color for the tabs */
-            }
-
-            .custom-nav-link {
-                color: #333;
-                /* Text color for inactive tabs */
-            }
 
 
-
-            .custom-nav-link.active {
-                margin-top: 5px;
-                color: white;
-                background-color: rgb(2, 17, 79);
-                border-radius: 5px;
-            }
-        </style>
-
-        <div class="card" style="width: auto; margin-left: 18%;">
+        <div class="card" style="width: auto; margin-left: 18%;padding:5px">
             <ul class="nav custom-nav-tabs"> <!-- Apply the custom class to the nav -->
                 <li class="nav-item flex-grow-1">
-                    <a class="nav-link custom-nav-link active" data-section="personalDetails" onclick="toggleDetails('personalDetails', this)">Personal</a>
+                    <a class="custom-nav-link active" data-section="personalDetails" onclick="toggleDetails('personalDetails', this)">Personal</a>
                 </li>
                 <li class="nav-item flex-grow-1">
-                    <a class="nav-link custom-nav-link" data-section="accountDetails" onclick="toggleDetails('accountDetails', this)">Accounts & Statements</a>
+                    <a class="custom-nav-link" data-section="accountDetails" onclick="toggleDetails('accountDetails', this)">Accounts & Statements</a>
                 </li>
                 <li class="nav-item flex-grow-1">
-                    <a class="nav-link custom-nav-link" data-section="familyDetails" onclick="toggleDetails('familyDetails', this)">Family</a>
+                    <a class="custom-nav-link" data-section="familyDetails" onclick="toggleDetails('familyDetails', this)">Family</a>
                 </li>
                 <li class="nav-item flex-grow-1">
-                    <a class="nav-link custom-nav-link" data-section="employeeJobDetails" onclick="toggleDetails('employeeJobDetails', this)">Employment & Job</a>
+                    <a class="custom-nav-link" data-section="employeeJobDetails" onclick="toggleDetails('employeeJobDetails', this)">Employment & Job</a>
                 </li>
                 <li class="nav-item flex-grow-1">
-                    <a class="nav-link custom-nav-link" data-section="assetsDetails" onclick="toggleDetails('assetsDetails', this)">Assets</a>
+                    <a class="custom-nav-link" data-section="assetsDetails" onclick="toggleDetails('assetsDetails', this)">Assets</a>
                 </li>
             </ul>
         </div>

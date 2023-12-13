@@ -14,6 +14,7 @@ class AppliedJob extends Model
         'job_title',
         'company_name',
         'application_status',
+        'resume',
         'applied_to',
     ];
     public function user()

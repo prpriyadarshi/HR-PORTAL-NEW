@@ -59,25 +59,39 @@ class Tasks extends Component
         $this->followersList = false;
     }
 
+    public $showRecipients = false;
+    public $selectedPeople = [];
     public function selectPerson($personId)
     {
         $selectedPerson = $this->peoples->where('emp_id', $personId)->first();
 
         if ($selectedPerson) {
-            $this->selectedPeopleNames[] = $selectedPerson->first_name;
+            if (in_array($personId, $this->selectedPeople)) {
+                $this->selectedPeopleNames[] = $selectedPerson->first_name . ' #(' . $selectedPerson->emp_id . ')';
+            } else {
+                $this->selectedPeopleNames = array_diff($this->selectedPeopleNames, [$selectedPerson->first_name . ' #(' . $selectedPerson->emp_id . ')']);
+            }
 
             $this->assignee = implode(', ', array_unique($this->selectedPeopleNames));
+            $this->showRecipients = count($this->selectedPeopleNames) > 0;
         }
     }
 
+    public $showFollowers = false;
+    public $selectedPeopleForFollowers = [];
     public function selectPersonForFollowers($personId)
     {
         $selectedPerson = $this->peoples->where('emp_id', $personId)->first();
 
         if ($selectedPerson) {
-            $this->selectedPeopleNamesForFollowers[] = $selectedPerson->first_name;
+            if (in_array($personId, $this->selectedPeopleForFollowers)) {
+                $this->selectedPeopleNamesForFollowers[] = $selectedPerson->first_name . ' #(' . $selectedPerson->emp_id . ')';
+            } else {
+                $this->selectedPeopleNamesForFollowers = array_diff($this->selectedPeopleNamesForFollowers, [$selectedPerson->first_name . ' #(' . $selectedPerson->emp_id . ')']);
+            }
 
             $this->followers = implode(', ', array_unique($this->selectedPeopleNamesForFollowers));
+            $this->showFollowers = count($this->selectedPeopleNamesForFollowers) > 0;
         }
     }
     public function openForTasks($taskId)
@@ -174,8 +188,13 @@ class Tasks extends Component
         $this->peoples = EmployeeDetails::where('company_id', $companyId)->get();
         $peopleData = $this->filteredPeoples ? $this->filteredPeoples : $this->peoples;
         $this->record = Task::all();
-        $this->records = DB::table('tasks')
-            ->where('emp_id', $employeeId)
+        $employeeName = auth()->user()->first_name . ' #(' . $employeeId . ')';
+
+        $this->records = Task::with('emp')
+            ->where(function ($query) use ($employeeId, $employeeName) {
+                $query->where('emp_id', $employeeId)
+                    ->orWhere('assignee', 'LIKE', "%$employeeName%");
+            })
             ->orderBy('created_at', 'desc')
             ->get();
         return view('livewire.tasks', [

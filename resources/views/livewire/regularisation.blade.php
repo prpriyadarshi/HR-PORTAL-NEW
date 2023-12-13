@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <style>
     .button-container {
     display: flex;
@@ -59,6 +60,7 @@
     color: #FFFFFF;
     border-color:rgb(2, 17, 79); /* Change text color to white when clicked */
 }
+
 .pending-button:active {
     background-color: rgb(2, 17, 79); /* Change background color to green when clicked */
     color: #FFFFFF;
@@ -112,7 +114,23 @@
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
 }
+.approve-button {
+    background-color:rgb(2, 17, 79);
+        color: white; /* White text */
+        padding: 10px 20px; /* Padding around the text */
+        border: none; /* No border */
+        cursor: pointer; /* Cursor style on hover */
+        border-radius: 5px; /* Rounded corners */
+}
 
+.reject-button {
+    background-color:rgb(2, 17, 79);
+        color: white; /* White text */
+        padding: 10px 20px; /* Padding around the text */
+        border: none; /* No border */
+        cursor: pointer; /* Cursor style on hover */
+        border-radius: 5px; /* Rounded corners */
+}
 .weekday {
     text-align: center;
     flex: 1;
@@ -122,7 +140,7 @@
 }
  /* Style for the Submit button */
  #submitButton {
-        background-color: #4CAF50; /* Green background */
+        background-color:rgb(2, 17, 79);
         color: white; /* White text */
         padding: 10px 20px; /* Padding around the text */
         border: none; /* No border */
@@ -132,8 +150,8 @@
 
     /* Style for the Cancel button */
     #cancelButton {
-        background-color: #f44336; /* Red background */
-        color: white; /* White text */
+        /* Red background */
+        color:rgb(2, 17, 79);/* White text */
         padding: 10px 20px; /* Padding around the text */
         border: none; /* No border */
         cursor: pointer; /* Cursor style on hover */
@@ -212,25 +230,6 @@ input[type="text"] {
     margin-top: 10px;
 }
 
-#reasonInput::placeholder {
-    color: #ccc;
-}
-
-button#saveReasonButton {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin-top: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-button#saveReasonButton:hover {
-    background-color: #0056b3;
-}
 
 .hidden-box {
    
@@ -250,21 +249,38 @@ button#saveReasonButton:hover {
     transform: translate(-50%, -50%);
     display:none;   
 }
-.apply-box
-{
- 
- 
-}
 
+.history:hover
+{
+    border:1px solid rgb(2, 17, 79);
+    
+}
 
 .hidden-pending-box
 {
-    display: none;
+    
     background-color: #fff;
-    margin-top:300px;
+    margin-top:10px;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-left:30px;
+    position: absolute;
+    top: 50%;
+    left:40%;
+    height:320px;
+    width:900px;
+    transform: translate(-50%, -50%);
+}
+.hidden-pending-box1
+{
+    display: none;
+    
+    margin-top:300px;
+    padding: 20px;
+    border-radius: 5px;
+    
     text-align: center;
     margin-left:30px;
     position: absolute;
@@ -325,25 +341,56 @@ button#saveReasonButton:hover {
     }
     .horizontal-line {
             position: absolute;
-            width:500px;
+            width: 942px;
             margin-left:-10px;  /* Make the line stretch across the container */
             height:1px;/* Adjust the line thickness as needed */
-            background-color: #000; /* Line color */
+            background-color: #7f8fa4; /* Line color */
             margin-top:10px; /* Position the line vertically at the middle */
             transform: translateY(-50%); /* Adjust for vertical alignment */
+        }
+        .horizontal-line1
+        {
+            position: absolute;
+            width: 500px;
+            margin-left:-10px;  /* Make the line stretch across the container */
+            height:1px;/* Adjust the line thickness as needed */
+            background-color: #7f8fa4; /* Line color */
+            margin-top:10px; /* Position the line vertically at the middle */
+            transform: translateY(-50%);
+        }
+        .horizontal-line2
+        {
+            position: absolute;
+            width: 859px;
+            margin-left:-10px;  /* Make the line stretch across the container */
+            height:1px;/* Adjust the line thickness as needed */
+            background-color: #7f8fa4; /* Line color */
+            margin-top:10px; /* Position the line vertically at the middle */
+            transform: translateY(-50%);
         }
     /* Show the options when the selected option is clicked */
     .custom-dropdown.open .dropdown-options {
       display: block;
     }
+    .history
+    {
+        border-radius:5px;
+    }
+    .history:hover{
+        border:1px solid rgb(2, 17, 79);
+    }
+    .container-body1:hover
+    {
+        border:1px solid rgb(2, 17, 79);
+    }
 .hidden-history-box
 {
     display: none;
-    background-color: #fff;
-    margin-top:300px;
+  
+    margin-top:280px;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+   
     text-align: center;
     margin-left:30px;
     position: absolute;
@@ -353,10 +400,8 @@ button#saveReasonButton:hover {
     width:900px;
     transform: translate(-50%, -50%);
 }
-.hidden-history-box1
-{
-    display:none;
-}
+
+
 .my-button.active-button {
     background-color: rgb(2, 17, 79);
     color: #FFFFFF;
@@ -442,11 +487,12 @@ thead th:nth-child(2) {
             display: inline-block;
             padding: 10px 20px;
             border-radius: 5px; /* Adjust the border radius as needed */
-            background-color: #FFA500; /* Orange background color */
+            background-color: rgb(2, 17, 79); /* Orange background color */
             color: #fff; /* White text color */
             text-align: center;
             border: none; /* Remove button border */
-            cursor: pointer; /* Add a pointer cursor on hover */
+            cursor: pointer; 
+            margin-left:-40px;/* Add a pointer cursor on hover */
         }
         .hidden-history-box1
         {
@@ -459,27 +505,77 @@ thead th:nth-child(2) {
             margin-top:80px;
 
         }
-</style>    
+</style>   
+@if($isManager1)
+@foreach($withdraw as $w2)
+<div style="background-color:#fff; margin-bottom:20px; border:1px solid #7f8fa4;">
+        <div style="display:flex;flex-direction:row;">        
+            <p class="title" style="font-weight: bold;color: #7f8fa4;">Name:</p>
+            <p class="title" style="font-weight: bold; margin-left:270px;color: #7f8fa4;">No. of days:</p>
+            
+        </div>  
+        <div style="display:flex;flex-direction:row;margin-top:-15px;"> 
+          @foreach($subordinate as $firstName => $lastName)
+            <p class="highlight" style="color: rgb(2, 17, 79);; margin-right:60px;">{{$lastName}} {{$firstName}}</p>
+          @endforeach  
+            <p class="days" style="font-size:20px; color: rgb(2, 17, 79);; margin-top:-2px; margin-left:160px;">1</p>
+        </div>
+    </div>
+    <div class="arrow-button toggle-button" style="float:right; margin-top:-70px; margin-right:20px;" data-target-container="myContainerBody1"></div> 
+    <div class="container-body1" style="width: 942px; border: 1px solid #7f8fa4; height: 200px; background-color: #fff; margin-bottom:20px; text-align: center; padding: 10px; display:none; margin-right:4px;margin-top:-20px;" id="myContainerBody1">
+        <p class="title" style="font-weight: bold;color: #7f8fa4;margin-left:40px;">Dates Applied:</p>
+        <p class="highlight" style="color:rgb(2, 17, 79);">{{ \Carbon\Carbon::parse($w2->regularisation_date)->format('j M Y') }}</p>
+        <div class="horizontal-line"></div>
+       
+        <div style="margin-top:60px; margin-left:610px;display:flex;flex-direction:row;"> 
+             <button wire:click="approve({{$w2->id}})" class="approve-button" >Approve</button>
+             <button wire:click="reject({{$w2->id}})" class="reject-button" style="margin-left:20px">Reject</button>
+            <a href="/regularisation-pending" class="button view-details-button" style="margin-left:20px;margin-top:5px">View Details</a>
+        </div>  
+    </div>
+@endforeach    
+@endif    
+@if (session('success'))
+    <div class="alert alert-success" id="success-message">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
 <div class="button-container">
     <button class="my-button apply-button" id="applyButton">Apply</button>
     <button class="my-button pending-button"id="pendingButton">Pending</button>
     <button class="my-button history-button"id="historyButton">History</button>
     
     
-      <div class="hidden-box"id="hiddenBox">
-          @if($count==1)
+<div class="hidden-box"id="hiddenBox">
+  @if($count==false)
   <div class="custom-dropdown">
     <div class="selected-option">
       <!-- Initial content of selected option -->
       <img class="manager-image" src="images/manager1.jpg" alt="Manager 1 Image">
-      <span>{{$manager1[0]->report_to}}  #{{$manager1[0]->manager_id}}</span>
+      <span style="text-align:start;">{{$manager2->report_to}} #{{$manager2->manager_id}}</span>
+      
     </div>
    
     <div class="dropdown-options" style="justify-content:space-between;text-align:start; gap:10px;margin-bottom:20px;">
-     @foreach($manager1 as $m)
+     @foreach($manager11 as $m)
       <div class="manager-info" data-value="1"style="display:flex;flex-direction:row;text-align:start;"   >
         <img class="manager-image" src="images/manager1.jpg" alt="Manager 1 Image"style=" width: 35px;height:35px; ">
+        
         <span style="text-align:start;">{{$m->report_to}} #{{$m->manager_id}}</span>
+
       </div>
      @endforeach
     </div>
@@ -487,57 +583,61 @@ thead th:nth-child(2) {
   </div>
          
         <div class="mother-box"id="motherbox"style="display:none;align-items: center;height:260px;">
-           <div id="dateAndDay"style="margin-right:30px;">
+            <div id="dateAndDay"style="margin-right:30px;">
                <div style="display:flex;flex-direction:row;margin-top:-60px;margin-right:20px;">
-                <p id="currentDate1" style="padding-right: 20px; display: inline-block;"></p>
-                <p id="currentDay1" style="padding-left: 20px; display: inline-block;">Current Day</p>
+                 <p id="currentDate1" style="margin-right: 80px; display: inline-block;"></p>
+                 <p id="currentDay1" style="margin-left: 20px; display: inline-block;"></p>
 
                  <label for="timeSlot"></label>
                  <select id="timeSlot" disabled>
                   <option value="10:00 AM" >10:00 AM - 07:00PM</option>
                  
                  </select>
-               </div>
+            </div>
                  
-               <table style="width: 100%; margin-top: 20px;">
-  <thead>
-    <tr>
-      <th style="width: 20%;">From</th>
-      <th style="width: 20%;">To</th>
-      <th style="width: 100%;">Reason</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="width: 30%;">
-        <input type="time" name="fromValue" id="fromValue" wire:model="from">
-      </td>
-      <td style="width: 30%;">
-        <input type="time" name="toValue" id="toValue" wire:model="to">
-      </td>
-      <td style="width: 150%">
-        <input type="text" name="reason" id="reason" placeholder="Reason" wire:model="reason" style="width: 100%; padding: 20px;">
-      </td>
-    </tr>
-  </tbody>
-</table>    
-           </div>
+            <table style="width: 100%; margin-top: 20px;">
+            <thead>
+            <tr>
+              <th style="width: 20%;">From</th>
+              <th style="width: 20%;">To</th>
+              <th style="width: 100%;">Reason</th>
+              <th style="width: 100%;">Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="width: 30%;">
+                    <input type="time" name="fromValue" id="fromValue" wire:model="from">
+                </td>
+                <td style="width: 30%;">
+                    <input type="time" name="toValue" id="toValue" wire:model="to">
+                </td>
+                <td style="width: 150%">
+                    <input type="text" name="reason" id="reason" placeholder="Reason" wire:model="reason" style="width: 100%; padding: 20px;">
+                </td>
+                <td style="width: 150%">
+                    <input type="date" name="date" id="date" placeholder="Enter Date" wire:model="date" style="width: 100%; padding: 20px;">
+                </td>
+             </tr>
+            </tbody>
+         </table>    
+        </div>
          
             
-            <div>
+        <div>
                 
                 
-                <button type="button" id="closeButton"style="margin-top:80px;">
+            <button type="button" id="closeButton"style="margin-top:80px;">
                      <i class="fas fa-times"></i> 
-                </button>
-            </div>   
-            <div class="row">
-            <div style="margin-top:190px;display:flex;flex-direction:row;margin-left:-250px;">   
-                  <button type="submit"wire:click.prevent="storePost()" id="submitButton">Submit</button>
-                  <button type="button" id="cancelButton">Cancel</button>
-               </div>
-            </div> 
+            </button>
+        </div>   
+        <div class="row">
+            <div style="margin-top:190px;display:flex;flex-direction:row;margin-left:-360px;">   
+                  <button type="submit"wire:click.prevent="storePost" id="submitButton"><span style="font-weight:24px;">Submit</span></button>
+                  <a href="/Attendance" class="button view-details-button"style="margin-left:30px;margin-top:10px;font-weight:14px;">Cancel</a>
+            </div>
         </div> 
+    </div> 
         
           @else      
            <img src="https://gt-linckia.s3.amazonaws.com/static-ess-v6.3.0-prod-144/emptystate_regularisation.svg"style="margin-top:80px;">
@@ -545,7 +645,7 @@ thead th:nth-child(2) {
            <p style="color: #7f8fa4;font-weight:400;font-size: 20px;">Smart! Your attendance is sorted.</p>
            <p style="color: #a3b2c7;font-weight:400;font-size: 16px;margin-top:-20px;">Still want to apply regularization? Select dates(s).</p>
           @endif
-      </div>
+</div>
      
     <div class="calendar-box"id="hiddenBox1">
   
@@ -567,7 +667,9 @@ thead th:nth-child(2) {
     </div>
 
     <!-- Calendar Dates -->
-      <div class="calendar-dates" id="calendarDates"></div>
+      <div class="calendar-dates" id="calendarDates">
+           
+      </div>
       <div class="calendar-footer" id="calendarFooter">
    
           No exception days to regularize
@@ -575,81 +677,150 @@ thead th:nth-child(2) {
     </div>
     
 
-    <div class="hidden-pending-box" id="hiddenpendingBox">
+    <div class="hidden-pending-box1" id="hiddenpendingBox">
+    
       @if($count1>0)
-        <div class="container"style="width: 500px;height: 90px;background-color: #e0e0e0;text-align: center;padding: 10px;">
-          <div style="display:flex;flex-direction:row;">        
-            <p class="title"style="font-weight: bold;">Pending with</p>
-            <p class="title"style="font-weight: bold;margin-left:100px;">No. of days</p>
-            
-          </div>  
-          <div style="display:flex;flex-direction:row;"> 
-            <p class="highlight"style=" color: #ff9900;margin-right:60px;">{{$manager3->first_name}}&nbsp;&nbsp;{{$manager3->last_name}}</p>
-            <p class="days"style="font-size:24px;color: #ff9900;margin-top:-10px;margin-left:195px;">{{$count1}}</p>
-          </div>  
-          <div class="arrow-button"style="float:right;margin-top:-40px;margin-right:20px;"id="toggleButton"></div> 
-             <div class="container-body" style="width: 500px;height: 200px;background-color: #e0e0e0;text-align: center;padding: 10px;display:none;margin-right:4px;"id="myContainerBody">
-                 <p class="title"style="font-weight: bold;">Dates Applied:</p>
-                 <p class="highlight"style=" color: #ff9900;">(25-28) Oct 2023</p>
-                 <div class="horizontal-line"></div>
-                 
-                <div style="margin-top:30px;margin-left:-320px;"> 
-                  <p class="title"style="font-weight: bold;">Applied On:</p>
-                  <p class="highlight"style=" color: #ff9900;">{{ $data2->created_at->format('j M Y') }}</p>
-                </div> 
-                <div style="margin-top:-60px;margin-left:220px;"> 
-                 <button class="withdraw-button"data-toggle="modal"data-target="#withdrawModal">Withdraw</button>
-                 <a href="#" class="button view-details-button">View Details</a>
-                </div>  
-             </div>
+       @foreach($withdraw as $key=>$d)   
+       <div class="history" style="background-color:#fff; margin-bottom:20px; border:1px solid #7f8fa4;">
+        <div style="display:flex;flex-direction:row;">        
+            <p class="title"  style="font-weight: bold;color: #7f8fa4;margin-left:20px;margin-top:20px;">Pending&nbsp;With:</p>
+            <p class="title" style="font-weight: bold; margin-left:200px;color: #7f8fa4;margin-top:20px;">No.&nbsp;of&nbsp;days:</p>
+           
+        </div>  
+        <div style="display:flex;flex-direction:row;margin-top:-15px;"> 
+            <p class="highlight" style="color: rgb(2, 17, 79);  margin-top:-3px;   margin-left:20px;">{{$manager_report}}</p>
+            <p class="days" style="font-size:20px; color: rgb(2, 17, 79);  margin-top:-3px;  margin-left:209px;">1</p>
         </div>
-       
     </div>
+    <div class="arrow-button toggle-button" style="float:right; margin-top:-89px;  margin-right:20px;" data-target-container="myContainerBody{{$key+1}}"></div> 
+    <div class="container-body1" style="width: 860px; border: 1px solid #7f8fa4; height: 150px; background-color: #fff; margin-bottom:20px; text-align: center; padding: 10px; display:none; margin-right:4px;margin-top:-20px;" id="myContainerBody{{$key+1}}">
+      <div style="display:flex;flex-direction:row;">
+        <p class="title" style="font-weight: bold;color: #7f8fa4;margin-left:5px;">Dates Applied:</p>
+        <p class="highlight" style="color:rgb(2, 17, 79);margin-left:30px;">{{\Carbon\Carbon::parse($d->regularisation_date)->format('j M Y')}}</p>
+      </div>  
+        <div class="horizontal-line2"></div>
+        <div style="margin-top:30px; margin-left:-720px;"> 
+            <p class="title" style="font-weight: bold;color: #7f8fa4;margin-left:-20px;">Applied On:</p>
+            <p class="highlight" style="color: rgb(2, 17, 79);margin-left:-30px;margin-top:-15px;">{{\Carbon\Carbon::parse($d->created_at)->format('j M Y')}}</p>
+        </div> 
+        <div style="margin-top:-60px; margin-left:650px;display:flex;flex-direction:row;">
+            <button class="withdraw-button"data-toggle="modal"data-target="#withdrawModal"wire:click="withdraw({{$d->id}})">Withdraw</button> 
+            <a href="/regularisation-pending" class="button view-details-button"style=" margin-left:30px;margin-top:5px;">View&nbsp;Details</a>
+        </div>  
+    </div>
+   
+          
+       @endforeach     
+          
+         
+      
+       
+ 
       @else
-      <img src="https://gt-linckia.s3.amazonaws.com/static-ess-v6.3.0-prod-144/review-list-empty.svg"style="margin-top:80px;">
-      <p style="color: #a3b2c7;font-weight:400;font-size: 20px;margin-top:20px;">Hey, you have no regularization records to view.</p>
+        <div class="hidden-pending-box">
+            <img src="https://gt-linckia.s3.amazonaws.com/static-ess-v6.3.0-prod-144/review-list-empty.svg"style="margin-top:80px;">
+            <p style="color: #a3b2c7;font-weight:400;font-size: 20px;margin-top:20px;">Hey, you have no regularization records to view.</p>
+        </div> 
       @endif
     </div>
     
-    <div  id="hiddenhistoryBox">
+    <div class="hidden-history-box" id="hiddenhistoryBox">
       @if($data5>0)
-      @foreach($data8 as $d)
-       <div id="hiddenhistoryBox1"class="hidden-history-box1">
-  
-          <div style="display:flex;flex-direction:row;">        
-        
-               <p class="title"style="font-weight: bold;">Withdrawn&nbsp;By:</p>
-               <p class="title"style="font-weight: bold;margin-left:100px;">No.&nbsp;of&nbsp;days</p>
-            
-          </div>  
-          <div style="display:flex;flex-direction:row;margin-top:-15px;"> 
-              <p class="highlight"style=" color: #ff9900;margin-right:60px;">Me</p>
-              <p class="days"style="font-size:20px;color: #ff9900;margin-top:-2px;margin-left:120px;">2</p>
-          </div>
-         
-          <div class="arrow-button"style="float:right;margin-top:-40px;margin-right:20px;"id="toggleButton1"></div> 
-             <div class="container-body" style="width: 500px;height: 200px;background-color: #e0e0e0;text-align: center;padding: 10px;display:none;margin-right:4px;"id="myContainerBody1">
-                 <p class="title"style="font-weight: bold;">Dates Applied:</p>
-                 <p class="highlight"style=" color: #ff9900;">(25-28) Oct 2023</p>
-                 <div class="horizontal-line"></div>
-                 
-                <div style="margin-top:30px;margin-left:-320px;"> 
-                  <p class="title"style="font-weight: bold;">Withdrawn On:</p>
-                  <p class="highlight"style=" color: #ff9900;">{{$d->created_at}}</p>
-                </div> 
-                <div style="margin-top:-60px;margin-left:220px;"> 
-                
-                   <a href="/regularisation-pending" class="button view-details-button">View Details</a>
-                </div>  
-             </div>
+      @foreach($data81 as $key => $d1)
+      @if($d1->status =='rejected')
+    
+    <div class="history" style="background-color:#fff; margin-bottom:20px; border:1px solid #7f8fa4;">
+        <div style="display:flex;flex-direction:row;">        
+            <p class="title"  style="font-weight: bold;color: #7f8fa4;margin-left:20px;margin-top:20px;">Rejected&nbsp;By:</p>
+            <p class="title" style="font-weight: bold; margin-left:200px;color: #7f8fa4;margin-top:20px;">No.&nbsp;of&nbsp;days:</p>
+            <p class="title"  style="font-weight: bold; margin-left:320px;margin-top:30px;font-size:15px;text-transform:uppercase;color: #f66;">rejected</p>
+        </div>  
+        <div style="display:flex;flex-direction:row;margin-top:-15px;"> 
+            <p class="highlight" style="color: rgb(2, 17, 79);  margin-top:-3px;   margin-left:20px;">{{$manager_report}}</p>
+            <p class="days" style="font-size:20px; color: rgb(2, 17, 79);  margin-top:-3px;  margin-left:200px;">1</p>
         </div>
-        @endforeach
-     
+    </div>
+    <div class="arrow-button toggle-button" style="float:right; margin-top:-89px;  margin-right:20px;" data-target-container="myContainerBody{{$key+1}}"></div> 
+    <div class="container-body1" style="width: 860px; border: 1px solid #7f8fa4; height: 150px; background-color: #fff; margin-bottom:20px; text-align: center; padding: 10px; display:none; margin-right:4px;margin-top:-20px;" id="myContainerBody{{$key+1}}">
+      <div style="display:flex;flex-direction:row;">
+        <p class="title" style="font-weight: bold;color: #7f8fa4;">Dates Applied:</p>
+        <p class="highlight" style="color:rgb(2, 17, 79);margin-left:30px;">{{\Carbon\Carbon::parse($d1->regularisation_date)->format('j M Y')}}</p>
+      </div>  
+        <div class="horizontal-line2"></div>
+        <div style="margin-top:30px; margin-left:-720px;"> 
+            <p class="title" style="font-weight: bold;color: #7f8fa4;margin-left:-20px;">Rejected On:</p>
+            <p class="highlight" style="color: rgb(2, 17, 79);margin-left:-40px;margin-top:-15px;">{{\Carbon\Carbon::parse($d1->rejected_date)->format('j M Y')}}</p>
+        </div> 
+        <div style="margin-top:-60px; margin-left:750px;"> 
+            <a href="/regularisation-pending" class="button view-details-button">View Details</a>
+        </div>  
+    </div>
+   
+    @elseif($d1->status =='approved')
+    
+    <div class="history"style="background-color:#fff; margin-bottom:20px; border:1px solid #7f8fa4;">
+        <div style="display:flex;flex-direction:row;">        
+            <p class="title" style="font-weight: bold;color: #7f8fa4;margin-left:20px;margin-top:20px;">Regularised&nbsp;By:</p>
+            <p class="title" style="font-weight: bold; margin-left:180px;color: #7f8fa4;margin-top:20px;">No.&nbsp;of&nbsp;days:</p>
+            <p class="title" style="font-weight: bold; margin-left:320px;margin-top:30px;font-size:15px;text-transform:uppercase;color: #7f8fa4;">closed</p>
+        </div>  
+        <div style="display:flex;flex-direction:row;margin-top:-15px;"> 
+            <p class="highlight" style="color: rgb(2, 17, 79); margin-top:-3px;  margin-left:20px;">{{$manager_report}}</p>
+            <p class="days" style="font-size:20px; color: rgb(2, 17, 79); margin-top:-3px; margin-left:200px;">1</p>
+        </div>
+    </div>
+    <div class="arrow-button toggle-button" style="float:right; margin-top:-89px; margin-right:20px;" data-target-container="myContainerBody{{$key+1}}"></div>
+    <div class="container-body1" style="width: 860px; border: 1px solid #7f8fa4; height: 150px; background-color: #fff; margin-bottom:20px; text-align: center; padding: 10px; display:none; margin-right:4px;margin-top:-20px;" id="myContainerBody{{$key+1}}">
+        <div style="display:flex;flex-direction:row;">
+          <p class="title" style="font-weight: bold;color: #7f8fa4;">Dates Applied:</p>
+          <p class="highlight" style="color:rgb(2, 17, 79);margin-left:20px;">{{\Carbon\Carbon::parse($d1->regularisation_date)->format('j M Y')}}</p>
+        </div>  
+        <div class="horizontal-line2"></div>
+        <div style="margin-top:30px; margin-left:-720px;"> 
+            <p class="title" style="font-weight: bold;color: #7f8fa4;">Regularized On:</p>
+            <p class="highlight" style="color: rgb(2, 17, 79);margin-left:-40px;margin-top:-15px;">{{\Carbon\Carbon::parse($d1->approved_date)->format('j M Y')}}</p>
+        </div> 
+        <div style="margin-top:-60px; margin-left:750px;"> 
+            <a href="/regularisation-pending" class="button view-details-button">View&nbsp;Details</a>
+        </div>  
+    </div>
+   
+    @elseif($d1->status=='pending')
+    
+    <div class="history" style="background-color:#fff; margin-bottom:20px; border:1px solid #7f8fa4;">
+        <div style="display:flex;flex-direction:row;">        
+            <p class="title"   style="font-weight: bold;color: #7f8fa4;margin-left:20px;margin-top:20px;">Withdrawn&nbsp;By:</p>
+            <p class="title"  style="font-weight: bold; margin-left:180px;color: #7f8fa4;margin-top:20px;">No.&nbsp;of&nbsp;days:</p>
+            <p class="title" style="font-weight: bold; margin-left:280px;margin-top:30px;font-size:15px;text-transform:uppercase;color: #7f8fa4;">withdrawn</p>
+        </div>  
+        <div style="display:flex;flex-direction:row;margin-top:-15px;"> 
+            <p class="highlight" style="color: rgb(2, 17, 79); margin-top:-3px;   margin-left:20px;">Me</p>
+            <p class="days"  style="font-size:20px; color: rgb(2, 17, 79);margin-top:-3px; margin-left:270px;">1</p>
+        </div>
+    </div>
+    <div class="arrow-button toggle-button" style="float:right; margin-top:-89px; margin-right:20px;" data-target-container="myContainerBody{{$key+1}}"></div> 
+    <div class="container-body1" style="width: 860px; border: 1px solid #7f8fa4; height: 150px; background-color: #fff; margin-bottom:20px; text-align: center; padding: 10px; display:none; margin-right:4px;margin-top:-20px;" id="myContainerBody{{$key+1}}">
+      <div style="display:flex;flex-direction:row;">   
+        <p class="title" style="font-weight: bold;color: #7f8fa4;">Dates Applied:</p>
+        <p class="highlight" style="color:rgb(2, 17, 79);margin-left:30px;">{{\Carbon\Carbon::parse($d1->regularisation_date)->format('j M Y')}}</p>
+      </div>  
+        <div class="horizontal-line2"></div>
+        <div style="margin-top:30px; margin-left:-720px;"> 
+            <p class="title" style="font-weight: bold;color: #7f8fa4;">Withdrawn On:</p>
+            <p class="highlight" style="color: rgb(2, 17, 79);margin-left:-30px;margin-top:-15px;">{{\Carbon\Carbon::parse($d1->withdrawn_date)->format('j M Y')}}</p>
+        </div> 
+        <div style="margin-top:-60px; margin-left:750px;"> 
+            <a href="/regularisation-pending" class="button view-details-button">View Details</a>
+        </div>  
+    </div>
+   
+    @endif
+@endforeach
       @else
-       <div class="hidden-history-box">
+    
          <img src="https://gt-linckia.s3.amazonaws.com/static-ess-v6.3.0-prod-144/review-list-empty.svg"style="margin-top:80px;">
          <p style="color: #a3b2c7;font-weight:400;font-size: 20px;margin-top:20px;">Hey, you have no regularization records to view.Thank you for your time</p>
-       </div>
+      
        @endif
     </div>
     
@@ -721,7 +892,7 @@ function setActiveButton(button) {
 }
 </script> 
 
-    <script>
+<script>
     let currentDate = new Date(); // Initialize currentDate
     
     function generateCalendar(year, month) {
@@ -851,33 +1022,9 @@ saveReasonButton.addEventListener("click", () => {
         });
     });
 </script>
-<script>
-    let clickCount = 0;
-    function updateClickCount() {
-      const clickCountElement = document.getElementById("clickCountElement"); // Change to your actual HTML element
-      clickCount++;
-      clickCountElement.textContent = `Click Count: ${clickCount}`;
-    }
-    const calendarDates2 = document.querySelectorAll(".calendar-date");
-
-    // Add a click event listener to each date element
-     calendarDates.forEach((dateElement) => {
-         dateElement.addEventListener("click", () => {
-         updateClickCount(); // Increment and display the count
-        });
-    });
-</script>    
 
 
-<script>
-    // JavaScript to toggle the dropdown options
-    // document.querySelector('.selected-option').addEventListener('click', function () {
-    //   document.querySelector('.custom-dropdown').classList.toggle('open');
-    // });
-   
-  
-    
-  </script>
+
 
 
 <script>
@@ -899,23 +1046,7 @@ saveReasonButton.addEventListener("click", () => {
       });
     });
   </script>
-  <script>
-    
-     document.getElementById("calendarDates").addEventListener("click", function () {
-        const today1 = new Date();
-        const todayDate1 = today.getDate();   
-    // document.getElementById("hiddenBox").style.display = "block";
-    if (date < todayDate1) 
-    {
-       document.getElementById("motherbox").style.display = "block";
-    }
-    else
-    {
-        document.getElementById("motherbox").style.display = "none";
-    }
-     });
-    
-  </script>
+  
 <script>
 const currentDateElement1 = document.getElementById("currentDate1");
 
@@ -923,13 +1054,17 @@ const currentDayElement1 = document.getElementById("currentDay1");
 
 const motherBox = document.getElementById("motherbox");
 
-const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const days= ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 // Function to update the date and day in the mother-box container
 function updateDateAndDay(date, day) {
-    currentDateElement1.textContent = date;
+    // currentDateElement1.textContent = date;
     
-    currentDayElement1.textContent = day;
+    // currentDayElement1.textContent = day;
+    const livewireEvent = new CustomEvent('livewire:update', {
+            detail: { date, day }
+        });
+        document.dispatchEvent(livewireEvent);
     motherBox.style.display = "flex"; 
     // Show the mother-box container
     
@@ -937,22 +1072,27 @@ function updateDateAndDay(date, day) {
 
 // Add event listeners to the calendar dates
 const calendarDates1 = document.querySelectorAll(".calendar-date");
-console.log(calendarDates1);
+const count=0;
 const today = new Date();
+
 const todayDate = today.getDate();
 
 calendarDates1.forEach(dateElement => {
     const date = parseInt(dateElement.textContent, 10);
-    if (date > todayDate) {
+    if (date < todayDate) {
     dateElement.addEventListener("click", () => {
         // Get the date and day abbreviation from the clicked date
+        
         const clickedDate = dateElement.textContent;
+        
         const selectedDate = new Date();
         selectedDate.setDate(parseInt(clickedDate, 10));
+        
         const clickedDay = days[selectedDate.getDay()];
-
+      
         // Update the date and day in the mother-box container
         updateDateAndDay( clickedDate + clickedDay);
+        
     });
    }
    else {
@@ -972,7 +1112,7 @@ closeButton.addEventListener("click", () => {
 });
 const cancelButton = document.getElementById("cancelButton");
 
-closeButton.addEventListener("click", () => {
+cancelButton.addEventListener("click", () => {
     // Hide the "mother-box" container when the close button is clicked
     motherbox.style.display = "none";
 });
@@ -988,7 +1128,7 @@ closeButton.addEventListener("click", () => {
 });
 </script> 
 <script>
-      document.getElementById("toggleButton1").addEventListener("click", function() {
+  document.getElementById("toggleButton1").addEventListener("click", function() {
   var containerBody1= document.getElementById("myContainerBody1");
   if (containerBody1.style.display === "none" || containerBody1.style.display === "") {
     containerBody1.style.display = "block";
@@ -1013,4 +1153,30 @@ closeButton.addEventListener("click", () => {
     toggleButton1.classList.toggle("rotate-arrow");
   });
 </script>
+<script>
+    $(document).ready(function() {
+        $('#success-message .close').on('click', function() {
+            $('#success-message').fadeOut(500);
+        });
+    });
+</script>
+<script>
+    document.querySelectorAll('.toggle-button').forEach(function(button) {
+        button.addEventListener('click', function() {
+            var targetContainerId = button.getAttribute('data-target-container');
+            var container = document.getElementById(targetContainerId);
+            container.style.display = (container.style.display === 'none' || container.style.display === '') ? 'block' : 'none';
+        });
+    });
+    $(document).ready(function () {
+    $('.toggle-button').on('click', function () {
+        var targetContainerId = $(this).data('target-container');
+        $('#' + targetContainerId).slideToggle(); // Use slideToggle for a smoother transition
+    });
+
+});
+
+
+</script>
+   
 </div>

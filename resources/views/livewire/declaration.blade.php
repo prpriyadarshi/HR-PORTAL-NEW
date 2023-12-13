@@ -103,9 +103,9 @@
     <div class="row" style="width:300px;height:100px;background:#FBF5BF;border:1px solid silver;border-radius:5px;margin-top:20px;margin-left:5px;display:flex">
     <div class="column" style="display:flex">
     <p style="margin-left:-10px">Declaration Status : LOCKED</p>
-    <p style="margin-left:30px">Hide</p>
+   
     </div>
-    <p style="font-size:14px">You have declared on 26 Apr 2023, and you cannot withdraw it</p>
+    <p style="font-size:14px">You have declared on  {{ now()->format('F') }}, {{ now()->format('Y') }}, and you cannot withdraw it</p>
     </div>
     <div class="row" style="width:300px;height:70px;background:white;border:1px solid silver;border-radius:5px;margin-top:-40px;margin-left:5px;display:flex">
    

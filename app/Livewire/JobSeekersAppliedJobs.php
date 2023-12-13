@@ -4,8 +4,10 @@ namespace App\Livewire;
 
 use App\Models\AppliedJob;
 use App\Models\Company;
+use App\Models\JobseekersExamDetails;
 use App\Models\JobseekersInterviewDetail;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Illuminate\Support\Facades\Response;
@@ -43,11 +45,11 @@ class JobSeekersAppliedJobs extends Component
         ]);
 
         try {
-            JobseekersInterviewDetail::create([
+            JobseekersExamDetails::create([
                 'user_id' => $this->selectedJobApplicationId->user->user_id,
                 'job_id' => $this->selectedJobApplicationId->job->job_id,
-                'interview_date' => $this->date,
-                'interview_time' => $this->time,
+                'exam_date' => $this->date,
+                'exam_time' => $this->time,
                 'instructions' => $this->instructions,
                 'company_website' => $this->company_website,
                 'location_link' => $this->location_link,
@@ -62,10 +64,61 @@ class JobSeekersAppliedJobs extends Component
             $this->isOpen = false;
             $this->showSuccessMessage = true;
         } catch (QueryException $e) {
-            $this->isOpen=false;
+            $this->isOpen = false;
             $this->addError('duplicate', 'You have already shortlisted to this CV.');
             $this->showError = true; // Show the error message
         }
+    }
+    public $examPopUp, $examLinkSent = false;
+    public $selectedJobseeker;
+    public $examLink;
+    public $showExaminationMessage = false;
+    public function sendExamLink()
+    {
+        $this->validate([
+            'examLink' => 'required'
+        ]);
+        $examLink = JobseekersExamDetails::where('job_id', $this->selectedJobseeker->job_id)->first();
+
+        if ($examLink) {
+            $examLink->update([
+                'exam_link' => $this->examLink,
+            ]);
+        }
+        $this->examPopUp = false;
+
+        $this->showExaminationMessage = true;
+    }
+    public function dismissExamMessage()
+    {
+        $this->showExaminationMessage = false;
+    }
+    public $examDate;
+    public $examTime;
+
+    public function openExamPopUp($jobApplicationId)
+    {
+        $this->selectedJobseeker = JobseekersExamDetails::where('job_id', $jobApplicationId)->first();
+        $this->examDate = $this->selectedJobseeker->exam_date;
+        $this->examTime = $this->selectedJobseeker->exam_time;
+        $this->examPopUp = true;
+        $this->examLinkSent = true;
+    }
+
+    public $interviewPopup = false;
+    public function openInterview($jobApplicationId)
+    {
+        $this->interviewPopup = true;
+        $this->selectedJobseeker = JobseekersExamDetails::where('job_id', $jobApplicationId)->first();
+    }
+
+    public function closeInterview()
+    {
+        $this->interviewPopup = false;
+    }
+    public function closeExamPopUp()
+    {
+        $this->examPopUp = false;
     }
     public function logout()
     {
@@ -110,6 +163,7 @@ class JobSeekersAppliedJobs extends Component
         return redirect('/JobSeekersAppliedJobs');
     }
 
+    public $interviewExamData;
     public function render()
     {
         $hrEmail = auth()->guard('com')->user()->contact_email;
@@ -118,7 +172,6 @@ class JobSeekersAppliedJobs extends Component
             ->where('applied_to', '=', $this->hrDetails->contact_email)
             ->orderBy('created_at', 'desc')
             ->get();
-
         return view('livewire.job-seekers-applied-jobs');
     }
 }

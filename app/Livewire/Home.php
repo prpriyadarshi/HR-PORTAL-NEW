@@ -41,18 +41,18 @@ class Home extends Component
     public $showLeaveApplies;
     public $greetingImage;
     public $greetingText;
-
+ 
     public function mount()
     {
         $currentHour = date('G');
-
+ 
         if ($currentHour >= 4 && $currentHour < 12) {
             $this->greetingImage = 'sunrise.png';
             $this->greetingText = 'Good Morning';
-        } elseif ($currentHour >= 12 && $currentHour < 16) {
+        } elseif ($currentHour >= 12 && $currentHour < 17) {
             $this->greetingImage = 'afternoon.png';
             $this->greetingText = 'Good Afternoon';
-        } elseif ($currentHour >= 16 && $currentHour < 20) {
+        } elseif ($currentHour >= 17 && $currentHour < 20) {
             $this->greetingImage = 'sunset.png';
             $this->greetingText = 'Good Evening';
         } else {
@@ -60,7 +60,6 @@ class Home extends Component
             $this->greetingText = 'Good Night';
         }
     }
-
     public function toggleSignState()
     {
         $employeeId = auth()->guard('emp')->user()->emp_id;
@@ -69,7 +68,7 @@ class Home extends Component
         SwipeRecord::create([
             'emp_id' => $this->employeeDetails->emp_id,
             'swipe_time' => now()->format('H:i:s'),
-            'in_or_out' => $this->signIn ? "Sign Out" : "Sign In",
+            'in_or_out' => $this->signIn ? "OUT" : "IN",
         ]);
         $flashMessage = $this->signIn ? "You have successfully signed out." : "You have successfully signed in.";
         session()->flash('success', $flashMessage);

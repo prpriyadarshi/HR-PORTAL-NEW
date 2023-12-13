@@ -153,21 +153,16 @@
       }
  
       .menu-item:hover {
-        background: blue;
+        background: rgb(2, 17, 79);
         color: white;
+        text-decoration: none;
       }
     </style>
   </head>
  
   <body>
     <div class="container">
-      <!-- Left Menu and Content (Conditional) -->
-     
-        <!-- Add your menu items here -->
-      </div>
- 
-      <!-- Content Area -->
-      <div class="content" style="margin-top: -20px">
+    <div class="content" style="margin-top: -20px">
         <div class="horizontal-menu" style="display: flex; margin-top: 30px; background: white; padding: 10px;height:60px">
  
           <div class="menu-item">
@@ -180,35 +175,38 @@
             All Feeds
           </a>
  
-          <a class="menu-item" href="/everyone">
+          <a class="menu-item" href="/Feeds">
             Every One
           </a>
  
-          <a class="menu-item" href="/events">
+          <a class="menu-item" href="/Feeds">
             Events
           </a>
  
-          <a class="menu-item" href="/company" style="font-size:12px">
+          <a class="menu-item" href="/Feeds" style="font-size:12px">
             Company News
           </a>
  
-          <a class="menu-item" href="/appreciation">
+          <a class="menu-item" href="/Feeds">
             Appreciation
           </a>
  
-          <a class="menu-item" href="/buy-sell-rent">
+          <a class="menu-item" href="/Feeds">
             Buy/Sell/Rent
           </a>
  
         </div>
       </div>
- 
- 
-      <div class="top-menu" style="background-color: #f0f0f0;margin-top:20px">
-        <div class="B" style="width: 750px; height: 70px; border-top: 1px solid #E0DDDD; border-bottom: 1px solid #E0DDDD; background-color: #FFFFFF;font-size: 14px; font-family: Open Sans, sans-serif;padding:10px;margin-left:40px">
+      <div class="contanier"  style="width: 750px; height: 70px; border-top: 1px solid #E0DDDD; border-bottom: 1px solid #E0DDDD; background-color: #FFFFFF;font-size: 14px; font-family: Open Sans, sans-serif;padding:10px;margin-left:16px">
           <b> All Feeds</b>
           <p>Groups</p>
         </div>
+      </div>
+ 
+   
+ 
+      <div class="top-menu" style="background-color: #f0f0f0;margin-top:20px">
+       
  
  
    
@@ -222,8 +220,11 @@
               <!-- Upcoming Birthdays List -->
               <div class="F" style="background-color: white; width: 500px; height: 350px; border-radius: 5px; border: 1px solid #CFCACA; margin-left: 30px; color: #3b4452; margin-top: 20px">
                 <div style="display: flex;">
-                  <div class="column">
+                  <div class="column" >
+                    <div class="div" style="margin-left:20px;margin-top:10px">
                     @livewire('company-logo')
+                    </div>
+                    
                     <div style="color: #677A8E; margin-left: 60px; font-size: 14px; font-family: Open Sans, sans-serif; font-weight: 100px;margin-top:20px">Group Events</div>
                   </div>
                   <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 170px; font-family: Open Sans, sans-serif; margin-top: 40px; font-weight: 100px; color: #9E9696;margin-top:20px">
@@ -279,7 +280,9 @@
               <div class="F" style="background-color: white; width: 500px; height: 350px; border-radius: 5px; border: 1px solid #CFCACA; margin-left: 30px; color: #3b4452; margin-top: 20px">
                 <div style="display: flex;">
                   <div class="column">
+                  <div class="div" style="margin-left:20px;margin-top:10px">
                     @livewire('company-logo')
+                    </div>
                     <div style="color: #677A8E; margin-left: 60px; font-size: 14px; font-family: Open Sans, sans-serif; font-weight: 100px;margin-top:20px">Group Events</div>
                   </div>
                   <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 170px; font-family: Open Sans, sans-serif; margin-top: 40px; font-weight: 100px; color: #9E9696;font-weight: 100px;margin-top:20px">

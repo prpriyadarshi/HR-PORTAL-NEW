@@ -1,6 +1,11 @@
 <div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+JqAcKMpZ0Kw0fF0Zr5l5f8r5E5Xn2ThIv2+1Jq2i/C5EdDX" crossorigin="anonymous">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.0/css/pikaday.min.css" integrity="sha512-1a1WjkWvD/RB5mK2RlqXeBz1p9j2NB5s75xP+mu4+ILCZaP5l1MLZDP1jz6wqJzZ3jLmYGLVbQ7ROi7w3QpbHw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -9,9 +14,12 @@
     
     
 <style>
+    .date-range-container12
+    {
+      margin-right:62px;
+    }
      .my-button {
-    
-    padding: 10px 20px;
+      padding: 5px 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -19,8 +27,8 @@
     margin-right:30px;
     margin-top:20px;
     color: #fff;
-    border-color: #24a7f8;
-    background: #24a7f8;
+    border-color: rgb(2, 17, 79);
+    background: rgb(2, 17, 79);
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
@@ -29,7 +37,7 @@
   .my-button:hover {
     /* Styles for hover state */
     text-decoration: none;
-    background-color:rgb(2, 17, 79);; 
+    background-color:#24a7f8;
     color: #fff !important; /* Remove underline on hover */
 }
 
@@ -163,13 +171,16 @@ a{
     background-color: rgba(255,255,255,var(--tw-bg-opacity));
 }
 .calendar {
-    max-width: 600px;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
     padding: 20px;
-    margin-left:10px;
-    margin-top:30px;
-
-    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width:700px;
+    margin-left:20px;
+    margin-top:10px;
   }
   .large-box {
     max-width: 900px;
@@ -184,11 +195,12 @@ a{
 
   /* Month header */
   .calendar-header {
-    text-align: center;
-    background-color: #888;
-    color: white;
-    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
   }
+  
   
 #calendar-icon {
     border-top-left-radius: 5px; /* Adjust the value as needed */
@@ -199,18 +211,18 @@ a{
     border-top-right-radius: 5px; /* Adjust the value as needed */
     border-bottom-right-radius: 5px; /* Adjust the value as needed */
 }
-  /* Days of the week */
-  .calendar-weekdays {
-    display: flex;
-    justify-content: space-between;
-    background-color: #ddd;
-    padding: 5px;
-  }
 
-  .calendar-weekdays div {
-    text-align: center;
-    width: calc(100% / 7);
+.calendar-weekdays {
+    display: flex;
+    justify-content: space-around;
+    background-color:rgb(2, 17, 79);
+    color: white;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
   }
+  
   .centered-modal {
     display: flex;
     align-items: center;
@@ -220,8 +232,28 @@ a{
   .calendar-days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    justify-items: center; 
   }
+  .calendar-date {
+      width: 30px;
+      height: 30px;
+      font-weight:normal;
+      font-size:12px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
 
+
+
+ .calendar-date:hover {
+  background-color:rgb(2, 17, 79);/* Change this to your preferred shade of blue */
+  color: white; /* Add this to ensure text is visible on the blue background */
+}
   .calendar-day {
     text-align: center;
     padding: 10px;
@@ -229,6 +261,26 @@ a{
     background-color: white;
   }
 
+  #prevMonth,
+  #nextMonth {
+    background-color:rgb(2, 17, 79);
+    color: white;
+    border: none;
+    padding: 2px 5px; 
+    border-radius: 5px;
+    font-size:12px;
+    cursor: pointer;
+
+  }
+
+  #currentMonth {
+    font-size: 16px;
+    margin: 0;
+  }
+  .today {
+      background-color:rgb(2, 17, 79);
+      color: white;
+    }
   /* Today's date */
   .calendar-day.today {
     background-color: #0099cc;
@@ -236,8 +288,8 @@ a{
   }
   .container1 {
     width: 600px; /* Adjust the width as needed */
-    height: 180px;
-    margin-right:-120px;
+    height: 200px;
+    margin-right:300px;
     background-color: #FFFFFF;
     margin-top:30px;
     /* margin-top:420px; */
@@ -250,7 +302,7 @@ a{
   .container2 {
     width: 600px; /* Adjust the width as needed */
     height: 140px;
-    margin-right:-120px;
+    margin-right:300px;
     background-color:#FFFFFF;
     margin-top:40px;
     border-radius:10px;
@@ -265,10 +317,10 @@ a{
   .container6 {
     width: 600px; /* Adjust the width as needed */
     height: 45px;
-    margin-right:-120px;
+    margin-right:300px;
     background-color:#FFFFFF;
     margin-top:30px;
-    border-radius:2px;
+   border-radius:10px;
     float:right;/* Adjust the height as needed */
     /* Background color of the container */
     border: 1px solid #ccc; /* Border style for the container */
@@ -278,8 +330,9 @@ a{
     width: 600px; /* Adjust the width as needed */
     height: 105px;
     margin-right:0px;
+    margin-bottom:30px;
     background-color:#FFFFFF;
-  
+    border-radius: 10px;
     display:none;
     /* border-radius:10px; */
     float:right;/* Adjust the height as needed */
@@ -326,7 +379,7 @@ a{
   .container3 {
     width: 600px; /* Adjust the width as needed */
     height: 180px;
-    margin-right:-120px;
+    margin-right:300px;
     background-color:#FFFFFF;
     margin-top:30px;
     border-radius:10px;
@@ -377,7 +430,7 @@ a{
   height:200px;
 }
 .large-box th {
-    background-color: #24a7f8;
+  background-color:rgb(2, 17, 79);
     color: white;
     width: 600px; /* Adjust the width as needed */
     padding-right: 50px;
@@ -385,16 +438,20 @@ a{
 
 /* CSS for the second header row */
 .large-box .second-header-row {
-    background-color: #3498db;
+    background-color:rgb(2, 17, 79);
+    color: white;
+}
+.large-box .first-header-row {
+    background-color:rgb(2, 17, 79);
     color: white;
 }
   .vertical-line {
   border-left: 1px solid black; /* Adjust the width and color as needed */
-  height: 70px; /* Adjust the height as needed */
-  margin-top: -70px;
-  
+ /* Adjust the height as needed */
+  margin-top: -68px;
+  height:70px;
   padding: 0;
-  margin-left:60px;
+  margin-left:70px;
 }
 
 
@@ -456,7 +513,7 @@ table {
   /* CSS for the table header (thead) */
   thead {
   
-    background-color:#B6D0E2;
+    background-color: rgb(2, 17, 79);
     color: white;
   }
 
@@ -481,6 +538,7 @@ table {
     padding: 5.5px 6px; /* Adjust padding as needed */
 }
 
+
 .toggle-box i {
     color: grey; /* Set the icon color */
     background-color: white; /* Set the background color for icons */
@@ -499,13 +557,12 @@ table {
 
 
 .toggle-box i.fas.fa-calendar:hover {
-  color:  #24a7f8;/* Icon color on hover */
+  color:  rgb(2, 17, 79);/* Icon color on hover */
   /* Background color for icon on hover */
-  border-color:  #24a7f8; /* Border color on hover */
+  border-color:  rgb(2, 17, 79); /* Border color on hover */
 }
 .toggle-box i.fas.fa-bars {
-  color: g
-  rey; /* Initial icon color */
+  color: grey; /* Initial icon color */
   /* Initial background color for icon */
   padding: 7px 7px; /* Initial padding for icon */
   margin-right: 0px; /* Initial spacing between icons */
@@ -513,17 +570,17 @@ table {
 }
 
 .toggle-box i.fas.fa-bars:hover {
-  color:  #24a7f8;; /* Icon color on hover */
+  color:  rgb(2, 17, 79); /* Icon color on hover */
   /* Background color for icon on hover */
-  border-color: #24a7f8;; /* Border color on hover */
+  border-color: rgb(2, 17, 79);/* Border color on hover */
 }
 .toggle-box i.fas.fa-calendar.active {
   color: white; /* Icon color when active (clicked) */
-  background-color:#24a7f8 ; /* Background color when active (clicked) */
+  background-color:rgb(2, 17, 79); /* Background color when active (clicked) */
 }
 .toggle-box i.fas.fa-bars.active {
   color: white; /* Icon color when active (clicked) */
-  background-color: #24a7f8; /* Background color when active (clicked) */
+  background-color: rgb(2, 17, 79);/* Background color when active (clicked) */
 }
 
 
@@ -651,7 +708,7 @@ table {
     background-color: #fff;
     padding: 20px;
     border: 1px solid #888;
-    width: 60%;
+    width: 80%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 .fa-info-circle:hover {
@@ -713,6 +770,7 @@ table {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
 </style>    
 <div style="width:450">
    <a href="/regularisation"class="my-button" id="myButton">My Regularisations</a>
@@ -732,13 +790,13 @@ table {
   </div>  
   <div style="display:flex;flex-direction:row;margin-top:140px;margin-left:20px;">
     <div _ngcontent-hbw-c670="" class="insight-card bg-white ng-star-inserted">
-      <h6 _ngcontent-hbw-c670="" class="text-secondary text-regular text-center"> Penalty Days </h6>
+      <h6 _ngcontent-hbw-c670="" class="text-secondary text-regular text-center"style="font-size:12px;"> Penalty Days </h6>
       <section _ngcontent-hbw-c670="">
         <p _ngcontent-hbw-c670="" style="margin-left:80px;"class="text-2"> 0 </p>
       </section>
     </div>
     <div _ngcontent-hbw-c670="" class="insight-card bg-white ng-star-inserted"style="width:250px;">
-      <h6 _ngcontent-hbw-c670="" class="text-secondary text-regular text-center">Avg.&nbsp;Actual&nbsp;Work&nbsp;Hrs</h6>
+      <h6 _ngcontent-hbw-c670="" class="text-secondary text-regular text-center"style="font-size:12px;">Avg.&nbsp;Actual&nbsp;Work&nbsp;Hrs</h6>
       <section _ngcontent-hbw-c670="">
      
         <p _ngcontent-hbw-c670="" style="margin-left:100px;"class="text-2">02:00</p>
@@ -749,7 +807,7 @@ table {
      </section>
     </div>
     <div _ngcontent-hbw-c670="" class="insight-card bg-white ng-star-inserted">
-      <h6 _ngcontent-hbw-c670="" class="text-secondary text-regular text-center">Avg. Work Hrs</h6>
+      <h6 _ngcontent-hbw-c670="" class="text-secondary text-regular text-center"style="font-size:12px;">Avg. Work Hrs</h6>
       <section _ngcontent-hbw-c670="">
         <p _ngcontent-hbw-c670="" style="margin-left:60px;"class="text-2">02:00</p>
         <div style="margin-left:40px;margin-top:-10px;">
@@ -760,24 +818,36 @@ table {
   </div>
      
 
-     <a href="#"  data-toggle="modal" data-target="#exampleModal" style="text-transform:uppercase;margin-top:40px;">
+     <a href="#"  data-toggle="modal" data-target="#exampleModal" style="text-transform:uppercase;margin-top:40px;color:rgb(2, 17, 79);">
                        +3 Insights
                    </a> 
                    <div wire:ignore.self class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                   
+                       
+                           
+                     
                         <div class="modal-dialog custom-modal-lg centered-modal custom-modal"role="document">
                             <div class="modal-content">
+                                  
                                 <div class="modal-header" style="background-color: #a3b2c7;">
+                                  
                                     <h5 class="modal-title" id="exampleModalLabel">Insights&nbsp;for&nbsp;Attendance&nbsp;Period&nbsp;01 Oct - 01 Oct</h5>
+                                    
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                          <span aria-hidden="true close-btn">×</span>
                                     </button>
                                 </div>
-                               <div class="modal-body">
-                                   <div class="date-range-container">
-                                      
-                                       <input class="date-range-input" type="text" placeholder="Select date range">
-                                       <span><i class="fas fa-calendar"></i></span>
-                                    </div>
+                                <div class="modal-body">
+                                        <div class="form-row" style="margin-top: -100px; margin-left: 200px; display: flex; justify-content: flex-end;">
+                                                       <div class="form-group col-md-6">
+                                                             <label for="fromDate" style="color: #778899; font-size: 14px; font-weight: 500;">From date</label>
+                                                             <input type="date" class="form-control" id="fromDate" name="fromDate" style="color: #778899;">
+                                                       </div>
+                                                      <div class="form-group col-md-6">
+                                                          <label for="toDate" style="color: #778899; font-size: 14px; font-weight: 500;">To date</label>
+                                                          <input type="date" class="form-control" id="toDate" name="toDate" style="color: #778899;">
+                                                      </div>
+                                        </div>
                                     <p style="margin-left:-90px;font-size:12px;">Total Working Days:<span style="font-weight:bold;">0</span></p>
                                     
                                     <div class="chart-range-container">
@@ -814,7 +884,7 @@ table {
                         </div>
                     </div>  
            
-     <a href="#" id="toggleSidebar" class="gt-overlay-toggle" style="margin-top:69px;color:#24a7f8;margin-left:50px;">Legend</a>
+     <a href="#" id="toggleSidebar" class="gt-overlay-toggle" style="margin-top:69px;color:rgb(2, 17, 79);margin-left:50px;">Legend</a>
      <div class="sidebar">
         <!-- Sidebar content goes here -->
         <div class="sidebar-header"style="display: flex; justify-content: space-between; align-items: center;">
@@ -912,58 +982,60 @@ table {
         <i class="fas fa-calendar"id="calendar-icon" onclick="showCalendar()" ></i>
         <i class="fas fa-bars" id="bars-icon" onclick="showMessage()"></i>
      </div>
-     
-     <div class="calendar"style="display:none;">
+<div class="calendar">
   <div class="calendar-header">
-    <h1>September 2023</h1>
+    <button id="prevMonth">Previous</button>
+    <h1 id="currentMonth">September 2023</h1>
+    <button id="nextMonth">Next</button>
   </div>
   <div class="calendar-weekdays">
-    <div>Sun</div>
-    <div>Mon</div>
-    <div>Tue</div>
-    <div>Wed</div>
-    <div>Thu</div>
-    <div>Fri</div>
-    <div>Sat</div>
+    <div style="font-weight:normal;font-size:12px;">Sun</div>
+    <div style="font-weight:normal;font-size:12px;">Mon</div>
+    <div style="font-weight:normal;font-size:12px;">Tue</div>
+    <div style="font-weight:normal;font-size:12px;">Wed</div>
+    <div style="font-weight:normal;font-size:12px;">Thu</div>
+    <div style="font-weight:normal;font-size:12px;">Fri</div>
+    <div style="font-weight:normal;font-size:12px;margin-left:-2px;">Sat</div>
   </div>
-  <div class="calendar-days" id="calendar-days">
+  <div  class="calendar-days"  id="calendar-days">
     <!-- Calendar days will be generated here -->
+    <!-- For example, you can generate calendar days dynamically using JavaScript -->
   </div>
-
+</div>
 <div class="container1">
   <!-- Content goes here -->
   <div>
-    <p style="margin-left:20px;font-weight:bold;">{{ $currentDate }}</p>
-    <p style="margin-left:15px;margin-top:-10px;font-weight:bold;">{{$currentWeekday}}</p>
+    <p style="margin-left:25px;font-weight:bold;font-size:20px;">{{ $currentDate }}</p>
+    <p class="text-muted"style="margin-left:25px;margin-top:-15px;font-weight:600;font-size:14px;">{{$currentWeekday}}</p>
 </div> 
   <div class="vertical-line">
     <div>
-     <p class="text-overflow" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-weight:bold;">10:00 Am to 07:00 pm</p> 
-     <p class="text-muted"style="margin-top:-10px;">Shift:10:00 to 19:00</p> 
+     <p class="text-overflow" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-weight: 600;margin-left:40px;">10:00 Am to 07:00 pm</p> 
+     <p class="text-muted"style="margin-top:-10px;margin-left:40px;font-size:14px;">Shift:10:00 to 19:00</p> 
     </div>
-    <div style="margin-left:200px;margin-top:-68px;"> 
-     <p style="font-weight:bold;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">10:00 Am to 07:00 pm</p> 
-     <p class="text-muted"style="margin-top:-10px;">Attendance Scheme</p>
+    <div style="margin-left:200px;margin-top:-65px;"> 
+     <p style="overflow: hidden;font-weight: 600;text-overflow: ellipsis;margin-top:-10px;white-space: nowrap;margin-left:60px;">10:00 Am to 07:00 pm</p> 
+     <p class="text-muted"style="margin-top:-10px;margin-left:60px;font-size:14px;">Attendance Scheme</p>
     </div> 
   </div>
     
    
   <div class="horizontal-line"></div>
-  <div class="text-muted">Processed On</div>
+  <div class="text-muted"style="margin-left:20px;font-weight: 400;font-size: 12px;">Processed On</div>
   <div class="horizontal-line1"></div>
   <div style=" overflow-x: auto;
     max-width: 100%;">
   <table>
   <thead>
     <tr>
-      <th>First&nbsp;In</th>
-      <th>Last&nbsp;Out</th>
-      <th>Total&nbsp;Work&nbsp;Hrs</th>
-      <th>Break&nbsp;Hrs</th>
-      <th>Actual&nbsp;Work&nbsp;Hrs</th>
-      <th>Work&nbsp;Hours&nbsp;in&nbsp;Shift&nbsp;Time</th>
-      <th>Shortfall&nbsp;Hrs</th>
-      <th>Excess&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;">First&nbsp;In</th>
+      <th style="font-weight:normal;font-size:12px;">Last&nbsp;Out</th>
+      <th style="font-weight:normal;font-size:12px;">Total&nbsp;Work&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;">Break&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;">Actual&nbsp;Work&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;">Work&nbsp;Hours&nbsp;in&nbsp;Shift&nbsp;Time</th>
+      <th style="font-weight:normal;font-size:12px;">Shortfall&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;">Excess&nbsp;Hrs</th>
     </tr>
   </thead>
   <tbody>
@@ -985,15 +1057,15 @@ table {
 </div>
 </div>
 <div class="container2">
-  <h3 style="margin-left:20px;margin-top:20px;color: #7f8fa4;font-size:20px;">Status Details</h3> 
+  <h3 style="margin-left:20px;margin-top:10px;color: #7f8fa4;font-size:18px;">Status Details</h3> 
   
   <div style=" overflow-x: auto;
     max-width: 100%;">
   <table style="margin-top:-10px;">
   <thead>
     <tr>
-      <th>Status</th>
-      <th>Remarks</th>
+      <th  style="font-weight:normal;font-size:12px;padding-top:16px;">Status</th>
+      <th  style="font-weight:normal;font-size:12px;padding-top:16px;">Remarks</th>
      
     </tr>
   </thead>
@@ -1010,52 +1082,52 @@ table {
 </div>
 </div> 
 <div class="container3">
-  <h3 style="margin-left:20px;margin-bottom:10px;color: #7f8fa4;font-size:20px;">Session Details</h3> 
+  <h3 style="margin-left:20px;margin-top:20px;color: #7f8fa4;font-size:18px;">Session Details</h3> 
   
   <div style=" overflow-x: auto;
     max-width: 100%;">
-  <table style="margin-top:20px">
+  <table style="margin-top:-10px">
   <thead>
     <tr>
-      <th>Session</th>
-      <th>Session&nbsp;Timing</th>
-      <th>First&nbsp;In</th>
-      <th>Last&nbsp;Out</th>
-      <th>Late&nbsp;In&nbsp;Hrs</th>
-      <th>Early&nbsp;Out&nbsp;Hrs</th>
-      <th>Total&nbsp;Work&nbsp;Hrs</th>
-      <th>Actual&nbsp;Work&nbsp;Hrs</th>
-      <th>Excess&nbsp;Hrs</th>
-      <th>Shortfall&nbsp;Hrs</th>
-      <th>Break&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Session</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Session&nbsp;Timing</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">First&nbsp;In</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Last&nbsp;Out</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Late&nbsp;In&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Early&nbsp;Out&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Total&nbsp;Work&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Actual&nbsp;Work&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Excess&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Shortfall&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Break&nbsp;Hrs</th>
     </tr>
   </thead>
   <tbody>
     <tr style="border-bottom: 1px solid #ddd;">
-      <td>Session&nbsp;1</td>
-      <td>10:00 - 14:00</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>+00:00</td>
-      <td>00:00</td>
-      <td>00:00</td>
-      <td>00:00</td>
-      <td>00:00</td>
-      <td>00:00</td>
+      <td style="font-weight:normal;font-size:12px;">Session&nbsp;1</td>
+      <td style="font-weight:normal;font-size:12px;">10:00 - 14:00</td>
+      <td style="font-weight:normal;font-size:12px;">-</td>
+      <td style="font-weight:normal;font-size:12px;">-</td>
+      <td style="font-weight:normal;font-size:12px;">-</td>
+      <td style="font-weight:normal;font-size:12px;">+00:00</td>
+      <td style="font-weight:normal;font-size:12px;">00:00</td>
+      <td style="font-weight:normal;font-size:12px;">00:00</td>
+      <td style="font-weight:normal;font-size:12px;">00:00</td>
+      <td style="font-weight:normal;font-size:12px;">00:00</td>
+      <td style="font-weight:normal;font-size:12px;">00:00</td>
     </tr>
     <tr style="border-bottom: 1px solid #ddd;">
-      <td>Session&nbsp;2</td>
-      <td>10:00 - 14:00</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>+00:00</td>
-      <td>00:00</td>
-      <td>00:00</td>
-      <td>00:00</td>
-      <td>00:00</td>
-      <td>00:00</td>
+      <td style="font-weight:normal;font-size:12px;">Session&nbsp;2</td>
+      <td style="font-weight:normal;font-size:12px;">10:00 - 14:00</td>
+      <td style="font-weight:normal;font-size:12px;">-</td>
+      <td style="font-weight:normal;font-size:12px;">-</td>
+      <td style="font-weight:normal;font-size:12px;">-</td>
+      <td style="font-weight:normal;font-size:12px;">+00:00</td>
+      <td style="font-weight:normal;font-size:12px;">00:00</td>
+      <td style="font-weight:normal;font-size:12px;">00:00</td>
+      <td style="font-weight:normal;font-size:12px;">00:00</td>
+      <td style="font-weight:normal;font-size:12px;">00:00</td>
+      <td style="font-weight:normal;font-size:12px;">00:00</td>
     </tr>
     <!-- Add more rows with dashes as needed -->
   </tbody>
@@ -1065,8 +1137,8 @@ table {
 
 </div>
 <div class="container6">
-  <h3 style="margin-left:20px;color: #7f8fa4;">Swipes</h3>
-  <div class="arrow-button"style="float:right;margin-top:-40px;margin-right:20px;"id="toggleButton"></div> 
+  <h3 style="margin-left:20px;color: #7f8fa4;font-size:18px;">Swipes</h3>
+  <div class="arrow-button"style="float:right;margin-top:-30px;margin-right:20px;"id="toggleButton"></div> 
   
 <div class="container-body" style="margin-top:2px;height:auto;"id="myContainerBody">
     <!-- Content of the container body -->
@@ -1075,9 +1147,9 @@ table {
       <thead>
          @if ($Swiperecords->count() > 0)
         <tr>
-             <th>In/Out</th>
-             <th>Swipe&nbsp;Time</th>
-             <th>Location</th>
+             <th style="font-weight:normal;font-size:12px;">In/Out</th>
+             <th style="font-weight:normal;font-size:12px;">Swipe&nbsp;Time</th>
+             <th style="font-weight:normal;font-size:12px;">Location</th>
              <th></th> 
         </tr>
      </thead>
@@ -1085,16 +1157,16 @@ table {
                
                @foreach ($Swiperecords as $index =>$swiperecord)
                <tr>
-                    <td>{{ $swiperecord->in_or_out }}</td>
+                    <td style="font-weight:normal;font-size:12px;">{{ $swiperecord->in_or_out }}</td>
                     <td>
                         <div style="display:flex;flex-direction:column;">
-                            <p style="margin-bottom: 0;">{{ date('h:i:s A', strtotime($swiperecord->swipe_time)) }}</p>
+                            <p style="margin-bottom: 0;font-weight:normal;font-size:12px;">{{ date('h:i:s A', strtotime($swiperecord->swipe_time)) }}</p>
                             <p style="margin-bottom: 0;font-size: 10px;color: #a3b2c7;"> {{ date('d M Y', strtotime($currentDate1)) }}</p>
                         </div>     
                     </td>
                     <td>-</td>
                                              
-                    <td><button class="info-button"style="background-color: rgb(2, 17, 79); border: 2px solid rgb(2, 17, 79);height:20px; color: white; border-radius: 5px;font-size:12px;margin-top:-10px"data-toggle="modal"data-target="#viewStudentModal"wire:click="viewDetails({{$swiperecord->id}})">Info{{$swiperecord->id}}</button></td>
+                    <td><button class="info-button"style="background-color: rgb(2, 17, 79); border: 2px solid rgb(2, 17, 79);height:20px; color: white; border-radius: 5px;font-size:12px;margin-top:-10px"data-toggle="modal"data-target="#viewStudentModal"wire:click="viewDetails('{{$swiperecord->id}}')">Info</button></td>
                                             
               </tr>
               @if (($index + 1) % 2 == 0)
@@ -1117,33 +1189,32 @@ table {
 </table>
 
 </div>
-    <!-- <img src="https://gt-linckia.s3.amazonaws.com/static-ess-v6.3.0-prod-144/attendace_swipe_empty.svg"style="margin-left:200px;margin-top:30px;">
-    <div class="text-muted"style="margin-left:175px;margin-top:-10px;">No record Found</div> -->
-    
+   
   </div>
  
-  <div wire:ignore.self class="modal fade" id="viewStudentModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content"style="width:100%"> 
+@if($show=="true")
+<div wire:ignore.self class="modal fade" id="viewStudentModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Swipe Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="closeViewStudentModal">
-                        <span aria-hidden="true">&times;</span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span wire:click="close" aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <table class="table table-bordered">
+                <div class="modal-body pt-4 pb-4">
+                <table class="table table-bordered">
                         <tbody>
                           @if($swiperecord)
-                           @if ($data->isNotEmpty())
-                            <tr>
-                                <th>Employee&nbsp;Name: </th>
-                                <td>{{ $data[0]->first_name }} {{ $data[0]->last_name }}</td>
-                            </tr>
-                           @endif
+                               @if ($data->isNotEmpty())
+                               <tr>
+                                   <th>Employee&nbsp;Name: </th>
+                                   <td>{{ $data[0]->first_name }} {{ $data[0]->last_name }}</td>
+                               </tr>
+                               @endif
                             <tr>
                                 <th>Employee&nbsp;Id</th>
-                                <td >{{ $view_student_emp_id }}</td>
+                                <td >{{ $swiperecord->emp_id }}</td>
                             </tr>
 
                             <tr>
@@ -1170,14 +1241,17 @@ table {
                             </tr>
                             @endif
                     </table>
+               
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-sm btn-danger" wire:click="cancel()" data-dismiss="modal" aria-label="Close">Cancel</button>
-                   
+                    <button class="btn btn-sm btn-danger" wire:click="close" >Cancel</button>
                 </div>
             </div>
         </div>
-  </div>
+
+</div>
+
+@endif
   
 </div>
 
@@ -1187,8 +1261,8 @@ table {
   <div class="table-container"style=" width: 100%;
     overflow-x: auto;">
 <table>
-            <tr class="first-header-row"style="background-color: #24a7f8;">
-                <th class="date">Genaral&nbsp;Details</th>
+            <tr class="first-header-row"style="background-color:rgb(2, 17, 79);">
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Genaral&nbsp;Details</th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -1205,20 +1279,20 @@ table {
                 
             </tr>
             <tr class="second-header-row">
-                <th class="date">Date</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Date</th>
               
-                <th class="date">Shift</th>
-                <th class="date">Attendance&nbsp;Scheme</th>
-                <th class="date">First&nbsp;In</th>
-                <th class="date">Last&nbsp;Out</th>
-                <th class="date">Work&nbsp;Hrs</th>
-                <th class="date">Actual&nbsp;Hrs</th>
-                <th class="date">Status</th>
-                <th class="date">Swipe&nbsp;Details</th>
-                <th class="date">Exception</th>
-                <th class="date">Shortfall/Excess&nbsp;Hrs.</th>
-                <th class="date">Shift&nbsp;Timings</th>
-                <th class="date">Shift&nbsp;Timings</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Shift</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Attendance&nbsp;Scheme</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">First&nbsp;In</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Last&nbsp;Out</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Work&nbsp;Hrs</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Actual&nbsp;Hrs</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Status</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Swipe&nbsp;Details</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Exception</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Shortfall/Excess&nbsp;Hrs.</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Shift&nbsp;Timings</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Shift&nbsp;Timings</th>
               
             </tr>
             @foreach($Swiperecords1 as $index=>$swiperecords1)
@@ -1226,39 +1300,50 @@ table {
             <tr>
                 
 
-                 <td class="date">{{$swiperecords1->created_at->format('d M Y')}}</td>
-                 <td>10:(GS)</td>
-                 <td>10:00 am to 07:00pm</td>
+                 <td class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">{{$swiperecords1->created_at->format('d M Y')}} </td>
+                 <td style="font-weight:normal;font-size:12px;padding-top:16px;">10:(GS)</td>
+                 <td style="font-weight:normal;font-size:12px;padding-top:16px;">10:00 am to 07:00pm</td>
                   @if ($swiperecords1->in_or_out === 'Sign In'||$swiperecords1->in_or_out === 'IN')
-                     <td>{{\Carbon\Carbon::parse($swiperecords1->swipe_time)->format('H:i')}}</td>
+                     <td style="font-weight:normal;font-size:12px;padding-top:16px;">{{\Carbon\Carbon::parse($swiperecords1->swipe_time)->format('H:i')}}</td>
 
                   @endif
                   @if ($index < count($Swiperecords1) - 1)
                      <?php $nextRecord = $Swiperecords1[$index + 1]; ?>
                       @if ($nextRecord->in_or_out === 'Sign Out' || $nextRecord->in_or_out === 'OUT')
-                          <td>{{ \Carbon\Carbon::parse($nextRecord->swipe_time)->format('H:i')}}</td>
+                          <td style="font-weight:normal;font-size:12px;padding-top:16px;">{{ \Carbon\Carbon::parse($nextRecord->swipe_time)->format('H:i')}}</td>
                           
                           
                           
                       @else
-                          <td>00:00</td>
+                          <td style="font-weight:normal;font-size:12px;padding-top:16px;">00:00</td>
                       @endif
                   @else
-                    <td>00:00</td>
+                    <td style="font-weight:normal;font-size:12px;padding-top:16px;">00:00</td>
 
 
                   @endif  
                  
               
-                  <td>00:00</td>
-                  <td>00:00</td>
-                  
-                  <td>-</td>
-                  <td>Swipe&nbsp;Details</td>
-                  <td>No&nbsp;attention&nbsp;required</td>
-                  <td>-</td>
-                  <td>10:00-14:00</td>
-                  <td>14:01-19:00</td>
+                  <td style="font-weight:normal;font-size:12px;padding-top:16px;">00:00</td>
+                  <td style="font-weight:normal;font-size:12px;padding-top:16px;">00:00</td>
+                  @if($swiperecords1->created_at->format('l') == 'Saturday' || $swiperecords1->created_at->format('l') == 'Sunday')
+    
+
+                        <td style=" color: #a3b2c7;;margin-left:10px;margin-top:20px;font-size:12px;">O</td>
+    
+
+                  @elseif($swiperecords1->in_or_out=="IN")
+     
+
+                       <td  style=" color:#a3b2c7;;margin-left:10px;margin-top:20px;font-size:12px;">P</td>
+                  @else
+                      <td  style=" color: #f66;margin-left:10px;margin-top:20px;font-size:12px;">A</td>
+                  @endif      
+                  <td><button class="info-button"style="background-color: rgb(2, 17, 79); border: 2px solid rgb(2, 17, 79);height:20px; color: white; border-radius: 5px;font-size:12px;margin-top:-10px"data-toggle="modal"data-target="#largeBoxModal"wire:click="viewTableDetails('{{$swiperecords1->id}}')">Info</button></td>
+                  <td style="font-weight:normal;font-size:12px;padding-top:16px;">No&nbsp;attention&nbsp;required</td>
+                  <td style="font-weight:normal;font-size:12px;padding-top:16px;">-</td>
+                  <td style="font-weight:normal;font-size:12px;padding-top:16px;">10:00-14:00</td>
+                  <td style="font-weight:normal;font-size:12px;padding-top:16px;">14:01-19:00</td>
 
             </tr>
             @endif
@@ -1266,23 +1351,101 @@ table {
             
             
             <tr>
-                <td class="date">Total </td>
+                <td class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Total </td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>00:00</td>
-                <td>00:00</td>
+                <td style="font-weight:normal;font-size:12px;padding-top:16px;">00:00</td>
+                <td style="font-weight:normal;font-size:12px;padding-top:16px;">00:00</td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>00:00</td>
+                <td style="font-weight:normal;font-size:12px;padding-top:16px;">00:00</td>
                 <td></td>
                 <td></td>
             </tr>
         </table>
    </div>
 </div>
+
+<div  class="modal fade" id="largeBoxModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content"style="width:100%"> 
+                <div class="modal-header">
+                    <h5 class="modal-title">Swipe Details</h5>
+                    <button type="button" class="close"  aria-label="Close" wire:click="closeViewStudentModal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <tbody>
+                          @if($swiperecord)
+                               @if ($data->isNotEmpty())
+                               <tr>
+                                   <th>Employee&nbsp;Name: </th>
+                                   <td>{{ $data[0]->first_name }} {{ $data[0]->last_name }}</td>
+                               </tr>
+                               @endif
+                            <tr>
+                                <th>Employee&nbsp;Id</th>
+                                <td >{{ $swiperecord->emp_id }}</td>
+                            </tr>
+
+                           
+                            <tr>
+                                <th>Access&nbsp;Card&nbsp;Number:</th>
+                                <td>-</td>
+                            </tr>
+                            
+                            @endif
+                    </table>
+                    <div style=" overflow-x: auto;
+    max-width: 100%;">
+  <table>
+ 
+  <thead>
+    <tr>
+      <th>In/Out</th>
+      <th>Swipe&nbsp;Time</th>
+      <th>Location</th>
+      <th>Status</th>
+      <th>Last&nbsp;Updated&nbsp;On</th>
+      <th>Modified&nbsp;Time</th>
+      <th>Updated&nbsp;By</th>
+      <th>Longitude</th>
+      <th>Latitude</th>
+      <th>Mobile ID</th>
+      <th>Remarks</th>
+    </tr>
+   
+  </thead>
+  <tbody>
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <!-- Add more rows with dashes as needed -->
+  </tbody>
+  <!-- Add table rows (tbody) and data here if needed -->
+</table>
+
+</div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-danger" wire:click="cancel()"  aria-label="Close">Cancel</button>
+                   
+                </div>
+            </div>
+        </div>
+  </div>
 <div id="box-container" style="display: none;margin-left:300px;">
 <div class="box">
     <div class="box-content">
@@ -1475,6 +1638,131 @@ calendarIcon.addEventListener('click', hideBoxContainer);
         });
     });
 </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+  const currentMonthElement = document.getElementById("currentMonth");
+  const prevMonthButton = document.getElementById("prevMonth");
+  const nextMonthButton = document.getElementById("nextMonth");
+  const calendarDaysElement = document.getElementById("calendar-days");
 
+  let currentDate = new Date(2023, 8); // September 2023 (Note: Month is zero-based)
 
+  // Function to update the calendar for a given date
+  function updateCalendar(year, month) {
+    // Generate and display the calendar for the specified year and month
+    // You can use your own code to generate the calendar here.
+
+    currentMonthElement.textContent = new Date(year, month).toLocaleString("en-US", {
+      month: "long",
+      year: "numeric",
+    });
+    // Update the calendar content in the 'calendar-days' element
+    // You will need to generate the days based on the 'year' and 'month' and update the content in the 'calendar-days' element.
+  }
+
+  // Function to go to the previous month
+  function previousMonth() {
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    updateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+  }
+
+  // Function to go to the next month
+  function nextMonth() {
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    updateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+  }
+
+  // Add click event listeners to the previous and next buttons
+  prevMonthButton.addEventListener("click", previousMonth);
+  nextMonthButton.addEventListener("click", nextMonth);
+
+  // Initial calendar rendering
+  updateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+});
+  </script> 
+ <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-daterangepicker@3.1.0/daterangepicker.js"></script>
+
+<script>
+  $(document).ready(function() {
+    // Initialize the daterangepicker
+    $('.date-range-input12').daterangepicker({
+      opens: 'left', // Position the calendars side-by-side
+    });
+  });
+</script> -->
+<script>
+  $(function() {
+    $("#datepicker1, #datepicker2").datepicker();
+  });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const calendarDays = document.getElementById("calendar-days");
+      const prevMonthButton = document.getElementById("prevMonth");
+      const nextMonthButton = document.getElementById("nextMonth");
+      const currentMonthElement = document.getElementById("currentMonth");
+
+      let currentMonth = new Date().getMonth();
+      let currentYear = new Date().getFullYear();
+
+      function generateCalendarDays(year, month) {
+        const firstDayOfMonth = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const today = new Date().getDate();
+
+        calendarDays.innerHTML = "";
+
+        for (let i = 0; i < firstDayOfMonth; i++) {
+          createEmptyDay();
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+          createCalendarDay(day, today);
+        }
+      }
+
+      function createEmptyDay() {
+        const emptyDayElement = document.createElement("div");
+        emptyDayElement.classList.add("calendar-date", "empty");
+        calendarDays.appendChild(emptyDayElement);
+      }
+
+      function createCalendarDay(day, today) {
+        const calendarDayElement = document.createElement("div");
+        calendarDayElement.classList.add("calendar-date");
+        calendarDayElement.textContent = day;
+
+        if (day === today) {
+          calendarDayElement.classList.add("today");
+        }
+
+        calendarDays.appendChild(calendarDayElement);
+      }
+
+      function updateCalendar() {
+        generateCalendarDays(currentYear, currentMonth);
+        currentMonthElement.textContent = new Date(currentYear, currentMonth, 1).toLocaleString('default', { month: 'long', year: 'numeric' });
+      }
+
+      prevMonthButton.addEventListener("click", function () {
+        currentMonth = (currentMonth - 1 + 12) % 12;
+        if (currentMonth === 11) {
+          currentYear--;
+        }
+        updateCalendar();
+      });
+
+      nextMonthButton.addEventListener("click", function () {
+        currentMonth = (currentMonth + 1) % 12;
+        if (currentMonth === 0) {
+          currentYear++;
+        }
+        updateCalendar();
+      });
+
+      updateCalendar();
+    });
+  </script>
 </div> 

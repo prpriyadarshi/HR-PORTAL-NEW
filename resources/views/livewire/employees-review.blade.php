@@ -354,9 +354,9 @@
                 <div class="container mt-4">
                                 <div class="accordion">
 
-                                    <div class="accordion-heading" onclick="toggleAccordion(this)">
+                                        <div class="accordion-heading" onclick="toggleAccordion(this)">
 
-                                        <div class="accordion-title">
+                                            <div class="accordion-title">
 
                                             <!-- Display leave details here based on $leaveRequest -->
                                             <div class="accordion-content">
@@ -379,31 +379,31 @@
                                                     </div>
                                               </div>
 
-                                            <div class="accordion-content">
+                                                <div class="accordion-content">
 
-                                                <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">Leave Type</span>
+                                                    <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">Leave Type</span>
 
                                                 <span style="color: #36454F; font-size: 1rem; font-weight: 500;">{{$leaveRequest['approvedLeaveRequest']->leave_type}}</span>
 
-                                            </div>
+                                                </div>
 
-                                            <div class="accordion-content">
+                                                <div class="accordion-content">
 
-                                                <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">No. of Days</span>
+                                                    <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">No. of Days</span>
 
-                                                <span style="color: #36454F; font-size: 1rem; font-weight: 500;">
+                                                    <span style="color: #36454F; font-size: 1rem; font-weight: 500;">
 
                                                     {{ $this->calculateNumberOfDays($leaveRequest['approvedLeaveRequest']->from_date, $leaveRequest['approvedLeaveRequest']->from_session, $leaveRequest['approvedLeaveRequest']->to_date, $leaveRequest['approvedLeaveRequest']->to_session) }}
 
-                                                </span>
+                                                    </span>
 
-                                            </div>
+                                                </div>
 
-                
+
 
                                             <!-- Add other details based on your leave request structure -->
 
-                                            <div class="accordion-content">
+                                                <div class="accordion-content">
 
                                                 @if(strtoupper($leaveRequest['approvedLeaveRequest']->status) == 'APPROVED')
 
@@ -413,33 +413,33 @@
 
                                                     <span style="margin-top:0.625rem; font-size: 0.9rem; font-weight: 500; color:#FF0000;">{{ strtoupper($leaveRequest['approvedLeaveRequest']->status) }}</span>
 
-                                                @else
+                                                    @else
 
                                                     <span style="margin-top:0.625rem; font-size: 0.9rem; font-weight: 500; color:#778899;">{{ strtoupper($leaveRequest['approvedLeaveRequest']->status) }}</span>
 
-                                                @endif
+                                                    @endif
 
-                                            </div>
+                                                </div>
 
-                                            <div class="accordion-button" style="margin-top: 0.625rem; font-size: 1rem;  height: 0.625rem; width: 0.625rem; border-radius: 50%; background: #fff;  display: flex; justify-content: center; align-items: center; ">
+                                                <div class="accordion-button" style="margin-top: 0.625rem; font-size: 1rem;  height: 0.625rem; width: 0.625rem; border-radius: 50%; background: #fff;  display: flex; justify-content: center; align-items: center; ">
 
-                                                <!-- Down arrow character -->
+                                                    <!-- Down arrow character -->
+
+                                                </div>
 
                                             </div>
 
                                         </div>
 
-                                    </div>
+                                        <div class="accordion-body">
 
-                                    <div class="accordion-body">
+                                            <div style="width:100%; height:1px; border-bottom:1px solid #ccc; margin-bottom:10px;"></div>
 
-                                        <div style="width:100%; height:1px; border-bottom:1px solid #ccc; margin-bottom:10px;"></div>
+                                            <div class="content">
 
-                                        <div class="content">
+                                                <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">Duration:</span>
 
-                                            <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">Duration:</span>
-
-                                            <span style="font-size: 0.8125rem;">
+                                                <span style="font-size: 0.8125rem;">
 
                                                 <span style="font-size: 0.8125rem; font-weight: 500;">{{ $leaveRequest['approvedLeaveRequest']->formatted_from_date }}</span>
 
@@ -449,25 +449,25 @@
 
                                             ( {{ $leaveRequest['approvedLeaveRequest']->to_session }} )
 
-                                            </span>
+                                                </span>
 
-                                        </div>
-
-                                        <div class="content">
-
-                                            <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">Reason:</span>
-
-                                            <span style="font-size: 0.8125rem;">{{ $leaveRequest['approvedLeaveRequest']->reason }}</span>
-
-                                        </div>
-
-                                        <div style="width:100%; height:1px; border-bottom:1px solid #ccc; margin-bottom:10px;"></div>
-
-                                        <div style="display:flex; flex-direction:row; justify-content:space-between;">
+                                            </div>
 
                                             <div class="content">
 
-                                                <span style="color: #778899; font-size: 0.875rem; font-weight: 400;">Applied on:</span>
+                                                <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">Reason:</span>
+
+                                            <span style="font-size: 0.8125rem;">{{ $leaveRequest['approvedLeaveRequest']->reason }}</span>
+
+                                            </div>
+
+                                            <div style="width:100%; height:1px; border-bottom:1px solid #ccc; margin-bottom:10px;"></div>
+
+                                            <div style="display:flex; flex-direction:row; justify-content:space-between;">
+
+                                                <div class="content">
+
+                                                    <span style="color: #778899; font-size: 0.875rem; font-weight: 400;">Applied on:</span>
 
                                                 <span style="color: #333; font-size: 0.875rem; font-weight: 500;">{{ $leaveRequest['approvedLeaveRequest']->created_at->format('d M, Y') }}</span>
 
@@ -498,11 +498,13 @@
                                             </div>
                             
 
-                                            <div class="content">
+                                                <div class="content">
 
                                             <a href="{{ route('approved-details', ['leaveRequestId' => $leaveRequest['approvedLeaveRequest']->id]) }}">
                                                 <span style="color: #3a9efd; font-size: 0.875rem; font-weight: 500;">View Details</span>
                                             </a>
+
+                                                </div>
 
                                             </div>
 
@@ -512,25 +514,23 @@
 
                                 </div>
 
+
+
+                            @endforeach
+
+                        @else
+
+                            <div class="leave-pending" style="margin-top:30px; background:#fff; margin-left:120px; display:flex; width:75%;flex-direction:column; text-align:center;justify-content:center; border:1px solid #ccc; padding:20px;gap:10px;">
+
+                                <img src="/images/pending.png" alt="Pending Image" style="width:60%; margin:0 auto;">
+
+                                <p style="color:#969ea9; font-size:13px; font-weight:400; ">There are no closed of  leave transaction</p>
+
                             </div>
 
-                
+                        @endif
 
-                        @endforeach
-
-                    @else
-
-                        <div class="leave-pending" style="margin-top:30px; background:#fff; margin-left:120px; display:flex; width:75%;flex-direction:column; text-align:center;justify-content:center; border:1px solid #ccc; padding:20px;gap:10px;">
-
-                            <img src="/images/pending.png" alt="Pending Image" style="width:60%; margin:0 auto;">
-
-                            <p style="color:#969ea9; font-size:13px; font-weight:400; ">There are no closed of  leave transaction</p>
-
-                        </div>
-
-                    @endif
-
-                </div>
+                    </div>
 
                 </div>
                                     
@@ -550,7 +550,7 @@
                 <input type="date" class="form-control" wire:model="emp_dob" max="{{ date('Y-m-d') }}">
                 @error('emp_dob') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
- 
+
             <div class="mb-4" style="margin-left:570px; margin-top: -50px;">
                 <input type="text" wire:model.lazy="search" placeholder="Search for Employee">
             </div>

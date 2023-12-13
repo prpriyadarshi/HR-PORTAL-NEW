@@ -1,4 +1,4 @@
-<div>
+<div style="font-size: 12px;">
 
 <style>
      .dropdown {
@@ -19,6 +19,7 @@
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
+    font-size: 12px; 
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
@@ -87,11 +88,11 @@
       <!----><span _ngcontent-aoh-c525="" class="text-4 text-success ng-star-inserted">OPEN</span>
       <!----></span>
       <a _ngcontent-aoh-c525="" href="javascript:void(0)" class="underlined-link text-4" style="margin-left:200px">Info </a>
-      <div class="container" style="height:50px;background:white;border-radius:5px;border:5pxs solid black;width:80%;margin-top:40px">
+      <div class="container" style="height:50px;background:white;border-radius:5px;border:5pxs solid black;width:80%;margin-top:50px">
       <div class="image-poi-new-budget-banner" style="display:flex;margin-top:30px;margin-left:120px">
         <image src="https://th.bing.com/th/id/OIP.XK5FEu0thi3FNLh12p1qZQAAAA?pid=ImgDet&w=160&h=160&c=7&dpr=1.5" style="height:50px;width:70px">
-  <div class="banner-default-message">
-    <div class="text-4 text-semi-bold gtpb-1">
+  <div class="banner-default-message" style="margin-top:10px">
+    <div class="text-4 text-semi-bold gtpb-1" >
       You have currently selected Old Regime
     </div>
     <!-- Other content here -->
@@ -142,7 +143,7 @@
 <div style="border-bottom: 1px solid silver; margin-top: 10px;"></div>
 <div class="row" style="display:flex">
 <p style="width:100%;">Section 80C</p>
-<a href="declaration-link" wire:click="addshowVIDeductions" style="font-size: 25px; margin-left: 550px; text-decoration: none;color:black;margin-top:-50px">&rarr; </a>
+<a href="/" wire:click="addshowVIDeductions" style="font-size: 25px; margin-left: 550px; text-decoration: none;color:black;margin-top:-50px">&rarr; </a>
 </div>
 <div style="border-bottom: 1px solid silver; "></div>
 <div class="row" style="display:flex">

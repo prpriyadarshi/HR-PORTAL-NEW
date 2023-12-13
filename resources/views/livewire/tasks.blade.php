@@ -127,9 +127,9 @@
         </style>
 
 
-        <div class="container" style="margin-top:15px;width: 800px; height: 450px; margin-left: 20px; border: 1px solid silver; border-radius: 5px;background-color:white">
+        <div class="container" style="margin-top:15px;width:95%; height: 450px; margin-left: 20px; border: 1px solid silver; border-radius: 5px;background-color:white">
             <div class="row">
-                <div class="col" style="margin-left:30%;margin-top:15px">
+                <div class="col" style="margin-left:35%;margin-top:15px">
                     <div class="card" style="width:250px;">
                         <div class="card-header">
                             <div class="row">
@@ -143,109 +143,56 @@
                         </div>
                     </div>
                 </div>
-                <div class="col" style="margin-left:20%">
+                <div class="col" style="margin-left:19%">
                     <button wire:click="show" style="background-color:rgb(2, 17, 79); border: none; border-radius: 5px; color: white; font-size: 12px; height: 30px; cursor: pointer; margin-top: 5px;margin-top:15px">Add
                         New Task</button>
                 </div>
             </div>
             @if ($activeTab == "open")
-            <div class="card-body" style="background-color:white;width:100%;margin-top:30px;border-radius:5px">
+            <div class="card-body" style="background-color:white;width:100%;margin-top:30px;border-radius:5px;overflow-y:auto;max-height:300px">
 
 
                 @if ($records->isEmpty())
-                <div> <img style="margin-top:15%;margin-left:30%" height="200" width="300" src="https://media.istockphoto.com/id/1357284048/vector/no-item-found-vector-flat-icon-design-illustration-web-and-mobile-application-symbol-on.jpg?s=612x612&w=0&k=20&c=j0V0ww6uBl1LwQLH0U9L7Zn81xMTZCpXPjH5qJo5QyQ=" alt="">
+                <div style="text-align: center">
+                    <img style="width: 10em" src="https://media.istockphoto.com/id/1357284048/vector/no-item-found-vector-flat-icon-design-illustration-web-and-mobile-application-symbol-on.jpg?s=612x612&w=0&k=20&c=j0V0ww6uBl1LwQLH0U9L7Zn81xMTZCpXPjH5qJo5QyQ=" alt="">
                 </div>
                 @else
-                <table style="width: 100%; border-collapse: collapse;">
-                    <thead>
-                        <tr style="background-color: rgb(2, 17, 79); color: white;">
-                            <th style="padding: 10px; font-size: 12px; text-align: center; width: auto">Emp ID</th>
-                            <th style="padding: 10px; font-size: 12px; text-align: center; width: auto">Task Name</th>
-                            <th style="padding: 10px; font-size: 12px; text-align: center;width: auto">Assignee</th>
-                            <th style="padding: 10px; font-size: 12px; text-align: center;width: auto">Priority</th>
-                            <th style="padding: 10px; font-size: 12px; text-align: center;width: auto">Due Date</th>
-                            <th style="padding: 10px; font-size: 12px; text-align: center;width: auto">Subject</th>
-                            <th style="padding: 10px; font-size: 12px; text-align: center;width: auto">Description</th>
-                            <th style="padding: 10px; font-size: 12px; text-align: center;width: auto">Attach File</th>
-                            <th style="padding: 10px; font-size: 12px; text-align: center; width: auto">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($records as $record)
-                        @if($record->status=="Open")
-                        <tr>
-                            <td style="padding: 10px; font-size: 12px; text-align: center; width: 100px;">{{ $record->emp_id }}</td>
-                            <td style="padding: 10px; font-size: 12px; text-align: center; width: 100px;">{{ $record->task_name }}</td>
-                            <td style="padding: 10px; font-size: 12px; text-align: center;width: 100px">{{ $record->assignee }}</td>
-                            <td style="padding: 10px; font-size: 12px; text-align: center;width: 100px">{{ $record->priority }}</td>
-                            <td style="padding: 10px; font-size: 12px; text-align: center; width: 100px">{{ $record->due_date }}</td>
-                            <td style="padding: 10px; font-size: 12px; text-align: center; width: 100px;">{{ $record->subject }}</td>
-                            <td style="padding: 10px; font-size: 12px; text-align: center;width: 100px">{{ $record->description }}</td>
-                            <td style="padding: 10px; font-size: 12px; text-align: center;width: 100px">
-                                @if ($record->file_path)
-                                <a href="{{ asset('storage/' . $record->file_path) }}" target="_blank" style="text-decoration: none; color: #007BFF;">View File</a>
-                                @else
-                                N/A
-                                @endif
-                            </td>
-                            <td style="padding: 5px; font-size: 12px; text-align: center; width: 100px;">
-                                <div class="row" style="display: flex; justify-content: space-between;">
-                                    <button wire:click="openForTasks('{{$record->id}}')" style="background-color: orange; color: white; border-radius: 5px;">Close</button>
-                                </div>
-                            </td>
-                        </tr>
-                        @endif
-                        @endforeach
-                    </tbody>
-                </table>
-
-                @endif
-                @endif
-
-                @if ($activeTab == "completed")
-                <div class="card-body" style="background-color:white;width:100%;margin-top:30px;border-radius:5px">
-
-
-                    @if ($records->isEmpty())
-                    <div> <img style="margin-top:15%;margin-left:30%" height="200" width="300" src="https://media.istockphoto.com/id/1357284048/vector/no-item-found-vector-flat-icon-design-illustration-web-and-mobile-application-symbol-on.jpg?s=612x612&w=0&k=20&c=j0V0ww6uBl1LwQLH0U9L7Zn81xMTZCpXPjH5qJo5QyQ=" alt="">
-                    </div>
-                    @else
+                <div class="table-responsive">
                     <table style="width: 100%; border-collapse: collapse;">
                         <thead>
                             <tr style="background-color: rgb(2, 17, 79); color: white;">
-                                <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Emp ID</th>
-                                <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Task Name</th>
-                                <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Assignee</th>
-                                <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Priority</th>
-                                <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Due Date</th>
-                                <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Subject</th>
-                                <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Description</th>
-                                <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Attach File</th>
-                                <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Status</th>
+                                <th style="padding: 10px; font-size: 12px; text-align: center; width: auto">Assigned By</th>
+                                <th style="padding: 10px; font-size: 12px; text-align: center; width: auto">Task Name</th>
+                                <th style="padding: 10px; font-size: 12px; text-align: center;width: auto">Assigneed to</th>
+                                <th style="padding: 10px; font-size: 12px; text-align: center;width: auto">Priority</th>
+                                <th style="padding: 10px; font-size: 12px; text-align: center;width: auto">Due Date</th>
+                                <th style="padding: 10px; font-size: 12px; text-align: center;width: auto">Subject</th>
+                                <th style="padding: 10px; font-size: 12px; text-align: center;width: auto">Description</th>
+                                <th style="padding: 10px; font-size: 12px; text-align: center;width: auto">Attach File</th>
+                                <th style="padding: 10px; font-size: 12px; text-align: center; width: auto">Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($records as $record)
-                            @if($record->status=="Completed")
+                            @if($record->status=="Open")
                             <tr>
-                                <td style="padding: 10px;font-size:12px;text-align:center;width:100px">{{ $record->emp_id }}
-                                </td>
-                                <td style="padding: 10px;font-size:12px;text-align:center;width:100px">{{ $record->task_name }}</td>
-                                <td style="padding: 10px;font-size:12px;text-align:center;width:100px">{{ $record->assignee }}</td>
-                                <td style="padding: 10px;font-size:12px;text-align:center;width:100px">{{ $record->priority }}</td>
-                                <td style="padding: 10px;font-size:12px;text-align:center;width:100px">{{ $record->due_date }}</td>
-                                <td style="padding: 10px;font-size:12px;text-align:center;width:100px">{{ $record->subject }}</td>
-                                <td style="padding: 10px;font-size:12px;text-align:center;width:100px">{{ $record->description }}</td>
-                                <td style="padding: 10px;font-size:12px;text-align:center;width:100px">
+                                <td style="padding: 10px; font-size: 12px; text-align: center; width: 100px;">{{ $record->emp->first_name }} {{ $record->emp->last_name }} <br> <strong style="font-size: 10px;">({{$record->emp_id}})</strong></td>
+                                <td style="padding: 10px; font-size: 12px; text-align: center; width: 100px;">{{ $record->task_name }}</td>
+                                <td style="padding: 10px; font-size: 12px; text-align: center;width: 100px">{{ $record->assignee }}</td>
+                                <td style="padding: 10px; font-size: 12px; text-align: center;width: 100px">{{ $record->priority }}</td>
+                                <td style="padding: 10px; font-size: 12px; text-align: center; width: 100px">{{ $record->due_date }}</td>
+                                <td style="padding: 10px; font-size: 12px; text-align: center; width: 100px;">{{ $record->subject }}</td>
+                                <td style="padding: 10px; font-size: 12px; text-align: center;width: 100px">{{ $record->description }}</td>
+                                <td style="padding: 10px; font-size: 12px; text-align: center;width: 100px">
                                     @if ($record->file_path)
                                     <a href="{{ asset('storage/' . $record->file_path) }}" target="_blank" style="text-decoration: none; color: #007BFF;">View File</a>
                                     @else
                                     N/A
                                     @endif
                                 </td>
-                                <td style="padding: 5px; font-size: 12px; text-align: center; width: 100px;">
+                                <td style="padding: 5px; font-size: 12px; text-align: center; ">
                                     <div class="row" style="display: flex; justify-content: space-between;">
-                                        <button wire:click="closeForTasks('{{$record->id}}')" style="background-color: green; color: white; border-radius: 5px;">Open</button>
+                                        <button wire:click="openForTasks('{{$record->id}}')" style="background-color: blue; color: white; border-radius: 5px;">Close</button>
                                     </div>
                                 </td>
                             </tr>
@@ -253,17 +200,75 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+
+                @endif
+                @endif
+
+                @if ($activeTab == "completed")
+                <div class="card-body" style="background-color:white;width:100%;margin-top:30px;border-radius:5px;overflow-y:auto;max-height:300px">
+
+
+                    @if ($records->isEmpty())
+                    <div style="text-align: center">
+                        <img style="width:10em" src="https://media.istockphoto.com/id/1357284048/vector/no-item-found-vector-flat-icon-design-illustration-web-and-mobile-application-symbol-on.jpg?s=612x612&w=0&k=20&c=j0V0ww6uBl1LwQLH0U9L7Zn81xMTZCpXPjH5qJo5QyQ=" alt="">
+                    </div>
+                    @else
+                    <div class="table-responsive">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background-color: rgb(2, 17, 79); color: white;">
+                                    <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Assigned By</th>
+                                    <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Task Name</th>
+                                    <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Assigneed to</th>
+                                    <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Priority</th>
+                                    <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Due Date</th>
+                                    <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Subject</th>
+                                    <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Description</th>
+                                    <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Attch File</th>
+                                    <th style="padding: 10px;font-size:12px;text-align:center;width:100px">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($records as $record)
+                                @if($record->status=="Completed")
+                                <tr>
+                                    <td style="padding: 10px;font-size:12px;text-align:center;width:100px">{{ $record->emp->first_name }} {{ $record->emp->last_name }} <br> <strong style="font-size:10px">#({{$record->emp_id}})</strong>
+                                    </td>
+                                    <td style="padding: 10px;font-size:12px;text-align:center;width:100px">{{ $record->task_name }}</td>
+                                    <td style="padding: 10px;font-size:12px;text-align:center;width:100px">{{ $record->assignee }}</td>
+                                    <td style="padding: 10px;font-size:12px;text-align:center;width:100px">{{ $record->priority }}</td>
+                                    <td style="padding: 10px;font-size:12px;text-align:center;width:100px">{{ $record->due_date }}</td>
+                                    <td style="padding: 10px;font-size:12px;text-align:center;width:100px">{{ $record->subject }}</td>
+                                    <td style="padding: 10px;font-size:12px;text-align:center;width:100px">{{ $record->description }}</td>
+                                    <td style="padding: 10px;font-size:12px;text-align:center;width:100px">
+                                        @if ($record->file_path)
+                                        <a href="{{ asset('storage/' . $record->file_path) }}" target="_blank" style="text-decoration: none; color: #007BFF;">View File</a>
+                                        @else
+                                        N/A
+                                        @endif
+                                    </td>
+                                    <td style="padding: 5px; font-size: 12px; text-align: center">
+                                        <div class="row" style="display: flex; justify-content: space-between;">
+                                            <button wire:click="closeForTasks('{{$record->id}}')" style="background-color: green; color: white; border-radius: 5px;">Open</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endif
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                     @endif
                     @endif
                     @if($showDialog)
-                    <div class="modal" tabindex="-1" role="dialog" style="display: block;overflow-y:auto">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal" tabindex="-1" role="dialog" style="display: block;">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                             <div class="modal-content">
-                                <div class="modal-header" style="background-color: #02114F; height: 50px;">
-                                    <h5 style="padding: 10px; color: white; font-size: 18px;" class="modal-title"><b>Add
-                                            Task</b></h5>
+                                <div class="modal-header" style="background-color: rgb(2, 17, 79); height: 50px">
+                                    <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title"><b>Add Task</b></h5>
                                     <button wire:click="close" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true" style="color: white; font-size: 24px;">×</span>
+                                        <span aria-hidden="true" style="color: white;">×</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
@@ -281,7 +286,7 @@
                                             <label for="assignee" style="font-size: 14px;color:black">Assignee</label>
                                             <br>
                                             <i wire:click="forAssignee" class="fas fa-user icon" id="profile-icon"></i>
-                                            @if($selectedPeopleNames)
+                                            @if($showRecipients)
                                             <strong style="font-size: 12;">Selected CC recipients:
                                             </strong>{{ implode(', ', array_unique($selectedPeopleNames)) }}
                                             @else
@@ -290,7 +295,7 @@
                                         </div>
                                         @error('assignee') <span class="text-danger">{{ $message }}</span> @enderror
                                         @if($assigneeList)
-                                        <div style="border-radius:5px;background-color:grey;padding:8px;width:220px;margin-top:10px">
+                                        <div style="border-radius:5px;background-color:grey;padding:8px;width:320px;margin-top:10px">
                                             <div class="input-group" style="margin-bottom: 10px;">
                                                 <input wire:model="searchTerm" style="font-size: 10px;cursor: pointer; border-radius: 5px 0 0 5px;" type="text" class="form-control" placeholder="Search for Emp.Name or ID" aria-label="Search" aria-describedby="basic-addon1">
                                                 <div class="input-group-append">
@@ -308,10 +313,10 @@
                                             </div>
                                             @else
                                             @foreach($peopleData as $people)
-                                            <div wire:model="cc_to" wire:click="selectPerson('{{ $people->emp_id }}')" class="container" style="cursor: pointer; background-color: darkgrey; padding: 5px; margin-bottom: 8px; width: 200px; border-radius: 5px;">
+                                            <div wire:model="cc_to" wire:click="selectPerson('{{ $people->emp_id }}')" class="container" style="cursor: pointer; background-color: darkgrey; padding: 5px; margin-bottom: 8px; width: 300px; border-radius: 5px;">
                                                 <div class="row align-items-center">
                                                     <div class="col-auto">
-                                                        <input type="checkbox" name="selectedPeople[]" value="{{ $people->emp_id }}" multiple>
+                                                        <input type="checkbox" wire:model="selectedPeople" value="{{ $people->emp_id }}">
                                                     </div>
                                                     <div class="col-auto">
                                                         <img class="profile-image" src="{{ $people->image }}" alt="Profile Image">
@@ -332,10 +337,10 @@
                                         <!-- Priority -->
                                         <div class="priority-container" style="margin-top: 20px;">
                                             <div class="row">
-                                                <div class="col-4">
+                                                <div class="col-md-4">
                                                     <label for="priority" style="font-size: 14px; margin-left: 0px; margin-top: 0px; padding: 0 10px 0 0;">Priority*</label>
                                                 </div>
-                                                <div class="col-8">
+                                                <div class="col-md-8">
                                                     <div id="priority" style="display: flex; align-items: center; margin-top: 0px;">
                                                         <div class="priority-option" style="margin-left: 0px; padding: 0;">
                                                             <input type="radio" id="low-priority" name="priority" wire:model="priority" value="low">
@@ -370,21 +375,22 @@
                                         </div>
                                         @error('tags') <span class="text-danger">{{ $message }}</span> @enderror
 
-                                        <!-- Followers -->
-                                        <div class="form-group" style="margin-top: 20px;color:grey;font-size:12px">
-                                            <label for="assignee" style="font-size: 14px;color:black">Followers</label>
+                                        <div class="form-group" style="margin-top: 20px; color: grey; font-size: 12px">
+                                            <label for="assignee" style="font-size: 14px; color: black">Followers</label>
                                             <br>
                                             <i wire:click="forFollowers" class="fas fa-user icon" id="profile-icon"></i>
-                                            @if($selectedPeopleNamesForFollowers)
-                                            <strong>Selected Followers:
-                                            </strong style="font-size: 12;">{{ implode(', ', array_unique($selectedPeopleNamesForFollowers)) }}
+                                            @if($showFollowers)
+                                            <strong style="font-size: 12;">Selected Followers:
+                                            </strong>{{ implode(', ', array_unique($selectedPeopleNamesForFollowers)) }}
                                             @else
-                                            Add Assignee
+                                            Add Followers
                                             @endif
                                         </div>
+
+
                                         @error('followers') <span class="text-danger">{{ $message }}</span> @enderror
                                         @if($followersList)
-                                        <div style="border-radius:5px;background-color:grey;padding:8px;width:220px;margin-top:10px">
+                                        <div style="border-radius:5px;background-color:grey;padding:8px;width:320px;margin-top:10px">
                                             <div class="input-group" style="margin-bottom: 10px;">
                                                 <input wire:model="searchTerm" style="font-size: 10px;cursor: pointer; border-radius: 5px 0 0 5px;" type="text" class="form-control" placeholder="Search for Emp.Name or ID" aria-label="Search" aria-describedby="basic-addon1">
                                                 <div class="input-group-append">
@@ -402,10 +408,10 @@
                                             </div>
                                             @else
                                             @foreach($peopleData as $people)
-                                            <div wire:model="cc_to" wire:click="selectPersonForFollowers('{{ $people->emp_id }}')" class="container" style="cursor: pointer; background-color: darkgrey; padding: 5px; margin-bottom: 8px; width: 200px; border-radius: 5px;">
+                                            <div wire:model="cc_to" wire:click="selectPersonForFollowers('{{ $people->emp_id }}')" class="container" style="cursor: pointer; background-color: darkgrey; padding: 5px; margin-bottom: 8px; width: 300px; border-radius: 5px;">
                                                 <div class="row align-items-center">
                                                     <div class="col-auto">
-                                                        <input type="checkbox" name="selectedPeople[]" value="{{ $people->emp_id }}" multiple>
+                                                        <input type="checkbox" wire:model="selectedPeopleForFollowers" value="{{ $people->emp_id }}">
                                                     </div>
                                                     <div class="col-auto">
                                                         <img class="profile-image" src="{{ $people->image }}" alt="Profile Image">
@@ -452,12 +458,17 @@
                                         </div>
                                         @endif
                                         @error('file_path') <span class="text-danger">{{ $message }}</span> @enderror
-                                        <div style="margin-top: 30px; text-align: center;">
+                                        <!-- <div style="margin-top: 30px; text-align: center;">
                                             <button wire:click="close" class="btn btn-danger btn-medium" type="button" name="link" style="background-color: #FF3D57; color: white; width: 100px;font-size:13px">Cancel</button>
                                             <button wire:click="submit" class="btn btn-success btn-medium" type="button" name="link" style="background-color: #4CAF50; color: white; margin-left: 20px;font-size:13px">Save
                                                 Changes</button>
-                                        </div>
+                                        </div> -->
                                     </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button wire:click="close" class="btn btn-danger btn-medium" type="button" name="link" style="background-color: #FF3D57; color: white; width: 100px;font-size:13px">Cancel</button>
+                                    <button wire:click="submit" class="btn btn-success btn-medium" type="button" name="link" style="background-color: #4CAF50; color: white; margin-left: 20px;font-size:13px">Save
+                                        Changes</button>
                                 </div>
                             </div>
                         </div>

@@ -114,8 +114,8 @@
                         @foreach ($submitDetails->cv as $key=> $cv)
                         <div style="margin-bottom: 8px">
                             {{ $key + 1 }}
-                            <a style="text-decoration: none;margin-right:5px" class="preview-button" href="{{ Storage::url( $cv['cv']) }}" target="_blank">Preview CV{{ $key + 1 }} </a>
-                            <a style="text-decoration: none;" class="download-button" href="{{ Storage::url($cv['cv']) }}" download>Download CV{{ $key + 1 }} </a>
+                            <a style="text-decoration: none;margin-right:5px" class="preview-button" href="{{ asset('storage/' . $cv['cv']) }}" target="_blank">Preview CV{{ $key + 1 }} </a>
+                            <a style="text-decoration: none;" class="download-button" href="{{ asset('storage/' . $cv['cv']) }}" download>Download CV{{ $key + 1 }} </a>
                         </div>
                         @endforeach
                     </td>

@@ -21,4 +21,8 @@ class Task extends Model
         'file_path',
         'status'
     ];
+    public function emp()
+    {
+        return $this->belongsTo(EmployeeDetails::class, 'emp_id', 'emp_id');
+    }
 }

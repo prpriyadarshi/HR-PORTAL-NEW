@@ -14,7 +14,7 @@ class TeamOnLeave extends Component
     {
         // Get the authenticated user's emp_id
         $loggedInEmpId = Auth::guard('emp')->user()->emp_id;
-
+        
         // Check if the logged-in user is a manager by comparing emp_id with manager_id in employeedetails
         $isManager = EmployeeDetails::where('manager_id', $loggedInEmpId)->exists();
 

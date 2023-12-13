@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Container Layout</title>
-  
+ 
     <!-- Include Open Sans font -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
@@ -17,10 +17,10 @@
             font-family: 'Montserrat', sans-serif;
         }
       .bal-container{
-        margin-top: 20px; 
+        margin-top: 20px;
         width: 100%;
       }
-
+ 
         /* Buttons and dropdown */
         .buttons-container {
             display: flex;
@@ -29,7 +29,7 @@
             margin-top: 20px; /* Add some distance from the top */
             margin-right: 20px; /* Add some distance from the right */
         }
-
+ 
         .button2 {
             margin-right: 10px;
             padding:5px 5px ;
@@ -43,7 +43,7 @@
             font-size: 14px;
             cursor: pointer;
         }
-
+ 
         .button1 {
             margin-right: 10px;
             padding: 5px 5px;
@@ -57,7 +57,7 @@
             font-size: 14px;
             cursor: pointer;
         }
-
+ 
         .buttons-container .dropdown {
             background-color: #fff;
             border: 1px solid #ccc;
@@ -66,31 +66,31 @@
             border-radius: 5px; /* Add some rounded corners */
             font-size: 14px; /* Adjust font size */
         }
-
+ 
         /* Style for hover effect on options */
         .buttons-container .dropdown:hover {
             cursor: pointer;
             border: 1px solid #00BFFF;
             padding: 5px; /* Add space between options */
         }
-
+ 
         .dropdown option {
             padding: 5px 10px; /* Add space around the text in each option */
         }
-
+ 
         .view {
             text-decoration: none;
         }
-
+ 
         .view:hover {
             color: #007BFF;
         }
         .leave-bal{
             border: 1px solid #bfcee3;
-             padding: 5px 10px; 
+             padding: 5px 10px;
              border-radius: 5px;
-              text-align: center; 
-              height: 200px; 
+              text-align: center;
+              height: 200px;
               background-color:#fff;
         }
         .balance{
@@ -98,7 +98,7 @@
             flex-direction: row;
             justify-content: space-between;
         }
-
+ 
         /* Tube-like container */
         .tube-container {
             position: relative;
@@ -109,7 +109,7 @@
             border:1px solid #ccc;
             border-radius:10px;
         }
-
+ 
         .tube {
             position: absolute;
             bottom: 0;
@@ -127,12 +127,12 @@
         .center{
             text-align: center;
             align-items:center;
-             margin-top: 20px; 
+             margin-top: 20px;
              font-size: 16px;
         }
         .center span{
-            color: #778899; 
-            font-size: 12px; 
+            color: #778899;
+            font-size: 12px;
             font-weight: 400;
              text-transform: capitalize;
         }
@@ -143,9 +143,9 @@
             font-weight: 500;
         }
         .leave-gran{
-            color: #778899; 
-            font-size: 14px; 
-            font-weight: 500; 
+            color: #778899;
+            font-size: 14px;
+            font-weight: 500;
             text-transform: capitalize;
         }
         .remaining{
@@ -362,6 +362,7 @@
                 </button>
             </div>
             <form novalidate class="ng-valid ng-touched ng-dirty" wire:submit.prevent="generatePdf($event)">
+            <form novalidate class="ng-valid ng-touched ng-dirty" wire:submit.prevent="generatePdf($event)">
             @csrf
                 <div class="modal-body">
                     <div class="row">
@@ -402,6 +403,7 @@
                             <div class="form-group">
                                 <label class="label-style">Transaction</label>
                                 <select name="transactionType" wire:model="transactionType"  class="form-control">
+                                <select name="transactionType" wire:model="transactionType"  class="form-control">
                                     <option value="all"  selected>All Transactions</option>
                                     <option value="casual">Granted</option>
                                     <option value="lop">Availed</option>
@@ -415,6 +417,9 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
+                        <div wire:loading wire:target="fetchLeaveTransactions">
+                                <i class="fa fa-spinner fa-spin"></i> Loading...
+                            </div>
                             <div class="form-group">
                                 <label class="label-style">Sort by</label>
                                <select name="sortBy"  wire:model="sortBy" class="form-control" wire:change="checkSortBy" id="sortBySelect">
@@ -423,10 +428,13 @@
 </select>
 
                             </div>
+ 
+ 
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button  onclick="generatePDF(event)" class="btn btn-primary text-capitalize ng-star-inserted">Download</button>
                     <button  onclick="generatePDF(event)" class="btn btn-primary text-capitalize ng-star-inserted">Download</button>
                     <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
                     <button hidden=""></button>
@@ -435,9 +443,12 @@
         </div>
     </div>
 </div>
-
+ 
 <!-- leave  -->
     <div class="bal-container" >
+        <div class="row" style="margin:10px auto;">
+            <div class="col-md-4">
+                <div class="leave-bal">
         <div class="row" style="margin:10px auto;">
             <div class="col-md-4">
                 <div class="leave-bal">
@@ -457,15 +468,19 @@
             </div>
          <!-- ... (previous code) ... -->
             <div class="col-md-4">
+            <div class="col-md-4">
                <div class="leave-bal">
                 <div class="balance">
+                    <div class="field">
                     <div class="field">
                         <span class="leave-type">
                             @if($gender === 'Female')
                             Maternity Leave
                             @elseif($gender === 'Male')
                             Paternity Leave
+                            Paternity Leave
                             @else
+                            Leave Type
                             Leave Type
                             @endif
                         </span>
@@ -491,7 +506,7 @@
                     <div class="leave-bal">
                         <div class="balance">
                                 <div class="field">
-                                    <span class="leave-type">Casual Leave 
+                                    <span class="leave-type">Casual Leave
                                 </div>
                                 <div>
                                     <span class="leave-gran">Granted:{{ $casualLeavePerYear }}</span>
@@ -514,6 +529,11 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="row" style="margin:10px auto;">
+              <div class="col-md-4">
+                    <div class="leave-bal" style="margin-top">
                 </div>
             </div>
             <div class="row" style="margin:10px auto;">
@@ -549,38 +569,38 @@
 
         
         <!-- modal container -->
-        
+       
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-
+ 
 <!-- Initialize Datepicker -->
 <script>
     $(document).ready(function() {
         console.log("Document ready!");
-
+ 
         // Check if jQuery is loaded
         if (typeof jQuery == 'undefined') {
             console.error('jQuery is not loaded!');
         } else {
             console.log('jQuery is loaded!');
         }
-
+ 
         // Check if Bootstrap is loaded
         if (typeof bootstrap == 'undefined') {
             console.error('Bootstrap is not loaded!');
         } else {
             console.log('Bootstrap is loaded!');
         }
-
+ 
         // Check if Bootstrap Datepicker is loaded
         if (typeof $.fn.datepicker == 'undefined') {
             console.error('Bootstrap Datepicker is not loaded!');
         } else {
             console.log('Bootstrap Datepicker is loaded!');
         }
-
+ 
         // Initialize Datepicker
         $('.date input').datepicker({
             autoclose: true,
@@ -633,5 +653,5 @@
 
     </body>
     </html>
-
+ 
 </div>

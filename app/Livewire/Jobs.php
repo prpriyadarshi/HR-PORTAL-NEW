@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\AppliedJob;
 use App\Models\Company;
 use App\Models\Job;
+use App\Models\JobseekersExamDetails;
 use App\Models\JobseekersInterviewDetail;
 use App\Models\User;
 use Illuminate\Database\QueryException;
@@ -46,7 +47,7 @@ class Jobs extends Component
         Auth::logout();
         return redirect('/emplogin');
     }
-
+    public $user_resume;
 
     public function showJobApplication($jobId)
     {
@@ -55,17 +56,23 @@ class Jobs extends Component
         $this->userDetails = User::where('user_id', $userId)->first();
 
         try {
-            AppliedJob::create([
+
+            $userData = [
                 'job_id' => $this->selectedJob->job_id,
                 'job_title' => $this->selectedJob->title,
                 'company_name' => $this->selectedJob->company_name,
                 'applied_to' => $this->selectedJob->contact_email,
                 'user_id' => $this->userDetails->user_id,
-                'full_name' => $this->userDetails->full_name,
-                'email' => $this->userDetails->email,
-                'address' => $this->userDetails->address,
-                'resume' => $this->userDetails->resume,
-            ]);
+                'resume' => $this->user_resume,
+            ];
+
+            if ($this->user_resume) {
+                $resumePath = $this->user_resume->store('resumes', 'public');
+                $userData['resume'] = $resumePath;
+                $this->userDetails->update(['resume' => $resumePath]);
+            }
+           AppliedJob::create($userData);
+
             $this->showSuccessMessage = true;
         } catch (QueryException $e) {
             $this->addError('duplicate', 'You have already applied to this job.');
@@ -90,6 +97,8 @@ class Jobs extends Component
 
     public $notificationList;
     public $rejectedJobs;
+    public $examinationCount;
+    public $allNotificationCount;
     public function render()
     {
         $this->jobs = Job::where('created_at', '<=', now())
@@ -99,20 +108,33 @@ class Jobs extends Component
             })
             ->orderBy('created_at', 'desc')
             ->get();
-        $this->user = auth()->user();
-        $this->notificationList = JobseekersInterviewDetail::with('user', 'job', 'company')
-            ->where('user_id', $this->user->user_id)
-            ->orderBy('created_at', 'desc')
-            ->get();
-
-        $this->appliedJobs = AppliedJob::where('user_id', $this->user->user_id)->get();
-        $this->selectOrNot = AppliedJob::where('user_id', $this->user->user_id)
-            ->whereIn('application_status', ['Shortlisted', 'Rejected'])
-            ->count();
-        $this->rejectedJobs = AppliedJob::where('user_id', $this->user->user_id)
-            ->whereIn('application_status', ['Rejected'])
-            ->get();
-
+    
+        // Check if user is authenticated before accessing user-related data
+        if (auth()->check()) {
+            $this->user = auth()->user();
+    
+            $this->notificationList = JobseekersExamDetails::with('user', 'job', 'company')
+                ->where('user_id', $this->user->user_id)
+                ->orderBy('created_at', 'desc')
+                ->get();
+    
+            $this->appliedJobs = AppliedJob::where('user_id', $this->user->user_id)->get();
+            $this->selectOrNot = AppliedJob::where('user_id', $this->user->user_id)
+                ->whereIn('application_status', ['Shortlisted', 'Rejected'])
+                ->count();
+    
+            $this->examinationCount = JobseekersExamDetails::with('user', 'job')
+                ->where('user_id', $this->user->user_id)
+                ->whereNotNull('exam_link')
+                ->count();
+    
+            $this->allNotificationCount = $this->selectOrNot + $this->examinationCount;
+    
+            $this->rejectedJobs = AppliedJob::where('user_id', $this->user->user_id)
+                ->whereIn('application_status', ['Rejected'])
+                ->get();
+        }
+    
         return view('livewire.jobs');
     }
-}
+}    

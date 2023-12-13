@@ -18,14 +18,18 @@ return new class extends Migration
             $table->string('to');
             $table->string('reason');
             $table->integer('is_withdraw');
+            $table->date('regularisation_date')->nullable();
+            $table->date('approved_date')->nullable();
+            $table->date('rejected_date')->nullable();
+            $table->date('withdraw_date')->nullable();
             $table->enum('status', ['approved', 'pending','rejected'])->default('pending');
             $table->string('approved_by')->nullable();
+            $table->string('rejected_by')->nullable();
             $table->foreign('emp_id')
             ->references('emp_id')
             ->on('employee_details')
             ->onDelete('restrict')
             ->onUpdate('cascade');
-            
             $table->timestamps();
         });
     }

@@ -244,7 +244,7 @@
             <p style=" font-size: 0.90rem; "><span style="color: #778899; font-size: 0.875rem; font-weight: 400;padding-right: 58px;">Applying to</span  >{{ $applyingTo['report_to'] }}</p>
             @endforeach
             @endif
-             <div style="display:flex; flex-direction:row; justify-conetnt-space-between;">
+             <div style="display:flex; flex-direction:row; justify-content:space-between;">
              <span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 88px;">Reason</span>
              <p>{{ $leaveRequest->reason }}</p>
         
