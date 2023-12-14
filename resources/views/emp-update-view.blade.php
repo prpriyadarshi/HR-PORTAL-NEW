@@ -14,8 +14,8 @@
 
 <body>
     <!-- Your content goes here -->
-
-    @livewire('emp-update', ['$empId' => $$empId])
+    {{-- <livewire:emp-update :empId="$empId" />  both are working fine --}}
+    @livewire('emp-update', ['empId' => $empId])
     @livewireScripts
 </body>
 
