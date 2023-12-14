@@ -277,7 +277,7 @@
                             <h5 class="mb-0" style="text-align: center;color:white;">Employee Registration Form</h5>
                         </div>
                         <div class="card-body">
-                            <form wire:submit.prevent="register" enctype="multipart/form-data">
+                            <form wire:submit.prevent="update" enctype="multipart/form-data">
                                 <div class="row" style="margin-top:10px">
                                     <div class="col-md-3">
                                         <!-- Your first column form elements -->
@@ -729,7 +729,7 @@
                     </div>
                     <div style="text-align: center; margin-top:20px;">
                         <!-- Your Livewire component content -->
-                        <button type="submit" class="btn btn-primary" wire:loading.attr="disabled">Save</button>
+                        <button type="submit" class="btn btn-primary" wire:loading.attr="disabled">Update</button>
                     </div>
                     </form>
                 </div>

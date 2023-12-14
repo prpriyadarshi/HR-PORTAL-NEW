@@ -170,7 +170,7 @@ return [
         /*
          * Application Service Providers...
          */
-        'Anhskohbo\NoCaptcha\NoCaptchaServiceProvider',
+
         Barryvdh\DomPDF\ServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
@@ -190,7 +190,7 @@ return [
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
     */
-    
+
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
