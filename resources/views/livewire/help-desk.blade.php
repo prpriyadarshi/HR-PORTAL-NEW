@@ -33,6 +33,9 @@
             .cancel-button {
                 background-color: red;
             }
+            td{
+                color:black
+            }
         </style>
     </head>
 
@@ -42,16 +45,17 @@
                 <div class="card" style="width:400px;">
                     <div class="card-header">
                         <div class="row">
-                            <button wire:click="$set('activeTab', 'active')" class="col btn @if($activeTab === 'active') btn-primary active @else btn-light @endif" style="border-radius: 5px; margin-right: 5px">
+                            <button wire:click="$set('activeTab', 'active')" class="col btn @if($activeTab === 'active') active @else btn-light @endif" style="border-radius: 5px; margin-right: 5px;background-color: @if($activeTab === 'active') rgb(2, 17, 79) @else none @endif; color: @if($activeTab === 'active') #fff @else #000 @endif;">
                                 Active
                             </button>
-                            <button wire:click="$set('activeTab', 'pending')" class="col btn @if($activeTab === 'pending') btn-warning active @else btn-light @endif" style="border-radius: 5px;">
+                            <button wire:click="$set('activeTab', 'pending')" class="col btn @if($activeTab === 'pending') active @else btn-light @endif" style="border-radius: 5px;background-color: @if($activeTab === 'pending') rgb(2, 17, 79) @else none @endif; color: @if($activeTab === 'pending') #fff @else #000 @endif;">
                                 Pending
                             </button>
-                            <button wire:click="$set('activeTab', 'closed')" class="col btn @if($activeTab === 'closed') btn-success active @else btn-light @endif" style="border-radius: 5px;">
+                            <button wire:click="$set('activeTab', 'closed')" class="col btn @if($activeTab === 'closed') active @else btn-light @endif" style="border-radius: 5px;background-color: @if($activeTab === 'closed') rgb(2, 17, 79) @else none @endif; color: @if($activeTab === 'closed') #fff @else #000 @endif;">
                                 Closed
                             </button>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -185,7 +189,15 @@
                                                 <input type="checkbox" wire:model="selectedPeople" value="{{ $people->emp_id }}" wire:click="selectPerson({{ $people->emp_id }})">
                                             </div>
                                             <div class="col-auto">
+                                                @if($people->image=="")
+                                                @if($people->gender=="Male")
+                                                <img class="profile-image" src="https://www.kindpng.com/picc/m/252-2524695_dummy-profile-image-jpg-hd-png-download.png" alt="Profile Image">
+                                                @elseif($people->gender=="Female")
+                                                <img class="profile-image" src="https://th.bing.com/th/id/R.f931db21888ef3645a8356047504aa7b?rik=63HALWH%2b%2fKtaNQ&riu=http%3a%2f%2fereadcost.eu%2fwp-content%2fuploads%2f2016%2f03%2fblank_profile_female-7.jpg&ehk=atYRSw0KxmUnhESig51u5yzYBWfaD9KBO5KvdxXRCTY%3d&risl=&pid=ImgRaw&r=0" alt="Profile Image">
+                                                @endif
+                                                @else
                                                 <img class="profile-image" src="{{ $people->image }}" alt="Profile Image">
+                                                @endif
                                             </div>
                                             <div class="col">
                                                 <h6 class="username" style="font-size: 12px; color: white;">{{ $people->first_name }} {{ $people->last_name }}</h6>
@@ -253,19 +265,19 @@
                     @if($records->where('status', 'Open')->count() > 0)
                     @foreach ($records->where('status', 'Open') as $record)
                     <tr>
-                        <td style="padding: 10px;font-size:12px;text-align:center;width:120px">{{ $record->emp->first_name }} {{ $record->emp->last_name }} <br> <strong style="font-size: 10px;">({{$record->emp_id}})</strong></td>
-                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->category }}</td>
-                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->subject }}</td>
-                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->description }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center;width:120px;text-transform: capitalize;">{{ $record->emp->first_name }} {{ $record->emp->last_name }} <br> <strong style="font-size: 10px;">({{$record->emp_id}})</strong></td>
+                        <td style="padding: 10px;font-size:12px;text-align:center;text-transform: capitalize;">{{ $record->category }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center;text-transform: capitalize;">{{ $record->subject }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center;text-transform: capitalize;">{{ $record->description }}</td>
                         <td style="padding: 10px;font-size:12px;text-align:center">
                             @if ($record->file_path)
-                            <a href="{{ asset('storage/' . $record->file_path) }}" target="_blank" style="text-decoration: none; color: #007BFF;">View File</a>
+                            <a href="{{ asset('storage/' . $record->file_path) }}" target="_blank" style="text-decoration: none; color: #007BFF;text-transform: capitalize;">View File</a>
                             @else
                             N/A
                             @endif
                         </td>
-                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->cc_to }}</td>
-                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->priority }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center;text-transform: capitalize;">{{ $record->cc_to }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center;text-transform: capitalize;">{{ $record->priority }}</td>
 
                         </td>
                     </tr>
@@ -302,19 +314,19 @@
                     @if($records->where('status', 'Completed')->count() > 0)
                     @foreach ($records->where('status', 'Completed') as $record)
                     <tr>
-                        <td style="padding: 10px;font-size:12px;text-align:center;width:120px">{{ $record->emp->first_name }} {{ $record->emp->last_name }} <br> <strong style="font-size: 10px;">({{$record->emp_id}})</strong></td>
-                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->category }}</td>
-                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->subject }}</td>
-                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->description }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center;width:120px;text-transform: capitalize;">{{ $record->emp->first_name }} {{ $record->emp->last_name }} <br> <strong style="font-size: 10px;">({{$record->emp_id}})</strong></td>
+                        <td style="padding: 10px;font-size:12px;text-align:center;text-transform: capitalize;">{{ $record->category }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center;text-transform: capitalize;">{{ $record->subject }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center;text-transform: capitalize;">{{ $record->description }}</td>
                         <td style="padding: 10px;font-size:12px;text-align:center">
                             @if ($record->file_path)
-                            <a href="{{ asset('storage/' . $record->file_path) }}" target="_blank" style="text-decoration: none; color: #007BFF;">View File</a>
+                            <a href="{{ asset('storage/' . $record->file_path) }}" target="_blank" style="text-decoration: none; color: #007BFF;text-transform: capitalize;">View File</a>
                             @else
                             N/A
                             @endif
                         </td>
-                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->cc_to }}</td>
-                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->priority }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center;text-transform: capitalize;">{{ $record->cc_to }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center;text-transform: capitalize;">{{ $record->priority }}</td>
 
                     </tr>
                     @endforeach
@@ -351,19 +363,19 @@
                     @if($records->where('status', 'Pending')->count() > 0)
                     @foreach ($records->where('status', 'Pending') as $record)
                     <tr>
-                        <td style="padding: 10px;font-size:12px;text-align:center;width:120px">{{ $record->emp->first_name }} {{ $record->emp->last_name }} <br> <strong style="font-size: 10px;">({{$record->emp_id}})</strong></td>
-                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->category }}</td>
-                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->subject }}</td>
-                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->description }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center;width:120px;text-transform: capitalize;">{{ $record->emp->first_name }} {{ $record->emp->last_name }} <br> <strong style="font-size: 10px;">({{$record->emp_id}})</strong></td>
+                        <td style="padding: 10px;font-size:12px;text-align:center;text-transform: capitalize;">{{ $record->category }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center;text-transform: capitalize;">{{ $record->subject }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center;text-transform: capitalize;">{{ $record->description }}</td>
                         <td style="padding: 10px;font-size:12px;text-align:center">
                             @if ($record->file_path)
-                            <a href="{{ asset('storage/' . $record->file_path) }}" target="_blank" style="text-decoration: none; color: #007BFF;">View File</a>
+                            <a href="{{ asset('storage/' . $record->file_path) }}" target="_blank" style="text-decoration: none; color: #007BFF;text-transform: capitalize;">View File</a>
                             @else
                             N/A
                             @endif
                         </td>
-                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->cc_to }}</td>
-                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->priority }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center;text-transform: capitalize;">{{ $record->cc_to }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center;text-transform: capitalize;">{{ $record->priority }}</td>
 
                     </tr>
                     @endforeach
