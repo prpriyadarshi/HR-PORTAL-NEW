@@ -16,7 +16,7 @@ class EmployeesReview extends Component
     public $leaveRequest;
     public $employeeDetails;
     public $approvedLeaveApplicationsList;
-    public $search = '';
+    public $searchTerm = '';
     public $filterData;
    
 
@@ -110,6 +110,24 @@ class EmployeesReview extends Component
     {
         return (int) str_replace('Session ', '', $session);
     }
+    public function starredFilter()
+{
+    dd('dfghjk');
+    $employeeId = auth()->guard('emp')->user()->emp_id;
+
+    $this->leaveRequests = LeaveRequest::whereIn('status', ['Pending'])
+        ->where(function ($query) {
+            // Filter based on applying_to and cc_to
+            $query->whereJsonContains('applying_to', ['manager_id' => $employeeId])
+                  ->orWhereJsonContains('cc_to', ['emp_id' => $employeeId]);
+        })
+        ->when($this->searchTerm, function ($query) {
+            // Apply search filter if search term is present
+            $query->where('your_column_name', 'like', '%' . $this->searchTerm . '%');
+        })
+        ->get();
+}
+
 
 
     public function render()
@@ -165,8 +183,9 @@ class EmployeesReview extends Component
             }
         }
         $this->approvedLeaveApplicationsList = $approvedLeaveApplications;
- 
+
         $this->leaveApplications = $matchingLeaveApplications;
+
            return view('livewire.employees-review', [
             'leaveApplications' => $this->leaveApplications,
             'approvedLeaveApplicationsList' => $this->approvedLeaveApplicationsList,

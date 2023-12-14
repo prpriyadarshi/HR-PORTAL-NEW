@@ -36,7 +36,7 @@
     .accordion {
             border: 1px solid #ccc;
             margin-bottom: 0.625rem;
-            width:90%;
+            width:98%;
             margin:0 auto;
             border-radius:5px;
         }
@@ -95,7 +95,19 @@
            border: 0.0625rem solid #3a9efd;
         /* Blue arrow when active */
        }
- 
+    /* scroll bar */
+    .closedlist::-webkit-scrollbar {
+        width: 7px; /* Set the width of the scrollbar */
+    }
+
+    .closedlist::-webkit-scrollbar-thumb {
+        background-color: #d0d0d0; /* Set the color of the thumb */
+        border-radius: 6px; /* Set the border radius of the thumb */
+    }
+
+    .closedlist::-webkit-scrollbar-track {
+        background-color: #f1f1f1; /* Set the color of the track */
+    }
  
     </style>
    </head>
@@ -190,9 +202,7 @@
                 @error('emp_dob') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
  
-            <div class="mb-4" style="margin-left:570px; margin-top: -50px;">
-                <input type="text" wire:model.lazy="search" placeholder="Search for Employee">
-            </div>
+           
             <div class="container">
                 <div class="container" id="attendenceActiveCard" style="display: none;">
                     <div class="card" style="height:362px; width: 650px;margin-left: 200px; margin-top: 20px;">
@@ -256,9 +266,7 @@
                 @error('emp_dob') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
  
-            <div class="mb-4" style="margin-left:570px; margin-top: -50px;">
-                <input type="text" wire:model.lazy="search" placeholder="Search for Employee">
-            </div>
+            
             <div class="container">
                 <div class="container" id="resignationActiveCard" style="display: none;">
                     <div class="card" style="height:335px; width: 650px;margin-left: 200px; margin-top: 20px;">
@@ -320,18 +328,15 @@
         <button type="button" class="btn" id="holidayActiveButton">Active</button>
         <button type="button" class="btn" id="holidayClosedButton">Closed</button>
     </div>
-    <div class="form-group" style="margin-top: 25px;width:200px;margin-left:364px;">
-                <input type="date" class="form-control" wire:model="emp_dob" max="{{ date('Y-m-d') }}">
-                @error('emp_dob') <span class="text-danger">{{ $message }}</span> @enderror
-            </div>
- 
-            <div class="mb-4" style="margin-left:570px; margin-top: -50px;">
-                <input type="text" wire:model.lazy="search" placeholder="Search for Employee">
+          
+            <div class="mb-4" style="display:flex; justify-content:end;">
+                 <input wire:model="searchTerm" type="text" placeholder="Search...">
+                 <button wire:click="starredFilter">Search</button>
             </div>
             <div class="container">
                 <div id="holidayActiveCard" style="display: none;">
                     @if($this->leaveApplications)
-                        <div class="reviewList" style=" background:transparent; width:95%; margin-left:50px;">
+                        <div class="reviewList" style=" background:pink; width:80%; margin-left:120px; margin-bottom:20px;margin-top:20px;  max-height:370px; overflow-y:auto;" >
                             @livewire('view-pending-details')
                         </div>
                     @else
@@ -348,7 +353,7 @@
     <div class="container">
         <div id="holidayClosedCard" style="display: none;">
    
-        <div class="closedlist" style=" background:transparent; width:90%; margin-left:100px;" >
+        <div class="closedlist" style=" background:transparent; width:80%; margin-left:120px; margin-bottom:20px;margin-top:20px;  max-height:370px; overflow-y:auto;" >
             @if(!empty($approvedLeaveApplicationsList))
                 @foreach($approvedLeaveApplicationsList as $leaveRequest)
                 <div class="container mt-4">
@@ -782,6 +787,7 @@ document.getElementById("attendenceActiveButton").addEventListener("click", func
             }
         }
     </script>
+    @livewireScripts
 </body>
  
 </html>

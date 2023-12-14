@@ -249,6 +249,7 @@
 <body>
 
 <div class="applyContainer">
+    
     <h6 >Applying for Leave</h6>
     @if ($errors->any())
     <div class="alert alert-danger">
@@ -258,7 +259,8 @@
             @endforeach
         </ul>
     </div>
-@endif
+    @endif
+
     <form wire:submit.prevent="leaveApply" enctype="multipart/form-data">
     <div class="form-group" >
                 <label for="leaveType"  style="color: #778899; font-size: 14px; font-weight: 500;">Leave type</label>
@@ -266,7 +268,11 @@
                     <option value="default">Select Type</option>
                     <option value="Causal Leave Probation">Casual Leave</option>
                     <option value="Loss of Pay">Loss of Pay</option>
-                    <option value="Maternity Leave">Maternity Leaves</option>
+                    @if($employeeGender && $employeeGender->gender === 'female')
+                    <option value="Maternity Leave">Maternity Leave</option>
+                    @else
+                    <option value="Maternity Leave">Petarnity Leave</option>
+                    @endif
                     <option value="Sick Leave">Sick Leave</option>
                 </select>
                   @error('from_date') <span class="text-danger">{{ $message }}</span> @enderror
@@ -330,16 +336,15 @@
                     <div class="row" style="padding: 0 15px; margin-bottom: 10px;">
                         <div class="col" style="margin: 0px; padding: 0px">
                             <div class="input-group">
-                                <input wire:model="searchTerm" style="font-size: 10px; border-radius: 5px 0 0 5px; cursor: pointer; width:50%;" type="text" class="form-control" placeholder="Search for Emp.Name or ID" aria-label="Search" aria-describedby="basic-addon1">
+                                <input wire:click="filterData" style="font-size: 10px; border-radius: 5px 0 0 5px; cursor: pointer; width:50%;" type="text" class="form-control" placeholder="Search for Emp.Name or ID" aria-label="Search" aria-describedby="basic-addon1">
                                 <div class="input-group-append">
-                                    <button style="height: 29px; border-radius: 0 5px 5px 0; background-color: #007BFF; color: #fff; border: none; align-items: center; display: flex;" class="btn" type="button" wire:click="searchOnClick">
+                                    <button style="height: 29px; border-radius: 0 5px 5px 0; background-color: #007BFF; color: #fff; border: none; align-items: center; display: flex;" class="btn" type="button">
                                         <i style="margin-right: 5px;" class="fa fa-search"></i> <!-- Adjust margin-right as needed -->
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
                     @foreach($employeeDetails as $employee)
                         <div style="display:flex; gap:10px;" onclick="updateApplyingTo('{{ $employee['report_to'] }}', '{{ $employee['manager_id'] }}')">
                             <div>
@@ -375,9 +380,9 @@
                     <div class="row" style="padding: 0 15px; margin-bottom: 10px;">
                         <div class="col" style="margin: 0px; padding: 0px">
                             <div class="input-group">
-                                <input wire:model="searchTerm" style="font-size: 10px; border-radius: 5px 0 0 5px; cursor: pointer; width:50%;" type="text" class="form-control" placeholder="Search for Emp.Name or ID" aria-label="Search" aria-describedby="basic-addon1">
+                                <input  style="font-size: 10px; border-radius: 5px 0 0 5px; cursor: pointer; width:50%;" type="text" class="form-control" placeholder="Search for Emp.Name or ID" aria-label="Search" aria-describedby="basic-addon1">
                                 <div class="input-group-append">
-                                    <button style="height: 29px; border-radius: 0 5px 5px 0; background-color: #007BFF; color: #fff; border: none; align-items: center; display: flex;" class="btn" type="button" wire:click="searchOnClick">
+                                    <button wire:click="filterCcData" style="height: 29px; border-radius: 0 5px 5px 0; background-color: #007BFF; color: #fff; border: none; align-items: center; display: flex;" class="btn" type="button" >
                                         <i style="margin-right: 5px;" class="fa fa-search"></i> <!-- Adjust margin-right as needed -->
                                     </button>
                                 </div>
