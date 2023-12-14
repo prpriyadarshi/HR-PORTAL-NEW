@@ -109,6 +109,7 @@
                 font-size: 12px;
                 text-align: center;
                 width: 100px;
+                color:black
                 /* Adjust this width as needed */
             }
 
@@ -133,13 +134,15 @@
                     <div class="card" style="width:250px;">
                         <div class="card-header">
                             <div class="row">
-                                <button wire:click="$set('activeTab', 'open')" class="col btn @if($activeTab === 'open') btn-primary active @else btn-light @endif" style="border-radius: 5px; margin-right: 5px">
+                                <button wire:click="$set('activeTab', 'open')" class="col btn @if($activeTab === 'open') active @else btn-light @endif" style="border-radius: 5px; margin-right: 5px; background-color: @if($activeTab === 'open') rgb(2, 17, 79) @else none @endif; color: @if($activeTab === 'open') #fff @else #000 @endif;">
                                     Open
                                 </button>
-                                <button wire:click="$set('activeTab', 'completed')" class="col btn @if($activeTab === 'completed') btn-success active @else btn-light @endif" style="border-radius: 5px;">
+                                <button wire:click="$set('activeTab', 'completed')" class="col btn @if($activeTab === 'completed') active @else btn-light @endif" style="border-radius: 5px; background-color: @if($activeTab === 'completed') rgb(2, 17, 79) @else none @endif; color: @if($activeTab === 'completed') #fff @else #000 @endif;">
                                     Completed
                                 </button>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -176,25 +179,26 @@
                             @foreach ($records as $record)
                             @if($record->status=="Open")
                             <tr>
-                                <td style="padding: 10px; font-size: 12px; text-align: center; width: 100px;">{{ $record->emp->first_name }} {{ $record->emp->last_name }} <br> <strong style="font-size: 10px;">({{$record->emp_id}})</strong></td>
-                                <td style="padding: 10px; font-size: 12px; text-align: center; width: 100px;">{{ $record->task_name }}</td>
-                                <td style="padding: 10px; font-size: 12px; text-align: center;width: 100px">{{ $record->assignee }}</td>
-                                <td style="padding: 10px; font-size: 12px; text-align: center;width: 100px">{{ $record->priority }}</td>
-                                <td style="padding: 10px; font-size: 12px; text-align: center; width: 100px">{{ $record->due_date }}</td>
-                                <td style="padding: 10px; font-size: 12px; text-align: center; width: 100px;">{{ $record->subject }}</td>
-                                <td style="padding: 10px; font-size: 12px; text-align: center;width: 100px">{{ $record->description }}</td>
+                                <td style="padding: 10px; font-size: 12px; text-align: center; width: 100px;text-transform: capitalize;">{{ $record->emp->first_name }} {{ $record->emp->last_name }} <br> <strong style="font-size: 10px;">({{$record->emp_id}})</strong></td>
+                                <td style="padding: 10px; font-size: 12px; text-align: center; width: 100px;text-transform: capitalize;">{{ $record->task_name }}</td>
+                                <td style="padding: 10px; font-size: 12px; text-align: center;width: 100px;text-transform: capitalize;">{{ $record->assignee }}</td>
+                                <td style="padding: 10px; font-size: 12px; text-align: center;width: 100px;text-transform: capitalize;">{{ $record->priority }}</td>
+                                <td style="padding: 10px; font-size: 12px; text-align: center; width: 100px"> {{ \Carbon\Carbon::parse($record->due_date)->format('d-M-y') }}</td>
+                                <td style="padding: 10px; font-size: 12px; text-align: center; width: 100px;text-transform: capitalize;">{{ $record->subject }}</td>
+                                <td style="padding: 10px; font-size: 12px; text-align: center;width: 100px;text-transform: capitalize;">{{ $record->description }}</td>
                                 <td style="padding: 10px; font-size: 12px; text-align: center;width: 100px">
                                     @if ($record->file_path)
-                                    <a href="{{ asset('storage/' . $record->file_path) }}" target="_blank" style="text-decoration: none; color: #007BFF;">View File</a>
+                                    <a href="{{ asset('storage/' . $record->file_path) }}" target="_blank" style="text-decoration: none; color: #007BFF;text-transform: capitalize;">View File</a>
                                     @else
                                     N/A
                                     @endif
                                 </td>
-                                <td style="padding: 5px; font-size: 12px; text-align: center; ">
+                                <td style="padding: 2px; font-size: 10px; text-align: center;">
                                     <div class="row" style="display: flex; justify-content: space-between;">
-                                        <button wire:click="openForTasks('{{$record->id}}')" style="background-color: blue; color: white; border-radius: 5px;">Close</button>
+                                        <button wire:click="openForTasks('{{$record->id}}')" style="background-color: rgb(2, 17, 79); color: white; border-radius: 3px; padding: 3px 8px;">Close</button>
                                     </div>
                                 </td>
+
                             </tr>
                             @endif
                             @endforeach
@@ -233,26 +237,27 @@
                                 @foreach ($records as $record)
                                 @if($record->status=="Completed")
                                 <tr>
-                                    <td style="padding: 10px;font-size:12px;text-align:center;width:100px">{{ $record->emp->first_name }} {{ $record->emp->last_name }} <br> <strong style="font-size:10px">#({{$record->emp_id}})</strong>
+                                    <td style="padding: 10px;font-size:12px;text-align:center;width:100px;text-transform: capitalize;">{{ $record->emp->first_name }} {{ $record->emp->last_name }} <br> <strong style="font-size:10px">#({{$record->emp_id}})</strong>
                                     </td>
-                                    <td style="padding: 10px;font-size:12px;text-align:center;width:100px">{{ $record->task_name }}</td>
-                                    <td style="padding: 10px;font-size:12px;text-align:center;width:100px">{{ $record->assignee }}</td>
-                                    <td style="padding: 10px;font-size:12px;text-align:center;width:100px">{{ $record->priority }}</td>
-                                    <td style="padding: 10px;font-size:12px;text-align:center;width:100px">{{ $record->due_date }}</td>
-                                    <td style="padding: 10px;font-size:12px;text-align:center;width:100px">{{ $record->subject }}</td>
-                                    <td style="padding: 10px;font-size:12px;text-align:center;width:100px">{{ $record->description }}</td>
+                                    <td style="padding: 10px;font-size:12px;text-align:center;width:100px;text-transform: capitalize;">{{ $record->task_name }}</td>
+                                    <td style="padding: 10px;font-size:12px;text-align:center;width:100px;text-transform: capitalize;">{{ $record->assignee }}</td>
+                                    <td style="padding: 10px;font-size:12px;text-align:center;width:100px;text-transform: capitalize;">{{ $record->priority }}</td>
+                                    <td style="padding: 10px;font-size:12px;text-align:center;width:100px">{{ \Carbon\Carbon::parse($record->due_date)->format('d-M-y') }} </td>
+                                    <td style="padding: 10px;font-size:12px;text-align:center;width:100px;text-transform: capitalize;">{{ $record->subject }}</td>
+                                    <td style="padding: 10px;font-size:12px;text-align:center;width:100px;text-transform: capitalize;">{{ $record->description }}</td>
                                     <td style="padding: 10px;font-size:12px;text-align:center;width:100px">
                                         @if ($record->file_path)
-                                        <a href="{{ asset('storage/' . $record->file_path) }}" target="_blank" style="text-decoration: none; color: #007BFF;">View File</a>
+                                        <a href="{{ asset('storage/' . $record->file_path) }}" target="_blank" style="text-decoration: none; color: #007BFF;text-transform: capitalize;">View File</a>
                                         @else
                                         N/A
                                         @endif
                                     </td>
-                                    <td style="padding: 5px; font-size: 12px; text-align: center">
+                                    <td style="padding: 2px; font-size: 10px; text-align: center;">
                                         <div class="row" style="display: flex; justify-content: space-between;">
-                                            <button wire:click="closeForTasks('{{$record->id}}')" style="background-color: green; color: white; border-radius: 5px;">Open</button>
+                                            <button wire:click="closeForTasks('{{$record->id}}')" style="background-color: rgb(2, 17, 79); color: white; border-radius: 3px; padding: 5px;">Open</button>
                                         </div>
                                     </td>
+
                                 </tr>
                                 @endif
                                 @endforeach
@@ -319,7 +324,15 @@
                                                         <input type="checkbox" wire:model="selectedPeople" value="{{ $people->emp_id }}">
                                                     </div>
                                                     <div class="col-auto">
+                                                        @if($people->image=="")
+                                                        @if($people->gender=="Male")
+                                                        <img class="profile-image" src="https://www.kindpng.com/picc/m/252-2524695_dummy-profile-image-jpg-hd-png-download.png" alt="Profile Image">
+                                                        @elseif($people->gender=="Female")
+                                                        <img class="profile-image" src="https://th.bing.com/th/id/R.f931db21888ef3645a8356047504aa7b?rik=63HALWH%2b%2fKtaNQ&riu=http%3a%2f%2fereadcost.eu%2fwp-content%2fuploads%2f2016%2f03%2fblank_profile_female-7.jpg&ehk=atYRSw0KxmUnhESig51u5yzYBWfaD9KBO5KvdxXRCTY%3d&risl=&pid=ImgRaw&r=0" alt="Profile Image">
+                                                        @endif
+                                                        @else
                                                         <img class="profile-image" src="{{ $people->image }}" alt="Profile Image">
+                                                        @endif
                                                     </div>
                                                     <div class="col">
                                                         <h6 class="username" style="font-size: 12px; color: white;">
@@ -414,7 +427,15 @@
                                                         <input type="checkbox" wire:model="selectedPeopleForFollowers" value="{{ $people->emp_id }}">
                                                     </div>
                                                     <div class="col-auto">
+                                                        @if($people->image=="")
+                                                        @if($people->gender=="Male")
+                                                        <img class="profile-image" src="https://www.kindpng.com/picc/m/252-2524695_dummy-profile-image-jpg-hd-png-download.png" alt="Profile Image">
+                                                        @elseif($people->gender=="Female")
+                                                        <img class="profile-image" src="https://th.bing.com/th/id/R.f931db21888ef3645a8356047504aa7b?rik=63HALWH%2b%2fKtaNQ&riu=http%3a%2f%2fereadcost.eu%2fwp-content%2fuploads%2f2016%2f03%2fblank_profile_female-7.jpg&ehk=atYRSw0KxmUnhESig51u5yzYBWfaD9KBO5KvdxXRCTY%3d&risl=&pid=ImgRaw&r=0" alt="Profile Image">
+                                                        @endif
+                                                        @else
                                                         <img class="profile-image" src="{{ $people->image }}" alt="Profile Image">
+                                                        @endif
                                                     </div>
                                                     <div class="col">
                                                         <h6 class="username" style="font-size: 12px; color: white;">
@@ -465,9 +486,9 @@
                                         </div> -->
                                     </div>
                                 </div>
-                                <div class="modal-footer">
+                                <div style="text-align: center;margin-bottom:10px">
                                     <button wire:click="close" class="btn btn-danger btn-medium" type="button" name="link" style="background-color: #FF3D57; color: white; width: 100px;font-size:13px">Cancel</button>
-                                    <button wire:click="submit" class="btn btn-success btn-medium" type="button" name="link" style="background-color: #4CAF50; color: white; margin-left: 20px;font-size:13px">Save
+                                    <button wire:click="submit" class="btn btn-success btn-medium" type="button" name="link" style="background-color: #4CAF50; color: white;font-size:13px">Save
                                         Changes</button>
                                 </div>
                             </div>
