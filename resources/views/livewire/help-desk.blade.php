@@ -38,12 +38,15 @@
 
     <body>
         <div class="row">
-            <div class="col" style="margin-left:35%">
-                <div class="card" style="width:250px;">
+            <div class="col" style="margin-left:20%">
+                <div class="card" style="width:400px;">
                     <div class="card-header">
                         <div class="row">
                             <button wire:click="$set('activeTab', 'active')" class="col btn @if($activeTab === 'active') btn-primary active @else btn-light @endif" style="border-radius: 5px; margin-right: 5px">
                                 Active
+                            </button>
+                            <button wire:click="$set('activeTab', 'pending')" class="col btn @if($activeTab === 'pending') btn-warning active @else btn-light @endif" style="border-radius: 5px;">
+                                Pending
                             </button>
                             <button wire:click="$set('activeTab', 'closed')" class="col btn @if($activeTab === 'closed') btn-success active @else btn-light @endif" style="border-radius: 5px;">
                                 Closed
@@ -68,36 +71,46 @@
                         </button>
                     </div>
                     <div class="modal-body">
+
                         <div class="form-group">
                             <label for="category">Category</label>
                             <div class="input-group">
                                 <select wire:model="category" id="category" class="custom-select">
                                     <option style="color: grey;" value="">Select Category</option>
-                                    <option value="Database Access Request">Database Access Request</option>
-                                    <option value="Employee Information">Employee Information</option>
-                                    <option value="Hardware Maintenance">Hardware Maintenance</option>
-                                    <option value="Incident Report">Incident Report</option>
-                                    <option value="Income Tax">Income Tax</option>
-                                    <option value="IT Training Request">IT Training Request</option>
-                                    <option value="Loans">Loans</option>
-                                    <option value="Network Connectivity">Network Connectivity</option>
-                                    <option value="New Laptop">New Laptop</option>
-                                    <option value="New Mailbox Request">New Mailbox Request</option>
-                                    <option value="Other Request">Other Request</option>
-                                    <option value="Payslip">Payslip</option>
-                                    <option value="Privilege Access Request">Privilege Access Request</option>
-                                    <option value="Request For IT Accessories">Request For IT Accessories</option>
-                                    <option value="Security Access Request">Security Access Request</option>
-                                    <option value="Software Installation">Software Installation</option>
-                                    <option value="System Upgrade Request">System Upgrade Request</option>
-                                    <option value="Technical Support">Technical Support</option>
-                                    <option value="VPN Access Request">VPN Access Request</option>
-                                    <!-- Add more IT and Hardware-related options as needed -->
+                                    <optgroup label="IT">
+                                        <option value="Database Access Request">Database Access Request</option>
+                                        <option value="IT Training Request">IT Training Request</option>
+                                        <option value="New Laptop">New Laptop</option>
+                                        <option value="New Mailbox Request">New Mailbox Request</option>
+                                        <option value="Request For IT Accessories">Request For IT Accessories</option>
+                                        <option value="Software Installation">Software Installation</option>
+                                        <option value="System Upgrade Request">System Upgrade Request</option>
+                                        <option value="VPN Access Request">VPN Access Request</option>
+                                        <!-- Add more IT-related options as needed -->
+                                    </optgroup>
+                                    <optgroup label="Finance">
+                                        <option value="Income Tax">Income Tax</option>
+                                        <option value="Loans">Loans</option>
+                                        <option value="Payslip">Payslip</option>
+                                        <!-- Add more Finance-related options as needed -->
+                                    </optgroup>
+                                    <optgroup label="HR">
+                                        <option value="Employee Information">Employee Information</option>
+                                        <option value="Hardware Maintenance">Hardware Maintenance</option>
+                                        <option value="Incident Report">Incident Report</option>
+                                        <option value="Privilege Access Request">Privilege Access Request</option>
+                                        <option value="Security Access Request">Security Access Request</option>
+                                        <option value="Technical Support">Technical Support</option>
+                                        <!-- Add more HR-related options as needed -->
+                                    </optgroup>
+                                    <optgroup label="Other">
+                                        <option value="Other Request">Other Request</option>
+                                    </optgroup>
                                 </select>
+                                @error('category') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
-
-                            @error('category') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
+
                         <div class="form-group">
                             <label for="subject">Subject</label>
                             <input type="text" wire:model="subject" id="subject" class="form-control" placeholder="Enter subject">
@@ -149,7 +162,7 @@
                                     </div>
                                 </div>
                                 @if($isRotated)
-                                <div style="border-radius:5px;background-color:grey;padding:8px;width:220px;margin-top:10px">
+                                <div style="border-radius:5px;background-color:grey;padding:8px;width:320px;margin-top:10px">
                                     <div class="input-group" style="margin-bottom: 10px;">
                                         <input wire:model="searchTerm" style="font-size: 10px;cursor: pointer; border-radius: 5px 0 0 5px;" type="text" class="form-control" placeholder="Search for Emp.Name or ID" aria-label="Search" aria-describedby="basic-addon1">
                                         <div class="input-group-append">
@@ -166,7 +179,7 @@
                                     </div>
                                     @else
                                     @foreach($peopleData as $people)
-                                    <div wire:model="cc_to" wire:click="selectPerson('{{ $people->emp_id }}')" class="container" style="cursor: pointer; background-color: darkgrey; padding: 5px; margin-bottom: 8px; width: 200px; border-radius: 5px;">
+                                    <div wire:model="cc_to" wire:click="selectPerson('{{ $people->emp_id }}')" class="container" style="cursor: pointer; background-color: darkgrey; padding: 5px; margin-bottom: 8px; width: 300px; border-radius: 5px;">
                                         <div class="row align-items-center">
                                             <div class="col-auto">
                                                 <input type="checkbox" wire:model="selectedPeople" value="{{ $people->emp_id }}" wire:click="selectPerson({{ $people->emp_id }})">
@@ -223,10 +236,7 @@
 
         @if ($activeTab == "active")
         <div class="card-body" style="background-color:white;width:95%;height:400px;margin-top:30px;border-radius:5px;max-height:400px;overflow-y:auto">
-            @if ($records->isEmpty())
-            <div> <img style="margin-top:15%;margin-left:30%" height="200" width="300" src="https://media.istockphoto.com/id/1357284048/vector/no-item-found-vector-flat-icon-design-illustration-web-and-mobile-application-symbol-on.jpg?s=612x612&w=0&k=20&c=j0V0ww6uBl1LwQLH0U9L7Zn81xMTZCpXPjH5qJo5QyQ=" alt="">
-            </div>
-            @else
+
             <table style="width: 100%; border-collapse: collapse;">
                 <thead>
                     <tr style="background-color: #007BFF; color: white;">
@@ -237,13 +247,11 @@
                         <th style="padding: 10px;font-size:12px;text-align:center">Attach Files</th>
                         <th style="padding: 10px;font-size:12px;text-align:center">CC To</th>
                         <th style="padding: 10px;font-size:12px;text-align:center">Priority</th>
-                        <th style="padding: 10px;font-size:12px;text-align:center">Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @if($records->status="Open")
-                    @foreach ($records as $record)
-                    @if($record->status=="Open")
+                    @if($records->where('status', 'Open')->count() > 0)
+                    @foreach ($records->where('status', 'Open') as $record)
                     <tr>
                         <td style="padding: 10px;font-size:12px;text-align:center;width:120px">{{ $record->emp->first_name }} {{ $record->emp->last_name }} <br> <strong style="font-size: 10px;">({{$record->emp_id}})</strong></td>
                         <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->category }}</td>
@@ -258,30 +266,26 @@
                         </td>
                         <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->cc_to }}</td>
                         <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->priority }}</td>
-                        <td style="padding: 5px; font-size: 12px; text-align: center;">
-                            <div class="row" style="display: flex; justify-content: space-between;">
-                                <button wire:click="openForDesks('{{$record->id}}')" style="background-color: blue; color: white; border-radius: 5px;">Close</button>
-                            </div>
+
                         </td>
                     </tr>
-                    @endif
                     @endforeach
                     @else
-                    <div style="text-align:center;">No Active Records</div>
+                    <tr>
+                        <td colspan="7" style="text-align: center;font-size:12px">Active records not found</td>
+                    </tr>
                     @endif
+
+
                 </tbody>
             </table>
-            @endif
 
         </div>
         @endif
 
         @if ($activeTab == "closed")
         <div class="card-body" style="background-color:white;width:95%;margin-top:30px;border-radius:5px;max-height:400px;height:400px;overflow-y:auto">
-            @if ($records->isEmpty())
-            <div> <img style="margin-top:15%;margin-left:30%" height="200" width="300" src="https://media.istockphoto.com/id/1357284048/vector/no-item-found-vector-flat-icon-design-illustration-web-and-mobile-application-symbol-on.jpg?s=612x612&w=0&k=20&c=j0V0ww6uBl1LwQLH0U9L7Zn81xMTZCpXPjH5qJo5QyQ=" alt="">
-            </div>
-            @else
+
             <table style="width: 100%; border-collapse: collapse;">
                 <thead>
                     <tr style="background-color: #007BFF; color: white;">
@@ -292,12 +296,11 @@
                         <th style="padding: 10px;font-size:12px;text-align:center">Attach Files</th>
                         <th style="padding: 10px;font-size:12px;text-align:center">CC To</th>
                         <th style="padding: 10px;font-size:12px;text-align:center">Priority</th>
-                        <th style="padding: 10px;font-size:12px;text-align:center">Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($records as $record)
-                    @if($record->status=="Completed")
+                    @if($records->where('status', 'Completed')->count() > 0)
+                    @foreach ($records->where('status', 'Completed') as $record)
                     <tr>
                         <td style="padding: 10px;font-size:12px;text-align:center;width:120px">{{ $record->emp->first_name }} {{ $record->emp->last_name }} <br> <strong style="font-size: 10px;">({{$record->emp_id}})</strong></td>
                         <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->category }}</td>
@@ -312,20 +315,70 @@
                         </td>
                         <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->cc_to }}</td>
                         <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->priority }}</td>
-                        <td style="padding: 5px; font-size: 12px; text-align: center">
-                            <div class="row" style="display: flex; justify-content: space-between;">
-                                <button wire:click="closeForDesks('{{$record->id}}')" style="background-color: green; color: white; border-radius: 5px;">Open</button>
-                            </div>
-                        </td>
+
+                    </tr>
+                    @endforeach
+                    @else
+                    <tr>
+                        <td colspan="7" style="text-align: center;font-size:12px">Closed records not found</td>
                     </tr>
                     @endif
-                    @endforeach
+
                 </tbody>
             </table>
-            @endif
 
         </div>
         @endif
+
+
+
+        @if ($activeTab == "pending")
+        <div class="card-body" style="background-color:white;width:95%;margin-top:30px;border-radius:5px;max-height:400px;height:400px;overflow-y:auto">
+
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background-color: #007BFF; color: white;">
+                        <th style="padding: 10px;font-size:12px;text-align:center;width:120px">Request Raised By</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Category</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Subject</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Description</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Attach Files</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">CC To</th>
+                        <th style="padding: 10px;font-size:12px;text-align:center">Priority</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if($records->where('status', 'Pending')->count() > 0)
+                    @foreach ($records->where('status', 'Pending') as $record)
+                    <tr>
+                        <td style="padding: 10px;font-size:12px;text-align:center;width:120px">{{ $record->emp->first_name }} {{ $record->emp->last_name }} <br> <strong style="font-size: 10px;">({{$record->emp_id}})</strong></td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->category }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->subject }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->description }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">
+                            @if ($record->file_path)
+                            <a href="{{ asset('storage/' . $record->file_path) }}" target="_blank" style="text-decoration: none; color: #007BFF;">View File</a>
+                            @else
+                            N/A
+                            @endif
+                        </td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->cc_to }}</td>
+                        <td style="padding: 10px;font-size:12px;text-align:center">{{ $record->priority }}</td>
+
+                    </tr>
+                    @endforeach
+                    @else
+                    <tr>
+                        <td colspan="7" style="text-align: center;font-size:12px">Pending records not found</td>
+                    </tr>
+                    @endif
+
+                </tbody>
+            </table>
+
+        </div>
+        @endif
+
 
 
 
