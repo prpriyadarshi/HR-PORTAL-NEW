@@ -265,7 +265,7 @@
 
             <div class="card displayNone" id="menu-popup" style="border-radius:0px;height: auto; width: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
 
-                <div class="card-body" style="max-height: fit-content; min-height :99vh;width:auto;margin-top:0px">
+                <div class="card-body" style="height: 700px;width:auto;margin-top:0px">
 
                     <ul class="nav flex-column">
 
@@ -481,15 +481,15 @@
             <div class="col" style="height: 60px; width: auto; background-color:rgb(2, 17, 79)">
 
                 <div class="col" style="display: flex; align-items: center; margin-top:2%;justify-content: end;">
-                <i class="fas fa-bars hideHamburger" style="color: #fff; font-size: 20px; margin: 0px 10px;; cursor: pointer;" onclick="myMenu()"></i>
 
                     @auth('emp')
+                    <i class="fas fa-bars hideHamburger" style="color: #fff; font-size: 20px; margin: 0px 10px;; cursor: pointer;" onclick="myMenu()"></i>
 
                     <i style="margin-bottom: 5px; color: white" id="pageIcon"></i>
 
                     <h6 style="color: white; width: -webkit-fill-available;" id="pageTitle">Home</h6>
 
-                    <h6 style="color: grey; margin-right: 10px;margin-left:10px;margin-top:5px;width:150px">Quick Links</h6>
+                    <h6 style="color: grey; margin-right: 20px;margin-top:5px;width:150px">Quick Links</h6>
                     <div class="notification-icon" style="margin-right: 10px;">
 
                         <i style="color: white;" class="fas fa-bell"></i>
