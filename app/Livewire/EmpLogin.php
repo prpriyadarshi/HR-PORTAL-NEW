@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
+
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\QueryException;
 
@@ -47,7 +48,6 @@ class EmpLogin extends Component
                 "form.emp_id" => 'required',
                 "form.password" => "required"
             ]);
-
 
             if (Auth::guard('emp')->attempt(['emp_id' => $this->form['emp_id'], 'password' => $this->form['password']])) {
                 return redirect('/');
@@ -155,7 +155,6 @@ class EmpLogin extends Component
                 $this->showDialog = false;
             }
         } else {
-
             // Passwords do not match, show an error message.
             $this->addError('newPassword', 'Passwords do not match');
             $this->passwordChangedModal = false;
