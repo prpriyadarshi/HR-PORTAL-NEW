@@ -187,7 +187,6 @@ class LeaveApply extends Component
     {
         $employeeId = auth()->guard('emp')->user()->emp_id;
         $this->employeeGender = EmployeeDetails::where('emp_id', $employeeId)->select('gender')->first();
-      
         return view('livewire.leave-apply',[
            'employeeGender' => $this->employeeGender
         ]);

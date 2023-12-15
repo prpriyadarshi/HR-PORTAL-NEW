@@ -268,7 +268,7 @@
                     <option value="default">Select Type</option>
                     <option value="Causal Leave Probation">Casual Leave</option>
                     <option value="Loss of Pay">Loss of Pay</option>
-                    @if($employeeGender && $employeeGender->gender === 'female')
+                    @if($employeeGender && $employeeGender->gender === 'Female')
                     <option value="Maternity Leave">Maternity Leave</option>
                     @else
                     <option value="Maternity Leave">Petarnity Leave</option>
