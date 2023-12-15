@@ -42,10 +42,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <script src="{{ mix('js/app.js') }}"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="path/to/your.css">
 
-  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -258,47 +258,6 @@
             .nav-link:hover {
                 color: var(--bs-nav-link-hover-color) !important;
             }
-
-            @media only screen and (max-width: 768px) {
-                .displayNone {
-                    display: none !important;
-                }
-
-                .displayBlock {
-                    display: block !important;
-                }
-
-                #menu-popup {
-                    position: absolute;
-                    background: #fff;
-                    border: 1px solid #e0dddd;
-                    border-radius: 0px;
-                    height: auto;
-                    width: fit-content;
-                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                    top: 3.8em;
-                    z-index: 1000;
-                }
-            }
-
-            @media only screen and (min-width: 769px) {
-                .hideHamburger {
-                    display: none !important;
-                }
-            }
-
-            li a {
-                color: black;
-            }
-
-            a {
-                text-decoration: none
-            }
-
-            .nav-link:focus,
-            .nav-link:hover {
-                color: var(--bs-nav-link-hover-color) !important;
-            }
         </style>
 
 
@@ -306,7 +265,7 @@
 
             <div class="card displayNone" id="menu-popup" style="border-radius:0px;height: auto; width: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
 
-                <div class="card-body" style="max-height: fit-content; min-height :99vh;width:auto;margin-top:0px">
+                <div class="card-body" style="height: 700px;width:auto;margin-top:0px">
 
                     <ul class="nav flex-column">
 
@@ -315,7 +274,7 @@
                             @livewire('company-logo')
                         </div>
 
-                           @livewire('profile-card')
+                        @livewire('profile-card')
 
 
                         @auth('emp')
@@ -442,7 +401,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;">
-                                        <a class="nav-link" href="/team-on-leave-chart" onclick="changePageTitle5('team'); return false;">
+                                        <a class="nav-link" href="/leave-calender" onclick="changePageTitle5('team'); return false;">
                                             @livewire('team-on-leave')
                                         </a>
                                     </li>
@@ -522,15 +481,15 @@
             <div class="col" style="height: 60px; width: auto; background-color:rgb(2, 17, 79)">
 
                 <div class="col" style="display: flex; align-items: center; margin-top:2%;justify-content: end;">
-                <i class="fas fa-bars hideHamburger" style="color: #fff; font-size: 20px; margin: 0px 10px;; cursor: pointer;" onclick="myMenu()"></i>
 
                     @auth('emp')
+                    <i class="fas fa-bars hideHamburger" style="color: #fff; font-size: 20px; margin: 0px 10px;; cursor: pointer;" onclick="myMenu()"></i>
 
                     <i style="margin-bottom: 5px; color: white" id="pageIcon"></i>
 
                     <h6 style="color: white; width: -webkit-fill-available;" id="pageTitle">Home</h6>
 
-                    <h6 style="color: grey; margin-right: 10px;margin-left:10px;margin-top:5px;width:150px">Quick Links</h6>
+                    <h6 style="color: grey; margin-right: 20px;margin-top:5px;width:150px">Quick Links</h6>
                     <div class="notification-icon" style="margin-right: 10px;">
 
                         <i style="color: white;" class="fas fa-bell"></i>
@@ -869,7 +828,7 @@
                         window.location.href = '/holiday-calender';
                         break;
                     case 'team':
-                        window.location.href = '/team-on-leave-chart';
+                        window.location.href = '/leave-calender';
                         break;
                         // Add cases for other options if needed
                     default:

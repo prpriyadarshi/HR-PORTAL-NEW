@@ -23,10 +23,18 @@
             text-decoration: none;
             color: #007BFF;
         }
+         .marginTop{
+            margin-top:0%
+        }
+        @media only screen and (max-width: 768px) {
+            .marginTop{
+                margin-top:10%
+            }
+        }|
     </style>
 
     @auth('hr')
-    <div class="col" style="margin-left:20%">
+    <div class="col marginTop" style="width:max-content;">
         <div class="card" style="width:400px;">
             <div class="card-header">
                 <div class="row">
@@ -206,7 +214,8 @@
 
 
     @auth('it')
-    <div class="col" style="margin-left:20%">
+    <div class="col marginTop">
+     <div class="col" style="width:max-content;">
         <div class="card" style="width:400px;">
             <div class="card-header">
                 <div class="row">
@@ -222,6 +231,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     @if ($activeTab == "active")
@@ -387,8 +397,8 @@
 
 
     @auth('finance')
-    <div class="col" style="margin-left:20%">
-        <div class="card" style="width:400px;">
+    <div class="col marginTop">
+        <div class="card" style="width:max-content;">
             <div class="card-header">
                 <div class="row">
                     <button wire:click="$set('activeTab', 'active')" class="col btn @if($activeTab === 'active') btn-primary active @else btn-light @endif" style="border-radius: 5px; margin-right: 5px">
