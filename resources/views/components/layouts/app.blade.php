@@ -42,10 +42,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <script src="{{ mix('js/app.js') }}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
     <link rel="stylesheet" type="text/css" href="path/to/your.css">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -258,6 +258,47 @@
             .nav-link:hover {
                 color: var(--bs-nav-link-hover-color) !important;
             }
+
+            @media only screen and (max-width: 768px) {
+                .displayNone {
+                    display: none !important;
+                }
+
+                .displayBlock {
+                    display: block !important;
+                }
+
+                #menu-popup {
+                    position: absolute;
+                    background: #fff;
+                    border: 1px solid #e0dddd;
+                    border-radius: 0px;
+                    height: auto;
+                    width: fit-content;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                    top: 3.8em;
+                    z-index: 1000;
+                }
+            }
+
+            @media only screen and (min-width: 769px) {
+                .hideHamburger {
+                    display: none !important;
+                }
+            }
+
+            li a {
+                color: black;
+            }
+
+            a {
+                text-decoration: none
+            }
+
+            .nav-link:focus,
+            .nav-link:hover {
+                color: var(--bs-nav-link-hover-color) !important;
+            }
         </style>
 
 
@@ -274,7 +315,7 @@
                             @livewire('company-logo')
                         </div>
 
-                        @livewire('profile-card')
+                           @livewire('profile-card')
 
 
                         @auth('emp')
@@ -401,7 +442,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;">
-                                        <a class="nav-link" href="/leave-calender" onclick="changePageTitle5('team'); return false;">
+                                        <a class="nav-link" href="/team-on-leave-chart" onclick="changePageTitle5('team'); return false;">
                                             @livewire('team-on-leave')
                                         </a>
                                     </li>
@@ -828,7 +869,7 @@
                         window.location.href = '/holiday-calender';
                         break;
                     case 'team':
-                        window.location.href = '/leave-calender';
+                        window.location.href = '/team-on-leave-chart';
                         break;
                         // Add cases for other options if needed
                     default:

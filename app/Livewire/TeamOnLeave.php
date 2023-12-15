@@ -24,6 +24,6 @@ class TeamOnLeave extends Component
         return view('livewire.team-on-leave', [
             'showTeamOnLeave' => $this->showTeamOnLeave,
         ]);
-      
+        
     }
 }

@@ -40,6 +40,7 @@ use App\Livewire\EmpList;
 use App\Livewire\Investment;
 use App\Livewire\LeaveApply;
 use App\Livewire\LeavePage;
+
 // use App\Livewire\SalaryRevisions;
 use App\Livewire\Reimbursement;
 use App\Livewire\LeaveBalances;
@@ -49,6 +50,7 @@ use App\Livewire\TeamOnLeave;
 use App\Livewire\HolidayCalender;
 use App\Livewire\LeaveBalanaceAsOnADay;
 use App\Livewire\TeamOnLeaveChart;
+
 use App\Livewire\ViewDetails;
 use App\Livewire\ViewDetails1;
 use App\Livewire\ListOfAppliedJobs;
@@ -250,7 +252,6 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/salary-revision', SalaryRevisions::class)->name('salary-revision');
     Route::get('/plan-C', PlanA::class)->name('plan-a');
     Route::get('/formdeclaration', Declaration::class);
-
     Route::get('/itstatement', Itstatement1::class);
     Route::get('/document', Documentcenter::class);
     Route::get('/reimbursement', Reimbursement::class);
@@ -261,10 +262,21 @@ Route::middleware(['auth:emp'])->group(function () {
 
 
     Route::get('/leave-page', LeavePage::class)->name('leave-page');
+    Route::get('/approved-details/{leaveRequestId}', ApprovedDetails::class)->name('approved-details');
+    Route::get('/view-details/{leaveRequestId}', ViewDetails::class)->name('view-details');
     Route::get('/leave-apply', LeaveApply::class)->name('leave-apply');
     Route::get('/holiday-calender', HolidayCalender::class)->name('holiday-calender');
     Route::get('/leave-balances', LeaveBalances::class)->name('leave-balances');
-
+    Route::get('/leave-cancel', LeaveCancel::class)->name('leave-cancel');
+    Route::get('/leave-calender', LeaveCalender::class)->name('leave-calender');
+    Route::get('/leave-history/{leaveRequestId}', LeaveHistory::class)->name('leave-history');
+    Route::get('/leave-pending/{leaveRequestId}', LeavePending::class)->name('leave-pending');
+    Route::get('/team-on-leave', TeamOnLeave::class)->name('team-on-leave');
+    Route::get('/team-on-leave-chart', TeamOnLeaveChart::class)->name('team-on-leave-chart');
+    
+  
+    // TODO module
+    Route::get('/tasks', Tasks::class)->name('task');
     Route::get('/employees-review', EmployeesReview::class)->name('employees-review');
     Route::get('/review-leave', ReviewLeave::class)->name('ReviewLeave');
     Route::get('/view-details1', ViewDetails1::class)->name('view-details1');
