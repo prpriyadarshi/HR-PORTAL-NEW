@@ -262,7 +262,7 @@
                                             Review
                                         </div>
                                         <div >
-                                          <i class="fa fa-long-arrow-right" aria-hidden="true" style="color: #bbbbba;"></i>
+                                        <a href="/employees-review" style="font-size:16px; "><img src="/images/up-arrow.png" alt="" style="width:20px;height:27px;"></a>
                                         </div>
                                     </div>
                                     @if(($this->count) > 0)
@@ -343,7 +343,7 @@
                                             Team On Leave
                                         </div>
                                         <div >
-                                          <i class="fa fa-long-arrow-right" aria-hidden="true" style="color: #bbbbba;"></i>
+                                           <a href="/team-on-leave-chart" style="font-size:16px; "><img src="/images/up-arrow.png" alt="" style="width:20px;height:27px;"></a>
                                         </div>
                                     </div>
                                     @if(($this->teamCount) > 0)
@@ -432,65 +432,77 @@
                                 </div>
                         </div>
                         <div class="home-hover">
-                          @forelse($salaryRevision as $salaries)
-                             <div style="border-radius: 5px; border: 1px solid #CFCACA;background-color:white;padding:10px 20px;">
+
+                        @if($salaryRevision->isEmpty())
+                        <div style="border-radius: 5px; border: 1px solid #CFCACA;background-color:white;">
+                                            <div style="color: #677A8E;font-weight:500; padding:10px 15px;">
+                                               <div style="color: #677A8E;  font-weight:500; display:flex;justify-content:space-between;">
+                                                Payslip
+                                                  <a href="/slip" style="font-size:16px; "><img src="/images/up-arrow.png" alt="" style="width:20px;height:27px;"></a>
+                                                </div>
+
+                                                <div style="display:flex;align-items:center;flex-direction:column;">
+                                                     <img src="https://cdn3.iconfinder.com/data/icons/human-resources-70/133/9-512.png" alt="" style="height:75px;width:75px;">
+                                                    <p style="color: #677A8E;  margin-bottom: 20px; font-size:0.875rem;"> We are working on your payslip!</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                              @else
+                            @foreach($salaryRevision as $salaries)
+                             <div style="border-radius: 5px; border: 1px solid #CFCACA;background-color:white;padding:10px 15px;">
                                             <div style="color: #677A8E;  font-weight:500; display:flex;justify-content:space-between;">
                                                 Payslip
-                                                <a href="/slip" style="font-size:16px; ">&rarr;</a>
+                                                <a href="/slip" style="font-size:16px; "><img src="/images/up-arrow.png" alt="" style="width:20px;height:27px;"></a>
                                             </div>
 
-                    <div style="display:flex">
-                        <div style="position: relative;">
-                            <canvas id="outerPieChart" width="150" height="150"></canvas>
-                            <canvas id="innerPieChart" width="150" height="150" style="position: absolute; top: -10px; left: 0px;"></canvas>
-                        </div>
+                                            <div style="display:flex;justify-content:space-between;margin-top:20px;  ">
+                                            <div style="position: relative;">
+                                                    <canvas id="outerPieChart" width="180" height="230"></canvas>
+                                                    <canvas id="innerPieChart" style="position: absolute; top: -10px; left: 0px;"></canvas>
+                                                </div>
+                                                <div class="c" style="font-size: 13px; font-weight: normal; font-weight: 500; color: #9E9696;display:flex; flex-direction:column;justify-content:flex-end;">
+                                                    <p style="color:#333;">{{ date('M Y', strtotime('-1 month')) }}</p>
+                                                    <p style="display:flex;justify-content:end;flex-direction:column;align-items:end; color:#333;">{{ date('t', strtotime('-1 month')) }} <br>
+                                                        <span style="color:#778899;">Paid days</span>
+                                                    </p>
+                                                </div>
+                                            </div>
 
+                                            <div style="display:flex ;color: #677A8E;  font-size: 14px;  font-weight:100px;flex-direction:column; margin-top:20px;  ">
+                                                <div class="net-salary">
+                                                    <div style="display:flex;gap:10px;">
+                                                        <div style="padding:2px;width:2px;height:17px;background:#FF5733;border-radius:2px;"></div>
+                                                        <p>Gross Pay</p>
+                                                    </div>
+                                                    <p>₹{{number_format($salaries->calculateTotalAllowance(), 2)}}</p>
+                                                </div>
+                                                <div class="net-salary">
+                                                    <div style="display:flex;gap:10px;">
+                                                        <div style="padding:2px;width:2px;height:17px;background:#3399FF;border-radius:2px;"></div>
+                                                        <p>Deduction</p>
+                                                    </div>
+                                                    <p>₹{{number_format($salaries->calculateTotalDeductions() ?? 0, 2)}}</p>
+                                                </div>
+                                                <div class="net-salary">
+                                                    <div style="display:flex;gap:10px;">
+                                                        <div style="padding:2px;width:2px;height:17px;background:#33FF33;border-radius:2px;"></div>
+                                                        <p>Net Pay</p>
+                                                    </div>
+                                                    @if ($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions() > 0)
+                                                    <p> ₹{{ number_format($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions(), 2) }}</p>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div class="show-salary" style="display: flex; color: #1090D8; justify-content:space-between;font-size: 14px;  margin-top: 20px; font-weight: 100;">
+                                                <a href="/your-download-route" id="pdfLink2023_4" class="pdf-download" download >Download PDF</a>
+                                                <p >Show Salary</p>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                 @endif
+                            </div>
 
-
-                        <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 60px;margin-top: 30px; font-weight: 100; color: #9E9696">
-                            <br>{{ date('M Y', strtotime('-1 month')) }}</br>
-                            <br>{{ date('t', strtotime('-1 month')) }}</br>
-                            <br>Paid Days</br>
-                        </div>
-
-                    </div>
-
-                    <div style="display:flex ;color: #677A8E; font-size: 14px;  font-weight:100px;margin-top:-2px">
-                        <br style="margin-top:-10px">Gross Pay</br>
-                        <br>Deduction</br>
-                        <br>Net Pay</br>
-
-                        <div style="margin-left:120px;margin-top:22px">
-                            <p>₹{{$salaries->calculateTotalAllowance(), 2}}</p>
-                            <p>₹{{$salaries->calculateTotalDeductions(), 2}}</p>
-                            @if ($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions() > 0)
-                            <p style="margin-top:5px"> ₹{{ number_format($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions(), 2) }}</p>
-                            @endif
-
-                        </div>
-                    </div>
-                    <div class="column" style="display: flex; color: #1090D8; font-size: 14px;  margin-top: 20px; font-weight: 100;">
-
-                        <a href="/your-download-route" id="pdfLink2023_4" class="pdf-download" download style="margin-left: 10px; display: inline-block;">Download PDF</a>
-                        <p style="margin-left: 80px;">Show Salary</p>
-                    </div>
-
-                </div>
-                @empty
-                <div style="border-radius: 5px; border: 1px solid #CFCACA;background-color:white;">
-                    <div style="color: #677A8E;font-weight:500; margin-left: 10px;  margin-top: 10px;">
-                        Payslip
-                        <a href="/slip" style="font-size:16px; margin-left: 180px;">&rarr;</a>
-                        <div style="display:flex;align-items:center;flex-direction:column;">
-                            <img src="https://cdn3.iconfinder.com/data/icons/human-resources-70/133/9-512.png" alt="" style="height:75px;width:75px;">
-                            <p style="color: #677A8E;  margin-bottom: 20px; font-size:0.875rem;"> We are working on your payslip!</p>
-                        </div>
-                    </div>
-
-                </div>
-                @endforelse
-            </div>
-            @if ($showAlertDialog)
+          @if ($showAlertDialog)
             <div class="modal" tabindex="-1" role="dialog" style="display: block;">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -538,11 +550,11 @@
                 <div style="border-radius: 5px; border: 1px solid #CFCACA; background-color: white;padding:10px 15px;">
                     <div style="display:flex; justify-content:space-between;">
                         <p style="color: #677A8E;font-weight:500;">Upcoming Holidays</p>
-                        <a href="/holiday-calender" style="font-size: 14px;  text-decoration: none; height: 20px; color: black">&rarr;</a>
+                        <a href="/holiday-calender" style="font-size:16px; "><img src="/images/up-arrow.png" alt="" style="width:20px;height:27px;"></a>
                     </div>
                     @foreach ($calendarData as $entry)
                     <div>
-                        <p style="color: #677A8E;  font-size: 14px;  ">
+                        <p style="color: #677A8E;  font-size: 14px; font-weight: ">
                             {{ date('d M l', strtotime($entry->date)) }}<br>
                             <span style="font-size: 12px;">{{ $entry->festivals }}</span>
                         </p>
@@ -627,7 +639,7 @@
     var data = {
     labels: ['Gross Pay'],
     datasets: [{
-        data: [{{$salaries->calculateTotalAllowance(), 2}}],
+        data: [{{ !empty($salaries) ? $salaries->calculateTotalAllowance() : 0 }}, 2],
         backgroundColor: ['#FF5733'], // Color for Gross Pay
     }],
 };
@@ -635,7 +647,11 @@
 var innerData = {
    labels: ['Deductions', 'Net Pay'],
     datasets: [{
-        data: [{{$salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions(), 2 }}, {{$salaries->calculateTotalDeductions(), 2}}],
+        data: [
+    {{ !empty($salaries) && method_exists($salaries, 'calculateTotalAllowance') ? $salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions() : 0 }},
+    {{ !empty($salaries) && method_exists($salaries, 'calculateTotalDeductions') ? $salaries->calculateTotalDeductions() : 0 }},
+],
+
         backgroundColor: ['#3399FF', '#33FF33'], // Colors for Deductions and Net Pay
     }],
 };

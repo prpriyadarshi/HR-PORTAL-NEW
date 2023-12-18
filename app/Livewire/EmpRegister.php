@@ -70,6 +70,7 @@ class EmpRegister extends Component
 
     public function register()
     {
+
         $this->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -77,7 +78,7 @@ class EmpRegister extends Component
             'gender' => 'required|in:Male,Female',
             'email' => 'required|email|unique:employee_details',
             'company_name' => 'required|string|max:255',
-            'company_email' => 'required|email|unique:employee_details',
+            'company_email' => 'required|email',
             'mobile_number' => 'required|string|max:15',
             'alternate_mobile_number' => 'nullable|string|max:15',
             'address' => 'required|string|max:255',
@@ -99,9 +100,8 @@ class EmpRegister extends Component
             'job_location'=>'required'
         ]);
 
-        $imagePath = $this->image->store('employee_image', 'public');
-        $this->savedImage = $imagePath;
-        EmployeeDetails::create([
+ $imagePath = $this->image->store('employee_image', 'public');
+EmployeeDetails::create([
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
             'date_of_birth' => $this->date_of_birth,
@@ -156,14 +156,16 @@ class EmpRegister extends Component
         // Clear the form fields
         $this->reset();
     }
-    public function updatedImage()
-    {
-        $this->validate([
-            'image' => 'image|max:1024', // Adjust the validation rules as needed
-        ]);
 
-        $this->savedImage = $this->image->store('employee_images', 'public');
-    }
+
+    // public function updatedImage()
+    // {
+    //     $this->validate([
+    //         'image' => 'image|max:1024', // Adjust the validation rules as needed
+    //     ]);
+
+    //     $this->savedImage = $this->image->store('employee_image', 'public');
+    // }
 
 
 
@@ -199,7 +201,7 @@ class EmpRegister extends Component
         $this->employee_type = $this->employee_type ?? 'full-time';
         $this->physically_challenge=$this->physically_challenge ?? 'No';
         $this->inter_emp=$this->inter_emp ?? 'no';
-        
+
     }
     public function render()
     {

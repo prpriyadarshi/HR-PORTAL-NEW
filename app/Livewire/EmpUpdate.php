@@ -71,63 +71,59 @@ class EmpUpdate extends Component
     public $hrDetails;
    public $empId;
    public $selectedId;
-   public $reportTos, $selectedEmployees;
-    public function mount($empId){
+   public $reportTos, $selectedEmployees,$selectedEmployee;
+public function mount($empId){
 
-        $selectedEmployee = EmployeeDetails::find($empId);
-
-if($selectedEmployee){
-    $this->first_name = $selectedEmployee->first_name;
-    $this->last_name = $selectedEmployee->last_name;
-    $this->date_of_birth = $selectedEmployee->date_of_birth;
-    $this-> gender = $selectedEmployee->gender;
-    $this-> email = $selectedEmployee->email;
-    $this-> company_name = $selectedEmployee->company_name;
-    $this-> company_email = $selectedEmployee->company_email;
-    $this-> mobile_number = $selectedEmployee->mobile_number;
-    $this-> alternate_mobile_number = $selectedEmployee->alternate_mobile_number;
-    $this-> address = $selectedEmployee->address;
-    $this-> city = $selectedEmployee->city;
-    $this->state = $selectedEmployee->state;
-    $this->postal_code = $selectedEmployee->postal_code;
-    $this->country = $selectedEmployee->country;
-    $this->hire_date = $selectedEmployee->hire_date;
-    $this->employee_type = $selectedEmployee->employee_type;
-    $this->manager_id = $selectedEmployee->manager_id;
-    $this->report_to = $selectedEmployee->report_to;
-    $this->department = $selectedEmployee->department;
-    $this->job_title = $selectedEmployee->job_title;
-    $this->employee_status = $selectedEmployee->employee_status;
-    $this->emergency_contact = $selectedEmployee->emergency_contact;
-    $this->password = $selectedEmployee->password;
-    $this->image =  $selectedEmployee->imagePath; // Example storage for image upload
-    $this->blood_group = $selectedEmployee->blood_group;
-    $this->nationality = $selectedEmployee->nationality;
-    $this->religion = $selectedEmployee->religion;
-    $this->marital_status = $selectedEmployee->marital_status;
-    $this->spouse = $selectedEmployee->spouse;
-    $this->physically_challenge = $selectedEmployee->physically_challenge;
-    $this->inter_emp = $selectedEmployee->inter_emp;
-    $this->job_location = $selectedEmployee->job_location;
-    $this->education = $selectedEmployee->education;
-    $this->experience = $selectedEmployee->experience;
-    $this->pan_no = $selectedEmployee->pan_no;
-    $this->aadhar_no = $selectedEmployee->aadhar_no;
-    $this->pf_no = $selectedEmployee->pf_no;
-    $this->nick_name = $selectedEmployee->nick_name;
-    $this->time_zone = $selectedEmployee->time_zone;
-    $this->biography = $selectedEmployee->biography;
-    $this->facebook = $selectedEmployee->facebook;
-    $this->twitter = $selectedEmployee->twitter;
-    $this->linked_in = $selectedEmployee->linked_in;
-    $this->company_id = $selectedEmployee->company_id;
-    $this->is_starred = $selectedEmployee->is_starred;
-    $this->skill_set = $selectedEmployee->skill_set;
+        $this->selectedEmployee = EmployeeDetails::find($empId);
+if($this->selectedEmployee){
+    $this->first_name = $this->selectedEmployee->first_name;
+    $this->last_name = $this->selectedEmployee->last_name;
+    $this->date_of_birth = $this->selectedEmployee->date_of_birth;
+    $this-> gender = $this->selectedEmployee->gender;
+    $this-> email = $this->selectedEmployee->email;
+    $this-> company_name = $this->selectedEmployee->company_name;
+    $this-> company_email = $this->selectedEmployee->company_email;
+    $this-> mobile_number = $this->selectedEmployee->mobile_number;
+    $this-> alternate_mobile_number = $this->selectedEmployee->alternate_mobile_number;
+    $this-> address = $this->selectedEmployee->address;
+    $this-> city = $this->selectedEmployee->city;
+    $this->state = $this->selectedEmployee->state;
+    $this->postal_code = $this->selectedEmployee->postal_code;
+    $this->country = $this->selectedEmployee->country;
+    $this->hire_date = $this->selectedEmployee->hire_date;
+    $this->employee_type = $this->selectedEmployee->employee_type;
+    $this->manager_id = $this->selectedEmployee->manager_id;
+    $this->report_to = $this->selectedEmployee->report_to;
+    $this->department = $this->selectedEmployee->department;
+    $this->job_title = $this->selectedEmployee->job_title;
+    $this->employee_status = $this->selectedEmployee->employee_status;
+    $this->emergency_contact = $this->selectedEmployee->emergency_contact;
+    $this->password = $this->selectedEmployee->password;
+    $this->image =  $this->selectedEmployee->image; // Example storage for image upload
+    $this->blood_group = $this->selectedEmployee->blood_group;
+    $this->nationality = $this->selectedEmployee->nationality;
+    $this->religion = $this->selectedEmployee->religion;
+    $this->marital_status = $this->selectedEmployee->marital_status;
+    $this->spouse = $this->selectedEmployee->spouse;
+    $this->physically_challenge = $this->selectedEmployee->physically_challenge;
+    $this->inter_emp = $this->selectedEmployee->inter_emp;
+    $this->job_location = $this->selectedEmployee->job_location;
+    $this->education = $this->selectedEmployee->education;
+    $this->experience = $this->selectedEmployee->experience;
+    $this->pan_no = $this->selectedEmployee->pan_no;
+    $this->aadhar_no = $this->selectedEmployee->aadhar_no;
+    $this->pf_no = $this->selectedEmployee->pf_no;
+    $this->nick_name = $this->selectedEmployee->nick_name;
+    $this->time_zone = $this->selectedEmployee->time_zone;
+    $this->biography = $this->selectedEmployee->biography;
+    $this->facebook = $this->selectedEmployee->facebook;
+    $this->twitter = $this->selectedEmployee->twitter;
+    $this->linked_in = $this->selectedEmployee->linked_in;
+    $this->company_id = $this->selectedEmployee->company_id;
+    $this->is_starred = $this->selectedEmployee->is_starred;
+    $this->skill_set = $this->selectedEmployee->skill_set;
 }
-
-
-
-    }
+ }
     public function update()
     {
         $this->validate([
@@ -135,11 +131,7 @@ if($selectedEmployee){
             'last_name' => 'required|string|max:255',
             'date_of_birth' => 'required|date',
             'gender' => 'required|in:Male,Female',
-            'email' => 'required|email|unique:employee_details',
             'company_name' => 'required|string|max:255',
-            'company_email' => 'required|email|unique:employee_details',
-            'mobile_number' => 'required|string|max:15',
-            'alternate_mobile_number' => 'nullable|string|max:15',
             'address' => 'required|string|max:255',
             'city' => 'required|string|max:255',
             'state' => 'required|string|max:255',
@@ -158,12 +150,19 @@ if($selectedEmployee){
             'blood_group'=>'required',
             'job_location'=>'required'
         ]);
+        if ($this->selectedEmployee->email !== $this->email ||$this->selectedEmployee->company_email !== $this->company_email|| $this->selectedEmployee->mobile_number !== $this->mobile_number || $this->selectedEmployee->alternate_mobile_number !== $this->alternate_mobile_number ) {
+            $this->validate([
+                'email' => 'required|email|unique:employee_details',
+                'company_email' => 'required|company_email|unique:employee_details',
+                'mobile_number' => 'required|mobile_number|unique:employee_details',
+                'alternate_mobile_number' => 'required|alternate_mobile_number|unique:employee_details',
+                // ... other validation rules
+            ]);
+        }
 
         $imagePath = $this->image->store('employee_image', 'public');
-        $this->savedImage = $imagePath;
-
         if($this->selectedEmployee){
-            
+
             $this->selectedEmployee->update([
                 'first_name' => $this->first_name,
                 'last_name' => $this->last_name,
@@ -216,7 +215,7 @@ if($selectedEmployee){
         }
 
 
-    session()->flash('emp_success', 'Employee registered successfully!');
+    session()->flash('emp_success', 'Employee Update Successfully!');
 
     // Clear the form fields
     $this->reset();

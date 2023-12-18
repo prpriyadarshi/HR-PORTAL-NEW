@@ -277,7 +277,7 @@
                             <h5 class="mb-0" style="text-align: center;color:white;">Employee Registration Form</h5>
                         </div>
                         <div class="card-body">
-                            <form wire:submit.prevent="update" enctype="multipart/form-data">
+                            <form wire:submit.prevent="register" enctype="multipart/form-data">
                                 <div class="row" style="margin-top:10px">
                                     <div class="col-md-3">
                                         <!-- Your first column form elements -->
@@ -403,13 +403,19 @@
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
-                                            @if ($image)
-                                            <div>
-                                                <img style="height:90px;width:80px"
-                                                    src="{{ $image->temporaryUrl() }}" alt="Image Preview"
-                                                    style="max-width: 300px;">
-                                            </div>
-                                        @endif
+                                            @if($image)
+                                            <img src="{{ asset('storage/' . $image) }}" width="100" class="img-thumbnail" />
+                                            <input type="hidden" name="hidden_image" value="{{ $image }}" />
+
+                                            @else
+                                            <input type="file" wire:model="image" />
+                                                @if ($image)
+                                                    <img src="{{ $image->temporaryUrl() }}" alt="Preview" width="100" heigth="100">
+                                                @endif
+                                                @error("image")
+                                                    <p class="pt-2 px-1 text-danger">{{ $message }}</p>
+                                                @enderror
+                                                @endif
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -651,13 +657,13 @@
                                                     <label>Physically Challenge:</label><br>
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio"
-                                                            wire:model="physically_challenge" value="Yes"
+                                                            wire:model="physically_challenge" value="yes"
                                                             id="yesRadio" name="physically_challenge_group">
                                                         <label class="form-check-label" for="yesRadio">Yes</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio"
-                                                            wire:model="physically_challenge" value="No"
+                                                            wire:model="physically_challenge" value="no"
                                                             id="noRadio" name="physically_challenge_group" checked>
                                                         <label class="form-check-label" for="noRadio">No</label>
                                                     </div>

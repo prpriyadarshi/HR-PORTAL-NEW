@@ -111,7 +111,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="d-inline-block">
+                                <div class="d-inline-block"  style="margin-left: -5px;">
                                     @if ($employee->status == 1)
                                     <button class="btn btn-danger btn-xs" wire:click="deleteEmp('{{ $employee->emp_id }}')">
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>

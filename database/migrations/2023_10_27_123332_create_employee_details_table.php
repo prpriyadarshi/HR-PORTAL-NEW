@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('date_of_birth');
             $table->string('gender');
             $table->string('email')->unique();
-            $table->string('company_email')->unique();
+            $table->string('company_email');
             $table->string('company_name');
             $table->string('mobile_number')->unique();
             $table->string('alternate_mobile_number')->unique();
@@ -48,7 +48,7 @@ return new class extends Migration
             $table->enum('inter_emp', ['yes', 'no']);
             $table->string('job_location');
             $table->string('education');
-            $table->string('experince')->nullable();
+            $table->string('experience')->nullable();
             $table->string('pan_no')->unique()->nullable();
             $table->string('adhar_no')->unique()->nullable();
             $table->string('pf_no')->unique()->nullable();
