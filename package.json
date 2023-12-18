@@ -17,6 +17,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "apexcharts": "^3.44.0",
         "dom-to-pdf": "^0.3.2",
         "font-awesome": "^4.7.0"
     }

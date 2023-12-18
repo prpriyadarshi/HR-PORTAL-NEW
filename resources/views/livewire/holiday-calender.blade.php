@@ -1,14 +1,12 @@
 <div>
     <!DOCTYPE html>
     <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Container with 4 Inner Containers</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <!-- Include Open Sans font -->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <style>
               body{
@@ -79,9 +77,8 @@
 
             .inner-container .fest h5 {
                 font-weight: 500;
-                font-size: 1.15rem;
+                font-size: 0.895rem;
                 white-space: nowrap;
-                overflow: hidden;
                 text-overflow: ellipsis;
             }
 
@@ -241,9 +238,9 @@
                             <h6>No holidays</h6>
                         </div>
                         @else
-                        <div class="group" style="">
+                        <div class="group" >
                             @foreach($entries as $entry)
-                            <div class="fest" style="display:flex; gap:10px;">
+                            <div class="fest" style="display:flex; gap:20px;">
                                 <h5>{{ date('d', strtotime($entry->date)) }}<span>
                                         <p style="font-size: 0.7rem;">{{ substr($entry->day, 0, 3) }}</p>
                                     </span></h5>
@@ -343,7 +340,7 @@
                         @else
                         <div class="group" style="">
                             @foreach($entries as $entry)
-                            <div class="fest" style="display:flex; gap:10px;">
+                            <div class="fest" style="display:flex; gap:20px;">
                                 <h5>{{ date('d', strtotime($entry->date)) }}<span>
                                         <p style="font-size: 0.7rem;">{{ substr($entry->day, 0, 3) }}</p>
                                     </span></h5>
