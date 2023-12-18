@@ -147,9 +147,11 @@ Route::middleware(['auth:com'])->group(function () {
         return view('emp-list-view');
     });
 
-    Route::get('/emp-update/{$empId}', function ($empId) {
-        return view('emp-update-view', compact('$empId'));
-    })->name('emp-update');
+   Route::get('/emp-update/{empId}', function ($empId) {
+    return view('emp-update-view', compact('empId'));
+})->name('emp-update');
+
+
 });
 
 Route::middleware(['auth:hr'])->group(function () {

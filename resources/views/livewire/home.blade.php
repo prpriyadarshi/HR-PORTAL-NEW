@@ -432,7 +432,7 @@
                                 </div>
                         </div>
                         <div class="home-hover">
-                      
+
                         @if($salaryRevision->isEmpty())
                         <div style="border-radius: 5px; border: 1px solid #CFCACA;background-color:white;">
                                             <div style="color: #677A8E;font-weight:500; padding:10px 15px;">
@@ -440,7 +440,7 @@
                                                 Payslip
                                                   <a href="/slip" style="font-size:16px; "><img src="/images/up-arrow.png" alt="" style="width:20px;height:27px;"></a>
                                                 </div>
-                                               
+
                                                 <div style="display:flex;align-items:center;flex-direction:column;">
                                                      <img src="https://cdn3.iconfinder.com/data/icons/human-resources-70/133/9-512.png" alt="" style="height:75px;width:75px;">
                                                     <p style="color: #677A8E;  margin-bottom: 20px; font-size:0.875rem;"> We are working on your payslip!</p>
@@ -501,7 +501,7 @@
                                         @endforeach
                                  @endif
                             </div>
-                            
+
           @if ($showAlertDialog)
             <div class="modal" tabindex="-1" role="dialog" style="display: block;">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -522,7 +522,7 @@
                                     <th style="font-size: 12px; color: grey;">Swipe Time</th>
                                     <th style="font-size: 12px; color: grey">Sign-In / Sign-Out</th>
                                 </tr>
- 
+
                                 @if (!is_null($swipeDetails) && $swipeDetails->count() > 0)
                                 @foreach ($swipeDetails as $swipe)
                                 <tr>
@@ -535,7 +535,7 @@
                                     <td style="font-size:12px;"                                                                                                                                                                                                                                                                                                                                                                                          colspan="2">No swipe records found for today.</td>
                                 </tr>
                                 @endif
- 
+
                             </table>
                         </div>
                     </div>

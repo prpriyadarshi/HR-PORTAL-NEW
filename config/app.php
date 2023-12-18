@@ -189,7 +189,7 @@ return [
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
     */
-    
+
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,

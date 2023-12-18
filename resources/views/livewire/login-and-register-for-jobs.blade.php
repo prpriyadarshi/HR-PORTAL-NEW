@@ -285,7 +285,7 @@
                                 <button class="btn" type="button" wire:click="vendorLogin" style="background-color:rgb(2, 17, 79);color:white">Login</button>
                             </div>
                             @endif
-                           
+
                         </form>
 
                         <button onclick="window.location.href = '{{ url('/login') }}'" class="google-login-btn" style="width: 165px; margin-left: 180px; font-size: 12px;height:30px">
@@ -296,7 +296,7 @@
 
                     </div>
 
-                  
+
                     @endif
                 </div>
 

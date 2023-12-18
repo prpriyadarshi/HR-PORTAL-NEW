@@ -50,7 +50,7 @@ class EmployeeDetails extends Authenticatable
         'inter_emp',
         'job_location',
         'education',
-        'experince',
+        'experience',
         'pan_no',
         'adhar_no',
         'pf_no',
