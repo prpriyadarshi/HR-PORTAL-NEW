@@ -143,6 +143,16 @@
         width: 100%;/* Allow the height to adjust based on content */
     }
 }
+@media screen and (max-width: 960px) {
+.approved-leave{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        padding: 5px;
+        background-color: none;
+          }
+        }
     </style>
 </head>
 <body>
@@ -163,23 +173,27 @@
                                 <span style="color: #333; font-weight: 500; text-transform: uppercase;">
                                     {{ $this->leaveRequest->employee->first_name }} {{ $this->leaveRequest->employee->last_name }}
                                 </span>
+                                @elseif(strtoupper($leaveRequest->status) == 'REJECTED')
+                                <span style="color: #333; font-weight: 500; text-transform: uppercase;">
+                                    {{ $this->leaveRequest->employee->first_name }} {{ $this->leaveRequest->employee->last_name }}
+                                </span>
                             @endif
                         </div>
  
                      <div>
                         <span style="color: #32CD32; font-size: 0.875rem; font-weight: 500; text-transform:uppercase;">
                         @if(strtoupper($leaveRequest->status) == 'APPROVED')
- 
-                                    <span style="margin-top:0.625rem; font-size: 1rem; font-weight: 500; color:#32CD32;">{{ strtoupper($leaveRequest->status) }}</span>
- 
+
+                                    <span style="margin-top:0.625rem; font-size: 0.9rem; font-weight: 500; color:#32CD32;">{{ strtoupper($leaveRequest->status) }}</span>
+
                                 @elseif(strtoupper($leaveRequest->status) == 'REJECTED')
- 
-                                    <span style="margin-top:0.625rem; font-size: 1rem; font-weight: 500; color:#FF0000;">{{ strtoupper($leaveRequest->status) }}</span>
- 
+
+                                    <span style="margin-top:0.625rem; font-size: 0.9rem; font-weight: 500; color:#FF0000;">{{ strtoupper($leaveRequest->status) }}</span>
+
                                 @else
- 
-                                    <span style="margin-top:0.625rem; font-size: 1rem; font-weight: 500; color:#778899;">{{ strtoupper($leaveRequest->status) }}</span>
- 
+
+                                    <span style="margin-top:0.625rem; font-size: 0.9rem; font-weight: 500; color:#778899;">{{ strtoupper($leaveRequest->status) }}</span>
+
                                 @endif
                         </span>
                    </div>
@@ -207,17 +221,29 @@
                  </div>
                     <div class="leave">
                         <div class="pay-bal">
-                            <span style=" font-size: 0.975rem; font-weight: 500;">Balance:</span>
-                            @if(!empty($this->leaveBalances))
-                                @if($this->leaveRequest->leave_type === 'Sick Leave')
-                                <span style=" font-size: 0.875rem; font-weight: 500;">{{ $leaveBalances['sickLeaveBalance'] }}</span>
-                                @elseif($this->leaveRequest->leave_type === 'Causal Leave Probation')
-                                <span style=" font-size: 0.875rem; font-weight: 500;">{{ $leaveBalances['casualLeaveBalance'] }}</span>
-                                @elseif($this->leaveRequest->leave_type === 'Loss Of Pay')
-                                <span style=" font-size: 0.875rem; font-weight: 500;">{{ $leaveBalances['lossOfPayBalance'] }}</span>
-                                @endif
-                            @endif
-                        </div>
+                               <span style=" font-size: 0.975rem; font-weight: 500;">Balance:</span>
+                                     @if(!empty($this->leaveBalances))
+                                                        <div style=" flex-direction:row; display: flex; align-items: center;justify-content:center;">
+                                                        <!-- Sick Leave -->
+                                                            <div style="width: 20px; height: 20px; border-radius: 50%; background-color: #e6e6fa; display: flex; align-items: center; justify-content: center; margin-left:15px;">
+                                                                <span style="font-size: 0.625rem; color: #50327c;font-weight:500;">SL</span>
+                                                        </div>
+                                                            <span style="font-size: 0.795rem; font-weight: 500; color: #50327c; margin-left: 5px;">{{ $this->leaveBalances['sickLeaveBalance'] }}</span>
+
+
+                                                        <!-- Casual Leave -->
+                                                        <div style="width: 20px; height: 20px; border-radius: 50%; background-color: #e7fae7; display: flex; align-items: center; justify-content: center; margin-left: 15px;">
+                                                                <span style="font-size: 0.625rem; color: #1d421e;font-weight:500;">CL</span>
+                                                        </div>
+                                                            <span style="font-size: 0.795rem; font-weight: 500; color: #1d421e; margin-left: 5px;">{{ $this->leaveBalances['casualLeaveBalance'] }}</span>
+                                                        <!-- Loss of Pay -->
+                                                        <div style="width: 20px; height: 20px; border-radius: 50%; background-color: #ffebeb; display: flex; align-items: center; justify-content: center; margin-left: 15px;">
+                                                                <span style="font-size: 0.625rem; color: #890000;font-weight:500;">LP</span>
+                                                        </div>
+                                                            <span style="font-size: 0.795rem; font-weight: 500; color: #890000; margin-left: 5px;">{{ $this->leaveBalances['lossOfPayBalance'] }}</span>
+                                                    </div>
+                                                @endif
+                              </div>
                         <div class="leave-type">
                             <span style=" color: #605448; font-size: 1rem; font-weight: 600;">{{ $leaveRequest->leave_type }}</span>
                         </div>
@@ -234,10 +260,10 @@
             @endif
              <div style="display:flex; flex-direction:row; justify-conetnt-space-between;">
              <span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 88px;">Reason</span>
-             <p>{{ $leaveRequest->reason }}</p>
-       
+             <p style="font-size: 0.895rem;">{{ $leaveRequest->reason }}</p>
+        
              </div>
-            <p style="margin-top:10px;"><span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 82px;">Contact</span>{{ $leaveRequest->contact_details }} </p>
+            <p style="margin-top:10px;font-size: 0.875rem;"><span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 82px;">Contact</span>{{ $leaveRequest->contact_details }} </p>
             @if(!empty($leaveRequest->cc_to))
                 <p style="font-size: 0.975rem; font-weight: 500;">
                     <span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 90px;">CC to</span>
@@ -280,8 +306,10 @@
                             @endforeach
                         @endif
                     @else
-                        Rejected by
-                        <!-- Add your logic for rejected by -->
+                        Rejected by <br>
+                        <span style="color: #778899; font-size: 0.825rem; font-weight: 500;text-align:start;">
+                                    {{ $applyingTo['report_to'] }}
+                                </span>
                     @endif
                     <br>
                     <span style="color: #778899; font-size: 0.725rem; font-weight: 400;text-align:start;">

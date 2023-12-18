@@ -24,7 +24,7 @@ class ViewPendingDetails extends Component
     public function mount()
     {
             $employeeId = auth()->guard('emp')->user()->emp_id;
-            $this->leaveRequests = LeaveRequest::where('status', 'pending')
+            $this->leaveRequests = LeaveRequest::where('leave_applies.status', 'pending')
             ->where(function ($query) use ($employeeId) {
                 $query->whereJsonContains('applying_to', [['manager_id' => $employeeId]])
                     ->orWhereJsonContains('cc_to', [['emp_id' => $employeeId]]);
@@ -46,7 +46,6 @@ class ViewPendingDetails extends Component
                 if ($isManagerInApplyingTo || $isEmpInCcTo) {
                     // Call the getLeaveBalances function to get leave balances for each application
                     $leaveBalances = LeaveBalances::getLeaveBalances($leaveRequest->emp_id);
-        
                     // Add leave balances and leave request data to the array
                     $matchingLeaveApplications[] = [
                         'leaveRequest' => $leaveRequest,
@@ -144,33 +143,34 @@ class ViewPendingDetails extends Component
     }
 
     public function approveLeave($index)
-{
-    // Find the leave request by ID
-    $leaveRequest = $this->leaveApplications[$index]['leaveRequest'];
-
-    // Update status to 'approved'
-    $leaveRequest->status = 'approved';
-    $leaveRequest->save();
-    $leaveRequest->touch();
-
-    session()->flash('message', 'Leave application approved successfully.');
-}
-
-public function rejectLeave($index)
-{
-    // Find the leave request by ID
-    $leaveRequest = $this->leaveApplications[$index]['leaveRequest'];
-
-    // Update status to 'rejected'
-    $leaveRequest->status = 'rejected';
-    $leaveRequest->save();
-    $leaveRequest->touch();
-
-    session()->flash('message', 'Leave application rejected.');
-}
-
-    public function render()
     {
-        return view('livewire.view-pending-details');
+        // Find the leave request by ID
+        $leaveRequest = $this->leaveApplications[$index]['leaveRequest'];
+    
+        // Update status to 'approved'
+        $leaveRequest->status = 'approved';
+        $leaveRequest->save();
+        $leaveRequest->touch();
+        $this->reset();
+        session()->flash('message', 'Leave application approved successfully.');
+    
+        // Refresh the Livewire component
+        return redirect()->to('livewire.employees-review');
     }
-}
+    
+    public function rejectLeave($index)
+    {
+        // Find the leave request by ID
+        $leaveRequest = $this->leaveApplications[$index]['leaveRequest'];
+    
+        // Update status to 'rejected'
+        $leaveRequest->status = 'rejected';
+        $leaveRequest->save();
+        $leaveRequest->touch();
+        $this->reset();
+        session()->flash('message', 'Leave application rejected.');
+    
+        // Refresh the Livewire component
+        return redirect()->to('livewire.employees-review');
+    }
+}    

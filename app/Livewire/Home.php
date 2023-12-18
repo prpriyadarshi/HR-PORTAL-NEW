@@ -107,10 +107,52 @@ class Home extends Component
                 $matchingLeaveApplications[] = $leaveRequest;
             }
         }
-
+     
         // Get the count of matching leave applications
         $this->count = count($matchingLeaveApplications);
 
+
+      
+
+
+        //team on leave
+        $currentDate = Carbon::today();
+        $this->teamOnLeaveRequests = LeaveRequest::with('employee')
+            ->where('status', 'approved')
+            ->where(function ($query) use ($currentDate) {
+                $query->whereDate('from_date', '=', $currentDate)
+                    ->orWhereDate('to_date', '=', $currentDate);
+            })
+            ->get();
+        $teamOnLeaveApplications = [];
+    
+        foreach ($this->teamOnLeaveRequests as $teamOnLeaveRequest) {
+            $applyingToJson = trim($teamOnLeaveRequest->applying_to);
+            $applyingArray = is_array($applyingToJson) ? $applyingToJson : json_decode($applyingToJson, true);
+    
+            $ccToJson = trim($teamOnLeaveRequest->cc_to);
+            $ccArray = is_array($ccToJson) ? $ccToJson : json_decode($ccToJson, true);
+    
+            $isManagerInApplyingTo = isset($applyingArray[0]['manager_id']) && $applyingArray[0]['manager_id'] == $employeeId;
+            $isEmpInCcTo = isset($ccArray[0]['emp_id']) && $ccArray[0]['emp_id'] == $employeeId;
+    
+            if ($isManagerInApplyingTo || $isEmpInCcTo) {
+                $teamOnLeaveApplications[] = $teamOnLeaveRequest;
+            }
+        }
+         $this->teamOnLeave = $teamOnLeaveApplications;
+      
+        // Get the count of matching leave applications
+        $this->teamCount = count($teamOnLeaveApplications);
+
+        $this->upcomingLeaveRequests = LeaveRequest::with('employee')
+            ->where('status', 'approved')
+            ->where(function ($query) use ($currentDate) {
+                $query->whereMonth('from_date', Carbon::now()->month); // Filter for the current month
+            })
+            ->orderBy('created_at', 'desc')
+            ->get();
+            $this->upcomingLeaveApplications = count($this->upcomingLeaveRequests);
 
 
 
@@ -161,7 +203,9 @@ class Home extends Component
             ->get();
 
         // Assuming $calendarData should contain the data for upcoming holidays
+        $currentYear = Carbon::now()->year;
         $this->calendarData = HolidayCalendar::where('date', '>=', $today)
+        ->whereYear('date', $currentYear)
             ->orderBy('date')
             ->take(3)
             ->get();
@@ -182,7 +226,6 @@ class Home extends Component
 
         // Pass the data to the view and return the view instance
         return view('livewire.home', [
-
             'calendarData' => $this->calendarData,
             'salaryRevision' => $this->salaryRevision,
             'showLeaveApplies' => $this->showLeaveApplies,

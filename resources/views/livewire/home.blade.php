@@ -474,14 +474,14 @@
                                                         <div style="padding:2px;width:2px;height:17px;background:#FF5733;border-radius:2px;"></div>
                                                         <p>Gross Pay</p>
                                                     </div>
-                                                    <p>₹{{number_format($salaries->calculateTotalAllowance(), 2)}}</p>
+                                                    <p>₹ {{number_format($salaries->calculateTotalAllowance(), 2)}}</p>
                                                 </div>
                                                 <div class="net-salary">
                                                     <div style="display:flex;gap:10px;">
                                                         <div style="padding:2px;width:2px;height:17px;background:#3399FF;border-radius:2px;"></div>
                                                         <p>Deduction</p>
                                                     </div>
-                                                    <p>₹{{number_format($salaries->calculateTotalDeductions() ?? 0, 2)}}</p>
+                                                    <p>₹ {{number_format($salaries->calculateTotalDeductions() ?? 0, 2)}}</p>
                                                 </div>
                                                 <div class="net-salary">
                                                     <div style="display:flex;gap:10px;">
@@ -489,7 +489,7 @@
                                                         <p>Net Pay</p>
                                                     </div>
                                                     @if ($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions() > 0)
-                                                    <p> ₹{{ number_format($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions(), 2) }}</p>
+                                                    <p> ₹ {{ number_format($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions(), 2) }}</p>
                                                     @endif
                                                 </div>
                                             </div>
