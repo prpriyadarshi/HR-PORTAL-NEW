@@ -19,6 +19,8 @@ class Home extends Component
     public $currentDate;
 
     public $currentDay;
+
+    public $absent_employees_count;
     public $showAlertDialog = false;
     public $signIn = true;
     public $swipeDetails;
@@ -34,6 +36,7 @@ class Home extends Component
     public $leaveRequest;
     public $salaryRevision; // Rename this variable to 'salaries'
     public $pieChartData;
+    public $absent_employees;
     public $grossPay;
     public $deductions;
     public $netPay;
@@ -86,6 +89,10 @@ class Home extends Component
 
     public function render()
     {
+        $loggedInEmpId = Auth::guard('emp')->user()->emp_id;
+       
+        // Check if the logged-in user is a manager by comparing emp_id with manager_id in employeedetails
+        $isManager = EmployeeDetails::where('manager_id', $loggedInEmpId)->exists();
         $employeeId = auth()->guard('emp')->user()->emp_id;
         $this->currentDay = now()->format('l');
         $this->currentDate = now()->format('d M Y');
@@ -166,6 +173,37 @@ class Home extends Component
                     ->orWhereDate('to_date', '=', $currentDate);
             })
             ->get();
+            $this->absent_employees = EmployeeDetails::where('manager_id', $loggedInEmpId)
+            ->select('emp_id', 'first_name', 'last_name')
+            ->whereNotIn('emp_id', function ($query) {
+                $query->select('emp_id')
+                    ->from('swipe_records')
+                    ->whereDate('created_at', today());
+            })
+            ->whereNotIn('emp_id', function ($query) {
+                $query->select('emp_id')
+                    ->from('leave_applies')
+                    ->whereDate('from_date', '=', today())
+                    ->whereDate('to_date', '>=', today());
+            })
+            ->get();
+            $arrayofabsentemployees = $this->absent_employees->toArray();
+        
+            $this->absent_employees_count = EmployeeDetails::where('manager_id', $loggedInEmpId)
+            ->select('emp_id', 'first_name', 'last_name')
+            ->whereNotIn('emp_id', function ($query) {
+                $query->select('emp_id')
+                    ->from('swipe_records')
+                    ->whereDate('created_at', today());
+            })
+            ->whereNotIn('emp_id', function ($query) {
+                $query->select('emp_id')
+                    ->from('leave_applies')
+                    ->whereDate('from_date', '=', today())
+                    ->whereDate('to_date', '>=', today());
+            })
+            ->count();
+          
         $teamOnLeaveApplications = [];
 
         foreach ($this->teamOnLeaveRequests as $teamOnLeaveRequest) {
@@ -183,7 +221,7 @@ class Home extends Component
             }
         }
         $this->teamOnLeave = $teamOnLeaveApplications;
-
+        
         // Get the count of matching leave applications
         $this->teamCount = count($teamOnLeaveApplications);
 
@@ -235,6 +273,9 @@ class Home extends Component
             'matchingLeaveApplications' => $matchingLeaveApplications,
             'upcomingLeaveRequests'  => $this->upcomingLeaveRequests,
             'upcomingLeaveApplications' => $this->upcomingLeaveApplications,
+            'ismanager'=>$isManager,
+            'AbsentEmployees'=>$arrayofabsentemployees,
+            'CountAbsentEmployees'=>$this->absent_employees_count,
         ]);
     }
 }

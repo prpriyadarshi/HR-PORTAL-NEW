@@ -5,11 +5,9 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\EmployeeDetails;
 use App\Models\Company;
-use Livewire\WithPagination;
 
 class EmpList extends Component
 {
-    use WithPagination;
     public $employees;
     public $companies;
     public $hrDetails;
@@ -37,7 +35,8 @@ class EmpList extends Component
 
     public $filteredEmployees;
 
-    public function filter(){
+    public function filter()
+    {
         $this->filteredEmployees = EmployeeDetails::where(function ($query) {
             $query->where('first_name', 'like', '%' . $this->search . '%')
                 ->orWhere('last_name', 'like', '%' . $this->search . '%')
@@ -46,7 +45,6 @@ class EmpList extends Component
                 ->orWhere('mobile_number', 'like', '%' . $this->search . '%');
         })
             ->get();
-
     }
     public function render()
     {
@@ -55,7 +53,7 @@ class EmpList extends Component
         $hrDetails = Company::where('contact_email', $hrEmail)->first();
         $this->companies = $hrCompanies;
         $this->hrDetails = $hrDetails;
-        $this->employees = EmployeeDetails::where(function ($query) {
+        $this->employees = EmployeeDetails::where('company_id', $hrDetails->company_id)->where(function ($query) {
             $query->where('first_name', 'like', '%' . $this->search . '%')
                 ->orWhere('last_name', 'like', '%' . $this->search . '%')
                 ->orWhere('email', 'like', '%' . $this->search . '%')

@@ -598,7 +598,7 @@
                         </li>
 
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6(item)">
 
                             <a class="nav-link" href="/Attendance"  onclick="setActiveLink(this)">
 
@@ -1047,7 +1047,20 @@
                     leaveCaret.classList.add("fa-caret-up");
                 }
             }
+            function toggleAttendanceDropdown() {
+                const AttendanceOptions = document.getElementById("attendance-options");
+                const AttendanceCaret = document.getElementById("attendance-caret");
 
+                if (AttendanceOptions.style.display === "block") {
+                    AttendanceOptions.style.display = "none";
+                    AttendanceCaret.classList.remove("fa-caret-up");
+                    AttendanceCaret.classList.add("fa-caret-down");
+                } else {
+                    AttendanceOptions.style.display = "block";
+                    AttendanceCaret.classList.remove("fa-caret-down");
+                    AttendanceCaret.classList.add("fa-caret-up");
+                }
+            }
             function toggleSalaryDropdown() {
                 const salaryOptions = document.getElementById("salary-options");
                 const salaryCaret = document.getElementById("salary-caret");
@@ -1107,6 +1120,7 @@
                 // Update the pageTitle
                 updatePageTitle(pageTitle);
                 // Close the dropdown if open
+                toggleAttendanceDropdown();
                 toggleLeaveDropdown();
                 toggleSalaryDropdown();
             }
