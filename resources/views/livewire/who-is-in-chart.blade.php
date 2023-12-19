@@ -1,28 +1,28 @@
 <div>
 <style>
     .container-box {
-        width: 95%;
+        width: 81%;
         display: flex;
         flex-direction: column;
-        border: 1px solid #ccc; /* Set border if needed */ 
+        border: 1px solid #ccc;
         margin-top: 30px;
         margin-left: 10px;
         align-items: center;
         justify-content: center;
-        background: #fff;
+       
         border: 1px solid #ccc;
-        flex: 1; /* Apply flex: 1 to take available vertical space */
+        flex: 1;
     }
 
     .field {
+    
         text-align: center;
-        width: 92%;
+        width: 100%;
         align-items: center;
+        background-color: #ffffff;
         border-right: 1px solid #ccc;
-        flex: 1; /* Apply flex: 1 to take available vertical space */
+        flex: 1;
     }
-
-
 
         .percentage {
             font-size: 18px;
@@ -73,14 +73,13 @@
          }
          
          table {
-    border-collapse: collapse;
-    width: 100%;
-    max-height: 200px; /* Set the max height you prefer */
-    overflow-y: auto;
-    overflow-x: hidden;
-   
-    display: block;
-    
+          border-collapse: collapse;
+          width: 100%;
+          max-height: 200px; /* Set the max height you prefer */
+          overflow-y: auto;
+          overflow-x: hidden;
+          display: block;
+
   }
 
   /* CSS for the table header (thead) */
