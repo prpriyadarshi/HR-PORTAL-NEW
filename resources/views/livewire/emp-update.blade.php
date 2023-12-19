@@ -199,21 +199,42 @@
             height: 10px;
             /* Adjust the height to decrease the size of the radio buttons */
         }
-    </style>
+        .logout {
+            background-color: rgb(2, 17, 79);
+            /* Coral color */
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            margin-top: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border: 1px solid white;
+            border-radius: 5px;
+            font-size: 12px;
+        }
 
-    <div class="container" style="background-color: #02134F; color: white;margin:0%;max-width:100%;padding:2px">
+        .logout:hover {
+            background-color: #fff;
+            color: black
+                /* Darker coral color on hover */
+        }
+    </style>
+    <div class="container-11" style="background-color: #02134F; color: white; padding:2px;height:53px">
+
         <div style="display: flex; align-items: start; justify-content: start;">
             <img src="{{ $hrDetails->company_logo }}" alt="Logo" style="width: 200px; height: 50px; margin-right: 10px;">
             <h1 style="font-size: 20px; margin-left:25%;margin-top:10px">HR - {{ $hrDetails->hr_name }}</h1>
+            <div style="margin-left:25%;">
+                <button style="margin-bottom: 10px;" class="logout" style="text-align:end" wire:click="logout"> <i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
         </div>
     </div>
     <div style="margin-top:5px;margin-bottom:5px">
-        <button style="width: 230px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;margin-left:23%"><a href="/JobSeekersAppliedJobs" style="text-decoration: none;color:white">Job Seekers Applied
+        <button style="width: 230px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;margin-left:32%"><a href="/JobSeekersAppliedJobs" style="text-decoration: none;color:white">Job Seekers Applied
                 Jobs</a></button>
         <button style="width:200px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;"><a href="/VendorsSubmittedCVs" style="text-decoration: none;color:white">Vendors Submitted CVs</a></button>
         <button style="width:200px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;"><a href="/empregister" style="text-decoration: none;color:white">Employee Register</a></button>
         <button style="width:200px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;"><a href="/emplist" style="text-decoration: none;color:white">Employees List</a></button>
-        <button style="width: 100px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;" wire:click="logout">Logout</button>
     </div>
     @if (Session::has('success'))
     <div id="success-alert" class="alert alert-success alert-dismissible fade show" style="

@@ -23,6 +23,7 @@
 
             }
 
+
             .left-column,
             .right-column {
                 flex: 1;
@@ -147,6 +148,25 @@
                 font-family: Montserrat;
 
             }
+            .logout {
+                background-color: rgb(2, 17, 79);
+                /* Coral color */
+                color: #fff;
+                border: none;
+                padding: 10px 15px;
+                margin-top: 15px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                border: 1px solid white;
+                border-radius: 5px;
+                font-size: 12px;
+            }
+
+            .logout:hover {
+                background-color: #fff ;
+                color:black
+                /* Darker coral color on hover */
+            }
         </style>
     </head>
 
@@ -155,11 +175,14 @@
             <div style="display: flex; align-items: start; justify-content: start;">
                 <img src="https://xsilica.com/images/xsilica_broucher_final_modified_05082016-2.png" alt="Logo" style="width: 200px; height: 50px; margin-right: 10px;">
                 <h1 style="font-size: 21px; margin-left: 21%">Job Seeker - {{$user->full_name}}</h1>
+                <div style="margin-left:25%">
+                        <button class="logout" style="margin-top: 15px;text-align:end" wire:click="logout"> <i class="fas fa-sign-out-alt" style="margin-right: 5px;"></i> Logout</button>
+                    </div>
             </div>
         </div>
 
 
-        <div class="row-11" style="margin-left: 48%;margin-top:10px">
+        <div class="row-11" style="margin-left: 58%;margin-top:10px">
             <a href="/Jobs" style="text-decoration: none;">
                 <button style="font-size:12px;width: 130px;height:30px; border-radius: 5px; margin: 0; background-color: rgb(2, 17, 79); color: white;margin-left: 5px;">
                     <i class="fas fa-briefcase" style="margin-right: 5px;"></i>
@@ -177,7 +200,6 @@
             <button style="font-size:12px;width: 100px; border-radius: 5px;height:30px; background-color: rgb(2, 17, 79); color: white;margin-left: 5px;">
                 <a href="/UserProfile" style="text-decoration: none;color:white"> <i class="fa fa-user" style="margin-right: 5px;"></i> Profile</a>
             </button>
-            <button style="font-size:12px;margin-left: 5px;width: 100px; border-radius: 5px;height:30px; background-color: rgb(2, 17, 79); color: white;" wire:click="logout"> <i class="fas fa-sign-out-alt" style="margin-right: 5px;"></i> Logout</button>
         </div>
         <div class="cv-container row m-0 mt-3">
             <div class="col-md-6" style="background-color: white; height: 230vh; overflow: auto;">
