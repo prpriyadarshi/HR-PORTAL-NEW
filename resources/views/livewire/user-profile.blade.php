@@ -83,6 +83,25 @@
             padding: 15px;
             border-radius: 5px;
         }
+        .logout {
+                background-color: rgb(2, 17, 79);
+                /* Coral color */
+                color: #fff;
+                border: none;
+                padding: 10px 15px;
+                margin-top: 15px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                border: 1px solid white;
+                border-radius: 5px;
+                font-size: 12px;
+            }
+
+            .logout:hover {
+                background-color: #fff ;
+                color:black
+                /* Darker coral color on hover */
+            }
     </style>
 
     <body>
@@ -90,8 +109,12 @@
             <div class="col-md-2 mb-3" style="text-align: center; margin: auto;">
                 <img src="https://xsilica.com/images/xsilica_broucher_final_modified_05082016-2.png" alt="Logo" style="height: 50px; margin-right: 10px;">
             </div>
-            <div class="col-md-10 mb-3" style="text-align: center; margin: auto;">
+            <div class="col-md-8 mb-3" style="text-align: center; margin: auto;">
             <h1 style="font-size: 21px;">Job Seeker - {{$user->full_name}}</h1>
+
+        </div>
+        <div class="col-md-2 mb-3">
+        <button class="logout"  wire:click="logout"> <i class="fas fa-sign-out-alt" ></i> Logout</button>
 
         </div>
 
@@ -112,7 +135,6 @@
                 <button class="btn btn-primary mb-2" style="font-size:12px;background-color: rgb(2, 17, 79); color: white;margin-left: 5px;">
                     <i class="fas fa-check" style="margin-right: 5px;"></i> Applied Jobs</button>
             </a>
-            <button class="btn btn-primary mb-2" style="font-size:12px;background-color: rgb(2, 17, 79); color: white;margin-left: 5px;" wire:click="logout"> <i class="fas fa-sign-out-alt" style="margin-right: 5px;"></i> Logout</button>
         </div>
         <h4 style="text-align: center;margin-top:5px">Profile</h4>
         <div style="max-width: 800px; margin: 0 auto;border:1px solid black;padding:5px">

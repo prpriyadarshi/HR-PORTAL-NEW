@@ -76,13 +76,35 @@
             font-size: 12px;
             color: #777;
         }
+        .logout {
+                background-color: rgb(2, 17, 79);
+                /* Coral color */
+                color: #fff;
+                border: none;
+                padding: 10px 15px;
+                margin-top: 15px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                border: 1px solid white;
+                border-radius: 5px;
+                font-size: 12px;
+            }
+
+            .logout:hover {
+                background-color: #fff ;
+                color:black
+                /* Darker coral color on hover */
+            }
     </style>
     <div class="row m-0" style="background-color: #02134F; color: white; padding: 8px;">
         <div class="col-md-2 mb-3" style="text-align: center; margin: auto;">
             <img src="https://xsilica.com/images/xsilica_broucher_final_modified_05082016-2.png" alt="Logo" style="height: 50px; margin-right: 10px;">
         </div>
-        <div class="col-md-10 mb-3" style="text-align: center; margin: auto;">
+        <div class="col-md-8 mb-3" style="text-align: center; margin: auto;">
             <h1 style="font-size: 21px;">Job Seeker - {{$user->full_name}}</h1>
+        </div>
+        <div class="col-md-2 mb-3">
+        <button class="logout" style="margin-top: 15px;text-align:end" wire:click="logout"> <i class="fas fa-sign-out-alt" style="margin-right: 5px;"></i> Logout</button>
         </div>
 
     </div>
@@ -100,7 +122,7 @@
         <button class="btn btn-primary mb-2" style="font-size:12px;background-color: rgb(2, 17, 79); color: white;margin-left: 5px;">
             <a href="/UserProfile" style="text-decoration: none;color:white"> <i class="fa fa-user" style="margin-right: 5px;"></i> Profile</a>
         </button>
-        <button class="btn btn-primary mb-2" style="font-size:12px;background-color: rgb(2, 17, 79); color: white;margin-left: 5px;" wire:click="logout"> <i class="fas fa-sign-out-alt" style="margin-right: 5px;"></i> Logout</button>
+        
     </div>
 
     <div class="company-list" style="margin-top: 5px;">
