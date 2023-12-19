@@ -155,6 +155,8 @@ EmployeeDetails::create([
 
         // Clear the form fields
         $this->reset();
+        return redirect('/emplist');
+
     }
 
 
@@ -205,8 +207,9 @@ EmployeeDetails::create([
     }
     public function render()
     {
+        $hrEmail = auth()->guard('com')->user()->contact_email;
+        $this->companieIds = Company::where('contact_email', $hrEmail)->get();
 
-        $this->companieIds = Company::all();
 
         $hrEmail = auth()->guard('com')->user()->contact_email;
         $hrCompanies = Company::where('contact_email', $hrEmail)->get();

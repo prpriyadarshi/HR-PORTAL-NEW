@@ -269,8 +269,9 @@
                             {{-- <a style="text-decoration:none;font-weight:600;color:#00459c;"href="{{route('employee-list-page')}}"><button class="view-button">View Employees</button></a>
                             <a style="text-decoration:none;font-weight:600;color:#00459c;" href="{{route('contractor-page')}}"><button class="view-button">View Contractors</button></a> --}}
                         </div>
-                        <div class="card-header" style="background-color: #00234f;padding:7px;width:50%;margin-left:20%; border-radius:20px;">
-                            <h5 class="mb-0" style="text-align: center;color:white;">Employee Registration Form</h5>
+                        <div class="card-header"
+                           style="background-color: rgb(2, 17, 79);color:white;margin-bottom:20px" >
+                            <h5 class="mb-0" style="text-align: center;color:white;padding:5px">Employee Registration Form</h5>
                         </div>
                         <div class="card-body">
                             <form wire:submit.prevent="register" enctype="multipart/form-data">

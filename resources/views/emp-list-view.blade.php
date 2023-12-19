@@ -13,8 +13,6 @@
 </head>
 
 <body>
-    <!-- Your content goes here -->
-
     @livewire('emp-list')
     @livewireScripts
 </body>

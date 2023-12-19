@@ -37,6 +37,20 @@
             .empTable tbody tr:hover {
                 background-color: #f0f4f8;
             }
+            table,thead,tbody{
+                width: 100%;
+            }
+            .whitespace-nowrap{
+                text-transform: capitalize;
+                text-align: center;
+            }
+            .whitespace-nowrappp{
+                 width:150px;
+                 text-align: center;
+
+            }
+            
+
         </style>
     </head>
     <div class="container-11" style="background-color: #02134F; color: white;margin:0%;max-width:100%;padding:2px">
@@ -71,15 +85,16 @@
             <thead>
                 <tr>
                     <th class="whitespace-nowrap" wire:click="sortBy('emp_id')">S.NO</th>
-                    <th class="whitespace-nowrap" wire:click="sortBy('emp_id')">Emp ID</th>
+                    <th class="whitespace-nowrap" wire:click="sortBy('image')">Profile</th>
+                    <th class="whitespace-nowrapp" wire:click="sortBy('emp_id')">Emp ID</th>
                     <th class="whitespace-nowrap" wire:click="sortBy('name')">Name</th>
-                    <th class="whitespace-nowrap" wire:click="sortBy('email')">Email</th>
+                    <th class="aaa" wire:click="sortBy('email')">Email</th>
                     <th class="whitespace-nowrap" wire:click="sortBy('gender')">Gender</th>
-                    <th class="whitespace-nowrap" wire:click="sortBy('date_of_birth')">DOB</th>
+                    <th class="whitespace-nowrapp" wire:click="sortBy('date_of_birth')">DOB</th>
                     <th class="whitespace-nowrap" wire:click="sortBy('mobile_number')">Mobile No</th>
                     <th class="whitespace-nowrap" wire:click="sortBy('employee_type')">Employee Type</th>
                     <th class="whitespace-nowrap" wire:click="sortBy('address')">Address</th>
-                    <th class="whitespace-nowrap">Action</th>
+                    <th class="whitespace-nowrappp">Action</th>
                     <!-- Add more table headers as needed -->
                 </tr>
             </thead>
@@ -87,12 +102,26 @@
                 @foreach ($employees as $employee)
                 <tr>
                     <td class="whitespace-nowrap">{{ $counter++ }}</td>
-                    <td class="whitespace-nowrap">{{ $employee->emp_id }}</td>
+                    <td > 
+                    @if($employee->image=="")
+                    @if($employee->gender=="Male")
+                    <img src="https://th.bing.com/th/id/OIP.vwP9cMIiXIK1N3mPuqvxSgHaHa?w=1024&h=1024&rs=1&pid=ImgDetMain" width="50" heigth="50" class="img-thumbnail" />
+
+                    @elseif($employee->gender=="Female")
+                    <img src="https://th.bing.com/th/id/OIP.vwP9cMIiXIK1N3mPuqvxSgHaHa?w=1024&h=1024&rs=1&pid=ImgDetMain" width="50" heigth="50" class="img-thumbnail" />
+
+                    @endif
+                    @else
+                    <img src="{{ asset('storage/' . $employee->image) }}" style="height:50px;width:50px" class="img-thumbnail" />
+                    @endif
+                    </td>
+                    <td class="whitespace-nowrapp">{{ $employee->emp_id }}</td>
+                  
                     <td class="whitespace-nowrap">{{ $employee->first_name }} {{ $employee->last_name }}</td>
-                    <td class="whitespace-nowrap">{{ $employee->email }}</td>
+                    <td class="aaa">{{ $employee->email }}</td>
                     <td class="whitespace-nowrap">{{ $employee->gender }}</td>
-                    <td class="whitespace-nowrap">
-                        {{ \Carbon\Carbon::parse($employee->date_of_birth)->format('Y M d') }}
+                    <td class="whitespace-nowrapp">
+                        {{ \Carbon\Carbon::parse($employee->date_of_birth)->format('d M Y') }}
                     </td>
                     <td class="whitespace-nowrap">{{ $employee->mobile_number }}</td>
                     <td class="whitespace-nowrap">
@@ -101,7 +130,7 @@
                     <td class="whitespace-nowrap">
                         {{ $employee->address }},{{ $employee->city }},{{ $employee->state }},{{ $employee->postal_code }},{{ $employee->country }}
                     </td>
-                    <td class="whitespace-nowrap">
+                    <td class="whitespace-nowrappp">
                         <div class="row-md-12">
                             <div class="col-md-6">
                                 <div class="d-inline-block">
