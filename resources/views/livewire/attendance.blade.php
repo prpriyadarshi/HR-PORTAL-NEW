@@ -109,7 +109,60 @@
     font-size: 14px;
     color: blue;
   }
+  .calendar {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      margin-left: 30px;
+    }
 
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+    }
+
+    #prevMonth, #nextMonth {
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #currentMonth {
+      margin: 0;
+    }
+
+    .calendar-weekdays {
+      display: flex;
+      justify-content: space-around;
+      padding: 10px;
+    }
+
+    .calendar-weekdays div {
+      font-weight: normal;
+      font-size: 12px;
+      margin-left: 60px;
+    }
+
+    .calendar-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+      margin-left: 60px;
+    }
+
+    .calendar-days div {
+      padding: 25px;
+      text-align: center;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 0;
+      font-size: 14px; /* Adjust the font size for larger dates */
+      margin: -1px; /* Adjust the margin to have merged borders */
+    }
   .info-box {
     display: none;
     position: absolute;
@@ -120,7 +173,7 @@
     background-color:  #808080;
     border: 1px solid #ccc;
     padding: 10px;
-    border-radius:5px;
+   
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   }
 
@@ -227,7 +280,7 @@ a{
     justify-content: space-around;
     background-color:rgb(2, 17, 79);
     color: white;
-    gap: 5px;
+  
     padding: 5px 10px;
     border-radius: 5px;
     margin-bottom: 10px;
@@ -241,8 +294,8 @@ a{
   /* Calendar days */
   .calendar-days {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
+    grid-template-columns: repeat(9, 49px);
+  
     justify-items: center; 
   }
   .calendar-date {
@@ -355,7 +408,7 @@ a{
             align-items: center;
             width: 300px; /* Adjust the width as needed */
             border: 1px solid #ccc;
-            padding: 10px;
+         
             border-radius: 5px;
             margin-left:198px;
 
@@ -994,18 +1047,18 @@ table {
      </div>
 <div class="calendar">
   <div class="calendar-header">
-    <button id="prevMonth">Previous</button>
-    <h1 id="currentMonth">September 2023</h1>
-    <button id="nextMonth">Next</button>
+    <button id="prevMonth" style="margin-left:-30px">Previous</button>
+    <h1 id="currentMonth" style="margin-left:150px">September 2023</h1>
+    <button id="nextMonth" style="margin-left:150px">Next</button>
   </div>
-  <div class="calendar-weekdays">
-    <div style="font-weight:normal;font-size:12px;">Sun</div>
-    <div style="font-weight:normal;font-size:12px;">Mon</div>
-    <div style="font-weight:normal;font-size:12px;">Tue</div>
-    <div style="font-weight:normal;font-size:12px;">Wed</div>
-    <div style="font-weight:normal;font-size:12px;">Thu</div>
-    <div style="font-weight:normal;font-size:12px;">Fri</div>
-    <div style="font-weight:normal;font-size:12px;margin-left:-2px;">Sat</div>
+  <div class="calendar-weekdays" style="margin-left:30px">
+    <div style="font-weight:normal;font-size:12px;margin-left:10px">Sun</div>
+    <div style="font-weight:normal;font-size:12px;margin-left:50px">Mon</div>
+    <div style="font-weight:normal;font-size:12px;margin-left:50px">Tue</div>
+    <div style="font-weight:normal;font-size:12px;margin-left:50px">Wed</div>
+    <div style="font-weight:normal;font-size:12px;margin-left:50px">Thu</div>
+    <div style="font-weight:normal;font-size:12px;margin-left:50px">Fri</div>
+    <div style="font-weight:normal;font-size:12px;margin-left:-2px;margin-left:50px">Sat</div>
   </div>
   <div  class="calendar-days"  id="calendar-days">
     <!-- Calendar days will be generated here -->
