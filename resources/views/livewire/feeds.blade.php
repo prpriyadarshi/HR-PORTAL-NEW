@@ -175,29 +175,29 @@
             All Feeds
           </a>
  
-          <a class="menu-item" href="/everyone">
+          <a class="menu-item" href="/Feeds">
             Every One
           </a>
  
-          <a class="menu-item" href="/events">
+          <a class="menu-item" href="/Feeds">
             Events
           </a>
  
-          <a class="menu-item" href="/company" style="font-size:12px">
+          <a class="menu-item" href="/Feeds" style="font-size:12px">
             Company News
           </a>
  
-          <a class="menu-item" href="/appreciation">
+          <a class="menu-item" href="/Feeds">
             Appreciation
           </a>
  
-          <a class="menu-item" href="/buy-sell-rent">
+          <a class="menu-item" href="/Feeds">
             Buy/Sell/Rent
           </a>
  
         </div>
       </div>
-      <div class="contanier"  style="margin-left:0%;width: 750px; height: 70px; border-top: 1px solid #E0DDDD; border-bottom: 1px solid #E0DDDD; background-color: #FFFFFF;font-size: 14px; font-family: Open Sans, sans-serif;padding:10px;margin-left:40px">
+      <div class="contanier"  style="width: 750px; height: 70px; border-top: 1px solid #E0DDDD; border-bottom: 1px solid #E0DDDD; background-color: #FFFFFF;font-size: 14px; font-family: Open Sans, sans-serif;padding:10px;margin-left:16px">
           <b> All Feeds</b>
           <p>Groups</p>
         </div>
@@ -220,8 +220,11 @@
               <!-- Upcoming Birthdays List -->
               <div class="F" style="background-color: white; width: 500px; height: 350px; border-radius: 5px; border: 1px solid #CFCACA; margin-left: 30px; color: #3b4452; margin-top: 20px">
                 <div style="display: flex;">
-                  <div class="column">
+                  <div class="column" >
+                    <div class="div" style="margin-left:20px;margin-top:10px">
                     @livewire('company-logo')
+                    </div>
+                    
                     <div style="color: #677A8E; margin-left: 60px; font-size: 14px; font-family: Open Sans, sans-serif; font-weight: 100px;margin-top:20px">Group Events</div>
                   </div>
                   <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 170px; font-family: Open Sans, sans-serif; margin-top: 40px; font-weight: 100px; color: #9E9696;margin-top:20px">
@@ -229,7 +232,7 @@
                   </div>
                 </div>
                 <div style="display: flex;">
-                  <img src="[padding:8px;https://cdn1.vectorstock.com/i/thumb-large/48/00/set-images-young-people-listening-to-music-vector-31034800.jpg" alt="Image Description" style="height: 160px; width: 160px; margin-left: 40px;">
+                  <img src="https://cdn1.vectorstock.com/i/thumb-large/48/00/set-images-young-people-listening-to-music-vector-31034800.jpg" alt="Image Description" style="height: 160px; width: 160px; margin-left: 40px;">
                   <div style="display: flex; flex-direction: column; margin-left: 20px;">
                     <p style="font-size: 14px; font-family: 'Open Sans', sans-serif; margin-top: 10px; font-weight: 100; color: #677A8E;">
                       Happy Birthday {{ $data['employee']->first_name }} {{ $data['employee']->last_name }}, Have a great year ahead!
@@ -277,7 +280,9 @@
               <div class="F" style="background-color: white; width: 500px; height: 350px; border-radius: 5px; border: 1px solid #CFCACA; margin-left: 30px; color: #3b4452; margin-top: 20px">
                 <div style="display: flex;">
                   <div class="column">
+                  <div class="div" style="margin-left:20px;margin-top:10px">
                     @livewire('company-logo')
+                    </div>
                     <div style="color: #677A8E; margin-left: 60px; font-size: 14px; font-family: Open Sans, sans-serif; font-weight: 100px;margin-top:20px">Group Events</div>
                   </div>
                   <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 170px; font-family: Open Sans, sans-serif; margin-top: 40px; font-weight: 100px; color: #9E9696;font-weight: 100px;margin-top:20px">

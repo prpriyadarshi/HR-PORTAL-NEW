@@ -51,7 +51,7 @@ class EmployeeDetails extends Authenticatable
         'inter_emp',
         'job_location',
         'education',
-        'experince',
+        'experience',
         'pan_no',
         'adhar_no',
         'pf_no',
@@ -62,7 +62,8 @@ class EmployeeDetails extends Authenticatable
         'twitter',
         'linked_in',
         'company_id',
-        'is_starred'
+        'is_starred',
+        'status'
     ];
     public function leaveRequests()
     {

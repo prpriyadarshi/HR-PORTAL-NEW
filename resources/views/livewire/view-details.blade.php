@@ -82,9 +82,6 @@
             line-height:2;
         }
 
-        .details p {
-            margin: 0;
-        }
         .vertical-line {
             width: 1px; /* Width of the vertical line */
             height: 70px; /* Height of the vertical line */
@@ -209,48 +206,60 @@
                     <div class="leave">
                         <div class="pay-bal">
                             <span style=" font-size: 0.975rem; font-weight: 500;">Balance:</span>
-                           @if(!empty($leaveBalances))
-                                @if($leaveRequest->leave_type === 'Sick Leave')
-                                <span style=" font-size: 0.875rem; font-weight: 500;">{{ $leaveBalances['sickLeaveBalance'] }}</span>
-                                @elseif($leaveRequest->leave_type === 'Causal Leave Probation')
-                                <span style=" font-size: 0.875rem; font-weight: 500;">{{ $leaveBalances['casualLeaveBalance'] }}</span>
-                                @elseif($leaveRequest->leave_type === 'Loss Of Pay')
-                                <span style=" font-size: 0.875rem; font-weight: 500;">{{ $leaveBalances['lossOfPayBalance'] }}</span>
-                                @endif
+                            @if(!empty($leaveRequest['leaveBalances']))
+                                <div style="flex-direction: row; display: flex; align-items: center; justify-content:center;">
+                                    <!-- Sick Leave -->
+                                    <div style="width: 20px; height: 20px; border-radius: 50%; background-color: #e6e6fa; display: flex; align-items: center; justify-content: center; margin-left: 15px;">
+                                        <span style="font-size: 0.625rem; color: #50327c;font-weight:500;">SL</span>
+                                    </div>
+                                    <span style="font-size: 0.795rem; font-weight: 500; color: #333; margin-left: 5px;">{{ $leaveRequest['leaveBalances']['sickLeaveBalance'] }}</span>
+
+                                    <!-- Casual Leave -->
+                                    <div style="width: 20px; height: 20px; border-radius: 50%; background-color: #e7fae7; display: flex; align-items: center; justify-content: center; margin-left: 15px;">
+                                        <span style="font-size: 0.625rem; color: #1d421e;font-weight:500;">CL</span>
+                                    </div>
+                                    <span style="font-size: 0.795rem; font-weight: 500; color: #333; margin-left: 5px;">{{ $leaveRequest['leaveBalances']['casualLeaveBalance'] }}</span>
+
+                                    <!-- Loss of Pay -->
+                                    <div style="width: 20px; height: 20px; border-radius: 50%; background-color: #ffebeb; display: flex; align-items: center; justify-content: center; margin-left: 15px;">
+                                        <span style="font-size: 0.625rem; color: #890000;font-weight:500;">LP</span>
+                                    </div>
+                                    <span style="font-size: 0.795rem; font-weight: 500; color: #333; margin-left: 5px;">{{ $leaveRequest['leaveBalances']['lossOfPayBalance'] }}</span>
+                                </div>
                             @endif
                         </div>
                         <div class="leave-type">
                             <span style=" color: #605448; font-size: 1rem; font-weight: 600;">{{ $leaveRequest->leave_type }}</span>
                         </div>
                   </div>
+                  
               </div>
 
         <div class="details">
            <div class="data">
            <p><span style="color: #333; font-weight: 500; font-size:1rem;">Details</span></p>
-           @if(!empty($leaveRequest['applying_to']))
-            @foreach($leaveRequest['applying_to'] as $applyingTo)
-            <p style=" font-size: 0.90rem; "><span style="color: #778899; font-size: 0.875rem; font-weight: 400;padding-right: 58px;">Applying to</span  >{{ $applyingTo['report_to'] }}</p>
-            @endforeach
-            @endif
-             <div style="display:flex; flex-direction:row; justify-conetnt-space-between;">
-             <span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 88px;">Reason</span>
-             <p>{{ $leaveRequest->reason }}</p>
-        
-             </div>
-            <p style="margin-top:10px;"><span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 82px;">Contact</span>{{ $leaveRequest->contact_details }} </p>
-            @if(!empty($leaveRequest->cc_to))
-                <p style="font-size: 0.975rem; font-weight: 500;">
-                    <span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 90px;">CC to</span>
-                    @foreach($leaveRequest->cc_to as $ccToItem)
-                    {{ $ccToItem['full_name'] }} (#{{ $ccToItem['emp_id'] }})
-                    @if(!$loop->last)
-                        ,
-                    @endif
-                    @endforeach
-                </p>
-            @endif
-
+            @if(!empty($leaveRequest['applying_to']))
+                @foreach($leaveRequest['applying_to'] as $applyingTo)
+                <p style=" font-size: 0.90rem; "><span style="color: #778899; font-size: 0.875rem; font-weight: 400;padding-right: 58px;">Applying to</span  >{{ $applyingTo['report_to'] }}</p>
+                @endforeach
+                @endif
+                <div style="display:flex; flex-direction:row; justify-conetnt-space-between;">
+                <span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 88px;">Reason</span>
+                <p>{{ $leaveRequest->reason }}</p>
+            
+                </div>
+                <p style="margin-top:10px;"><span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 82px;">Contact</span>{{ $leaveRequest->contact_details }} </p>
+                @if(!empty($leaveRequest->cc_to))
+                    <p style="font-size: 0.975rem; font-weight: 500;">
+                        <span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 90px;">CC to</span>
+                        @foreach($leaveRequest->cc_to as $ccToItem)
+                        {{ $ccToItem['full_name'] }} (#{{ $ccToItem['emp_id'] }})
+                        @if(!$loop->last)
+                            ,
+                        @endif
+                        @endforeach
+                    </p>
+                @endif
            </div>
         </div>
         </div>

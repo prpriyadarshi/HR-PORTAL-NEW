@@ -170,6 +170,7 @@ return [
         /*
          * Application Service Providers...
          */
+        Livewire\LivewireServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
@@ -189,11 +190,12 @@ return [
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
     */
-    
+
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ])->toArray(),
 
 ];

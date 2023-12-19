@@ -157,10 +157,7 @@
 </head>
  
 <body>
-<div class="button-container">
-    <button class="btn2">PaySlip</button>
-    <button class="btn1">Reimb.Payslip</button>
-</div>
+
  
 <div class="button-container1">
  
