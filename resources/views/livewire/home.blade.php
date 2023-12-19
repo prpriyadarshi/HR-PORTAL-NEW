@@ -14,6 +14,7 @@
         <style>
             body {
                 font-family: 'Montserrat', sans-serif;
+                overflow-y:hidden;
             }
 
             .left-menu {
@@ -120,19 +121,6 @@
                 }
             }
 
-            .animate {
-                animation: mergeAndJumble 0.3s forwards;
-            }
-
-        .animate {
-            animation: mergeAndJumble 0.3s forwards;
-        }
-        .notify{
-            display:flex;
-            justify-content:space-between;
-            padding:5px 10px;
-            align-items:center;
-        }
         .team-Notify{
             display:flex;
             flex-direction:column;
@@ -141,10 +129,6 @@
 
         }
 
-        .home-hover {
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-    border-radius:5px;
-    }
             .animate {
                 animation: mergeAndJumble 0.3s forwards;
             }
@@ -202,7 +186,7 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" >
     @if (session()->has('success'))
         <div class="custom-alert alert-success" style="text-align: center;margin-left:20%;width: 500px;">
             {{ session('success') }}
@@ -218,10 +202,10 @@
         @endif
 
         </div>
-        <div class="content">
+        <div class="content" >
             <div class="row m-0 mb-3">
                 <div class="col-md-8">
-                    <div class="greet">
+                    <div class="greet" >
                     @if($this->greetingText)
                         <h1 class="text-secondary-500 pb-1.5x" style="font-size: 24px; font-family: montserrat;width:45%">{{$greetingText}}</h1>
                      @endif
@@ -249,10 +233,10 @@
                     <img src="{{ asset('/images/' . $greetingImage) }}" alt=" " style="height: 200px; width:280px;">
                 @endif
                 <!-- <img id="greeting-image" src="" alt="Greeting Image" style="height: 200px; width:300px ;margin-left:50px; "> -->
-        </div>
+               </div>
             </div>
             <!-- main content -->
-            <div class="row m-0">
+            <div class="row m-0" >
                     <div class="first-col col-md-4 p-1" style="display:flex; flex-direction:column;gap:10px;" >
                         <div class="home-hover">
                                <div class="reviews">

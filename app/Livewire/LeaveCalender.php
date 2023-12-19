@@ -17,6 +17,8 @@ class LeaveCalender extends Component
     public $generalHolidayData;
     public $leaveRequests;
     public $leaveTransactions;
+    public $selectedDate;
+    public $eventDetails;
 
     public function mount()
     {
@@ -141,10 +143,36 @@ protected function getHolidaysForMonth($year, $month)
 }
 
 
-    public function render()
+    public function dateClicked($date)
     {
-        return view('livewire.leave-calender');
+        $date = trim($date);
+        $this->selectedDate = $this->year . '-' . $this->month . '-' . str_pad($date, 2, '0', STR_PAD_LEFT);
+        $this->eventDetails = $this->getEventDetailsForDate($date);
+        
     }
 
+    public function render()
+    {
+        $holidays = $this->getHolidays();
+        return view('livewire.leave-calender', [
+            'holidays' => $this->getHolidays(),
+        ]);
+       
+    }
+   
 
+    public function getEventDetailsForDate($date)
+    {
+       
+        return "Event hebvxdcfvgbhjn details today $date";
+    }
+    public function getHolidays()
+    {
+        $clickedDate = Carbon::parse($this->selectedDate);
+        return HolidayCalendar::whereDate('date', $clickedDate->toDateString())->get();
+    }
+    
+    
+    
+    
 }

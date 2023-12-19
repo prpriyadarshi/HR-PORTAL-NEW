@@ -49,10 +49,10 @@ class Home extends Component
         if ($currentHour >= 4 && $currentHour < 12) {
             $this->greetingImage = 'sunrise.png';
             $this->greetingText = 'Good Morning';
-        } elseif ($currentHour >= 12 && $currentHour < 17) {
+        } elseif ($currentHour >= 12 && $currentHour < 16) {
             $this->greetingImage = 'afternoon.png';
             $this->greetingText = 'Good Afternoon';
-        } elseif ($currentHour >= 17 && $currentHour < 20) {
+        } elseif ($currentHour >= 16 && $currentHour < 20) {
             $this->greetingImage = 'sunset.png';
             $this->greetingText = 'Good Evening';
         } else {
