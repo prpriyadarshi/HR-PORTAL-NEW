@@ -24,7 +24,7 @@ class ViewPendingDetails extends Component
     public function mount()
     {
             $employeeId = auth()->guard('emp')->user()->emp_id;
-            $this->leaveRequests = LeaveRequest::where('status', 'pending')
+            $this->leaveRequests = LeaveRequest::where('leave_applies.status', 'pending')
             ->where(function ($query) use ($employeeId) {
                 $query->whereJsonContains('applying_to', [['manager_id' => $employeeId]])
                     ->orWhereJsonContains('cc_to', [['emp_id' => $employeeId]]);

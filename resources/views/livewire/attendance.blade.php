@@ -83,6 +83,16 @@
 .text-regular {
     font-weight: 400;
 }
+.arrow-icon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      margin-left: 5px; /* Adjust the margin as needed */
+    }
+    .arrow-icon::after {
+      content: '\2192'; /* Unicode right arrow character */
+      margin-left: 5px; /* Adjust the margin as needed */
+    }
 
  .text-secondary {
     color: #7f8fa4;
@@ -480,14 +490,14 @@ a{
   margin: 0px 0; /* Adjust the margin as needed */
 }
 .box {
-    width: 100px;
+    width: 160px;
     height: 30px;
-    border: 2px solid #000; /* You can change the border color here */
+    /* You can change the border color here */
     text-align: center;
     display: inline-block;
     margin: 10px 8px;
 
-    border: 2px solid grey;
+ 
 }
 
 .box-content {
@@ -1004,17 +1014,17 @@ table {
 </div>
 <div class="container1">
   <!-- Content goes here -->
-  <div>
-    <p style="margin-left:25px;font-weight:bold;font-size:20px;">{{ $currentDate }}</p>
-    <p class="text-muted"style="margin-left:25px;margin-top:-15px;font-weight:600;font-size:14px;">{{$currentWeekday}}</p>
-</div> 
+   <div>
+      <p style="margin-left:25px;font-weight:bold;font-size:20px;">{{ $currentDate }}</p>
+      <p class="text-muted"style="margin-left:25px;margin-top:-15px;font-weight:600;font-size:14px;">{{$currentWeekday}}</p>
+   </div> 
   <div class="vertical-line">
     <div>
-     <p class="text-overflow" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-weight: 600;margin-left:40px;">10:00 Am to 07:00 pm</p> 
+     <p class="text-overflow" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-weight: 600;margin-left:40px;">10:00 Am to 07:00 Pm</p> 
      <p class="text-muted"style="margin-top:-10px;margin-left:40px;font-size:14px;">Shift:10:00 to 19:00</p> 
     </div>
     <div style="margin-left:200px;margin-top:-65px;"> 
-     <p style="overflow: hidden;font-weight: 600;text-overflow: ellipsis;margin-top:-10px;white-space: nowrap;margin-left:60px;">10:00 Am to 07:00 pm</p> 
+     <p style="overflow: hidden;font-weight: 600;text-overflow: ellipsis;margin-top:-10px;white-space: nowrap;margin-left:60px;">10:00 Am to 07:00 Pm</p> 
      <p class="text-muted"style="margin-top:-10px;margin-left:60px;font-size:14px;">Attendance Scheme</p>
     </div> 
   </div>
@@ -1118,7 +1128,7 @@ table {
     </tr>
     <tr style="border-bottom: 1px solid #ddd;">
       <td style="font-weight:normal;font-size:12px;">Session&nbsp;2</td>
-      <td style="font-weight:normal;font-size:12px;">10:00 - 14:00</td>
+      <td style="font-weight:normal;font-size:12px;">14:01 - 19:00</td>
       <td style="font-weight:normal;font-size:12px;">-</td>
       <td style="font-weight:normal;font-size:12px;">-</td>
       <td style="font-weight:normal;font-size:12px;">-</td>
@@ -1256,13 +1266,22 @@ table {
 </div>
 
 </div>
+@php
+ 
+    $presentCount = 0;
+    $offCount = 0;
+    $absentCount=0;
+    $holidayCount = 0;
+@endphp
+
+           
 
 <div class="large-box">
   <div class="table-container"style=" width: 100%;
     overflow-x: auto;">
 <table>
             <tr class="first-header-row"style="background-color:rgb(2, 17, 79);">
-                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Genaral&nbsp;Details</th>
+                <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px; position: relative;">Genaral&nbsp;Details</th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -1273,8 +1292,8 @@ table {
                 <th></th>
                 <th></th>
                 <th></th>
-                <th></th>
-                <th></th>
+                <th style="font-weight:normal;font-size:12px;padding-top:16px;">Session&nbsp;1<span class="arrow-icon">&#x2192;</span></th>
+                <th style="font-weight:normal;font-size:12px;padding-top:16px;">Session&nbsp;2<span class="arrow-icon">&#x2192;</span></th>
                 
                 
             </tr>
@@ -1295,58 +1314,65 @@ table {
                 <th class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">Shift&nbsp;Timings</th>
               
             </tr>
-            @foreach($Swiperecords1 as $index=>$swiperecords1)
-            @if($swiperecords1->in_or_out === 'Sign In'||$swiperecords1->in_or_out === 'IN')
+            
+            @foreach($distinctDates as $key => $date)
+              
             <tr>
                 
 
-                 <td class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">{{$swiperecords1->created_at->format('d M Y')}} </td>
+                 <td class="date"style="font-weight:normal;font-size:12px;padding-top:16px;">{{ \Carbon\Carbon::parse($key)->format('jS M Y')  }} </td>
                  <td style="font-weight:normal;font-size:12px;padding-top:16px;">10:(GS)</td>
-                 <td style="font-weight:normal;font-size:12px;padding-top:16px;">10:00 am to 07:00pm</td>
-                  @if ($swiperecords1->in_or_out === 'Sign In'||$swiperecords1->in_or_out === 'IN')
-                     <td style="font-weight:normal;font-size:12px;padding-top:16px;">{{\Carbon\Carbon::parse($swiperecords1->swipe_time)->format('H:i')}}</td>
-
-                  @endif
-                  @if ($index < count($Swiperecords1) - 1)
-                     <?php $nextRecord = $Swiperecords1[$index + 1]; ?>
-                      @if ($nextRecord->in_or_out === 'Sign Out' || $nextRecord->in_or_out === 'OUT')
-                          <td style="font-weight:normal;font-size:12px;padding-top:16px;">{{ \Carbon\Carbon::parse($nextRecord->swipe_time)->format('H:i')}}</td>
-                          
-                          
-                          
-                      @else
-                          <td style="font-weight:normal;font-size:12px;padding-top:16px;">00:00</td>
-                      @endif
-                  @else
-                    <td style="font-weight:normal;font-size:12px;padding-top:16px;">00:00</td>
-
-
-                  @endif  
+                 <td style="font-weight:normal;font-size:12px;padding-top:16px;">10:00 Am to 07:00Pm</td>
                  
-              
+                 
+                  <td style="font-weight:normal;font-size:12px;padding-top:16px;">{{\Carbon\Carbon::parse($date['first_in_time'])->format('H:i') }}</td>
+                  <td style="font-weight:normal;font-size:12px;padding-top:16px;">{{ \Carbon\Carbon::parse($date['last_out_time'])->format('H:i') }}</td>
                   <td style="font-weight:normal;font-size:12px;padding-top:16px;">00:00</td>
                   <td style="font-weight:normal;font-size:12px;padding-top:16px;">00:00</td>
-                  @if($swiperecords1->created_at->format('l') == 'Saturday' || $swiperecords1->created_at->format('l') == 'Sunday')
-    
+                  @php
+                           // Check if the current date is a holiday
+                           $isHoliday = $Holiday->contains('date', \Carbon\Carbon::parse($key)->toDateString());
+                  @endphp
+                  @if($isHoliday)
+                          <td style="color: #a3b2c7; margin-left:10px; margin-top:20px; font-size:12px;">
+                             H
+                          </td>
+                          @php
+                                 $holidayCount++;
+                          @endphp
+                  @elseif(\Carbon\Carbon::parse($key)->format('l') === 'Saturday' || \Carbon\Carbon::parse($key)->format('l') === 'Sunday')
+                            <td style="color: #a3b2c7; margin-left:10px; margin-top:20px; font-size:12px;">
+                             O
+                            </td>
+                            @php
+                                 $offCount++;
+                            @endphp
+                            @elseif(\Carbon\Carbon::parse($key)->isWeekday() && ($date['first_in_time'] === null || $date['last_out_time'] === null))
+                                 <td style="color: #a3b2c7; margin-left:10px; margin-top:20px; font-size:12px;">
+                                    A
+                                 </td>
 
-                        <td style=" color: #a3b2c7;;margin-left:10px;margin-top:20px;font-size:12px;">O</td>
-    
+                                 @php
+                                       $absentCount++;
+                                 @endphp
 
-                  @elseif($swiperecords1->in_or_out=="IN")
-     
-
-                       <td  style=" color:#a3b2c7;;margin-left:10px;margin-top:20px;font-size:12px;">P</td>
-                  @else
-                      <td  style=" color: #f66;margin-left:10px;margin-top:20px;font-size:12px;">A</td>
-                  @endif      
-                  <td><button class="info-button"style="background-color: rgb(2, 17, 79); border: 2px solid rgb(2, 17, 79);height:20px; color: white; border-radius: 5px;font-size:12px;margin-top:-10px"data-toggle="modal"data-target="#largeBoxModal"wire:click="viewTableDetails('{{$swiperecords1->id}}')">Info</button></td>
+                          @else
+                              <td style="color: #a3b2c7; margin-left:10px; margin-top:20px; font-size:12px;">
+                                P
+                              </td>  
+                              @php
+                                 $presentCount++;
+                              @endphp
+             
+                  @endif
+                  <td><button class="info-button"style="background-color: rgb(2, 17, 79); border: 2px solid rgb(2, 17, 79);height:20px; color: white; border-radius: 5px;font-size:12px;margin-top:-10px"data-toggle="modal"data-target="#largeBoxModal"wire:click="showlargebox('{{ \Carbon\Carbon::parse($key)->format('Y-m-d') }}')">Info</button></td>
                   <td style="font-weight:normal;font-size:12px;padding-top:16px;">No&nbsp;attention&nbsp;required</td>
                   <td style="font-weight:normal;font-size:12px;padding-top:16px;">-</td>
                   <td style="font-weight:normal;font-size:12px;padding-top:16px;">10:00-14:00</td>
                   <td style="font-weight:normal;font-size:12px;padding-top:16px;">14:01-19:00</td>
 
             </tr>
-            @endif
+            
             @endforeach
             
             
@@ -1370,10 +1396,11 @@ table {
 </div>
 
 <div  class="modal fade" id="largeBoxModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+ 
         <div class="modal-dialog" role="document">
             <div class="modal-content"style="width:100%"> 
                 <div class="modal-header">
-                    <h5 class="modal-title">Swipe Details</h5>
+                    <h5 class="modal-title">Swipe Details for <span id="modalK1">{{ $k1 }}</span> </h5>
                     <button type="button" class="close"  aria-label="Close" wire:click="closeViewStudentModal">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -1407,17 +1434,17 @@ table {
  
   <thead>
     <tr>
-      <th>In/Out</th>
-      <th>Swipe&nbsp;Time</th>
-      <th>Location</th>
-      <th>Status</th>
-      <th>Last&nbsp;Updated&nbsp;On</th>
-      <th>Modified&nbsp;Time</th>
-      <th>Updated&nbsp;By</th>
-      <th>Longitude</th>
-      <th>Latitude</th>
-      <th>Mobile ID</th>
-      <th>Remarks</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">In/Out</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Swipe&nbsp;Time</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Location</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Status</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Last&nbsp;Updated&nbsp;On</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Modified&nbsp;Time</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Updated&nbsp;By</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Longitude</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Latitude</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Mobile ID</th>
+      <th style="font-weight:normal;font-size:12px;padding-top:16px;">Remarks</th>
     </tr>
    
   </thead>
@@ -1446,20 +1473,57 @@ table {
             </div>
         </div>
   </div>
+
 <div id="box-container" style="display: none;margin-left:300px;">
+
 <div class="box">
-    <div class="box-content">
-        Present: 2
-    </div>
-</div>
-<div class="box"style="background-color: rgb(250, 242, 253)">
-    <div class="box-content">
-        Holiday: 1
+    <div class="box-content"style="background-color: rgba(237,250,237,1);color: #7f8fa4;">
+        Present:&nbsp;{{$presentCount}}
     </div>
 </div>
 <div class="box">
-    <div class="box-content"style="background-color: rgb(217, 218, 213);margin-top:-2px;">
-        Offday: 1
+    <div class="box-content"style="background-color: 	#F88379;color: #7f8fa4;">
+        Absent:&nbsp;{{$absentCount}}
+    </div>
+</div>
+<div class="box"style="background-color:	#7DF9FF;color: #7f8fa4;">
+    <div class="box-content">
+        Holiday:&nbsp;{{ $holidayCount }} 
+    </div>
+</div>
+<div class="box">
+    <div class="box-content"style="background-color: rgb(217, 218, 213);margin-top:-2px;color: #7f8fa4;">
+        Off&nbsp;Day:&nbsp;{{ $offCount }}
+    </div>
+</div>
+<div class="box">
+    <div class="box-content"style="background-color: #E6E6FA;color: #7f8fa4;margin-top:-2px;">
+        Leave:&nbsp;0
+    </div>
+</div>
+<div class="box">
+    <div class="box-content"style="background-color: rgb(217, 218, 213);color: #7f8fa4;margin-top:-2px;">
+        Rest&nbsp;Day:&nbsp;0
+    </div>
+</div>
+<div class="box">
+    <div class="box-content"style="background-color: #FFFDD0;margin-top:-2px;color: #7f8fa4;">
+        On&nbsp;Duty:&nbsp;0
+    </div>
+</div>
+<div class="box">
+    <div class="box-content"style="background-color: #FDDA0D;margin-top:-2px;color: #7f8fa4;">
+        ShutDown:&nbsp;0
+    </div>
+</div>
+<div class="box">
+    <div class="box-content"style="background-color: 	#7DF9FF;margin-top:-2px;color: #7f8fa4;">
+        Restricted&nbsp;Holiday:&nbsp;0
+    </div>
+</div>
+<div class="box">
+    <div class="box-content"style="background-color: #F88379;margin-top:-2px;color: #7f8fa4;">
+        Status&nbsp;Unknown:&nbsp;0
     </div>
 </div>
 </div>
@@ -1765,4 +1829,5 @@ calendarIcon.addEventListener('click', hideBoxContainer);
       updateCalendar();
     });
   </script>
+
 </div> 

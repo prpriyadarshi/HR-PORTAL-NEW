@@ -24,7 +24,7 @@ class LeavePending extends Component
     {
         // Fetch leave request details based on $leaveRequestId with employee details
         $this->leaveRequest = LeaveRequest::with('employee')->find($leaveRequestId);
-
+    
         $this->leaveRequest->from_date = Carbon::parse($this->leaveRequest->from_date);
         $this->leaveRequest->to_date = Carbon::parse($this->leaveRequest->to_date);
     }
@@ -130,12 +130,12 @@ class LeavePending extends Component
         
         try {
                 // Attempt to decode applying_to
-        $applyingToJson = trim($this->leaveRequest->applying_to);
-        $this->leaveRequest->applying_to = is_array($applyingToJson) ? $applyingToJson : json_decode($applyingToJson, true);
+        // $applyingToJson = trim($this->leaveRequest->applying_to);
+        // $this->leaveRequest->applying_to = is_array($applyingToJson) ? $applyingToJson : json_decode($applyingToJson, true);
 
-        // Attempt to decode cc_to
-        $ccToJson = trim($this->leaveRequest->cc_to);
-        $this->leaveRequest->cc_to = is_array($ccToJson) ? $ccToJson : json_decode($ccToJson, true);
+        // // Attempt to decode cc_to
+        // $ccToJson = trim($this->leaveRequest->cc_to);
+        // $this->leaveRequest->cc_to = is_array($ccToJson) ? $ccToJson : json_decode($ccToJson, true);
 
         } catch (\Exception $e) {
             dd("Error in JSON decoding: " . $e->getMessage());

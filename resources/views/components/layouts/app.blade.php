@@ -411,11 +411,35 @@
                         </li>
 
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6()">
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6(item)">
 
-                            <a class="nav-link" href="/Attendance">
+                            <a class="nav-link"  onclick="toggleAttendanceDropdown()">
 
-                                <i class="fas fa-clock"></i> Attendance</a>
+                                <i class="fas fa-clock"></i> Attendance<i class="fas fa-caret-down" id="attendance-caret"></i>
+                            </a>
+                            <div id="attendance-options" style="display: none;">
+                                <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
+                                    <li class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/Attendance" onclick="return changePageTitle6('attendance-info');">
+                                              Attendance Info
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/team-on-attendance-chart" onclick="return changePageTitle6('team-on-attendance');">
+                                              @livewire('team-on-attendance')
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/whoisinchart" onclick="return changePageTitle6('who-is-in');">
+                                              @livewire('whoisin')
+                                        </a>
+                                    </li>
+                                    
+                                   
+                                   
+
+                                </ul>
+                            </div>
                         </li>
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle7()">
@@ -1341,7 +1365,41 @@
                 // Return false to prevent the default link behavior
                 return false;
             }
+            
+            function changePageTitle6(item) {
+                var newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                var newTitle = "Attendance";
 
+                if (item === 'team-on-attendance') {
+                    newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                    newTitle = "Team Attendance";
+                } 
+                else if  (item === 'who-is-in') {
+                    newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                    newTitle = "Who is in";
+                } 
+                switch (item) {
+                   
+                    case 'attendance-info':
+                        window.location.href = '/Attendance';
+                        break;
+                    case 'team-on-attendance':
+                        window.location.href = '/team-on-attendance-chart';
+                        break;
+                    case 'who-is-in':
+                        window.location.href='/whoisinchart';
+                        break;    
+                        // Add cases for other options if needed
+                    default:
+                        break;
+                }
+                document.getElementById("pageIcon").innerHTML = newIcon;
+                document.getElementById("pageTitle").textContent = newTitle;
+                localStorage.setItem("pageIcon", newIcon);
+                localStorage.setItem("pageTitle", newTitle);
+                // Return false to prevent the default link behavior
+                return false;
+            }
 
             function toggleLeaveDropdown() {
                 const leaveOptions = document.getElementById("leave-options");
@@ -1357,7 +1415,20 @@
                     leaveCaret.classList.add("fa-caret-up");
                 }
             }
+            function toggleAttendanceDropdown() {
+                const AttendanceOptions = document.getElementById("attendance-options");
+                const AttendanceCaret = document.getElementById("attendance-caret");
 
+                if (AttendanceOptions.style.display === "block") {
+                    AttendanceOptions.style.display = "none";
+                    AttendanceCaret.classList.remove("fa-caret-up");
+                    AttendanceCaret.classList.add("fa-caret-down");
+                } else {
+                    AttendanceOptions.style.display = "block";
+                    AttendanceCaret.classList.remove("fa-caret-down");
+                    AttendanceCaret.classList.add("fa-caret-up");
+                }
+            }
             function toggleSalaryDropdown() {
                 const salaryOptions = document.getElementById("salary-options");
                 const salaryCaret = document.getElementById("salary-caret");
@@ -1402,6 +1473,7 @@
                 // Update the pageTitle
                 updatePageTitle(pageTitle);
                 // Close the dropdown if open
+                toggleAttendanceDropdown();
                 toggleLeaveDropdown();
                 toggleSalaryDropdown();
             }
