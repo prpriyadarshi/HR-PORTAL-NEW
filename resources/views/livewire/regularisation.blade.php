@@ -451,6 +451,10 @@ table {
     font-size: 18px;
     
   }
+  .custom-view-details-button {
+    background-color: transparent;
+    /* Add other styles as needed */
+}
 #closeButton {
     position: absolute;
     top: 10px;
@@ -506,35 +510,7 @@ thead th:nth-child(2) {
 
         }
 </style>   
-@if($isManager1)
-@foreach($withdraw as $w2)
-<div style="background-color:#fff; margin-bottom:20px; border:1px solid #7f8fa4;">
-        <div style="display:flex;flex-direction:row;">        
-            <p class="title" style="font-weight: bold;color: #7f8fa4;">Name:</p>
-            <p class="title" style="font-weight: bold; margin-left:270px;color: #7f8fa4;">No. of days:</p>
-            
-        </div>  
-        <div style="display:flex;flex-direction:row;margin-top:-15px;"> 
-          @foreach($subordinate as $firstName => $lastName)
-            <p class="highlight" style="color: rgb(2, 17, 79);; margin-right:60px;">{{$lastName}} {{$firstName}}</p>
-          @endforeach  
-            <p class="days" style="font-size:20px; color: rgb(2, 17, 79);; margin-top:-2px; margin-left:160px;">1</p>
-        </div>
-    </div>
-    <div class="arrow-button toggle-button" style="float:right; margin-top:-70px; margin-right:20px;" data-target-container="myContainerBody1"></div> 
-    <div class="container-body1" style="width: 942px; border: 1px solid #7f8fa4; height: 200px; background-color: #fff; margin-bottom:20px; text-align: center; padding: 10px; display:none; margin-right:4px;margin-top:-20px;" id="myContainerBody1">
-        <p class="title" style="font-weight: bold;color: #7f8fa4;margin-left:40px;">Dates Applied:</p>
-        <p class="highlight" style="color:rgb(2, 17, 79);">{{ \Carbon\Carbon::parse($w2->regularisation_date)->format('j M Y') }}</p>
-        <div class="horizontal-line"></div>
-       
-        <div style="margin-top:60px; margin-left:610px;display:flex;flex-direction:row;"> 
-             <button wire:click="approve({{$w2->id}})" class="approve-button" >Approve</button>
-             <button wire:click="reject({{$w2->id}})" class="reject-button" style="margin-left:20px">Reject</button>
-            <a href="/regularisation-pending" class="button view-details-button" style="margin-left:20px;margin-top:5px">View Details</a>
-        </div>  
-    </div>
-@endforeach    
-@endif    
+   
 @if (session('success'))
     <div class="alert alert-success" id="success-message">
         {{ session('success') }}
@@ -612,7 +588,7 @@ thead th:nth-child(2) {
                 <td style="width: 30%;">
                     <input type="time" name="toValue" id="toValue" wire:model="to">
                 </td>
-                <td style="width: 150%">
+                <td style="width: 200%">
                     <input type="text" name="reason" id="reason" placeholder="Reason" wire:model="reason" style="width: 100%; padding: 20px;">
                 </td>
                 <td style="width: 150%">
@@ -703,9 +679,9 @@ thead th:nth-child(2) {
             <p class="title" style="font-weight: bold;color: #7f8fa4;margin-left:-20px;">Applied On:</p>
             <p class="highlight" style="color: rgb(2, 17, 79);margin-left:-30px;margin-top:-15px;">{{\Carbon\Carbon::parse($d->created_at)->format('j M Y')}}</p>
         </div> 
-        <div style="margin-top:-60px; margin-left:650px;display:flex;flex-direction:row;">
+        <div style="margin-top:-60px; margin-left:630px;display:flex;flex-direction:row;">
             <button class="withdraw-button"data-toggle="modal"data-target="#withdrawModal"wire:click="withdraw({{$d->id}})">Withdraw</button> 
-            <a href="/regularisation-pending" class="button view-details-button"style=" margin-left:30px;margin-top:5px;">View&nbsp;Details</a>
+            <a href="{{ route('regularisation-pending', ['id' => $d->id]) }}" class="button view-details-button"style=" margin-left:30px;margin-top:5px;">View&nbsp;Details</a>
         </div>  
     </div>
    
@@ -751,9 +727,9 @@ thead th:nth-child(2) {
             <p class="title" style="font-weight: bold;color: #7f8fa4;margin-left:-20px;">Rejected On:</p>
             <p class="highlight" style="color: rgb(2, 17, 79);margin-left:-40px;margin-top:-15px;">{{\Carbon\Carbon::parse($d1->rejected_date)->format('j M Y')}}</p>
         </div> 
-        <div style="margin-top:-60px; margin-left:750px;"> 
-            <a href="/regularisation-pending" class="button view-details-button">View Details</a>
-        </div>  
+        <div style="margin-top:-60px; margin-left:720px;"> 
+        <a href="{{ route('regularisation-history', ['id' => $d1->id]) }}" class="button view-details-button custom-view-details-button"style=" margin-left:30px;margin-top:5px;">View&nbsp;Details</a>
+        </div>   
     </div>
    
     @elseif($d1->status =='approved')
@@ -780,8 +756,8 @@ thead th:nth-child(2) {
             <p class="title" style="font-weight: bold;color: #7f8fa4;">Regularized On:</p>
             <p class="highlight" style="color: rgb(2, 17, 79);margin-left:-40px;margin-top:-15px;">{{\Carbon\Carbon::parse($d1->approved_date)->format('j M Y')}}</p>
         </div> 
-        <div style="margin-top:-60px; margin-left:750px;"> 
-            <a href="/regularisation-pending" class="button view-details-button">View&nbsp;Details</a>
+        <div style="margin-top:-60px; margin-left:720px;"> 
+            <a href="{{ route('regularisation-history', ['id' => $d1->id]) }}" class="button view-details-button">View&nbsp;Details</a>
         </div>  
     </div>
    
@@ -809,9 +785,9 @@ thead th:nth-child(2) {
             <p class="title" style="font-weight: bold;color: #7f8fa4;">Withdrawn On:</p>
             <p class="highlight" style="color: rgb(2, 17, 79);margin-left:-30px;margin-top:-15px;">{{\Carbon\Carbon::parse($d1->withdrawn_date)->format('j M Y')}}</p>
         </div> 
-        <div style="margin-top:-60px; margin-left:750px;"> 
-            <a href="/regularisation-pending" class="button view-details-button">View Details</a>
-        </div>  
+        <div style="margin-top:-60px; margin-left:720px;"> 
+            <a href="{{ route('regularisation-history', ['id' => $d1->id]) }}" class="button view-details-button">View&nbsp;Details</a>
+        </div>   
     </div>
    
     @endif
