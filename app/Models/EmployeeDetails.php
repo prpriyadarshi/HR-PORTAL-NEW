@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\LeaveRequest;
+use App\Models\SwipeRecord;
 
 class EmployeeDetails extends Authenticatable
 {
@@ -68,6 +69,15 @@ class EmployeeDetails extends Authenticatable
     {
         return $this->hasMany(LeaveRequest::class, 'emp_id');
     }
+    public function leaveApplies()
+    {
+        return $this->hasMany(LeaveRequest::class, 'emp_id', 'emp_id');
+    }
+    public function swipeRecords()
+    {
+        return $this->hasMany(SwipeRecord::class, 'emp_id', 'emp_id');
+    }
+
 
     // Inside the EmployeeDetails model
     public function starredPeople()

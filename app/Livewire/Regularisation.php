@@ -108,6 +108,15 @@ class Regularisation extends Component
         $regularisation->is_withdraw = 1;
         $regularisation->save();
     }
+
+    public $regularisationdescription;
+
+    public function status($id)
+    {
+        return redirect()->route('regularisation-history', ['id' => $id]);
+    }
+
+
     public function render()
     {
       
@@ -135,7 +144,7 @@ class Regularisation extends Component
       
         $this->data1 = Regularisations::where('status', 'pending')->first();
         $this->data4 = Regularisations::where('is_withdraw', '1')->count();
-        $this->data7= Regularisations::where('is_withdraw', '1')->get();
+        $this->data7= Regularisations::all();
         $employee = EmployeeDetails::where('emp_id',auth()->guard('emp')->user()->emp_id)->first();
        
         

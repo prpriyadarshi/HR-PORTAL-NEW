@@ -191,12 +191,11 @@
            <div class="data">
            <p><span style="color: #333; font-weight: 500; font-size:1rem;">Details</span></p>
           
-            <p style=" font-size: 0.90rem; margin-right:60px;"><span style="color: #778899; font-size: 0.875rem; font-weight: 400;padding-right: 58px;">Date</span>{{\Carbon\Carbon::parse($regularisationrequest->regularisation_date)->format('d-m-Y') }}</p>
+            <p style=" font-size: 0.90rem; margin-right:60px;"><span style="color: #778899; font-size: 0.875rem; font-weight: 400;padding-right: 58px;">Date</span>{{\Carbon\Carbon::parse($regularisationdescription->regularisation_date)->format('d-m-Y') }}</p>
            
              <div style="display:flex; flex-direction:row; justify-content:space-between;">
              <span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 88px;">Approve/Reject</span>
-             <p style="text-transform:uppercase;">{{$regularisationrequest->status}} </p>
-        
+             <p style="text-transform:uppercase;">{{$regularisationdesc->status}} </p>
              </div>
             <p style="margin-top:10px;"><span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 82px;">Approver Remarks</span>-</p>
          
@@ -218,13 +217,29 @@
               <div class="group">
               <div>
                 <h5 style="color: #333; font-size: 0.825rem; font-weight: 400; text-align:start;">
-      
-                        Pending <br><span style="color: #778899; font-size: 0.825rem; font-weight: 400; text-align:start;">with</span> 
-                        <span style="color: #778899; font-weight: 500; text-transform: uppercase;">
-                           {{$regularisationrequest->employee->first_name}}  {{$regularisationrequest->employee->last_name}}
-                        </span>
-                  
+                     
+                      @if($regularisationdescription->status == 'pending')
+                            Pending <br><span style="color: #778899; font-size: 0.825rem; font-weight: 400; text-align:start;">with</span> 
+                      @elseif($regularisationdescription->status == 'approved')
+                            Approved<br><span style="color: #778899; font-size: 0.825rem; font-weight: 400; text-align:start;">by</span>
+                      @else
+                            Rejected<br><span style="color: #778899; font-size: 0.825rem; font-weight: 400; text-align:start;">by</span>  
+                      @endif 
+                      @if($regularisationdesc->status == 'approved')  
+                         <span style="color: #778899; font-weight: 500; text-transform: uppercase;">
+                           {{$regularisationdesc->approved_by}}  
+                        </span> 
+                      @elseif($regularisationdesc->status == 'rejected')
+                           <span style="color: #778899; font-weight: 500; text-transform: uppercase;">
+                                {{$regularisationdesc->rejected_by}}  
+                           </span> 
+                      @else     
+                         <span style="color: #778899; font-weight: 500; text-transform: uppercase;">
+                           {{$regularisationdesc->employee->first_name}}  {{$regularisationdesc->employee->last_name}}
+                         </span>
+                      @endif
                     <br>
+                   
                     <span style="color: #778899; font-size: 0.725rem; font-weight: 400;text-align:start;">
                           {{ \Carbon\Carbon::parse($today)->format('d M, Y, h:iA') }}
                     </span>

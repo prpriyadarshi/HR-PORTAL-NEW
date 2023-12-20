@@ -1,7 +1,11 @@
 <?php
 
 namespace App\Livewire;
+
+use App\Models\EmployeeDetails;
 use App\Models\SwipeRecord;
+use App\Models\HolidayCalendar;
+use App\Models\LeaveRequest;
 use Livewire\Component;
 use Carbon\Carbon;
 class Attendance extends Component
@@ -9,6 +13,8 @@ class Attendance extends Component
     public $currentDate;
     public $currentWeekday;
     public $swipe_record;
+    public $holiday;
+    public $leaveApplies;
     public $actualHours = [];
     public $firstSwipeTime;
     public $secondSwipeTime;
@@ -16,11 +22,16 @@ class Attendance extends Component
     public $currentDate1;
     public $swiperecord;
 
+    public $view_student_swipe_time;
+  
+    public $view_student_in_or_out;
     public $swipeRecordId;
     public $view_student_emp_id; 
-    public $view_student_swipe_time;
-    public $view_student_in_or_out;
-    public $view_table_in_or_out;
+    public $view_employee_swipe_time;
+ 
+    public $view_table_in;
+
+    public $view_table_out;
     public $employeeDetails;
     public $student;
     public $selectedRecordId = null;
@@ -41,12 +52,15 @@ class Attendance extends Component
         $outRecord = $records->where('in_or_out', 'OUT')->last();
 
         return [$key => [
+            'in' => "IN",
             'first_in_time' => optional($inRecord)->swipe_time,
             'last_out_time' => optional($outRecord)->swipe_time,
+            'out' => "OUT",
         ]];
     });
-    
-
+   
+   
+ 
 
         // Get the current date and store it in the $currentDate property
         $this->currentDate = date('d');
@@ -55,8 +69,14 @@ class Attendance extends Component
         $this->swiperecords=SwipeRecord::all();
         // You can change the date format as needed
     }
-   
-   
+   public $k,$k1;
+public function showlargebox($k)
+{
+
+  $this->k1 = $k;
+  $this->dispatchBrowserEvent('refreshModal', ['k1' => $this->k1]); 
+  
+}
   
 
 private function calculateActualHours($swipe_records)
@@ -89,15 +109,7 @@ private function calculateActualHours($swipe_records)
     // $check=$this->view_student_emp_id.''.$this->view_student_swipe_time.''.$this->view_student_in_or_out;
     $this->showViewStudentModal();
   }
-  public function viewTableDetails($id)
-  {
-    $table = SwipeRecord::find($id);
-   
-    
-    // $this->view_student_id = $student->student_id;
-    $this->view_table_in_or_out = $table->in_or_out;
-    $this->showViewTableModal();
-  }
+
   public function closeViewStudentModal()
   {
       $this->view_student_emp_id = '';
@@ -105,12 +117,7 @@ private function calculateActualHours($swipe_records)
       $this->view_student_in_or_out = '';
      
   }
-  public function closeViewTableModal()
-  {
-    $this->view_table_in_or_out = '';
-     
-     
-  }
+ 
   public $show=false;  
   public $show1=false;   
   public function showViewStudentModal(){
@@ -125,8 +132,13 @@ private function calculateActualHours($swipe_records)
   public function close1(){
     $this->show1=false;  
   }
+
+  
     public function render()
     {
+      // $this->holidayDateEmployeesData=EmployeeDetails::where('emp_id',auth()->guard('emp')->user()->emp_id)
+      // ->where('swipe_records.created_at','holiday_lacender.date');
+      // dd($this->holidayDateEmployeesData);
         $currentDate = Carbon::now()->format('Y-m-d');
         $today = Carbon::today();
         $data = SwipeRecord::join('employee_details', 'swipe_records.emp_id', '=', 'employee_details.emp_id')
@@ -134,17 +146,19 @@ private function calculateActualHours($swipe_records)
         ->whereDate('swipe_records.created_at', $today)
         ->select('swipe_records.*', 'employee_details.first_name','employee_details.last_name')
         ->get();
-      
-        
+         $this->holiday=HolidayCalendar::all();
+         $this->leaveApplies=LeaveRequest::where('emp_id',auth()->guard('emp')->user()->emp_id)->get();
+         
+         
         // Fetch records for today's date
         //$swipe_records = SwipeRecord::all();
            $swipe_records = SwipeRecord::where('emp_id',auth()->guard('emp')->user()->emp_id)->whereDate('created_at', $currentDate)->get();
            $swipe_records1 = SwipeRecord::where('emp_id',auth()->guard('emp')->user()->emp_id)->orderBy('created_at', 'desc')->get(); 
-              
+            
               
             // $this->calculateActualHours();
             
             $this->calculateActualHours($swipe_records);
-            return view('livewire.attendance',['Swiperecords'=>$swipe_records,'Swiperecords1'=>$swipe_records1,'data'=>$data]);
+            return view('livewire.attendance',['Holiday'=>$this->holiday,'Swiperecords'=>$swipe_records,'Swiperecords1'=>$swipe_records1,'data'=>$data]);
     }
 }
