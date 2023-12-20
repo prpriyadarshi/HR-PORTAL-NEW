@@ -170,6 +170,7 @@ return [
         /*
          * Application Service Providers...
          */
+        Livewire\LivewireServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
