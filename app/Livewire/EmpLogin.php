@@ -108,7 +108,6 @@ class EmpLogin extends Component
     }
     public function verifyEmailAndDOB()
     {
-
         $this->validate([
             'email' => ['required', 'email'],
             'dob' => ['required', 'date'],
@@ -117,16 +116,18 @@ class EmpLogin extends Component
         // Example: Check if the email and DOB match a user's stored values in your database.
         $user = EmployeeDetails::where('email', $this->email)->where('date_of_birth', $this->dob)->first();
         if ($user) {
-            $this->verified = true;
-            if ($user) {
-                $this->showSuccessModal = true;
-            } else {
+                $this->verified = true;
+                if($this->verified){
+                    $this->verified = false;
+                    $this->showSuccessModal = true;
+                }
 
+            } else {
                 // Invalid email or DOB, show an error message or handle accordingly.
                 $this->addError('email', 'Invalid email or date of birth');
                 $this->showErrorModal = true;
             }
-        }
+
     }
 
     public function showPasswordChangeModal()
