@@ -17,7 +17,7 @@ use App\Livewire\TeamOnLeave;
 class Home extends Component
 {
     public $currentDate;
-
+    public $showSalary = false;
     public $currentDay;
     public $showAlertDialog = false;
     public $signIn = true;
@@ -41,11 +41,11 @@ class Home extends Component
     public $showLeaveApplies;
     public $greetingImage;
     public $greetingText;
- 
+
     public function mount()
     {
         $currentHour = date('G');
- 
+
         if ($currentHour >= 4 && $currentHour < 12) {
             $this->greetingImage = 'sunrise.png';
             $this->greetingText = 'Good Morning';
@@ -83,6 +83,10 @@ class Home extends Component
     {
         $this->showAlertDialog = false;
     }
+    public function toggleSalary()
+    {
+        $this->showSalary = !$this->showSalary;
+    }
 
     public function render()
     {
@@ -107,12 +111,12 @@ class Home extends Component
                 $matchingLeaveApplications[] = $leaveRequest;
             }
         }
-     
+
         // Get the count of matching leave applications
         $this->count = count($matchingLeaveApplications);
 
 
-      
+
 
 
         //team on leave
@@ -125,23 +129,23 @@ class Home extends Component
             })
             ->get();
         $teamOnLeaveApplications = [];
-    
+
         foreach ($this->teamOnLeaveRequests as $teamOnLeaveRequest) {
             $applyingToJson = trim($teamOnLeaveRequest->applying_to);
             $applyingArray = is_array($applyingToJson) ? $applyingToJson : json_decode($applyingToJson, true);
-    
+
             $ccToJson = trim($teamOnLeaveRequest->cc_to);
             $ccArray = is_array($ccToJson) ? $ccToJson : json_decode($ccToJson, true);
-    
+
             $isManagerInApplyingTo = isset($applyingArray[0]['manager_id']) && $applyingArray[0]['manager_id'] == $employeeId;
             $isEmpInCcTo = isset($ccArray[0]['emp_id']) && $ccArray[0]['emp_id'] == $employeeId;
-    
+
             if ($isManagerInApplyingTo || $isEmpInCcTo) {
                 $teamOnLeaveApplications[] = $teamOnLeaveRequest;
             }
         }
          $this->teamOnLeave = $teamOnLeaveApplications;
-      
+
         // Get the count of matching leave applications
         $this->teamCount = count($teamOnLeaveApplications);
 
