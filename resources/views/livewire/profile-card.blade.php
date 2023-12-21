@@ -15,7 +15,7 @@
 
             <h6 style="font-size: 12px;color:white" class="username">{{$employee->first_name}} {{$employee->last_name}}</h6>
 
-            <a href="{{ route('profile.info') }}" class="nav-item-1" style="text-decoration: none;" onclick="changePageTitle()">View My Info</a>
+            <a href="{{ route('profile.info') }}" class="nav-item-1" style="text-decoration: none;color: #EC9B3B;font-weight:500;font-size: 11px;" onclick="changePageTitle()">View My Info</a>
 
         </div>
 

@@ -10,6 +10,8 @@ use App\Models\LeaveRequest;
 use App\Models\EmployeeDetails;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+use App\Mail\LeaveApplicationNotification;
+use Illuminate\Support\Facades\Mail;
 
 class LeaveApply extends Component
 {
@@ -44,6 +46,9 @@ class LeaveApply extends Component
     public $filteredEmployees =[];
     public $has;
     public $isOpen = false;
+    public $leaveDetails;
+    private $createdLeaveRequest;
+    private $dynamicFromAddress;
 
     public function mount()
     {
@@ -100,7 +105,6 @@ class LeaveApply extends Component
     }
     public function filterCcData()
     {
-        dd('fghjkl');
         $this->searchCCRecipients();
     }
     public function filterData()
@@ -165,8 +169,8 @@ class LeaveApply extends Component
                 ];
             }
         }
-        LeaveRequest::create([
-            'emp_id' => $this->employeeDetails->emp_id,
+        $this->createdLeaveRequest = LeaveRequest::create([
+            'emp_id' => $employeeId,
             'leave_type' => $this->leave_type,
             'from_date' => $this->from_date,
             'from_session' => $this->from_session,
@@ -178,9 +182,92 @@ class LeaveApply extends Component
             'contact_details' => $this->contact_details,
             'reason' => $this->reason,
         ]);
+       
+    logger('LeaveRequest created successfully', ['leave_request' => $this->createdLeaveRequest]);
+
+    // Check if emp_id is set on the $createdLeaveRequest object
+    if ($this->createdLeaveRequest && $this->createdLeaveRequest->emp_id) {
+        // Send email notification
+        $this->sendLeaveApplicationNotification($this->createdLeaveRequest);
+
+        // Reset the component
         $this->reset();
+
         session()->flash('message', 'Leave application submitted successfully!');
         return redirect()->to('/leave-page');
+    } else {
+        // Log an error if there's an issue with creating the LeaveRequest
+        logger('Error creating LeaveRequest', ['emp_id' => $employeeId]);
+
+        session()->flash('error', 'Error submitting leave application. Please try again.');
+        return redirect()->to('/leave-page');
+    }
+
+    }
+    private function sendLeaveApplicationNotification($leaveRequest)
+    {
+        // Retrieve the manager's email
+        $managerEmail = $this->getManagersEmail($leaveRequest->emp_id);
+        
+        // Ensure $leaveRequest is an instance of LeaveRequest
+        if (!$leaveRequest instanceof \App\Models\LeaveRequest) {
+            logger('Invalid $leaveRequest instance', ['leave_request' => $leaveRequest]);
+            return;
+        }
+    
+        // Extract necessary details from $leaveRequest
+        $leaveDetails = [
+            'leave_type' => $leaveRequest->leave_type,
+            'from_date' => $leaveRequest->from_date,
+            // Add more details as needed
+        ];
+        // Set the sender and receiver dynamically
+$senderEmail =  $this->applying_to->email;
+$receiverEmail = $managerEmail;  // Set this based on your application logic
+
+// Set the sender and receiver in the mail configuration
+config([
+    'mail.from.address' => $senderEmail,
+    'mail.from.username' => $senderEmail,
+]);
+
+// Example usage in your Livewire component
+$mail = new LeaveApplicationNotification($leaveRequest, $receiverEmail);
+Mail::to($receiverEmail)->send($mail);
+
+    }
+    
+    private function getManagersEmail($employeeId)
+    {
+        // Fetch the employee details
+        $employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
+    
+        // Check if the applying_to field is not null and is an array
+        if ($employeeDetails && $employeeDetails->applying_to && is_array($employeeDetails->applying_to)) {
+            // Decode the applying_to field
+            $applyingToDetails = json_decode($employeeDetails->applying_to);
+    
+            // Loop through applyingToDetails to find the manager's email
+            foreach ($applyingToDetails as $applyingToDetail) {
+                if ($applyingToDetail->manager_id === $employeeId) {
+                    // Manager's email found
+                    return $this->getManagerEmailById($applyingToDetail->manager_id);
+                }
+            }
+        }
+    
+        // Default placeholder email or handle the situation when manager's email is not found
+        return 'bandaridivya1@gmail.com';
+    }
+    
+
+    private function getManagerEmailById($managerId)
+    {
+        // Fetch manager's email from the database based on $managerId
+        $managerDetails = EmployeeDetails::where('emp_id', $managerId)->first();
+        
+        // Assuming you have an email field in the EmployeeDetails model
+        return $managerDetails ? $managerDetails->email : 'bandaridivya1@gmail.com';
     }
 
     public function render()

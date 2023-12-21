@@ -97,8 +97,9 @@
         <style>
             body {
                 font-family: 'Montserrat', sans-serif;
+                overflow-x:hidden;
             }
-
+           
             .profile-container {
 
                 display: flex;
@@ -160,8 +161,40 @@
                 font-size: 12px;
 
             }
+            .nav-item .nav-link {
+            color: black;
+            text-decoration: none;
+            cursor:pointer;
+            }
 
+            /* Style for the active-link class */
+            .active-link a{
+            background-color:#eef2ff ;
+            border-radius:5px;
+            color: black !important;
+            }
+            .active-link a:hover{
+            background-color:#eef2ff ;
+            border-radius:5px;
+            color: black !important;
+            }
 
+            /* Hover effect for the nav-link class */
+            .nav-link:hover {
+            background-color: #f3f3f3;
+            border-radius:5px;
+            color: black !important;
+            }
+
+            /* Style for the icon */
+            .nav-link i {
+            color: black; /* Set the default color for the icon */
+            }
+
+            /* Style for the icon in the active state */
+            .active-link i {
+            color: black !important; /* Set the active color for the icon */
+            }
 
             .fas {
 
@@ -187,36 +220,101 @@
 
             }
 
-
-            .nav-link {
-
-                color: black !important;
-
-            }
-
+      
             #leave-options a {
                 text-decoration: none;
                 color: #778899;
-
-            }
-
-            #leave-options a:hover {
-                text-decoration: none;
-                color: #3a9efd;
+                cursor:pointer;
 
             }
 
             #salary-options a {
                 text-decoration: none;
                 color: #778899;
-
             }
 
-            #salary-options a:hover {
-                text-decoration: none;
-                color: #3a9efd;
-
+                /* Style for the dropdown container */
+            .dropdown {
+            position: relative;
+            display: inline-block;
+            background:transparent;
+            width:200px;
+            margin-right:30px;
             }
+
+            /* Style for the dropdown button */
+            .dropdown-btn {
+            background-color: transparent;
+            color: #fff;
+            padding: 8px;
+            font-size: 0.905rem;
+            border: none;
+            cursor: pointer;
+            }
+
+            /* Style for the dropdown content */
+            .dropdown-content {
+            display: none;
+            position: absolute;
+            font-size: 0.855rem;
+            border-radius:5px;
+            background-color: #fff;
+            min-width: 150px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            }
+            /* Style for the arrow */
+            .dropdown-btn::after {
+            content: "▼"; /* Unicode for down arrow */
+            margin-left: 3px;
+            font-size: 10px;
+            line-height: 0.6;
+            }
+            /* Style for the dropdown links */
+            .dropdown-content a {
+            color: grey;
+            padding: 10px 14px;
+            text-decoration: none;
+            display: block;
+            }
+
+            /* Change color on hover */
+            .dropdown-content a:hover {
+            background-color: #f7f8fe;
+            border-left:2px solid rgb(2, 17, 79);
+            color:rgb(2, 17, 79);
+            border-radius:5px;
+            }
+
+            /* Change color on click (active state) */
+            .dropdown-content a:active {
+            background-color: #ddd;
+            }
+
+            /* Show the dropdown content when the dropdown button is hovered over */
+            .dropdown:hover .dropdown-content {
+            display: block;
+            }
+            /* content slot scrolling */
+
+            .slot::-webkit-scrollbar {
+                width: 7px; /* Set the width of the scrollbar */
+            }
+
+            .slot::-webkit-scrollbar-thumb {
+                background-color: #ccc; /* Set the color of the thumb */
+                border-radius: 6px; /* Set the border radius of the thumb */
+            }
+
+            .slot::-webkit-scrollbar-track {
+                background-color: #f5f5f5; /* Set the color of the track */
+            }
+
+            .slot::-webkit-scrollbar-thumb:hover {
+                background-color: #555; /* Set the color of the thumb on hover */
+            }
+
+           
 
             @media only screen and (max-width: 768px) {
                 .displayNone {
@@ -238,26 +336,41 @@
                     top: 3.8em;
                     z-index: 1000;
                 }
+                 /* left side menu scroll */
+                    #menu-popup {
+                    overflow-y: auto;
+                    max-height: 400px;
+                    scrollbar-width: thin; /* For Firefox */
+                    scrollbar-color: #f0f0f0; /* thumb and track color */
+                }
+
+                #menu-popup::-webkit-scrollbar {
+                    width: 3px; /* Set the width of the scrollbar */
+                }
+
+                #menu-popup::-webkit-scrollbar-thumb {
+                    background-color: #fff; /* Set the color of the thumb */
+                    border-radius: 6px; /* Set the border radius of the thumb */
+                }
+
+                #menu-popup::-webkit-scrollbar-track {
+                    background-color: #f0f0f0; /* Set the color of the track */
+                }
+
+                #menu-popup::-webkit-scrollbar-thumb:hover {
+                    background-color: #555; /* Set the color of the thumb on hover */
+                }
+
+        
             }
 
             @media only screen and (min-width: 769px) {
                 .hideHamburger {
                     display: none !important;
                 }
+        
             }
 
-            li a {
-                color: black;
-            }
-
-            a {
-                text-decoration: none
-            }
-
-            .nav-link:focus,
-            .nav-link:hover {
-                color: var(--bs-nav-link-hover-color) !important;
-            }
 
             @media only screen and (max-width: 768px) {
                 .displayNone {
@@ -279,26 +392,58 @@
                     top: 3.8em;
                     z-index: 1000;
                 }
+                 /* left side menu scroll */
+                #menu-popup {
+                max-height: 400px;
+                overflow-y: auto;
+                scrollbar-width: thin; /* For Firefox */
+                scrollbar-color: #f0f0f0; /* thumb and track color */
+                }
+
+                #menu-popup::-webkit-scrollbar {
+                    width: 3px; /* Set the width of the scrollbar */
+                }
+
+                #menu-popup::-webkit-scrollbar-thumb {
+                    background-color: #fff; /* Set the color of the thumb */
+                    border-radius: 6px; /* Set the border radius of the thumb */
+                }
+
+                #menu-popup::-webkit-scrollbar-track {
+                    background-color: #f0f0f0; /* Set the color of the track */
+                }
+
+                #menu-popup::-webkit-scrollbar-thumb:hover {
+                    background-color: #555; /* Set the color of the thumb on hover */
+                }
+
+           
             }
 
             @media only screen and (min-width: 769px) {
                 .hideHamburger {
                     display: none !important;
                 }
-            }
+                .scrollable-container {
+                    max-height: 450px;
+                    overflow-y: auto;
+                }
+                .scrollable-container::-webkit-scrollbar {
+                    width: 2px; /* Set the width of the scrollbar */
+                }
 
-            li a {
-                color: black;
-            }
+                .scrollable-container::-webkit-scrollbar-thumb {
+                    background-color: #fff; /* Set the color of the scrollbar thumb */
+                    border-radius: 5px; /* Set the border radius of the thumb */
+                }
 
-            a {
-                text-decoration: none
+                .scrollable-container::-webkit-scrollbar-track {
+                    background-color: #fff; /* Set the color of the scrollbar track */
+                    border-radius: 5px; /* Set the border radius of the track */
+                }
+                               
             }
-
-            .nav-link:focus,
-            .nav-link:hover {
-                color: var(--bs-nav-link-hover-color) !important;
-            }
+         
         </style>
 
 
@@ -319,9 +464,11 @@
 
 
                         @auth('emp')
-                        <li class="nav-item" style="text-decoration: none; margin-top: 10px" onclick="changePageTitle1()">
+                        <div class="scrollable-container">
+                         <ul class="nav flex-column">
+                           <li class="nav-item" style="text-decoration: none; margin-top: 10px" onclick="changePageTitle1()">
 
-                            <a class="nav-link" href="/">
+                            <a class="nav-link" href="/" onclick="setActiveLink(this)">
 
                                 <i class="fas fa-home"></i> Home
 
@@ -331,7 +478,7 @@
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle2()">
 
-                            <a class="nav-link" href="/Feeds">
+                            <a class="nav-link" href="/Feeds"  onclick="setActiveLink(this)">
 
                                 <i class="fas fa-rss"></i> Feeds
 
@@ -340,7 +487,7 @@
                         </li>
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle8()">
 
-                            <a class="nav-link" href="/PeoplesList">
+                            <a class="nav-link" href="/PeoplesList"  onclick="setActiveLink(this)">
 
                                 <i class="fas fa-users"></i> People
 
@@ -355,12 +502,12 @@
                             <div id="todo-options" style="display: none;">
                                 <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
                                     <li class="nav-item" style="text-decoration: none;">
-                                        <a class="nav-link" href="/tasks" onclick="changePageTitle3('task');">
+                                        <a class="nav-link" href="/tasks" onclick="changePageTitle3('task'); setActiveLink(this)">
                                             Tasks
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;">
-                                        <a class="nav-link" href="/employees-review" onclick="changePageTitle3('review');">
+                                        <a class="nav-link" href="/employees-review" onclick="changePageTitle3('review'); setActiveLink(this)">
                                             Review
                                         </a>
                                     </li>
@@ -373,40 +520,40 @@
 
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle12(item)">
-                            <a class="nav-link" href="#" onclick="toggleSalaryDropdown()">
+                            <a class="nav-link" onclick="toggleSalaryDropdown()">
                                 <i class="fas fa-solid fa-money-bill-transfer" id="salary-icon"></i> Salary <i class="fas fa-caret-down" id="salary-caret"></i>
                             </a>
                             <div id="salary-options" style="display: none;">
                                 <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle12('itdeclaration')">
-                                        <a class="nav-link" href="/formdeclaration" id="itdeclaration" onclick="selectOption(this, 'IT Declaration')">
+                                        <a class="nav-link" href="/formdeclaration" id="itdeclaration" onclick="selectOption(this, 'IT Declaration');setActiveLink(this)">
                                             IT Declaration
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle13('itstatement')">
-                                        <a class="nav-link" href="/itstatement" id="itstatement" onclick="selectOption(this, 'IT Statement')">
+                                        <a class="nav-link" href="/itstatement" id="itstatement" onclick="selectOption(this, 'IT Statement');setActiveLink(this)">
                                             IT Statement
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('slip')">
-                                        <a class="nav-link" href="/slip" id="slip" onclick="selectOption(this, 'Pay Slip')">
+                                        <a class="nav-link" href="/slip" id="slip" onclick="selectOption(this, 'Pay Slip');setActiveLink(this)">
                                             Payslips
                                         </a>
                                     </li>
 
 
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('reimbursement')">
-                                        <a class="nav-link" href="/reimbursement" id="reimbursement" onclick="selectOption(this, 'Reimbursement')">
+                                        <a class="nav-link" href="/reimbursement" id="reimbursement" onclick="selectOption(this, 'Reimbursement'); setActiveLink(this)">
                                             Reimbursement
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('investment')">
-                                        <a class="nav-link" href="/investment" id="investment" onclick="selectOption(this, 'Proof of Investment')">
+                                        <a class="nav-link" href="/investment" id="investment" onclick="selectOption(this, 'Proof of Investment'); setActiveLink(this) ">
                                             Proof of Investment
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('salary-revision')">
-                                        <a class="nav-link" href="/salary-revision" id="salary-revision" onclick="selectOption(this, 'Salary Revision')">
+                                        <a class="nav-link" href="/salary-revision" id="salary-revision" onclick="selectOption(this, 'Salary Revision'); setActiveLink(this)">
                                            Salary Revision
                                         </a>
                                     </li>
@@ -416,33 +563,33 @@
                         </li>
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5(item)">
-                            <a class="nav-link" onclick="toggleLeaveDropdown()">
+                            <a class="nav-link" onclick="toggleLeaveDropdown(event)">
                                 <i class="fas fa-file-alt" id="leave-icon"></i> Leave <i class="fas fa-caret-down" id="leave-caret"></i>
                             </a>
                             <div id="leave-options" style="display: none;">
                                 <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
                                     <li class="nav-item" style="text-decoration: none;">
-                                        <a class="nav-link" href="/leave-page" onclick="return changePageTitle5('apply');">
+                                        <a class="nav-link" href="/leave-page" onclick="changePageTitle5('apply');return false;setActiveLink(this)">
                                             Leave Apply
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;">
-                                        <a class="nav-link" href="/leave-balances" onclick="changePageTitle5('balances'); return false;">
+                                        <a class="nav-link" href="/leave-balances" onclick="changePageTitle5('balances'); return false;setActiveLink(this)">
                                             Leave Balances
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;">
-                                        <a class="nav-link" href="/leave-calender" onclick="changePageTitle5('calendar'); return false;">
+                                        <a class="nav-link" href="/leave-calender" onclick="changePageTitle5('calendar'); return false;setActiveLink(this)">
                                             Leave Calendar
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;">
-                                        <a class="nav-link" href="/holiday-calender" onclick="changePageTitle5('holiday'); return false;">
+                                        <a class="nav-link" href="/holiday-calender" onclick="changePageTitle5('holiday'); return false;setActiveLink(this)">
                                             Holiday Calendar
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;">
-                                        <a class="nav-link" href="/team-on-leave-chart" onclick="changePageTitle5('team'); return false;">
+                                        <a class="nav-link" href="/team-on-leave-chart" onclick="changePageTitle5('team'); return false;setActiveLink(this)">
                                             @livewire('team-on-leave')
                                         </a>
                                     </li>
@@ -453,38 +600,14 @@
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6(item)">
 
-                            <a class="nav-link"  onclick="toggleAttendanceDropdown()">
+                            <a class="nav-link" href="/Attendance"  onclick="setActiveLink(this)">
 
-                                <i class="fas fa-clock"></i> Attendance<i class="fas fa-caret-down" id="attendance-caret"></i>
-                            </a>
-                            <div id="attendance-options" style="display: none;">
-                                <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
-                                    <li class="nav-item" style="text-decoration: none;">
-                                        <a class="nav-link" href="/Attendance" onclick="return changePageTitle6('attendance-info');">
-                                              Attendance Info
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" style="text-decoration: none;">
-                                        <a class="nav-link" href="/team-on-attendance-chart" onclick="return changePageTitle6('team-on-attendance');">
-                                              @livewire('team-on-attendance')
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" style="text-decoration: none;">
-                                        <a class="nav-link" href="/whoisinchart" onclick="return changePageTitle6('who-is-in');">
-                                              @livewire('whoisin')
-                                        </a>
-                                    </li>
-                                    
-                                   
-                                   
-
-                                </ul>
-                            </div>
+                                <i class="fas fa-clock"></i> Attendance</a>
                         </li>
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle7()">
 
-                            <a class="nav-link" href="/document">
+                            <a class="nav-link" href="/document"  onclick="setActiveLink(this)">
 
                                 <i class="fas fa-folder"></i> Document Center
 
@@ -495,9 +618,9 @@
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle9()">
 
-                            <a class="nav-link" href="/HelpDesk">
+                            <a class="nav-link" href="/HelpDesk"  onclick="setActiveLink(this)">
 
-                                <i class="fas fa-headset"></i> Helpdesk
+                                <i class="fas fa-headset"></i> Help Desk
 
                             </a>
 
@@ -505,18 +628,19 @@
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle10()">
 
-                            <a class="nav-link" href="/delegates">
+                            <a class="nav-link" href="/delegates"  onclick="setActiveLink(this)">
 
                                 <i class="fas fa-user-friends"></i> Workflow Delegates
 
                             </a>
-
                         </li>
+                      </ul>
+                     </div>
                         @endauth
 
                         @auth('hr')
                         <li class="nav-item" style="text-decoration: none; margin-top: 10px" onclick="changePageTitle1()">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="#"  onclick="setActiveLink(this)">
                                 <i class="fas fa-users"></i> HR Requests
                             </a>
                         </li>
@@ -524,7 +648,7 @@
 
                         @auth('it')
                         <li class="nav-item" style="text-decoration: none; margin-top: 10px" onclick="changePageTitle1()">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="#"  onclick="setActiveLink(this)">
                                 <i class="fas fa-laptop"></i> IT Requests
                             </a>
                         </li>
@@ -532,7 +656,7 @@
 
                         @auth('finance')
                         <li class="nav-item" style="text-decoration: none; margin-top: 10px" onclick="changePageTitle1()">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="#"  onclick="setActiveLink(this)">
                                 <i class="fas fa-dollar-sign"></i> Finance Requests
                             </a>
                         </li>
@@ -553,8 +677,13 @@
                     <i style="margin-bottom: 5px; color: white" id="pageIcon"></i>
 
                     <h6 style="color: white; width: -webkit-fill-available;" id="pageTitle">Home</h6>
-
-                    <h6 style="color: grey; margin-right: 10px;margin-left:10px;margin-top:5px;width:150px">Quick Links</h6>
+                    <div class="dropdown">
+                        <button class="dropdown-btn">Quick Links</button>
+                          <div class="dropdown-content">
+                             <a href="/tasks">Tasks</a>
+                            <a href="/help-desk">Help Desk</a>
+                        </div>
+                    </div>
                     <div class="notification-icon" style="margin-right: 10px;">
 
                         <i style="color: white;" class="fas fa-bell"></i>
@@ -578,14 +707,14 @@
 
 
 
-                    <div class="notification-icon" style="text-align:end">
+                    <div class="notification-icon" style="text-align:end;cursor:pointer;">
 
                         @livewire('log-out')
                     </div>
 
                 </div>
 
-                <div style="margin-top: 3%; margin-left: 1%; height: 490px; overflow-y: auto;">
+                <div class="slot" style="margin-top: 3%; margin-left: 1%; height: 490px; overflow-y: auto;">
                     {{ $slot }}
                 </div>
 
@@ -683,30 +812,25 @@
             }
 
 
-
             function changePageTitle3(item) {
+            var newIcon = '<i style="color: white;" class="fas fa-tasks"></i>';
+            var newTitle = "To do";
 
-                var newIcon = '<i style="color: white;" class="fas fa-tasks"></i>'
-
-                var newTitle = "To do";
-
-                if (item === 'task') {
-                    newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
-                    newTitle = "Tasks";
-                } else if (item === 'review') {
-                    newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
-                    newTitle = "Review";
-                }
-
-                document.getElementById("pageTitle").textContent = newTitle;
-
-                document.getElementById("pageIcon").innerHTML = newIcon;
-
-                localStorage.setItem("pageIcon", newIcon);
-
-                localStorage.setItem("pageTitle", newTitle);
-
+            if (item === 'task') {
+                newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                newTitle = "Tasks";
+                todoDropdownClicked = true;
+            } else if (item === 'review') {
+                newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                newTitle = "Review";
+                todoDropdownClicked = true;
             }
+
+            document.getElementById("pageTitle").textContent = newTitle;
+            document.getElementById("pageIcon").innerHTML = newIcon;
+            localStorage.setItem("pageIcon", newIcon);
+            localStorage.setItem("pageTitle", newTitle);
+        }
 
 
 
@@ -906,43 +1030,10 @@
                 // Return false to prevent the default link behavior
                 return false;
             }
-            
-            function changePageTitle6(item) {
-                var newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
-                var newTitle = "Attendance";
 
-                if (item === 'team-on-attendance') {
-                    newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
-                    newTitle = "Team Attendance";
-                } 
-                else if  (item === 'who-is-in') {
-                    newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
-                    newTitle = "Who is in";
-                } 
-                switch (item) {
-                   
-                    case 'attendance-info':
-                        window.location.href = '/Attendance';
-                        break;
-                    case 'team-on-attendance':
-                        window.location.href = '/team-on-attendance-chart';
-                        break;
-                    case 'who-is-in':
-                        window.location.href='/whoisinchart';
-                        break;    
-                        // Add cases for other options if needed
-                    default:
-                        break;
-                }
-                document.getElementById("pageIcon").innerHTML = newIcon;
-                document.getElementById("pageTitle").textContent = newTitle;
-                localStorage.setItem("pageIcon", newIcon);
-                localStorage.setItem("pageTitle", newTitle);
-                // Return false to prevent the default link behavior
-                return false;
-            }
 
-            function toggleLeaveDropdown() {
+            function toggleLeaveDropdown(event) {
+                event.stopPropagation();
                 const leaveOptions = document.getElementById("leave-options");
                 const leaveCaret = document.getElementById("leave-caret");
 
@@ -987,26 +1078,41 @@
                     salaryCaret.classList.add("fa-caret-up");
                 }
             }
+            var todoDropdownClicked = false;
 
-            function toggleToDoDropdown() {
-                const salaryOptions = document.getElementById("salary-options");
-                const todoOptions = document.getElementById("todo-options");
-                const todoCaret = document.getElementById("todo-caret");
-                const salaryCaret = document.getElementById("salary-caret");
-                const leaveOptions = document.getElementById("leave-options");
-                const leaveCaret = document.getElementById("leave-caret");
+        function toggleToDoDropdown() {
+            const todoOptions = document.getElementById("todo-options");
+            const todoCaret = document.getElementById("todo-caret");
+            const salaryOptions = document.getElementById("salary-options");
+            const salaryCaret = document.getElementById("salary-caret");
+            const leaveOptions = document.getElementById("leave-options");
+            const leaveCaret = document.getElementById("leave-caret");
 
-                if (todoOptions.style.display === "block") {
-                    todoOptions.style.display = "none";
-                    leaveOptions.style.display = "none";
-                    todoCaret.classList.remove("fa-caret-up");
-                    todoCaret.classList.add("fa-caret-down");
-                } else {
-                    todoOptions.style.display = "block";
-                    todoCaret.classList.remove("fa-caret-down");
-                    todoCaret.classList.add("fa-caret-up");
-                }
+            // Check the status of other dropdowns and close them if open
+            if (salaryOptions.style.display === "block") {
+                salaryOptions.style.display = "none";
+                salaryCaret.classList.remove("fa-caret-up");
+                salaryCaret.classList.add("fa-caret-down");
             }
+
+            if (leaveOptions.style.display === "block") {
+                leaveOptions.style.display = "none";
+                leaveCaret.classList.remove("fa-caret-up");
+                leaveCaret.classList.add("fa-caret-down");
+            }
+
+            // Toggle the state of the current dropdown
+            if (todoOptions.style.display === "block" && !todoDropdownClicked) {
+                todoOptions.style.display = "none";
+                todoCaret.classList.remove("fa-caret-up");
+                todoCaret.classList.add("fa-caret-down");
+            } else {
+                todoOptions.style.display = "block";
+                todoCaret.classList.remove("fa-caret-down");
+                todoCaret.classList.add("fa-caret-up");
+                todoDropdownClicked = false; // Reset the flag after toggling
+            }
+        }
 
 
             function selectOption(option, pageTitle) {
@@ -1023,6 +1129,28 @@
                 document.getElementById("pageTitle").textContent = newTitle;
                 localStorage.setItem("pageTitle", newTitle);
             }
+            function setActiveLink(link) {
+      // Remove active-link class from all links
+      var links = document.querySelectorAll('.nav-link');
+      links.forEach(function (el) {
+        el.classList.remove('active-link');
+      });
+
+      // Add active-link class to the parent of the clicked link (li element)
+      link.parentNode.classList.add('active-link');
+    }
+
+    // Check and set active link on page load
+    document.addEventListener("DOMContentLoaded", function() {
+      var currentPath = window.location.pathname;
+      var links = document.querySelectorAll('.nav-link');
+
+      links.forEach(function (link) {
+        if (link.getAttribute("href") === currentPath) {
+          link.parentNode.classList.add('active-link');
+        }
+      });
+    });
         </script>
 
 

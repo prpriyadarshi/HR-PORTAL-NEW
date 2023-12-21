@@ -146,8 +146,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col" style="margin-left:19%">
-                    <button wire:click="show" style="background-color:rgb(2, 17, 79); border: none; border-radius: 5px; color: white; font-size: 12px; height: 30px; cursor: pointer; margin-top: 5px;margin-top:15px">Add
+                <div class="col" style="display:flex; justify-content:flex-end;">
+                    <button wire:click="show" style="background-color:rgb(2, 17, 79); border: none; border-radius: 5px; color: white; font-size: 12px; height: 30px; cursor: pointer; margin-top: 15px;width:100px;">Add
                         New Task</button>
                 </div>
             </div>
