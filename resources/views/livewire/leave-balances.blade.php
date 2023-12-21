@@ -340,18 +340,23 @@
         </table>
     </div>
 </body>
-        </div>
+</div>
+
+     
+
     <div class="buttons-container">
-        <button class="button1">Apply</button>
+    <button class="button1" onclick="window.location.href='/leave-page'">Apply</button>
         <button type="button" class="button2" data-toggle="modal" data-target="#exampleModalCenter">
             <i class="fa-solid fa-download"></i>
        </button>
-        <select class="dropdown">
+       <select class="dropdown" wire:model="selectedYear" wire:change="yearDropDown">
             <option value="2022">2022</option>
             <option value="2023">2023</option>
             <option value="2024">2024</option>
-        </select>
+       </select>
     </div>
+      
+       
     <!-- modal -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -436,6 +441,207 @@
     </div>
 </div>  
 
+ <!-- 2022 year -->
+ @if($show2022Content)
+        <div>
+        <div class="bal-container" >
+         <div class="row" style="margin:10px auto;">
+            <div class="col-md-4">
+                <div class="leave-bal">
+                    <div class="balance">
+                        <div class="field">
+                            <span class="leave-type" >Loss Of Pay</span>
+                        </div>
+                        <div>
+                            <span class="leave-gran">Granted:0</span>
+                        </div>
+                    </div>
+                    <div class="center" >
+                        <h5 >0</h5>
+                        <p style="margin-top:-15px;"><span class="remaining" >balance</span></p>
+                    </div>
+                </div>
+            </div>
+         <!-- ... (previous code) ... -->
+            <div class="col-md-4">
+               <div class="leave-bal">
+                <div class="balance">
+                    <div class="field">
+                        <span class="leave-type">
+                            @if($gender === 'Female')
+                            Maternity Leave
+                            @elseif($gender === 'Male')
+                            Paternity Leave
+                            @else
+                            Leave Type
+                            @endif
+                        </span>
+                    </div>
+                    <div>
+                        <span class="leave-gran">Granted:0</span>
+                    </div>
+                </div>
+                <div class="center">
+                    <h5>0</h5>
+                    <p style="margin-top:-15px;"><span class="remaining">balance</span></p>
+                    <a href="#" class="view" style="font-size:0.9rem;">View Details</a>
+                </div>
+                <div class="tube-container">
+                    <p style="color: #778899; font-size: 10px; text-align:start; margin-top:-15px;font-weight: 400;">0 of {{ $grantedLeave }} Consumed</p>
+                    <div class="tube" style="width: 0%; background-color: #1E90FF;"></div> <!-- Adjust the width and color based on your usage -->
+                </div>
+            </div>
+              </div>
+                <div class="col-md-4">
+                    <div class="leave-bal">
+                        <div class="balance">
+                                <div class="field">
+                                    <span class="leave-type">Casual Leave 
+                                </div>
+                                <div>
+                                    <span class="leave-gran">Granted:0</span>
+                                </div>
+                         </div>
+                         <div class="center" >
+                             <h5 >0</h5>
+                             <p style="margin-top:-15px;"><span class="remaining" >balance</span></p>
+                             <a href="#" style="font-size:0.9rem;">View Details</a>
+                        </div>
+                        <div class="tube-container">
+                                <p style="color: #778899; font-size: 10px; text-align:start; margin-top:-15px;font-weight: 400;">0 of {{ $grantedLeave }} Consumed</p>
+                                <div class="tube" style="width: 0%; background-color: #1E90FF;"></div> <!-- Adjust the width and color based on your usage -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin:10px auto;">
+              <div class="col-md-4">
+                    <div class="leave-bal" style="margin-top">
+                        <div class="balance">
+                                <div class="field">
+                                    <span class="leave-type">Sick Leave
+                                </div>
+                                <div>
+                                    <span class="leave-gran">Granted:0</span>
+                                </div>
+                         </div>
+                            <div class="center" >
+                                <h5>0</h5>
+                                <p style="margin-top:-15px;"><span class="remaining" >balance</span></p>
+                                <a href="#" style="font-size:0.9rem;">View Details</a>
+                            </div>
+                            <div class="tube-container">
+                                <p style="color: #778899; font-size: 10px; text-align:start; margin-top:-15px;font-weight: 400;">0 of {{ $grantedLeave }} Consumed</p>
+                                <div class="tube" style="width: 0%; background-color: #1E90FF;"></div> <!-- Adjust the width and color based on your usage -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           </div>
+            
+        </div>
+        @endif
+        <!-- 2024 year -->
+        @if($show2024Content)
+        <div>
+        <div class="bal-container" >
+         <div class="row" style="margin:10px auto;">
+            <div class="col-md-4">
+                <div class="leave-bal">
+                    <div class="balance">
+                        <div class="field">
+                            <span class="leave-type" >Loss Of Pay</span>
+                        </div>
+                        <div>
+                            <span class="leave-gran">Granted:0</span>
+                        </div>
+                    </div>
+                    <div class="center" >
+                        <h5 >0</h5>
+                        <p style="margin-top:-15px;"><span class="remaining" >balance</span></p>
+                    </div>
+                </div>
+            </div>
+         <!-- ... (previous code) ... -->
+            <div class="col-md-4">
+               <div class="leave-bal">
+                <div class="balance">
+                    <div class="field">
+                        <span class="leave-type">
+                            @if($gender === 'Female')
+                            Maternity Leave
+                            @elseif($gender === 'Male')
+                            Paternity Leave
+                            @else
+                            Leave Type
+                            @endif
+                        </span>
+                    </div>
+                    <div>
+                        <span class="leave-gran">Granted:0</span>
+                    </div>
+                </div>
+                <div class="center">
+                    <h5>0</h5>
+                    <p style="margin-top:-15px;"><span class="remaining">balance</span></p>
+                    <a href="#" class="view" style="font-size:0.9rem;">View Details</a>
+                </div>
+                <div class="tube-container">
+                    <p style="color: #778899; font-size: 10px; text-align:start; margin-top:-15px;font-weight: 400;">0 of {{ $grantedLeave }} Consumed</p>
+                    <div class="tube" style="width: 0%; background-color: #1E90FF;"></div> <!-- Adjust the width and color based on your usage -->
+                </div>
+            </div>
+              </div>
+                <div class="col-md-4">
+                    <div class="leave-bal">
+                        <div class="balance">
+                                <div class="field">
+                                    <span class="leave-type">Casual Leave 
+                                </div>
+                                <div>
+                                    <span class="leave-gran">Granted:0</span>
+                                </div>
+                         </div>
+                         <div class="center" >
+                             <h5 >0</h5>
+                             <p style="margin-top:-15px;"><span class="remaining" >balance</span></p>
+                             <a href="#" style="font-size:0.9rem;">View Details</a>
+                        </div>
+                        <div class="tube-container">
+                                <p style="color: #778899; font-size: 10px; text-align:start; margin-top:-15px;font-weight: 400;">0 of {{ $grantedLeave }} Consumed</p>
+                                <div class="tube" style="width: 0%; background-color: #1E90FF;"></div> <!-- Adjust the width and color based on your usage -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin:10px auto;">
+              <div class="col-md-4">
+                    <div class="leave-bal" style="margin-top">
+                        <div class="balance">
+                                <div class="field">
+                                    <span class="leave-type">Sick Leave
+                                </div>
+                                <div>
+                                    <span class="leave-gran">Granted:0</span>
+                                </div>
+                         </div>
+                            <div class="center" >
+                                <h5>0</h5>
+                                <p style="margin-top:-15px;"><span class="remaining" >balance</span></p>
+                                <a href="#" style="font-size:0.9rem;">View Details</a>
+                            </div>
+                            <div class="tube-container">
+                                <p style="color: #778899; font-size: 10px; text-align:start; margin-top:-15px;font-weight: 400;">0 of {{ $grantedLeave }} Consumed</p>
+                                <div class="tube" style="width: 0%; background-color: #1E90FF;"></div> <!-- Adjust the width and color based on your usage -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           </div>
+        </div>
+        @endif
 <!-- leave  -->
     <div class="bal-container" >
         <div class="row" style="margin:10px auto;">
@@ -544,10 +750,10 @@
                             </div>
                         </div>
                     </div>
+                   
             </div>
         </div>
 
-        
         <!-- modal container -->
         
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

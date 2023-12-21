@@ -620,7 +620,7 @@
 
                             <a class="nav-link" href="/HelpDesk"  onclick="setActiveLink(this)">
 
-                                <i class="fas fa-headset"></i> Helpdesk
+                                <i class="fas fa-headset"></i> Help Desk
 
                             </a>
 
@@ -681,7 +681,7 @@
                         <button class="dropdown-btn">Quick Links</button>
                           <div class="dropdown-content">
                              <a href="/tasks">Tasks</a>
-                            <a href="/help-desk">Helpdesk</a>
+                            <a href="/help-desk">Help Desk</a>
                         </div>
                     </div>
                     <div class="notification-icon" style="margin-right: 10px;">

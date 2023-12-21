@@ -18,16 +18,14 @@
             padding: 0;
             margin: 0;
         }
- 
-        .table td {
-            vertical-align: top; /* Align dates to the top */
-            text-align: left; /* Align dates to the left */
+        .table thead{
+            border:none;
         }
  
         .table th {
             text-align: center; /* Center days of the week */
-            height: 20px;
-            border: none;
+            height: 15px;
+            border: none;       
             /* Adjust the height of days of the week cells */
         }
  
@@ -40,7 +38,8 @@
         .nav-btn {
             background: none;
             border: none;
-            font-size: 0.9rem;
+            color:#778899;
+            font-size:0.795rem;
             margin-top: -6px;
             cursor: pointer;
         }
@@ -52,9 +51,12 @@
         /* Increase the size of tbody cells and align text to top-left */
         .table tbody td {
             width: 75px;
-            height: 75px;
-            font-size: 12px; /* Adjust font size as needed */
+            height: 80px;
+            border-color:#c5cdd4;
+            font-weight:500;
+            font-size: 13px; /* Adjust font size as needed */
             vertical-align: top;
+            position: relative;
             text-align: left;
         }
  
@@ -66,15 +68,21 @@
         }
  
         .calendar-heading-container {
-            background: #fff;
-            padding: 5px;
+            background:#fff;
+            padding:10px 10px;
             width: 100%;
             display: flex;
             justify-content: space-between;
             /* Add spacing between heading and icons */
         }
+        .calendar-heading-container h5{
+           font-size:0.975rem;
+           color:black;
+           font-weight:500;
+        }
  
         .table {
+            background-color:pink;
             overflow-x: hidden; /* Add horizontal scrolling if the table overflows the container */
         }
  
@@ -107,7 +115,7 @@
  
         /* CSS for the pink circle */
         .circle-pale-pink {
-            background-color: #ff4081; /* Define the pink color */
+            background-color: #d29be1; /* Define the pink color */
         }
         .accordion {
         border: 1px solid #ccc;
@@ -232,6 +240,7 @@
         }
         .button-container{
           display:flex;
+          padding:10px 15px;
           justify-content:space-between;
  
         }
@@ -305,23 +314,61 @@
         }
  
         .calendar-date {
+            color:black;
             cursor: pointer;
         }
  
         .event-details {
             display:flex;
+            width:100%;
+            background:pink;
+            justify-content:end;
             flex-direction:row;
             padding: 0px;
         }
         .date-day{
+            width:40%;
+            display:flex;
+            text-align:center;
+            color:#778899;
+            padding:10px 15px;
+            justify-content:center;
             border:1px solid #ccc;
             background: #fff;
         }
         .holiday-con{
+            display:flex;
+            text-align:start;
+            justify-content:start;
+            align-items:center;
+            width:100%;
+            list-style:none;
+            padding:10px 15px;
             border:1px solid #ccc;
             background: #fff;
         }
- 
+     
+        .table  .text{
+            font-size:0.875rem;
+            color:#778899;
+            font-weight:600;
+        }
+        .circle {
+            width: 12px; /* Adjust the width and height for your preferred circle size */
+        height: 12px;
+        border-radius: 50%; /* Make the element circular */
+        position: absolute; /* Position the circle absolutely */
+        top: 12px; /* Adjust top and right values for positioning */
+        right: 10px;
+        text-align: center;
+        line-height: 20px;
+        }
+
+        /* Define a class for circular cells with a pink background */
+        .circle.IRIS {
+            background-color: #d29be1;
+        }
+       
     </style>
 </head>
 <body>
@@ -342,7 +389,7 @@
     </div>
         <div class="row" style="margin:0;padding:0;">
             <div class="col-md-7" >
-                <div class="d-flex justify-content-between align-items-center mb-6">
+                <div class="d-flex justify-content-between align-items-center">
                     <div class="calendar-heading-container">
                         <button wire:click="previousMonth" class="nav-btn">&lt; Prev</button>
                         <h5>{{ date('F Y', strtotime("$year-$month-1")) }}</h5>
@@ -350,50 +397,65 @@
                     </div>
                 </div>
                 <!-- Calendar -->
-                <div class="table-responsive"  >
-                    <table class="table table-bordered" >
-                        <thead >
+                <div class="table-responsive">
+                <table class="table table-bordered">
+                        <thead>
                             <tr>
-                                <th class="text-secondary text-semi-bold">Sun</th>
-                                <th class="text-secondary text-semi-bold">Mon</th>
-                                <th class="text-secondary text-semi-bold">Tue</th>
-                                <th class="text-secondary text-semi-bold">Wed</th>
-                                <th class="text-secondary text-semi-bold">Thu</th>
-                                <th class="text-secondary text-semi-bold">Fri</th>
-                                <th class="text-secondary text-semi-bold">Sat</th>
+                                <th class="text">Sun</th>
+                                <th class="text">Mon</th>
+                                <th class="text">Tue</th>
+                                <th class="text">Wed</th>
+                                <th class="text">Thu</th>
+                                <th class="text">Fri</th>
+                                <th class="text">Sat</th>
                             </tr>
                         </thead>
                         <tbody id="calendar-body">
-                        <div id="calendar">
                             @foreach ($calendar as $week)
                                 <tr>
                                     @foreach ($week as $day)
-                                    <td>
-                                        @if ($day)
-                                        <div wire:click="dateClicked($event.target.textContent)" class="calendar-date" data-date="{{ $day['day'] }}">
-                                                @if ($day['isToday'])
-                                                    <div style="background-color: #007bff; color: white; border-radius: 50%; width: 24px; height: 24px; text-align: center; line-height: 24px;">
-                                                        {{ $day['day'] }}
+                                        <td>
+                                            @if ($day)
+                                                @php
+                                                    $carbonDate = \Carbon\Carbon::createFromDate($year, $month, $day['day']);
+                                                    $isCurrentMonth = $day['isCurrentMonth'];
+                                                    $isWeekend = in_array($carbonDate->dayOfWeek, [0, 6]); // 0 for Sunday, 6 for Saturday
+                                                @endphp
+
+                                                <div wire:click="dateClicked($event.target.textContent)" class="calendar-date" data-date="{{ $day['day'] }}"
+                                                    style="
+                                                        color: {{ $isCurrentMonth ? ($isWeekend ? '#c5cdd4' : 'black') : '#c5cdd4' }};
+                                                    "
+                                                >
+                                                    @if ($day['isToday'])
+                                                        <div style="background-color: #007bff; color: white; border-radius: 50%; width: 24px; height: 24px; text-align: center; line-height: 24px;">
+                                                            {{ str_pad($day['day'], 2, '0', STR_PAD_LEFT) }}
+                                                        </div>
+                                                    @else
+                                                        {{ str_pad($day['day'], 2, '0', STR_PAD_LEFT) }}
+                                                    @endif
+                                                    <div class="circle{{ $day['isPublicHoliday'] ? '  IRIS' : '' }}">
+                                                        <!-- Render your content -->
+                                                       
                                                     </div>
-                                                @else
-                                                    {{ $day['day'] }}
-                                                @endif
-                                                @if ($day && isset($day['teamOnLeave']) && count($day['teamOnLeave']) > 0)
-                                                    <div style="background-color: grey; border-radius: 50%; width: 24px; height: 24px; text-align: center; margin-top: 5px;">
-                                                        <span style="color: white; display: block; line-height: 24px;">
-                                                            {{ count($day['teamOnLeave']) }}
-                                                        </span>
-                                                    </div>
-                                                @endif
-                                            </div>
-                                        @endif
-                                    </td>
+                                                    @if ($day && isset($day['teamOnLeave']) && count($day['teamOnLeave']) > 0)
+                                                        <div style="background-color: grey; border-radius: 50%; width: 24px; height: 24px; text-align: center; margin-top: 5px;">
+                                                            <span style="color: white; display: block; line-height: 24px;">
+                                                                {{ count($day['teamOnLeave']) }}
+                                                            </span>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            @endif
+                                        </td>
                                     @endforeach
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    </div>     
+
+                    </div>
+
                  <div class="tol-calendar-legend mt-2">
                         <div>
                             Team on Leave
@@ -414,25 +476,25 @@
                   <div class="col-md-5">
                        <!-- Inside the event-container div -->
                        <div class="event-details" >
+                       @if($holidays->count() > 0)
                              <div class="date-day">
-                                <p>{{ \Carbon\Carbon::parse($selectedDate)->format('D') }}</p>
-                                <p>{{ \Carbon\Carbon::parse($selectedDate)->format('d') }}</p>
+                                <span style="font-weight:500;">{{ \Carbon\Carbon::parse($selectedDate)->format('D') }} <br>
+                                  <span style="font-weight:normal;font-size:0.825rem;margin-top:-5px;">{{ \Carbon\Carbon::parse($selectedDate)->format('d') }}</span>
+                                </span>
+                               
                              </div>
                                  <div class="holiday-con">
-                                    @if($holidays->count() > 0)
-                                        <ul>
                                             @foreach($holidays as $holiday)
-                                                <p>General Holiday</p>
-                                                <li>{{ $holiday->festivals }}</li>
+                                                <span style="font-weight:normal;font-size:0.825rem; color:#778899;">General Holiday <br>
+                                                    <span style="font-weight:500;font-size:0.895rem;color:#333;">{{ $holiday->festivals }}</span>
+                                                </span>
+                                               
                                             @endforeach
-                                        </ul>
-                                    @else
-                                        <p>No festivals for this date</p>
-                                    @endif
                                  </div>
+                                 @endif
                             </div>
                             <!-- end -->
-                        <div class="cont" style="display:flex; margin-top:30px;">
+                        <div class="cont" style="display:flex;justify-content:end; margin-top:20px;">
                            <div class="search-container" >
                                 <div class="form-group"  >
                                     <div class="search-input"  >

@@ -33,6 +33,10 @@ class LeaveBalances extends Component
     public $consumedLossOfPayLeaves;
   
     public $sortBy = 'oldest_first'; 
+    public $selectedYear = '2023';
+    public $show2022Content = false;
+    public $show2024Content = false;
+
     
 
     public function mount()
@@ -104,6 +108,7 @@ class LeaveBalances extends Component
 
         $percentageCasual = ($this->consumedCasualLeaves / $this->casualLeavePerYear) * 100;
         $percentageSick = ($this->consumedSickLeaves / $this->sickLeavePerYear) * 100;
+        $this->yearDropDown();
         // Check if employeeDetails is not null before accessing its properties
         if ($this->employeeDetails) {
             $gender = $this->employeeDetails->gender;
@@ -119,6 +124,8 @@ class LeaveBalances extends Component
                 'leaveTransactions' => $this->leaveTransactions,
                 'percentageCasual' => $percentageCasual,
                 'percentageSick' => $percentageSick,
+                'show2022Content' => $this->show2022Content,
+                'show2024Content' => $this->show2024Content,
             ]);
         }
     }
@@ -234,6 +241,24 @@ class LeaveBalances extends Component
         } catch (\Exception $e) {
             return 'Error: ' . $e->getMessage();
         }
+    }
+    public function yearDropDown(){
+        if ($this->isTrue('2022')) {
+            $this->show2022Content = true;
+            $this->show2024Content = false;
+        } elseif ($this->isTrue('2024')) {
+            $this->show2022Content = false;
+            $this->show2024Content = true;
+        } else {
+            $this->show2022Content = false;
+            $this->show2024Content = false;
+        }
+    }
+    public function isTrue($year)
+    {
+        // Add your conditions here to determine if the year is "true" or "false"
+        return $this->selectedYear === $year;
+       
     }
 
     private function getSessionNumber($session)
