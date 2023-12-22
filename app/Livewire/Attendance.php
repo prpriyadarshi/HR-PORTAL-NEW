@@ -22,10 +22,14 @@ class Attendance extends Component
     public $currentDate1;
     public $swiperecord;
 
+    public $modalTitle = '';
+
     public $view_student_swipe_time;
   
     public $view_student_in_or_out;
     public $swipeRecordId;
+    public $from_date;
+    public $to_date;
     public $view_student_emp_id; 
     public $view_employee_swipe_time;
  
@@ -78,7 +82,28 @@ public function showlargebox($k)
   
 }
   
+public function updatedFromDate($value)
+{
+    // Additional logic if needed when from_date is updated
+    $this->from_date=$value;
+    $this->updateModalTitle();
+    
+}
 
+public function updatedToDate($value)
+{
+    // Additional logic if needed when to_date is updated
+    $this->to_date=$value;
+    $this->updateModalTitle();
+   
+}
+private function updateModalTitle()
+{
+    // Format the dates and update the modal title
+    $formattedFromDate = \Carbon\Carbon::parse($this->from_date)->format('d M');
+    $formattedToDate = \Carbon\Carbon::parse($this->to_date)->format('d M');
+    $this->modalTitle = "Insights for Attendance Period $formattedFromDate - $formattedToDate";
+}
 private function calculateActualHours($swipe_records)
 {
     $this->actualHours = [];
@@ -150,7 +175,7 @@ private function calculateActualHours($swipe_records)
          $this->leaveApplies=LeaveRequest::where('emp_id',auth()->guard('emp')->user()->emp_id)->get();
          
          
-        // Fetch records for today's date
+          // Fetch records for today's date
         //$swipe_records = SwipeRecord::all();
            $swipe_records = SwipeRecord::where('emp_id',auth()->guard('emp')->user()->emp_id)->whereDate('created_at', $currentDate)->get();
            $swipe_records1 = SwipeRecord::where('emp_id',auth()->guard('emp')->user()->emp_id)->orderBy('created_at', 'desc')->get(); 

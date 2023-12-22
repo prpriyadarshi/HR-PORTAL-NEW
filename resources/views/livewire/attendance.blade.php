@@ -894,7 +894,7 @@ table {
                                   
                                 <div class="modal-header" style="background-color: #a3b2c7;">
                                   
-                                    <h5 class="modal-title" id="exampleModalLabel">Insights&nbsp;for&nbsp;Attendance&nbsp;Period&nbsp;01 Oct - 01 Oct</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Insights&nbsp;for&nbsp;Attendance&nbsp;Period&nbsp;  {{ \Carbon\Carbon::parse($from_date)->format('d M') }} - {{ \Carbon\Carbon::parse($to_date)->format('d M')}}</h5>
                                     
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                          <span aria-hidden="true close-btn">×</span>
@@ -904,11 +904,11 @@ table {
                                         <div class="form-row" style="margin-top: -100px; margin-left: 200px; display: flex; justify-content: flex-end;">
                                                        <div class="form-group col-md-6">
                                                              <label for="fromDate" style="color: #778899; font-size: 14px; font-weight: 500;">From date</label>
-                                                             <input type="date" class="form-control" id="fromDate" name="fromDate" style="color: #778899;">
+                                                             <input type="date" class="form-control" wire:model="from_date" wire:changeid="fromDate" name="fromDate" style="color: #778899;">
                                                        </div>
                                                       <div class="form-group col-md-6">
                                                           <label for="toDate" style="color: #778899; font-size: 14px; font-weight: 500;">To date</label>
-                                                          <input type="date" class="form-control" id="toDate" name="toDate" style="color: #778899;">
+                                                          <input type="date" class="form-control" wire:model="to_date"id="toDate" name="toDate" style="color: #778899;">
                                                       </div>
                                         </div>
                                     <p style="margin-left:-90px;font-size:12px;">Total Working Days:<span style="font-weight:bold;">0</span></p>

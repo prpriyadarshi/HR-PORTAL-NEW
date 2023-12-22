@@ -183,8 +183,8 @@ class Home extends Component
             ->whereNotIn('emp_id', function ($query) {
                 $query->select('emp_id')
                     ->from('leave_applies')
-                    ->whereDate('from_date', '=', today())
-                    ->whereDate('to_date', '>=', today());
+                    ->whereDate('from_date', '>=', today())
+                    ->whereDate('to_date', '<=', today());
             })
             ->get();
             $arrayofabsentemployees = $this->absent_employees->toArray();
@@ -199,11 +199,71 @@ class Home extends Component
             ->whereNotIn('emp_id', function ($query) {
                 $query->select('emp_id')
                     ->from('leave_applies')
-                    ->whereDate('from_date', '=', today())
-                    ->whereDate('to_date', '>=', today());
+                    ->whereDate('from_date', '>=', today())
+                    ->whereDate('to_date', '<=', today());
             })
             ->count();
-          
+        $this->absent_employees = EmployeeDetails::where('manager_id', $loggedInEmpId)
+            ->select('emp_id', 'first_name', 'last_name')
+            ->whereNotIn('emp_id', function ($query) {
+                $query->select('emp_id')
+                    ->from('swipe_records')
+                    ->whereDate('created_at', today());
+            })
+            ->whereNotIn('emp_id', function ($query) {
+                $query->select('emp_id')
+                    ->from('leave_applies')
+                    ->whereDate('from_date', '>=', today())
+                    ->whereDate('to_date', '<=', today());
+            })
+            ->get();
+        
+            $arrayofabsentemployees = $this->absent_employees->toArray();
+            
+            $this->absent_employees_count = EmployeeDetails::where('manager_id', $loggedInEmpId)
+            ->select('emp_id', 'first_name', 'last_name')
+            ->whereNotIn('emp_id', function ($query) {
+                $query->select('emp_id')
+                    ->from('swipe_records')
+                    ->whereDate('created_at', today());
+            })
+            ->whereNotIn('emp_id', function ($query) {
+                $query->select('emp_id')
+                    ->from('leave_applies')
+                    ->whereDate('from_date', '>=', today())
+                    ->whereDate('to_date', '<=', today());
+            })
+            ->count();  
+            $employees=EmployeeDetails::where('manager_id',$loggedInEmpId)->select('emp_id', 'first_name', 'last_name')->get(); 
+            $swipes_early = SwipeRecord::whereIn('id', function ($query) use ($employees, $currentDate) {
+                $query->selectRaw('MIN(id)')
+                    ->from('swipe_records')
+                    ->whereIn('emp_id', $employees->pluck('emp_id'))
+                    ->whereDate('created_at', $currentDate)
+                    ->whereRaw("TIME(created_at) < '10:00:00'") // Add this condition to filter swipes before 10:00 AM
+                    ->groupBy('emp_id');
+            })
+            ->join('employee_details', 'swipe_records.emp_id', '=', 'employee_details.emp_id')
+            ->select('swipe_records.*', 'employee_details.first_name', 'employee_details.last_name')
+            ->get();
+         
+            $swipes_early1 = $swipes_early->count();
+      
+            $swipes_late = SwipeRecord::whereIn('id', function ($query) use ($employees, $currentDate) {
+                $query->selectRaw('MIN(id)')
+                    ->from('swipe_records')
+                    ->where('in_or_out','IN')
+                    ->whereIn('emp_id', $employees->pluck('emp_id'))
+                    ->whereDate('created_at', $currentDate)
+                    ->whereRaw("TIME(created_at) > '10:00:00'") // Add this condition to filter swipes before 10:00 AM
+                    ->groupBy('emp_id');
+            })
+            ->join('employee_details', 'swipe_records.emp_id', '=', 'employee_details.emp_id')
+            ->select('swipe_records.*', 'employee_details.first_name', 'employee_details.last_name')
+            ->get();
+       
+            $swipes_late1 = $swipes_late->count();
+         
         $teamOnLeaveApplications = [];
 
         foreach ($this->teamOnLeaveRequests as $teamOnLeaveRequest) {
@@ -274,8 +334,13 @@ class Home extends Component
             'upcomingLeaveRequests'  => $this->upcomingLeaveRequests,
             'upcomingLeaveApplications' => $this->upcomingLeaveApplications,
             'ismanager'=>$isManager,
-            'AbsentEmployees'=>$arrayofabsentemployees,
+            'AbsentEmployees'=> $this->absent_employees,
             'CountAbsentEmployees'=>$this->absent_employees_count,
+            'EarlySwipes'=>$swipes_early,
+            'CountEarlySwipes'=>$swipes_early1,
+            'LateSwipes'=>$swipes_late,
+            'CountLateSwipes'=>$swipes_late1,
+        
         ]);
     }
 }

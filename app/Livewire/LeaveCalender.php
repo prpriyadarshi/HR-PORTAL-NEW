@@ -68,7 +68,7 @@ class LeaveCalender extends Component
         }
 
         $this->calendar = $calendar;
-        dd($this->calendar);
+        
     }
    
     protected function getPublicHolidaysForMonth($year, $month)
