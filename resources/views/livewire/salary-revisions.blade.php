@@ -73,8 +73,17 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="text">Salary Revision</h1>
-        @foreach ($salaryRevisions as $salaryRevisions)
+        
+        @if($salaryRevisions->isEmpty())
+       
+            <div style="background:#fff;border:1px solid #ccc;display:flex;align-items:center;height:400px;flex-direction:column;justify-content:center;font-size:0.875rem;color:#778899;">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/007/872/974/small/file-not-found-illustration-with-confused-people-holding-big-magnifier-search-no-result-data-not-found-concept-can-be-used-for-website-landing-page-animation-etc-vector.jpg" alt="" style="height:200px;width:250px;">
+                <p>No data found</p>
+            </div>
+        @else
+      
+         @foreach ($salaryRevisions as $salaryRevisions)
+         <h1 class="text">Salary Revision</h1>
             <div class="card" style="background-color: white; padding: 10px;">
                 <div class="last-revision-duration">
                     <p class="text-muted text-secondary" style="margin-left: 42px; font-size: 15px; margin-top: -35px;">Duration since last revision</p>
@@ -96,38 +105,36 @@
                     </div>
                 </div>
             </div>
-            <br>
- 
-<canvas id="lineChart" width="600" height="200" style="background-color: white"></canvas>
- 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var ctx = document.getElementById("lineChart").getContext("2d");
- 
-        // Define chartData and chartOptions from the Livewire variables
-        var chartData = @json($chartData); // Ensure proper JSON encoding
-        var chartOptions = @json($chartOptions);
- 
-        // Create a new Line Chart instance
-        var lineChart = new Chart(ctx, {
-            type: "line",
-            data: chartData,
-            options: chartOptions,
-        });
- 
-    });
-</script>
-<br><br>
- 
- 
- 
+            <br> 
+
+            <!-- line chart -->
+            @if(!empty($chartData) && !empty($chartOptions))
+                <canvas id="lineChart" width="600" height="200" style="background-color: white"></canvas>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        var ctx = document.getElementById("lineChart").getContext("2d");
+                        var chartData = @json($chartData);
+                        var chartOptions = @json($chartOptions);
+
+                        var lineChart = new Chart(ctx, {
+                            type: "line",
+                            data: chartData,
+                            options: chartOptions,
+                        });
+                    });
+                </script>
+                <br><br>
+            @else
+                <p>No data found for the line chart.</p>
+            @endif
+     
  
  
+
  
 <div class="row"  style="height: 300px; width:830px;margin-left: 6px;" >
  
- 
- 
+
     <div class="card-header d-flex justify-content-between" >
  
         <p style=" font-size:13px;">CTC Revision Details</p>
@@ -163,19 +170,10 @@
         </table>
  
     </div>
- 
- 
- 
- 
- 
 </div>
- 
- 
- 
- 
- 
 @endforeach
- 
+
+        @endif
   </div>
  
 </body>

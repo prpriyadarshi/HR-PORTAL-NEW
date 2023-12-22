@@ -11,6 +11,7 @@
         <style>
               body{
             font-family: 'Montserrat', sans-serif;
+            overflow-y:hidden;
         }
             .inner-container {
                 padding: 10px 10px;

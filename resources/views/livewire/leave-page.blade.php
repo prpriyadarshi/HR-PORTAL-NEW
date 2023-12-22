@@ -2,6 +2,7 @@
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
+            overflow-y:hidden;
         }
 
         .nav-buttons {
@@ -122,25 +123,25 @@
         <style>
             /* Define your custom CSS classes */
             .custom-nav-tabs {
-                background-color: #f8f9fa;
+                background-color: #fff;
                 border-radius: 5px;
                 display: flex;
                 font-weight: 500;
                 color: #778899;
-                width: 80%;
+                width: 50%;
                 font-size: 0.825rem;
                 /* Background color for the tabs */
             }
 
             .custom-nav-link {
-                color: #333;
+                color: #ccc;
                 /* Text color for inactive tabs */
             }
 
             .custom-nav-link.active {
                 margin-top: 5px;
                 color: white;
-                background-color: #3a9efd;
+                background-color: rgb(2, 17, 79);
                 border-radius: 5px;
             }
         </style>
@@ -161,7 +162,7 @@
         </script>
         @endif
 
-        <div class="nav-buttons" style="width: 50%; display:flex; align-items:center; margin-left:250px;">
+        <div class="nav-buttons" style="width: 100%; display:flex; align-items:center; justify-content:center;">
             <ul class="nav custom-nav-tabs"> <!-- Apply the custom class to the nav -->
                 <li class="nav-item flex-grow-1">
                     <a class="nav-link custom-nav-link active" data-section="personalDetails" onclick="toggleDetails('personalDetails', this)">Apply</a>
