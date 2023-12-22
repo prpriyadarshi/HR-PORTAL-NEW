@@ -551,7 +551,7 @@
                                     <div style="color: black; padding:10px 15px;">
                                         <p style="font-weight: normal;">{{$currentDate}}</p>
                                         <p style="margin-top: 10px; color: #9E9696; font-size: 12px;">{{$currentDay}} | 10:00 AM to 07:00 PM</p>
-                                        <div style=" font-size: 14px;" id="current-time">15 : 19 : 00</div>
+                                        <div wire:ignore style=" font-size: 14px;" id="current-time"></div>
                                         <script>
                                             function updateTime() {
                                                 const currentTimeElement = document.getElementById('current-time');
@@ -583,8 +583,8 @@
 
                         @if($salaryRevision->isEmpty())
                         <div style="border-radius: 5px; border: 1px solid #CFCACA;background-color:white;">
-                                            <div style="color: #677A8E;font-weight:500; padding:10px 15px;">
-                                               <div style="color: #677A8E;  font-weight:500; display:flex;justify-content:space-between;">
+                                            <div style="color: #677A8E; padding:10px 15px;">
+                                               <div style="color: #677A8E;  font-weight:500; display:flex;justify-content:space-between;font-size:0.895rem;">
                                                 Payslip
                                                   <a href="/slip" style="font-size:16px; "><img src="/images/up-arrow.png" alt="" style="width:20px;height:27px;"></a>
                                                 </div>
@@ -598,16 +598,20 @@
                               @else
                             @foreach($salaryRevision as $salaries)
                              <div style="border-radius: 5px; border: 1px solid #CFCACA;background-color:white;padding:10px 15px;">
-                                            <div style="color: #677A8E;  font-weight:500; display:flex;justify-content:space-between;">
+                                            <div style="color: #677A8E;  font-weight:500; display:flex;justify-content:space-between;font-size:0.895rem;">
                                                 Payslip
                                                 <a href="/slip" style="font-size:16px; "><img src="/images/up-arrow.png" alt="" style="width:20px;height:27px;"></a>
                                             </div>
 
-                                            <div style="display:flex;justify-content:space-between;margin-top:20px;  ">
-                                            <div style="position: relative;">
-                                                    <canvas id="outerPieChart" width="180" height="230"></canvas>
-                                                    <canvas id="innerPieChart" style="position: absolute; top: -10px; left: 0px;"></canvas>
-                                                </div>
+                                            <div wire:ignore style="display:flex;justify-content:space-between;margin-top:20px;">
+                                                     <div style="position: relative;">
+                                                         <!-- {{-- <canvas id="outerPieChart" width="120" height="120"></canvas>
+                                                              <canvas id="innerPieChart" width="60" height="60" style="position: absolute; top: 5px;"></canvas> --}} -->
+                                                              <canvas id="combinedPieChart" width="100" height="100"></canvas>
+
+                                                     </div>
+
+
                                                 <div class="c" style="font-size: 13px; font-weight: normal; font-weight: 500; color: #9E9696;display:flex; flex-direction:column;justify-content:flex-end;">
                                                     <p style="color:#333;">{{ date('M Y', strtotime('-1 month')) }}</p>
                                                     <p style="display:flex;justify-content:end;flex-direction:column;align-items:end; color:#333;">{{ date('t', strtotime('-1 month')) }} <br>
@@ -616,34 +620,37 @@
                                                 </div>
                                             </div>
 
-                                            <div style="display:flex ;color: #677A8E;  font-size: 14px;  font-weight:100px;flex-direction:column; margin-top:20px;  ">
+                                            <div style="display:flex ;color: #677A8E;  font-size:0.875rem;  font-weight:100px;flex-direction:column; margin-top:20px;  ">
                                                 <div class="net-salary">
                                                     <div style="display:flex;gap:10px;">
-                                                        <div style="padding:2px;width:2px;height:17px;background:#FF5733;border-radius:2px;"></div>
+                                                        <div style="padding:2px;width:2px;height:17px;background:#000000;border-radius:2px;"></div>
                                                         <p>Gross Pay</p>
                                                     </div>
-                                                    <p>₹ {{number_format($salaries->calculateTotalAllowance(), 2)}}</p>
+                                                    <p>{{ $showSalary ? '₹ ' . number_format($salaries->calculateTotalAllowance(), 2) : '*********' }}</p>
                                                 </div>
                                                 <div class="net-salary">
                                                     <div style="display:flex;gap:10px;">
-                                                        <div style="padding:2px;width:2px;height:17px;background:#3399FF;border-radius:2px;"></div>
+                                                        <div style="padding:2px;width:2px;height:17px;background:#B9E3C6;border-radius:2px;"></div>
                                                         <p>Deduction</p>
                                                     </div>
-                                                    <p>₹ {{number_format($salaries->calculateTotalDeductions() ?? 0, 2)}}</p>
+                                                    <p>{{ $showSalary ? '₹ ' . number_format($salaries->calculateTotalDeductions() ?? 0, 2) : '*********' }}</p>
+
                                                 </div>
                                                 <div class="net-salary">
                                                     <div style="display:flex;gap:10px;">
-                                                        <div style="padding:2px;width:2px;height:17px;background:#33FF33;border-radius:2px;"></div>
+                                                        <div style="padding:2px;width:2px;height:17px;background:#1C9372;border-radius:2px;"></div>
                                                         <p>Net Pay</p>
                                                     </div>
                                                     @if ($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions() > 0)
-                                                    <p> ₹ {{ number_format($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions(), 2) }}</p>
+                                                    <p> {{ $showSalary ? '₹ ' .number_format(max($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions(), 0), 2) : '*********' }}</p>
                                                     @endif
                                                 </div>
                                             </div>
                                             <div class="show-salary" style="display: flex; color: #1090D8; justify-content:space-between;font-size: 14px;  margin-top: 20px; font-weight: 100;">
                                                 <a href="/your-download-route" id="pdfLink2023_4" class="pdf-download" download >Download PDF</a>
-                                                <p >Show Salary</p>
+                                                <a wire:click="toggleSalary" class="showHideSalary">
+                                                    {{ $showSalary ? 'Hide Salary' : 'Show Salary' }}
+                                                </a>
                                             </div>
                                         </div>
                                         @endforeach
@@ -784,41 +791,46 @@
     setInterval(changeQuote, 5000);
 
 
-    var data = {
-    labels: ['Gross Pay'],
-    datasets: [{
-        data: [{{ !empty($salaries) ? $salaries->calculateTotalAllowance() : 0 }}, 2],
-        backgroundColor: ['#FF5733'], // Color for Gross Pay
-    }],
+    var combinedData = {
+    datasets: [
+        {
+            data: [
+                {{ !empty($salaries) ? $salaries->calculateTotalAllowance() : 0 }},
+                2, // Placeholder value for the second dataset
+            ],
+            backgroundColor: [
+                '#000000', // Color for Gross Pay
+            ],
+        },
+        {
+            data: [
+                {{ !empty($salaries) && method_exists($salaries, 'calculateTotalDeductions') ? $salaries->calculateTotalDeductions() : 0 }},
+                {{ !empty($salaries) && method_exists($salaries, 'calculateTotalAllowance') ? $salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions() : 0 }},
+            ],
+            backgroundColor: [
+                '#B9E3C6', // Color for Deductions
+                '#1C9372', // Color for Net Pay
+            ],
+        },
+    ],
 };
 
-var innerData = {
-   labels: ['Deductions', 'Net Pay'],
-    datasets: [{
-        data: [
-    {{ !empty($salaries) && method_exists($salaries, 'calculateTotalAllowance') ? $salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions() : 0 }},
-    {{ !empty($salaries) && method_exists($salaries, 'calculateTotalDeductions') ? $salaries->calculateTotalDeductions() : 0 }},
-],
+var outerCtx = document.getElementById('combinedPieChart').getContext('2d');
 
-        backgroundColor: ['#3399FF', '#33FF33'], // Colors for Deductions and Net Pay
-    }],
-};
-
-var ctx = document.getElementById('outerPieChart').getContext('2d');
-var outerPieChart = new Chart(ctx, {
+var combinedPieChart = new Chart(outerCtx, {
     type: 'doughnut',
-    data: data,
+    data: combinedData,
     options: {
-        cutout: '70%', // Adjust the cutout to control the size of the inner circle
+        cutout: '60%', // Adjust the cutout to control the size of the outer circle
+        legend: {
+            display: false,
+        },
+        tooltips: {
+            enabled: false,
+        },
     },
-});
+}
+);
 
-var innerCtx = document.getElementById('innerPieChart').getContext('2d');
-var innerPieChart = new Chart(innerCtx, {
-    type: 'doughnut',
-    data: innerData,
-    options: {
-        cutout: '60%', // Adjust the cutout to control the size of the inner circle
-    },
-});
+
 </script>
