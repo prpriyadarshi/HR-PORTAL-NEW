@@ -600,9 +600,33 @@
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6(item)">
 
-                            <a class="nav-link" href="/Attendance"  onclick="setActiveLink(this)">
+                            <a class="nav-link"  onclick="toggleAttendanceDropdown()">
 
-                                <i class="fas fa-clock"></i> Attendance</a>
+                                <i class="fas fa-clock"></i> Attendance<i class="fas fa-caret-down" id="attendance-caret"></i>
+                            </a>
+                            <div id="attendance-options" style="display: none;">
+                                <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
+                                    <li class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/Attendance" onclick="return changePageTitle6('attendance-info');">
+                                              Attendance&nbsp;Info
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/team-on-attendance-chart" onclick="return changePageTitle6('team-on-attendance');">
+                                              @livewire('team-on-attendance')
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/whoisinchart" onclick="return changePageTitle6('who-is-in');">
+                                              @livewire('whoisin')
+                                        </a>
+                                    </li>
+                                    
+                                   
+                                   
+
+                                </ul>
+                            </div>
                         </li>
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle7()">
