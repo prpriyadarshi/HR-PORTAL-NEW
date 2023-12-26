@@ -328,7 +328,7 @@
                               <!-- TEAM ON LEAVE -->
                               @if($this->showLeaveApplies)
                                <div class="home-hover">
-                               <div class="reviews">
+                                  <div class="reviews">
                                   <div style="border-radius: 5px; border: 1px solid #CFCACA;  background-color: white;">
                                     <div class="heading" style="display:flex; justify-content:space-between;padding:5px 10px;">
                                        <div style="color: #677A8E;font-weight:500;font-size:0.895rem;">
@@ -553,7 +553,10 @@
                         <p style="color: #677A8E;font-weight:500;font-size: 0.895rem;">Upcoming Holidays</p>
                         <a href="/holiday-calender" style="font-size:16px; "><img src="/images/up-arrow.png" alt="" style="width:20px;height:27px;"></a>
                     </div>
-                    @foreach ($calendarData as $entry)
+                    @if($calendarData->isEmpty())
+                    <p style="color:#778899;font-size:0.825rem;">Uh oh! No holidays to show.</p>
+                    @else
+                    @foreach($calendarData as $entry)
                     <div>
                         <p style="color: #677A8E; font-size: 0.855rem; ">
                             <span style="font-weight: 500;">{{ date('d M', strtotime($entry->date)) }}  <span style="font-size: 12px; font-weight: normal;">{{ date('l', strtotime($entry->date)) }}</span></span>
@@ -562,6 +565,7 @@
                         </p>
                     </div>
                     @endforeach
+                    @endif
                 </div>
             </div>
             <div class="home-hover">
