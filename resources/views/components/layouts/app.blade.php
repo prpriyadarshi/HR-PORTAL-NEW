@@ -36,9 +36,6 @@
     @livewireScripts
     @endauth
 
-
-
-
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <script src="{{ mix('js/app.js') }}"></script>
@@ -99,10 +96,18 @@
                 font-family: 'Montserrat', sans-serif;
                 overflow-x:hidden;
             }
+            .left-card-body{
+                margin-top:0px;
+                padding:0 5px;
+                margin:0;
+                height:600px;
+            }
            
             .profile-container {
 
                 display: flex;
+
+                gap:10px;
 
                 align-items: center;
 
@@ -127,8 +132,6 @@
                 background-color: green;
 
                 border-radius: 50%;
-
-                margin-right: 10px;
 
             }
 
@@ -207,8 +210,8 @@
 
 
             .emp-name {
-
-                margin-right: 20px;
+               display:flex;
+               flex-direction:column;
 
             }
 
@@ -296,6 +299,9 @@
             display: block;
             }
             /* content slot scrolling */
+            .slot{
+               margin-top:10px;max-height:520px;overflow-y: auto;background:#f2f2f2;
+            }
 
             .slot::-webkit-scrollbar {
                 width: 7px; /* Set the width of the scrollbar */
@@ -360,15 +366,13 @@
                 #menu-popup::-webkit-scrollbar-thumb:hover {
                     background-color: #555; /* Set the color of the thumb on hover */
                 }
-
-        
+               
             }
 
             @media only screen and (min-width: 769px) {
                 .hideHamburger {
                     display: none !important;
                 }
-        
             }
 
 
@@ -416,8 +420,7 @@
                 #menu-popup::-webkit-scrollbar-thumb:hover {
                     background-color: #555; /* Set the color of the thumb on hover */
                 }
-
-           
+             
             }
 
             @media only screen and (min-width: 769px) {
@@ -441,21 +444,42 @@
                     background-color: #fff; /* Set the color of the scrollbar track */
                     border-radius: 5px; /* Set the border radius of the track */
                 }
+             
                                
             }
          
+            @media only screen and (min-width: 1440px) {
+             
+
+                .slot{
+                    max-height:660px;
+                    overflow-x:hidden;
+                    overflow-y:auto;
+                }
+                .left-card-body{
+                    width:250px;
+                margin-top:0px;
+                padding:0 5px;
+                margin:0;
+                display:flex; 
+                height:750px;
+              
+               }
+            }
+      
+
         </style>
 
 
-        <div class="row m-0" style="height: 100%;width:100%;background-color: #f0f0f0;">
+        <div class="row m-0" style="height: 100%;width:100%; padding:0;background:#f2f2f2;">
 
-            <div class="card displayNone" id="menu-popup" style="border-radius:0px;height: auto; width: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            <div class="card displayNone" id="menu-popup" style="border-radius:0px; width: auto; background:transaparent;box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);padding:0;margin:0;">
 
-                <div class="card-body" style="max-height: fit-content; min-height :99vh;width:auto;margin-top:0px">
+                <div class="left-card-body">
 
-                    <ul class="nav flex-column">
+                    <ul class="nav flex-column" >
 
-                        <div style="margin-bottom: 30px;margin-top:0px">
+                        <div style="margin-bottom: 15px;">
 
                             @livewire('company-logo')
                         </div>
@@ -466,7 +490,7 @@
                         @auth('emp')
                         <div class="scrollable-container">
                          <ul class="nav flex-column">
-                           <li class="nav-item" style="text-decoration: none; margin-top: 10px" onclick="changePageTitle1()">
+                           <li class="nav-item" style="text-decoration: none; margin-top: 15px" onclick="changePageTitle1()">
 
                             <a class="nav-link" href="/" onclick="setActiveLink(this)">
 
@@ -738,7 +762,7 @@
 
                 </div>
 
-                <div class="slot" style="margin-top: 3%; margin-left: 1%; height: 490px; overflow-y: auto;">
+                <div class="slot" >
                     {{ $slot }}
                 </div>
 
@@ -1182,8 +1206,6 @@
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-
 @endguest
-
+</body>
 </html>
