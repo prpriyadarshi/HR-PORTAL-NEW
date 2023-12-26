@@ -45,7 +45,7 @@
 
     <link rel="stylesheet" type="text/css" href="path/to/your.css">
 
-  
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -78,8 +78,8 @@
     <script src="{{ asset('livewire/livewire.js') }}" defer></script>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" data-turbolinks-track="reload">
-
-    <livewire:styles />
+    @stack('styles')
+    @livewireStyles
 
 </head>
 
@@ -99,7 +99,7 @@
                 font-family: 'Montserrat', sans-serif;
                 overflow-x:hidden;
             }
-           
+
             .profile-container {
 
                 display: flex;
@@ -220,7 +220,7 @@
 
             }
 
-      
+
             #leave-options a {
                 text-decoration: none;
                 color: #778899;
@@ -314,7 +314,7 @@
                 background-color: #555; /* Set the color of the thumb on hover */
             }
 
-           
+
 
             @media only screen and (max-width: 768px) {
                 .displayNone {
@@ -361,14 +361,14 @@
                     background-color: #555; /* Set the color of the thumb on hover */
                 }
 
-        
+
             }
 
             @media only screen and (min-width: 769px) {
                 .hideHamburger {
                     display: none !important;
                 }
-        
+
             }
 
 
@@ -417,7 +417,7 @@
                     background-color: #555; /* Set the color of the thumb on hover */
                 }
 
-           
+
             }
 
             @media only screen and (min-width: 769px) {
@@ -441,9 +441,9 @@
                     background-color: #fff; /* Set the color of the scrollbar track */
                     border-radius: 5px; /* Set the border radius of the track */
                 }
-                               
+
             }
-         
+
         </style>
 
 
@@ -621,9 +621,9 @@
                                               @livewire('whoisin')
                                         </a>
                                     </li>
-                                    
-                                   
-                                   
+
+
+
 
                                 </ul>
                             </div>
@@ -714,7 +714,7 @@
 
                     </div>
                     @endauth
-                   
+
                     @if(auth('it')->check())
                     <h6 style="color: white; width: -webkit-fill-available;" id="pageTitle">
                         <i style="color: white;" class="fas fa-laptop"></i> IT Requests
@@ -739,6 +739,7 @@
                 </div>
 
                 <div class="slot" style="margin-top: 3%; margin-left: 1%; height: 490px; overflow-y: auto;">
+                    <x-loading-indicator/>
                     {{ $slot }}
                 </div>
 

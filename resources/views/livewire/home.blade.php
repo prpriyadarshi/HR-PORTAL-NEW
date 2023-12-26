@@ -181,12 +181,12 @@
                 border-radius: 5px;
             }
 
-    
+
 
     .home-hover:hover {
         transform: scale(1.01);
         cursor: pointer;
-       
+
 
         box-shadow: 1px 2px rgba(0, 0, 0, 0.2);
     }
@@ -329,7 +329,7 @@
                                     </div>
                                 </div>
                         </div>
-                        
+
                         <div class="home-hover">
                             <div style="border-radius: 5px; border: 1px solid #CFCACA;background-color: white;">
                                   <div style="color: #677A8E; margin-left: 20px;font-weight:500; margin-top:10px;">
@@ -392,7 +392,7 @@
                                                                     <div class="circle-notify" style="margin-right: 5px; border-radius: 50%; background: #fcfdfe; padding: 8px 8px; border: 2px solid {{ getRandomLightColor() }};">
                                                                         <span>{{$initials}}</span>
                                                                     </div>
-                                                                   
+
                                                                 <?php
                                                                     }
                                                                 ?>
@@ -424,7 +424,7 @@
                         </div>
                         <!-- second column -->
                     <div class="first-col col-md-4 p-1" style="display:flex; flex-direction:column;gap:10px;">
-                      @if($ismanager) 
+                      @if($ismanager)
                          <div class="home-hover">
                             <div style=" border-radius: 5px; border: 1px solid #CFCACA;  background-color: #fff;padding:10px 15px;">
                                 <div style="color: #677A8E;  font-weight:500; display:flex;justify-content:space-between;">
@@ -442,7 +442,7 @@
                                                                 $colors = ['#FFD1DC', '#D2E0FB', '#ADD8E6', '#E6E6FA', '#F1EAFF','#FFC5C5'];
                                                                 return $colors[array_rand($colors)];
                                                             }
-                                                @endphp 
+                                                @endphp
                                                 @for ($i = 0; $i < min($CountAbsentEmployees, 4); $i++)
                                                 @if(isset($AbsentEmployees[$i]))
                                                 @php
@@ -450,7 +450,7 @@
 
                                                     $randomColorAbsent = '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
                                                 @endphp
-                                                   
+
                                                 <div class="circle" style="border: 2px solid {{getRandomAbsentColor() }};border-radius:50%;">
                                                     <span class="initials">
                                                         {{ strtoupper(substr(trim($employee['first_name']), 0, 1)) }}{{ strtoupper(substr(trim($employee['last_name']), 0,1)) }}
@@ -467,7 +467,7 @@
                                         </div>
                                     </div>
                                 <!-- /second row -->
-                                    
+
                                     <div class="who-is-in">
                                                 <p style="color: #778899; font-size: 0.875rem; font-weight: 500; ">
                                                         Late Arrival({{ $CountLateSwipes }})
@@ -478,16 +478,16 @@
                                                                 $colors = ['#FFD1DC', '#D2E0FB', '#ADD8E6', '#E6E6FA', '#F1EAFF','#FFC5C5'];
                                                                 return $colors[array_rand($colors)];
                                                             }
-                                                @endphp            
-                                                @for ($i = 0; $i < min($CountLateSwipes, 4); $i++)            
+                                                @endphp
+                                                @for ($i = 0; $i < min($CountLateSwipes, 4); $i++)
                                                     @php
                                                         $employee = $LateSwipes[$i];
 
-                                                         
+
 
                                                     @endphp
-                                               
-                                                   @if(isset($LateSwipes[$i]))                   
+
+                                                   @if(isset($LateSwipes[$i]))
                                                    <div class="circle" style="border: 2px solid {{getRandomLateColor() }};border-radius:50%;">
                                                         <span class="initials">
                                                             {{ strtoupper(substr(trim($employee['first_name']), 0, 1)) }}{{ strtoupper(substr(trim($employee['last_name']), 0,1)) }}
@@ -505,7 +505,7 @@
                                     </div>
 
                                   <!-- /third row -->
-                                  
+
                                   <div class="who-is-in">
                                                 <p style="color: #778899; font-size: 0.875rem; font-weight: 500; ">
                                                         On Time({{ $CountEarlySwipes }})
@@ -516,7 +516,7 @@
                                                                 $colors = ['#FFD1DC', '#D2E0FB', '#ADD8E6', '#E6E6FA', '#F1EAFF','#FFC5C5'];
                                                                 return $colors[array_rand($colors)];
                                                             }
-                                                @endphp  
+                                                @endphp
                                                 @for ($i = 0; $i < min($CountEarlySwipes, 4); $i++)
                                                 @if(isset($EarlySwipes[$i]))
                                                 @php
@@ -525,7 +525,7 @@
                                                     $randomColorEarly = '#' . str_pad(dechex(mt_rand(0xCCCCCC, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
 
                                                 @endphp
-                                                   
+
                                                 <div class="circle" style="border: 2px solid {{getRandomEarlyColor() }};border-radius:50%;">
                                                     <span class="initials">
                                                         {{ strtoupper(substr(trim($employee['first_name']), 0, 1)) }}{{ strtoupper(substr(trim($employee['last_name']), 0,1)) }}
@@ -626,14 +626,14 @@
                                                         <div style="padding:2px;width:2px;height:17px;background:#000000;border-radius:2px;"></div>
                                                         <p>Gross Pay</p>
                                                     </div>
-                                                    <p>{{ $showSalary ? '₹ ' . number_format($salaries->calculateTotalAllowance(), 2) : '*********' }}</p>
+                                                    <p>{{ $showSalary ? '₹ ' . number_format($salaries->calculateTotalAllowance(), 2) : '₹*********' }}</p>
                                                 </div>
                                                 <div class="net-salary">
                                                     <div style="display:flex;gap:10px;">
                                                         <div style="padding:2px;width:2px;height:17px;background:#B9E3C6;border-radius:2px;"></div>
                                                         <p>Deduction</p>
                                                     </div>
-                                                    <p>{{ $showSalary ? '₹ ' . number_format($salaries->calculateTotalDeductions() ?? 0, 2) : '*********' }}</p>
+                                                    <p>{{ $showSalary ? '₹ ' . number_format($salaries->calculateTotalDeductions() ?? 0, 2) : '₹*********' }}</p>
 
                                                 </div>
                                                 <div class="net-salary">
@@ -642,7 +642,7 @@
                                                         <p>Net Pay</p>
                                                     </div>
                                                     @if ($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions() > 0)
-                                                    <p> {{ $showSalary ? '₹ ' .number_format(max($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions(), 0), 2) : '*********' }}</p>
+                                                    <p> {{ $showSalary ? '₹ ' .number_format(max($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions(), 0), 2) : '₹*********' }}</p>
                                                     @endif
                                                 </div>
                                             </div>
