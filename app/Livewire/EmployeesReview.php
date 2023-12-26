@@ -112,7 +112,7 @@ class EmployeesReview extends Component
     }
     public function starredFilter()
 {
-    dd('dfghjk');
+   
     $employeeId = auth()->guard('emp')->user()->emp_id;
  
     $this->leaveRequests = LeaveRequest::whereIn('status', ['Pending'])
