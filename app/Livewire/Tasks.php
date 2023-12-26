@@ -35,7 +35,7 @@ class Tasks extends Component
     public $activeTab = 'open';
     public $employeeIdToComplete;
     public $record;
-
+    public $isLoadingImage = false;
 
     public $followersList = false;
     public $selectedPeopleNames = [];
@@ -129,11 +129,15 @@ class Tasks extends Component
             'image' => 'image|max:2048',
         ]); // Validate the image file
         if ($this->image) {
+            $this->isLoadingImage = true;
             $fileName = uniqid() . '_' . $this->image->getClientOriginalName();
 
             $this->image->storeAs('public/tasks-images', $fileName);
 
             $this->image = 'tasks-images/' . $fileName;
+            
+           $this->isLoadingImage = false;
+            
         }
         $employeeId = auth()->guard('emp')->user()->emp_id;
         $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();

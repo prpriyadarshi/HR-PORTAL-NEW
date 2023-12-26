@@ -262,7 +262,7 @@
                                 @endif
                                 @endforeach
                             </tbody>
-                        </table>
+                    </table>
                     </div>
                     @endif
                     @endif
@@ -376,8 +376,9 @@
                                         <div class="form-group" style="margin-top: 20px;">
                                             <label class="form-label" style="font-size: 14px;">Due Date</label>
                                             <br>
-                                            <input type="date" wire:model="due_date" style="width: 100%;font-size:12px" max="<?= date('Y-m-d'); ?>">
+                                            <input type="date" wire:model="due_date" style="width: 100%; font-size: 12px;" min="<?= date('Y-m-d'); ?>">
                                         </div>
+
                                         @error('due_date') <span class="text-danger">{{ $message }}</span> @enderror
 
                                         <!-- Tags -->
@@ -467,18 +468,28 @@
                                         <!-- File Input -->
                                         <div class="row">
                                             <div class="col">
-                                                <label for="fileInput" style="cursor: pointer;font-size:14px">
+                                                <label for="fileInput" style="cursor: pointer; font-size: 14px;">
                                                     <i class="fa fa-paperclip"></i> Attach Image
                                                 </label>
                                             </div>
                                         </div>
-                                        <input style="font-size: 12px;" wire:model="image" type="file" accept="image/*">
-                                        @if ($image)
-                                        <div>
-                                            <img height="100" width="100" src="{{ $image->temporaryUrl() }}" alt="Image Preview" style="max-width: 300px;">
+
+                                        <div wire:loading wire:target="image" class="text-primary" role="status">
+                                            Uploading...
                                         </div>
+
+                                        <input style="font-size: 12px;" wire:model="image" wire:loading.attr="disabled" type="file" accept="image/*">
+
+                                        @if ($image)
+                                            <div>
+                                                <img height="100" width="100" src="{{ $image->temporaryUrl() }}" alt="Image Preview" style="max-width: 300px;">
+                                            </div>
                                         @endif
-                                        @error('file_path') <span class="text-danger">{{ $message }}</span> @enderror
+
+                                        @error('file_path')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+
                                         <!-- <div style="margin-top: 30px; text-align: center;">
                                             <button wire:click="close" class="btn btn-danger btn-medium" type="button" name="link" style="background-color: #FF3D57; color: white; width: 100px;font-size:13px">Cancel</button>
                                             <button wire:click="submit" class="btn btn-success btn-medium" type="button" name="link" style="background-color: #4CAF50; color: white; margin-left: 20px;font-size:13px">Save

@@ -82,7 +82,6 @@
         }
  
         .table {
-            background-color:pink;
             overflow-x: hidden; /* Add horizontal scrolling if the table overflows the container */
         }
  
@@ -91,7 +90,6 @@
             font-size: 0.875rem;
             width: 100%;
             justify-content:space-between;
-            margin-top: -20px;
             font-weight: 500;
             color: #778899;
         }
@@ -119,23 +117,24 @@
         }
         .accordion {
         border: 1px solid #ccc;
-        margin-bottom: 10px;
+        border-radius:5px;
         width: 100%; /* Adjust the width as needed */
         top: 100px;
+     overflow-x: auto;
         left:0;/* Adjust the top position as needed */
       /* Adjust the right position as needed */
       }
  
       .accordion-heading {
         background-color: #fff;
-        padding: 5px;
         cursor: pointer;
       }
  
       .accordion-body {
         background-color: #fff;
-        display: none;
-        padding: 10px;
+        padding:0;
+        display: block;
+        width: 100%; overflow: auto;
       }
  
       .accordion-content {
@@ -143,18 +142,6 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-      }
- 
-      .content {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        background:#e7f5fe;
-        justify-content:space-between;
-        padding:3px;
-        gap: 10px;
-        color:#778899;
-        font-weight:500;
       }
  
       .accordion-title {
@@ -188,13 +175,7 @@
         }
       }
              /* Styles for the container */
-             .filter-container {
-            display: inline-block;
-            position: relative;
-        }
-        .filter-container a{
-          text-decoration:none;
-        }
+  
  
         /* Styles for the button */
         .filter-button {
@@ -213,31 +194,10 @@
         }
  
         /* Styles for the dropdown */
-        .filter-dropdown {
-            display: none;
-            position: absolute;
-            background-color: #fff;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-        }
+  
  
         /* Styles for dropdown items */
-        .filter-item {
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            color: #333;
-        }
- 
-        .filter-item:hover {
-            background-color: #fff;
-        }
- 
-        /* Show the dropdown when hovering over the container */
-        .filter-container:hover .filter-dropdown {
-            display: block;
-        }
+    
         .button-container{
           display:flex;
           padding:10px 15px;
@@ -368,21 +328,37 @@
         .circle.IRIS {
             background-color: #d29be1;
         }
+        .circle-grey {
+        width: 20px; /* Adjust the width and height for your preferred circle size */
+        height: 20px;
+        color: black;
+        border-radius: 50%; /* Make the element circular */
+        position: absolute; /* Position the circle absolutely */
+        text-align: center;
+        background-color: #b7b7b7;
+        line-height: 15px; /* Match the height for center alignment */
+        top: 60%; /* Position the circle at 50% from the top */
+        left: 50%; /* Position the circle at 50% from the left */
+        transform: translate(-50%, -50%); /* Move the circle to the center */
+    }
+
        
     </style>
 </head>
 <body>
     <div class="container-leave" >
-   
     <div class="button-container" >
+        <!-- Dropdown for filter selection -->
         <div class="filter-container">
-            <button class="filter-button">Filter Type</button>
-            <div class="filter-dropdown">
-                <a class="filter-item" href="#)">Me</a>
-                <a class="filter-item" href="#">My Team</a>
-                <!-- Add more items as needed -->
-            </div>
+            <label for="filterType" style="color: #778899; font-size: 0.825rem;font-weight:500;">Filter Type:</label>
+            <select style="font-size:0.855rem;padding:2px 10px;cursor:pointer;outline:none;" wire:model.lazy="filterCriteria" id="filterType" class="filter-dropdown" wire:change="filterBy($event.target.value)">
+                <option style="font-size:0.825rem;padding:10px 15px;" value="Me" @if($filterCriteria === 'Me') selected @endif>Me</option>
+                <option style="font-size:0.825rem;padding:10px 15px;" value="MyTeam" @if($filterCriteria === 'MyTeam') selected @endif>My Team</option>
+                <!-- Add more options as needed -->
+            </select>
         </div>
+
+
         <button class="custom-button">
         <i class="fa fa-download" aria-hidden="true"></i>
         </button>
@@ -423,25 +399,25 @@
                                                 @endphp
 
                                                 <div wire:click="dateClicked($event.target.textContent)" class="calendar-date" data-date="{{ $day['day'] }}"
-                                                    style="
-                                                        color: {{ $isCurrentMonth ? ($isWeekend ? '#c5cdd4' : 'black') : '#c5cdd4' }};
-                                                    "
-                                                >
+                                                    style="color: {{ $isCurrentMonth ? ($isWeekend ? '#c5cdd4' : 'black') : '#c5cdd4' }};">
                                                     @if ($day['isToday'])
-                                                        <div style="background-color: #007bff; color: white; border-radius: 50%; width: 24px; height: 24px; text-align: center; line-height: 24px;">
+                                                        <div style="background-color: #007bff; color: white; border-radius: 50%; width: 24px; height: 24px; text-align: center; line-height: 24px; ">
                                                             {{ str_pad($day['day'], 2, '0', STR_PAD_LEFT) }}
                                                         </div>
                                                     @else
                                                         {{ str_pad($day['day'], 2, '0', STR_PAD_LEFT) }}
                                                     @endif
-                                                    <div class="circle{{ $day['isPublicHoliday'] ? '  IRIS' : '' }}">
+                                                    <div class="circle{{ $day['isPublicHoliday'] ? ' IRIS' : '' }}">
                                                         <!-- Render your content -->
-                                                       
                                                     </div>
-                                                    @if ($day && isset($day['teamOnLeave']) && count($day['teamOnLeave']) > 0)
-                                                        <div style="background-color: grey; border-radius: 50%; width: 24px; height: 24px; text-align: center; margin-top: 5px;">
-                                                            <span style="color: white; display: block; line-height: 24px;">
-                                                                {{ count($day['teamOnLeave']) }}
+                                                    @php
+                                                        $leaveCount = $filterCriteria === 'Me' ? $day['leaveCountMe'] : $day['leaveCountMyTeam'];
+                                                    @endphp
+                                                    @if ($leaveCount > 0)
+                                                        <div class="circle-grey">
+                                                            <!-- Render your grey circle -->
+                                                            <span style="display: flex; justify-content: center; align-items: center;width:20px;height:20px;border-radius:50%;">
+                                                                {{ $leaveCount }}
                                                             </span>
                                                         </div>
                                                     @endif
@@ -452,11 +428,12 @@
                                 </tr>
                             @endforeach
                         </tbody>
+
                     </table>
 
                     </div>
 
-                 <div class="tol-calendar-legend mt-2">
+                 <div class="tol-calendar-legend mt-1 mb-2">
                         <div>
                             Team on Leave
                             <span class="legend-circle" style="background: #ccc; font-size: 0.75rem;">
@@ -483,18 +460,18 @@
                                 </span>
                                
                              </div>
-                                 <div class="holiday-con">
+                                   <div class="holiday-con">
                                             @foreach($holidays as $holiday)
                                                 <span style="font-weight:normal;font-size:0.825rem; color:#778899;">General Holiday <br>
                                                     <span style="font-weight:500;font-size:0.895rem;color:#333;">{{ $holiday->festivals }}</span>
                                                 </span>
                                                
                                             @endforeach
-                                 </div>
+                                    </div>
                                  @endif
                             </div>
                             <!-- end -->
-                        <div class="cont" style="display:flex;justify-content:end; margin-top:20px;">
+                        <div class="cont" style="display:flex;justify-content:end; margin-top:60px;">
                            <div class="search-container" >
                                 <div class="form-group"  >
                                     <div class="search-input"  >
@@ -515,43 +492,79 @@
                             </div>
                         </div>
                 
-                        <div class="accordion" style="margin-top: 20px;">
-                            <div class="accordion-heading" onclick="toggleAccordion(this)">
+                    <div class="accordion" >
+                         <div class="accordion-heading active" onclick="toggleAccordion(this)">
                             <div class="accordion-title">
                                 <div class="accordion-content">
-                                <span style="font-size: 16px; font-weight: 500;color:#778899;">Leave transactions(0)</span>
+                                   <span style="font-size: 16px; font-weight: 500;color:#778899;padding:10px 15px;">Leave transactions({{ count($this->leaveTransactions) }})</span>
                                 </div>
                                 <div class="accordion-button" style="border-radius: 50%; height: 0.5rem; width: 0.5rem; display: flex; justify-content: center; align-items: center;">
-                                    <!-- <i class="fas fa-chevron-down"></i> -->
+                                        <!-- <i class="fas fa-chevron-down"></i> -->
                                 </div>
-                            </div>
-                            </div>
-                            <div class="accordion-body">
-                            <hr>
-                            <div class="content">
-                                <span style="font-size: 13px; font-weight: 500;">Employee</span>
-                                <span style="font-size: 13px; font-weight: 500;">Number of days</span>
-                                <span style="font-size: 13px; font-weight: 500;">From to</span>
-                            </div>
-                            <hr>
-                            <hr>
-                            @if($leaveTransactions)
-                            @foreach($leaveTransactions as $transaction)
-                                <div class="leave-trans">
-                                    <!-- Display individual leave transaction details -->
-                                </div>
-                            @endforeach
-                        @else
-                    <div class="leave-trans" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <img src="/images/pending.png" alt="Pending Image" style="width: 100%; margin: 0 auto;">
-                        <span style="font-size: 0.75rem; font-weight: 500; color:#778899;">No Employees are on leave</span>
+                        </div>
                     </div>
-                @endif
+                     <div class="accordion-body">
+                       <div class="col-md-12 scroll-tabel" style="overflow-y:auto;max-height:320px; min-height:300px;padding:0;">
+                        <table class="leave-table" style="width: 100%; border-collapse: collapse; ;overflow: auto;">
+                            <thead style="background-color: #ecf7fc; text-align:start;  width:100%;">
+                                <tr>
+                                    <th style="padding:7px 5px; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc;color:#778899;font-size:0.725rem;font-weight:normal;width: 40%;">Employee ID</th>
+                                    <th style="padding:7px 5px; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc;color:#778899;font-size:0.725rem;font-weight:normal;width: 20%;">No of days</th>
+                                    <th style="padding:7px 5px; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc;color:#778899;font-size:0.725rem;font-weight:normal;width: 40%;">From-To </th>
+                                </tr>
+                            </thead>
+                            <tbody >
+                            @if (!empty($selectedDate))
+                                @forelse($this->leaveTransactions as $transaction)
+                                    <tr style="border-bottom: 1px solid #ccc; font-size:0.725rem;text-align:start;">
+                                        <td style="padding: 20px 5px; border-top: 1px solid #ccc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;">
+                                            <span style="color: black; font-size: 0.725rem; font-weight: 500;">
+                                                {{ $transaction->employee->first_name }} {{ $transaction->employee->last_name }}
+                                            </span>
+                                            <span style="font-size: 0.695rem; color: #778899;">
+                                                (#{{ $transaction->emp_id }}<br>{{ $transaction->employee->job_location }}, {{ $transaction->employee->job_title }})
+                                            </span>
+                                        </td>
+
+                                        <td style=" padding:20px 5px;border-top: 1px solid #ccc;font-weight:500;">{{ $this->calculateNumberOfDays($transaction->from_date, $transaction->from_session, $transaction->to_date, $transaction->to_session) }}</td>
+                                        <td style=" padding:20px 5px;border-top: 1px solid #ccc;">
+                                        @php
+                                            $fromDate = \Carbon\Carbon::createFromFormat('Y-m-d', $transaction->from_date)->format('d M');
+                                            $toDate = \Carbon\Carbon::createFromFormat('Y-m-d', $transaction->to_date)->format('d M');
+                                        @endphp
+                                            @if($fromDate === $toDate)
+                                              <span style="color:black;font-size:0.725rem;font-weight:500;"> {{ $fromDate }}</span>
+                                            @else
+                                                <span style="color:black;font-size:0.725rem;font-weight:500;">{{ $fromDate }} - {{ $toDate }} </span><br><span style="font-size:0.60rem;color:#778899;">{{$transaction->from_session}}&nbsp;&nbsp;&nbsp;&nbsp;{{$transaction->to_session}}</span>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="3">
+                                            <div class="leave-trans" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                                <img src="/images/pending.png" alt="Pending Image" style="width: 100%; margin: 0 auto;">
+                                                <span style="font-size: 0.75rem; font-weight: 500; color:#778899;">No Employees are on leave</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforelse
+                                @else
+                                    <tr>
+                                        <td colspan="3">
+                                            <div class="leave-trans" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                                <img src="/images/pending.png" alt="Pending Image" style="width: 100%; margin: 0 auto;">
+                                                <span style="font-size: 0.75rem; font-weight: 500; color:#778899;">No Employees are on leave</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                 @endif
+                               </tbody>
+                          </table>
+                       </div>
+                    </div>
+                </div>
             </div>
-          </div>
- 
-        </div>
- 
     </div>
  
     
@@ -559,17 +572,19 @@
     <script>
         function toggleAccordion(element) {
         const accordionBody = element.nextElementSibling;
-            if (accordionBody.style.display === 'block') {
-            accordionBody.style.display = 'none';
-            element.classList.remove('active'); // Remove active class
-            element.closest('.wrapper').classList.remove('fixed'); // Remove fixed class
-            } else {
+        if (accordionBody.style.display === 'block') {
+            // If accordion is already open, keep it open
+            element.classList.add('active'); // Add active class
+            element.closest('.wrapper').classList.add('fixed'); // Add fixed class
+        } else {
+            // If accordion is closed, open it
             accordionBody.style.display = 'block';
             element.classList.add('active'); // Add active class
             element.closest('.wrapper').classList.add('fixed'); // Add fixed class
-            }
         }
-</script> 
+    }
+
+    </script> 
 </body>
 </html>
  
