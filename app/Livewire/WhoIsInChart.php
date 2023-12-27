@@ -89,64 +89,17 @@ class WhoIsInChart extends Component
         $employees=EmployeeDetails::where('manager_id',$loggedInEmpId)->select('emp_id', 'first_name', 'last_name')->get();
      
         $employees2=EmployeeDetails::where('manager_id',$loggedInEmpId)->select('emp_id', 'first_name', 'last_name')->count();
-        
+       
+      
         if($this->isdatepickerclicked ==0)
         {
           
-           $currentDate = Carbon::now()->format('Y-m-d');
+            $currentDate = now()->toDateString(); 
         }
         else
         {
             $currentDate=$this->from_date;
         }
-       
-        $employees1 = EmployeeDetails::where('manager_id', $loggedInEmpId)
-        ->select('emp_id', 'first_name', 'last_name')
-        ->whereNotIn('emp_id', function ($query) use ($loggedInEmpId, $currentDate) {
-            $query->select('emp_id')
-                ->from('swipe_records')
-                ->where('manager_id', $loggedInEmpId)
-                ->whereDate('created_at', $currentDate);
-        })
-        ->whereNotIn('emp_id', function ($query) use ($loggedInEmpId, $currentDate) {
-            $query->select('emp_id')
-                ->from('leave_applies')
-                ->where('manager_id', $loggedInEmpId)
-                ->whereDate('from_date', '>=', $currentDate)
-                ->whereDate('to_date', '<=', $currentDate);
-        })
-        ->get();
-         
-         $employeesCount = EmployeeDetails::where('manager_id', $loggedInEmpId)
-         ->select('emp_id', 'first_name', 'last_name')
-         ->whereNotIn('emp_id', function ($query) use ($loggedInEmpId, $currentDate) {
-             $query->select('emp_id')
-                 ->from('swipe_records')
-                 ->where('manager_id', $loggedInEmpId)
-                 ->whereDate('created_at', $currentDate);
-         })
-         ->whereNotIn('emp_id', function ($query) use ($loggedInEmpId, $currentDate) {
-             $query->select('emp_id')
-                 ->from('leave_applies')
-                 ->where('manager_id', $loggedInEmpId)
-                 ->whereDate('from_date', '>=', $currentDate)
-                 ->whereDate('to_date', '<=', $currentDate);
-         })
-         ->count();
-        // $currentDate = Carbon::now()->format('Y-m-d');
-    
-        $swipes = SwipeRecord::whereIn('id', function ($query) use ($employees, $currentDate) {
-            $query->selectRaw('MIN(id)')
-                ->from('swipe_records')
-                ->whereIn('emp_id', $employees->pluck('emp_id'))
-                ->whereDate('created_at', $currentDate)
-                ->groupBy('emp_id');
-        })
-        ->join('employee_details', 'swipe_records.emp_id', '=', 'employee_details.emp_id')
-        ->select('swipe_records.*', 'employee_details.first_name', 'employee_details.last_name')
-        ->get();
-       
-        $swipes1 = $swipes->count();
         $approvedLeaveRequests = LeaveRequest::join('employee_details', 'leave_applies.emp_id', '=', 'employee_details.emp_id')
         ->where('leave_applies.status', 'approved')
         ->whereIn('leave_applies.emp_id', $employees->pluck('emp_id'))
@@ -162,7 +115,7 @@ class WhoIsInChart extends Component
 
             return $leaveRequest;
         });
-
+   
     // Update $approvedLeaveRequests1 based on the selected date
     $approvedLeaveRequests1 = LeaveRequest::join('employee_details', 'leave_applies.emp_id', '=', 'employee_details.emp_id')
         ->where('leave_applies.status', 'approved')
@@ -170,6 +123,48 @@ class WhoIsInChart extends Component
         ->whereDate('from_date', '<=', $currentDate)
         ->whereDate('to_date', '>=', $currentDate)
         ->count();
+        
+        $employees1 = EmployeeDetails::where('manager_id', $loggedInEmpId)
+        ->select('emp_id', 'first_name', 'last_name')
+        ->whereNotIn('emp_id', function ($query) use ($loggedInEmpId, $currentDate, $approvedLeaveRequests) {
+            $query->select('emp_id')
+                ->from('swipe_records')
+                ->where('manager_id', $loggedInEmpId)
+                ->whereDate('created_at', $currentDate);
+        })
+        ->whereNotIn('emp_id', $approvedLeaveRequests->pluck('emp_id'))
+        ->get();
+      
+// Output the SQL query for debugging
+
+    
+         
+$employeesCount = EmployeeDetails::where('manager_id', $loggedInEmpId)
+->select('emp_id', 'first_name', 'last_name')
+->whereNotIn('emp_id', function ($query) use ($loggedInEmpId, $currentDate, $approvedLeaveRequests) {
+    $query->select('emp_id')
+        ->from('swipe_records')
+        ->where('manager_id', $loggedInEmpId)
+        ->whereDate('created_at', $currentDate);
+})
+->whereNotIn('emp_id', $approvedLeaveRequests->pluck('emp_id'))
+->count();
+
+        // $currentDate = Carbon::now()->format('Y-m-d');
+    
+        $swipes = SwipeRecord::whereIn('id', function ($query) use ($employees, $currentDate) {
+            $query->selectRaw('MIN(id)')
+                ->from('swipe_records')
+                ->whereIn('emp_id', $employees->pluck('emp_id'))
+                ->whereDate('created_at', $currentDate)
+                ->groupBy('emp_id');
+        })
+        ->join('employee_details', 'swipe_records.emp_id', '=', 'employee_details.emp_id')
+        ->select('swipe_records.*', 'employee_details.first_name', 'employee_details.last_name')
+        ->get();
+       
+        $swipes1 = $swipes->count();
+      
        
         $calculateAbsent=($employeesCount/$employees2)*100;
         $calculateApprovedLeaves=($approvedLeaveRequests1/$employees2)*100;

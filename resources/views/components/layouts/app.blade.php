@@ -611,11 +611,7 @@
                                               Attendance&nbsp;Info
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="text-decoration: none;">
-                                        <a class="nav-link" href="/team-on-attendance-chart" onclick="return changePageTitle6('team-on-attendance');">
-                                              @livewire('team-on-attendance')
-                                        </a>
-                                    </li>
+                                  
                                     <li class="nav-item" style="text-decoration: none;">
                                         <a class="nav-link" href="/whoisinchart" onclick="return changePageTitle6('who-is-in');">
                                               @livewire('whoisin')
