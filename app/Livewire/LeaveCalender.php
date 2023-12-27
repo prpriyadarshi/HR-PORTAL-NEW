@@ -21,6 +21,19 @@ class LeaveCalender extends Component
     public $companyId;
     public $filterCriteria = null;
     public $leaveTransactions = [];
+    public $searchTerm = '';
+    public $showDialog = false;
+
+
+    public function open()
+    {
+        $this->showDialog = true;
+    }
+
+    public function close()
+    {
+        $this->showDialog = false;
+    }
 
     // Other properties and methods...
     public function filterBy($criteria)
@@ -37,6 +50,8 @@ class LeaveCalender extends Component
         $this->month = now()->month;
         $this->leaveRequests = LeaveRequest::all();
         $this->filterCriteria = 'Me';
+        $this->searchTerm = ''; 
+       
         $this->loadLeaveTransactions(now()->toDateString());
         $this->generateCalendar();
     }
@@ -158,10 +173,15 @@ class LeaveCalender extends Component
         $this->month = $date->month;
         $this->generateCalendar();
     }
+    public function searchData()
+    {
+        $this->loadLeaveTransactions($this->selectedDate);
+    }
 
 
     public function loadLeaveTransactions($date)
     {
+     
         // Retrieve leave transactions for the selected date from the database
         $employeeId = auth()->guard('emp')->user()->emp_id;
         $companyId = auth()->guard('emp')->user()->company_id;
@@ -179,40 +199,49 @@ class LeaveCalender extends Component
         $dateFormatted = Carbon::parse($dateFormatted)->format('Y-m-d');
         
         $leaveCount = 0; // Initialize leave count variable
-    
-        // Filter data based on the selected filter type
-        if ($this->filterCriteria === 'Me') { // Replace $value with your actual condition for 'Me'
+            // Filter data based on the selected filter type
+        if ($this->filterCriteria === 'Me') {
+            
             $leaveTransactions = LeaveRequest::with('employee')
                 ->whereDate('from_date', '<=', $dateFormatted)
-                ->whereDate('to_date', '>=', $dateFormatted) 
+                ->whereDate('to_date', '>=', $dateFormatted)
                 ->where('emp_id', $employeeId)
                 ->where('status', 'approved')
+                ->where(function ($query) {
+                    $query->whereHas('employee', function ($q) {
+                        $q->where('first_name', 'like', '%' . $this->searchTerm . '%')
+                            ->orWhere('last_name', 'like', '%' . $this->searchTerm . '%');
+                    });
+                })
                 ->get();
     
-            $leaveCount = $leaveTransactions->count(); // Get the count of leave transactions
-            // Pass the leave transactions and count to the view or return as needed
+            $leaveCount = $leaveTransactions->count();
             $this->leaveTransactions = $leaveTransactions;
-      
-        } elseif($this->filterCriteria === 'MyTeam') { // Replace $value with your actual condition for 'MyTeam'
-            // Fetch team members' emp_ids based on the manager_id
+            
+        } elseif ($this->filterCriteria === 'MyTeam') {
             $teamMembersIds = EmployeeDetails::where('manager_id', $employeeId)->pluck('emp_id');
             $leaveTransactions = LeaveRequest::with('employee')
                 ->whereIn('emp_id', $teamMembersIds)
                 ->where('from_date', '<=', $dateFormatted)
                 ->where('to_date', '>=', $dateFormatted)
                 ->where('status', 'approved')
+                ->where(function ($query) {
+                    $query->whereHas('employee', function ($q) {
+                        $q->where('first_name', 'like', '%' . $this->searchTerm . '%')
+                            ->orWhere('last_name', 'like', '%' . $this->searchTerm . '%');
+                    });
+                })
                 ->get();
     
-            $leaveCount = $leaveTransactions->count(); // Get the count of leave transactions
-            // Pass the leave transactions and count to the view or return as needed
+            $leaveCount = $leaveTransactions->count();
             $this->leaveTransactions = $leaveTransactions;
-         
         } else {
-            $this->leaveTransactions = null; // Setting leave transactions as null for other conditions
+            $this->leaveTransactions = null;
         }
     
         return $leaveCount;
     }
+    
     
 
 
@@ -246,8 +275,7 @@ class LeaveCalender extends Component
         ->where('status', 'approved')
         ->get();    
         $holidays = $this->getHolidays();
-        
-       
+    
         return view('livewire.leave-calender', [
             'holidays' => $holidays,
             'leaveTransactions'=>$this->leaveTransactions,
