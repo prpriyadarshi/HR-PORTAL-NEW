@@ -2,18 +2,23 @@
 
 namespace App\Livewire;
 
+use App\Mail\SendMail;
 use App\Models\AppliedJob;
 use App\Models\Company;
 use App\Models\JobseekersExamDetails;
 use App\Models\JobseekersInterviewDetail;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Illuminate\Support\Facades\Response;
+use Livewire\WithFileUploads;
 
 class JobSeekersAppliedJobs extends Component
 {
+    use WithFileUploads;
     public $isOpen = false;
     public $appliedJobs;
     public $hrDetails;
@@ -25,7 +30,15 @@ class JobSeekersAppliedJobs extends Component
     public $showError = false;
     public $showSuccessMessage = false;
     public $selectedJobApplicationId;
-    public $selectedAction;
+    public $selectedAction, $ccEmails, $cc;
+    public $fromAddress;
+    public $toAddress;
+    public $recipientName;
+    public $jobPosition;
+    public $startDate;
+    public $salary;
+    public $company;
+    public $password, $senderName, $signature;
     public function dismissError()
     {
         $this->showError = false;
@@ -33,6 +46,110 @@ class JobSeekersAppliedJobs extends Component
     public function dismissMessage()
     {
         $this->showSuccessMessage = false;
+    }
+
+    public function ccTo()
+    {
+        $ccWithoutSpaces = str_replace(' ', '', $this->cc);
+        $this->ccEmails = $ccWithoutSpaces ? array_map('trim', explode(',', $ccWithoutSpaces)) : [];
+    }
+
+    public $ol = false;
+    public $selectedJobApplicationIdForOL, $informDate, $contactPhone;
+    public function showOL($jobApplicationId)
+    {
+        $this->appliedJobId = $jobApplicationId;
+        $this->selectedJobApplicationIdForOL = AppliedJob::with('user', 'job', 'com', 'job.com')->find($jobApplicationId);
+        $this->ol = true;
+    }
+    public function removeCC($ccAddress)
+    {
+        // Remove the specified CC address from the list
+        $this->cc = implode(',', array_diff(explode(',', $this->cc), [$ccAddress]));
+    }
+    public function closeOL()
+    {
+        $this->ol = false;
+    }
+    public $showSuccessMessageForOL = false;
+    public function sendOfferLetter()
+    {
+        try {
+            $this->validate([
+                'startDate' => 'required',
+                'salary' => 'required',
+                'signature' => 'required',
+                'informDate' => 'required',
+                'password' => 'required',
+            ]);
+
+            $passwordWithoutSpaces = str_replace(' ', '', $this->password);
+            Config::set('mail.mailers.smtp.host', 'smtp.gmail.com');
+            Config::set('mail.mailers.smtp.port', '587');
+            Config::set('mail.mailers.smtp.username', $this->selectedJobApplicationIdForOL->applied_to);
+            Config::set('mail.mailers.smtp.password', $passwordWithoutSpaces);
+            Config::set('mail.mailers.smtp.encryption', 'tls');
+            Config::set('mail.from.address', $this->selectedJobApplicationIdForOL->applied_to);
+            Config::set('mail.from.name', 'Software Solutions');
+
+            Mail::to($this->selectedJobApplicationIdForOL->user->email)->cc($this->ccEmails)
+                ->send(new SendMail($this->selectedJobApplicationIdForOL->applied_to, $this->selectedJobApplicationIdForOL->job->com->hr_name, $this->signature, $this->selectedJobApplicationIdForOL->user->full_name, $this->selectedJobApplicationIdForOL->company_name, $this->selectedJobApplicationIdForOL->job_title, $this->startDate, $this->salary, $this->informDate, $this->selectedJobApplicationIdForOL->job->com->contact_phone));
+
+            $this->resetProperties();
+            $this->ol = false;
+            $this->showSuccessMessageForOL = true;
+        } catch (\Swift_TransportException $transportException) {
+            $errorMessage = $transportException->getMessage();
+            if (strpos(strtolower($errorMessage), 'authentication failed') !== false) {
+                $this->showErrorMessageForOL = true;
+                $this->errorMessageForOL = "Error sending offer letter: SMTP authentication failed. Please check your email address or password.";
+            } else {
+                $this->showErrorMessageForOL = true;
+                $this->errorMessageForOL = "Error sending offer letter: $errorMessage";
+            }
+        } catch (\Illuminate\Validation\ValidationException $validationException) {
+            $errorMessage = $validationException->getMessage();
+           
+            $this->showErrorMessageForOL = true;
+            $this->errorMessageForOL = "Validation error: $errorMessage";
+        } catch (\Exception $e) {
+            $errorMessage = $e->getMessage();
+           
+            $this->showErrorMessageForOL = true;
+            $this->errorMessageForOL = "Error sending offer letter: SMTP authentication failed. Please check your email address or password.";
+        }
+    }
+
+
+
+    public $showErrorMessageForOL = false;
+    public $errorMessageForOL;
+    public function dismissErrorMessageForOL()
+    {
+        $this->showErrorMessageForOL = false;
+    }
+
+    public function resetProperties()
+    {
+        $this->password = null;
+        $this->ccEmails = null;
+        $this->cc = null;
+        $this->startDate = null;
+        $this->informDate = null;
+        $this->signature = null;
+        $this->salary = null;
+    }
+    public function dismissMessageForOL()
+    {
+        $this->showSuccessMessageForOL = false;
+    }
+    public function resetExamDetails()
+    {
+        $this->date = null;
+        $this->time = null;
+        $this->location_link = null;
+        $this->instructions = null;
+        $this->company_website = null;
     }
     public function submit()
     {
@@ -61,6 +178,7 @@ class JobSeekersAppliedJobs extends Component
                     'application_status' => 'Shortlisted',
                 ]);
             }
+            $this->resetExamDetails();
             $this->isOpen = false;
             $this->showSuccessMessage = true;
         } catch (QueryException $e) {
@@ -73,6 +191,12 @@ class JobSeekersAppliedJobs extends Component
     public $selectedJobseeker;
     public $examLink;
     public $showExaminationMessage = false;
+    public function resetExamLink()
+    {
+        $this->examDate = null;
+        $this->examTime = null;
+        $this->examLink = null;
+    }
     public function sendExamLink()
     {
         $this->validate([
@@ -85,6 +209,7 @@ class JobSeekersAppliedJobs extends Component
                 'exam_link' => $this->examLink,
             ]);
         }
+        $this->resetExamLink();
         $this->examPopUp = false;
 
         $this->showExaminationMessage = true;

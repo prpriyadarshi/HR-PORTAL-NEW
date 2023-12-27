@@ -85,6 +85,9 @@
             border: 1px solid #e0e0e0;
             border-radius: 5px;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-height: 500px;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
 
         /* Styles for the modal header */
@@ -250,6 +253,7 @@
             border: none;
             border-radius: 5px;
         }
+
         .logout {
             background-color: rgb(2, 17, 79);
             /* Coral color */
@@ -270,14 +274,14 @@
                 /* Darker coral color on hover */
         }
     </style>
-            <div class="container-11" style="background-color: #02134F; color: white; padding:2px;height:53px">
+    <div class="container-11" style="background-color: #02134F; color: white; padding:2px;height:53px">
 
         <div style="display: flex; align-items: start; justify-content: start;">
             <img src="{{$hrDetails->company_logo}}" alt="Logo" style="width: 200px; height: 50px; margin-right: 10px;">
             <h1 style="font-size: 20px; margin-left:25%;margin-top:10px">HR - {{$hrDetails->hr_name}}</h1>
-            
+
             <div style="margin-left:25%;">
-                <button style="margin-bottom: 10px;" class="logout" style="text-align:end" wire:click="logout"> <i class="fas fa-sign-out-alt" ></i> Logout</button>
+                <button style="margin-bottom: 10px;" class="logout" style="text-align:end" wire:click="logout"> <i class="fas fa-sign-out-alt"></i> Logout</button>
             </div>
         </div>
     </div>
@@ -292,6 +296,11 @@
     <div class="alert alert-success" id="success-message">
         Job application has been successfully shortlisted!
         <button class="close-message" wire:click="dismissMessage">×</button>
+    </div>
+    @elseif($showSuccessMessageForOL)
+    <div class="alert alert-success" id="success-message">
+        🎉 Offer letter sent successfully!
+        <button class="close-message" wire:click="dismissMessageForOL">×</button>
     </div>
     @elseif ($errors->has('duplicate'))
     <div class="alert alert-danger" id="error-message">
@@ -356,7 +365,10 @@
                         @if($appliedJob->application_status=="Rejected")
                         <button class="status" style="background-color:  #FF9999;color:white;width:90px" disabled>Reject</button>
                         @else
-                        <button wire:click="reject('{{$appliedJob->id}}')" class="status" style="background-color: red;color:white;width:90px">Reject</button>
+                        <button wire:click="reject('{{$appliedJob->id}}')" class="status" style="background-color: red;color:white;width:90px">Reject</button> <br>
+                        @if($appliedJob->application_status=="Shortlisted")
+                        <button wire:click="showOL('{{$appliedJob->id}}')" style="background-color: rgb(2, 17, 79);color:white;border:none;border-radius:5px">Offer Letter</button>
+                        @endif
                         @endif
                     </td>
 
@@ -364,13 +376,19 @@
                 @endforeach
             </tbody>
         </table>
+
+
+
+
+
+
         @if($isOpen=="true")
         <div class="modal" tabindex="-1" role="dialog" style="display: block;overflow-y:auto">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color: rgb(2, 17, 79); height: 50px">
                         <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title"><b>Add Interview Details</b></h5>
-                        <button type="button" wire:click="close">
+                        <button style="border: none;" type="button" wire:click="close">
                             <span aria-hidden="true" style="color: black;">×</span>
                         </button>
                     </div>
@@ -412,7 +430,211 @@
     </div>
     @endif
 
+    @if($ol=="true")
+    <!-- resources/views/livewire/send-email.blade.php -->
+    <div class="modal" tabindex="-1" role="dialog" style="display: block;overflow-y:auto">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: rgb(2, 17, 79); height: 50px">
+                    <h6 style="padding: 5px; color: white; font-size: 15px;" class="modal-title"><b>Offer Letter Email Automation Form</b></h6>
+                    <button class="bb" type="button" wire:click="closeOL" style="border:none">
+                        <span aria-hidden="true" style="color: black;border:none">×</span>
+                    </button>
+                </div>
+                <div>
+                    <style>
+                        .error-message{
+                            font-size: 10px;
+                        }
+                    </style>
+                    @if ($showErrorMessageForOL)
+                    <div style="font-size: 10px;" class="alert alert-danger" id="error-message">
+                        {{$errorMessageForOL}} <br>
+                        <button style="border: none;border-radius:50%" class="close" wire:click="dismissErrorMessageForOL">×</button>
+                    </div>
+                    @endif
+                    <!DOCTYPE html>
+                    <html lang="en">
 
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <style>
+
+                            .cc-label {
+                                text-align: start;
+                                font-size: 10px;
+                            }
+
+                            ::placeholder {
+                                font-size: 10px;
+                            }
+
+                            .button {
+                                background-color: rgb(1, 7, 79);
+                                color: white;
+                                border-radius: 5px;
+                                border: none;
+                                padding: 10px;
+                                cursor: pointer;
+                                width: 100%;
+                                font-size: 10px;
+
+                            }
+
+
+
+                            .cc-grid {
+                                width: 360px;
+                                display: grid;
+                                grid-template-columns: repeat(2, 1fr);
+                                gap: 3px;
+                            }
+
+                            .cc-to {
+                                border: 1px solid #ddd;
+                                background-color: rgb(1, 7, 79);
+                                color: white;
+                                padding: 10px;
+                                border-radius: 5px;
+                                margin-bottom: 5px;
+                                text-align: start;
+                                font-size: 8px;
+                            }
+
+                            .cc-to i {
+                                cursor: pointer;
+                                color: white;
+                                transition: color 0.3s ease-in-out;
+                            }
+
+                            .cc-to i:hover {
+                                color: #dc3545;
+                            }
+
+
+                            .error-message {
+                                color: red;
+                                text-align: start;
+                                font-size: 10px;
+                            }
+
+                            .button {
+                                margin-top: 10px;
+                                margin-bottom: 10px;
+                                width: 20%;
+                                border: none;
+                            }
+
+
+
+                            .generate-password {
+                                height: auto;
+                                width: auto;
+                                background-color: rgb(1, 7, 79);
+                                color: white;
+                                border-radius: 0 5px 5px 0;
+                                font-size: 10px;
+                            }
+
+                            label {
+                                display: block;
+                                text-align: start;
+                                margin-bottom: 10px;
+                                margin-top: 5px;
+                                font-size: 12px;
+                                color: rgb(1, 7, 79);
+                            }
+
+                            input {
+                                font-size: 12px;
+                            }
+
+                            .form {
+                                padding: 5px;
+                            }
+                        </style>
+                    </head>
+
+                    <body>
+                        <div class="card-start">
+                            <div class="container">
+                                <form wire:submit.prevent="sendOfferLetter">
+                                    <div class="form" style="text-align: center;">
+                                        <div class="form-group">
+                                            <label for="email">Password:</label>
+                                            <div class="input-group">
+                                                <input type="password" wire:model="password" placeholder="Password" class="form-control">
+                                                <button type="button" onclick="openInNewTab('https://myaccount.google.com/apppasswords')" class="generate-password">Generate Password</button>
+                                            </div>
+                                            @error('password') <div class="error-message">{{ $message }}</div> @enderror
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label for="cc">Cc To:</label>
+                                            <input wire:change="ccTo" type="email" wire:model="cc" placeholder="Cc To (comma-separated)" class="form-control">
+                                            @error('cc') <div class="error-message">{{ $message }}</div> @enderror
+                                        </div>
+
+                                        @if ($cc && count(explode(',', $cc)) > 0)
+                                        <div class="form-group">
+                                            <strong class="cc-label">CC addresses:</strong>
+                                            <div class="cc-grid">
+                                                @foreach (explode(',', $cc) as $ccAddress)
+                                                <div class="cc-to">
+                                                    <span>{{ $loop->iteration }}.</span>
+                                                    <span>{{ $ccAddress }}</span>
+                                                    <i class="fas fa-times-circle cancel-icon" wire:click="removeCC('{{ $ccAddress }}')"></i>
+                                                </div>
+                                                @endforeach
+                                            </div>
+
+                                        </div>
+                                        @endif
+
+
+                                        <div class="form-group">
+                                            <label for="name">Start Date:</label>
+                                            <input placeholder="Start Date" class="form-control" id="startDate" type="text" wire:model="startDate" x-data x-init="initDatepicker($refs.startDate, 'M-d-Y')" x-ref="startDate">
+                                            @error('startDate') <div class="error-message">{{ $message }}</div> @enderror
+                                        </div>
+
+
+
+                                        <div class="form-group">
+                                            <label for="name">Salary:</label>
+                                            <input type="number" wire:model="salary" placeholder="Salary per annum" class="form-control">
+                                            @error('salary') <div class="error-message">{{ $message }}</div> @enderror
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name">Pre-Inform Date:</label>
+                                            <input placeholder="Please inform before the pre-inform date" class="form-control" id="informDate" type="text" wire:model="informDate" x-data x-init="initDatepicker($refs.informDate, 'M-d-Y')" x-ref="informDate">
+                                            @error('informDate') <div class="error-message">{{ $message }}</div> @enderror
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name">Signature:</label>
+                                            <input type="text" wire:model="signature" placeholder="Signature" class="form-control">
+                                            @error('signature') <div class="error-message">{{ $message }}</div> @enderror
+                                        </div>
+
+
+                                        <button class="button" type="button" wire:click="sendOfferLetter">Send</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </body>
+
+                    </html>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @endif
 
     @if($examPopUp=="true")
     <div class="modal" tabindex="-1" role="dialog" style="display: block;overflow-y:auto">
@@ -420,7 +642,7 @@
             <div class="modal-content">
                 <div class="modal-header" style="background-color: rgb(2, 17, 79); height: 50px">
                     <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title"><b>Examination Link</b></h5>
-                    <button type="button" wire:click="closeExamPopUp">
+                    <button style="border: none;" type="button" wire:click="closeExamPopUp">
                         <span aria-hidden="true" style="color: black;">×</span>
                     </button>
                 </div>
@@ -461,7 +683,7 @@
         <div class="modal-content">
             <div class="modal-header" style="background-color: rgb(2, 17, 79); height: 50px">
                 <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title"><b>Interview Details</b></h5>
-                <button type="button" wire:click="closeInterview">
+                <button style="border: none;" type="button" wire:click="closeInterview">
                     <span aria-hidden="true" style="color: black;">×</span>
                 </button>
             </div>
@@ -496,3 +718,14 @@
 @endif
 </div>
 </div>
+<script>
+    function openInNewTab(url) {
+        window.open(url, '_blank');
+    }
+
+    function initDatepicker(el, format) {
+        flatpickr(el, {
+            dateFormat: format,
+        });
+    }
+</script>

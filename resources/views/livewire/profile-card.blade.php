@@ -3,19 +3,18 @@
     @foreach($employees as $employee)
     <div class="profile-container">
 
-        <div>
-
-            <img class="profile-image" src="{{asset($employee->image)}}">
-
-        </div>
-
-
+    <div style="margin-right: 2px;">
+        <img class="profile-image" src="{{ Storage::url($employee->image) }}" >
+      
+    </div>
 
         <div class="emp-name">
 
-            <h6 style="font-size: 12px;color:white" class="username">{{$employee->first_name}} {{$employee->last_name}}</h6>
+            <p style="font-size: 12px; color: white; max-width: 130px; word-wrap: break-word;" class="username">
+                {{$employee->first_name}} {{$employee->last_name}}
+            </p>
 
-            <a href="{{ route('profile.info') }}" class="nav-item-1" style="text-decoration: none;" onclick="changePageTitle()">View My Info</a>
+            <a href="{{ route('profile.info') }}" class="nav-item-1" style="text-decoration: none;color: #EC9B3B;font-weight:500;font-size: 11px;" onclick="changePageTitle()">View My Info</a>
 
         </div>
 
@@ -36,9 +35,10 @@
     @foreach($hrDetails as $employee)
     <div class="profile-container">
 
-        <div>
+    <div style="margin-right: 2px;">
 
-            <img class="profile-image" src="{{asset($employee->image)}}">
+        <img class="profile-image" src="{{ Storage::url($employee->image) }}" >
+
 
         </div>
 
@@ -46,7 +46,7 @@
 
         <div class="emp-name">
 
-            <h6 style="font-size: 12px;color:white" class="username">{{$employee->employee_name}}</h6>
+            <p style="font-size: 12px; color: white; max-width: 130px; word-wrap: break-word;" class="username">{{$employee->employee_name}}</p>
 
             <a href="#" class="nav-item-1" style="text-decoration: none;" onclick="changePageTitle()">View My Info</a>
 
@@ -70,9 +70,9 @@
     @foreach($itDetails as $employee)
     <div class="profile-container">
 
-        <div>
+    <div style="margin-right: 2px;">
+        <img class="profile-image" src="{{ Storage::url($employee->image) }}" >
 
-            <img class="profile-image" src="{{asset($employee->image)}}">
 
         </div>
 
@@ -80,7 +80,7 @@
 
         <div class="emp-name">
 
-            <h6 style="font-size: 12px;color:white" class="username">{{$employee->employee_name}}</h6>
+            <p style="font-size: 12px; color: white; max-width: 130px; word-wrap: break-word;" class="username">{{$employee->employee_name}}</p>
 
             <a href="#" class="nav-item-1" style="text-decoration: none;" onclick="changePageTitle()">View My Info</a>
 
@@ -104,9 +104,10 @@
     @foreach($financeDetails as $employee)
     <div class="profile-container">
 
-        <div>
+        <div style="margin-right: 2px;">
 
-            <img class="profile-image" src="{{asset($employee->image)}}">
+        <img class="profile-image" src="{{ Storage::url($employee->image) }}" >
+
 
         </div>
 
@@ -114,7 +115,7 @@
 
         <div class="emp-name">
 
-            <h6 style="font-size: 12px;color:white" class="username">{{$employee->employee_name}}</h6>
+            <p style="font-size: 12px; color: white; max-width: 130px; word-wrap: break-word;" class="username">{{$employee->employee_name}}</p>
 
             <a href="#" class="nav-item-1" style="text-decoration: none;" onclick="changePageTitle()">View My Info</a>
 
