@@ -30,9 +30,11 @@ class LeaveCalender extends Component
     public function generateCalendar()
     {
         $firstDay = Carbon::create($this->year, $this->month, 1);
+        
         $daysInMonth = $firstDay->daysInMonth;
+       
         $today = now();
-
+      
         $calendar = [];
         $dayCount = 1;
         $publicHolidays = $this->getPublicHolidaysForMonth($this->year, $this->month);
@@ -66,7 +68,9 @@ class LeaveCalender extends Component
         }
 
         $this->calendar = $calendar;
+        dd($this->calendar);
     }
+   
     protected function getPublicHolidaysForMonth($year, $month)
 {
     return HolidayCalendar::whereYear('date', $year)

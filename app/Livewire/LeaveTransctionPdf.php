@@ -16,7 +16,7 @@ class LeaveTransctionPdf extends Component
 
     public function generatePdf()
     {
-        dd("Generate PDF method called");
+        
         // Fetch data based on selected criteria
         $this->leaveTransactions = LeaveRequest::where('emp_id', $this->employeeId)
             ->where('status', $this->status)

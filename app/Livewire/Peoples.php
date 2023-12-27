@@ -28,7 +28,7 @@ class Peoples extends Component
 
     public function starredPersonById($id)
     {
-        $this->selectStarredPeoples = StarredPeople::where('id', $id)->first();
+        $this->selectStarredPeoples = StarredPeople::with('emp')->where('id', $id)->first();
     }
 
 
@@ -133,7 +133,7 @@ class Peoples extends Component
 
         $employeeId = auth()->guard('emp')->user()->emp_id;
 
-        $this->starredList = StarredPeople::where('emp_id', $employeeId)->orderBy('created_at', 'desc')->get();
+        $this->starredList = StarredPeople::with('emp')->where('emp_id', $employeeId)->orderBy('created_at', 'desc')->get();
 
         $peopleData = $this->filteredPeoples ?: $this->peoples;
         $this->starredPeoples = $this->filteredStarredPeoples ?: $this->starredList;

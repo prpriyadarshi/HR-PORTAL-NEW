@@ -245,16 +245,57 @@
             color: #0077b6;
             /* You can choose your preferred color */
         }
+        .logout {
+                background-color: rgb(2, 17, 79);
+                /* Coral color */
+                color: #fff;
+                border: none;
+                padding: 10px 15px;
+                margin-top: 15px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                border: 1px solid white;
+                border-radius: 5px;
+                font-size: 12px;
+            }
+
+            .logout:hover {
+                background-color: #fff ;
+                color:black
+                /* Darker coral color on hover */
+            }
+            .logout {
+            background-color: rgb(2, 17, 79);
+            /* Coral color */
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border: 1px solid white;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+
+        .logout:hover {
+            background-color: #fff;
+            color: black
+                /* Darker coral color on hover */
+        }
+
     </style>
-    <div class="container" style="background-color: #02134F; color: white; padding: 8px;">
+    <div class="container-11" style="background-color: #02134F; color: white; padding:2px;height:53px">
+
         <div style="display: flex; align-items: start; justify-content: start;">
-            <img src="{{ asset('storage/' . $user->company_logo) }}" alt="Logo" style="width: 200px; height: 50px; margin-right: 10px;border:1px solid white">
+        <img src="https://xsilica.com/images/xsilica_broucher_final_modified_05082016-2.png" alt="Logo" style="height: 50px; margin-right: 10px;">
+
             <h1 style="font-size: 20px; margin-left:23%">Vendor - {{$user->full_name}}</h1>
+            <div style="margin-left:25%;">
+                <button style="margin-bottom: 10px;" class="logout" style="text-align:end" wire:click="logout"> <i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
         </div>
 
-    </div>
-    <div class="back-button">
-        <a wire:click="logout"><i class="fas fa-sign-out-alt" style="margin-right: 5px;"></i> Logout</a>
     </div>
     <div class="container">
         <h2 style="text-align: center;

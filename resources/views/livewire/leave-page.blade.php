@@ -73,24 +73,23 @@
             border: 0.0625rem solid #DCDCDC;
         }
 
-        .active .accordion-button {
-            color: #3a9efd;
-            border: 0.0625rem solid #3a9efd;
-            /* Blue arrow when active */
-        }
-
-        .side {
-            display: flex;
-            font-size: 0.875rem;
-            flex-direction: row;
-            /* Change from 'row' to 'column' */
-            width: 55%;
-            padding: 5px;
-            border-radius: 5px;
-            justify-content: space-between;
-            margin-left: 100px;
-            margin-top: 15px;
-        }
+       .active .accordion-button {
+           color: #3a9efd;
+           border: 0.0625rem solid #3a9efd;
+        /* Blue arrow when active */
+       }
+       .side {
+        display: flex;
+        font-size: 0.875rem;
+        flex-direction: row; /* Change from 'row' to 'column' */
+        width: 55%;
+        padding: 5px;
+        border-radius: 5px;
+        justify-content: space-between;
+        margin-left: 100px;
+        margin-top: 15px;
+        cursor:pointer;
+    }
 
 
         .side a {
@@ -205,11 +204,11 @@
 
         </div>
 
-
-        <div class="row" id="leave" style="width:85%; margin-top:20px;display: none; margin-left:100px;">
-
-            <div>@livewire('leave-apply')</div>
-        </div>
+ 
+            <div class="row" id="leave" style="width:85%; margin-top:20px; margin-left:100px;">
+        
+               <div>@livewire('leave-apply')</div>
+            </div>
 
         <div class="row" id="restricted" style="width:80%;margin-top:20px;display: none; margin-left:100px;">
             <div>
@@ -596,8 +595,12 @@
         if (sectionId === 'accountDetails' || sectionId === 'familyDetails') {
             sideContainer.style.display = 'none';
         } else {
-            sideContainer.style.display = 'block';
+            sideContainer.style.display = 'flex';
+            sideContainer.style.flexDirection = 'row'
+            toggleOptions('leave', document.querySelector('.side a[data-section="leave"]'));
         }
+      
+
     }
 
 
@@ -620,9 +623,16 @@
 
         }
     }
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the default link for 'leave'
+    const defaultLink = document.querySelector('.side a[data-section="leave"]');
+    
+    // Call toggleOptions with 'leave' and the default link
+    toggleOptions('leave', defaultLink);
+});
 
-    function toggleOptions(sectionId, clickedLink) {
-        const tabs = ['leave', 'restricted', 'leaveCancel', 'compOff'];
+function toggleOptions(sectionId, clickedLink) {
+    const tabs = ['leave', 'restricted', 'leaveCancel', 'compOff'];
 
         const links = document.querySelectorAll('.side a');
         links.forEach(link => link.classList.remove('active'));
@@ -638,11 +648,15 @@
             }
         });
 
-        // Hide the content of other containers
-        const otherContainers = ['accountDetails', 'familyDetails'];
-        otherContainers.forEach(container => {
-            const containerElement = document.getElementById(container);
-            containerElement.style.display = 'none';
-        });
-    }
+    // Hide the content of other containers
+    const otherContainers = ['accountDetails', 'familyDetails'];
+    otherContainers.forEach(container => {
+        const containerElement = document.getElementById(container);
+        containerElement.style.display = 'none';
+    });
+}
+
+
+
+
 </script>

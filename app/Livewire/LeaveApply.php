@@ -98,9 +98,17 @@ class LeaveApply extends Component
             )
             ->get();
     }
-   
-    public function leaveApply(){
-         
+    public function filterCcData()
+    {
+        dd('fghjkl');
+        $this->searchCCRecipients();
+    }
+    public function filterData()
+    {
+        $this->searchEmployees();
+    }
+        
+    public function leaveApply(){    
         $this->validate([
             'leave_type' => 'required',
             'from_date' => 'required|date',
@@ -126,7 +134,7 @@ class LeaveApply extends Component
 
         $employeeId = auth()->guard('emp')->user()->emp_id;
         $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
-     
+      
         $ccToDetails = [];
         foreach ($this->selectedPeople as $selectedEmployeeId) {
             // Fetch additional details from EmployeeDetails table
@@ -177,7 +185,11 @@ class LeaveApply extends Component
 
     public function render()
     {
-        return view('livewire.leave-apply');
+        $employeeId = auth()->guard('emp')->user()->emp_id;
+        $this->employeeGender = EmployeeDetails::where('emp_id', $employeeId)->select('gender')->first();
+        return view('livewire.leave-apply',[
+           'employeeGender' => $this->employeeGender
+        ]);
     }
 
  

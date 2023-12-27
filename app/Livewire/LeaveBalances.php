@@ -9,6 +9,7 @@ use App\Models\EmployeeDetails;
 use App\Models\LeaveRequest;
 use PDF;
 
+
 class LeaveBalances extends Component
 {
     public $employeeDetails;
@@ -27,11 +28,12 @@ class LeaveBalances extends Component
     public $toDateModal;
     public $leaveType;
     public $transactionType;
-    public $sortBy;
     public $consumedSickLeaves;
     public $consumedCasualLeaves;
     public $consumedLossOfPayLeaves;
-
+  
+    public $sortBy = 'oldest_first'; 
+    
 
     public function mount()
     {
@@ -76,52 +78,29 @@ class LeaveBalances extends Component
     protected function getSickLeaveColor($percentage)
     {
         return '#0ea8fc';
-    }
-    public function sortBy($option)
-    {
-        $this->sortBy = $option;
-
-        // Re-run the query based on the selected sorting option
-        $this->fetchLeaveTransactions();
-    }
-
-    public function fetchLeaveTransactions()
-    {
-        $employeeId = auth()->guard('emp')->user()->emp_id;
-
-        $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
-        $query = LeaveRequest::join('employee_details', 'leave_applies.emp_id', '=', 'employee_details.emp_id')
+    }    
+    public function checkSortBy()
+{
+    dd('xdcfvgbhnj');
+    $employeeId = auth()->guard('emp')->user()->emp_id;
+    $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
+    $query = LeaveRequest::join('employee_details', 'leave_applies.emp_id', '=', 'employee_details.emp_id')
             ->select('leave_applies.*', 'employee_details.*', 'leave_applies.created_at as leave_created_at')
             ->where('leave_applies.emp_id', $employeeId);
-
-        // Apply sorting based on selected option
-        switch ($this->sortBy) {
-            case 'leave_type':
-                $query->orderBy('leave_applies.leave_type');
-                break;
-            case 'transaction_type':
-                $query->orderBy('leave_applies.status');
-                break;
-            case 'oldest_first':
-                $query->orderBy('leave_created_at');
-                break;
-            default:
-                $query->orderByDesc('leave_created_at');
-        }
-
+            // Add sorting logic based on the selected option
+            if ($this->sortBy == 'oldest_first') {
+                $query->orderBy('leave_created_at', 'asc');
+            } else{
+                $query->orderBy('leave_created_at', 'desc');
+            }
         $this->leaveTransactions = $query->get();
-    }
-
-
+}
+    
     public function render()
     {
         $employeeId = auth()->guard('emp')->user()->emp_id;
-        $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
 
-        $query = LeaveRequest::join('employee_details', 'leave_applies.emp_id', '=', 'employee_details.emp_id')
-            ->select('leave_applies.*', 'employee_details.*', 'leave_applies.created_at as leave_created_at')
-            ->where('leave_applies.emp_id', $employeeId);
-        $this->leaveTransactions = $query->get();
+        $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
 
         $percentageCasual = ($this->consumedCasualLeaves / $this->casualLeavePerYear) * 100;
         $percentageSick = ($this->consumedSickLeaves / $this->sickLeavePerYear) * 100;
@@ -147,8 +126,8 @@ class LeaveBalances extends Component
     public static function getLeaveBalances($employeeId)
     {
         $employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->first();
-
-
+        
+    
         if (!$employeeDetails) {
             return null;
         }
@@ -171,9 +150,10 @@ class LeaveBalances extends Component
         ];
     }
     public  function calculateNumberOfDays($fromDate, $fromSession, $toDate, $toSession)
+
     {
         try {
-
+        
             $startDate = Carbon::parse($fromDate);
             $endDate = Carbon::parse($toDate);
             // Check if the start and end sessions are different on the same day
@@ -188,11 +168,11 @@ class LeaveBalances extends Component
             }
             // Check if the start and end sessions are different on the same day
             if (
-
+                
                 $startDate->isSameDay($endDate) &&
                 $this->getSessionNumber($fromSession) === $this->getSessionNumber($toSession)
             ) {
-
+              
                 // Inner condition to check if both start and end dates are weekdays
                 if (!$startDate->isWeekend() && !$endDate->isWeekend()) {
                     return 0.5;
@@ -205,7 +185,7 @@ class LeaveBalances extends Component
                 $startDate->isSameDay($endDate) &&
                 $this->getSessionNumber($fromSession) !== $this->getSessionNumber($toSession)
             ) {
-
+                
                 // Inner condition to check if both start and end dates are weekdays
                 if (!$startDate->isWeekend() && !$endDate->isWeekend()) {
                     return 1;
@@ -239,15 +219,18 @@ class LeaveBalances extends Component
                 if ($this->getSessionNumber($fromSession) !== 1) {
                     $totalDays += 0.5; // Add half a day
                 }
-            } elseif ($this->getSessionNumber($fromSession) !== $this->getSessionNumber($toSession)) {
+            }elseif($this->getSessionNumber($fromSession) !== $this->getSessionNumber($toSession)){
                 if ($this->getSessionNumber($fromSession) !== 1) {
                     $totalDays += 1; // Add half a day
                 }
-            } else {
+            }
+            else {
                 $totalDays += ($this->getSessionNumber($toSession) - $this->getSessionNumber($fromSession) + 1) * 0.5;
             }
 
             return $totalDays;
+            
+
         } catch (\Exception $e) {
             return 'Error: ' . $e->getMessage();
         }
@@ -258,4 +241,7 @@ class LeaveBalances extends Component
         // You might need to customize this based on your actual session values
         return (int) str_replace('Session ', '', $session);
     }
-}
+  
+    }
+
+

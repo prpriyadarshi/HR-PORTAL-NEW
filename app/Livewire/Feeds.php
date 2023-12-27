@@ -23,12 +23,7 @@ class Feeds extends Component
     }
 
     public $peoples;
-    public function render()
-    {
-        $companyId = Auth::user()->company_id;
-        $this->peoples = EmployeeDetails::where('company_id', $companyId)->get();
-        return view('livewire.feeds');
-    }
+ 
     private function combineAndSortData($employees)
     {
 
@@ -83,4 +78,11 @@ class Feeds extends Component
 
         return $combinedData;
     }
+    public function render()
+    {
+        $companyId = Auth::user()->company_id;
+        $this->peoples = EmployeeDetails::where('company_id', $companyId)->get();
+        return view('livewire.feeds');
+    }
+    
 }

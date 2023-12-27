@@ -191,19 +191,16 @@
            <div class="data">
            <p><span style="color: #333; font-weight: 500; font-size:1rem;">Details</span></p>
           
-            <p style=" font-size: 0.90rem; margin-right:60px;"><span style="color: #778899; font-size: 0.875rem; font-weight: 400;padding-right: 58px;">Date</span>27-11-2023</p>
+            <p style=" font-size: 0.90rem; margin-right:60px;"><span style="color: #778899; font-size: 0.875rem; font-weight: 400;padding-right: 58px;">Date</span>{{\Carbon\Carbon::parse($regularisationrequest->regularisation_date)->format('d-m-Y') }}</p>
            
              <div style="display:flex; flex-direction:row; justify-content:space-between;">
              <span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 88px;">Approve/Reject</span>
-             <p>PENDING</p>
+             <p style="text-transform:uppercase;">{{$regularisationrequest->status}} </p>
         
              </div>
             <p style="margin-top:10px;"><span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 82px;">Approver Remarks</span>-</p>
          
-                <p style="font-size: 0.975rem; font-weight: 500;">
-                    <span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 90px;">CC to</span>
-                    
-                </p>
+               
           
 
            </div>
@@ -224,12 +221,12 @@
       
                         Pending <br><span style="color: #778899; font-size: 0.825rem; font-weight: 400; text-align:start;">with</span> 
                         <span style="color: #778899; font-weight: 500; text-transform: uppercase;">
-                           pranita priyadarshi
+                           {{$regularisationrequest->employee->first_name}}  {{$regularisationrequest->employee->last_name}}
                         </span>
                   
                     <br>
                     <span style="color: #778899; font-size: 0.725rem; font-weight: 400;text-align:start;">
-                        26-11-2023
+                          {{ \Carbon\Carbon::parse($today)->format('d M, Y, h:iA') }}
                     </span>
                 </h5>
             </div>
@@ -238,7 +235,7 @@
            <div class="group">
                <div >
                   <h5 style="color: #333; font-size: 0.825rem; font-weight: 400; text-align:start;">Submitted<br>
-                <span style="color: #778899; font-size: 0.725rem; font-weight: 400;text-align:start;">26-11-2023</span>
+                <span style="color: #778899; font-size: 0.725rem; font-weight: 400;text-align:start;">{{ \Carbon\Carbon::parse($today)->format('d M, Y, h:iA') }}</span>
                     </h5>
                </div>
            </div>

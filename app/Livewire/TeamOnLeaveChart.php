@@ -2,9 +2,9 @@
 
 namespace App\Livewire;
 
-use App\Models\LeaveRequest;
-use Illuminate\Support\Carbon;
 use Livewire\Component;
+use App\Models\LeaveRequest;
+use Carbon\Carbon;
 
 class TeamOnLeaveChart extends Component
 {
@@ -23,9 +23,9 @@ class TeamOnLeaveChart extends Component
         } elseif ($this->duration === 'this_month') {
             $this->leaveApplications = $this->fetchThisMonthLeaveApplications();
         }
-
+      
         $chartData = $this->prepareChartData($this->leaveApplications);
-
+        
         $this->chartData = [
             'labels' => $chartData['labels'],
             'datasets' => $chartData['datasets'],
@@ -38,7 +38,7 @@ class TeamOnLeaveChart extends Component
                     'display' => true,
                     'title' => [
                         'display' => true,
-
+                        
                     ],
                     'ticks' => [
                         'align' => 'center',
@@ -69,8 +69,8 @@ class TeamOnLeaveChart extends Component
                 ],
             ],
         ];
-
-
+        
+      
         return view('livewire.team-on-leave-chart', [
             'leaveApplications' => $this->leaveApplications,
             'chartData' => $this->chartData,
@@ -89,7 +89,7 @@ class TeamOnLeaveChart extends Component
             'datasets' => [],
             'barThickness' => 10,
         ];
-
+    
         // Generate labels based on the selected duration
         if ($this->duration === 'today') {
             $chartData['labels'][] = Carbon::now()->format('M d');
@@ -99,45 +99,45 @@ class TeamOnLeaveChart extends Component
                 return $fromDate->format('M d');
             }, range(1, Carbon::now()->endOfMonth()->day));
         }
-
+    
         foreach ($leaveApplications as $leaveApplication) {
             $fromDate = Carbon::parse($leaveApplication->from_date);
             $toDate = Carbon::parse($leaveApplication->to_date);
-
+    
             $leaveType = $leaveApplication->leave_type;
-
+    
             while ($fromDate->lte($toDate)) {
                 // Check if the day is in the current month
                 if ($fromDate->month == Carbon::now()->month) {
                     $day = $fromDate->format('M d');
-
+    
                     // Ensure there is an entry for the leave type
                     if (!isset($chartData['datasets'][$leaveType])) {
                         $chartData['datasets'][$leaveType] = [];
                     }
-
+    
                     // Set the value for the leave type on the specific day
                     $chartData['datasets'][$leaveType][$day] = isset($chartData['datasets'][$leaveType][$day])
                         ? $chartData['datasets'][$leaveType][$day] + $this->calculateNumberOfDays($fromDate->toDateString(), $leaveApplication->from_session, $fromDate->toDateString(), $leaveApplication->to_session)
                         : $this->calculateNumberOfDays($fromDate->toDateString(), $leaveApplication->from_session, $fromDate->toDateString(), $leaveApplication->to_session);
                 }
-
+    
                 $fromDate->addDay();
             }
         }
-
+    
         // Fill in missing days with zero values for each leave type
         foreach ($chartData['datasets'] as &$leaveTypeData) {
             $leaveTypeData = array_replace(array_fill_keys($chartData['labels'], 0), $leaveTypeData);
         }
-
+    
         return $chartData;
     }
-
+    
     private function fetchTodayLeaveApplications()
     {
         $employeeId = auth()->guard('emp')->user()->emp_id;
-
+    
         return LeaveRequest::where('status', 'approved')
             ->where(function ($query) use ($employeeId) {
                 $query->whereJsonContains('applying_to', [['manager_id' => $employeeId]])
@@ -148,32 +148,32 @@ class TeamOnLeaveChart extends Component
             ->orderBy('created_at', 'desc')
             ->get(['leave_applies.*', 'employee_details.image', 'employee_details.first_name', 'employee_details.last_name']);
         // Add a null check before returning the data
-
+        
     }
-
-
+    
+    
     public function updateDuration($value)
     {
         $this->duration = $value;
-
+    
         logger("Selected Duration: $value"); // Add this line for logging
-
+    
         // Fetch data based on the selected duration
         if ($this->duration === 'today') {
             $this->leaveApplications = $this->fetchTodayLeaveApplications();
         } elseif ($this->duration === 'this_month') {
             $this->leaveApplications = $this->fetchThisMonthLeaveApplications();
         }
-
+    
         // Rest of the code remains unchanged...
     }
-
+    
 
     private function fetchThisMonthLeaveApplications()
     {
         $employeeId = auth()->guard('emp')->user()->emp_id;
 
-        return LeaveRequest::where('status', 'approved')
+        return LeaveRequest::where('leave_applies.status', 'approved')
             ->where(function ($query) use ($employeeId) {
                 $query->whereJsonContains('applying_to', [['manager_id' => $employeeId]])
                     ->orWhereJsonContains('cc_to', [['emp_id' => $employeeId]]);
@@ -183,11 +183,11 @@ class TeamOnLeaveChart extends Component
             ->orderBy('created_at', 'desc')
             ->get(['leave_applies.*', 'employee_details.image', 'employee_details.first_name', 'employee_details.last_name']);
     }
-
+    
     public  function calculateNumberOfDays($fromDate, $fromSession, $toDate, $toSession)
     {
         try {
-
+        
             $startDate = Carbon::parse($fromDate);
             $endDate = Carbon::parse($toDate);
             // Check if the start and end sessions are different on the same day
@@ -202,11 +202,11 @@ class TeamOnLeaveChart extends Component
             }
             // Check if the start and end sessions are different on the same day
             if (
-
+                
                 $startDate->isSameDay($endDate) &&
                 $this->getSessionNumber($fromSession) === $this->getSessionNumber($toSession)
             ) {
-
+              
                 // Inner condition to check if both start and end dates are weekdays
                 if (!$startDate->isWeekend() && !$endDate->isWeekend()) {
                     return 0.5;
@@ -219,7 +219,7 @@ class TeamOnLeaveChart extends Component
                 $startDate->isSameDay($endDate) &&
                 $this->getSessionNumber($fromSession) !== $this->getSessionNumber($toSession)
             ) {
-
+                
                 // Inner condition to check if both start and end dates are weekdays
                 if (!$startDate->isWeekend() && !$endDate->isWeekend()) {
                     return 1;
@@ -253,15 +253,18 @@ class TeamOnLeaveChart extends Component
                 if ($this->getSessionNumber($fromSession) !== 1) {
                     $totalDays += 0.5; // Add half a day
                 }
-            } elseif ($this->getSessionNumber($fromSession) !== $this->getSessionNumber($toSession)) {
+            }elseif($this->getSessionNumber($fromSession) !== $this->getSessionNumber($toSession)){
                 if ($this->getSessionNumber($fromSession) !== 1) {
                     $totalDays += 1; // Add half a day
                 }
-            } else {
+            }
+            else {
                 $totalDays += ($this->getSessionNumber($toSession) - $this->getSessionNumber($fromSession) + 1) * 0.5;
             }
 
             return $totalDays;
+            
+
         } catch (\Exception $e) {
             return 'Error: ' . $e->getMessage();
         }

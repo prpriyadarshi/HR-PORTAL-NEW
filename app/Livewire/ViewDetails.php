@@ -10,6 +10,7 @@ use Livewire\Component;
 use App\Helpers\LeaveHelper; 
 use Carbon\Carbon;
 use App\Livewire\LeavePage; 
+use App\Livewire\LeaveBalances; 
 
 class ViewDetails extends Component
 {
@@ -25,10 +26,15 @@ class ViewDetails extends Component
     {
         // Fetch leave request details based on $leaveRequestId with employee details
         $this->leaveRequest = LeaveRequest::with('employee')->find($leaveRequestId);
+      
+        // Call the getLeaveBalances function to get leave balances
+      
+        $this->leaveRequest->leaveBalances = LeaveBalances::getLeaveBalances( $this->leaveRequest->emp_id);
         $this->firstName = $this->leaveRequest->employee->first_name . ' ' . $this->leaveRequest->employee->last_name;
         $this->leaveRequest->from_date = Carbon::parse($this->leaveRequest->from_date);
         $this->leaveRequest->to_date = Carbon::parse($this->leaveRequest->to_date);
     }
+    
     
     public  function calculateNumberOfDays($fromDate, $fromSession, $toDate, $toSession)
     {
@@ -124,9 +130,7 @@ class ViewDetails extends Component
 
     public function render()
     {
-        $employeeId = auth()->guard('emp')->user()->emp_id; 
-        // Call the getLeaveBalances function to get leave balances
-        $leaveBalances = LeaveBalances::getLeaveBalances($employeeId);
+       
         
         try {
                 // Attempt to decode applying_to
@@ -143,9 +147,7 @@ class ViewDetails extends Component
           
         // Pass the leaveRequest data and leaveBalances to the Blade view
         return view('livewire.view-details', [
-             'leaveRequest' => $this->leaveRequest,
-             'leaveBalances' => $leaveBalances,
-             
+             'leaveRequest' => $this->leaveRequest,             
         ]);
        
     }  
