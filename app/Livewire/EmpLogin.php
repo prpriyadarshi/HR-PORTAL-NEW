@@ -43,6 +43,7 @@ class EmpLogin extends Component
     public function empLogin()
     {
 
+<<<<<<< HEAD
         try {
             $this->validate([
                 "form.emp_id" => 'required',
@@ -71,6 +72,14 @@ class EmpLogin extends Component
         } catch (\Exception $e) {
             // Debugging
             $this->error = "ID / Mail or Password Wrong!!";
+=======
+            // Store emp_id in the session
+            Session::put('emp_id', $emp_id);
+            session()->flash('Success', 'You are logged in successfully!');
+            return redirect()->route('home');
+        } else {
+            $this->error = "Employee ID or Password Wrong!!";
+>>>>>>> 59008e206d7a7b3bf864bd8e12e526db59d06967
         }
     }
 

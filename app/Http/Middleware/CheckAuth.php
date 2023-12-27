@@ -5,8 +5,14 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+=======
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+>>>>>>> 59008e206d7a7b3bf864bd8e12e526db59d06967
 
 class CheckAuth
 {
@@ -19,6 +25,7 @@ class CheckAuth
   {
     // Check if the user is an employee
     if (auth()->guard('emp')->check()) {
+<<<<<<< HEAD
       // Check if the session has expired
       if (Session::has('lastActivityTime')) {
         $maxSessionLifetime = config('session.lifetime');
@@ -41,6 +48,15 @@ class CheckAuth
       Session::put('emp_id', $emp_id);
       Session::put('user_type', 'emp');
 
+=======
+    //   session(['user_type' => 'emp']);
+      $emp_id = Auth::guard('emp')->user()->emp_id;
+      Session::put('emp_id', $emp_id);
+      $user = auth('emp')->user();
+      $sessionTimeout = $user->role === 'admin' ? 60 : 10; // Example: Admins get a 60-minute timeout, others get a 10-minute timeout.
+    //   Log::info("Session Timeout: $sessionTimeout minutes");
+    //   config(['session.lifetime' => $sessionTimeout]);
+>>>>>>> 59008e206d7a7b3bf864bd8e12e526db59d06967
       return redirect(route('profile.info'));
     } elseif (auth()->user() && auth()->check()) {
       return redirect('/Jobs');
@@ -57,10 +73,18 @@ class CheckAuth
       return redirect('/itPage');
     } else {
       session(['user_type' => 'guest']);
+      Log::info('Session has timed out');
+     // return redirect('/emplogin');
+    //  return redirect(route('emplogin'));
+      return $next($request);
     }
 
+<<<<<<< HEAD
     // Handle other user types and session expiration logic if needed
 
     return $next($request);
+=======
+    //
+>>>>>>> 59008e206d7a7b3bf864bd8e12e526db59d06967
   }
 }
