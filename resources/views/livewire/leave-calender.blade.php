@@ -193,7 +193,7 @@
           border:1px solid #007bff;
         }
  
-        /* Styles for the dropdown */
+
   
  
         /* Styles for dropdown items */
@@ -230,10 +230,10 @@
         }
  
         .search-input input[type="text"] {
-            padding: 5px;
+            padding: 3px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            width: 200px; /* Adjust width as needed */
+            width: 250px; /* Adjust width as needed */
         }
  
         /* Styles for the search icon */
@@ -341,12 +341,86 @@
         left: 50%; /* Position the circle at 50% from the left */
         transform: translate(-50%, -50%); /* Move the circle to the center */
     }
+    .active-date {
+        background-color: #ecf7fe; /* Active and hover background color */
+        cursor: pointer;
+        border-color:1px solid  blue;
+    }
 
+    .sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0; /* Position the sidebar to the right */
+  background-color: #111;
+  overflow-x: hidden;
+  transition: width 0.5s;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  left: 25px; /* Adjust the close button position */
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  z-index: 2;
+  right: 10px;
+  top: 10px;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
        
     </style>
 </head>
 <body>
     <div class="container-leave" >
+    <div class="sidebar" style="width: {{ $showDialog ? '250px' : '0' }}">
+  <a href="javascript:void(0)" class="closebtn" wire:click="close">×</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+
     <div class="button-container" >
         <!-- Dropdown for filter selection -->
         <div class="filter-container">
@@ -390,16 +464,17 @@
                             @foreach ($calendar as $week)
                                 <tr>
                                     @foreach ($week as $day)
-                                        <td>
-                                            @if ($day)
-                                                @php
+                                    @php
                                                     $carbonDate = \Carbon\Carbon::createFromDate($year, $month, $day['day']);
                                                     $isCurrentMonth = $day['isCurrentMonth'];
                                                     $isWeekend = in_array($carbonDate->dayOfWeek, [0, 6]); // 0 for Sunday, 6 for Saturday
+                                                    $isActiveDate = ($selectedDate === $carbonDate->toDateString());
                                                 @endphp
-
-                                                <div wire:click="dateClicked($event.target.textContent)" class="calendar-date" data-date="{{ $day['day'] }}"
+                                        <td wire:click="dateClicked($event.target.textContent)" class="calendar-date{{ $selectedDate === $day['day'] ? ' active-date' : '' }}" data-date="{{ $day['day'] }}"
                                                     style="color: {{ $isCurrentMonth ? ($isWeekend ? '#c5cdd4' : 'black') : '#c5cdd4' }};">
+                                                
+                                            @if ($day)
+                                                <div >
                                                     @if ($day['isToday'])
                                                         <div style="background-color: #007bff; color: white; border-radius: 50%; width: 24px; height: 24px; text-align: center; line-height: 24px; ">
                                                             {{ str_pad($day['day'], 2, '0', STR_PAD_LEFT) }}
@@ -433,7 +508,7 @@
 
                     </div>
 
-                 <div class="tol-calendar-legend mt-1 mb-2">
+                 <div class="tol-calendar-legend mt-1 mb-3">
                         <div>
                             Team on Leave
                             <span class="legend-circle" style="background: #ccc; font-size: 0.75rem;">
@@ -475,20 +550,28 @@
                            <div class="search-container" >
                                 <div class="form-group"  >
                                     <div class="search-input"  >
-                                        <input type="text" placeholder="Search Employee" class="search-text" >
-                                        <div class="search-icon">
-                                        <i class="fa fa-search" aria-hidden="true"  ></i>
+                                        <div class="search-cont">
+                                                <input wire:model.debounce.500ms="searchTerm" type="text" placeholder="Search Employee">
+                                               <!-- Search button -->
+                                                <button wire:click="searchData">Search</button>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             <div class="filter-container1" >
-                                <div class="filter-group" style="margin-top:0px">
-                                    <i class="fa-icon fas fa-filter"></i> <!-- Font Awesome filter icon -->
-                                    <gt-filter-group>
-                                        <!-- Add more content as needed -->
-                                    </gt-filter-group>
+                                <div id="main" style="margin-left: {{ $showDialog ? '250px' : '0' }}">
+                                    <button class="openbtn" wire:click="open">
+                                        <div class="filter-group"   style="margin-top:0px">
+                                            <i class="fa-icon fas fa-filter"></i> <!-- Font Awesome filter icon -->
+                                            <gt-filter-group>
+                                                <!-- Add more content as needed -->
+                                            </gt-filter-group>
+                                        </div>
+
+                                    </button>  
                                 </div>
+                                
                             </div>
                         </div>
                 
@@ -504,7 +587,7 @@
                         </div>
                     </div>
                      <div class="accordion-body">
-                       <div class="col-md-12 scroll-tabel" style="overflow-y:auto;max-height:320px; min-height:300px;padding:0;">
+                       <div class="col-md-12 scroll-tabel" style="overflow-y:auto;max-height:320px; min-height:280px;padding:0;">
                         <table class="leave-table" style="width: 100%; border-collapse: collapse; ;overflow: auto;">
                             <thead style="background-color: #ecf7fc; text-align:start;  width:100%;">
                                 <tr>
@@ -514,6 +597,13 @@
                                 </tr>
                             </thead>
                             <tbody >
+                            @if (empty($this->leaveTransactions))
+                            <tr>
+                                <td colspan="3">
+                                    <p>No data found</p>
+                                </td>
+                            </tr>`
+                            @else
                             @if (!empty($selectedDate))
                                 @forelse($this->leaveTransactions as $transaction)
                                     <tr style="border-bottom: 1px solid #ccc; font-size:0.725rem;text-align:start;">
@@ -539,6 +629,7 @@
                                             @endif
                                         </td>
                                     </tr>
+                                  
                                 @empty
                                     <tr>
                                         <td colspan="3">
@@ -548,7 +639,9 @@
                                             </div>
                                         </td>
                                     </tr>
+                                  
                                 @endforelse
+                              
                                 @else
                                     <tr>
                                         <td colspan="3">
@@ -558,6 +651,7 @@
                                             </div>
                                         </td>
                                     </tr>
+                                 @endif
                                  @endif
                                </tbody>
                           </table>

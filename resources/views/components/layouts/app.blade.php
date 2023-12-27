@@ -636,19 +636,26 @@
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;">
-                                        <a class="nav-link" href="/team-on-attendance-chart" onclick="return changePageTitle6('team-on-attendance');">
+                                        <a class="nav-link" href="/team-on-attendance-chart"  style="padding-top:5px;padding-right:15px;padding-left:15px;padding-bottom:1px;"onclick="return changePageTitle6('team-on-attendance');">
                                               @livewire('team-on-attendance')
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;">
-                                        <a class="nav-link" href="/whoisinchart" onclick="return changePageTitle6('who-is-in');">
+                                        <a class="nav-link" href="/whoisinchart" style="padding-top:5px;padding-right:15px;padding-left:15px;padding-bottom:1px;" onclick="return changePageTitle6('who-is-in');">
                                               @livewire('whoisin')
                                         </a>
                                     </li>
+                                    <li class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/employee-swipes-data"  style="padding-top:5px;padding-right:15px;padding-left:15px;padding-bottom:1px;" onclick="return changePageTitle6('who-is-in');">
+                                              @livewire('employee-swipes')
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/attendance-muster-data"  style="padding-top:5px;padding-right:15px;padding-left:15px;padding-bottom:1px;" onclick="return changePageTitle6('who-is-in');">
+                                              @livewire('attendance-muster')
+                                        </a>
+                                    </li>
                                     
-                                   
-                                   
-
                                 </ul>
                             </div>
                         </li>
