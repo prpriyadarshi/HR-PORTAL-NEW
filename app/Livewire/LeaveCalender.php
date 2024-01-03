@@ -23,6 +23,10 @@ class LeaveCalender extends Component
     public $leaveTransactions = [];
     public $searchTerm = '';
     public $showDialog = false;
+    public $showLocations = false;
+    public $showDepartment = false;
+    public $selectedLocations = [];
+    public $selectedDepartments = [];
 
 
     public function open()
@@ -34,24 +38,106 @@ class LeaveCalender extends Component
     {
         $this->showDialog = false;
     }
-
-    // Other properties and methods...
-    public function filterBy($criteria)
+    public function openLocations()
     {
-        $this->filterCriteria = $criteria;
-        // Reload leave transactions for the selected date
-        $this->loadLeaveTransactions($this->selectedDate);
-
+        $this->showLocations = !$this->showLocations;
     }
 
-    public function mount()
+    public function closeLocations()
+    {
+        $this->showLocations = false;
+    }
+    public function toggleSelection($location)
+    {
+        if ($location === 'All') {
+            if (in_array('All', $this->selectedLocations)) {
+                $this->selectedLocations = [];
+            } else {
+                $this->selectedLocations = ['All'];
+            }
+        } else {
+            $key = array_search('All', $this->selectedLocations);
+            if ($key !== false) {
+                unset($this->selectedLocations[$key]);
+            }
+
+            if (in_array($location, $this->selectedLocations)) {
+                $this->selectedLocations = array_diff($this->selectedLocations, [$location]);
+            } else {
+                $this->selectedLocations[] = $location;
+            }
+        }
+    }
+
+    public function isSelectedAll()
+    {
+        return in_array('All', $this->selectedLocations);
+    }
+
+    public function openDept()
+    {
+        $this->showDepartment = !$this->showDepartment;
+    }
+
+    public function closeDept()
+    {
+        $this->showDepartment = false;
+    }
+    public function toggleDeptSelection($dept)
+    {
+        if ($dept === 'All') {
+            if (in_array('All', $this->selectedDepartments)) {
+                $this->selectedDepartments = [];
+            } else {
+                $this->selectedDepartments = ['All'];
+            }
+        } else {
+            $key = array_search('All', $this->selectedDepartments);
+            if ($key !== false) {
+                unset($this->selectedDepartments[$key]);
+            }
+
+            if (in_array($dept, $this->selectedDepartments)) {
+                $this->selectedDepartments = array_diff($this->selectedDepartments, [$dept]);
+            } else {
+                $this->selectedDepartments[] = $dept;
+            }
+        }
+    }
+
+    public function isSelecteDeptdAll()
+    {
+        return in_array('All', $this->selectedDepartments);
+    }
+    public function filterBy($value)
+    {
+        // Implement your filtering logic based on the selected value
+        // For example, update the filterCriteria property based on the selected value
+        $this->filterCriteria = $value;
+    
+        // You can add more logic here, such as reloading data or performing specific actions based on the filter criteria.
+        // For instance, load leave transactions based on the updated filter criteria.
+        $this->loadLeaveTransactions($this->selectedDate);
+    }
+    
+    public function resetFilter()
+    {
+        // Reset selected locations to default (All)
+        $this->selectedLocations = ['All'];
+
+        // Reset selected departments to default (All)
+        $this->selectedDepartments = ['All'];
+    }
+
+       public function mount()
     {
         $this->year = now()->year;
         $this->month = now()->month;
         $this->leaveRequests = LeaveRequest::all();
         $this->filterCriteria = 'Me';
         $this->searchTerm = ''; 
-       
+        $this->selectedLocations = ['All'];
+        $this->selectedDepartments = ['All'];
         $this->loadLeaveTransactions(now()->toDateString());
         $this->generateCalendar();
     }
@@ -242,10 +328,8 @@ class LeaveCalender extends Component
         return $leaveCount;
     }
     
-    
 
-
-        protected function getTeamOnLeaveDataForDay($day)
+    protected function getTeamOnLeaveDataForDay($day)
     {
         // Fetch team leave data from your database
 

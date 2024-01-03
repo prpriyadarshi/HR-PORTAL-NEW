@@ -11,22 +11,23 @@ class HolidayCalender extends Component
     public function render()
     {
         try {
-            // Attempt to fetch the calendar data for the selected year
-            $calenderData = HolidayCalendar::where('year', $this->year)->get();
+            // Attempt to fetch the calendar data for the selected year (default: 2023)
+            $calendarData = HolidayCalendar::where('year', $this->year)->get();
 
-            // Optionally, you can fetch data for 2022 as well
+            // Fetch data for 2022
             $calendarData2022 = HolidayCalendar::where('year', '2022')->get();
 
-            // Merge the data for both years
-            $calendarData = $calenderData->concat($calendarData2022);
+            // Fetch data for 2024
+            $calendarData2024 = HolidayCalendar::where('year', '2024')->get();
+
+            // Merge the data for all years
+            $calendarData = $calendarData->concat($calendarData2022)->concat($calendarData2024);
         } catch (\Exception $e) {
-            // Handle the exception, you can log it or display an error message
-            // For example, you can log the error message
+            // Handle the exception, log it, or display an error message
             \Log::error('Error fetching calendar data: ' . $e->getMessage());
     
             // Provide a default value or an error message to display
             $calendarData = [];
-    
             // You can also redirect to an error page or show a notification to the user
         }
     
