@@ -17,7 +17,7 @@
             visibility: hidden;
             width: 90px;
             background-color: #333;
-            color: #EC9B3B;
+            color: orange;
             /* Set default color to red */
             text-align: center;
             border-radius: 6px;
@@ -34,7 +34,7 @@
 
         /* Show the tooltip on hover */
         .logout-icon-container:hover i {
-            color: #EC9B3B;
+            color: orange;
             /* Change the color on hover to red */
         }
 
@@ -45,6 +45,7 @@
 
         .tooltip {
             margin-left: 10px;
+            color: orange;
             /* Adjust the margin to move the tooltip to the right */
         }
     </style>

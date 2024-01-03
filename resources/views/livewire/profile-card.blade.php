@@ -3,9 +3,8 @@
     @foreach($employees as $employee)
     <div class="profile-container">
 
-    <div style="width:32px;">
-        <img class="profile-image" src="{{ asset($employee->image) }}" >
-    </div>
+        <img class="profile-image" src="{{ Storage::url($employee->image) }}" >
+      
 
         <div class="emp-name">
 
@@ -34,11 +33,10 @@
     @foreach($hrDetails as $employee)
     <div class="profile-container">
 
-        <div>
 
-            <img class="profile-image" src="{{asset($employee->image)}}">
+        <img class="profile-image" src="{{ Storage::url($employee->image) }}" >
 
-        </div>
+
 
 
 
@@ -68,11 +66,9 @@
     @foreach($itDetails as $employee)
     <div class="profile-container">
 
-        <div>
+        <img class="profile-image" src="{{ Storage::url($employee->image) }}" >
 
-            <img class="profile-image" src="{{asset($employee->image)}}">
 
-        </div>
 
 
 
@@ -102,11 +98,10 @@
     @foreach($financeDetails as $employee)
     <div class="profile-container">
 
-        <div>
 
-            <img class="profile-image" src="{{asset($employee->image)}}">
+        <img class="profile-image" src="{{ Storage::url($employee->image) }}" >
 
-        </div>
+
 
 
 
