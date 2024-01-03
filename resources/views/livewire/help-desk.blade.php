@@ -196,7 +196,7 @@
                                                 <img class="profile-image" src="https://th.bing.com/th/id/R.f931db21888ef3645a8356047504aa7b?rik=63HALWH%2b%2fKtaNQ&riu=http%3a%2f%2fereadcost.eu%2fwp-content%2fuploads%2f2016%2f03%2fblank_profile_female-7.jpg&ehk=atYRSw0KxmUnhESig51u5yzYBWfaD9KBO5KvdxXRCTY%3d&risl=&pid=ImgRaw&r=0" alt="Profile Image">
                                                 @endif
                                                 @else
-                                                <img class="profile-image" src="{{ $people->image }}" alt="Profile Image">
+                                                <img class="profile-image" src="{{ Storage::url($people->image) }}" alt="Profile Image">
                                                 @endif
                                             </div>
                                             <div class="col">

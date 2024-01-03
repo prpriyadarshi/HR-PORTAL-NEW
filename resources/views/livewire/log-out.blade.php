@@ -24,10 +24,9 @@
             padding: 5px;
             position: absolute;
             z-index: 1;
-            top: 125%;
+            top: 3  0px;
             /* Position the tooltip below the icon */
-            left: 50%;
-            margin-left: -60px;
+          margin-left:-30px;
             /* Center the tooltip horizontally */
             opacity: 0;
             transition: opacity 0.3s;
