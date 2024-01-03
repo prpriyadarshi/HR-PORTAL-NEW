@@ -113,17 +113,55 @@ class Home extends Component
 
             $isManagerInApplyingTo = isset($applyingArray[0]['manager_id']) && $applyingArray[0]['manager_id'] == $employeeId;
             $isEmpInCcTo = isset($ccArray[0]['emp_id']) && $ccArray[0]['emp_id'] == $employeeId;
-
-            if ($isManagerInApplyingTo || $isEmpInCcTo) {
-                $matchingLeaveApplications[] = $leaveRequest;
+            if (!empty($ccArray) && !empty($applyingArray)) {
+                // Process when both cc_to and applying_to are present
+                foreach ($ccArray as $ccItem) {
+                    if (isset($ccItem['emp_id']) && $ccItem['emp_id'] === auth()->guard('emp')->user()->emp_id) {
+                        $matchingLeaveApplications[] = [
+                            'leaveRequest' => $leaveRequest,
+                            'empId' => $ccItem['emp_id']
+                        ];
+                        break; // Stop iterating if emp_id matches
+                    }
+                }
+                // Check for applying_to conditions
+                foreach ($applyingArray as $applyingItem) {
+                    if (isset($applyingItem['manager_id']) && $applyingItem['manager_id'] === auth()->guard('emp')->user()->emp_id) {
+                        $matchingLeaveApplications[] = [
+                            'leaveRequest' => $leaveRequest,
+                            'managerId' => $applyingItem['manager_id']
+                        ];
+                        break; // Stop iterating if manager_id matches
+                    }
+                }
+            } elseif (!empty($applyingArray)) {
+                // Process when only applying_to is present
+                foreach ($applyingArray as $applyingItem) {
+                    if (isset($applyingItem['manager_id']) && $applyingItem['manager_id'] === auth()->guard('emp')->user()->emp_id) {
+                        $matchingLeaveApplications[] = [
+                            'leaveRequest' => $leaveRequest,
+                            'managerId' => $applyingItem['manager_id']
+                        ];
+                        break; // Stop iterating if manager_id matches
+                    }
+                }
+            } elseif (!empty($ccArray)) {
+                // Process when only cc_to is present
+                foreach ($ccArray as $ccItem) {
+                    if (isset($ccItem['emp_id']) && $ccItem['emp_id'] === auth()->guard('emp')->user()->emp_id) {
+                        $matchingLeaveApplications[] = [
+                            'leaveRequest' => $leaveRequest,
+                            'empId' => $ccItem['emp_id']
+                        ];
+                        break; // Stop iterating if emp_id matches
+                    }
+                }
             }
+        
         }
 
         // Get the count of matching leave applications
         $this->count = count($matchingLeaveApplications);
-
-
-
 
 
         //team on leave
@@ -306,12 +344,32 @@ class Home extends Component
 
         // Assuming $calendarData should contain the data for upcoming holidays
         $currentYear = Carbon::now()->year;
+        $today = Carbon::today();
+        
         $this->calendarData = HolidayCalendar::where('date', '>=', $today)
-        ->whereYear('date', $currentYear)
+            ->whereYear('date', $currentYear)
             ->orderBy('date')
-            ->take(3)
             ->get();
-
+        
+        // Check if the festivals are empty for any of the retrieved holidays
+        foreach ($this->calendarData as $index => $holiday) {
+            if (empty($holiday->festivals)) {
+                // Find the next holiday if the current one doesn't have festivals specified
+                $nextHoliday = HolidayCalendar::where('date', '>', $holiday->date)
+                    ->where('id', '!=', $holiday->id) // Exclude the current holiday
+                    ->whereYear('date', $currentYear)
+                    ->orderBy('date')
+                    ->first();
+        
+                if ($nextHoliday) {
+                    // Replace the current empty festival entry with the next holiday that has festivals
+                    $this->calendarData[$index] = $nextHoliday;
+                }
+            }
+        }
+        
+        $this->holidayCount =$this->calendarData;
+        
         $this->salaryRevision = SalaryRevision::where('emp_id', $employeeId)->get();
         $loggedInEmpId = Auth::guard('emp')->user()->emp_id;
 
@@ -329,6 +387,7 @@ class Home extends Component
         // Pass the data to the view and return the view instance
         return view('livewire.home', [
             'calendarData' => $this->calendarData,
+            'holidayCount'=>$this->holidayCount,
             'salaryRevision' => $this->salaryRevision,
             'showLeaveApplies' => $this->showLeaveApplies,
             'count' => $this->count,

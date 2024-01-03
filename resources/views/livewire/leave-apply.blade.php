@@ -275,7 +275,7 @@
                     @endif
                     <option value="Sick Leave">Sick Leave</option>
                 </select>
-                  @error('from_date') <span class="text-danger">{{ $message }}</span> @enderror
+                  @error('leave_type') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
              <div class="form-row">
             <div class="form-group col-md-6">
