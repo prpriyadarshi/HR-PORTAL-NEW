@@ -370,8 +370,8 @@
 
           <tbody>
             <tr style="border-bottom: 1px solid #ddd;">
-              <td style="font-weight:normal;font-size:12px;">{{ucfirst($e1->first_name)}}&nbsp;{{ucfirst($e1->last_name)}}<br />#{{$e1->emp_id}}</td>
-              <td style="font-weight:normal;font-size:12px;">10:00</td>
+              <td style="font-size:13px;font-weight:500;">{{ucfirst($e1->first_name)}}&nbsp;{{ucfirst($e1->last_name)}}<br /><span class="text-muted"style="font-weight:normal;font-size:10px;">#{{$e1->emp_id}}</span></td>
+              <td style="font-weight:normal;font-size:13px;">10:00:00</td>
 
             </tr>
 
@@ -413,8 +413,8 @@
             @if($isLateBy10AM)
 
             <tr style="border-bottom: 1px solid #ddd;">
-              <td style="font-weight:normal;font-size:12px;">{{ucfirst($s1->first_name)}}&nbsp;{{ucfirst($s1->last_name)}}<br />#{{$s1->emp_id}}</td>
-              <td style="font-weight:normal;font-size:12px;">{{$lateArrivalTime}}<br />{{$s1->swipe_time}}</td>
+              <td style="font-size:13px;font-weight:500;">{{ucfirst($s1->first_name)}}&nbsp;{{ucfirst($s1->last_name)}}<br /><span class="text-muted"style="font-weight:normal;font-size:10px;">#{{$s1->emp_id}}</span></td>
+              <td style="font-weight:normal;font-size:13px;">{{$lateArrivalTime}}<br /><span class="text-muted"style="font-size:10px;font-weight:300;">{{$s1->swipe_time}}</span></td>
             </tr>
 
             @endif
@@ -461,8 +461,8 @@
             $swipeTime = \Carbon\Carbon::parse($s1->swipe_time);
             $earlyArrivalTime = $swipeTime->diff(\Carbon\Carbon::parse('10:00'))->format('%H:%I');
             $isEarlyBy10AM = $swipeTime->format('H:i') < '10:00' ; @endphp @if($isEarlyBy10AM) <tr style="border-bottom: 1px solid #ddd;">
-              <td style="font-weight:normal;font-size:12px;">{{$s1->first_name}}&nbsp;{{$s1->last_name}}<br />#{{$s1->emp_id}}</td>
-              <td style="font-weight:normal;font-size:12px;">{{$earlyArrivalTime}}<br />{{$s1->swipe_time}}</td>
+              <td style="font-size:13px;font-weight:500;">{{$s1->first_name}}&nbsp;{{$s1->last_name}}<br /><span class="text-muted"style="font-weight:normal;font-size:10px;">#{{$s1->emp_id}}</span></td>
+              <td style="font-weight:normal;font-size:13px;">{{$earlyArrivalTime}}<br /><span class="text-muted"style="font-size:10px;font-weight:300;">{{$s1->swipe_time}}</span></td>
               </tr>
 
               @endif
@@ -502,8 +502,8 @@
 
 
             <tr style="border-bottom: 1px solid #ddd;">
-              <td style="font-weight:normal;font-size:12px;">{{$alr->first_name}}&nbsp;{{$alr->last_name}}<br />#{{$alr->emp_id}}</td>
-              <td style="font-weight:normal;font-size:12px;">{{$alr->number_of_days}} Day(s)<br />
+              <td style="font-size:13px;font-weight:500;">{{$alr->first_name}}&nbsp;{{$alr->last_name}}<br /><span class="text-muted"style="font-weight:normal;font-size:10px;">#{{$alr->emp_id}}</span></td>
+              <td style="font-weight:normal;font-size:13px;">{{$alr->number_of_days}} Day(s)<br />
                 <div style="background-color: rgb(176, 255, 176); border: 1px solid green; color: green;border-radius:15px; padding: 2px; text-align: center;">
                   Approved
                 </div>

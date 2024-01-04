@@ -282,7 +282,7 @@
                                <div class="reviews">
                                   <div style="border-radius: 5px; border: 1px solid #CFCACA;  background-color: white;">
                                     <div class="heading" style="display:flex; justify-content:space-between;padding:5px 10px;">
-                                       <div style="color: #677A8E;font-weight:500;">
+                                       <div style="color: #677A8E;font-weight:500;font-size:0.895rem;">
                                             Review
                                         </div>
                                         <div >
@@ -300,15 +300,16 @@
                                                 <img src="https://png.pngtree.com/png-vector/20190214/ourlarge/pngtree-vector-notes-icon-png-image_509622.jpg" alt="" style="height: 50px; width: 50px;">
                                             </div>
                                             <div class="leave-display" >
-
-                                                @for ($i = 0; $i < min($count, 2); $i++)
-                                                    <div class="circle-notify" style="margin-right: 5px; display:flex; flex-direction:column;">
-                                                        @php
+                                            @php
                                                             function getRandomColor() {
                                                                 $colors = ['#FFD1DC', '#B0E57C', '#ADD8E6', '#E6E6FA', '#FFB6C1'];
                                                                 return $colors[array_rand($colors)];
                                                             }
                                                         @endphp
+
+                                                @for ($i = 0; $i < min($count, 4); $i++)
+                                                    <div class="circle-notify" style="margin-right: 5px; display:flex; flex-direction:column;">
+                                                        
                                                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDDbrRPghufD20Fgaa0IFT62n3vLc5lI5B_w&usqp=CAU" alt="" style="height: 40px; width: 40px; border-radius: 50%;  border: 2px solid {{ getRandomColor() }};"><span>Leave</span>
                                                     </div>
 
@@ -332,7 +333,7 @@
                         
                         <div class="home-hover">
                             <div style="border-radius: 5px; border: 1px solid #CFCACA;background-color: white;">
-                                  <div style="color: #677A8E; margin-left: 20px;font-weight:500; margin-top:10px;">
+                                  <div style="color: #677A8E; margin-left: 20px;font-weight:500; margin-top:10px;font-size:0.895rem;">
                                                 IT Declaration
                                             </div>
                                             <div style="display: flex;">
@@ -348,7 +349,7 @@
                                     </div>
                             <div class="home-hover">
                                    <div style=" border-radius: 5px; border: 1px solid #CFCACA; background-color: white;">
-                                                <div style="color: #677A8E;font-weight:500; margin-left: 20px;  margin-top: 20px;">
+                                                <div style="color: #677A8E;font-weight:500; margin-left: 20px;  margin-top: 20px;font-size:0.895rem;">
                                                     POI
                                                 </div>
                                                 <div style="display:flex; margin-top: 20px;"> <!-- Added margin-top here -->
@@ -361,10 +362,10 @@
                               <!-- TEAM ON LEAVE -->
                               @if($this->showLeaveApplies)
                                <div class="home-hover">
-                               <div class="reviews">
+                                  <div class="reviews">
                                   <div style="border-radius: 5px; border: 1px solid #CFCACA;  background-color: white;">
                                     <div class="heading" style="display:flex; justify-content:space-between;padding:5px 10px;">
-                                       <div style="color: #677A8E;font-weight:500;">
+                                       <div style="color: #677A8E;font-weight:500;font-size:0.895rem;">
                                             Team On Leave
                                         </div>
                                         <div >
@@ -427,7 +428,7 @@
                       @if($ismanager) 
                          <div class="home-hover">
                             <div style=" border-radius: 5px; border: 1px solid #CFCACA;  background-color: #fff;padding:10px 15px;">
-                                <div style="color: #677A8E;  font-weight:500; display:flex;justify-content:space-between;">
+                                <div style="color: #677A8E;  font-weight:500; display:flex;justify-content:space-between;font-size:0.895rem;">
                                     Who is in?
                                     <a href="/whoisinchart" style="font-size:16px; "><img src="/images/up-arrow.png" alt="" style="width:20px;height:27px;"></a>
                                 </div>
@@ -549,7 +550,7 @@
                         <div class="home-hover">
                              <div style=" border-radius: 5px; border: 1px solid #CFCACA;  background-color: #EDF3FF;">
                                     <div style="color: black; padding:10px 15px;">
-                                        <p style="font-weight: normal;">{{$currentDate}}</p>
+                                        <p style="font-weight: normal;font-size:0.895rem;">{{$currentDate}}</p>
                                         <p style="margin-top: 10px; color: #9E9696; font-size: 12px;">{{$currentDay}} | 10:00 AM to 07:00 PM</p>
                                         <div wire:ignore style=" font-size: 14px;" id="current-time"></div>
                                         <script>
@@ -624,14 +625,14 @@
                                                 <div class="net-salary">
                                                     <div style="display:flex;gap:10px;">
                                                         <div style="padding:2px;width:2px;height:17px;background:#000000;border-radius:2px;"></div>
-                                                        <p>Gross Pay</p>
+                                                        <p style="font-size:0.825rem;">Gross Pay</p>
                                                     </div>
                                                     <p>{{ $showSalary ? '₹ ' . number_format($salaries->calculateTotalAllowance(), 2) : '*********' }}</p>
                                                 </div>
                                                 <div class="net-salary">
                                                     <div style="display:flex;gap:10px;">
                                                         <div style="padding:2px;width:2px;height:17px;background:#B9E3C6;border-radius:2px;"></div>
-                                                        <p>Deduction</p>
+                                                        <p style="font-size:0.825rem;">Deduction</p>
                                                     </div>
                                                     <p>{{ $showSalary ? '₹ ' . number_format($salaries->calculateTotalDeductions() ?? 0, 2) : '*********' }}</p>
 
@@ -639,7 +640,7 @@
                                                 <div class="net-salary">
                                                     <div style="display:flex;gap:10px;">
                                                         <div style="padding:2px;width:2px;height:17px;background:#1C9372;border-radius:2px;"></div>
-                                                        <p>Net Pay</p>
+                                                        <p style="font-size:0.825rem;">Net Pay</p>
                                                     </div>
                                                     @if ($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions() > 0)
                                                     <p> {{ $showSalary ? '₹ ' .number_format(max($salaries->calculateTotalAllowance() - $salaries->calculateTotalDeductions(), 0), 2) : '*********' }}</p>
@@ -704,10 +705,13 @@
             <div class="home-hover">
                 <div style="border-radius: 5px; border: 1px solid #CFCACA; background-color: white;padding:10px 15px;">
                     <div style="display:flex; justify-content:space-between;">
-                        <p style="color: #677A8E;font-weight:500;">Upcoming Holidays</p>
+                        <p style="color: #677A8E;font-weight:500;font-size:0.895rem;">Upcoming Holidays</p>
                         <a href="/holiday-calender" style="font-size:16px; "><img src="/images/up-arrow.png" alt="" style="width:20px;height:27px;"></a>
                     </div>
-                    @foreach ($calendarData as $entry)
+                    @if($calendarData->isEmpty())
+                    <p style="color:#778899;font-size:0.825rem;">Uh oh! No holidays to show.</p>
+                    @else
+                    @foreach($calendarData as $entry)
                     <div>
                         <p style="color: #677A8E;  font-size: 14px; font-weight: ">
                             {{ date('d M l', strtotime($entry->date)) }}<br>
@@ -715,11 +719,12 @@
                         </p>
                     </div>
                     @endforeach
+                    @endif
                 </div>
             </div>
             <div class="home-hover">
                 <div style="border-radius: 5px; border: 1px solid #CFCACA; background-color: white;">
-                    <div style="color: #677A8E; font-weight:500; margin-left: 10px; margin-top:10px;">
+                    <div style="color: #677A8E; font-weight:500; margin-left: 10px; margin-top:10px;font-size:0.895rem;">
                         Quick Access
                     </div>
                     <div style="display: flex; justify-content: space-between; position: relative;">
@@ -737,7 +742,7 @@
             </div>
             <div class="home-hover">
                 <div style=" border-radius: 5px; border: 1px solid #CFCACA; background-color: white;">
-                    <div style="color: #677A8E;font-weight:500; margin-left: 20px;  margin-top: 20px;">
+                    <div style="color: #677A8E;font-weight:500; margin-left: 20px;  margin-top: 20px;font-size:0.895rem;">
                         Track
                     </div>
 
