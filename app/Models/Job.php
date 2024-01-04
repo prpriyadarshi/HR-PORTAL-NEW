@@ -38,4 +38,8 @@ class Job extends Model
     {
         return $this->hasOne(AppliedJob::class, 'job_id', 'job_id');
     }
+    public function com()
+    {
+        return $this->hasOne(Company::class, 'company_id', 'company_id');
+    }
 }

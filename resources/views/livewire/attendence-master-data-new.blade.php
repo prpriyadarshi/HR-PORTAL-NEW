@@ -147,7 +147,7 @@
                         @foreach($Employees as $emp)
                           <tr>
                              
-                                <td>{{ucfirst($emp->first_name)}}&nbsp;{{ucfirst($emp->last_name)}}<br/>#{{ $emp->emp_id }}</td>
+                                <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;font-weight:500;font-size:13px;">{{ucfirst($emp->first_name)}}&nbsp;{{ucfirst($emp->last_name)}}<span class="text-muted"style="font-weight:400;">(#{{ $emp->emp_id }})</span><br/><span class="text-muted"style="font-weight:300;font-size:10px;">{{ucfirst($emp->job_title)}},{{ucfirst($emp->city)}}</span></td>
                                 @php
                                          $found = false;
                                 @endphp

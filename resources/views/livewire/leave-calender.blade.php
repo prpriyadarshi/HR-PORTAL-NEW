@@ -226,14 +226,17 @@
         /* Styles for the search input */
         .search-input {
           border:none;
+          outline:none;
             position: relative;
         }
  
         .search-input input[type="text"] {
             padding: 3px;
+            outline:none;
             border: 1px solid #ccc;
             border-radius: 4px;
-            width: 250px; /* Adjust width as needed */
+            color:#778899;
+            width: 220px; /* Adjust width as needed */
         }
  
         /* Styles for the search icon */
@@ -254,8 +257,9 @@
             display: flex;
             background:#fff;
             align-items:center;
-            height:30px;
+            height:31px;
             width:30px;
+            border-radius:5px;
             padding:5px;
             border:1px solid #ccc;
         }
@@ -351,10 +355,11 @@
   height: 100%;
   width: 0;
   position: fixed;
+  border-radius:5px;
   z-index: 1;
   top: 0;
   right: 0; /* Position the sidebar to the right */
-  background-color: #111;
+  background-color: #fff;
   overflow-x: hidden;
   transition: width 0.5s;
 }
@@ -374,35 +379,110 @@
 
 .sidebar .closebtn {
   position: absolute;
-  top: 0;
   left: 25px; /* Adjust the close button position */
   font-size: 36px;
-  margin-left: 50px;
+  margin-left: 150px;
+  
 }
 
 .openbtn {
-  font-size: 20px;
   cursor: pointer;
-  background-color: #111;
-  color: white;
-  padding: 10px 15px;
+  display:flex;
+  justify-content:center;
+  background-color: #fff;
   border: none;
+  width:20px;
   z-index: 2;
   right: 10px;
   top: 10px;
 }
 
+.filter-container1:hover {
+  background-color: #f6faff;
+}
 .openbtn:hover {
-  background-color: #444;
+  background-color: #f6faff;
 }
 
 #main {
   transition: margin-left .5s;
-  padding: 16px;
-  margin-left: 0;
+  margin-right: 0;
   padding-left: 0;
 }
-
+.header {
+    display: flex; align-items: center; background-color: #dce0e5; padding: 10px;
+}
+.header h6{
+  color:#778899;
+  font-weight:500;
+}
+.locations{
+    background:#fff;
+    font-size:0.825rem;
+    width:195px;
+    height:200px;
+    border-radius:5px;
+    border:1px solid #ccc;
+    box-shadow:1px 2px 1px 0 rgba(0,0,0,0.2);
+    position: absolute; top: 145px; left:35px;  padding: 10px; border: 1px solid #ccc;
+}
+.departments{
+    background:#fff;
+    font-size:0.825rem;
+    width:195px;
+    height:200px;
+    border-radius:5px;
+    border:1px solid #ccc;
+    box-shadow:1px 2px 1px 0 rgba(0,0,0,0.2);
+    position: absolute; top: 225px; left:35px;  padding: 10px; border: 1px solid #ccc;
+}
+.main-content{
+    background:#fff;
+    padding:15px 20px;
+    flex-grow: 1;
+}
+.loc-dropdown{
+    width:100%;
+    border:1px solid #ccc;
+    cursor:pointer;
+    text-align:center;
+    background:#fff;
+    padding:5px;
+    border-radius:5px;
+}
+.loc-dropdown p{
+   font-size:0.825rem;font-weight:500;color:#778899;margin-bottom:0;
+}
+.btn-2{
+    background:rgb(2, 17, 79);
+    color:#fff;
+    font-size:0.825rem;
+    padding:3px 10px;
+    border-radius:5px;
+    border:none;
+}
+.btn-3{
+    color:#778899;
+    padding:3px 10px;
+    background:#fff;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+.btn-3:hover{
+  background:#ebf5ff;
+}
+.btn-1{
+    color:rgb(2, 17, 79);
+    padding:3px 10px;
+    background:#fff;
+    font-size:0.825rem;
+    border:1px solid rgb(2, 17, 79);
+    border-radius:5px;
+}
+::placeholder {
+        font-size: 0.725rem; /* Adjust the font size as needed */
+        color:#778899;
+    }
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
   .sidebar {padding-top: 15px;}
@@ -413,13 +493,102 @@
 </head>
 <body>
     <div class="container-leave" >
-    <div class="sidebar" style="width: {{ $showDialog ? '250px' : '0' }}">
-  <a href="javascript:void(0)" class="closebtn" wire:click="close">×</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
-</div>
+        <div class="sidebar" style="width: {{ $showDialog ? '250px' : '0' }};display: flex; flex-direction: column; height: 100vh;">
+            <div class="header">
+                <a href="javascript:void(0)" class="closebtn" wire:click="close" style="margin-right: 10px;">×</a>
+                <h6>Apply Filter</h6>
+            </div>
+             <div class="main-content">
+                  <label for="locations" style="font-size: 0.825rem; color: #778899; font-weight: 500; margin-top: 20px; margin-right: 10px;">Location</label>
+                    <div wire:click="openLocations" class="loc-dropdown">
+                       <div style="position: relative;">
+                           <div style="display: flex;justify-content:space-between; align-items: center;">
+                                <p>
+                                    @if($this->isSelectedAll())
+                                        All
+                                    @else
+                                        {{ implode(', ', $selectedLocations) }}
+                                    @endif
+                                    </p>
+                                <!-- Solid down arrow -->
+                                <svg width="15" height="15" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 13L6 9H14L10 13Z" fill="#778899"/>
+                                </svg>
+                          </div>
+                        </div>
+                    </div>
+                    @if($showLocations)
+                        <div class="locations">
+                            <div style="display: flex;justify-content:space-between; text-align:center;align-items: center;padding:0;height:40px;position relative">
+                               <p style="font-size:0.725rem;padding:0;color:#148aff;font-weight:500;">Select Location</p>
+                               <a href="#" wire:click="closeLocations" style="top:-5px; right:5px;position:absolute;" >×</a>
+                            </div>
+                             <div style="display:flex;flex-direction:column;gap:10px;">
+                                <label>
+                                    <input type="checkbox" wire:click="toggleSelection('All')" wire:model="selectedLocations" value="All"> All
+                                </label>
+                                <label>
+                                    <input type="checkbox" wire:click="toggleSelection('Hyderabad')" wire:model="selectedLocations" value="Hyderabad"> Hyderabad
+                                </label>
+                                <label>
+                                    <input type="checkbox" wire:click="toggleSelection('Udaipur')" wire:model="selectedLocations" value="Udaipur"> Udaipur
+                                </label>
+                                <label>
+                                    <input type="checkbox" wire:click="toggleSelection('Rajasthan')" wire:model="selectedLocations" value="Rajasthan"> Rajasthan
+                                </label>
+                            </div>
+                           
+                        </div>
+                    @endif
+                    <!-- department -->
+                    <label for="locations" style="font-size: 0.825rem; color: #778899; font-weight: 500; margin-top: 20px; margin-right: 10px;">Department</label>
+                    <div wire:click="openDept" class="loc-dropdown">
+                       <div style="position: relative;">
+                           <div style="display: flex;justify-content:space-between; align-items: center;">
+                                <p>
+                                    @if($this->isSelecteDeptdAll())
+                                        All
+                                    @else
+                                        {{ implode(', ', $selectedDepartments) }}
+                                    @endif
+                                    </p>
+                                <!-- Solid down arrow -->
+                                <svg width="15" height="15" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 13L6 9H14L10 13Z" fill="#778899"/>
+                                </svg>
+                          </div>
+                        </div>
+                    </div>
+                    @if($showDepartment)
+                        <div class="departments">
+                            <div style="display: flex;justify-content:space-between; text-align:center;align-items: center;padding:0;height:40px;position relative">
+                               <p style="font-size:0.725rem;padding:0;color:#148aff;font-weight:500;">Select Department</p>
+                               <a href="#" wire:click="closeDept" style="top:-5px; right:5px;position:absolute;" >×</a>
+                            </div>
+                             <div style="display:flex;flex-direction:column;gap:10px;">
+                                <label>
+                                    <input type="checkbox" wire:click="toggleDeptSelection('All')" wire:model="selectedDepartments" value="All"> All
+                                </label>
+                                <label>
+                                    <input type="checkbox" wire:click="toggleDeptSelection('Developement')" wire:model="selectedDepartments" value="Developement"> Developement
+                                </label>
+                                <label>
+                                    <input type="checkbox" wire:click="toggleDeptSelection('Sales')" wire:model="selectedDepartments" value="Sales"> Sales
+                                </label>
+                                <label>
+                                    <input type="checkbox" wire:click="toggleDeptSelection('IT')" wire:model="selectedDepartments" value="IT"> IT
+                                </label>
+                            </div>
+                           
+                        </div>
+                        @endif
+                    <!-- end -->
+                    <div style="margin-top: 30px;">
+                        <button class="btn-1" wire:click="applyFilter">Apply</button>
+                        <button class="btn-2" wire:click="resetFilter">Reset</button>
+                    </div>
+            </div>
+    </div>
 
     <div class="button-container" >
         <!-- Dropdown for filter selection -->
@@ -553,8 +722,7 @@
                                         <div class="search-cont">
                                                 <input wire:model.debounce.500ms="searchTerm" type="text" placeholder="Search Employee">
                                                <!-- Search button -->
-                                                <button wire:click="searchData">Search</button>
-
+                                                <button class="btn-3" wire:click="searchData"><i class="fa-solid fa-magnifying-glass"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -562,13 +730,7 @@
                             <div class="filter-container1" >
                                 <div id="main" style="margin-left: {{ $showDialog ? '250px' : '0' }}">
                                     <button class="openbtn" wire:click="open">
-                                        <div class="filter-group"   style="margin-top:0px">
-                                            <i class="fa-icon fas fa-filter"></i> <!-- Font Awesome filter icon -->
-                                            <gt-filter-group>
-                                                <!-- Add more content as needed -->
-                                            </gt-filter-group>
-                                        </div>
-
+                                            <i class="fa-icon fas fa-filter"></i> 
                                     </button>  
                                 </div>
                                 

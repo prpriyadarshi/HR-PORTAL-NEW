@@ -1,60 +1,78 @@
 <div>
 <!DOCTYPE html>
-<html>
- 
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        .links-content
-         {
-             display: none;
-         }
- 
-        #hide-button {
- 
-             
-              border-radius: 5px;
- 
-              padding: 5px 10px;
- 
-              cursor: pointer;
- 
-              float: right; /* Align to the right */
- 
-              margin-top: -40px; /* Adjust margin as needed */
- 
-}
-/* Add a transition for smooth color change */
-.btn {
-    border: 1px solid #ccc; /* Add a border to create a box effect */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Add a shadow effect */
-  }
- 
-  body{
+        body{
             font-family: 'Montserrat', sans-serif;
-            font-size: 15px;
+            overflow-y:hidden;
         }
-    .accordion {
+        label{
+            margin-top:12px;
+            font-size:0.805rem;
+            color:#858585;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .nav-side{
+            margin-top:10px;
+            font-size:0.795rem;
+            color:#6c7e90;
+            font-weight:500;
+            padding:0px 8px;
+            line-height:1.6;
+            font-family: 'Montserrat', sans-serif;
+            border-left: 2px solid transparent;
+        }
+        .nav-side:hover{
+           text-decoration:none;
+           outline:none;
+           color:black;
+        }
+        .nav-side.active {
+        color: black !important; /* Change this to your desired active color */
+        /* Remove background and add border on active tab */
+        border-radius:0 !important;
+        background-color: transparent !important;
+        border-left: 2px solid  rgb(2, 17, 79) !important; /* Change this to your desired active border color */
+    }
+        .nav-pills{
+            font-family: 'Montserrat', sans-serif;
+        }
+        .tab-pane{
+            margin-top:20px;
+            flex-direction:column;
+            background:none;
+            display:flex;
+            font-family: 'Montserrat', sans-serif;
+            align-items:center;
+            justify-content:center;
+        }
+        .accordion {
             border: 1px solid #ccc;
             margin-bottom: 0.625rem;
-            width:98%;
             margin:0 auto;
+            width:90%;
             border-radius:5px;
+            font-family: 'Montserrat', sans-serif;
         }
       .accordion:hover{
         border: 0.0625rem solid #3a9efd;
       }
 
         .accordion-heading {
-            background-color: #fff;
-            padding: 0.625rem;
             cursor: pointer;
             border-radius:5px;
         }
 
         .accordion-body {
             display: none;
-            background-color: #fff;
-            padding: 0.625rem;
+            padding:0;
+            margin:0;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .accordion-content {
@@ -63,340 +81,288 @@
             justify-content: center;
             align-items: center;
             align-items:center;
-            margin:auto 0;
+            font-family: 'Montserrat', sans-serif;
         }
         .content {
             display: flex;
             justify-content:start;
             align-items: center;
             gap:0.625rem;
+            padding:5px;
             margin-bottom: 0.3125rem;
         }
 
-        .accordion-title {
+        .accordion-head {
             display: flex;
+            background:#fff;
+            padding: 7px 5px;
+            align-items:center;
+            border-radius:5px;
             flex-direction: row;
-            justify-content: space-between;
+            justify-content:space-between;
         }
-       .accordion-button{
-        color:#DCDCDC;
-        border: 0.0625rem solid #DCDCDC;
+        .arrow-btn{
+        color:#fff;
+        height:22px;
+        width:22px;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        border-radius:50%;
+        border: 1px solid #DCDCDC;
        }
        .active .container {
            border-color: #3a9efd; /* Blue border when active */
        }
-      .accordion-button{
-       color:#DCDCDC;
-       border: 0.0625rem solid #DCDCDC;
-      }
 
-       .active .accordion-button {
+       .active .arrow-btn {
            color: #3a9efd;
-           border: 0.0625rem solid #3a9efd;
+           border: 1px solid #3a9efd;
         /* Blue arrow when active */
        }
-    /* scroll bar */
-    .closedlist::-webkit-scrollbar {
-        width: 7px; /* Set the width of the scrollbar */
-    }
 
-    .closedlist::-webkit-scrollbar-thumb {
-        background-color: #d0d0d0; /* Set the color of the thumb */
-        border-radius: 6px; /* Set the border radius of the thumb */
-    }
-
-    .closedlist::-webkit-scrollbar-track {
-        background-color: #f1f1f1; /* Set the color of the track */
-    }
- 
-    </style>
-   </head>
- 
-    <body>
-    <div class="body">
-        <h5>Review</h5>
-        <div>
-            <p>ATTENDANCE</p>
-            <a onclick="toggleDetails('restricted-content')" class="links">Attendance Regular...</a><br><br>
-        </div>
-        <div>
-            <p>EMP INFO</p>
-            <a onclick="toggleDetails('attendence-content')" class="links">Confirmation</a><br>
-            <a onclick="toggleDetails('resignation-content')" class="links">Resignations</a><br>
-            <a onclick="toggleDetails('helpdesk-content')" class="links">Help desk</a><br><br>
-        </div>
-        <div>
-            <p>LEAVE</p>
-            <a onclick="toggleDetails('holiday-content')" class="links">Leave</a><br>
-            <a onclick="toggleDetails('leavecancel-content')" class="links">Leave Cancel</a><br>
-            <!-- <a onclick="toggleDetails('compoff-content')" class="links">Leave Comp Off</a><br>
-            <a onclick="toggleDetails('restrictedholiday-content')" class="links">Restricted Holiday</a> -->
-        </div>
-        <div id="restricted-content" style="display: none; margin-top: -328px;">
-            <!-- Content to be toggled -->
-           
-            <div class="btn-group leavewf-links" role="group" aria-label="Leave Workflow" style="margin-left: 300px;">
-            <button type="button" class="btn" id="restrictedActiveButton">Active</button>
-    <button type="button" class="btn" id="restrictedClosedButton">Closed</button>
-</div>
-            <div class="form-group" style="margin-top: 25px;width:200px;margin-left:364px;">
-                <input type="date" class="form-control" wire:model="emp_dob" max="{{ date('Y-m-d') }}">
-                @error('emp_dob') <span class="text-danger">{{ $message }}</span> @enderror
+        </style>
+</head>
+<body>
+<div class="row" style="margin:0;padding:0;">
+    <div class="col-md-2">
+       <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <div
+           class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <!-- Attendace link -->
+                <label for="Attendabce">ATTENDANCE</label>
+                <a class="nav-side active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true" style="width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Attendance Regularisation</a>    
+                <!-- EMPINFO sides -->
+                <label for="EMPINFO">EMPINFO</label>
+                <a class="nav-side" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Confirmation</a>
+                <a class="nav-side" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Resignations</a>
+                <a class="nav-side" id="v-pills-helpdesk-tab" data-toggle="pill" href="#v-pills-helpdesk" role="tab" aria-controls="v-pills-helpdesk" aria-selected="false">Help Desk</a>
+                <!-- lave sides -->
+                <label for="leave">LEAVE</label>
+                <a class="nav-side" id="v-pills-leave-tab" data-toggle="pill" href="#v-pills-leave" role="tab" aria-controls="v-pills-leave" aria-selected="false">Leave</a>
+                <a class="nav-side" id="v-pills-leavecancel-tab" data-toggle="pill" href="#v-pills-leavecancel" role="tab" aria-controls="v-pills-leavecancel" aria-selected="false">Leave Cancel</a>
+                <a class="nav-side" id="v-pills-LeaveComp-tab" data-toggle="pill" href="#v-pills-LeaveComp" role="tab" aria-controls="v-pills-LeaveComp" aria-selected="false">Leave Comp Off</a>
+                <a class="nav-side" id="v-pills-restricted-tab" data-toggle="pill" href="#v-pills-restricted" role="tab" aria-controls="v-pills-restricted" aria-selected="false" style="width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Restricted Holiday</a>
             </div>
- 
-            <div class="mb-4" style="margin-left:570px; margin-top: -50px;">
-                <input type="text" wire:model.lazy="search" placeholder="Search for Employee">
-            </div>
- 
-            <div class="container">
-                <div class="container" id="restrictedActiveCard" style="display: none;">
-                    <div class="card" style="height: 350px; width:540px; margin-left: 220px; margin-top: 20px;">
-                       
-                    </div>
-                </div>
-            </div>
- 
-            <div class="container">
-                <div class="container" id="restrictedClosedCard" style="display: none;">
-                    <div class="card" style="height:262px; width: 650px; margin-left: 200px; margin-top: 20px;">
-                    <!-- <div class="accordion-content">
-        <span style="margin-top: 0.625rem; font-size: 1rem; font-weight: 400; color: #32CD32;">APPROVED</span>
+        </div>
     </div>
-    <div class="accordion-button" onclick="toggleAccordion()">
-        ▼
-    </div> -->
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMT5TgvjUm4x4YpmWdvAG8dvbNzJ67RzvX7j0fbJd2znsBYuhYkAJX4jXMFedU-ueYYZI&usqp=CAU"
-                            alt="Sample Image" style="height: 50px; width: 50px; margin: 0 auto; margin-left:30px; margin-top:23px">
-                        <div class="details" style="margin-left:92px; margin-top: -45px;">
-                            <p>Renuka Chinthala</p>
-                            <p class="id" style="margin-top:-18px">AGS-0007</p>
-                        </div>
- 
-                        <div class="details" style="margin-left:250px; margin-top:-58px;">
-                            <p>No.of days</p>
-                            <p class="id" style="margin-top:-18px">3</p>
-                        </div>
-                        <hr class="line" style="border:none;margin:4px 0; height: 1px; background-color: black; ">
-                        <p class="date" style="margin-top:20px;font-size:13px;margin-left:38px;">Dates applied :(17 - 19) Apr
-                            2023</p>
-                        <hr class="line" style="border:none;margin:4px 0; height: 1px; background-color: black; ">
-                        <div class="details" style="margin-left:31px; margin-top:25px;">
-                            <p>Regulirised On</p>
-                            <p class="id" style="margin-top:-18px;font-size:13px;">25 Apr,2023</p><br>
-                            <p class="view-details" style="margin-left: 20rem;;margin-top:-74px;"><a href="/review-regularizations">View Details</a>
-                            </p>
-                        </div>
-                    </div>
+    <div class="col-md-10">
+        <div class="tab-content" id="v-pills-tabContent" >
+                <!-- Attendace link -->
+            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                <div  style="display:flex;align-items:center;justify-content:center;">
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true" >Active</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Closed</a>
+                        </li>
+                    </ul>
                 </div>
-            </div>
-        </div>
- 
-        <div id="attendence-content" style="display: none; margin-top: -328px;">
-            <!-- Content to be toggled -->
-            <div class="btn-group leavewf-links" role="group" aria-label="Leave Workflow" style="margin-left: 300px;">
-            <button type="button" class="btn" id="attendenceActiveButton">Active</button>
-            <button type="button" class="btn" id="attendenceClosedButton">Closed</button>
-        </div>
-            <div class="form-group" style="margin-top: 25px;width:200px;margin-left:364px;">
-                <input type="date" class="form-control" wire:model="emp_dob" max="{{ date('Y-m-d') }}">
-                @error('emp_dob') <span class="text-danger">{{ $message }}</span> @enderror
-            </div>
- 
-           
-            <div class="container">
-                <div class="container" id="attendenceActiveCard" style="display: none;">
-                    <div class="card" style="height:362px; width: 650px;margin-left: 200px; margin-top: 20px;">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP2fBGQf4GHJcIn2SxSKmUPPStVmd22w5uig&usqp=CAU"
-                            alt="Sample Image" style="height: 300px; width: 300px; margin: 0 auto;">
-                        <p style="text-align: center;">Hey, you have no regularization records to view</p>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="container" id="attendenceClosedCard" style="display: none;">
-                    <div class="card" style="height: 280px; width: 650px; margin-left: 200px; margin-top: 20px;">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMT5TgvjUm4x4YpmWdvAG8dvbNzJ67RzvX7j0fbJd2znsBYuhYkAJX4jXMFedU-ueYYZI&usqp=CAU"
-                            alt="Sample Image" style="height: 50px; width: 50px; margin: 0 auto; margin-left:30px; margin-top:23px">
- 
-                        <div class ="details" style="margin-left:92px; margin-top: -45px;font-size:14px;">
-                            <p>Renuka Chinthala</p>
-                            <p class="id" style="margin-top:-18px">AGS-0007</p>
-                        </div>
- 
-                        <div class="details" style="margin-left:250px; margin-top:-58px;font-size:14px;">
-                            <p>Recommended on</p>
-                            <p class="id" style="margin-top:-18px">09 Oct, 2023</p>
-                        </div>
- 
-                        <div class="details" style="margin-left:414px; margin-top:-58px;font-size:14px;">
-                            <p>Recommended Status</p>
-                            <p class="id" style="margin-top:-18px">CONFIRMED</p>
-                           
-                        </div>
-                        <div style="margin-left:36rem;">CLOSED</div>
-                       
-                       
- 
-                        <hr class="line" style="border:none;margin:4px 0; height: 1px; background-color: black; ">
-                        <p class="date" style="margin-top:20px;font-size:13px;margin-left:21px;">Designation: Software
-                            Engineer </p>
-                        <hr class="line" style="border:none;margin:4px 0; height: 1px; background-color: black; ">
-                        <div class="details" style="margin-left:31px; margin-top:25px;">
-                            <p>Initiated On</p>
-                            <p class="id" style="margin-top:-18px;font-size:13px;">09 Oct, 2023</p><br>
-                           
-                            <p class="view-details" style="margin-left: 20rem;;margin-top:-74px;"><a href="
-                            /view-details1">View Details</a>
-                            </p>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="resignation-content" style="display: none; margin-top: -328px;">
-            <!-- Content to be toggled -->
-            <div class="btn-group leavewf-links" role="group" aria-label="Leave Workflow" style="margin-left: 300px;">
-           
-                <button type="button" class="btn " id="resignationActiveButton">Active</button>
-                <button type="button" class="btn" id="resignationClosedButton">Closed</button>
-            </div>
-            <div class="form-group" style="margin-top: 25px;width:200px;margin-left:364px;">
-                <input type="date" class="form-control" wire:model="emp_dob" max="{{ date('Y-m-d') }}">
-                @error('emp_dob') <span class="text-danger">{{ $message }}</span> @enderror
-            </div>
- 
-            
-            <div class="container">
-                <div class="container" id="resignationActiveCard" style="display: none;">
-                    <div class="card" style="height:335px; width: 650px;margin-left: 200px; margin-top: 20px;">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP2fBGQf4GHJcIn2SxSKmUPPStVmd22w5uig&usqp=CAU"
-                            alt="Sample Image" style="height: 300px; width: 300px; margin: 0 auto;">
-                        <p style="text-align: center;">Hey, you have no resignation records to show</p>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="container" id="resignationClosedCard" style="display: none;">
-                    <div class="card" style="height: 330px; width: 650px; margin-left: 200px; margin-top: 20px;">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP2fBGQf4GHJcIn2SxSKmUPPStVmd22w5uig&usqp=CAU"
-                            alt="Sample Image" style="height: 300px; width: 300px; margin: 0 auto;">
-                        <p style="text-align: center;">Hey, you have no resignation records to show</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="helpdesk-content" style="display: none; margin-top: -328px;">
-            <!-- Content to be toggled -->
-            <div class="btn-group leavewf-links" role="group" aria-label="Leave Workflow" style="margin-left: 300px;">
-                <button type="button" class="btn" id="helpdeskActiveButton">Active</button>
-                <button type="button" class="btn" id="helpdeskClosedButton">Closed</button>
-            </div>
-            <div class="form-group" style="margin-top: 25px;width:200px;margin-left:364px;">
-                <input type="date" class="form-control" wire:model="emp_dob" max="{{ date('Y-m-d') }}">
-                @error('emp_dob') <span class="text-danger">{{ $message }}</span> @enderror
-            </div>
- 
-            <div class="mb-4" style="margin-left:570px; margin-top: -50px;">
-                <input type="text" wire:model="search"placeholder="Search for Employee">
-            </div>
-            <div class="container">
-                <div class="container" id="helpdeskActiveCard" style="display: none;">
-                    <div class="card" style="height: 330px; width:473px; margin-left: 200px; margin-top: 20px;">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP2fBGQf4GHJcIn2SxSKmUPPStVmd22w5uig&usqp=CAU"
-                            alt="Sample Image" style="height: 300px; width: 300px; margin: 0 auto;">
-                        <p style="text-align: center; font-size:15px;">No helpdesk review items</p>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="container" id="helpdeskClosedCard" style="display: none;">
-                    <div class="card" style="height: 330px; width:473px; margin-left: 200px; margin-top: 20px;">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP2fBGQf4GHJcIn2SxSKmUPPStVmd22w5uig&usqp=CAU"
-                            alt="Sample Image" style="height: 300px; width: 300px; margin: 0 auto;">
-                        <p style="text-align: center; font-size:15px;">No helpdesk review items</p>
-                    </div>
-                </div>
-            </div>
- 
-            <!-- <leave content> -->
-   
-        </div>
-        <div id="holiday-content" style="display: none; margin-top: -328px;">
-    <!-- Content to be toggled -->
-    <div class="btn-group leavewf-links" role="group" aria-label="Leave Workflow" style="margin-left: 300px;">
-        <button type="button" class="btn" id="holidayActiveButton">Active</button>
-        <button type="button" class="btn" id="holidayClosedButton">Closed</button>
-    </div>
-          
-            <div class="mb-4" style="display:flex; justify-content:end;">
-                 <input wire:model="searchTerm" type="text" placeholder="Search...">
-                 <button wire:click="starredFilter">Search</button>
-            </div>
-            <div class="container">
-                <div id="holidayActiveCard" style="display: none;">
-                    @if($this->leaveApplications)
-                        <div class="reviewList" style=" background:pink; width:80%; margin-left:120px; margin-bottom:20px;margin-top:20px;  max-height:370px; overflow-y:auto;" >
-                            @livewire('view-pending-details')
-                        </div>
-                    @else
-                        <div class="card" style="height: 330px; width:473px; margin-left: 200px; margin-top: 20px;">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP2fBGQf4GHJcIn2SxSKmUPPStVmd22w5uig&usqp=CAU"
-                                alt="Sample Image" style="height: 300px; width: 300px; margin: 0 auto;">
-                            <p style="text-align: center; font-size:15px;">Hey, you have no leave applications to review.</p>
-                        </div>
-                    @endif
-                </div>
-            </div>
- 
+                 <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <div style="display:flex;align-items:center;justify-content:center;">
+                        <div class="leave-pending" style="margin-top:10px; background:#fff;  display:flex; width:75%;flex-direction:column; text-align:center;justify-content:center; border:1px solid #ccc; padding:20px;gap:10px;">
 
-    <div class="container">
-        <div id="holidayClosedCard" style="display: none;">
-   
-        <div class="closedlist" style=" background:transparent; width:80%; margin-left:120px; margin-bottom:20px;margin-top:20px;  max-height:370px; overflow-y:auto;" >
-            @if(!empty($approvedLeaveApplicationsList))
-                @foreach($approvedLeaveApplicationsList as $leaveRequest)
-                <div class="container mt-4">
-                                <div class="accordion">
+                            <img src="/images/pending.png" alt="Pending Image" style="width:60%; margin:0 auto;">
 
-                                        <div class="accordion-heading" onclick="toggleAccordion(this)">
+                            <p style="color:#969ea9; font-size:13px; font-weight:400; ">Hey, you have no regularization records to view</p>
+                        </div>
+                     </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <div style="display:flex;align-items:center;justify-content:center;">
+                        <div class="leave-pending" style="margin-top:10px; background:#fff;  display:flex; width:75%;flex-direction:column; text-align:center;justify-content:center; border:1px solid #ccc; padding:20px;gap:10px;">
 
-                                            <div class="accordion-title">
+                            <img src="/images/pending.png" alt="Pending Image" style="width:60%; margin:0 auto;">
 
+                            <p style="color:#969ea9; font-size:13px; font-weight:400; ">Hey, you have no regularization records to view</p>
+                        </div>
+                     </div>
+                    </div>
+                </div>
+            </div>
+            <!-- confirmation links -->
+            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+            <div style="display:flex;align-items:center;justify-content:center;">
+               <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="pills-confirmationActive-tab" data-toggle="pill" href="#pills-confirmationActive" role="tab" aria-controls="pills-confirmationActive" aria-selected="true">Active</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-confirmClose-tab" data-toggle="pill" href="#pills-confirmClose" role="tab" aria-controls="pills-confirmClose" aria-selected="false">Closed</a>
+                    </li>
+                </ul>
+               </div>
+                 <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-confirmationActive" role="tabpanel" aria-labelledby="pills-confirmationActive-tab">
+                       <div style="display:flex;align-items:center;justify-content:center;">
+                        <div class="leave-pending" style="margin-top:10px; background:#fff;  display:flex; width:75%;flex-direction:column; text-align:center;justify-content:center; border:1px solid #ccc; padding:20px;gap:10px;">
+
+                            <img src="/images/pending.png" alt="Pending Image" style="width:60%; margin:0 auto;">
+
+                            <p style="color:#969ea9; font-size:13px; font-weight:400;">Nothing to show! You've got no confirmation to review yet.</p>
+
+                         </div>
+                       </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-confirmClose" role="tabpanel" aria-labelledby="pills-confirmClose-tab">
+                     <div style="display:flex;align-items:center;justify-content:center;">
+                        <div class="leave-pending" style="margin-top:10px; background:#fff;  display:flex; width:75%;flex-direction:column; text-align:center;justify-content:center; border:1px solid #ccc; padding:20px;gap:10px;">
+
+                            <img src="/images/pending.png" alt="Pending Image" style="width:60%; margin:0 auto;">
+
+                            <p style="color:#969ea9; font-size:13px; font-weight:400; ">Nothing to show! You've got no confirmation to review yet.</p>
+                        </div>
+                     </div>
+                   </div>
+                </div>
+            </div>
+            <!-- Resignation links -->
+            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+            <div style="display:flex;align-items:center;justify-content:center;">
+               <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="pills-resignationActive-tab" data-toggle="pill" href="#pills-resignationActive" role="tab" aria-controls="pills-resignationActive" aria-selected="true">Active</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-resignationClose-tab" data-toggle="pill" href="#pills-resignationClose" role="tab" aria-controls="pills-resignationClose" aria-selected="false">Closed</a>
+                    </li>
+                </ul>
+               </div>
+                 <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-resignationActive" role="tabpanel" aria-labelledby="pills-resignationActive-tab">
+                       <div style="display:flex;align-items:center;justify-content:center;">
+                        <div class="leave-pending" style="margin-top:10px; background:#fff;  display:flex; width:75%;flex-direction:column; text-align:center;justify-content:center; border:1px solid #ccc; padding:20px;gap:10px;">
+
+                            <img src="/images/pending.png" alt="Pending Image" style="width:60%; margin:0 auto;">
+
+                            <p style="color:#969ea9; font-size:13px; font-weight:400;">Hey, you have no resignation records to show</p>
+
+                         </div>
+                       </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-resignationClose" role="tabpanel" aria-labelledby="pills-resignationClose-tab">
+                     <div style="display:flex;align-items:center;justify-content:center;">
+                        <div class="leave-pending" style="margin-top:10px; background:#fff;  display:flex; width:75%;flex-direction:column; text-align:center;justify-content:center; border:1px solid #ccc; padding:20px;gap:10px;">
+
+                            <img src="/images/pending.png" alt="Pending Image" style="width:60%; margin:0 auto;">
+
+                            <p style="color:#969ea9; font-size:13px; font-weight:400; ">Hey, you have no resignation records to show</p>
+                        </div>
+                     </div>
+                   </div>
+                </div>
+            </div>
+            <!-- help desk links -->
+            <div class="tab-pane fade" id="v-pills-helpdesk" role="tabpanel" aria-labelledby="v-pills-helpdesk-tab">
+            <div style="display:flex;align-items:center;justify-content:center;">
+               <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="pills-helpdeskActive-tab" data-toggle="pill" href="#pills-helpdeskActive" role="tab" aria-controls="pills-helpdeskActive" aria-selected="true">Active</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-helpdeskClose-tab" data-toggle="pill" href="#pills-helpdeskClose" role="tab" aria-controls="pills-helpdeskClose" aria-selected="false">Closed</a>
+                    </li>
+                </ul>
+               </div>
+                 <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-helpdeskActive" role="tabpanel" aria-labelledby="pills-helpdeskActive-tab">
+                       <div style="display:flex;align-items:center;justify-content:center;">
+                         <div class="leave-pending" style="margin-top:10px; background:#fff;  display:flex; width:75%;flex-direction:column; text-align:center;justify-content:center; border:1px solid #ccc; padding:20px;gap:10px;">
+
+                            <img src="/images/pending.png" alt="Pending Image" style="width:60%; margin:0 auto;">
+
+                            <p style="color:#969ea9; font-size:13px; font-weight:400;">No helpdesk review items</p>
+
+                         </div>
+                       </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-helpdeskClose" role="tabpanel" aria-labelledby="pills-helpdeskClose-tab">
+                     <div style="display:flex;align-items:center;justify-content:center;">
+                        <div class="leave-pending" style="margin-top:10px; background:#fff;  display:flex; width:75%;flex-direction:column; text-align:center;justify-content:center; border:1px solid #ccc; padding:20px;gap:10px;">
+
+                            <img src="/images/pending.png" alt="Pending Image" style="width:60%; margin:0 auto;">
+
+                            <p style="color:#969ea9; font-size:13px; font-weight:400; ">No helpdesk review items</p>
+                        </div>
+                     </div>
+                   </div>
+                </div>
+            </div>
+            <!-- leave links -->
+            <div class="tab-pane fade" id="v-pills-leave" role="tabpanel" aria-labelledby="v-pills-leave-tab">
+                <div style="display:flex;align-items:center;justify-content:center;">
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="pills-leaveactive-tab" data-toggle="pill" href="#pills-leaveactive" role="tab" aria-controls="pills-leaveactive" aria-selected="true">Active</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-leaveprofile-tab" data-toggle="pill" href="#pills-leaveprofile" role="tab" aria-controls="pills-leaveprofile" aria-selected="false">Closed</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-leaveactive" role="tabpanel" aria-labelledby="pills-leaveactive-tab">
+                        @if($this->leaveApplications)
+                            <div class="reviewList" style=" width:100%;  max-height:420px; overflow-y:auto;" >
+                                @livewire('view-pending-details')
+                            </div>
+                        @else
+                            <div class="card" style="height: 330px; width:473px; ">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP2fBGQf4GHJcIn2SxSKmUPPStVmd22w5uig&usqp=CAU"
+                                    alt="Sample Image" style="height: 300px; width: 300px; margin: 0 auto;">
+                                <p style="text-align: center; font-size:15px;">Hey, you have no leave applications to review.</p>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="tab-pane fade" id="pills-leaveprofile" role="tabpanel" aria-labelledby="pills-leaveprofile-tab">
+                   
+                    <div class="container" style="width:100%; max-height:420px; overflow-y:auto; margin-top:10px;" >
+                       @if(!empty($approvedLeaveApplicationsList))
+                       @foreach($approvedLeaveApplicationsList as $leaveRequest)
+                                <div class="accordion mb-3">
+                                    <div class="accordion-heading" onclick="toggleAccordion(this)">
+                                        <div class="accordion-head">
                                             <!-- Display leave details here based on $leaveRequest -->
                                             <div class="accordion-content">
-                                                    <div class="accordion-profile" style="display:flex; gap:10px; margin:auto 0;">
-                                                    @if(isset($leaveRequest['approvedLeaveRequest']->image))
+                                                    <div class="accordion-profile" style="display:flex; gap:7px; margin:auto 0;align-items:center;justify-content:center;">
+                                                        @if(isset($leaveRequest['approvedLeaveRequest']->image))
                                                           <img src="{{ $leaveRequest['approvedLeaveRequest']->image }}" alt="User Profile Image" style="width: 40px; height: 40px; border-radius: 50%;">
                                                             @else
                                                             <img src="https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars.png" alt="Default User Image" style="width: 45px; height: 45px; border-radius: 50%;">
                                                             @endif
-                                                            <div class="center">
-                                                            @if(isset($leaveRequest['approvedLeaveRequest']->first_name))
-                                                            <p style="font-size: 0.875rem; font-weight: 500;">{{ $leaveRequest['approvedLeaveRequest']->first_name }}  {{ $leaveRequest['approvedLeaveRequest']->last_name }}</p>
-                                                            @else
-                                                                <p style="font-size: 0.875rem; font-weight: 500;">Name Not Available</p>
-                                                            @endif
-                                                            @if(isset($leaveRequest['approvedLeaveRequest']->emp_id))
-                                                                <p style="margin-top: -15px; color: #778899; font-size: 0.69rem;">#{{ $leaveRequest['approvedLeaveRequest']->emp_id }} </p>
-                                                            @endif
-                                                        </div>
-                                                    </div>
+                                                            <div >
+                                                                @if(isset($leaveRequest['approvedLeaveRequest']->first_name))
+                                                                    <p style="font-size: 0.755rem; font-weight: 500; text-align: center;margin: auto;">
+                                                                        {{ $leaveRequest['approvedLeaveRequest']->first_name }}  {{ $leaveRequest['approvedLeaveRequest']->last_name }} <br>
+                                                                        @if(isset($leaveRequest['approvedLeaveRequest']->emp_id))
+                                                                            <span style="color: #778899; font-size: 0.675rem; text-align: start;">
+                                                                                #{{ $leaveRequest['approvedLeaveRequest']->emp_id }}
+                                                                            </span>
+                                                                        @endif
+                                                                    </p>
+                                                                @else
+                                                                    <p style="font-size: 0.755rem; font-weight: 500; text-align: center;">Name Not Available</p>
+                                                                @endif
+                                                            </div>
+                                                     </div>
                                               </div>
 
                                                 <div class="accordion-content">
 
-                                                    <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">Leave Type</span>
+                                                    <span style="color: #778899; font-size: 0.755rem; font-weight: 500;">Leave Type</span>
 
-                                                <span style="color: #36454F; font-size: 1rem; font-weight: 500;">{{$leaveRequest['approvedLeaveRequest']->leave_type}}</span>
+                                                <span style="color: #36454F; font-size: 0.755rem; font-weight: 500;">{{$leaveRequest['approvedLeaveRequest']->leave_type}}</span>
 
                                                 </div>
 
                                                 <div class="accordion-content">
 
-                                                    <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">No. of Days</span>
+                                                    <span style="color: #778899; font-size:0.755rem; font-weight: 500;">No. of Days</span>
 
-                                                    <span style="color: #36454F; font-size: 1rem; font-weight: 500;">
+                                                    <span style="color: #36454F; font-size:0.755rem; font-weight: 500;">
 
                                                     {{ $this->calculateNumberOfDays($leaveRequest['approvedLeaveRequest']->from_date, $leaveRequest['approvedLeaveRequest']->from_session, $leaveRequest['approvedLeaveRequest']->to_date, $leaveRequest['approvedLeaveRequest']->to_session) }}
 
@@ -404,32 +370,28 @@
 
                                                 </div>
 
-
-
                                             <!-- Add other details based on your leave request structure -->
 
                                                 <div class="accordion-content">
 
                                                 @if(strtoupper($leaveRequest['approvedLeaveRequest']->status) == 'APPROVED')
 
-                                                    <span style="margin-top:0.625rem; font-size: 0.9rem; font-weight: 500; color:#32CD32;">{{ strtoupper($leaveRequest['approvedLeaveRequest']->status) }}</span>
+                                                    <span style=" font-size: 0.755rem; font-weight: 500; color:#32CD32;">{{ strtoupper($leaveRequest['approvedLeaveRequest']->status) }}</span>
 
                                                 @elseif(strtoupper($leaveRequest['approvedLeaveRequest']->status) == 'REJECTED')
 
-                                                    <span style="margin-top:0.625rem; font-size: 0.9rem; font-weight: 500; color:#FF0000;">{{ strtoupper($leaveRequest['approvedLeaveRequest']->status) }}</span>
+                                                    <span style=" font-size: 0.755rem; font-weight: 500; color:#FF0000;">{{ strtoupper($leaveRequest['approvedLeaveRequest']->status) }}</span>
 
                                                     @else
 
-                                                    <span style="margin-top:0.625rem; font-size: 0.9rem; font-weight: 500; color:#778899;">{{ strtoupper($leaveRequest['approvedLeaveRequest']->status) }}</span>
+                                                    <span style=" font-size: 0.755rem; font-weight: 500; color:#778899;">{{ strtoupper($leaveRequest['approvedLeaveRequest']->status) }}</span>
 
                                                     @endif
 
                                                 </div>
-
-                                                <div class="accordion-button" style="margin-top: 0.625rem; font-size: 1rem;  height: 0.625rem; width: 0.625rem; border-radius: 50%; background: #fff;  display: flex; justify-content: center; align-items: center; ">
-
-                                                    <!-- Down arrow character -->
-
+                                                
+                                                <div class="arrow-btn" >
+                                                    <i class="fa fa-angle-down"></i>
                                                 </div>
 
                                             </div>
@@ -438,19 +400,19 @@
 
                                         <div class="accordion-body">
 
-                                            <div style="width:100%; height:1px; border-bottom:1px solid #ccc; margin-bottom:10px;"></div>
+                                            <div style="width:100%; height:1px; border-bottom:1px solid #ccc; margin-bottom:5px;"></div>
 
                                             <div class="content">
 
-                                                <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">Duration:</span>
+                                                <span style="color: #778899; font-size: 0.755rem; font-weight: 500;">Duration:</span>
 
-                                                <span style="font-size: 0.8125rem;">
+                                                <span style="font-size: 0.755rem;">
 
-                                                <span style="font-size: 0.8125rem; font-weight: 500;">{{ $leaveRequest['approvedLeaveRequest']->formatted_from_date }}</span>
+                                                <span style="font-size: 0.755rem; font-weight: 500;">{{ $leaveRequest['approvedLeaveRequest']->formatted_from_date }}</span>
 
                                                 ({{ $leaveRequest['approvedLeaveRequest']->from_session }} ) to
 
-                                                <span style="font-size: 0.8125rem; font-weight: 500;">{{ $leaveRequest['approvedLeaveRequest']->formatted_to_date }}</span>
+                                                <span style="font-size: 0.755rem; font-weight: 500;">{{ $leaveRequest['approvedLeaveRequest']->formatted_to_date }}</span>
 
                                             ( {{ $leaveRequest['approvedLeaveRequest']->to_session }} )
 
@@ -460,9 +422,9 @@
 
                                             <div class="content">
 
-                                                <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">Reason:</span>
+                                                <span style="color: #778899; font-size: 0.755rem; font-weight: 500;">Reason:</span>
 
-                                            <span style="font-size: 0.8125rem;">{{ $leaveRequest['approvedLeaveRequest']->reason }}</span>
+                                                <span style="font-size: 0.755rem;">{{ucfirst( $leaveRequest['approvedLeaveRequest']->reason) }}</span>
 
                                             </div>
 
@@ -472,42 +434,39 @@
 
                                                 <div class="content">
 
-                                                    <span style="color: #778899; font-size: 0.875rem; font-weight: 400;">Applied on:</span>
+                                                    <span style="color: #778899; font-size: 0.755rem; font-weight: 400;">Applied on:</span>
 
-                                                <span style="color: #333; font-size: 0.875rem; font-weight: 500;">{{ $leaveRequest['approvedLeaveRequest']->created_at->format('d M, Y') }}</span>
+                                                <span style="color: #333; font-size: 0.755rem; font-weight: 500;">{{ $leaveRequest['approvedLeaveRequest']->created_at->format('d M, Y') }}</span>
 
                                             </div>
                                             <div class="content">
-                                                <span style="color: #778899; font-size: 0.875rem; font-weight: 500;">Leave Balance:</span>
+                                                <span style="color: #778899; font-size: 0.755rem; font-weight: 500;">Leave Balance:</span>
                                                 @if(!empty($leaveRequest['leaveBalances']))
                                                         <div style=" flex-direction:row; display: flex; align-items: center;justify-content:center;">
                                                         <!-- Sick Leave -->
                                                             <div style="width: 20px; height: 20px; border-radius: 50%; background-color: #e6e6fa; display: flex; align-items: center; justify-content: center; margin-left:15px;">
                                                                 <span style="font-size: 0.625rem; color: #50327c;font-weight:500;">SL</span>
                                                         </div>
-                                                            <span style="font-size: 0.795rem; font-weight: 500; color: #333; margin-left: 5px;">{{ $leaveRequest['leaveBalances']['sickLeaveBalance'] }}</span>
-
-
+                                                            <span style="font-size: 0.755rem; font-weight: 500; color: #333; margin-left: 5px;">{{ $leaveRequest['leaveBalances']['sickLeaveBalance'] }}</span>
                                                         <!-- Casual Leave -->
                                                         <div style="width: 20px; height: 20px; border-radius: 50%; background-color: #e7fae7; display: flex; align-items: center; justify-content: center; margin-left: 15px;">
                                                                 <span style="font-size: 0.625rem; color: #1d421e;font-weight:500;">CL</span>
                                                         </div>
-                                                            <span style="font-size: 0.795rem; font-weight: 500; color: #333; margin-left: 5px;">{{ $leaveRequest['leaveBalances']['casualLeaveBalance'] }}</span>
+                                                            <span style="font-size: 0.755rem; font-weight: 500; color: #333; margin-left: 5px;">{{ $leaveRequest['leaveBalances']['casualLeaveBalance'] }}</span>
                                                         <!-- Loss of Pay -->
                                                         <div style="width: 20px; height: 20px; border-radius: 50%; background-color: #ffebeb; display: flex; align-items: center; justify-content: center; margin-left: 15px;">
                                                                 <span style="font-size: 0.625rem; color: #890000;font-weight:500;">LP</span>
                                                         </div>
-                                                            <span style="font-size: 0.795rem; font-weight: 500; color: #333; margin-left: 5px;">{{ $leaveRequest['leaveBalances']['lossOfPayBalance'] }}</span>
+                                                            <span style="font-size: 0.755rem; font-weight: 500; color: #333; margin-left: 5px;">{{ $leaveRequest['leaveBalances']['lossOfPayBalance'] }}</span>
                                                     </div>
                                                 @endif
                                             </div>
                             
-
                                                 <div class="content">
 
-                                            <a href="{{ route('approved-details', ['leaveRequestId' => $leaveRequest['approvedLeaveRequest']->id]) }}">
-                                                <span style="color: #3a9efd; font-size: 0.875rem; font-weight: 500;">View Details</span>
-                                            </a>
+                                                    <a href="{{ route('approved-details', ['leaveRequestId' => $leaveRequest['approvedLeaveRequest']->id]) }}">
+                                                        <span style="color: #3a9efd; font-size: 0.755rem; font-weight: 500;">View Details</span>
+                                                    </a>
 
                                                 </div>
 
@@ -516,16 +475,14 @@
                                         </div>
 
                                     </div>
+                                    @endforeach
 
                                 </div>
-
-
-
-                            @endforeach
+                           
 
                         @else
 
-                            <div class="leave-pending" style="margin-top:30px; background:#fff; margin-left:120px; display:flex; width:75%;flex-direction:column; text-align:center;justify-content:center; border:1px solid #ccc; padding:20px;gap:10px;">
+                            <div class="leave-pending" style="margin-top:10px; background:#fff;  display:flex; width:75%;flex-direction:column; text-align:center;justify-content:center; border:1px solid #ccc; padding:20px;gap:10px;">
 
                                 <img src="/images/pending.png" alt="Pending Image" style="width:60%; margin:0 auto;">
 
@@ -536,259 +493,113 @@
                         @endif
 
                     </div>
+                </div>
+            </div>
+            <!-- leave Cancel links-->
+            <div class="tab-pane fade" id="v-pills-leavecancel" role="tabpanel" aria-labelledby="v-pills-leavecancel-tab">
+               <div style="display:flex;align-items:center;justify-content:center;">
+               <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="pills-leavecancel-tab" data-toggle="pill" href="#pills-leavecancel" role="tab" aria-controls="pills-leavecancel" aria-selected="true">Active</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-Closeprofile-tab" data-toggle="pill" href="#pills-Closeprofile" role="tab" aria-controls="pills-Closeprofile" aria-selected="false">Closed</a>
+                    </li>
+                </ul>
+               </div>
+                 <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-leavecancel" role="tabpanel" aria-labelledby="pills-leavecancel-tab">
+                       <div style="display:flex;align-items:center;justify-content:center;">
+                        <div class="leave-pending" style="margin-top:10px; background:#fff;  display:flex; width:75%;flex-direction:column; text-align:center;justify-content:center; border:1px solid #ccc; padding:20px;gap:10px;">
 
+                            <img src="/images/pending.png" alt="Pending Image" style="width:60%; margin:0 auto;">
+
+                            <p style="color:#969ea9; font-size:13px; font-weight:400; ">No Review Items for Leave Cancel</p>
+
+                         </div>
+                       </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-Closeprofile" role="tabpanel" aria-labelledby="pills-Closeprofile-tab">
+                    <div style="display:flex;align-items:center;justify-content:center;">
+                        <div class="leave-pending" style="margin-top:10px; background:#fff;  display:flex; width:75%;flex-direction:column; text-align:center;justify-content:center; border:1px solid #ccc; padding:20px;gap:10px;">
+                            <img src="/images/pending.png" alt="Pending Image" style="width:60%; margin:0 auto;">
+                            <p style="color:#969ea9; font-size:13px; font-weight:400; ">No Closed Review Items for Leave Cancel</p>
+                         </div>
+                       </div>
+                    </div>
                 </div>
-                                    
+            </div>
+            <!-- Comp off links-->
+            <div class="tab-pane fade" id="v-pills-LeaveComp" role="tabpanel" aria-labelledby="v-pills-LeaveComp-tab">
+            <div style="display:flex;align-items:center;justify-content:center;">
+               <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="pills-leaveCompOff-tab" data-toggle="pill" href="#pills-leaveCompOff" role="tab" aria-controls="pills-leaveCompOff" aria-selected="true">Active</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-CloseCompOff-tab" data-toggle="pill" href="#pills-CloseCompOff" role="tab" aria-controls="pills-CloseCompOff" aria-selected="false">Closed</a>
+                    </li>
+                </ul>
+               </div>
+                 <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-leaveCompOff" role="tabpanel" aria-labelledby="pills-leaveCompOff-tab">
+                       <div style="display:flex;align-items:center;justify-content:center;">
+                        <div class="leave-pending" style="margin-top:10px; background:#fff;  display:flex; width:75%;flex-direction:column; text-align:center;justify-content:center; border:1px solid #ccc; padding:20px;gap:10px;">
+
+                            <img src="/images/pending.png" alt="Pending Image" style="width:60%; margin:0 auto;">
+
+                            <p style="color:#969ea9; font-size:13px; font-weight:400;">No Review Items for Leave Grant</p>
+
+                         </div>
+                       </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-CloseCompOff" role="tabpanel" aria-labelledby="pills-CloseCompOff-tab">
+                     <div style="display:flex;align-items:center;justify-content:center;">
+                        <div class="leave-pending" style="margin-top:10px; background:#fff;  display:flex; width:75%;flex-direction:column; text-align:center;justify-content:center; border:1px solid #ccc; padding:20px;gap:10px;">
+                            <img src="/images/pending.png" alt="Pending Image" style="width:60%; margin:0 auto;">
+                            <p style="color:#969ea9; font-size:13px; font-weight:400; ">No Review Items for Leave Grant</p>
+                        </div>
+                     </div>
+                   </div>
                 </div>
-       
-       
-       
+            </div>
+            <!-- restricted Holidays links -->
+            <div class="tab-pane fade" id="v-pills-restricted" role="tabpanel" aria-labelledby="v-pills-restricted-tab">
+            <div style="display:flex;align-items:center;justify-content:center;">
+               <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="pills-restrictedHoliday-tab" data-toggle="pill" href="#pills-restrictedHoliday" role="tab" aria-controls="pills-restrictedHoliday" aria-selected="true">Active</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-CloserestrictedHoliday-tab" data-toggle="pill" href="#pills-CloserestrictedHoliday" role="tab" aria-controls="pills-CloserestrictedHoliday" aria-selected="false">Closed</a>
+                    </li>
+                </ul>
+               </div>
+                 <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-restrictedHoliday" role="tabpanel" aria-labelledby="pills-restrictedHoliday-tab">
+                       <div style="display:flex;align-items:center;justify-content:center;">
+                        <div class="leave-pending" style="margin-top:10px; background:#fff;  display:flex; width:75%;flex-direction:column; text-align:center;justify-content:center; border:1px solid #ccc; padding:20px;gap:10px;">
+
+                            <img src="/images/pending.png" alt="Pending Image" style="width:60%; margin:0 auto;">
+
+                            <p style="color:#969ea9; font-size:13px; font-weight:400;">No Review Items for Restricted Holiday</p>
+
+                         </div>
+                       </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-CloserestrictedHoliday" role="tabpanel" aria-labelledby="pills-CloserestrictedHoliday-tab">
+                     <div style="display:flex;align-items:center;justify-content:center;">
+                        <div class="leave-pending" style="margin-top:10px; background:#fff;  display:flex; width:80%;flex-direction:column; text-align:center;justify-content:center; border:1px solid #ccc; padding:20px;gap:10px;">
+                            <img src="/images/pending.png" alt="Pending Image" style="width:60%; margin:0 auto;">
+                            <p style="color:#969ea9; font-size:13px; font-weight:400; ">No Review Items for Restricted Holiday</p>
+                        </div>
+                     </div>
+                   </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-    <div id="leavecancel-content" style="display: none; margin-top: -328px;">
-    <!-- Content to be toggled -->
-        <div class="btn-group leavewf-links" role="group" aria-label="Leave Workflow" style="margin-left: 300px;">
-        <button type="button" class="btn " id="leavecancelActiveButton">Active</button>
-        <button type="button" class="btn " id="leavecancelClosedButton">Closed</button>
-        </div>
-    <div class="form-group" style="margin-top: 25px;width:200px;margin-left:364px;">
-                <input type="date" class="form-control" wire:model="emp_dob" max="{{ date('Y-m-d') }}">
-                @error('emp_dob') <span class="text-danger">{{ $message }}</span> @enderror
-            </div>
-
-            <div class="mb-4" style="margin-left:570px; margin-top: -50px;">
-                <input type="text" wire:model.lazy="search" placeholder="Search for Employee">
-            </div>
-            <div class="container">
-                <div class="container" id="leavecancelActiveCard" style="display: none;">
-                    <div class="card" style="height:335px; width: 650px;margin-left: 200px; margin-top: 20px;">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP2fBGQf4GHJcIn2SxSKmUPPStVmd22w5uig&usqp=CAU"
-                            alt="Sample Image" style="height: 300px; width: 300px; margin: 0 auto;">
-                        <p style="text-align: center;">No Review Items for Leave Cancel</p>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="container" id="leavecancelClosedCard" style="display: none;">
-                <div class="card" style="height:295px; width: 650px; margin-left: 200px; margin-top: 20px;">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMT5TgvjUm4x4YpmWdvAG8dvbNzJ67RzvX7j0fbJd2znsBYuhYkAJX4jXMFedU-ueYYZI&usqp=CAU"
-                            alt="Sample Image" style="height: 50px; width: 50px; margin: 0 auto; margin-left:30px; margin-top:23px">
- 
-                        <div class ="details" style="margin-left:92px; margin-top: -45px;font-size:12px;">
-                            <p>Renuka Chinthala</p>
-                            <p class="id" style="margin-top:-18px">AGS-0007</p>
-                        </div>
-                        <div class="details" style="margin-left:250px; margin-top:-52px;font-size:12px;">
-                        <p>Leave Type</p>
-                            <p style="margin-top:-16px">Casual Leave Probation</p>
- 
-                        </div>
-                       
-                    <div class="details" style="margin-left:431px; margin-top:-50px;font-size:12px;">
-                      <p>Period</p>
-                       <p class="id" style="margin-top:-18px">01 Aug 2023</p>
-                       <p style="font-size:10px;margin-top:-15px">Full Day</p>
-                    </div>
-                    <hr class="line" style="border:none;margin:4px 0; height: 1px; background-color: black;marging-top:8px; ">
-                  <p class="date" style="margin-top:20px;font-size:13px;margin-left:21px;">No. of days : 1
-                             </p>
-                             <p class="date" style="margin-top:-16px;font-size:13px;margin-left:21px;">Reason:
-                            I am going not going to attend party
-                             </p>
-                        <hr class="line" style="border:none;margin:4px 0; height: 1px; background-color: black; ">
-                        <div class="details" style="margin-left:31px; margin-top:25px;">
-                            <p>Applied On</p>
-                            <p class="id" style="margin-top:-18px;font-size:13px;">20 oct, 2023
-                            </p><br>
-                            <p class="view-details" style="margin-left: 20rem;;margin-top:-74px;"><a href="/details/9">View Details</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
- 
-    </div>
-    <!-- <Leave Comp Off> -->
- 
-   
-    </div>
- 
-    </div>
- 
-    <!-- Include Bootstrap JavaScript (jQuery and Popper.js are required dependencies) -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
- 
-    <script>
-        
-function toggleDetails(contentId) {
-    // Get all the content sections
-    const contentSections = [
-        'restricted-content',
-        'attendence-content',
-        'resignation-content',
-        'helpdesk-content',
-        'holiday-content',
-        'leavecancel-content',
-        // Add more content section IDs here
-    ];
- 
-    // Hide all content sections except the one that was clicked
-    contentSections.forEach((section) => {
-        if (section === contentId) {
-            // Show the clicked section
-            document.getElementById(section).style.display = 'block';
-        } else {
-            // Hide the other sections
-            document.getElementById(section).style.display = 'none';
-        }
-    });
-}
- 
-$(function() {
-  function setupClickHandlers(activeButton, activeCard, closedButton, closedCard) {
-    activeButton.click(function() {
-      activeCard.show();
-      closedCard.hide();
-    });
- 
-    closedButton.click(function() {
-      closedCard.show();
-      activeCard.hide();
-    });
-  }
- 
-  // Restricted content
-  setupClickHandlers(
-    $('#restrictedActiveButton'), $('#restrictedActiveCard'),
-    $('#restrictedClosedButton'), $('#restrictedClosedCard')
-  );
- 
- 
-  // Attendence content
-  setupClickHandlers(
-    $('#attendenceActiveButton'), $('#attendenceActiveCard'),
-    $('#attendenceClosedButton'), $('#attendenceClosedCard')
-  );
- 
-  // Resignation content
-  setupClickHandlers(
-    $('#resignationActiveButton'), $('#resignationActiveCard'),
-    $('#resignationClosedButton'), $('#resignationClosedCard')
-  );
- 
-  // Helpdesk content
-  setupClickHandlers(
-    $('#helpdeskActiveButton'), $('#helpdeskActiveCard'),
-    $('#helpdeskClosedButton'), $('#helpdeskClosedCard')
-  );
- 
-  // Holiday content
-  setupClickHandlers(
-    $('#holidayActiveButton'), $('#holidayActiveCard'),
-    $('#holidayClosedButton'), $('#holidayClosedCard')
-  );
- 
-  // Leave cancel content
-  setupClickHandlers(
-    $('#leavecancelActiveButton'), $('#leavecancelActiveCard'),
-    $('#leavecancelClosedButton'), $('#leavecancelClosedCard')
-  );
-});
-document.getElementById("attendenceActiveButton").addEventListener("click", function() {
-        this.classList.add("btn-primary");
-        this.classList.remove("btn-outline-primary");
-        document.getElementById("attendenceClosedButton").classList.add("btn-outline-primary");
-        document.getElementById("attendenceClosedButton").classList.remove("btn-primary");
-    });
- 
-    document.getElementById("attendenceClosedButton").addEventListener("click", function() {
-        this.classList.add("btn-primary");
-        this.classList.remove("btn-outline-primary");
-        document.getElementById("attendenceActiveButton").classList.add("btn-outline-primary");
-        document.getElementById("attendenceActiveButton").classList.remove("btn-primary");
-    });
-    document.getElementById("restrictedActiveButton").addEventListener("click", function() {
-        this.classList.add("btn-primary");
-        this.classList.remove("btn-outline-primary");
-        document.getElementById("restrictedClosedButton").classList.add("btn-outline-primary");
-        document.getElementById("restrictedClosedButton").classList.remove("btn-primary");
-    });
- 
-    document.getElementById("restrictedClosedButton").addEventListener("click", function() {
-        this.classList.add("btn-primary");
-        this.classList.remove("btn-outline-primary");
-        document.getElementById("restrictedActiveButton").classList.add("btn-outline-primary");
-        document.getElementById("restrictedActiveButton").classList.remove("btn-primary");
-    });
-    document.getElementById("resignationActiveButton").addEventListener("click", function() {
-        this.classList.add("btn-primary");
-        this.classList.remove("btn-outline-primary");
-        document.getElementById("resignationClosedButton").classList.add("btn-outline-primary");
-        document.getElementById("resignationClosedButton").classList.remove("btn-primary");
-    });
- 
-    document.getElementById("resignationClosedButton").addEventListener("click", function() {
-        this.classList.add("btn-primary");
-        this.classList.remove("btn-outline-primary");
-        document.getElementById("resignationActiveButton").classList.add("btn-outline-primary");
-        document.getElementById("resignationActiveButton").classList.remove("btn-primary");
-    });
-    document.getElementById("helpdeskActiveButton").addEventListener("click", function() {
-        this.classList.add("btn-primary");
-        this.classList.remove("btn-outline-primary");
-        document.getElementById("helpdeskClosedButton").classList.add("btn-outline-primary");
-        document.getElementById("helpdeskClosedButton").classList.remove("btn-primary");
-    });
- 
-    document.getElementById("helpdeskClosedButton").addEventListener("click", function() {
-        this.classList.add("btn-primary");
-        this.classList.remove("btn-outline-primary");
-        document.getElementById("helpdeskActiveButton").classList.add("btn-outline-primary");
-        document.getElementById("helpdeskActiveButton").classList.remove("btn-primary");
-    });
-    document.getElementById("holidayActiveButton").addEventListener("click", function() {
-        this.classList.add("btn-primary");
-        this.classList.remove("btn-outline-primary");
-        document.getElementById("holidayClosedButton").classList.add("btn-outline-primary");
-        document.getElementById("holidayClosedButton").classList.remove("btn-primary");
-    });
- 
-    document.getElementById("holidayClosedButton").addEventListener("click", function() {
-        this.classList.add("btn-primary");
-        this.classList.remove("btn-outline-primary");
-        document.getElementById("holidayActiveButton").classList.add("btn-outline-primary");
-        document.getElementById("holidayActiveButton").classList.remove("btn-primary");
-    });
-    document.getElementById("leavecancelActiveButton").addEventListener("click", function() {
-        this.classList.add("btn-primary");
-        this.classList.remove("btn-outline-primary");
-        document.getElementById("leavecancelClosedButton").classList.add("btn-outline-primary");
-        document.getElementById("leavecancelClosedButton").classList.remove("btn-primary");
-    });
- 
-    document.getElementById("leavecancelClosedButton").addEventListener("click", function() {
-        this.classList.add("btn-primary");
-        this.classList.remove("btn-outline-primary");
-        document.getElementById("leavecancelActiveButton").classList.add("btn-outline-primary");
-        document.getElementById("leavecancelActiveButton").classList.remove("btn-primary");
-    });
-    function toggleAccordion(element) {
-            const accordionBody = element.nextElementSibling;
-            if (accordionBody.style.display === 'block') {
-                accordionBody.style.display = 'none';
-                element.classList.remove('active'); // Remove active class
-            } else {
-                accordionBody.style.display = 'block';
-                element.classList.add('active'); // Add active class
-            }
-        }
-    </script>
-    @livewireScripts
 </body>
- 
 </html>
 </div>
