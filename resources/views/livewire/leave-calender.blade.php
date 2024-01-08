@@ -607,7 +607,7 @@
         </button>
     </div>
         <div class="row" style="margin:0;padding:0;">
-            <div class="col-md-7" >
+            <div class="col-md-7">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="calendar-heading-container">
                         <button wire:click="previousMonth" class="nav-btn">&lt; Prev</button>
