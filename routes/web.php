@@ -4,7 +4,9 @@ use App\Livewire\ApprovedDetails;
 use App\Livewire\Delegates;
 use App\Livewire\EmpLogin;
 use App\Livewire\EmployeesReview;
+use App\Livewire\Everyone;
 use App\Livewire\Feeds;
+
  
 use App\Livewire\Attendance;
 use App\Livewire\AuthChecking;
@@ -198,7 +200,7 @@ Route::middleware(['auth:emp'])->group(function () {
  
     //Feeds Module
     Route::get('/Feeds', Feeds::class);
- 
+    Route::get('/everyone', Everyone::class);
  
     //People module
     Route::get('/PeoplesList', Peoples::class);
