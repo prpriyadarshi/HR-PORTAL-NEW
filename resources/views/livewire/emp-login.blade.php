@@ -1,4 +1,5 @@
     <div class="container-fluid p-0">
+        <x-loading-indicator/>
         <div class="m-0 mt-3 row">
             <div class="col-md-12" style="text-align: end;">
                 <button  class="btn btn-primary" wire:click="jobs" style="background-color: rgb(2, 17, 79);color:white;border-radius:5px;border:none">
