@@ -3,7 +3,6 @@
 <html lang="en">
 
 
-
 <head>
 
     <meta charset="UTF-8">
@@ -85,12 +84,12 @@
 @else
 
 <body>
+
     <div>
 
     </div>
 
     <div>
-
         <style>
             body {
                 font-family: 'Montserrat', sans-serif;

@@ -226,6 +226,7 @@
     </style>
 </head>
 <body>
+    <x-loading-indicator/>
     <div class="container">
     @if (session()->has('success'))
         <div class="custom-alert alert-success" style="text-align: center;margin-left:20%;width: 500px;">

@@ -1,4 +1,6 @@
 <div>
+    <x-loading-indicator/>
+
     <!DOCTYPE html>
     <html lang="en">
 
