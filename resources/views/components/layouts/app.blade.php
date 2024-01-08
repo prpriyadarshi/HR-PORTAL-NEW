@@ -36,13 +36,14 @@
     @livewireScripts
     @endauth
 
+
+
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <script src="{{ mix('js/app.js') }}"></script>
 
     <link rel="stylesheet" type="text/css" href="path/to/your.css">
-
-  
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -75,7 +76,7 @@
     <script src="{{ asset('livewire/livewire.js') }}" defer></script>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" data-turbolinks-track="reload">
-    @stack('styles')
+ @stack('styles')
     <livewire:styles />
 
 </head>
@@ -96,18 +97,10 @@
                 font-family: 'Montserrat', sans-serif;
                 overflow-x:hidden;
             }
-            .left-card-body{
-                margin-top:0px;
-                padding:0 5px;
-                margin:0;
-                height:600px;
-            }
-           
+
             .profile-container {
 
                 display: flex;
-
-                gap:10px;
 
                 align-items: center;
 
@@ -132,6 +125,8 @@
                 background-color: green;
 
                 border-radius: 50%;
+
+                margin-right: 10px;
 
             }
 
@@ -165,11 +160,9 @@
 
             }
             .nav-item .nav-link {
-                color:black;
-                text-decoration: none;
-                font-weight:500;
-                font-size:0.825rem;
-                cursor:pointer;
+            color: black;
+            text-decoration: none;
+            cursor:pointer;
             }
 
             /* Style for the active-link class */
@@ -205,15 +198,15 @@
 
                 width: 30px;
 
-                color: grey;
+                color: black;
 
             }
 
 
 
             .emp-name {
-               display:flex;
-               flex-direction:column;
+
+                margin-right: 20px;
 
             }
 
@@ -224,31 +217,18 @@
                 margin-right: 15px;
 
             }
-            #todo-options a {
-                text-decoration: none;
-                color: #778899;
-                font-weight:normal;
-                cursor:pointer;
-            }
-            #attendance-options a{
-                text-decoration: none;
-                color: #778899;
-                cursor:pointer;
-                font-weight:normal;
-            }
-      
+
+
             #leave-options a {
                 text-decoration: none;
                 color: #778899;
-                font-weight:normal;
                 cursor:pointer;
+
             }
 
             #salary-options a {
                 text-decoration: none;
                 color: #778899;
-                cursor:pointer;
-                font-weight:normal;
             }
 
                 /* Style for the dropdown container */
@@ -257,7 +237,7 @@
             display: inline-block;
             background:transparent;
             width:200px;
-            margin-right:30px;
+            /* margin-right:30px; */
             }
 
             /* Style for the dropdown button */
@@ -314,9 +294,6 @@
             display: block;
             }
             /* content slot scrolling */
-            .slot{
-               margin-top:10px;max-height:520px;overflow-y: auto;background:#f2f2f2;
-            }
 
             .slot::-webkit-scrollbar {
                 width: 7px; /* Set the width of the scrollbar */
@@ -334,8 +311,13 @@
             .slot::-webkit-scrollbar-thumb:hover {
                 background-color: #555; /* Set the color of the thumb on hover */
             }
+            .backdropModal {
+                background-color: #00000000;
+                -webkit-backdrop-filter: blur(2px);
+                backdrop-filter: blur(2px);
+            }
 
-           
+
 
             @media only screen and (max-width: 768px) {
                 .displayNone {
@@ -381,13 +363,15 @@
                 #menu-popup::-webkit-scrollbar-thumb:hover {
                     background-color: #555; /* Set the color of the thumb on hover */
                 }
-               
+
+
             }
 
             @media only screen and (min-width: 769px) {
                 .hideHamburger {
                     display: none !important;
                 }
+
             }
 
 
@@ -435,7 +419,8 @@
                 #menu-popup::-webkit-scrollbar-thumb:hover {
                     background-color: #555; /* Set the color of the thumb on hover */
                 }
-             
+
+
             }
 
             @media only screen and (min-width: 769px) {
@@ -443,7 +428,7 @@
                     display: none !important;
                 }
                 .scrollable-container {
-                    max-height: 450px;
+                    max-height: 370px;
                     overflow-y: auto;
                 }
                 .scrollable-container::-webkit-scrollbar {
@@ -459,42 +444,21 @@
                     background-color: #fff; /* Set the color of the scrollbar track */
                     border-radius: 5px; /* Set the border radius of the track */
                 }
-             
-                               
-            }
-         
-            @media only screen and (min-width: 1440px) {
-             
 
-                .slot{
-                    max-height:660px;
-                    overflow-x:hidden;
-                    overflow-y:auto;
-                }
-                .left-card-body{
-                    width:250px;
-                margin-top:0px;
-                padding:0 5px;
-                margin:0;
-                display:flex; 
-                height:750px;
-              
-               }
             }
-      
 
         </style>
 
 
-        <div class="row m-0" style="height: 100%;width:100%; padding:0;background:#f2f2f2;">
+        <div class="row m-0" style="height: 100%;width:100%;background-color: #f0f0f0;">
 
-            <div class="card displayNone" id="menu-popup" style="border-radius:0px; width: auto; background:transaparent;box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);padding:0;margin:0;">
+            <div class="card displayNone" id="menu-popup" style="background-color: #fff; border-radius:0px;height: auto; width: 18em; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
 
-                <div class="left-card-body">
+                <div class="card-body" style="max-height: fit-content; min-height :99vh;width:auto;margin-top:0px">
 
-                    <ul class="nav flex-column" >
+                    <ul class="nav flex-column">
 
-                        <div style="margin-bottom: 15px;">
+                        <div style="margin-bottom: 30px;margin-top:0px">
 
                             @livewire('company-logo')
                         </div>
@@ -505,17 +469,17 @@
                         @auth('emp')
                         <div class="scrollable-container">
                          <ul class="nav flex-column">
-                           <li class="nav-item" style="text-decoration: none; margin-top: 15px" onclick="changePageTitle1()">
+                           <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none; margin-top: 10px" onclick="changePageTitle1()">
 
                             <a class="nav-link" href="/" onclick="setActiveLink(this)">
 
-                                <i class="fas fa-home "></i> Home
+                                <i class="fas fa-home"></i> Home
 
                             </a>
 
                         </li>
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle2()">
+                        <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none;" onclick="changePageTitle2()">
 
                             <a class="nav-link" href="/Feeds"  onclick="setActiveLink(this)">
 
@@ -524,7 +488,7 @@
                             </a>
 
                         </li>
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle8()">
+                        <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none;" onclick="changePageTitle8()">
 
                             <a class="nav-link" href="/PeoplesList"  onclick="setActiveLink(this)">
 
@@ -540,12 +504,12 @@
                             </a>
                             <div id="todo-options" style="display: none;">
                                 <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
-                                    <li class="nav-item-1" style="text-decoration: none;">
+                                    <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none;">
                                         <a class="nav-link" href="/tasks" onclick="changePageTitle3('task'); setActiveLink(this)">
                                             Tasks
                                         </a>
                                     </li>
-                                    <li class="nav-item-1" style="text-decoration: none;">
+                                    <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none;">
                                         <a class="nav-link" href="/employees-review" onclick="changePageTitle3('review'); setActiveLink(this)">
                                             Review
                                         </a>
@@ -564,34 +528,34 @@
                             </a>
                             <div id="salary-options" style="display: none;">
                                 <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle12('itdeclaration')">
+                                    <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none;" onclick="changePageTitle12('itdeclaration')">
                                         <a class="nav-link" href="/formdeclaration" id="itdeclaration" onclick="selectOption(this, 'IT Declaration');setActiveLink(this)">
                                             IT Declaration
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle13('itstatement')">
+                                    <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none;" onclick="changePageTitle13('itstatement')">
                                         <a class="nav-link" href="/itstatement" id="itstatement" onclick="selectOption(this, 'IT Statement');setActiveLink(this)">
                                             IT Statement
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('slip')">
+                                    <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('slip')">
                                         <a class="nav-link" href="/slip" id="slip" onclick="selectOption(this, 'Pay Slip');setActiveLink(this)">
                                             Payslips
                                         </a>
                                     </li>
 
 
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('reimbursement')">
+                                    <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('reimbursement')">
                                         <a class="nav-link" href="/reimbursement" id="reimbursement" onclick="selectOption(this, 'Reimbursement'); setActiveLink(this)">
                                             Reimbursement
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('investment')">
+                                    <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('investment')">
                                         <a class="nav-link" href="/investment" id="investment" onclick="selectOption(this, 'Proof of Investment'); setActiveLink(this) ">
                                             Proof of Investment
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('salary-revision')">
+                                    <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('salary-revision')">
                                         <a class="nav-link" href="/salary-revision" id="salary-revision" onclick="selectOption(this, 'Salary Revision'); setActiveLink(this)">
                                            Salary Revision
                                         </a>
@@ -603,33 +567,31 @@
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5(item)">
                             <a class="nav-link" onclick="toggleLeaveDropdown(event)">
-                               <i class="fas fa-file-alt" id="leave-icon"></i>
-                               <span>Leave</span>
-                                <i class="fas fa-caret-down" id="leave-caret" style="margin-left:20px;"></i>
+                                <i class="fas fa-file-alt" id="leave-icon"></i> Leave <i class="fas fa-caret-down" id="leave-caret"></i>
                             </a>
                             <div id="leave-options" style="display: none;">
                                 <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
-                                    <li class="nav-item-1" style="text-decoration: none;">
+                                    <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none;">
                                         <a class="nav-link" href="/leave-page" onclick="changePageTitle5('apply');return false;setActiveLink(this)">
                                             Leave Apply
                                         </a>
                                     </li>
-                                    <li class="nav-item-1" style="text-decoration: none;">
+                                    <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none;">
                                         <a class="nav-link" href="/leave-balances" onclick="changePageTitle5('balances'); return false;setActiveLink(this)">
                                             Leave Balances
                                         </a>
                                     </li>
-                                    <li class="nav-item-1" style="text-decoration: none;">
+                                    <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none;">
                                         <a class="nav-link" href="/leave-calender" onclick="changePageTitle5('calendar'); return false;setActiveLink(this)">
                                             Leave Calendar
                                         </a>
                                     </li>
-                                    <li class="nav-item-1" style="text-decoration: none;">
+                                    <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none;">
                                         <a class="nav-link" href="/holiday-calender" onclick="changePageTitle5('holiday'); return false;setActiveLink(this)">
                                             Holiday Calendar
                                         </a>
                                     </li>
-                                    <li class="nav-item-1" style="text-decoration: none;">
+                                    <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none;">
                                         <a class="nav-link" href="/team-on-leave-chart" onclick="changePageTitle5('team'); return false;setActiveLink(this)">
                                             @livewire('team-on-leave')
                                         </a>
@@ -638,42 +600,38 @@
                             </div>
                         </li>
 
-
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6(item)">
-
                             <a class="nav-link"  onclick="toggleAttendanceDropdown()">
-
                                 <i class="fas fa-clock"></i> Attendance<i class="fas fa-caret-down" id="attendance-caret"></i>
                             </a>
                             <div id="attendance-options" style="display: none;">
                                 <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
-                                    <li class="nav-item-1" style="text-decoration: none;">
-                                        <a class="nav-link" href="/Attendance" onclick="return changePageTitle6('attendance-info');">
-                                              Attendance&nbsp;Info
+                                    <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/Attendance" onclick="return changePageTitle6('attendance-info');setActiveLink(this)">
+                                              Attendance Info
                                         </a>
                                     </li>
-                                   
-                                    <li class="nav-item" style="text-decoration: none;">
-                                        <a class="nav-link" href="/whoisinchart" style="padding-top:5px;padding-right:15px;padding-left:15px;padding-bottom:1px;" onclick="return changePageTitle6('who-is-in');">
+
+                                    <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/whoisinchart" onclick="return changePageTitle6('who-is-in');setActiveLink(this)">
                                               @livewire('whoisin')
                                         </a>
                                     </li>
-                                    <li class="nav-item-1" style="text-decoration: none;">
-                                        <a class="nav-link" href="/employee-swipes-data"  style="padding-top:5px;padding-right:15px;padding-left:15px;padding-bottom:1px;" onclick="return changePageTitle6('who-is-in');">
+                                    <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/employee-swipes-data" onclick="return changePageTitle6('employee-swipes');setActiveLink(this)">
                                               @livewire('employee-swipes')
                                         </a>
                                     </li>
-                                    <li class="nav-item-1" style="text-decoration: none;">
-                                        <a class="nav-link" href="/attendance-muster-data"  style="padding-top:5px;padding-right:15px;padding-left:15px;padding-bottom:1px;" onclick="return changePageTitle6('who-is-in');">
+                                    <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none;">
+                                        <a class="nav-link" href="/attendance-muster-data" onclick="return changePageTitle6('who-is-in');setActiveLink(this)">
                                               @livewire('attendance-muster')
                                         </a>
                                     </li>
-                                    
                                 </ul>
                             </div>
                         </li>
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle7()">
+                        <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none;" onclick="changePageTitle7()">
 
                             <a class="nav-link" href="/document"  onclick="setActiveLink(this)">
 
@@ -684,17 +642,17 @@
                         </li>
 
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle9()">
+                        <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none;" onclick="changePageTitle9()">
 
                             <a class="nav-link" href="/HelpDesk"  onclick="setActiveLink(this)">
 
-                                <i class="fas fa-headset"></i> Help Desk
+                                <i class="fas fa-headset"></i> Helpdesk
 
                             </a>
 
                         </li>
 
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle10()">
+                        <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none;" onclick="changePageTitle10()">
 
                             <a class="nav-link" href="/delegates"  onclick="setActiveLink(this)">
 
@@ -707,7 +665,7 @@
                         @endauth
 
                         @auth('hr')
-                        <li class="nav-item" style="text-decoration: none; margin-top: 10px" onclick="changePageTitle1()">
+                        <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none; margin-top: 10px" onclick="changePageTitle1()">
                             <a class="nav-link" href="#"  onclick="setActiveLink(this)">
                                 <i class="fas fa-users"></i> HR Requests
                             </a>
@@ -715,7 +673,7 @@
                         @endauth
 
                         @auth('it')
-                        <li class="nav-item" style="text-decoration: none; margin-top: 10px" onclick="changePageTitle1()">
+                        <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none; margin-top: 10px" onclick="changePageTitle1()">
                             <a class="nav-link" href="#"  onclick="setActiveLink(this)">
                                 <i class="fas fa-laptop"></i> IT Requests
                             </a>
@@ -723,7 +681,7 @@
                         @endauth
 
                         @auth('finance')
-                        <li class="nav-item" style="text-decoration: none; margin-top: 10px" onclick="changePageTitle1()">
+                        <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none; margin-top: 10px" onclick="changePageTitle1()">
                             <a class="nav-link" href="#"  onclick="setActiveLink(this)">
                                 <i class="fas fa-dollar-sign"></i> Finance Requests
                             </a>
@@ -749,16 +707,16 @@
                         <button class="dropdown-btn">Quick Links</button>
                           <div class="dropdown-content">
                              <a href="/tasks">Tasks</a>
-                            <a href="/help-desk">Help Desk</a>
+                            <a href="/help-desk">Helpdesk</a>
                         </div>
                     </div>
-                    <div class="notification-icon" style="margin-right: 10px;">
+                    <div class="notification-icon">
 
                         <i style="color: white;" class="fas fa-bell"></i>
 
                     </div>
                     @endauth
-                   
+
                     @if(auth('it')->check())
                     <h6 style="color: white; width: -webkit-fill-available;" id="pageTitle">
                         <i style="color: white;" class="fas fa-laptop"></i> IT Requests
@@ -782,12 +740,40 @@
 
                 </div>
 
-                <div class="slot" >
+                <div class="slot" style="margin-top: 3%; margin-left: 1%; height: calc(100vh - 84px); overflow-y: auto;">
                     {{ $slot }}
                 </div>
 
             </div>
 
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade backdropModal" id="navigateLoader" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="navigateLoaderLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="background-color : transparent; border : none">
+                <!-- <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="navigateLoaderLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div> -->
+
+                <div class="modal-body">
+                    <div class="logo text-center mb-1" style="padding-top: 20px;">
+                        @livewire('company-logo')
+                    </div>
+
+                    <div class="d-flex justify-content-center m-4">
+                        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div> -->
+                </div>
+            </div>
         </div>
 
 
@@ -1226,6 +1212,8 @@
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-@endguest
 </body>
+
+@endguest
+
 </html>
