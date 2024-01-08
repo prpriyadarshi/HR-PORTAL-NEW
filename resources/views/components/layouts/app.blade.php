@@ -93,7 +93,7 @@
     <div>
 
         <style>
-            [5:43 PM] Asapu Sri Kumar Manikanta body {
+          .body {
                 font-family: 'Montserrat', sans-serif;
                 overflow-x: hidden;
             }
