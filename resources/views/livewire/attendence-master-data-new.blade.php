@@ -239,6 +239,7 @@
         $present=0;
         $count=0;
         $flag=0;
+        $isFilter=1;
         $isHoliday=0;
         $leaveTake=0;
         $currentMonth=12;
@@ -404,8 +405,11 @@
                     
                       <tbody>
                         <!-- Add table rows and data for Summary -->
-                      
+                        @if($notFound)
                         @foreach($Employees as $emp)
+                          @php
+                             $isFilter=1;
+                          @endphp   
                           <tr>
                              
                                 <td style="max-width: 200px;font-weight:400; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ucfirst($emp->first_name)}}&nbsp;{{ucfirst($emp->last_name)}}<span class="text-muted">(#{{ $emp->emp_id }})</span><br/><span class="text-muted"style="font-size:11px;">{{ucfirst($emp->job_title)}},{{ucfirst($emp->city)}}</span></td>
@@ -430,7 +434,35 @@
                                 
                           </tr>
                          @endforeach 
-                       
+                         @else
+                         @foreach($Employees as $emp)
+                          <tr>
+                             
+                                <td style="max-width: 200px;font-weight:400; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ucfirst($emp->first_name)}}&nbsp;{{ucfirst($emp->last_name)}}<span class="text-muted">(#{{ $emp->emp_id }})</span><br/><span class="text-muted"style="font-size:11px;">{{ucfirst($emp->job_title)}},{{ucfirst($emp->city)}}</span></td>
+                                @php
+                                         $found = false;
+                                         
+                                @endphp
+                               @foreach($DistinctDatesMapCount as $empId=>$d1)
+                               
+                                   @if($empId ==$emp->emp_id)
+                                      
+                                      <td>{{$d1['date_count']}}</td>
+                                      @php
+                                             $found = true;
+                                      @endphp
+                                   
+                                   @endif
+                                  
+                               @endforeach 
+                               @if(!$found)
+                                       <td>0</td>
+                               @endif
+                              
+                                
+                          </tr>
+                          @endforeach
+                          @endif
                         <!-- Add more rows as needed -->
                      </tbody>
                    
@@ -451,6 +483,7 @@
 
                 <thead>
                     <tr>
+                        
                         @for ($i = 1; $i <= $daysInMonth; $i++)
                             @php
                                 $timestamp = mktime(0, 0, 0, $currentMonth, $i, $currentYear);
@@ -469,11 +502,14 @@
               
                     <tbody>
                         <!-- Add table rows and data for Attendance -->
+                        @if($isFilter==1)
+                
                         
-                        @while ($EmployeesCount > 0)
-                       
+                        
+                         
                         @foreach($Employees as $e)
-                            
+                       
+                          
                         <tr style="height:14px;background-color:#fff;">
                           
                            @for ($i = 1; $i <= $daysInMonth; $i++)
@@ -490,8 +526,9 @@
                           <td style="height:20px;">
                            
                                  
-                        
+                               
                           @foreach ($DistinctDatesMap  as $empId => $distinctDates)
+                            
                              
                             @if($empId==$e->emp_id)
                             
@@ -503,14 +540,16 @@
                               
                                $createdAtDate = date('Y-m-d', strtotime($e->created_at));
                            
-
+                               
                             // Your logic for each distinct date
                               if ($distinctDate === $fullDate) {
+                                
                                 $present=1;
                                 
                               }
                             }
                             @endphp
+                           
                            @endif  
                           @endforeach
                           
@@ -543,9 +582,9 @@
                                  break;
                               @endphp
                             @endif
-
-
+                         
                           @endforeach 
+                                 
                                   @if ($dayName === 'Sat' || $dayName === 'Sun')
                                     <p style="color:#666;font-weight:500;">O</p> 
                                 
@@ -561,12 +600,14 @@
                                     
                                      <p style=" color: #f66;font-weight:500;">A</p>    
                                   @endif
+                                 
                         </td>
                             
                           @php
                              $present=0;
                              $isHoliday=0;
                              $leaveTake=0;
+                            
                           @endphp 
                            
                          @endfor
@@ -576,13 +617,14 @@
                            
                          @endphp
                         
-                        
-                        
+                          
+                      
                        </tr>
+                          
                        @endforeach
+                       
                    
-                       @endwhile
-                        
+                       @endif
                     </tbody>
                 </table>
             </div>

@@ -35,20 +35,24 @@ class AttendenceMasterDataNew extends Component
         $searching=1;
         $currentDate = now()->toDateString(); 
         $loggedInEmpId = Auth::guard('emp')->user()->emp_id;
-        $employees=EmployeeDetails::where('manager_id',$loggedInEmpId)->select('emp_id', 'first_name', 'last_name')->get();
+        $employees=EmployeeDetails::where('manager_id',$loggedInEmpId)->get();
         $nameFilter = $this->search; // Assuming $this->search contains the name filter
 $filteredEmployees = $employees->filter(function ($employee) use ($nameFilter) {
     return stripos($employee->first_name, $nameFilter) !== false ||
         stripos($employee->last_name, $nameFilter) !== false ||
-        stripos($employee->emp_id, $nameFilter) !== false;
+        stripos($employee->emp_id, $nameFilter) !== false
+        ||stripos($employee->job_title, $nameFilter) !== false
+        ||stripos($employee->city, $nameFilter) !== false
+        ||stripos($employee->state, $nameFilter) !== false;
 });
 
 if ($filteredEmployees->isEmpty()) {
+    
     $this->notFound = true; // Set a flag indicating that the name was not found
 } else {
     $this->notFound = false;
 }
-        dd($filteredEmployees);
+       
        
       
     }
@@ -68,8 +72,8 @@ if ($filteredEmployees->isEmpty()) {
  
   
   // Your data to be exported to Excel
-  $data = [ ['List of Employees  ' ],
-      ['Employee ID', 'Name'],
+  $data = [ ['List of Employees for Dec2023' ],
+      ['Employee ID', 'Name','No. of Present'],
  
   ];
 
@@ -84,11 +88,23 @@ $employeeIds = $employees->pluck('emp_id');
   ->get()
   ->keyBy('emp_id')
   ->toArray();
-  foreach ($employees as $employee) {
-      
 
-        $data[] = [$employee['emp_id'], $employee['first_name'] . ' ' . $employee['last_name']];
+  foreach ($employees as $employee) {
+    
+    foreach($distinctDatesMapCount as $empId=>$d1)
+    {                           
+        if($empId ==$employee->emp_id)
+        {
+         
+         
+            $data[] = [$employee['emp_id'], $employee['first_name'] . ' ' . $employee['last_name'],$d1['date_count']];
+         
+            break;
+        }
+   
      
+       
+    }
         
       
   }
@@ -162,6 +178,8 @@ $employeeIds = $employees->pluck('emp_id');
 $employees = EmployeeDetails::where('manager_id', $managerId)
 ->select('emp_id', 'first_name', 'last_name','job_title','city')
 ->get();
+if($this->searching==1)
+{
 $nameFilter = $this->search; // Assuming $this->search contains the name filter
 $filteredEmployees = $employees->filter(function ($employee) use ($nameFilter) {
     return stripos($employee->first_name, $nameFilter) !== false ||
@@ -174,7 +192,11 @@ if ($filteredEmployees->isEmpty()) {
 } else {
     $this->notFound = false;
 }
-
+}
+else
+{
+    $filteredEmployees=$employees;
+}
 
 
 $employeeIds = $employees->pluck('emp_id');
@@ -250,6 +272,6 @@ $distinctDatesMap = SwipeRecord::whereIn('emp_id', $employeeIds)
 // $presentEmployees now contains the list of employees present for the current month
  
 
-        return view('livewire.attendence-master-data-new',['Employees'=>$employees,'EmployeesCount'=>$employeescount,'DistinctDatesMap'=>$distinctDatesMap,'DistinctDatesMapCount'=>$distinctDatesMapCount,'Holiday'=> $this->holiday,'ApprovedLeaveRequests1'=>$approvedLeaveRequests1 ]);
+        return view('livewire.attendence-master-data-new',['Employees'=>$filteredEmployees,'EmployeesCount'=>$employeescount,'DistinctDatesMap'=>$distinctDatesMap,'DistinctDatesMapCount'=>$distinctDatesMapCount,'Holiday'=> $this->holiday,'ApprovedLeaveRequests1'=>$approvedLeaveRequests1 ]);
     }
 }
