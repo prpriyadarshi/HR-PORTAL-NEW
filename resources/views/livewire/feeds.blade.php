@@ -1,7 +1,7 @@
 <div>
   <!DOCTYPE html>
   <html lang="en">
- 
+
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,26 +16,26 @@
         border-right: 1px solid #ccc;
         /* Add a vertical line to the right of the left menu */
       }
- 
+
       /* Content styles */
       .content {
         padding: 20px;
       }
- 
+
       #hidden-content {
         display: none;
         /* Initially hide the content */
       }
- 
+
       .top-menu {
         width: 600px;
- 
+
         background-color: #fff;
         padding-right: 30px;
         margin-bottom: 120px;
         /* Add a vertical line to the right of the left menu */
       }
- 
+
       /* CSS for the like button */
       .like-button {
         display: flex;
@@ -43,17 +43,17 @@
         cursor: pointer;
         user-select: none;
       }
- 
+
       .like-button .thumb-icon {
         margin-right: 5px;
         font-size: 16px;
       }
- 
+
       .links:hover {
         color: #58DCE4;
         text-decoration: underline;
       }
- 
+
       .comment-icon {
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         tab-size: 4;
@@ -94,7 +94,7 @@
         background-repeat: repeat;
         margin-top: 0;
       }
- 
+
       /* Apply the CSS styles for the comment count text */
       .comment-count {
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -117,26 +117,26 @@
         --tw-text-opacity: 1;
         color: rgba(163, 179, 200, var(--tw-text-opacity));
       }
- 
+
       .comment-icon {
         cursor: pointer;
       }
- 
+
       .comment-box {
         display: none;
       }
- 
+
       .comments {
         margin-top: 10px;
       }
- 
+
       .horizontal-menu {
         display: flex;
         margin-top: 20px;
         background: white;
         padding: 10px;
       }
- 
+
       .menu-item {
         flex: 1;
         padding: 10px;
@@ -151,7 +151,7 @@
         color: #333;
         transition: background 0.3s, color 0.3s;
       }
- 
+
       .menu-item:hover {
         background: rgb(2, 17, 79);
         color: white;
@@ -159,42 +159,42 @@
       }
     </style>
   </head>
- 
+
   <body>
     <div class="container">
     <div class="content" style="margin-top: -20px">
         <div class="horizontal-menu" style="display: flex; margin-top: 30px; background: white; padding: 10px;height:60px">
- 
+
           <div class="menu-item">
             <b class="links" style="font-size: 14px; font-family: 'Open Sans', sans-serif;">
               Groups
             </b>
           </div>
- 
+
           <a class="menu-item" href="/Feeds">
             All Feeds
           </a>
- 
+
           <a class="menu-item" href="/Feeds">
             Every One
           </a>
- 
+
           <a class="menu-item" href="/Feeds">
             Events
           </a>
- 
+
           <a class="menu-item" href="/Feeds" style="font-size:12px">
             Company News
           </a>
- 
+
           <a class="menu-item" href="/Feeds">
             Appreciation
           </a>
- 
+
           <a class="menu-item" href="/Feeds">
             Buy/Sell/Rent
           </a>
- 
+
         </div>
       </div>
       <div class="contanier"  style="width: 750px; height: 70px; border-top: 1px solid #E0DDDD; border-bottom: 1px solid #E0DDDD; background-color: #FFFFFF;font-size: 14px; font-family: Open Sans, sans-serif;padding:10px;margin-left:16px">
@@ -202,19 +202,19 @@
           <p>Groups</p>
         </div>
       </div>
- 
-   
- 
+
+
+
       <div class="top-menu" style="background-color: #f0f0f0;margin-top:20px">
-       
- 
- 
-   
+
+
+
+
         <div>
           <div>
             @foreach ($combinedData as $data)
- 
- 
+
+
             @if ($data['type'] === 'date_of_birth' )
             <div class="birthday-card">
               <!-- Upcoming Birthdays List -->
@@ -224,7 +224,7 @@
                     <div class="div" style="margin-left:20px;margin-top:10px">
                     @livewire('company-logo')
                     </div>
-                    
+
                     <div style="color: #677A8E; margin-left: 60px; font-size: 14px; font-family: Open Sans, sans-serif; font-weight: 100px;margin-top:20px">Group Events</div>
                   </div>
                   <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 170px; font-family: Open Sans, sans-serif; margin-top: 40px; font-weight: 100px; color: #9E9696;margin-top:20px">
@@ -302,7 +302,7 @@
                         {{ $data['employee']->first_name }} {{ $data['employee']->last_name }} Just Joined Us!
                       </p>
                     </div>
- 
+
                   </div>
                   <confirmation-modal class="confirmation-modal">
                     <gt-popup-modal label="modal" size="sm" class="hydrated">
@@ -317,7 +317,7 @@
                       </div>
                     </gt-popup-modal>
                   </confirmation-modal>
- 
+
                 </div>
                 <div style="display: flex;">
                   <div class="like-button">
@@ -334,21 +334,21 @@
                 </div>
               </div>
             </div>
- 
- 
+
+
             @endif
             @endforeach
- 
- 
- 
+
+
+
             <script>
               // JavaScript to toggle like/dislike and update the count
               const likeButton = document.querySelector('.like-button');
               const likeCount = likeButton.querySelector('.like-count');
- 
+
               let likes = 0;
               let isLiked = false;
- 
+
               likeButton.addEventListener('click', () => {
                 if (isLiked) {
                   likes--;
@@ -360,7 +360,7 @@
                 isLiked = !isLiked;
               });
             </script>
- 
+
             <script>
               // JavaScript to toggle comment box and increment comment count
               const commentIcon = document.querySelector('.comment-icon');
@@ -368,20 +368,20 @@
               const commentCount = commentIcon.querySelector('.comment-count');
               const commentInput = document.getElementById('comment-input');
               const commentsContainer = document.querySelector('.comments');
- 
+
               let comments = 0;
- 
+
               commentIcon.addEventListener('click', () => {
                 commentBox.style.display = 'block';
               });
- 
+
               commentInput.addEventListener('input', () => {
                 // Count lines in the textarea as comments
                 const lines = commentInput.value.split('\n').length;
                 comments = lines;
                 updateCommentCount();
               });
- 
+
               commentInput.addEventListener('blur', () => {
                 // Clear and hide the comment box when it loses focus
                 commentInput.value = '';
@@ -389,11 +389,11 @@
                 // Display the comments
                 displayComments();
               });
- 
+
               function updateCommentCount() {
                 commentCount.textContent = `${comments} Comment${comments !== 1 ? 's' : ''}`;
               }
- 
+
               function displayComments() {
                 commentsContainer.innerHTML = '';
                 for (let i = 0; i < comments; i++) {
@@ -406,6 +406,6 @@
             </script>
           </div>
   </body>
- 
+
   </html>
 </div>
