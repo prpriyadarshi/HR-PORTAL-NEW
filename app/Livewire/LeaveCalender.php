@@ -7,6 +7,8 @@ use Carbon\Carbon;
 use App\Models\LeaveRequest;
 use App\Models\EmployeeDetails;
 use App\Models\HolidayCalendar;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
 class LeaveCalender extends Component
 {
     public $year;
@@ -482,3 +484,5 @@ class LeaveCalender extends Component
 
     
 }
+    
+
