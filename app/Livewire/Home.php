@@ -113,17 +113,55 @@ class Home extends Component
 
             $isManagerInApplyingTo = isset($applyingArray[0]['manager_id']) && $applyingArray[0]['manager_id'] == $employeeId;
             $isEmpInCcTo = isset($ccArray[0]['emp_id']) && $ccArray[0]['emp_id'] == $employeeId;
-
-            if ($isManagerInApplyingTo || $isEmpInCcTo) {
-                $matchingLeaveApplications[] = $leaveRequest;
+            if (!empty($ccArray) && !empty($applyingArray)) {
+                // Process when both cc_to and applying_to are present
+                foreach ($ccArray as $ccItem) {
+                    if (isset($ccItem['emp_id']) && $ccItem['emp_id'] === auth()->guard('emp')->user()->emp_id) {
+                        $matchingLeaveApplications[] = [
+                            'leaveRequest' => $leaveRequest,
+                            'empId' => $ccItem['emp_id']
+                        ];
+                        break; // Stop iterating if emp_id matches
+                    }
+                }
+                // Check for applying_to conditions
+                foreach ($applyingArray as $applyingItem) {
+                    if (isset($applyingItem['manager_id']) && $applyingItem['manager_id'] === auth()->guard('emp')->user()->emp_id) {
+                        $matchingLeaveApplications[] = [
+                            'leaveRequest' => $leaveRequest,
+                            'managerId' => $applyingItem['manager_id']
+                        ];
+                        break; // Stop iterating if manager_id matches
+                    }
+                }
+            } elseif (!empty($applyingArray)) {
+                // Process when only applying_to is present
+                foreach ($applyingArray as $applyingItem) {
+                    if (isset($applyingItem['manager_id']) && $applyingItem['manager_id'] === auth()->guard('emp')->user()->emp_id) {
+                        $matchingLeaveApplications[] = [
+                            'leaveRequest' => $leaveRequest,
+                            'managerId' => $applyingItem['manager_id']
+                        ];
+                        break; // Stop iterating if manager_id matches
+                    }
+                }
+            } elseif (!empty($ccArray)) {
+                // Process when only cc_to is present
+                foreach ($ccArray as $ccItem) {
+                    if (isset($ccItem['emp_id']) && $ccItem['emp_id'] === auth()->guard('emp')->user()->emp_id) {
+                        $matchingLeaveApplications[] = [
+                            'leaveRequest' => $leaveRequest,
+                            'empId' => $ccItem['emp_id']
+                        ];
+                        break; // Stop iterating if emp_id matches
+                    }
+                }
             }
+        
         }
 
         // Get the count of matching leave applications
         $this->count = count($matchingLeaveApplications);
-
-
-
 
 
         //team on leave
@@ -207,36 +245,44 @@ class Home extends Component
                     ->whereDate('to_date', '<=', today());
             })
             ->count();
+            $employees=EmployeeDetails::where('manager_id',$loggedInEmpId)->select('emp_id', 'first_name', 'last_name')->get();
+            $approvedLeaveRequests = LeaveRequest::join('employee_details', 'leave_applies.emp_id', '=', 'employee_details.emp_id')
+            ->where('leave_applies.status', 'approved')
+            ->whereIn('leave_applies.emp_id', $employees->pluck('emp_id'))
+            ->whereDate('from_date', '<=', $currentDate)
+            ->whereDate('to_date', '>=', $currentDate)
+            ->get(['leave_applies.*', 'employee_details.first_name', 'employee_details.last_name'])
+            ->map(function ($leaveRequest) {
+                // Calculate the number of days between from_date and to_date
+                $fromDate = \Carbon\Carbon::parse($leaveRequest->from_date);
+                $toDate = \Carbon\Carbon::parse($leaveRequest->to_date);
+    
+                $leaveRequest->number_of_days = $fromDate->diffInDays($toDate) + 1; // Add 1 to include both start and end dates
+    
+                return $leaveRequest;
+            });
         $this->absent_employees = EmployeeDetails::where('manager_id', $loggedInEmpId)
-            ->select('emp_id', 'first_name', 'last_name')
-            ->whereNotIn('emp_id', function ($query) {
-                $query->select('emp_id')
-                    ->from('swipe_records')
-                    ->whereDate('created_at', today());
-            })
-            ->whereNotIn('emp_id', function ($query) {
-                $query->select('emp_id')
-                    ->from('leave_applies')
-                    ->whereDate('from_date', '>=', today())
-                    ->whereDate('to_date', '<=', today());
-            })
+        ->select('emp_id', 'first_name', 'last_name')
+        ->whereNotIn('emp_id', function ($query) use ($loggedInEmpId, $currentDate, $approvedLeaveRequests) {
+            $query->select('emp_id')
+                ->from('swipe_records')
+                ->where('manager_id', $loggedInEmpId)
+                ->whereDate('created_at', $currentDate);
+        })
+        ->whereNotIn('emp_id', $approvedLeaveRequests->pluck('emp_id'))
             ->get();
         
             $arrayofabsentemployees = $this->absent_employees->toArray();
             
             $this->absent_employees_count = EmployeeDetails::where('manager_id', $loggedInEmpId)
             ->select('emp_id', 'first_name', 'last_name')
-            ->whereNotIn('emp_id', function ($query) {
+            ->whereNotIn('emp_id', function ($query) use ($loggedInEmpId, $currentDate, $approvedLeaveRequests) {
                 $query->select('emp_id')
                     ->from('swipe_records')
-                    ->whereDate('created_at', today());
+                    ->where('manager_id', $loggedInEmpId)
+                    ->whereDate('created_at', $currentDate);
             })
-            ->whereNotIn('emp_id', function ($query) {
-                $query->select('emp_id')
-                    ->from('leave_applies')
-                    ->whereDate('from_date', '>=', today())
-                    ->whereDate('to_date', '<=', today());
-            })
+            ->whereNotIn('emp_id', $approvedLeaveRequests->pluck('emp_id'))
             ->count();  
             $employees=EmployeeDetails::where('manager_id',$loggedInEmpId)->select('emp_id', 'first_name', 'last_name')->get(); 
             $swipes_early = SwipeRecord::whereIn('id', function ($query) use ($employees, $currentDate) {
@@ -244,7 +290,7 @@ class Home extends Component
                     ->from('swipe_records')
                     ->whereIn('emp_id', $employees->pluck('emp_id'))
                     ->whereDate('created_at', $currentDate)
-                    ->whereRaw("TIME(created_at) < '10:00:00'") // Add this condition to filter swipes before 10:00 AM
+                    ->whereRaw("swipe_time < '10:00:00'") // Add this condition to filter swipes before 10:00 AM
                     ->groupBy('emp_id');
             })
             ->join('employee_details', 'swipe_records.emp_id', '=', 'employee_details.emp_id')
@@ -259,7 +305,7 @@ class Home extends Component
                     ->where('in_or_out','IN')
                     ->whereIn('emp_id', $employees->pluck('emp_id'))
                     ->whereDate('created_at', $currentDate)
-                    ->whereRaw("TIME(created_at) > '10:00:00'") // Add this condition to filter swipes before 10:00 AM
+                    ->whereRaw("swipe_time > '10:00:00'") // Add this condition to filter swipes before 10:00 AM
                     ->groupBy('emp_id');
             })
             ->join('employee_details', 'swipe_records.emp_id', '=', 'employee_details.emp_id')
@@ -306,12 +352,32 @@ class Home extends Component
 
         // Assuming $calendarData should contain the data for upcoming holidays
         $currentYear = Carbon::now()->year;
+        $today = Carbon::today();
+        
         $this->calendarData = HolidayCalendar::where('date', '>=', $today)
-        ->whereYear('date', $currentYear)
+            ->whereYear('date', $currentYear)
             ->orderBy('date')
-            ->take(3)
             ->get();
-
+        
+        // Check if the festivals are empty for any of the retrieved holidays
+        foreach ($this->calendarData as $index => $holiday) {
+            if (empty($holiday->festivals)) {
+                // Find the next holiday if the current one doesn't have festivals specified
+                $nextHoliday = HolidayCalendar::where('date', '>', $holiday->date)
+                    ->where('id', '!=', $holiday->id) // Exclude the current holiday
+                    ->whereYear('date', $currentYear)
+                    ->orderBy('date')
+                    ->first();
+        
+                if ($nextHoliday) {
+                    // Replace the current empty festival entry with the next holiday that has festivals
+                    $this->calendarData[$index] = $nextHoliday;
+                }
+            }
+        }
+        
+        $this->holidayCount =$this->calendarData;
+        
         $this->salaryRevision = SalaryRevision::where('emp_id', $employeeId)->get();
         $loggedInEmpId = Auth::guard('emp')->user()->emp_id;
 
@@ -329,6 +395,7 @@ class Home extends Component
         // Pass the data to the view and return the view instance
         return view('livewire.home', [
             'calendarData' => $this->calendarData,
+            'holidayCount'=>$this->holidayCount,
             'salaryRevision' => $this->salaryRevision,
             'showLeaveApplies' => $this->showLeaveApplies,
             'count' => $this->count,

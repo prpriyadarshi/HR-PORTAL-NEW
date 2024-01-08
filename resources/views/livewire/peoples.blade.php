@@ -1,6 +1,8 @@
 <!-- resources/views/livewire/people-lists.blade.php -->
 
 <div>
+    <x-loading-indicator/>
+
     <style>
         .text-yellow {
             color: yellow;
@@ -60,7 +62,7 @@
                                     <img class="profile-image" src="https://th.bing.com/th/id/R.f931db21888ef3645a8356047504aa7b?rik=63HALWH%2b%2fKtaNQ&riu=http%3a%2f%2fereadcost.eu%2fwp-content%2fuploads%2f2016%2f03%2fblank_profile_female-7.jpg&ehk=atYRSw0KxmUnhESig51u5yzYBWfaD9KBO5KvdxXRCTY%3d&risl=&pid=ImgRaw&r=0" alt="Profile Image">
                                     @endif
                                     @else
-                                    <img class="profile-image" src="{{ $people->profile }}" alt="Profile Image">
+                                    <img class="profile-image" src="{{ Storage::url($people->profile) }}"alt="Profile Image">
                                     @endif
 
                                 </div>
@@ -104,7 +106,7 @@
                             <img class="people-image" src="https://th.bing.com/th/id/R.f931db21888ef3645a8356047504aa7b?rik=63HALWH%2b%2fKtaNQ&riu=http%3a%2f%2fereadcost.eu%2fwp-content%2fuploads%2f2016%2f03%2fblank_profile_female-7.jpg&ehk=atYRSw0KxmUnhESig51u5yzYBWfaD9KBO5KvdxXRCTY%3d&risl=&pid=ImgRaw&r=0" alt="Profile Image">
                             @endif
                             @else
-                            <img class="people-image" src="{{ optional($selectStarredPeoples)->profile }}" alt="Profile Image">
+                            <img class="people-image" src="{{ Storage::url($selectStarredPeoples->profile) }}" alt="Profile Image">
                             @endif
 
                         </div>
@@ -114,11 +116,11 @@
                                     <i class="fa fa-star" style="cursor: pointer; color: yellow;"></i>
                                 </button>
                             </a>
-                            <div>{{ optional($selectStarredPeoples)->name }}</div> 
+                            <div>{{ optional($selectStarredPeoples)->name }}</div>
                             <strong>
                                 <div>(#{{ optional($selectStarredPeoples)->people_id }})</div>
                             </strong>
-                        
+
                             <div>Contact Details <br> <strong>{{ optional($selectStarredPeoples)->contact_details }}</strong></div>
                             <div>CATEGORY <br><strong>{{ optional($selectStarredPeoples)->category }}</strong></div>
                             <div>Location <br><strong>{{ optional($selectStarredPeoples)->location }}</strong></div>
@@ -150,7 +152,7 @@
                             <img class="people-image" src="https://th.bing.com/th/id/R.f931db21888ef3645a8356047504aa7b?rik=63HALWH%2b%2fKtaNQ&riu=http%3a%2f%2fereadcost.eu%2fwp-content%2fuploads%2f2016%2f03%2fblank_profile_female-7.jpg&ehk=atYRSw0KxmUnhESig51u5yzYBWfaD9KBO5KvdxXRCTY%3d&risl=&pid=ImgRaw&r=0" alt="Profile Image">
                             @endif
                             @else
-                            <img class="people-image" src="{{ optional($firstStarredPerson)->profile }}" alt="Profile Image">
+                            <img class="people-image" src="{{ Storage::url($firstStarredPerson->profile) }}" alt="Profile Image">
                             @endif
                         </div>
                         <div class="col" style="margin-top: 50px; margin-right: 80px;">
@@ -212,7 +214,7 @@
                                 <img class="profile-image" src="https://th.bing.com/th/id/R.f931db21888ef3645a8356047504aa7b?rik=63HALWH%2b%2fKtaNQ&riu=http%3a%2f%2fereadcost.eu%2fwp-content%2fuploads%2f2016%2f03%2fblank_profile_female-7.jpg&ehk=atYRSw0KxmUnhESig51u5yzYBWfaD9KBO5KvdxXRCTY%3d&risl=&pid=ImgRaw&r=0" alt="Profile Image">
                                 @endif
                                 @else
-                                <img class="profile-image" src="{{ $people->image }}" alt="Profile Image">
+                                <img class="profile-image" src="{{ Storage::url($people->image) }}" alt="Profile Image">
                                 @endif
                             </div>
                             <div class="col-md-6">
@@ -249,7 +251,7 @@
                             <img class="people-image" src="https://th.bing.com/th/id/R.f931db21888ef3645a8356047504aa7b?rik=63HALWH%2b%2fKtaNQ&riu=http%3a%2f%2fereadcost.eu%2fwp-content%2fuploads%2f2016%2f03%2fblank_profile_female-7.jpg&ehk=atYRSw0KxmUnhESig51u5yzYBWfaD9KBO5KvdxXRCTY%3d&risl=&pid=ImgRaw&r=0" alt="Profile Image">
                             @endif
                             @else
-                            <img class="people-image" src="{{ $selectedPerson->image }}" alt="Profile Image">
+                            <img class="people-image" src="{{ Storage::url($selectedPerson->image) }}" alt="Profile Image">
                             @endif
 
                         </div>
@@ -301,7 +303,7 @@
                             }
                         </style>
                         <div class="col" style="margin-top: 50px;">
-                            <img class="people-image" src="{{ optional($firstPerson)->image }}" alt="Profile Image">
+                            <img class="people-image" src="{{ Storage::url(optional($firstPerson)->image) }}"alt="Profile Image">
                         </div>
                         <div class="col" style="margin-top: 50px; margin-right: 80px;">
                             <a style="text-decoration: none;" wire:click="toggleStar('{{ optional($firstPerson)->emp_id }}')">

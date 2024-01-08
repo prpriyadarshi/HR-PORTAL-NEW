@@ -23,38 +23,141 @@ class LeaveCalender extends Component
     public $companyId;
     public $filterCriteria = null;
     public $leaveTransactions = [];
+    public $searchTerm = '';
+    public $showDialog = false;
+    public $showLocations = false;
+    public $showDepartment = false;
+    public $selectedLocations = [];
+    public $selectedDepartments = [];
 
-    // Other properties and methods...
-    public function filterBy($criteria)
+
+    public function open()
     {
-        $this->filterCriteria = $criteria;
-        // Reload leave transactions for the selected date
-        $this->loadLeaveTransactions($this->selectedDate);
-
+        $this->showDialog = true;
     }
 
-    public function mount()
+    public function close()
+    {
+        $this->showDialog = false;
+    }
+    public function openLocations()
+    {
+        $this->showLocations = !$this->showLocations;
+    }
+
+    public function closeLocations()
+    {
+        $this->showLocations = false;
+    }
+    public function toggleSelection($location)
+    {
+        if ($location === 'All') {
+            if (in_array('All', $this->selectedLocations)) {
+                $this->selectedLocations = [];
+            } else {
+                $this->selectedLocations = ['All'];
+            }
+        } else {
+            $key = array_search('All', $this->selectedLocations);
+            if ($key !== false) {
+                unset($this->selectedLocations[$key]);
+            }
+
+            if (in_array($location, $this->selectedLocations)) {
+                $this->selectedLocations = array_diff($this->selectedLocations, [$location]);
+            } else {
+                $this->selectedLocations[] = $location;
+            }
+        }
+    }
+
+    public function isSelectedAll()
+    {
+        return in_array('All', $this->selectedLocations);
+    }
+
+    public function openDept()
+    {
+        $this->showDepartment = !$this->showDepartment;
+    }
+
+    public function closeDept()
+    {
+        $this->showDepartment = false;
+    }
+    public function toggleDeptSelection($dept)
+    {
+        if ($dept === 'All') {
+            if (in_array('All', $this->selectedDepartments)) {
+                $this->selectedDepartments = [];
+            } else {
+                $this->selectedDepartments = ['All'];
+            }
+        } else {
+            $key = array_search('All', $this->selectedDepartments);
+            if ($key !== false) {
+                unset($this->selectedDepartments[$key]);
+            }
+
+            if (in_array($dept, $this->selectedDepartments)) {
+                $this->selectedDepartments = array_diff($this->selectedDepartments, [$dept]);
+            } else {
+                $this->selectedDepartments[] = $dept;
+            }
+        }
+    }
+
+    public function isSelecteDeptdAll()
+    {
+        return in_array('All', $this->selectedDepartments);
+    }
+    public function filterBy($value)
+    {
+        // Implement your filtering logic based on the selected value
+        // For example, update the filterCriteria property based on the selected value
+        $this->filterCriteria = $value;
+    
+        // You can add more logic here, such as reloading data or performing specific actions based on the filter criteria.
+        // For instance, load leave transactions based on the updated filter criteria.
+        $this->loadLeaveTransactions($this->selectedDate);
+    }
+    
+    public function resetFilter()
+    {
+        // Reset selected locations to default (All)
+        $this->selectedLocations = ['All'];
+
+        // Reset selected departments to default (All)
+        $this->selectedDepartments = ['All'];
+    }
+
+       public function mount()
     {
         $this->year = now()->year;
         $this->month = now()->month;
         $this->leaveRequests = LeaveRequest::all();
         $this->filterCriteria = 'Me';
+        $this->searchTerm = ''; 
+        $this->selectedLocations = ['All'];
+        $this->selectedDepartments = ['All'];
         $this->loadLeaveTransactions(now()->toDateString());
         $this->generateCalendar();
     }
     public function generateCalendar()
 {
     $firstDay = Carbon::create($this->year, $this->month, 1);
+    
     $daysInMonth = $firstDay->daysInMonth;
+   
     $today = now();
-
+   
     $calendar = [];
     $dayCount = 1;
     $publicHolidays = $this->getPublicHolidaysForMonth($this->year, $this->month);
-
+    
     // Calculate the first day of the week for the current month
     $firstDayOfWeek = $firstDay->dayOfWeek;
-
+    
     // Calculate the starting date of the previous month
     $startOfPreviousMonth = $firstDay->copy()->subMonth();
 
@@ -63,7 +166,7 @@ class LeaveCalender extends Component
         $startOfPreviousMonth->year,
         $startOfPreviousMonth->month
     );
-
+    
     // Calculate the last day of the previous month
     $lastDayOfPreviousMonth = $firstDay->copy()->subDay();
 
@@ -132,6 +235,7 @@ class LeaveCalender extends Component
         }
         $calendar[] = $week;
     }
+    
 
     $this->calendar = $calendar;
    
@@ -147,7 +251,9 @@ class LeaveCalender extends Component
 
     public function previousMonth()
     {
+        
         $date = Carbon::create($this->year, $this->month, 1)->subMonth();
+     
         $this->year = $date->year;
         $this->month = $date->month;
         $this->generateCalendar();
@@ -160,10 +266,15 @@ class LeaveCalender extends Component
         $this->month = $date->month;
         $this->generateCalendar();
     }
+    public function searchData()
+    {
+        $this->loadLeaveTransactions($this->selectedDate);
+    }
 
 
     public function loadLeaveTransactions($date)
     {
+     
         // Retrieve leave transactions for the selected date from the database
         $employeeId = auth()->guard('emp')->user()->emp_id;
         $companyId = auth()->guard('emp')->user()->company_id;
@@ -181,44 +292,51 @@ class LeaveCalender extends Component
         $dateFormatted = Carbon::parse($dateFormatted)->format('Y-m-d');
         
         $leaveCount = 0; // Initialize leave count variable
-    
-        // Filter data based on the selected filter type
-        if ($this->filterCriteria === 'Me') { // Replace $value with your actual condition for 'Me'
+            // Filter data based on the selected filter type
+        if ($this->filterCriteria === 'Me') {
+            
             $leaveTransactions = LeaveRequest::with('employee')
                 ->whereDate('from_date', '<=', $dateFormatted)
-                ->whereDate('to_date', '>=', $dateFormatted) 
+                ->whereDate('to_date', '>=', $dateFormatted)
                 ->where('emp_id', $employeeId)
                 ->where('status', 'approved')
+                ->where(function ($query) {
+                    $query->whereHas('employee', function ($q) {
+                        $q->where('first_name', 'like', '%' . $this->searchTerm . '%')
+                            ->orWhere('last_name', 'like', '%' . $this->searchTerm . '%');
+                    });
+                })
                 ->get();
     
-            $leaveCount = $leaveTransactions->count(); // Get the count of leave transactions
-            // Pass the leave transactions and count to the view or return as needed
+            $leaveCount = $leaveTransactions->count();
             $this->leaveTransactions = $leaveTransactions;
-      
-        } elseif($this->filterCriteria === 'MyTeam') { // Replace $value with your actual condition for 'MyTeam'
-            // Fetch team members' emp_ids based on the manager_id
+            
+        } elseif ($this->filterCriteria === 'MyTeam') {
             $teamMembersIds = EmployeeDetails::where('manager_id', $employeeId)->pluck('emp_id');
             $leaveTransactions = LeaveRequest::with('employee')
                 ->whereIn('emp_id', $teamMembersIds)
                 ->where('from_date', '<=', $dateFormatted)
                 ->where('to_date', '>=', $dateFormatted)
                 ->where('status', 'approved')
+                ->where(function ($query) {
+                    $query->whereHas('employee', function ($q) {
+                        $q->where('first_name', 'like', '%' . $this->searchTerm . '%')
+                            ->orWhere('last_name', 'like', '%' . $this->searchTerm . '%');
+                    });
+                })
                 ->get();
     
-            $leaveCount = $leaveTransactions->count(); // Get the count of leave transactions
-            // Pass the leave transactions and count to the view or return as needed
+            $leaveCount = $leaveTransactions->count();
             $this->leaveTransactions = $leaveTransactions;
-         
         } else {
-            $this->leaveTransactions = null; // Setting leave transactions as null for other conditions
+            $this->leaveTransactions = null;
         }
     
         return $leaveCount;
     }
     
 
-
-        protected function getTeamOnLeaveDataForDay($day)
+    protected function getTeamOnLeaveDataForDay($day)
     {
         // Fetch team leave data from your database
 
@@ -248,8 +366,7 @@ class LeaveCalender extends Component
         ->where('status', 'approved')
         ->get();    
         $holidays = $this->getHolidays();
-        
-       
+    
         return view('livewire.leave-calender', [
             'holidays' => $holidays,
             'leaveTransactions'=>$this->leaveTransactions,

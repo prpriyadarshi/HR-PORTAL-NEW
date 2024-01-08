@@ -26,23 +26,23 @@ class GoogleLogins extends Component
         $googleClientId = config('services.google.client_id');
         $googleClientSecret = config('services.google.client_secret');
         $googleRedirectUri = config('services.google.redirect');
-    
- 
+
+
         try {
             $googleUser = Socialite::driver('google')->user();
          // dd( $googleUser);
             if ($googleUser && $googleUser->id) {
                 $existingUser = User::where('email', $googleUser->email)->first();
-               
+
                 if ($existingUser) {
                     // Existing user found; update details if needed (such as full name)
                     $existingUser->full_name = $googleUser->name;
                     // Update other fields as needed
-    
+
                     $existingUser->save();
-    
+
                     Auth::login($existingUser);
-    
+
                     return redirect('/Jobs'); // Redirect to Jobs if the user exists
                 } else {
                     // No existing user found; redirect to register with Google details
@@ -53,9 +53,9 @@ class GoogleLogins extends Component
                      //dd($userData);
                     User::create($userData);
                    Auth::login(User::where('email', $googleUser->email)->first());
-    
+
                     return redirect('/Jobs'); // Redirect to Jobs after registration
-                
+
                 }
             } else {
                 session()->flash('error', 'ID not found in Google user data.');
@@ -67,10 +67,10 @@ class GoogleLogins extends Component
             return redirect('/Login&Register');
         }
     }
-    
 
-    
-    
+
+
+
     public function render()
     {
         return view('livewire.google-logins');

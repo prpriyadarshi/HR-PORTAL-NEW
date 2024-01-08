@@ -193,7 +193,7 @@
           border:1px solid #007bff;
         }
  
-        /* Styles for the dropdown */
+
   
  
         /* Styles for dropdown items */
@@ -226,14 +226,17 @@
         /* Styles for the search input */
         .search-input {
           border:none;
+          outline:none;
             position: relative;
         }
  
         .search-input input[type="text"] {
-            padding: 5px;
+            padding: 3px;
+            outline:none;
             border: 1px solid #ccc;
             border-radius: 4px;
-            width: 200px; /* Adjust width as needed */
+            color:#778899;
+            width: 220px; /* Adjust width as needed */
         }
  
         /* Styles for the search icon */
@@ -254,8 +257,9 @@
             display: flex;
             background:#fff;
             align-items:center;
-            height:30px;
+            height:31px;
             width:30px;
+            border-radius:5px;
             padding:5px;
             border:1px solid #ccc;
         }
@@ -341,12 +345,251 @@
         left: 50%; /* Position the circle at 50% from the left */
         transform: translate(-50%, -50%); /* Move the circle to the center */
     }
+    .active-date {
+        background-color: #ecf7fe; /* Active and hover background color */
+        cursor: pointer;
+        border-color:1px solid  blue;
+    }
 
+    .sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  border-radius:5px;
+  z-index: 1;
+  top: 0;
+  right: 0; /* Position the sidebar to the right */
+  background-color: #fff;
+  overflow-x: hidden;
+  transition: width 0.5s;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  left: 25px; /* Adjust the close button position */
+  font-size: 36px;
+  margin-left: 150px;
+  
+}
+
+.openbtn {
+  cursor: pointer;
+  display:flex;
+  justify-content:center;
+  background-color: #fff;
+  border: none;
+  width:20px;
+  z-index: 2;
+  right: 10px;
+  top: 10px;
+}
+
+.filter-container1:hover {
+  background-color: #f6faff;
+}
+.openbtn:hover {
+  background-color: #f6faff;
+}
+
+#main {
+  transition: margin-left .5s;
+  margin-right: 0;
+  padding-left: 0;
+}
+.header {
+    display: flex; align-items: center; background-color: #dce0e5; padding: 10px;
+}
+.header h6{
+  color:#778899;
+  font-weight:500;
+}
+.locations{
+    background:#fff;
+    font-size:0.825rem;
+    width:195px;
+    height:200px;
+    border-radius:5px;
+    border:1px solid #ccc;
+    box-shadow:1px 2px 1px 0 rgba(0,0,0,0.2);
+    position: absolute; top: 145px; left:35px;  padding: 10px; border: 1px solid #ccc;
+}
+.departments{
+    background:#fff;
+    font-size:0.825rem;
+    width:195px;
+    height:200px;
+    border-radius:5px;
+    border:1px solid #ccc;
+    box-shadow:1px 2px 1px 0 rgba(0,0,0,0.2);
+    position: absolute; top: 225px; left:35px;  padding: 10px; border: 1px solid #ccc;
+}
+.main-content{
+    background:#fff;
+    padding:15px 20px;
+    flex-grow: 1;
+}
+.loc-dropdown{
+    width:100%;
+    border:1px solid #ccc;
+    cursor:pointer;
+    text-align:center;
+    background:#fff;
+    padding:5px;
+    border-radius:5px;
+}
+.loc-dropdown p{
+   font-size:0.825rem;font-weight:500;color:#778899;margin-bottom:0;
+}
+.btn-2{
+    background:rgb(2, 17, 79);
+    color:#fff;
+    font-size:0.825rem;
+    padding:3px 10px;
+    border-radius:5px;
+    border:none;
+}
+.btn-3{
+    color:#778899;
+    padding:3px 10px;
+    background:#fff;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+.btn-3:hover{
+  background:#ebf5ff;
+}
+.btn-1{
+    color:rgb(2, 17, 79);
+    padding:3px 10px;
+    background:#fff;
+    font-size:0.825rem;
+    border:1px solid rgb(2, 17, 79);
+    border-radius:5px;
+}
+::placeholder {
+        font-size: 0.725rem; /* Adjust the font size as needed */
+        color:#778899;
+    }
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
        
     </style>
 </head>
 <body>
     <div class="container-leave" >
+        <div class="sidebar" style="width: {{ $showDialog ? '250px' : '0' }};display: flex; flex-direction: column; height: 100vh;">
+            <div class="header">
+                <a href="javascript:void(0)" class="closebtn" wire:click="close" style="margin-right: 10px;">×</a>
+                <h6>Apply Filter</h6>
+            </div>
+             <div class="main-content">
+                  <label for="locations" style="font-size: 0.825rem; color: #778899; font-weight: 500; margin-top: 20px; margin-right: 10px;">Location</label>
+                    <div wire:click="openLocations" class="loc-dropdown">
+                       <div style="position: relative;">
+                           <div style="display: flex;justify-content:space-between; align-items: center;">
+                                <p>
+                                    @if($this->isSelectedAll())
+                                        All
+                                    @else
+                                        {{ implode(', ', $selectedLocations) }}
+                                    @endif
+                                    </p>
+                                <!-- Solid down arrow -->
+                                <svg width="15" height="15" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 13L6 9H14L10 13Z" fill="#778899"/>
+                                </svg>
+                          </div>
+                        </div>
+                    </div>
+                    @if($showLocations)
+                        <div class="locations">
+                            <div style="display: flex;justify-content:space-between; text-align:center;align-items: center;padding:0;height:40px;position relative">
+                               <p style="font-size:0.725rem;padding:0;color:#148aff;font-weight:500;">Select Location</p>
+                               <a href="#" wire:click="closeLocations" style="top:-5px; right:5px;position:absolute;" >×</a>
+                            </div>
+                             <div style="display:flex;flex-direction:column;gap:10px;">
+                                <label>
+                                    <input type="checkbox" wire:click="toggleSelection('All')" wire:model="selectedLocations" value="All"> All
+                                </label>
+                                <label>
+                                    <input type="checkbox" wire:click="toggleSelection('Hyderabad')" wire:model="selectedLocations" value="Hyderabad"> Hyderabad
+                                </label>
+                                <label>
+                                    <input type="checkbox" wire:click="toggleSelection('Udaipur')" wire:model="selectedLocations" value="Udaipur"> Udaipur
+                                </label>
+                                <label>
+                                    <input type="checkbox" wire:click="toggleSelection('Rajasthan')" wire:model="selectedLocations" value="Rajasthan"> Rajasthan
+                                </label>
+                            </div>
+                           
+                        </div>
+                    @endif
+                    <!-- department -->
+                    <label for="locations" style="font-size: 0.825rem; color: #778899; font-weight: 500; margin-top: 20px; margin-right: 10px;">Department</label>
+                    <div wire:click="openDept" class="loc-dropdown">
+                       <div style="position: relative;">
+                           <div style="display: flex;justify-content:space-between; align-items: center;">
+                                <p>
+                                    @if($this->isSelecteDeptdAll())
+                                        All
+                                    @else
+                                        {{ implode(', ', $selectedDepartments) }}
+                                    @endif
+                                    </p>
+                                <!-- Solid down arrow -->
+                                <svg width="15" height="15" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 13L6 9H14L10 13Z" fill="#778899"/>
+                                </svg>
+                          </div>
+                        </div>
+                    </div>
+                    @if($showDepartment)
+                        <div class="departments">
+                            <div style="display: flex;justify-content:space-between; text-align:center;align-items: center;padding:0;height:40px;position relative">
+                               <p style="font-size:0.725rem;padding:0;color:#148aff;font-weight:500;">Select Department</p>
+                               <a href="#" wire:click="closeDept" style="top:-5px; right:5px;position:absolute;" >×</a>
+                            </div>
+                             <div style="display:flex;flex-direction:column;gap:10px;">
+                                <label>
+                                    <input type="checkbox" wire:click="toggleDeptSelection('All')" wire:model="selectedDepartments" value="All"> All
+                                </label>
+                                <label>
+                                    <input type="checkbox" wire:click="toggleDeptSelection('Developement')" wire:model="selectedDepartments" value="Developement"> Developement
+                                </label>
+                                <label>
+                                    <input type="checkbox" wire:click="toggleDeptSelection('Sales')" wire:model="selectedDepartments" value="Sales"> Sales
+                                </label>
+                                <label>
+                                    <input type="checkbox" wire:click="toggleDeptSelection('IT')" wire:model="selectedDepartments" value="IT"> IT
+                                </label>
+                            </div>
+                           
+                        </div>
+                        @endif
+                    <!-- end -->
+                    <div style="margin-top: 30px;">
+                        <button class="btn-1" wire:click="applyFilter">Apply</button>
+                        <button class="btn-2" wire:click="resetFilter">Reset</button>
+                    </div>
+            </div>
+    </div>
+
     <div class="button-container" >
         <!-- Dropdown for filter selection -->
         <div class="filter-container">
@@ -364,7 +607,7 @@
         </button>
     </div>
         <div class="row" style="margin:0;padding:0;">
-            <div class="col-md-7" >
+            <div class="col-md-7">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="calendar-heading-container">
                         <button wire:click="previousMonth" class="nav-btn">&lt; Prev</button>
@@ -390,16 +633,17 @@
                             @foreach ($calendar as $week)
                                 <tr>
                                     @foreach ($week as $day)
-                                        <td>
-                                            @if ($day)
-                                                @php
+                                    @php
                                                     $carbonDate = \Carbon\Carbon::createFromDate($year, $month, $day['day']);
                                                     $isCurrentMonth = $day['isCurrentMonth'];
                                                     $isWeekend = in_array($carbonDate->dayOfWeek, [0, 6]); // 0 for Sunday, 6 for Saturday
+                                                    $isActiveDate = ($selectedDate === $carbonDate->toDateString());
                                                 @endphp
-
-                                                <div wire:click="dateClicked($event.target.textContent)" class="calendar-date" data-date="{{ $day['day'] }}"
+                                        <td wire:click="dateClicked($event.target.textContent)" class="calendar-date{{ $selectedDate === $day['day'] ? ' active-date' : '' }}" data-date="{{ $day['day'] }}"
                                                     style="color: {{ $isCurrentMonth ? ($isWeekend ? '#c5cdd4' : 'black') : '#c5cdd4' }};">
+                                                
+                                            @if ($day)
+                                                <div >
                                                     @if ($day['isToday'])
                                                         <div style="background-color: #007bff; color: white; border-radius: 50%; width: 24px; height: 24px; text-align: center; line-height: 24px; ">
                                                             {{ str_pad($day['day'], 2, '0', STR_PAD_LEFT) }}
@@ -433,7 +677,7 @@
 
                     </div>
 
-                 <div class="tol-calendar-legend mt-1 mb-2">
+                 <div class="tol-calendar-legend mt-1 mb-3">
                         <div>
                             Team on Leave
                             <span class="legend-circle" style="background: #ccc; font-size: 0.75rem;">
@@ -475,20 +719,21 @@
                            <div class="search-container" >
                                 <div class="form-group"  >
                                     <div class="search-input"  >
-                                        <input type="text" placeholder="Search Employee" class="search-text" >
-                                        <div class="search-icon">
-                                        <i class="fa fa-search" aria-hidden="true"  ></i>
+                                        <div class="search-cont">
+                                                <input wire:model.debounce.500ms="searchTerm" type="text" placeholder="Search Employee">
+                                               <!-- Search button -->
+                                                <button class="btn-3" wire:click="searchData"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             <div class="filter-container1" >
-                                <div class="filter-group" style="margin-top:0px">
-                                    <i class="fa-icon fas fa-filter"></i> <!-- Font Awesome filter icon -->
-                                    <gt-filter-group>
-                                        <!-- Add more content as needed -->
-                                    </gt-filter-group>
+                                <div id="main" style="margin-left: {{ $showDialog ? '250px' : '0' }}">
+                                    <button class="openbtn" wire:click="open">
+                                            <i class="fa-icon fas fa-filter"></i> 
+                                    </button>  
                                 </div>
+                                
                             </div>
                         </div>
                 
@@ -504,7 +749,7 @@
                         </div>
                     </div>
                      <div class="accordion-body">
-                       <div class="col-md-12 scroll-tabel" style="overflow-y:auto;max-height:320px; min-height:300px;padding:0;">
+                       <div class="col-md-12 scroll-tabel" style="overflow-y:auto;max-height:320px; min-height:280px;padding:0;">
                         <table class="leave-table" style="width: 100%; border-collapse: collapse; ;overflow: auto;">
                             <thead style="background-color: #ecf7fc; text-align:start;  width:100%;">
                                 <tr>
@@ -514,6 +759,13 @@
                                 </tr>
                             </thead>
                             <tbody >
+                            @if (empty($this->leaveTransactions))
+                            <tr>
+                                <td colspan="3">
+                                    <p>No data found</p>
+                                </td>
+                            </tr>`
+                            @else
                             @if (!empty($selectedDate))
                                 @forelse($this->leaveTransactions as $transaction)
                                     <tr style="border-bottom: 1px solid #ccc; font-size:0.725rem;text-align:start;">
@@ -539,6 +791,7 @@
                                             @endif
                                         </td>
                                     </tr>
+                                  
                                 @empty
                                     <tr>
                                         <td colspan="3">
@@ -548,7 +801,9 @@
                                             </div>
                                         </td>
                                     </tr>
+                                  
                                 @endforelse
+                              
                                 @else
                                     <tr>
                                         <td colspan="3">
@@ -558,6 +813,7 @@
                                             </div>
                                         </td>
                                     </tr>
+                                 @endif
                                  @endif
                                </tbody>
                           </table>

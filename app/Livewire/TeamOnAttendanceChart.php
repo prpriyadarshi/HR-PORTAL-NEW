@@ -51,6 +51,7 @@ class TeamOnAttendanceChart extends Component
         ->pluck('first_name','last_name')
         ->toArray();
         $this->data8 = Regularisations::where('is_withdraw', '0')->get();
+      
         return view('livewire.team-on-attendance-chart',['withdraw'=> $this->data8,'subordinate'=>$subordinateEmployeeIds]);
     }
 }

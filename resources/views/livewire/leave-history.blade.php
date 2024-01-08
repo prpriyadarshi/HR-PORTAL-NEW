@@ -169,12 +169,12 @@
                                 @endif
                             </span>
                             @if(strtoupper($leaveRequest->status) == 'WITHDRAWN')
-                                <span style="color: #333; font-weight: 500; text-transform: uppercase;">
+                                <span style="color: #333; font-weight: 500; font-size:1rem;text-transform: uppercase;">
                                     {{ $this->leaveRequest->employee->first_name }} {{ $this->leaveRequest->employee->last_name }}
                                 </span>
                             @elseif(!empty($leaveRequest['applying_to']))
                                 @foreach($leaveRequest['applying_to'] as $applyingTo)
-                                    <span style="color: #333; font-weight: 500; text-transform:uppercase;">
+                                    <span style="color: #333; font-weight: 500;font-size:1rem; text-transform:uppercase;">
                                         {{ $applyingTo['report_to'] }}
                                     </span>
                                 @endforeach
@@ -244,18 +244,18 @@
            <p><span style="color: #333; font-weight: 500; font-size:1rem;">Details</span></p>
            @if(!empty($leaveRequest['applying_to']))
             @foreach($leaveRequest['applying_to'] as $applyingTo)
-            <p style=" font-size: 0.90rem; "><span style="color: #778899; font-size: 0.875rem; font-weight: 400;padding-right: 58px;">Applying to</span  >{{ $applyingTo['report_to'] }}</p>
+            <p style=" font-size: 0.875rem; "><span style="color: #778899; font-size: 0.875rem; font-weight: 400;padding-right: 58px;">Applying to</span  >{{ $applyingTo['report_to'] }}</p>
             @endforeach
             @endif
-             <div style="display:flex; flex-direction:row; justify-content:space-between;">
-             <span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 88px;">Reason</span>
-             <p>{{ $leaveRequest->reason }}</p>
+             <div style="display:flex; flex-direction:row;">
+             <span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 86px;">Reason</span>
+             <p style="font-size:0.875rem;">{{ ucfirst($leaveRequest->reason) }}</p>
         
              </div>
-            <p style="margin-top:10px;"><span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 82px;">Contact</span>{{ $leaveRequest->contact_details }} </p>
+            <p style="font-size:0.875rem;"><span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 82px;">Contact</span>{{ $leaveRequest->contact_details }} </p>
             @if(!empty($leaveRequest->cc_to))
                 <p style="font-size: 0.975rem; font-weight: 500;">
-                    <span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 90px;">CC to</span>
+                    <span style="color: #778899; font-size: 0.875rem; font-weight: 400; padding-right: 94px;">CC to</span>
                     @foreach($leaveRequest->cc_to as $ccToItem)
                     {{ $ccToItem['full_name'] }} (#{{ $ccToItem['emp_id'] }})
                     @if(!$loop->last)

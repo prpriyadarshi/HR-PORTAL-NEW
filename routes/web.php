@@ -16,6 +16,11 @@ use App\Livewire\Payslip;
 use App\Livewire\Regularisation;
 
 use App\Livewire\RegularisationPending;
+use App\Livewire\EmployeeSwipes;
+use App\Livewire\AttendanceMusterData;
+use App\Livewire\AttendanceMuster;
+use App\Livewire\AttendenceMasterDataNew;
+use App\Livewire\EmployeeSwipesData;
 use App\Livewire\HelpDesk;
 use App\Livewire\Home;
 use App\Livewire\Peoples;
@@ -182,6 +187,11 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/regularisation', Regularisation::class)->name('regularisation');
     Route::get('/regularisation-pending/{id}', RegularisationPending::class)->name('regularisation-pending');
     Route::get('/regularisation-history/{id}', RegularisationHistory::class)->name('regularisation-history');
+    Route::get('/employee-swipes', EmployeeSwipes::class)->name('employee-swipes');
+    Route::get('/employee-swipes-data', EmployeeSwipesData::class)->name('employee-swipes-data');
+    Route::get('/attendance-muster', AttendanceMuster::class)->name('attendance-muster');
+    Route::get('/attendance-muster-data', AttendenceMasterDataNew::class)->name('attendance-muster-data');
+
 
     Route::get('/ProfileInfo', ProfileInfo::class)->name('profile.info');
     Route::get('/Settings', Settings::class);
