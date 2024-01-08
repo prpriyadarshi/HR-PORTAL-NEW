@@ -233,7 +233,7 @@
                             </button>
                         </div>
                         <div class="modal-body" style="background-color: #f0f0f0; padding: 20px;">
-                            <p>Sorry You Are not Verified.... Please try again.</p>
+                            <p>Sorry You are not Verified.... Please try again.</p>
                             <button type="button" class="btn btn-danger" wire:click="closeErrorModal">Close</button>
                         </div>
                     </div>

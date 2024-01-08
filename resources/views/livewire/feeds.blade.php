@@ -89,17 +89,6 @@
       .comments {
         margin-top: 10px;
       }
- 
- 
-   
- 
-    
-
-
-.p-4 {
-    /* Padding */
-}
-
 
 
 .items-center {
@@ -202,9 +191,7 @@
     /* Add more styles as needed */
 }
 
-.visible {
-    /* Your styles for visibility */
-}
+
 
 .mt-1x {
     margin-top: 1rem; /* Adjust as per design */
@@ -249,9 +236,7 @@
 }
 
 /* Change button background color on hover */
-.search-bar button:hover {
-  background-color: #0056b3;
-}
+
 .dropdown-content {
     display: none;
     /* Add more styles as needed */
@@ -312,7 +297,7 @@
     </div>
 </div>
 <div style="display:flex" >
-<div class="container" style="width:200px;background:white;border:1px solid silver;border-radius:5px;height:600px;margin-top:20px;margin-left:10px;overflow-y:auto;max-height:400px;max-width:200px;">
+<div class="container" style="width:200px;background:white;border:1px solid silver;border-radius:5px;height:600px;margin-top:20px;margin-left:10px;overflow-y:auto;max-height:350px;max-width:200px;">
 <b style="display: block; margin-top: 10px;">Filters</b>
 
 <hr style="width: 180px; background: grey;margin-top:5px">
@@ -342,7 +327,7 @@
     </span>
 </gt-menu-item>
 
-<hr style="width: 180px; background: grey;margin-top:5px">
+<hr style="width: 180px;background:grey;margin-top:5px">
 
 <div class="search-bar">
   <input type="text" placeholder="Search..." />
@@ -358,7 +343,7 @@
             </svg>
         </span>
     </button>
-    <div class="dropdown-content" id="dropdownContent1" style="display: none;">
+    <div  id="dropdownContent1" style="display: none;">
         <ul style="font-size: 12px;">
       
  
@@ -400,7 +385,7 @@
             </svg>
         </span>
     </button>
-    <div class="dropdown-content" id="dropdownContent2" style="display: none;">
+    <div  id="dropdownContent2" style="display: none;">
         <ul style="font-size: 12px;margin-top:3px">
             <p>Guntur</p>
             <p>Hyderabad</p>
@@ -421,7 +406,7 @@
             </svg>
         </span>
     </button>
-    <div class="dropdown-content" id="dropdownContent3" style="display: none;">
+    <div  id="dropdownContent3" style="display: none;">
         <ul style="font-size: 12px;margin-top:3px">
             <p>HR</p>
             <p>Operations</p>
@@ -434,16 +419,15 @@
             <p>Testing Team</p>
         </ul>
     </div>
+
 </div>
-
- 
-
 </div>
 <div style="margin-left:-40px;width:700px" >
+
+
 @foreach ($combinedData as $data)
-
-
 @if ($data['type'] === 'date_of_birth' )
+
 <div class="birthday-card" style="margin-left:-20px">
   <!-- Upcoming Birthdays List -->
   <div class="F" style="background-color: white; width: 500px; height: 350px; border-radius: 5px; border: 1px solid #CFCACA; margin-left: 30px; color: #3b4452; margin-top: 20px">
@@ -451,6 +435,7 @@
       <div class="column" >
         <div class="div" style="margin-left:20px;margin-top:10px">
         @livewire('company-logo')
+       
         </div>
         
         <div style="color: #677A8E; margin-left: 60px; font-size: 14px; font-family: Open Sans, sans-serif; font-weight: 100px;margin-top:20px">Group Events</div>
@@ -487,6 +472,9 @@
       </gt-popup-modal>
     </confirmation-modal>
     <!-- Like Button -->
+
+   
+    <!-- Display existing comments -->
     <div style="display: flex;">
       <div class="like-button">
         <i class="thumb-icon" style="margin-left: 20px;">👍</i>
@@ -500,9 +488,14 @@
         <textarea id="comment-input" placeholder="Add your comment"></textarea>
       </div>
     </div>
-  </div>
+
 </div>
-@elseif ($data['type'] === 'hire_date' )
+      <div class="comment-box">
+        <textarea id="comment-input" placeholder="Add your comment"></textarea>
+      </div>
+</div>
+
+      @elseif ($data['type'] === 'hire_date' )
 <div class="hire-card" style="margin-left:-20px" >
   <!-- Upcoming Hire Dates List -->
   <div class="F" style="background-color: white; width: 500px; height: 350px; border-radius: 5px; border: 1px solid #CFCACA; margin-left: 30px; color: #3b4452; margin-top: 20px">
@@ -563,10 +556,15 @@
   </div>
 </div>
 
+
 @endif
 @endforeach
+
 </div>
-</div>
+ 
+
+
+
 <script>
 // JavaScript function to toggle arrow icon visibility
 // JavaScript function to toggle arrow icon and dropdown content visibility

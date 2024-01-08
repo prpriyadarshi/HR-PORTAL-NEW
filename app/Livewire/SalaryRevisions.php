@@ -103,6 +103,7 @@ class SalaryRevisions extends Component
                         ],
                     ];
         });
+
         return view('livewire.salary-revisions', [
             'salaryRevisions' => $this->salaryRevisions,
             'chartData' =>$this->chartData,

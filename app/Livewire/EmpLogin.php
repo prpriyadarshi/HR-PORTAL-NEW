@@ -43,7 +43,6 @@ class EmpLogin extends Component
     public function empLogin()
     {
 
-<<<<<<< HEAD
         try {
             $this->validate([
                 "form.emp_id" => 'required',
@@ -72,14 +71,6 @@ class EmpLogin extends Component
         } catch (\Exception $e) {
             // Debugging
             $this->error = "ID / Mail or Password Wrong!!";
-=======
-            // Store emp_id in the session
-            Session::put('emp_id', $emp_id);
-            session()->flash('Success', 'You are logged in successfully!');
-            return redirect()->route('home');
-        } else {
-            $this->error = "Employee ID or Password Wrong!!";
->>>>>>> 59008e206d7a7b3bf864bd8e12e526db59d06967
         }
     }
 
@@ -117,7 +108,6 @@ class EmpLogin extends Component
     }
     public function verifyEmailAndDOB()
     {
-
         $this->validate([
             'email' => ['required', 'email'],
             'dob' => ['required', 'date'],
@@ -126,16 +116,18 @@ class EmpLogin extends Component
         // Example: Check if the email and DOB match a user's stored values in your database.
         $user = EmployeeDetails::where('email', $this->email)->where('date_of_birth', $this->dob)->first();
         if ($user) {
-            $this->verified = true;
-            if ($user) {
-                $this->showSuccessModal = true;
-            } else {
+                $this->verified = true;
+                if($this->verified){
+                    $this->verified = false;
+                    $this->showSuccessModal = true;
+                }
 
+            } else {
                 // Invalid email or DOB, show an error message or handle accordingly.
                 $this->addError('email', 'Invalid email or date of birth');
                 $this->showErrorModal = true;
             }
-        }
+
     }
 
     public function showPasswordChangeModal()
