@@ -165,9 +165,11 @@
 
             }
             .nav-item .nav-link {
-            color: black;
-            text-decoration: none;
-            cursor:pointer;
+                color:black;
+                text-decoration: none;
+                font-weight:500;
+                font-size:0.825rem;
+                cursor:pointer;
             }
 
             /* Style for the active-link class */
@@ -203,7 +205,7 @@
 
                 width: 30px;
 
-                color: black;
+                color: grey;
 
             }
 
@@ -227,13 +229,15 @@
             #leave-options a {
                 text-decoration: none;
                 color: #778899;
+                font-weight:normal;
                 cursor:pointer;
-
             }
 
             #salary-options a {
                 text-decoration: none;
                 color: #778899;
+                cursor:pointer;
+                font-weight:normal;
             }
 
                 /* Style for the dropdown container */
@@ -501,7 +505,7 @@
 
                             <a class="nav-link" href="/" onclick="setActiveLink(this)">
 
-                                <i class="fas fa-home"></i> Home
+                                <i class="fas fa-home "></i> Home
 
                             </a>
 
@@ -532,12 +536,12 @@
                             </a>
                             <div id="todo-options" style="display: none;">
                                 <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
-                                    <li class="nav-item" style="text-decoration: none;">
+                                    <li class="nav-item-1" style="text-decoration: none;">
                                         <a class="nav-link" href="/tasks" onclick="changePageTitle3('task'); setActiveLink(this)">
                                             Tasks
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="text-decoration: none;">
+                                    <li class="nav-item-1" style="text-decoration: none;">
                                         <a class="nav-link" href="/employees-review" onclick="changePageTitle3('review'); setActiveLink(this)">
                                             Review
                                         </a>
@@ -595,31 +599,33 @@
 
                         <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5(item)">
                             <a class="nav-link" onclick="toggleLeaveDropdown(event)">
-                                <i class="fas fa-file-alt" id="leave-icon"></i> Leave <i class="fas fa-caret-down" id="leave-caret"></i>
+                               <i class="fas fa-file-alt" id="leave-icon"></i>
+                               <span>Leave</span>
+                                <i class="fas fa-caret-down" id="leave-caret" style="margin-left:20px;"></i>
                             </a>
                             <div id="leave-options" style="display: none;">
                                 <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
-                                    <li class="nav-item" style="text-decoration: none;">
+                                    <li class="nav-item-1" style="text-decoration: none;">
                                         <a class="nav-link" href="/leave-page" onclick="changePageTitle5('apply');return false;setActiveLink(this)">
                                             Leave Apply
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="text-decoration: none;">
+                                    <li class="nav-item-1" style="text-decoration: none;">
                                         <a class="nav-link" href="/leave-balances" onclick="changePageTitle5('balances'); return false;setActiveLink(this)">
                                             Leave Balances
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="text-decoration: none;">
+                                    <li class="nav-item-1" style="text-decoration: none;">
                                         <a class="nav-link" href="/leave-calender" onclick="changePageTitle5('calendar'); return false;setActiveLink(this)">
                                             Leave Calendar
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="text-decoration: none;">
+                                    <li class="nav-item-1" style="text-decoration: none;">
                                         <a class="nav-link" href="/holiday-calender" onclick="changePageTitle5('holiday'); return false;setActiveLink(this)">
                                             Holiday Calendar
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="text-decoration: none;">
+                                    <li class="nav-item-1" style="text-decoration: none;">
                                         <a class="nav-link" href="/team-on-leave-chart" onclick="changePageTitle5('team'); return false;setActiveLink(this)">
                                             @livewire('team-on-leave')
                                         </a>
@@ -637,18 +643,18 @@
                             </a>
                             <div id="attendance-options" style="display: none;">
                                 <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
-                                    <li class="nav-item" style="text-decoration: none;">
+                                    <li class="nav-item-1" style="text-decoration: none;">
                                         <a class="nav-link" href="/Attendance" onclick="return changePageTitle6('attendance-info');">
                                               Attendance&nbsp;Info
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="text-decoration: none;">
-                                        <a class="nav-link" href="/team-on-attendance-chart" onclick="return changePageTitle6('team-on-attendance');">
+                                    <li class="nav-item-1" style="text-decoration: none;">
+                                        <a class="nav-link" href="/team-on-attendance-chart"  style="padding-top:5px;padding-right:15px;padding-left:15px;padding-bottom:1px;"onclick="return changePageTitle6('team-on-attendance');">
                                               @livewire('team-on-attendance')
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="text-decoration: none;">
-                                        <a class="nav-link" href="/whoisinchart" onclick="return changePageTitle6('who-is-in');">
+                                    <li class="nav-item-1" style="text-decoration: none;">
+                                        <a class="nav-link" href="/whoisinchart" style="padding-top:5px;padding-right:15px;padding-left:15px;padding-bottom:1px;" onclick="return changePageTitle6('who-is-in');">
                                               @livewire('whoisin')
                                         </a>
                                     </li>

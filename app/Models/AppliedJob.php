@@ -27,4 +27,9 @@ class AppliedJob extends Model
 
         return $this->belongsTo(Job::class, 'job_id', 'job_id');
     }
+    public function com()
+    {
+
+        return $this->belongsTo(Company::class, 'company_id', 'company_id');
+    }
 }

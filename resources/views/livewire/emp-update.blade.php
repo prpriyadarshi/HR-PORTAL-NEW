@@ -404,7 +404,7 @@
                                         </div>
 
                                         @if($image)
-                                        <img src="{{ is_string($image) ? asset('storage/' . $image) : $image->temporaryUrl() }}" alt="Preview" width="80" height="80" class="img-thumbnail" /><img style="height: 90px; width: 80px" src="{{ asset('storage/' . $image->hashName()) }}" alt="Image Preview" style="max-width: 300px;">
+                                        <img src="{{ is_string($image) ? asset('storage/' . $image) : $image->temporaryUrl() }}" alt="Preview" width="80" height="80" class="img-thumbnail" />
                                         @elseif($employee && $employee->image)
                                         <img src="{{ asset('storage/' . $employee->image) }}" alt="Preview" width="80" height="80" class="img-thumbnail" />
                                         @endif
