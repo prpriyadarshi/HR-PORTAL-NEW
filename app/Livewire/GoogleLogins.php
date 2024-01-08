@@ -13,10 +13,11 @@ use Illuminate\Support\Facades\Log;
 class GoogleLogins extends Component
 {
     public $google;
+
     public function redirectToGoogle()
     {
         return Socialite::driver('google')
-            ->redirectUrl('http://127.0.0.1:8000/auth/google/callback')
+        ->redirectUrl('http://127.0.0.1:8000/auth/google/callback')
             ->redirect();
     }
 
@@ -72,6 +73,6 @@ class GoogleLogins extends Component
 
     public function render()
     {
-        return view('livewire.google-logins')->with('profilePictureUrl', $profilePictureUrl);;
+        return view('livewire.google-logins');
     }
 }
