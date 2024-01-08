@@ -19,6 +19,7 @@ use App\Livewire\RegularisationPending;
 use App\Livewire\EmployeeSwipes;
 use App\Livewire\AttendanceMusterData;
 use App\Livewire\AttendanceMuster;
+use App\Livewire\AttendenceMasterDataNew;
 use App\Livewire\EmployeeSwipesData;
 use App\Livewire\HelpDesk;
 use App\Livewire\Home;
@@ -188,7 +189,7 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/employee-swipes', EmployeeSwipes::class)->name('employee-swipes');
     Route::get('/employee-swipes-data', EmployeeSwipesData::class)->name('employee-swipes-data');
     Route::get('/attendance-muster', AttendanceMuster::class)->name('attendance-muster');
-    Route::get('/attendance-muster-data', AttendanceMusterData::class)->name('attendance-muster-data');
+    Route::get('/attendance-muster-data', AttendenceMasterDataNew::class)->name('attendance-muster-data');
 
 
     Route::get('/ProfileInfo', ProfileInfo::class)->name('profile.info');
