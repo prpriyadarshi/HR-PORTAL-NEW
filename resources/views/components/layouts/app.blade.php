@@ -3,6 +3,7 @@
 <html lang="en">
 
 
+
 <head>
 
     <meta charset="UTF-8">
@@ -41,7 +42,7 @@
 
     <link rel="stylesheet" type="text/css" href="path/to/your.css">
 
-
+  
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -75,7 +76,7 @@
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" data-turbolinks-track="reload">
     @stack('styles')
-    @livewireStyles
+    <livewire:styles />
 
 </head>
 
@@ -84,25 +85,24 @@
 @else
 
 <body>
-
     <div>
 
     </div>
 
     <div>
+
         <style>
             body {
                 font-family: 'Montserrat', sans-serif;
                 overflow-x:hidden;
             }
-
             .left-card-body{
                 margin-top:0px;
                 padding:0 5px;
                 margin:0;
                 height:600px;
             }
-
+           
             .profile-container {
 
                 display: flex;
@@ -224,8 +224,19 @@
                 margin-right: 15px;
 
             }
-
-
+            #todo-options a {
+                text-decoration: none;
+                color: #778899;
+                font-weight:normal;
+                cursor:pointer;
+            }
+            #attendance-options a{
+                text-decoration: none;
+                color: #778899;
+                cursor:pointer;
+                font-weight:normal;
+            }
+      
             #leave-options a {
                 text-decoration: none;
                 color: #778899;
@@ -324,7 +335,7 @@
                 background-color: #555; /* Set the color of the thumb on hover */
             }
 
-
+           
 
             @media only screen and (max-width: 768px) {
                 .displayNone {
@@ -370,16 +381,13 @@
                 #menu-popup::-webkit-scrollbar-thumb:hover {
                     background-color: #555; /* Set the color of the thumb on hover */
                 }
-
-
-
+               
             }
 
             @media only screen and (min-width: 769px) {
                 .hideHamburger {
                     display: none !important;
                 }
-
             }
 
 
@@ -427,9 +435,7 @@
                 #menu-popup::-webkit-scrollbar-thumb:hover {
                     background-color: #555; /* Set the color of the thumb on hover */
                 }
-
-
-
+             
             }
 
             @media only screen and (min-width: 769px) {
@@ -453,14 +459,12 @@
                     background-color: #fff; /* Set the color of the scrollbar track */
                     border-radius: 5px; /* Set the border radius of the track */
                 }
-
-
-
+             
+                               
             }
-
-
+         
             @media only screen and (min-width: 1440px) {
-
+             
 
                 .slot{
                     max-height:660px;
@@ -472,12 +476,12 @@
                 margin-top:0px;
                 padding:0 5px;
                 margin:0;
-                display:flex;
+                display:flex; 
                 height:750px;
-
+              
                }
             }
-
+      
 
         </style>
 
@@ -654,10 +658,17 @@
                                               @livewire('whoisin')
                                         </a>
                                     </li>
-
-
-
-
+                                    <li class="nav-item-1" style="text-decoration: none;">
+                                        <a class="nav-link" href="/employee-swipes-data"  style="padding-top:5px;padding-right:15px;padding-left:15px;padding-bottom:1px;" onclick="return changePageTitle6('who-is-in');">
+                                              @livewire('employee-swipes')
+                                        </a>
+                                    </li>
+                                    <li class="nav-item-1" style="text-decoration: none;">
+                                        <a class="nav-link" href="/attendance-muster-data"  style="padding-top:5px;padding-right:15px;padding-left:15px;padding-bottom:1px;" onclick="return changePageTitle6('who-is-in');">
+                                              @livewire('attendance-muster')
+                                        </a>
+                                    </li>
+                                    
                                 </ul>
                             </div>
                         </li>
@@ -747,7 +758,7 @@
 
                     </div>
                     @endauth
-
+                   
                     @if(auth('it')->check())
                     <h6 style="color: white; width: -webkit-fill-available;" id="pageTitle">
                         <i style="color: white;" class="fas fa-laptop"></i> IT Requests
