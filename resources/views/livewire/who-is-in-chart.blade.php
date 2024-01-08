@@ -268,7 +268,7 @@
   @php
   $swipeTime = \Carbon\Carbon::parse($s1->swipe_time);
   $isLateBy10AM = $swipeTime->format('H:i') > '10:00';
-  $isEarlyBy10AM= $swipeTime->format('H:i') < '10:00' ; @endphp @if($isLateBy10AM) @php $notyetin++; $lateArrival++; @endphp @endif @if($isEarlyBy10AM) @php $onTime++; @endphp @endif @endforeach @php $CalculatePresentOnTime=($onTime/$TotalEmployees)*100; $CalculatePresentButLate=($lateArrival/$TotalEmployees)*100; @endphp 
+  $isEarlyBy10AM= $swipeTime->format('H:i') < '10:00' ; @endphp @if($isLateBy10AM) @php $notyetin++; $lateArrival++; @endphp @endif @if($isEarlyBy10AM) @php $onTime++; @endphp @endif @endforeach @php $CalculatePresentOnTime=($EarlySwipesCount/$TotalEmployees)*100; $CalculatePresentButLate=($LateSwipesCount/$TotalEmployees)*100; @endphp 
 <div class="date-form">
     <input type="date" wire:model="from_date" wire:change="updateDate"class="form-control" id="fromDate" name="fromDate" style="color: #778899;">
 </div>
@@ -293,15 +293,7 @@
 
        
           
-            <div class="search-results"style="margin-top:80px;"wire:click="clearSearch">
-              <ul>
-                 
-                      @foreach($results as $result)
-                         <li>{{ ucfirst($result->first_name) }} {{ ucfirst($result->last_name) }} (#{{ $result->emp_id }})</li>
-                      @endforeach
-                 
-              </ul>
-            </div>
+          
          
         </div>
       
@@ -335,12 +327,12 @@
     </div>
     <div class="col-md-3 field">
       <div class="percentage"style="font-weight: 500;font-size:0.895rem; ">{{number_format($CalculatePresentButLate,2)}}%</div>
-      <div class="employee-count">{{$lateArrival}}&nbsp;Employee(s)&nbsp;are&nbsp;Late&nbsp;In</div>
+      <div class="employee-count">{{$LateSwipesCount}}&nbsp;Employee(s)&nbsp;are&nbsp;Late&nbsp;In</div>
 
     </div>
     <div class="col-md-3 field">
       <div class="percentage"style="font-weight: 500;font-size:0.895rem;">{{number_format($CalculatePresentOnTime,2)}}%</div>
-      <div class="employee-count">{{$onTime}}&nbsp;Employee(s)&nbsp;are&nbsp;On&nbsp;Time</div>
+      <div class="employee-count">{{$EarlySwipesCount}}&nbsp;Employee(s)&nbsp;are&nbsp;On&nbsp;Time</div>
     </div>
     <div class="col-md-3 field">
       <div class="percentage"style="font-weight: 500;font-size:0.895rem;">{{number_format($CalculateApprovedLeaves,2)}}%</div>
@@ -355,7 +347,9 @@
     <div class="container3">
       <div class="heading">
         <h3>Absent&nbsp;({{ str_pad($employeesCount1, 2, '0', STR_PAD_LEFT) }}) </h3>
-        <i class="fas fa-download"></i>
+        
+             <i class="fas fa-download"wire:click="downloadExcelForAbsent"style="cursor:pointer;"></i>
+          
       </div>
       <div>
         <table style="margin-top:-10px">
@@ -366,9 +360,17 @@
 
             </tr>
           </thead>
-          @foreach($Employees1 as $e1)
-
+          
+          
           <tbody>
+          @if($notFound)
+            <tr>
+              <td colspan="2" style="text-align: center; font-weight: normal; font-size: 12px; color:#778899;">
+                No data to display
+              </td>
+            </tr>
+          @else
+          @foreach($Employees1 as $e1)
             <tr style="border-bottom: 1px solid #ddd;">
               <td style="font-size:13px;font-weight:500;">{{ucfirst($e1->first_name)}}&nbsp;{{ucfirst($e1->last_name)}}<br /><span class="text-muted"style="font-weight:normal;font-size:10px;">#{{$e1->emp_id}}</span></td>
               <td style="font-weight:normal;font-size:13px;">10:00:00</td>
@@ -376,9 +378,11 @@
             </tr>
 
             <!-- Add more rows with dashes as needed -->
+          @endforeach
+          @endif
           </tbody>
 
-          @endforeach
+          
           <!-- Add table rows (tbody) and data here if needed -->
         </table>
 
@@ -390,7 +394,9 @@
     <div class="container4">
       <div class="heading">
         <h3>Late&nbsp;Arrivals&nbsp;({{ str_pad($lateArrival, 2, '0', STR_PAD_LEFT) }})</h3>
-        <i class="fas fa-download"></i>
+       
+             <i class="fas fa-download"wire:click="downloadExcelForLateArrivals"style="cursor:pointer;"></i>
+            
       </div>
       <div>
         <table style="margin-top:-10px">
@@ -442,7 +448,9 @@
     <div class="container5">
       <div class="heading">
         <h3>On&nbsp;Time&nbsp;({{ str_pad($onTime, 2, '0', STR_PAD_LEFT) }})</h3>
-        <i class="fas fa-download"></i>
+            
+                  <i class="fas fa-download"wire:click="downloadExcelForEarlyArrivals"style="cursor:pointer;"></i>
+               
       </div>
 
       <div>
@@ -483,7 +491,9 @@
     <div class="container6">
       <div class="heading">
         <h3>On&nbsp;Leave&nbsp;({{ str_pad($ApprovedLeaveRequestsCount, 2, '0', STR_PAD_LEFT) }})</h3>
-        <i class="fas fa-download"></i>
+              
+                    <i class="fas fa-download"wire:click="downloadExcelForLeave" style="cursor: pointer;"></i>
+                  
       </div>
 
 
@@ -497,7 +507,16 @@
             </tr>
           </thead>
           <tbody>
+          @if($notFound3)
+            <tr>
+              <td colspan="2" style="text-align: center; font-weight: normal; font-size: 12px; color:#778899;">
+                No data to display
+              </td>
+            </tr>
+
+          @else
             @if($ApprovedLeaveRequestsCount > 0)
+            
             @foreach($ApprovedLeaveRequests as $alr)
 
 
@@ -510,9 +529,6 @@
               </td>
 
             </tr>
-
-            <!-- Add more rows with dashes as needed -->
-
             @endforeach
             @else
             <tr>
@@ -521,7 +537,7 @@
               </td>
             </tr>
             @endif
-
+          @endif
           </tbody>
           <!-- Add table rows (tbody) and data here if needed -->
         </table>

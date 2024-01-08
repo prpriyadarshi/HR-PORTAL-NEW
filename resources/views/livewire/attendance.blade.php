@@ -318,6 +318,19 @@
             position: relative;
             text-align: left;
         }
+        .table-1 thead{
+            border:none;
+        }
+        .table-1 th {
+            text-align: center; /* Center days of the week */
+            height: 15px;
+            border: none;       
+            /* Adjust the height of days of the week cells */
+        }
+        .table-1 {
+            background:yellow;
+            overflow-x: hidden; /* Add horizontal scrolling if the table overflows the container */
+        }
  
         /* Add style for the current date cell */
         .current-date {
@@ -379,7 +392,7 @@
         border-radius:5px;
         width: 100%; /* Adjust the width as needed */
         top: 100px;
-     overflow-x: auto;
+        overflow-x: auto;
         left:0;/* Adjust the top position as needed */
       /* Adjust the right position as needed */
       }
@@ -1385,8 +1398,6 @@
                     <h3 style="color: #7f8fa4;margin-left:0;font-size:20px;">Legends</h3>
                     <button style="font-size: 12px; padding: 5px 10px; margin-left: 10px; margin-top: -5px;"
                         id="closeSidebar">&#10006;</button>
-
-
                 </div>
                 <div class="sidebar-content">
                     <h3 style="font-size: 16px;">Shift Codes</h3>
@@ -1499,7 +1510,7 @@
                     </div>
                 </div>
                 <!-- Calendar -->
-                <div class="table-responsive">
+                <div  style="background:pink;">
                 <table class="table-1 table-bordered">
                         <thead>
                             <tr>
@@ -1514,7 +1525,7 @@
                         </thead>
                         <tbody id="calendar-body">
                         @foreach ($calendar as $week)
-    <tr>
+    <tr style="background:#0099cc;">
         @foreach ($week as $day)
             @php
                 $carbonDate = \Carbon\Carbon::createFromDate($year, $month, $day['day']);
@@ -1755,7 +1766,7 @@
                         @foreach ($CurrentDateTwoRecord as $record) 
                         <tr>
                               
-                              <td>
+                              <td style="font-size:12px;">
                                  @if ($record['in_or_out'] == 'IN')
                                         @php
                                            $flag=1;
@@ -1765,7 +1776,7 @@
                                  @endif
                               </td>
                               @if ($loop->first)
-                              <td>
+                              <td style="font-size:12px;">
                               @if (isset($CurrentDateTwoRecord[1]) && $CurrentDateTwoRecord[1]['in_or_out'] == 'OUT')
                                           {{ substr($CurrentDateTwoRecord[1]['swipe_time'],0,5) }}
                               @elseif($flag==1)

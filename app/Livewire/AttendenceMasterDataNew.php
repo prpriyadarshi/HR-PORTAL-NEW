@@ -6,6 +6,9 @@ use App\Models\EmployeeDetails;
 use App\Models\HolidayCalendar;
 use App\Models\SwipeRecord;
 use App\Models\LeaveRequest;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Carbon\Carbon;
 use DateTime;
 use Livewire\Component;
@@ -14,10 +17,114 @@ class AttendenceMasterDataNew extends Component
 {
     public $currentMonth;
 
-    public  $holiday; 
-    public $daysInMonth;
+    public $searching=1;
+    public  $holiday;
+    public $notFound;
 
+
+  
+    public $search;
+    public $filteredEmployees;
+    public $daysInMonth;
+ 
+    public $results=[];
     public $distinctDatesMap;
+
+    public function searchfilter()
+    {
+        $searching=1;
+        $currentDate = now()->toDateString(); 
+        $loggedInEmpId = Auth::guard('emp')->user()->emp_id;
+        $employees=EmployeeDetails::where('manager_id',$loggedInEmpId)->select('emp_id', 'first_name', 'last_name')->get();
+        $nameFilter = $this->search; // Assuming $this->search contains the name filter
+$filteredEmployees = $employees->filter(function ($employee) use ($nameFilter) {
+    return stripos($employee->first_name, $nameFilter) !== false ||
+        stripos($employee->last_name, $nameFilter) !== false ||
+        stripos($employee->emp_id, $nameFilter) !== false;
+});
+
+if ($filteredEmployees->isEmpty()) {
+    $this->notFound = true; // Set a flag indicating that the name was not found
+} else {
+    $this->notFound = false;
+}
+        dd($filteredEmployees);
+       
+      
+    }
+    public function downloadExcel()
+    {
+         // Your data to be exported to Excel
+  // Fetch employee id and name from SwipeRecord model
+  $loggedInEmpId = Auth::guard('emp')->user()->emp_id;
+  $employees=EmployeeDetails::where('manager_id',$loggedInEmpId)->select('emp_id', 'first_name', 'last_name')->get();
+     
+ 
+    
+  
+  
+  
+
+ 
+  
+  // Your data to be exported to Excel
+  $data = [ ['List of Employees  ' ],
+      ['Employee ID', 'Name'],
+ 
+  ];
+
+
+$employeeIds = $employees->pluck('emp_id');
+  $distinctDatesMapCount = SwipeRecord::whereIn('swipe_records.emp_id', $employeeIds)
+  ->whereMonth('swipe_records.created_at', 12) // December
+  ->whereRaw('DAYOFWEEK(swipe_records.created_at) NOT IN (1, 7)') // Exclude Sunday (1) and Saturday (7)
+  ->join('employee_details', 'swipe_records.emp_id', '=', 'employee_details.emp_id')
+  ->selectRaw('swipe_records.emp_id, COUNT(DISTINCT DATE(swipe_records.created_at)) as date_count, employee_details.first_name, employee_details.last_name')
+  ->groupBy('swipe_records.emp_id', 'employee_details.first_name', 'employee_details.last_name')
+  ->get()
+  ->keyBy('emp_id')
+  ->toArray();
+  foreach ($employees as $employee) {
+      
+
+        $data[] = [$employee['emp_id'], $employee['first_name'] . ' ' . $employee['last_name']];
+     
+        
+      
+  }
+
+  // Create a temporary file
+  $tempFilePath = storage_path('app/public/' . Str::random(16) . '.csv');
+
+  // Open the file for writing
+  $file = fopen($tempFilePath, 'w');
+
+  // Write the data to the file
+  foreach ($data as $row) {
+      fputcsv($file, $row);
+  }
+
+  // Close the file
+  fclose($file);
+
+  // Set the response headers for download
+  $headers = [
+      'Content-Type' => 'text/csv',
+      'Content-Disposition' => 'attachment; filename="LATE_ARRIVALS"',
+  ];
+
+  // Return the response with the file and headers
+  return response()->stream(
+      function () use ($tempFilePath) {
+          readfile($tempFilePath);
+          // Delete the file after it has been streamed
+          File::delete($tempFilePath);
+      },
+      200,
+      $headers
+  );
+        
+    }
     public function render()
     {
         $currentMonth1 = date('n');
@@ -41,6 +148,8 @@ class AttendenceMasterDataNew extends Component
        
         $loggedInEmpId = Auth::guard('emp')->user()->emp_id;
         $employees=EmployeeDetails::where('manager_id',$loggedInEmpId)->select('emp_id', 'first_name', 'last_name')->get();
+       
+        
         $employeescount=EmployeeDetails::where('manager_id',$loggedInEmpId)->count();
       
     // You can now loop through $attendanceRecords to access the records
@@ -53,6 +162,20 @@ class AttendenceMasterDataNew extends Component
 $employees = EmployeeDetails::where('manager_id', $managerId)
 ->select('emp_id', 'first_name', 'last_name','job_title','city')
 ->get();
+$nameFilter = $this->search; // Assuming $this->search contains the name filter
+$filteredEmployees = $employees->filter(function ($employee) use ($nameFilter) {
+    return stripos($employee->first_name, $nameFilter) !== false ||
+        stripos($employee->last_name, $nameFilter) !== false ||
+        stripos($employee->emp_id, $nameFilter) !== false;
+});
+
+if ($filteredEmployees->isEmpty()) {
+    $this->notFound = true; // Set a flag indicating that the name was not found
+} else {
+    $this->notFound = false;
+}
+
+
 
 $employeeIds = $employees->pluck('emp_id');
 
@@ -65,7 +188,7 @@ $distinctDatesMap = SwipeRecord::whereIn('emp_id', $employeeIds)
         return $dates->pluck('distinct_date')->toArray();
     })
     ->toArray();
-  
+   
     
 
     

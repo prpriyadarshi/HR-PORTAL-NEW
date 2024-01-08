@@ -1,6 +1,95 @@
 
 <div>
     <style>
+      
+.sidebar {
+    position: fixed;
+    top: 0;
+    overflow-y: hidden;
+    right: -255px;
+    height: 100%;
+    width: 245px; /* Adjust width as needed */
+    background-color: #fff; /* Adjust background color */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional box shadow */
+     /* Add vertical scrollbar if needed */
+    z-index: 1000; /* Adjust z-index */
+    /* Add any other styles you need */
+}
+
+/* Adjust the close button position if needed */
+#closeSidebar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+    .sidebar .sidebar-header {
+        background-color: #e9edf1;
+        padding: 10px;
+        text-align: center;
+    }
+    .down-arrow-reg { 
+  width: 0;
+  height: 0;
+  /* border-left: 20px solid transparent; */
+  border-right: 17px solid transparent;
+  border-bottom: 17px solid #5473e3;
+  margin-right: 5px;
+} 
+.down-arrow-ove { 
+  width: 0;
+  height: 0;
+  /* border-left: 20px solid transparent; */
+  border-right: 17px solid transparent;
+  border-bottom: 17px solid #e2b7ff ;
+  margin-right: 5px;
+} 
+.down-arrow-ign { 
+  width: 0;
+  height: 0;
+  /* border-left: 20px solid transparent; */
+  border-right: 17px solid transparent;
+  border-bottom: 17px solid ;
+  margin-right: 5px;
+} 
+.legendsIcon{
+  padding: 1px 6px;
+  font-weight: 500;
+}
+.down-arrow-afd { 
+  width: 0;
+  height: 0;
+  /* border-left: 20px solid transparent; */
+  border-right: 17px solid transparent;
+  border-bottom: 17px solid #7dd4ff;
+  margin-right: 5px;
+} 
+.down-arrow-ded { 
+  width: 0;
+  height: 0;
+  /* border-left: 20px solid transparent; */
+  border-right: 17px solid transparent;
+  border-bottom: 17px solid #ff9595;
+  margin-right: 5px;
+} 
+
+    .sidebar .sidebar-header h2 {
+        color: #7f8fa4;
+        font-size: 24px;
+        margin: 0;
+    }
+
+    .sidebar-content h3 {
+        color: #7f8fa4;
+        margin-left: 30px;
+    }
+
+    .sidebar-content p {
+        color: #7f8fa4;
+        font-size: 12px;
+        margin-left: 30px;
+    }
+
         .search-bar{
             display:flex;
             padding:0;
@@ -11,6 +100,20 @@
             border-radius: 4px;
             overflow: hidden;
             background:#fff;
+        }
+        .holidayIcon {
+              background-color: #f7f7f7;
+        }
+    
+        .custom-button{
+          padding: 2px;
+            margin-bottom:15px;
+            background-color:#3eb0f7;
+            color: #fff;
+            width:100px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
         /* Styling for the input */
         .search-bar input[type="search"] {
@@ -30,7 +133,30 @@
             color: #999; /* Icon color */
             cursor: pointer;
         }
-
+        .presentIcon
+        {
+            border:1px solid #6c757d;
+        }
+        .absentIcon
+        {
+            border:1px solid #6c757d;
+        }
+        .offIcon
+        {
+            border:1px solid #6c757d;
+        }
+        .restIcon
+        {
+            border:1px solid #6c757d;
+        }
+        .down-arrow-gra { 
+                width: 0;
+                height: 0;
+  /* border-left: 20px solid transparent; */
+                border-right: 17px solid transparent;
+                border-bottom: 17px solid #ffe8de;
+                margin-left:-5px;
+        } 
         /* Styling for the search icon (optional) */
         .search-bar input[type="search"]::placeholder {
             color: #999; /* Placeholder color */
@@ -101,6 +227,11 @@
         .Attendance .table tbody tr td:last-child {
             border-right: none;
         }
+        .legend-item {
+                display: flex;
+                align-items: center;
+               margin-top: -5px; /* Adjust as needed for spacing */
+        }
      
     
     </style>
@@ -124,12 +255,141 @@
 
             
     @endfor
+    <button class="custom-button"style="float:right;"wire:click="downloadExcel">
+        <i class="fa fa-download" aria-hidden="true"></i>
+    </button>
 
     <div class="container">
         <div class="search-bar">
-            <input type="search" placeholder="Search...">
+            <input type="text" wire:model="search"placeholder="Search..."wire:change="searchfilter">
         </div>
+        <a href="#" id="toggleSidebar" class="gt-overlay-toggle"
+                style="margin-top:69px;color:rgb(2, 17, 79);">Legend</a>
+        <div class="sidebar">
+                <!-- Sidebar content goes here -->
+                <div class="sidebar-header" style="display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="color: #7f8fa4;margin-left:0;font-size:20px;">Legends</h3>
+                    <button style="font-size: 12px; padding: 5px 10px; margin-left: 10px; margin-top: -5px;"
+                        id="closeSidebar">&#10006;</button>
 
+
+                </div>
+                <div class="sidebar-content"style="overflow-y:auto">
+                    <h3 style="font-size: 16px;">Actionable&nbsp;Status</h3>
+                    
+                        <div class="legend-item">
+                            <p class="me-2 mb-0"style="font-size: 14px; color: #e2b7ff;margin-left:22px;">
+                                                <span class="legendsIcon presentIcon"style="font-size:13px;color:#6c757d;">P</span>
+                            </p>
+                            <p style="display: inline-block; margin-left: 2px;margin-top:15px;">Present</p>
+                        </div>
+                        <div class="legend-item">
+                           <p class="me-2 mb-0"style="font-size: 14px; color: #e2b7ff;margin-left:22px;">
+                                                <span class="legendsIcon absentIcon"style="font-size:13px;color:#6c757d;">A</span>
+                            </p>
+                            <p style="display: inline-block; margin-left: 2px;margin-top:15px">Absent</p>
+                        </div>
+                   
+                    
+                        <div class="legend-item">
+                        <p class="me-2 mb-0"style="font-size: 14px; color: #e2b7ff;margin-left:22px;">
+                                                <span class="legendsIcon offIcon"style="font-size:13px;color:#6c757d;">O</span>
+                            </p>
+                            <p style="display: inline-block; margin-left: 2px;margin-top:15px">
+                                Off&nbsp;Day</p>
+                        </div>
+                        <div class="legend-item">
+                           <p class="me-2 mb-0"style="font-size: 14px; color: #e2b7ff;margin-left:22px;">
+                                                <span class="legendsIcon restIcon"style="font-size:13px;color:#6c757d;">R</span>
+                            </p>
+                            <p style="display: inline-block; margin-left: 2px;margin-top:15px">Rest&nbsp;Day</p>
+                        </div>
+                    
+                   
+                    <h3 style="font-size: 16px;">Alerts&nbsp;&&nbsp;Deductions</h3>
+                    <div style="display:flex;flex-direction:row;margin-top:-10px;">
+                        <div class="legend-item">
+                            <p class="me-2 mb-0">
+                                   <div class="down-arrow-reg"style="color:#e2b7ff;"></div>
+                            </p>
+                            <p style="display: inline-block; margin-left: -25px;margin-top:20px">Regularized</p>
+                        </div>
+                        <div class="legend-item">
+                            <p class="me-2 mb-0">
+                                   <div class="down-arrow-ove"style="color:#e2b7ff;"></div>
+                            </p>
+                            <p style="display: inline-block; margin-left: -25px;margin-top:20px">Override</p>
+                        </div>
+
+
+                    </div>
+                    <div style="display:flex;flex-direction:row;margin-top:-10px;">
+                        <div class="legend-item">
+                           <p class="me-2 mb-0">
+                                   <div class="down-arrow-ded"style="color:#ff9595;"></div>
+                            </p>
+                            <p style="display: inline-block; margin-left: -25px;margin-top:20px">
+                                Deduction</p>
+                        </div>
+                        <div class="legend-item">
+                            <p class="me-2 mb-0">
+                                   <div class="down-arrow-afd"style="color:#7dd4ff;"></div>
+                            </p>
+                            <p style="display: inline-block;margin-left: -25px;margin-top:20px">Alert&nbsp;for&nbsp;Deduction</p>
+                        </div>
+                    </div>
+                    <div style="display:flex;flex-direction:row;margin-top:-10px;margin-left:5px;">
+                        <div class="legend-item">
+                           <p class="me-2 mb-0">
+                                   <div class="down-arrow-ign"style="color:#c7c7c7;"></div>
+                            </p>
+                            <p style="display: inline-block; margin-left: -25px;margin-top:20px">Ignored</p>
+                        </div>
+                        <div class="legend-item">
+                           <p class="me-2 mb-0">
+                                   <div class="down-arrow-gra"style="color:#ffe8de;"></div>
+                            </p>
+                            <p style="display: inline-block; margin-left: -25px;margin-top:20px">Grace</p>
+                        </div>
+                    </div>
+                   
+                   
+                    <h3 style="font-size: 16px;">Display&nbsp;Status</h3>
+                    
+                    <div class="legend-item"style="margin-top:-15px;">
+                        <p  style="font-size: 13px; color: #a3b2c7;margin-left:25px;margin-top:10px">P</p>
+                        <p style="display: inline-block; margin-left: 20px;margin-top:10px;">Present</p>
+                    </div>
+                    <div class="legend-item"style="margin-top:-15px;">
+                        <p  style="font-size: 13px; color: #a3b2c7;margin-left:25px;margin-top:10px">L</p>
+                        <p style="display: inline-block; margin-left: 20px;margin-top:10px">Leave</p>
+                    </div>
+               
+                
+                    <div class="legend-item"style="margin-top:-15px;">
+                         <p class="me-2 mb-0"style="margin-left:23px;">
+                                   <span class="legendsIcon holidayIcon">H</span>
+                         </p>
+                        <p style="display: inline-block; margin-left: 12px;margin-top:12px">
+                            Holiday</p>
+                    </div>
+                    <div class="legend-item"style="margin-top:-15px;">
+                        <p style="font-size: 13px; color: #f66;margin-left:25px;margin-top:10px">A</p>
+                        <p style="display: inline-block; margin-left: 20px;margin-top:12px">Absent</p>
+                    </div>
+                    <div class="legend-item"style="margin-top:-15px;">
+                        <p style="font-size: 13px; color: #a3b2c7;margin-left:25px;margin-top:10px">O</p>
+                        <p style="display: inline-block; margin-left: 20px;margin-top:12px">Off&nbsp;Day</p>
+                    </div>
+               
+                </div>
+
+            </div>
+     
+ 
+
+     
+  </div>
         <div class="row" style="margin-top: 20px;">
             <div class="summary col-md-3">
                 <p style="background:#ebf5ff;padding:5px 15px;font-size:0.755rem;">Summary</p>
@@ -144,10 +404,11 @@
                     
                       <tbody>
                         <!-- Add table rows and data for Summary -->
+                      
                         @foreach($Employees as $emp)
                           <tr>
                              
-                                <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;font-weight:500;font-size:13px;">{{ucfirst($emp->first_name)}}&nbsp;{{ucfirst($emp->last_name)}}<span class="text-muted"style="font-weight:400;">(#{{ $emp->emp_id }})</span><br/><span class="text-muted"style="font-weight:300;font-size:10px;">{{ucfirst($emp->job_title)}},{{ucfirst($emp->city)}}</span></td>
+                                <td style="max-width: 200px;font-weight:400; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ucfirst($emp->first_name)}}&nbsp;{{ucfirst($emp->last_name)}}<span class="text-muted">(#{{ $emp->emp_id }})</span><br/><span class="text-muted"style="font-size:11px;">{{ucfirst($emp->job_title)}},{{ucfirst($emp->city)}}</span></td>
                                 @php
                                          $found = false;
                                 @endphp
@@ -169,6 +430,7 @@
                                 
                           </tr>
                          @endforeach 
+                       
                         <!-- Add more rows as needed -->
                      </tbody>
                    
@@ -209,6 +471,7 @@
                         <!-- Add table rows and data for Attendance -->
                         
                         @while ($EmployeesCount > 0)
+                       
                         @foreach($Employees as $e)
                             
                         <tr style="height:14px;background-color:#fff;">
@@ -317,6 +580,7 @@
                         
                        </tr>
                        @endforeach
+                   
                        @endwhile
                         
                     </tbody>
@@ -325,4 +589,33 @@
         </div>
 
     </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const toggleSidebarButton = document.getElementById("toggleSidebar");
+    const sidebar = document.querySelector(".sidebar");
+
+    toggleSidebarButton.addEventListener("click", function () {
+        if (sidebar.style.right === "0px" || sidebar.style.right === "") {
+            sidebar.style.right = "-250px"; // Hide the sidebar
+        } else {
+            sidebar.style.right = "0px"; // Show the sidebar
+        }
+    });
+});
+document.addEventListener("DOMContentLoaded", function () {
+    const toggleSidebarButton = document.getElementById("toggleSidebar");
+    const closeSidebarButton = document.getElementById("closeSidebar");
+    const sidebar = document.querySelector(".sidebar");
+
+    toggleSidebarButton.addEventListener("click", function () {
+        sidebar.style.right = "0px"; // Show the sidebar
+    });
+
+    closeSidebarButton.addEventListener("click", function () {
+        sidebar.style.right = "-250px"; // Hide the sidebar
+    });
+});   
+
+
+</script> 
 </div>

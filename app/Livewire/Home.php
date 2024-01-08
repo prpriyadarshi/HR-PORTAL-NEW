@@ -290,7 +290,7 @@ class Home extends Component
                     ->from('swipe_records')
                     ->whereIn('emp_id', $employees->pluck('emp_id'))
                     ->whereDate('created_at', $currentDate)
-                    ->whereRaw("TIME(created_at) < '10:00:00'") // Add this condition to filter swipes before 10:00 AM
+                    ->whereRaw("swipe_time < '10:00:00'") // Add this condition to filter swipes before 10:00 AM
                     ->groupBy('emp_id');
             })
             ->join('employee_details', 'swipe_records.emp_id', '=', 'employee_details.emp_id')
@@ -305,7 +305,7 @@ class Home extends Component
                     ->where('in_or_out','IN')
                     ->whereIn('emp_id', $employees->pluck('emp_id'))
                     ->whereDate('created_at', $currentDate)
-                    ->whereRaw("TIME(created_at) > '10:00:00'") // Add this condition to filter swipes before 10:00 AM
+                    ->whereRaw("swipe_time > '10:00:00'") // Add this condition to filter swipes before 10:00 AM
                     ->groupBy('emp_id');
             })
             ->join('employee_details', 'swipe_records.emp_id', '=', 'employee_details.emp_id')

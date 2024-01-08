@@ -1,3 +1,4 @@
+<div>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -218,9 +219,9 @@
           
              <div class="search-input"style="margin-top:-1px;">
                     <input wire:model="search" type="text" placeholder="Search Employee" class="search-text">
-                    <div class="search-icon" wire:click="searchFilters">
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                    </div>
+                    <button type="button" class="search-icon" wire:click="testMethod">
+                                 <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
              </div>
            
     </div> 
@@ -228,7 +229,7 @@
             
           
         <button type="button" class="button2" data-toggle="modal" data-target="#exampleModalCenter">
-             <i class="fa-solid fa-download"></i>
+             <i class="fa-solid fa-download"wire:click="downloadFileforSwipes"></i>
         </button>
            
     </div>   
@@ -260,25 +261,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($SignedInEmployees as $sie)
-                        <tr>
-                         
-                                
-                           
-                            <td style=" white-space: nowrap;font-size:12px;">
-                                <input type="checkbox" name="employeeCheckbox[]"style="margin-left:-10px;height:10px;" value="{{ $sie->emp_id }}">
+                    @if($notFound)
+                            <div style="text-align:center;">
+                                  Name not found in the list.
+                            </div>
+                    @else
+    <!-- Display the filtered collection or any other content -->
+                        @foreach($SignedInEmployees as $swipe)
+        <!-- Display swipe details -->
+                       <tr> 
+                              <td style=" white-space: nowrap;font-size:12px;">
+                                        <input type="checkbox" name="employeeCheckbox[]"style="margin-left:-10px;height:10px;" value="{{ $swipe->emp_id }}">
 
-                                 {{ucfirst($sie->first_name)}} {{ucfirst($sie->last_name)}}<br />
-                                 <span class="text-muted"style="font-size:10px;margin-left:6px;">#{{$sie->emp_id}}</span>
-                            </td>
-                            <td style=" white-space: nowrap;">{{$sie->swipe_time}}<br /> <span class="text-muted"style="font-size:10px;">{{ \Carbon\Carbon::parse($sie->created_at)->format('d M, Y') }}</span></td>
-                            <td style=" white-space: nowrap;">10:00 am to 07:00...</td>
-                            <td style=" white-space: nowrap;">{{$sie->in_or_out}}</td>
-                            <td style=" white-space: nowrap;">{{$sie->swipe_time}}<br /><span class="text-muted"style="font-size:10px;"> {{ \Carbon\Carbon::parse($sie->created_at)->format('d M, Y') }}</span></td>
-                            <td>-</td>
-                            <td>-</td>
-                        </tr>
+                                                   {{ucfirst($swipe->first_name)}} {{ucfirst($swipe->last_name)}}<br />
+                                               <span class="text-muted"style="font-size:10px;margin-left:6px;">#{{$swipe->emp_id}}</span>
+                              </td>
+                              <td style=" white-space: nowrap;">{{$swipe->swipe_time}}<br /> <span class="text-muted"style="font-size:10px;">{{ \Carbon\Carbon::parse($swipe->created_at)->format('d M, Y') }}</span></td>
+                              <td style=" white-space: nowrap;">10:00 am to 07:00...</td>
+                              <td style=" white-space: nowrap;">{{$swipe->in_or_out}}</td>
+                              <td style=" white-space: nowrap;">{{$swipe->swipe_time}}<br /><span class="text-muted"style="font-size:10px;"> {{ \Carbon\Carbon::parse($swipe->created_at)->format('d M, Y') }}</span></td>
+                              <td>-</td>
+                              <td>-</td>
+                        </tr>     
                         @endforeach
+                    @endif
                     </tbody>
                 </table>
             </div>
