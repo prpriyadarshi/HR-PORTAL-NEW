@@ -71,10 +71,19 @@ class Home extends Component
         SwipeRecord::create([
             'emp_id' => $this->employeeDetails->emp_id,
             'swipe_time' => now()->format('H:i:s'),
-            'in_or_out' => $this->swipes->in_or_out=="IN" ? "OUT" : "IN",
+            'in_or_out' => $this->swipes
+                ? ($this->swipes->in_or_out == "IN" ? "OUT" : "IN")
+                : 'IN',
         ]);
-        $flashMessage =  $this->swipes->in_or_out=="IN" ? "You have successfully signed out." : "You have successfully signed in.";
-        session()->flash('success', $flashMessage);
+        $flashMessage = $this->swipes
+            ? ($this->swipes->in_or_out == "IN" ? "OUT" : "IN")
+            : 'IN';
+
+        $message = $flashMessage == "IN"
+            ? "You have successfully signed in."
+            : "You have successfully signed out.";
+
+        session()->flash('success', $message);
     }
 
     public function open()
@@ -244,8 +253,8 @@ class Home extends Component
                     ->whereDate('to_date', '<=', today());
             })
             ->count();
-            $employees=EmployeeDetails::where('manager_id',$loggedInEmpId)->select('emp_id', 'first_name', 'last_name')->get();
-            $approvedLeaveRequests = LeaveRequest::join('employee_details', 'leave_applies.emp_id', '=', 'employee_details.emp_id')
+        $employees = EmployeeDetails::where('manager_id', $loggedInEmpId)->select('emp_id', 'first_name', 'last_name')->get();
+        $approvedLeaveRequests = LeaveRequest::join('employee_details', 'leave_applies.emp_id', '=', 'employee_details.emp_id')
             ->where('leave_applies.status', 'approved')
             ->whereIn('leave_applies.emp_id', $employees->pluck('emp_id'))
             ->whereDate('from_date', '<=', $currentDate)
@@ -255,20 +264,20 @@ class Home extends Component
                 // Calculate the number of days between from_date and to_date
                 $fromDate = \Carbon\Carbon::parse($leaveRequest->from_date);
                 $toDate = \Carbon\Carbon::parse($leaveRequest->to_date);
-    
+
                 $leaveRequest->number_of_days = $fromDate->diffInDays($toDate) + 1; // Add 1 to include both start and end dates
-    
+
                 return $leaveRequest;
             });
         $this->absent_employees = EmployeeDetails::where('manager_id', $loggedInEmpId)
-        ->select('emp_id', 'first_name', 'last_name')
-        ->whereNotIn('emp_id', function ($query) use ($loggedInEmpId, $currentDate, $approvedLeaveRequests) {
-            $query->select('emp_id')
-                ->from('swipe_records')
-                ->where('manager_id', $loggedInEmpId)
-                ->whereDate('created_at', $currentDate);
-        })
-        ->whereNotIn('emp_id', $approvedLeaveRequests->pluck('emp_id'))
+            ->select('emp_id', 'first_name', 'last_name')
+            ->whereNotIn('emp_id', function ($query) use ($loggedInEmpId, $currentDate, $approvedLeaveRequests) {
+                $query->select('emp_id')
+                    ->from('swipe_records')
+                    ->where('manager_id', $loggedInEmpId)
+                    ->whereDate('created_at', $currentDate);
+            })
+            ->whereNotIn('emp_id', $approvedLeaveRequests->pluck('emp_id'))
             ->get();
 
         $arrayofabsentemployees = $this->absent_employees->toArray();
@@ -282,31 +291,31 @@ class Home extends Component
                     ->whereDate('created_at', $currentDate);
             })
             ->whereNotIn('emp_id', $approvedLeaveRequests->pluck('emp_id'))
-            ->count();  
-            $employees=EmployeeDetails::where('manager_id',$loggedInEmpId)->select('emp_id', 'first_name', 'last_name')->get(); 
-            $swipes_early = SwipeRecord::whereIn('id', function ($query) use ($employees, $currentDate) {
-                $query->selectRaw('MIN(id)')
-                    ->from('swipe_records')
-                    ->whereIn('emp_id', $employees->pluck('emp_id'))
-                    ->whereDate('created_at', $currentDate)
-                    ->whereRaw("swipe_time < '10:00:00'") // Add this condition to filter swipes before 10:00 AM
-                    ->groupBy('emp_id');
-            })
+            ->count();
+        $employees = EmployeeDetails::where('manager_id', $loggedInEmpId)->select('emp_id', 'first_name', 'last_name')->get();
+        $swipes_early = SwipeRecord::whereIn('id', function ($query) use ($employees, $currentDate) {
+            $query->selectRaw('MIN(id)')
+                ->from('swipe_records')
+                ->whereIn('emp_id', $employees->pluck('emp_id'))
+                ->whereDate('created_at', $currentDate)
+                ->whereRaw("swipe_time < '10:00:00'") // Add this condition to filter swipes before 10:00 AM
+                ->groupBy('emp_id');
+        })
             ->join('employee_details', 'swipe_records.emp_id', '=', 'employee_details.emp_id')
             ->select('swipe_records.*', 'employee_details.first_name', 'employee_details.last_name')
             ->get();
-         
-            $swipes_early1 = $swipes_early->count();
-      
-            $swipes_late = SwipeRecord::whereIn('id', function ($query) use ($employees, $currentDate) {
-                $query->selectRaw('MIN(id)')
-                    ->from('swipe_records')
-                    ->where('in_or_out','IN')
-                    ->whereIn('emp_id', $employees->pluck('emp_id'))
-                    ->whereDate('created_at', $currentDate)
-                    ->whereRaw("swipe_time > '10:00:00'") // Add this condition to filter swipes before 10:00 AM
-                    ->groupBy('emp_id');
-            })
+
+        $swipes_early1 = $swipes_early->count();
+
+        $swipes_late = SwipeRecord::whereIn('id', function ($query) use ($employees, $currentDate) {
+            $query->selectRaw('MIN(id)')
+                ->from('swipe_records')
+                ->where('in_or_out', 'IN')
+                ->whereIn('emp_id', $employees->pluck('emp_id'))
+                ->whereDate('created_at', $currentDate)
+                ->whereRaw("swipe_time > '10:00:00'") // Add this condition to filter swipes before 10:00 AM
+                ->groupBy('emp_id');
+        })
             ->join('employee_details', 'swipe_records.emp_id', '=', 'employee_details.emp_id')
             ->select('swipe_records.*', 'employee_details.first_name', 'employee_details.last_name')
             ->get();
@@ -353,7 +362,7 @@ class Home extends Component
             ->where('emp_id', $employeeId)
             ->orderBy('created_at', 'desc')
             ->first();
-           
+
 
         // Assuming $calendarData should contain the data for upcoming holidays
         $currentYear = Carbon::now()->year;
