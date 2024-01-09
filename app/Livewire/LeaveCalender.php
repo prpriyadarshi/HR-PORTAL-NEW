@@ -7,6 +7,8 @@ use Carbon\Carbon;
 use App\Models\LeaveRequest;
 use App\Models\EmployeeDetails;
 use App\Models\HolidayCalendar;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
 class LeaveCalender extends Component
 {
     public $year;
@@ -144,16 +146,18 @@ class LeaveCalender extends Component
     public function generateCalendar()
 {
     $firstDay = Carbon::create($this->year, $this->month, 1);
+    
     $daysInMonth = $firstDay->daysInMonth;
+   
     $today = now();
-
+   
     $calendar = [];
     $dayCount = 1;
     $publicHolidays = $this->getPublicHolidaysForMonth($this->year, $this->month);
-
+    
     // Calculate the first day of the week for the current month
     $firstDayOfWeek = $firstDay->dayOfWeek;
-
+    
     // Calculate the starting date of the previous month
     $startOfPreviousMonth = $firstDay->copy()->subMonth();
 
@@ -162,7 +166,7 @@ class LeaveCalender extends Component
         $startOfPreviousMonth->year,
         $startOfPreviousMonth->month
     );
-
+    
     // Calculate the last day of the previous month
     $lastDayOfPreviousMonth = $firstDay->copy()->subDay();
 
@@ -231,6 +235,7 @@ class LeaveCalender extends Component
         }
         $calendar[] = $week;
     }
+    
 
     $this->calendar = $calendar;
    
@@ -246,7 +251,9 @@ class LeaveCalender extends Component
 
     public function previousMonth()
     {
+        
         $date = Carbon::create($this->year, $this->month, 1)->subMonth();
+     
         $this->year = $date->year;
         $this->month = $date->month;
         $this->generateCalendar();
@@ -477,3 +484,5 @@ class LeaveCalender extends Component
 
     
 }
+    
+

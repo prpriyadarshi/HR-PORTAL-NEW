@@ -89,6 +89,17 @@
       .comments {
         margin-top: 10px;
       }
+ 
+ 
+   
+ 
+    
+
+
+.p-4 {
+    /* Padding */
+}
+
 
 
 .items-center {
@@ -181,6 +192,7 @@
   display: flex;
   align-items: center;
   max-width: 250px;
+  height:30px;
   border-radius: 20px;
   border: 1px solid #ccc;
   overflow: hidden; /* Hide overflowing content */
@@ -191,7 +203,9 @@
     /* Add more styles as needed */
 }
 
-
+.visible {
+    /* Your styles for visibility */
+}
 
 .mt-1x {
     margin-top: 1rem; /* Adjust as per design */
@@ -236,7 +250,9 @@
 }
 
 /* Change button background color on hover */
-
+.search-bar button:hover {
+  background-color: #0056b3;
+}
 .dropdown-content {
     display: none;
     /* Add more styles as needed */
@@ -297,7 +313,7 @@
     </div>
 </div>
 <div style="display:flex" >
-<div class="container" style="width:200px;background:white;border:1px solid silver;border-radius:5px;height:600px;margin-top:20px;margin-left:10px;overflow-y:auto;max-height:350px;max-width:200px;">
+<div class="container" style="width:200px;background:white;border:1px solid silver;border-radius:5px;height:600px;margin-top:20px;margin-left:10px;overflow-y:auto;max-height:400px;max-width:200px;">
 <b style="display: block; margin-top: 10px;">Filters</b>
 
 <hr style="width: 180px; background: grey;margin-top:5px">
@@ -327,7 +343,7 @@
     </span>
 </gt-menu-item>
 
-<hr style="width: 180px;background:grey;margin-top:5px">
+<hr style="width: 180px; background:grey;margin-top:5px">
 
 <div class="search-bar">
   <input type="text" placeholder="Search..." />
@@ -343,7 +359,7 @@
             </svg>
         </span>
     </button>
-    <div  id="dropdownContent1" style="display: none;">
+    <div class="dropdown-content" id="dropdownContent1" style="display: none;">
         <ul style="font-size: 12px;">
       
  
@@ -385,7 +401,7 @@
             </svg>
         </span>
     </button>
-    <div  id="dropdownContent2" style="display: none;">
+    <div class="dropdown-content" id="dropdownContent2" style="display: none;">
         <ul style="font-size: 12px;margin-top:3px">
             <p>Guntur</p>
             <p>Hyderabad</p>
@@ -406,7 +422,7 @@
             </svg>
         </span>
     </button>
-    <div  id="dropdownContent3" style="display: none;">
+    <div class="dropdown-content" id="dropdownContent3" style="display: none;">
         <ul style="font-size: 12px;margin-top:3px">
             <p>HR</p>
             <p>Operations</p>
@@ -419,153 +435,226 @@
             <p>Testing Team</p>
         </ul>
     </div>
+</div>
+
+ 
 
 </div>
-</div>
-<div style="margin-left:-40px;width:700px" >
-
-
-@foreach ($combinedData as $data)
-@if ($data['type'] === 'date_of_birth' )
-
-<div class="birthday-card" style="margin-left:-20px">
-  <!-- Upcoming Birthdays List -->
-  <div class="F" style="background-color: white; width: 500px; height: 350px; border-radius: 5px; border: 1px solid #CFCACA; margin-left: 30px; color: #3b4452; margin-top: 20px">
-    <div style="display: flex;">
-      <div class="column" >
-        <div class="div" style="margin-left:20px;margin-top:10px">
-        @livewire('company-logo')
-       
-        </div>
-        
-        <div style="color: #677A8E; margin-left: 60px; font-size: 14px; font-family: Open Sans, sans-serif; font-weight: 100px;margin-top:20px">Group Events</div>
-      </div>
-      <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 170px; font-family: Open Sans, sans-serif; margin-top: 40px; font-weight: 100px; color: #9E9696;margin-top:20px">
-        {{ date('d M ', strtotime($data['employee']->date_of_birth)) }}
-      </div>
-    </div>
-    <div style="display: flex;">
-      <img src="https://cdn1.vectorstock.com/i/thumb-large/48/00/set-images-young-people-listening-to-music-vector-31034800.jpg" alt="Image Description" style="height: 160px; width: 160px; margin-left: 40px;">
-      <div style="display: flex; flex-direction: column; margin-left: 20px;">
-        <p style="font-size: 14px; font-family: 'Open Sans', sans-serif; margin-top: 10px; font-weight: 100; color: #677A8E;">
-          Happy Birthday {{ $data['employee']->first_name }} {{ $data['employee']->last_name }}, Have a great year ahead!
-        </p>
-        <div style="display: flex; align-items: center;">
-          <img src="https://logodix.com/logo/1984436.jpg" alt="Image Description" style="height: 25px; width: 20px;">
-          <p style="margin-left: 10px; font-size: 14px; font-weight: normal; margin-top: 10px; font-family: 'Open Sans', sans-serif; color: black; margin-top: 10px;">
-            Happy Birthday {{ $data['employee']->first_name }} {{ $data['employee']->last_name }}! 🎂
-          </p>
-        </div>
-      </div>
-    </div>
-    <confirmation-modal class="confirmation-modal">
-      <gt-popup-modal label="modal" size="sm" class="hydrated">
-        <div class="body-content">
-          <div slot="modal-body"><!-- Content for modal body --></div>
-        </div>
-        <div slot="modal-footer">
-          <div class="flex justify-end">
-            <gt-button shade="secondary" name="Cancel" class="mr-2x hydrated"></gt-button>
-            <gt-button shade="primary" name ="Confirm" class="hydrated"></gt-button>
-          </div>
-        </div>
-      </gt-popup-modal>
-    </confirmation-modal>
-    <!-- Like Button -->
-
+ 
    
-    <!-- Display existing comments -->
-    <div style="display: flex;">
-      <div class="like-button">
-        <i class="thumb-icon" style="margin-left: 20px;">👍</i>
-        <span class="like-count">0 Likes</span>
-      </div>
-      <div class="comment-icon">
-        <i class="comment-icon" style="margin-left: 40px; margin-top: 20px;">💬</i>
-        <span class="comment-count">0 Comments</span>
-      </div>
-      <div class="comment-box">
-        <textarea id="comment-input" placeholder="Add your comment"></textarea>
-      </div>
-    </div>
-
-</div>
-      <div class="comment-box">
-        <textarea id="comment-input" placeholder="Add your comment"></textarea>
-      </div>
-</div>
-
-      @elseif ($data['type'] === 'hire_date' )
-<div class="hire-card" style="margin-left:-20px" >
-  <!-- Upcoming Hire Dates List -->
-  <div class="F" style="background-color: white; width: 500px; height: 350px; border-radius: 5px; border: 1px solid #CFCACA; margin-left: 30px; color: #3b4452; margin-top: 20px">
-    <div style="display: flex;">
-      <div class="column">
-      <div class="div" style="margin-left:20px;margin-top:10px">
-        @livewire('company-logo')
-        </div>
-        <div style="color: #677A8E; margin-left: 60px; font-size: 14px; font-family: Open Sans, sans-serif; font-weight: 100px;margin-top:20px">Group Events</div>
-      </div>
-      <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 170px; font-family: Open Sans, sans-serif; margin-top: 40px; font-weight: 100px; color: #9E9696;font-weight: 100px;margin-top:20px">
-        {{ date('d M ', strtotime($data['employee']->hire_date)) }}
-      </div>
-    </div>
-    <div style="display: flex;">
-      <img src="https://cdn1.vectorstock.com/i/thumb-large/48/00/set-images-young-people-listening-to-music-vector-31034800.jpg" alt="Image Description" style="height: 160px; width: 160px; margin-left: 40px;">
-      <div style="display: flex; flex-direction: column; margin-left: 20px;">
-        <p style="font-size: 14px; font-family: 'Open Sans', sans-serif; margin-top: 10px; font-weight: 100; color: #677A8E;">
-          {{ $data['employee']->first_name }} {{ $data['employee']->last_name }} has joined us in the company on {{ date('d M Y', strtotime($data['employee']->hire_date)) }},
-          Please join us in welcoming our newest team member.
-        </p>
-        <div style="display: flex; align-items: center;">
-          <img src="https://logodix.com/logo/1984436.jpg" alt="Image Description" style="height: 25px; width: 20px;">
-          <p style="margin-left: 10px; font-size: 14px; font-weight: normal; margin-top: 10px; font-family: 'Open Sans', sans-serif; color: black; margin-top: 10px;">
-            {{ $data['employee']->first_name }} {{ $data['employee']->last_name }} Just Joined Us!
-          </p>
-        </div>
-
-      </div>
-      <confirmation-modal class="confirmation-modal">
-        <gt-popup-modal label="modal" size="sm" class="hydrated">
-          <div class="body-content">
-            <div slot="modal-body"><!-- Content for modal body --></div>
-          </div>
-          <div slot="modal-footer">
-            <div class="flex justify-end">
-              <gt-button shade="secondary" name="Cancel" class="mr-2x hydrated"></gt-button>
-              <gt-button shade="primary" name="Confirm" class="hydrated"></gt-button>
+ 
+      <div class="menu"  style="width:500px">
+       <div class="container" style="background:white;border:1px solid silver;border-radius:5px;height:250px;width:400px;margin-top:10px;margin-left:-120px;">
+ <image src="https://th.bing.com/th/id/OIP.38ZCPi6lui1g69EAvVZCjQAAAA?w=238&h=250&rs=1&pid=ImgDetMain" style="height:150px;width:250px;margin-left:30px">
+ 
+ <br><b style="font-size:14px;margin-left:70px;margin-top:30px">It feels empty here!</b>
+ <br>
+ <button style="background:blue;width:80px;height:30px;border:1px solid grey;border-radius:5px;color:white;margin-top:20px;margin-left:100px" wire:click="addFeeds">Create Post</button>
+ <!-- Begin the form outside the .form-group div -->
+ @if($showFeedsDialog)
+    <div class="modal" tabindex="-1" role="dialog" style="display: block;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Creating a Post</h5>
+                   
+                    <button wire:click="closeFeeds" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form wire:submit.prevent="submit">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="category">You are posting in:</label>
+                            <select wire:model="category" class="form-select" id="category">
+                                <option value="appreciations">Appreciations</option>
+                                <option value="buy_sell_rent">Buy/Sell/Rent</option>
+                                <option value="company_news">Company News</option>
+                                <option value="events">Events</option>
+                                <option value="everyone">Everyone</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="content">Write something here:</label>
+                            <textarea wire:model="description" class="form-control" id="content" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="attachment">Upload Attachment:</label>
+                            <input wire:model="attachment" type="file" id="attachment" class="form-control-file">
+                            @if ($attachment)
+                                <p>File: {{ $attachment->getClientOriginalName() }}</p>
+                            @endif
+                            @if ($message)
+                                <p>{{ $message }}</p>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Post</button>
+                        <button wire:click="closeFeeds" class="btn btn-secondary">Cancel</button>
+                    </div>
+                </form>
             </div>
-          </div>
-        </gt-popup-modal>
-      </confirmation-modal>
-
+        </div>
     </div>
-    <div style="display: flex;">
-      <div class="like-button">
-        <i class="thumb-icon" style="margin-left: 20px;">👍</i>
-        <span class="like-count">0 Likes</span>
-      </div>
-      <div class="comment-icon">
-        <i class="comment-icon" style="margin-left: 40px; margin-top: 20px;">💬</i>
-        <span class="comment-count">0 Comments</span>
-      </div>
-      <div class="comment-box">
-        <textarea id="comment-input" placeholder="Add your comment"></textarea>
-      </div>
-    </div>
-  </div>
-</div>
-
-
+    <div class="modal-backdrop fade show"></div>
 @endif
-@endforeach
+    </div>
+@foreach($posts as $post)
+            <div class="birthday-card" style="margin-left:10px;margin-top:30px">
+              <!-- Upcoming Birthdays List -->
+              <div class="F" style="background-color: white; width: 400px; height: 250px; border-radius: 5px; border: 1px solid #CFCACA; margin-left: -130px; color: #3b4452; margin-top: 20px">
+                <div style="display: flex;">
+                  <div class="column" >
+                    <div class="div" style="margin-left:20px;margin-top:10px;width:100px">
+                    @livewire('company-logo')
+                    </div>
+                    
+                    <div style="color: #677A8E; margin-left: 60px; font-size: 14px; font-family: Open Sans, sans-serif; font-weight: 100px;margin-top:20px"> </div>
+                  </div>
+                  <div class="c" style="font-size: 13px; font-weight: normal; margin-left: 150px; font-family: Open Sans, sans-serif; margin-top: 40px; font-weight: 100px; color: #9E9696;margin-top:20px">
+                  {{ $post->category }}
+                  </div>
+                </div>
+                <div style="display: flex;">
+                <img src="{{ Storage::url($post->attachment) }}" alt="Post Image" style="height:70px;width:100px;margin-left:30px">
 
-</div>
+
+
+                  <div style="display: flex; flex-direction: column; margin-left: 70px;">
+                    <p style="font-size: 14px; font-family: 'Open Sans', sans-serif; margin-top: 10px; font-weight: 100; color: #677A8E;">
+                    {{ $post->description }}
+                    </p>
+                    <div style="display: flex; align-items: center;">
+     
+                    </div>
+                  </div>
+                </div>
+                <confirmation-modal class="confirmation-modal">
+                  <gt-popup-modal label="modal" size="sm" class="hydrated">
+                    <div class="body-content">
+                      <div slot="modal-body"><!-- Content for modal body --></div>
+                    </div>
+                    <div slot="modal-footer">
+                      <div class="flex justify-end">
+                        <gt-button shade="secondary" name="Cancel" class="mr-2x hydrated"></gt-button>
+                        <gt-button shade="primary" name ="Confirm" class="hydrated"></gt-button>
+                      </div>
+                    </div>
+                  </gt-popup-modal>
+                </confirmation-modal>
+                <!-- Like Button -->
+                <div style="display: flex;margin-top:40px">
+                  <div class="like-button">
+                    <i class="thumb-icon" style="margin-left: 20px;">👍</i>
+                    <span class="like-count">0 Likes</span>
+                  </div>
+                  <div class="comment-icon">
+                    <i class="comment-icon" style="margin-left: 40px; margin-top: 20px;">💬</i>
+                    <span class="comment-count">0 Comments</span>
+                  </div>
+                  <div class="comment-box">
+                    <textarea id="comment-input" placeholder="Add your comment"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            @endforeach
+ 
+     
+
+    </div>
  
 
 
 
-<script>
+    <script>
+    function formatText(style) {
+        const textArea = document.getElementById('textArea');
+        const start = textArea.selectionStart;
+        const end = textArea.selectionEnd;
+        const selectedText = textArea.value.substring(start, end);
+        const replacement = style === 'bold' ? `<b>${selectedText}</b>` : `<i>${selectedText}</i>`;
+        const newText = textArea.value.substring(0, start) + replacement + textArea.value.substring(end);
+        textArea.value = newText;
+    }
+</script>
+ 
+
+ 
+            <script>
+              // JavaScript to toggle like/dislike and update the count
+           // Get all cards
+const cards = document.querySelectorAll('.card');
+
+cards.forEach((card, index) => {
+  let likeCount = 0;
+  let commentCount = 0;
+
+  const thumbIcon = card.querySelector('.thumb-icon');
+  const likeCountSpan = card.querySelector('.like-count');
+
+  thumbIcon.addEventListener('click', function() {
+    likeCount++;
+    likeCountSpan.textContent = likeCount + (likeCount === 1 ? ' Like' : ' Likes');
+
+    // Simulate backend update (AJAX request can be used here to update the server)
+    // This example only updates the frontend without actual server interaction
+    // For server update, you'd need to send an AJAX request to update the database
+    // Example: Send an AJAX request to a PHP endpoint passing the updated likeCount and the post ID
+    // updateLikesOnServer(likeCount, postId);
+  });
+
+  // Other similar event listeners for comment section
+});
+
+            </script>
+ 
+            <script>
+              // JavaScript to toggle comment box and increment comment count
+              const commentIcon = document.querySelector('.comment-icon');
+              const commentBox = document.querySelector('.comment-box');
+              const commentCount = commentIcon.querySelector('.comment-count');
+              const commentInput = document.getElementById('comment-input');
+              const commentsContainer = document.querySelector('.comments');
+ 
+              let comments = 0;
+ 
+              commentIcon.addEventListener('click', () => {
+                commentBox.style.display = 'block';
+              });
+ 
+              commentInput.addEventListener('input', () => {
+                // Count lines in the textarea as comments
+                const lines = commentInput.value.split('\n').length;
+                comments = lines;
+                updateCommentCount();
+              });
+ 
+              commentInput.addEventListener('blur', () => {
+                // Clear and hide the comment box when it loses focus
+                commentInput.value = '';
+                commentBox.style.display = 'none';
+                // Display the comments
+                displayComments();
+              });
+ 
+              function updateCommentCount() {
+                commentCount.textContent = `${comments} Comment${comments !== 1 ? 's' : ''}`;
+              }
+ 
+              function displayComments() {
+                commentsContainer.innerHTML = '';
+                for (let i = 0; i < comments; i++) {
+                  const commentElement = document.createElement('div');
+                  commentElement.classList.add('comment');
+                  commentElement.textContent = `Comment ${i + 1}`;
+                  commentsContainer.appendChild(commentElement);
+                }
+              }
+            </script>
+            <script>
 // JavaScript function to toggle arrow icon visibility
 // JavaScript function to toggle arrow icon and dropdown content visibility
 // JavaScript function to toggle dropdown content visibility and arrow rotation
@@ -587,3 +676,8 @@ function toggleDropdown(contentId, arrowId) {
 
 
 </script>
+          </div>
+  </body>
+ 
+  </html>
+</div>

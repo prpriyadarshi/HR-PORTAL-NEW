@@ -264,207 +264,40 @@
         /* Adjust the value as needed */
     }
 
-    .calendar-weekdays {
-        display: flex;
-        justify-content: space-around;
-        color: #02114f;
-        gap: 5px;
-        padding: 5px 10px;
-        /* margin-bottom: 10px; */
-        border: 1px solid #dedede;
-    }
-    .container-leave {
-            padding: 0;
-            margin: 0;
-        }
-        .table thead{
-            border:none;
-        }
- 
-        .table th {
-            text-align: center; /* Center days of the week */
-            height: 15px;
-            border: none;       
-            /* Adjust the height of days of the week cells */
-        }
- 
-        .table td:hover {
-            background-color: #ecf7fe; /* Hover background color */
-            cursor: pointer;
-        }
- 
-        /* Add styles for the navigation buttons */
-        .nav-btn {
-            background: none;
-            border: none;
-            color:#778899;
-            font-size:0.795rem;
-            margin-top: -6px;
-            cursor: pointer;
-        }
- 
-        .nav-btn:hover {
-            color: blue;
-        }
- 
-        /* Increase the size of tbody cells and align text to top-left */
-        .table-1 tbody td {
-            width: 75px;
-            height: 80px;
-            border-color:#c5cdd4;
-            font-weight:500;
-            font-size: 13px; /* Adjust font size as needed */
-            vertical-align: top;
-            position: relative;
-            text-align: left;
-        }
- 
-        /* Add style for the current date cell */
-        .current-date {
-            background-color: #ff0000; /* Highlight color for the current date */
-            color: #fff; /* Text color for the current date */
-            font-weight: bold;
-        }
- 
-        .calendar-heading-container {
-            background:#fff;
-            padding:10px 10px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            /* Add spacing between heading and icons */
-        }
-        .calendar-heading-container h5{
-           font-size:0.975rem;
-           color:black;
-           font-weight:500;
-        }
- 
-        .table {
-            overflow-x: hidden; /* Add horizontal scrolling if the table overflows the container */
-        }
- 
-        .tol-calendar-legend {
-            display: flex;
-            font-size: 0.875rem;
-            width: 100%;
-            justify-content:space-between;
-            font-weight: 500;
-            color: #778899;
-        }
- 
-        /* CSS for legend circles */
-        .legend-circle {
-            display: inline-block;
-            width: 15px; /* Adjust the width as needed */
-            height: 15px; /* Adjust the height as needed */
-            border-radius: 50%;
-            text-align: center;
-            line-height: 15px; /* Vertically center the text */
-            margin-right: 2px; /* Add some spacing between the circle and text */
-            font-weight: bold; /* Make the text bold */
-            color: white; /* Text color */
-        }
- 
-        .circle-pale-yellow {
-            background-color: #ffeb3b; /* Define the yellow color */
-        }
- 
-        /* CSS for the pink circle */
-        .circle-pale-pink {
-            background-color: #d29be1; /* Define the pink color */
-        }
-        .accordion {
-        border: 1px solid #ccc;
-        border-radius:5px;
-        width: 100%; /* Adjust the width as needed */
-        top: 100px;
-     overflow-x: auto;
-        left:0;/* Adjust the top position as needed */
-      /* Adjust the right position as needed */
-      }
- 
-      .accordion-heading {
-        background-color: #fff;
-        cursor: pointer;
-      }
- 
-      .accordion-body {
-        background-color: #fff;
-        padding:0;
-        display: block;
-        width: 100%; overflow: auto;
-      }
- 
-      .accordion-content {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-      }
- 
-      .accordion-title {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-      }
- 
-      .active .leave-container {
-        border-color: #3a9efd; /* Blue border when active */
-      }
- 
-      .accordion-button {
-        color: #DCDCDC;
-        border: 1px solid #DCDCDC;
-      }
- 
-      .active .accordion-button {
-        color: #3a9efd;
-        border: 1px solid #3a9efd;
-      }
- 
-      @media (max-width: 760px) {
- 
- 
-        .accordion {
-          width: 65%;
-          top: auto;
-          right: auto;
-          margin-top: 20px;
-        }
-      }
-
-    .calendar-days>div {
-        border: 1px solid #dedede;
-    }
-
-    .centered-modal {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    /* Calendar days */
-    .calendar-days {
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        /* gap: 5px; */
-        justify-items: center;
-        padding: 0px;
-    }
-
-    .calendar-date {
-        width: 100%;
-        height: 4em;
-        font-weight: normal;
-        font-size: 12px;
-        /* border-radius: 50%; */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        /* padding: 14px; */
+.calendar-weekdays {
+    display: flex;
+    justify-content: space-around;
+    background-color:rgb(2, 17, 79);
+    color: white;
+  
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .centered-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  /* Calendar days */
+  .calendar-days {
+    display: grid;
+    grid-template-columns: repeat(9, 49px);
+  
+    justify-items: center; 
+  }
+  .calendar-date {
+      width: 30px;
+      height: 30px;
+      font-weight:normal;
+      font-size:12px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
 
@@ -1368,65 +1201,65 @@
                                     <p>Avg Last Out Time:&nbsp;&nbsp;<span style="font-weight:600;">00:00:00</span></p>
                                 </div>
 
-
-
+                                    <div style="margin-top:20px;display:flex;flex-direction:row;">
+                                       <p style="margin-left:-30px;">Avg&nbsp;First&nbsp;In&nbsp;Time:&nbsp;&nbsp;<span style="font-weight:600;">00:00:00</span></p>
+                                       <p style="border-right: 1px solid #ccc;margin-left:40px;"></p>
+                                       <p style="margin-left:50px;">Avg&nbsp;Last&nbsp;Out&nbsp;Time:&nbsp;&nbsp;<span style="font-weight:600;">00:00:00</span></p>
+                                    </div>        
+                                          
+                                </div>
+                               
                             </div>
+                        </div>
+                    </div>  
+           
+     <a href="#" id="toggleSidebar" class="gt-overlay-toggle" style="margin-top:69px;color:rgb(2, 17, 79);margin-left:50px;">Legend</a>
+     <div class="sidebar">
+        <!-- Sidebar content goes here -->
+        <div class="sidebar-header"style="display: flex; justify-content: space-between; align-items: center;">
+           <h3 style="color: #7f8fa4;margin-left:0;font-size:20px;">Legends</h3>
+           <button style="font-size: 12px; padding: 5px 10px; margin-left: 10px; margin-top: -5px;" id="closeSidebar">&#10006;</button>
+           
 
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            
-            <div class="sidebar">
-                <!-- Sidebar content goes here -->
-                <div class="sidebar-header" style="display: flex; justify-content: space-between; align-items: center;">
-                    <h3 style="color: #7f8fa4;margin-left:0;font-size:20px;">Legends</h3>
-                    <button style="font-size: 12px; padding: 5px 10px; margin-left: 10px; margin-top: -5px;"
-                        id="closeSidebar">&#10006;</button>
-
-
-                </div>
-                <div class="sidebar-content">
-                    <h3 style="font-size: 16px;">Shift Codes</h3>
-                    <div style="display:flex;flex-direction:row;margin-top:-10px;margin-left:8px;">
-                        <div class="legend-item">
-                            <i class="fas fa-caret-right" style="font-size: 24px; color: #e2b7ff;margin-left:25px;"></i>
-                            <p style="display: inline-block; margin-left: -10px;margin-top:20px;">Override</p>
-                        </div>
-                        <div class="legend-item">
-                            <i class="fas fa-caret-right" style="font-size: 24px; color: #ff9595;margin-left:25px;"></i>
-                            <p style="display: inline-block; margin-left: -10px;margin-top:20px">Deduction</p>
-                        </div>
-                    </div>
-                    <div style="display:flex;flex-direction:row;margin-top:-30px;margin-left:8px;">
-                        <div class="legend-item">
-                            <i class="fas fa-caret-right" style="font-size: 24px; color: #7dd4ff;margin-left:25px;"></i>
-                            <p style="display: inline-block; margin-left: -10px;margin-top:20px">
-                                Alert&nbsp;for&nbsp;Deduction</p>
-                        </div>
-                        <div class="legend-item">
-                            <i class="fas fa-caret-right" style="font-size: 24px; color: #c7c7c7;margin-left:25px;"></i>
-                            <p style="display: inline-block; margin-left: -10px;margin-top:20px">Ignored</p>
-                        </div>
-                    </div>
-                    <div style="display:flex;flex-direction:row;margin-top:-30px;margin-left:8px;">
-                        <div class="legend-item">
-                            <i class="fas fa-caret-right" style="font-size: 24px; color: #ffe8de;margin-left:25px;"></i>
-                            <p style="display: inline-block; margin-left: -10px;margin-top:20px">Grace</p>
-                        </div>
-                    </div>
-                    <h3 style="font-size: 16px;">Status</h3>
-                    <div style="display:flex;flex-direction:row;margin-top:-10px;">
-                        <div class="legend-item">
-                            <i class="fas fa-circle" style=" color: #e2b7ff;margin-left:25px;"></i>
-                            <p style="display: inline-block; margin-left: -10px;margin-top:20px">Holiday</p>
-                        </div>
-                        <div class="legend-item">
-                            <i class="fas fa-circle" style=" color: #e3c82e;;margin-left:25px;"></i>
-                            <p style="display: inline-block; margin-left: -10px;margin-top:20px">Overtime</p>
-                        </div>
+        </div> 
+        <div class="sidebar-content">
+          <h3 style="font-size: 16px;">Shift Codes</h3>
+         <div style="display:flex;flex-direction:row;margin-top:-10px;margin-left:8px;">
+          <div class="legend-item">
+            <i class="fas fa-caret-right" style="font-size: 24px; color: #e2b7ff;margin-left:25px;"></i>
+            <p style="display: inline-block; margin-left: -10px;margin-top:20px;">Override</p>
+        </div>
+        <div class="legend-item">
+            <i class="fas fa-caret-right" style="font-size: 24px; color: #ff9595;margin-left:25px;"></i>
+            <p style="display: inline-block; margin-left: -10px;margin-top:20px">Deduction</p>
+        </div>
+        </div>
+        <div style="display:flex;flex-direction:row;margin-top:-30px;margin-left:8px;">
+        <div class="legend-item">
+            <i class="fas fa-caret-right" style="font-size: 24px; color: #7dd4ff;margin-left:25px;"></i>
+            <p style="display: inline-block; margin-left: -10px;margin-top:20px">Alert&nbsp;for&nbsp;Deduction</p>
+        </div>
+        <div class="legend-item">
+            <i class="fas fa-caret-right" style="font-size: 24px; color: #c7c7c7;margin-left:25px;"></i>
+            <p style="display: inline-block; margin-left: -10px;margin-top:20px">Ignored</p>
+        </div>
+        </div>
+        <div style="display:flex;flex-direction:row;margin-top:-30px;margin-left:8px;">
+        <div class="legend-item">
+            <i class="fas fa-caret-right" style="font-size: 24px; color: #ffe8de;margin-left:25px;"></i>
+            <p style="display: inline-block; margin-left: -10px;margin-top:20px">Grace</p>
+        </div>
+        </div>
+          <h3 style="font-size: 16px;">Status</h3>
+          <div style="display:flex;flex-direction:row;margin-top:-10px;">
+             <div class="legend-item">
+               <i class="fas fa-circle" style=" color: #e2b7ff;margin-left:25px;"></i>
+               <p style="display: inline-block; margin-left: -10px;margin-top:20px">Holiday</p>
+             </div>
+             <div class="legend-item">
+               <i class="fas fa-circle" style=" color: #e3c82e;;margin-left:25px;"></i>
+               <p style="display: inline-block; margin-left: -10px;margin-top:20px">Overtime</p>
+             </div>
 
 
                     </div>
@@ -1472,353 +1305,84 @@
 
             </div>
 
-
-        </div>
-
-        <div class="row m-0 mt-3">
-          <div class="col-6" style="text-align: left">
-            <a href="#" id="toggleSidebar" class="gt-overlay-toggle"
-                style="margin-top:69px;color:rgb(2, 17, 79); display: none">Legend</a>
-          </div>
-          <div class="col-6" style="text-align: -webkit-right;">
-            <div class="toggle-box">
-              <i class="fas fa-calendar" id="calendar-icon" onclick="showCalendar()"></i>
-              <i class="fas fa-bars" id="bars-icon" onclick="showMessage()"></i>
-            </div>
-          </div>
-        </div>
-
-        
-        <div class="row m-0">
-          <div class="col-md-7">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="calendar-heading-container">
-                        <button wire:click="previousMonth" class="nav-btn">&lt; Prev</button>
-                        <h5>{{ \Carbon\Carbon::createFromDate($year, $month, 1)->format('F Y') }}</h5>
-                        <button wire:click="nextMonth" class="nav-btn">Next &gt;</button>
-                    </div>
-                </div>
-                <!-- Calendar -->
-                <div class="table-responsive">
-                <table class="table-1 table-bordered">
-                        <thead>
-                            <tr>
-                                <th class="text">Sun</th>
-                                <th class="text">Mon</th>
-                                <th class="text">Tue</th>
-                                <th class="text">Wed</th>
-                                <th class="text">Thu</th>
-                                <th class="text">Fri</th>
-                                <th class="text">Sat</th>
-                            </tr>
-                        </thead>
-                        <tbody id="calendar-body">
-                        @foreach ($calendar as $week)
+     
+  </div>
+  
+  <div class="toggle-box">
+        <i class="fas fa-calendar"id="calendar-icon" onclick="showCalendar()" ></i>
+        <i class="fas fa-bars" id="bars-icon" onclick="showMessage()"></i>
+     </div>
+<div class="calendar">
+  <div class="calendar-header">
+    <button id="prevMonth" style="margin-left:-30px">Previous</button>
+    <h1 id="currentMonth" style="margin-left:150px">September 2023</h1>
+    <button id="nextMonth" style="margin-left:150px">Next</button>
+  </div>
+  <div class="calendar-weekdays" style="margin-left:30px">
+    <div style="font-weight:normal;font-size:12px;margin-left:10px">Sun</div>
+    <div style="font-weight:normal;font-size:12px;margin-left:50px">Mon</div>
+    <div style="font-weight:normal;font-size:12px;margin-left:50px">Tue</div>
+    <div style="font-weight:normal;font-size:12px;margin-left:50px">Wed</div>
+    <div style="font-weight:normal;font-size:12px;margin-left:50px">Thu</div>
+    <div style="font-weight:normal;font-size:12px;margin-left:50px">Fri</div>
+    <div style="font-weight:normal;font-size:12px;margin-left:-2px;margin-left:50px">Sat</div>
+  </div>
+  <div  class="calendar-days"  id="calendar-days">
+    <!-- Calendar days will be generated here -->
+    <!-- For example, you can generate calendar days dynamically using JavaScript -->
+  </div>
+</div>
+<div class="container1">
+  <!-- Content goes here -->
+   <div>
+      <p style="margin-left:25px;font-weight:bold;font-size:20px;">{{ $currentDate }}</p>
+      <p class="text-muted"style="margin-left:25px;margin-top:-15px;font-weight:600;font-size:14px;">{{$currentWeekday}}</p>
+   </div> 
+  <div class="vertical-line">
+    <div>
+     <p class="text-overflow" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-weight: 600;margin-left:40px;">10:00 Am to 07:00 Pm</p> 
+     <p class="text-muted"style="margin-top:-10px;margin-left:40px;font-size:14px;">Shift:10:00 to 19:00</p> 
+    </div>
+    <div style="margin-left:200px;margin-top:-65px;"> 
+     <p style="overflow: hidden;font-weight: 600;text-overflow: ellipsis;margin-top:-10px;white-space: nowrap;margin-left:60px;">10:00 Am to 07:00 Pm</p> 
+     <p class="text-muted"style="margin-top:-10px;margin-left:60px;font-size:14px;">Attendance Scheme</p>
+    </div> 
+  </div>
+    
+   
+  <div class="horizontal-line"></div>
+  <div class="text-muted"style="margin-left:20px;font-weight: 400;font-size: 12px;">Processed On</div>
+  <div class="horizontal-line1"></div>
+  <div style=" overflow-x: auto;
+    max-width: 100%;">
+  <table>
+  <thead>
     <tr>
-        @foreach ($week as $day)
-            @php
-                $carbonDate = \Carbon\Carbon::createFromDate($year, $month, $day['day']);
-                $formattedDate = $carbonDate->format('Y-m-d');
-                $isCurrentMonth = $day['isCurrentMonth'];
-                $isWeekend = in_array($carbonDate->dayOfWeek, [0, 6]); // 0 for Sunday, 6 for Saturday
-                $isActiveDate = ($selectedDate === $carbonDate->toDateString());
-            @endphp
-            <td wire:click="dateClicked('{{$formattedDate}}')"wire:model="dateclicked" class="calendar-date{{ $selectedDate === $day['day'] ? ' active-date' : '' }}" data-date="{{ $day['day'] }}"
-                style="color: {{ $isCurrentMonth ? ($isWeekend ? '#c5cdd4' : 'black') : '#c5cdd4' }};background-color: @if($day['status'] == 'A') #fcf0f0 @elseif($day['status'] == 'P') #edfaed @endif;">
-                @if ($day)
-                    <div>
-                        @if ($day['isToday'])
-                            <div style="background-color: #007bff; color: white; border-radius: 50%; width: 24px; height: 24px; text-align: center; line-height: 24px;">
-                                {{ str_pad($day['day'], 2, '0', STR_PAD_LEFT) }}
-                            </div>
-                        @else
-                            {{ str_pad($day['day'], 2, '0', STR_PAD_LEFT) }}
-                        @endif
-                        <div class="circle{{ $day['isPublicHoliday'] ? 'IRIS' : '' }}">
-                            <!-- Render your content -->
-                        </div>
-
-                        <div class="{{ $isWeekend ? '' : 'circle-grey' }}">
-                            <!-- Render your grey circle -->
-                            @if ($isWeekend)
-                                <span style="display: flex; justify-content: center; align-items: center;width:20px;height:20px;border-radius:50%;">
-                                     O
-                                </span>
-                            @else
-                                <span style="display: flex; justify-content: center; align-items: center;width:20px;height:20px;border-radius:50%;">
-                                     GS
-                                </span>
-                                <span style="display: flex; justify-content: center; align-items: center; width: 20px; height: 20px; border-radius: 50%;">
-                                    @if($day['status'] == 'A')
-                                        <span style="color:#ff6666;">A</span>
-                                    @elseif($day['status'] == 'P')
-                                        P
-                                    @endif
-                                </span>
-                            @endif
-                        </div>
-                    </div>
-                @endif
-            </td>
-        @endforeach
+      <th style="font-weight:normal;font-size:12px;">First&nbsp;In</th>
+      <th style="font-weight:normal;font-size:12px;">Last&nbsp;Out</th>
+      <th style="font-weight:normal;font-size:12px;">Total&nbsp;Work&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;">Break&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;">Actual&nbsp;Work&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;">Work&nbsp;Hours&nbsp;in&nbsp;Shift&nbsp;Time</th>
+      <th style="font-weight:normal;font-size:12px;">Shortfall&nbsp;Hrs</th>
+      <th style="font-weight:normal;font-size:12px;">Excess&nbsp;Hrs</th>
     </tr>
-@endforeach
-                        </tbody>
- 
-                    </table>
- 
-                    </div>
- 
-               
-               
-
-            <button class="accordion">Legends</button>
-            <div class="panel">
-              <div class="row m-0 mt-3 mb-3">
-                <div class="col-md-3 mb-2 pe-0" style="display: flex">
-                  <p class="me-2 mb-0">
-                    <span class="legendsIcon presentIcon">P</span>
-                  </p>
-                  <p class="m-0">Present</p>
-                </div>
-                <div class="col-md-3 mb-2 pe-0" style="display: flex">
-                  <p class="me-2 mb-0">
-                    <span class="legendsIcon absentIcon">A</span>
-                  </p>
-                  <p class="m-0">Absent</p>
-                </div>
-                <div class="col-md-3 mb-2 pe-0" style="display: flex">
-                  <p class="me-2 mb-0">
-                    <span class="legendsIcon offDayIcon">O</span>
-                  </p>
-                  <p class="m-0">Off Day</p>
-                </div>
-                <div class="col-md-3 mb-2 pe-0" style="display: flex">
-                  <p class="me-2 mb-0">
-                    <span class="legendsIcon offDayIcon">R</span>
-                  </p>
-                  <p class="m-0">Rest Day</p>
-                </div>
-                <div class="col-md-3 mb-2 pe-0" style="display: flex">
-                  <p class="me-2 mb-0">
-                    <span class="legendsIcon leaveIcon">L</span>
-                  </p>
-                  <p class="m-0">Leave</p>
-                </div>
-                <div class="col-md-3 mb-2 pe-0" style="display: flex">
-                  <p class="me-2 mb-0">
-                    <span class="legendsIcon onDutyIcon">OD</span>
-                  </p>
-                  <p class="m-0">On Duty</p>
-                </div>
-                <div class="col-md-3 mb-2 pe-0" style="display: flex">
-                  <p class="me-2 mb-0">
-                    <span class="legendsIcon holidayIcon">H</span>
-                  </p>
-                  <p class="m-0">Holiday</p>
-                </div>
-                <div class="col-md-3 mb-2 pe-0" style="display: flex">
-                  <p class="me-2 mb-0">
-                    <span class="legendsIcon deductionIcon">&nbsp;&nbsp;</span>
-                  </p>
-                  <p class="m-0" style="word-break: break-all;"> Deduction</p>
-                </div>
-                <div class="col-md-3 mb-2 pe-0" style="display: flex">
-                  <p class="me-2 mb-0">
-                    <span class="legendsIcon alertForDeIcon">&nbsp;&nbsp;</span>
-                  </p>
-                  <p class="m-0">Allert for Deduction</p>
-                </div>
-                <div class="col-md-3 mb-2 pe-0" style="display: flex">
-                  <p class="me-2 mb-0">
-                    <span class="legendsIcon absentIcon">?</span>
-                  </p>
-                  <p class="m-0">Status Unknown</p>
-                </div>
-                <div class="col-md-3 mb-2 pe-0" style="display: flex">
-                  <p class="me-2 mb-0">
-                    <i class="far fa-clock"></i>
-                  </p>
-                  <p class="m-0">Overtime</p>
-                </div>
-                <div class="col-md-3 mb-2 pe-0" style="display: flex">
-                  <p class="me-2 mb-0">
-                    <i class="far fa-edit"></i>
-                  </p>
-                  <p class="m-0">Override</p>
-                </div>
-                <div class="col-md-3 mb-2 pe-0" style="display: flex">
-                  <p class="me-2 mb-0">
-                    <div class="down-arrow-ign"></div>
-                  </p>
-                  <p class="m-0">Ignored</p>
-                </div>
-                <div class="col-md-3 mb-2 pe-0" style="display: flex">
-                  <p class="me-2 mb-0">
-                    <div class="down-arrow-gra"></div>
-                  </p>
-                  <p class="m-0">Grace</p>
-                </div>
-                <div class="col-md-3 mb-2 pe-0" style="display: flex">
-                  <p class="me-2 mb-0">
-                    <div class="down-arrow-reg"></div>
-                  </p>
-                  <p class="m-0">Regularized</p>
-                </div>
-              </div>
-              <div class="row m-0 mb-3">
-                <h6 class="m-0 p-2 mb-2" style="background-color: #f1f4f7">Day Type</h6>
-                <div class="col-md-3 mb-2 pe-0" style="display: flex">
-                  <p class="mb-0">
-                    <i class="fas fa-mug-hot"></i>
-                  </p>
-                  <p class="m-0">Rest Day</p>
-                </div>
-                <div class="col-md-3 mb-2 pe-0" style="display: flex">
-                  <p class="mb-0">
-                    <i class="fas fa-tv"></i>
-                  </p>
-                  <p class="m-0">Off Day</p>
-                </div>
-                <div class="col-md-3 mb-2 pe-0" style="display: flex">
-                  <p class="mb-0">
-                    <i class="fas fa-umbrella"></i>
-                  </p>
-                  <p class="m-0">Holiday</p>
-                </div>
-                <div class="col-md-3 mb-2 pe-0" style="display: flex">
-                  <p class="mb-0">
-                    <i class="fas fa-calendar-day"></i>
-                  </p>
-                  <p class="m-0">Half Day</p>
-                </div>
-                <div class="col-md-3 mb-2 pe-0" style="display: flex">
-                  <p class="mb-0">
-                    <i class="fas fa-battery-empty"></i>
-                  </p>
-                  <p class="m-0">Plant Shutdown</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <div class="col-md-5">
-            <div class="container1">
-              <!-- Content goes here -->
-              <div class="row m-0">
-                <div class="col-2 pb-1 pt-1 p-0" style="border-right: 1px solid black; text-align: center;">
-                  <p class="mb-1" style="font-weight:bold;font-size:20px;">{{ \Carbon\Carbon::parse($CurrentDate)->format('d') }}</p>
-                    <p class="text-muted m-0" style="font-weight:600;font-size:14px;">
-                    {{ \Carbon\Carbon::parse($CurrentDate)->format('D') }}</p>
-                </div>
-                <div class="col-5 pb-1 pt-1">
-                  <p class="text-overflow mb-1"
-                      style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-weight: 600;">
-                      10:00 Am to 07:00 pm</p>
-                  <p class="text-muted m-0" style="font-size:14px;">Shift:10:00 to
-                          19:00</p>
-                </div>
-                <div class="col-5 pb-1 pt-1">
-                  <p class="mb-1" style="overflow: hidden;font-weight: 600;text-overflow: ellipsis;white-space: nowrap;">
-                          10:00 Am to 07:00 pm</p>
-                  <p class="text-muted m-0" style="font-size:14px;">Attendance
-                          Scheme</p>
-
-                </div>
-              </div>
-
-
-              <div class="horizontal-line"></div>
-              @if($ChangeDate==1)
-                 <div class="text-muted" style="margin-left:20px;font-weight: 400;font-size: 12px;">Processed On {{ \Carbon\Carbon::parse($CurrentDate)->format('jS M') }}</div>
-              @else
-                 <div class="text-muted" style="margin-left:20px;font-weight: 400;font-size: 12px;">Processed On</div>
-              @endif   
-              <div class="horizontal-line1"></div>
-              <div style=" overflow-x: auto; max-width: 100%;">
-                  <table>
-                      <thead>
-                          <tr>
-                              <th style="font-weight:normal;font-size:12px;">First&nbsp;In</th>
-                              <th style="font-weight:normal;font-size:12px;">Last&nbsp;Out</th>
-                              <th style="font-weight:normal;font-size:12px;">Total&nbsp;Work&nbsp;Hrs</th>
-                              <th style="font-weight:normal;font-size:12px;">Break&nbsp;Hrs</th>
-                              <th style="font-weight:normal;font-size:12px;">Actual&nbsp;Work&nbsp;Hrs</th>
-                              <th style="font-weight:normal;font-size:12px;">
-                                  Work&nbsp;Hours&nbsp;in&nbsp;Shift&nbsp;Time</th>
-                              <th style="font-weight:normal;font-size:12px;">Shortfall&nbsp;Hrs</th>
-                              <th style="font-weight:normal;font-size:12px;">Excess&nbsp;Hrs</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                        @if($ChangeDate==1)
-                        @foreach ($CurrentDateTwoRecord as $record) 
-                        <tr>
-                              
-                              <td style="font-size:12px;">
-                                 @if ($record['in_or_out'] == 'IN')
-                                        @php
-                                           $flag=1;
-                                        @endphp   
-                                        {{ substr($record['swipe_time'], 0, 5) }}
-                               
-                                 @endif
-                              </td>
-                              @if ($loop->first)
-                              <td style="font-size:12px;">
-                              @if (isset($CurrentDateTwoRecord[1]) && $CurrentDateTwoRecord[1]['in_or_out'] == 'OUT')
-                                          {{ substr($CurrentDateTwoRecord[1]['swipe_time'],0,5) }}
-                              @elseif($flag==1)
-                                               00:00
-                              @else
-                                        -                 
-                              @endif
-                              </td>
-                              @endif
-                              <td>-</td>
-                              <td>-</td>
-                              <td>-</td>
-                              <td>-</td>
-                              <td>-</td>
-                              <td>-</td>
-                              
-                           </tr>
-                           @php
-                              $flag=0;
-                              
-                           @endphp 
-                           @php
-                              break;
-                              
-                           @endphp   
-                          @endforeach
-                          @elseif($CurrentDate2recordexists==false)
-                          <tr>
-                              <td>-</td>
-                              <td>-</td>
-                              <td>-</td>
-                              <td>-</td>
-                              <td>-</td>
-                              <td>-</td>
-                              <td>-</td>
-                              <td>-</td>
-                          </tr>
-                          @else
-                          <tr>
-                              <td>-</td>
-                              <td>-</td>
-                              <td>-</td>
-                              <td>-</td>
-                              <td>-</td>
-                              <td>-</td>
-                              <td>-</td>
-                              <td>-</td>
-                          </tr>
-                          @endif
-                          <!-- Add more rows with dashes as needed -->
-                      </tbody>
-                      <!-- Add table rows (tbody) and data here if needed -->
-                  </table>
+  </thead>
+  <tbody>
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <!-- Add more rows with dashes as needed -->
+  </tbody>
+  <!-- Add table rows (tbody) and data here if needed -->
+</table>
 
               </div>
             </div>

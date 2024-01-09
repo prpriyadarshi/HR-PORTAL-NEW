@@ -9,6 +9,7 @@ use App\Models\EmployeeDetails;
 class AttendanceMuster extends Component
 {
     public $showAttendanceMuster = false;
+   
     public function render()
     {
         $loggedInEmpId = Auth::guard('emp')->user()->emp_id;

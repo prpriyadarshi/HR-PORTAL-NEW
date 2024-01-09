@@ -1,6 +1,8 @@
 <!-- resources/views/livewire/people-lists.blade.php -->
 
 <div>
+    <x-loading-indicator/>
+
     <style>
         .text-yellow {
             color: yellow;
@@ -114,11 +116,11 @@
                                     <i class="fa fa-star" style="cursor: pointer; color: yellow;"></i>
                                 </button>
                             </a>
-                            <div>{{ optional($selectStarredPeoples)->name }}</div> 
+                            <div>{{ optional($selectStarredPeoples)->name }}</div>
                             <strong>
                                 <div>(#{{ optional($selectStarredPeoples)->people_id }})</div>
                             </strong>
-                        
+
                             <div>Contact Details <br> <strong>{{ optional($selectStarredPeoples)->contact_details }}</strong></div>
                             <div>CATEGORY <br><strong>{{ optional($selectStarredPeoples)->category }}</strong></div>
                             <div>Location <br><strong>{{ optional($selectStarredPeoples)->location }}</strong></div>

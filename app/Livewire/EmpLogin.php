@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Session;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\QueryException;
+use App\Mail\PasswordChanged;
+use Illuminate\Support\Facades\Mail;
 
 class EmpLogin extends Component
 {
@@ -147,9 +149,11 @@ class EmpLogin extends Component
         if ($this->newPassword === $this->newPassword_confirmation) {
             $user = EmployeeDetails::where('email', $this->email)->first();
             if ($user) {
+               // dd($user->email);
                 // Update the user's password in the database.
                 $user->update(['password' => bcrypt($this->newPassword)]);
                 $this->passwordChangedModal = true;
+
                 // Reset form fields and state after successful password update.
                 $this->reset(['newPassword', 'newPassword_confirmation', 'verified']);
 

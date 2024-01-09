@@ -1,15 +1,15 @@
 <div>
 <!DOCTYPE html>
 <html lang="en">
- 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
- 
+
 <!-- Moment.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
- 
+
 <!-- DateRangePicker CSS and JS -->
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker@3.1.0/daterangepicker.css" />
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker@3.1.0/daterangepicker.min.js"></script>
@@ -21,17 +21,17 @@
             overflow-x: hidden;
             margin: 0;
             padding: 0;
-       
+        
         }
- 
+
         .container {
             display: flex;
             justify-content: space-between;
-       
- 
-         
+        
+
+          
         }
- 
+
        
         .container-right {
             background-color: #fff;
@@ -48,7 +48,7 @@
       border: none;
       position: relative;
     }
- 
+
     .search-input input[type="text"] {
       padding: 5px;
       border: 1px solid #ccc;
@@ -64,7 +64,7 @@
       transform: translateY(-50%);
       cursor: pointer;
     }
- 
+
     .search-icon::before {
       /* Unicode character for a magnifying glass */
       font-size: 16px;
@@ -74,52 +74,52 @@
             background-color: #fff;
             border: 1px solid #ddd;
             border-radius: 5px;
-           
+            
            
             margin-top: 20px;
             margin-bottom: 40px;
-           
+            
         }
- 
+
         table {
             border-collapse: collapse;
             width: 80%;
         }
- 
+
         thead {
             background-color: #02114f;
             color: #fff;
         }
- 
+
         th,
         td {
             padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
- 
+
         th {
             font-weight: bold;
             font-size: 12px;
         }
- 
+
         td {
             font-size: 12px;
         }
- 
+
         .container-right {
-            flex-basis: 40%;
+            flex-basis: 40%; 
             height: 600px;
             /* Increase height as needed */
             overflow-y: hidden;
             padding: 20px;
            
         }
-       
+        
         .green-section {
                    height: 40%;
                    width:100%;
-                   background-color:    #ECFFDC;
+                   background-color: 	#ECFFDC;
                    position: relative;
                    margin-top: -20px;/* Green color for half of the section */
         }
@@ -138,7 +138,7 @@
             background-color: #fff;
             color:#666;
         }
- 
+
         .dropdown-btn1::after {
             content: "\25BE"; /* Unicode character for a down-pointing triangle */
             font-size: 12px; /* Adjust the size of the arrow */
@@ -165,7 +165,7 @@
             max-height: 200px; /* Set the maximum height for scrollable content */
             overflow-y: scroll; /* Enable vertical scrolling if content exceeds max height */
         }
- 
+
         .dropdown-content1 a {
             padding: 12px 16px;
             text-decoration: none;
@@ -184,12 +184,12 @@
             padding: 10px;
             border-radius: 5px;
         }
- 
+
         @media screen and (max-width: 768px) {
             .container {
                 flex-direction: column;
             }
- 
+
             .container-right {
                 flex-basis: 100%;
                 margin-top: 0;
@@ -197,14 +197,14 @@
         }
     </style>
 </head>
- 
+
 <body>
 <div>
     <div style="display:flex;flex-direction:row;">
     <div class="dropdown-container1">
           <label for="dateType"style="color: #666;font-size:13px;">Select Dates<span style="color: red;">*</span>:</label><br/>
           <input type="text" name="daterange" wire:model="date" value="01/04/2024 - 01/04/2024" style="font-size: 13px;" wire:change="dateRange($event.target.value)" />
-         
+          
      </div>
      <div class="dropdown-container1">
           <label for="dateType"style="color: #666;font-size:13px;">Date Type<span style="color: red;">*</span>:</label><br/>
@@ -216,7 +216,7 @@
        
      <div class="dropdown-container1">
              <label for="dateType"style="color: #666;font-size:13px;">Employee Search</label><br/>
-         
+          
              <div class="search-input"style="margin-top:-1px;">
                     <input wire:model="search" type="text" placeholder="Search Employee" class="search-text">
                     <button type="button" class="search-icon" wire:click="testMethod">
@@ -224,28 +224,28 @@
                     </button>
              </div>
            
-    </div>
+    </div> 
     <div class="dropdown-container1">
-           
-         
+            
+          
         <button type="button" class="button2" data-toggle="modal" data-target="#exampleModalCenter">
-             <i class="fa-solid fa-download"></i>
+             <i class="fa-solid fa-download"wire:click="downloadFileforSwipes"></i>
         </button>
            
-    </div>  
+    </div>   
     <div class="dropdown-container1">
-           
-         
+            
+          
             <button type="button" class="button2" data-toggle="modal" data-target="#exampleModalCenter">
                  <i class="fa-icon fas fa-filter"style="color:#666"></i>
             </button>
                
         </div>  
-     
+      
 </div>
- 
+
     <div class="container">
-       
+        
         <div class="container4">
             <div style="overflow-x:auto;">
                 <table>
@@ -261,32 +261,37 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($SignedInEmployees as $sie)
-                        <tr>
-                         
-                               
-                           
-                            <td style=" white-space: nowrap;font-size:12px;">
-                                <input type="checkbox" name="employeeCheckbox[]"style="margin-left:-10px;height:10px;" value="{{ $sie->emp_id }}">
- 
-                                 {{ucfirst($sie->first_name)}} {{ucfirst($sie->last_name)}}<br />
-                                 <span class="text-muted"style="font-size:10px;margin-left:6px;">#{{$sie->emp_id}}</span>
-                            </td>
-                            <td style=" white-space: nowrap;">{{$sie->swipe_time}}<br /> <span class="text-muted"style="font-size:10px;">{{ \Carbon\Carbon::parse($sie->created_at)->format('d M, Y') }}</span></td>
-                            <td style=" white-space: nowrap;">10:00 am to 07:00...</td>
-                            <td style=" white-space: nowrap;">{{$sie->in_or_out}}</td>
-                            <td style=" white-space: nowrap;">{{$sie->swipe_time}}<br /><span class="text-muted"style="font-size:10px;"> {{ \Carbon\Carbon::parse($sie->created_at)->format('d M, Y') }}</span></td>
-                            <td>-</td>
-                            <td>-</td>
-                        </tr>
+                    @if($notFound)
+                            <div style="text-align:center;">
+                                  Name not found in the list.
+                            </div>
+                    @else
+    <!-- Display the filtered collection or any other content -->
+                        @foreach($SignedInEmployees as $swipe)
+        <!-- Display swipe details -->
+                       <tr> 
+                              <td style=" white-space: nowrap;font-size:12px;">
+                                        <input type="checkbox" name="employeeCheckbox[]"style="margin-left:-10px;height:10px;" value="{{ $swipe->emp_id }}">
+
+                                                   {{ucfirst($swipe->first_name)}} {{ucfirst($swipe->last_name)}}<br />
+                                               <span class="text-muted"style="font-size:10px;margin-left:6px;">#{{$swipe->emp_id}}</span>
+                              </td>
+                              <td style=" white-space: nowrap;">{{$swipe->swipe_time}}<br /> <span class="text-muted"style="font-size:10px;">{{ \Carbon\Carbon::parse($swipe->created_at)->format('d M, Y') }}</span></td>
+                              <td style=" white-space: nowrap;">10:00 am to 07:00...</td>
+                              <td style=" white-space: nowrap;">{{$swipe->in_or_out}}</td>
+                              <td style=" white-space: nowrap;">{{$swipe->swipe_time}}<br /><span class="text-muted"style="font-size:10px;"> {{ \Carbon\Carbon::parse($swipe->created_at)->format('d M, Y') }}</span></td>
+                              <td>-</td>
+                              <td>-</td>
+                        </tr>     
                         @endforeach
+                    @endif
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="container-right">
                 <div class="green-section"style="height: 180px;width: 150%; position: relative;  margin-left: -20px; padding-right: 20px;padding-bottom:60px;">
-                   
+                    
                      <img src="https://cdn-icons-png.flaticon.com/512/2055/2055568.png" style="width: 22%; height: 25%;margin-top:30px;margin-left:10px;border-radius:50%;">
                      <h6 style="margin-top:10px;margin-left:20px;font-size:13px;color:#666;">Swipe-in Time</h6>
                      @if($SwipeTime)
@@ -311,20 +316,20 @@
                 <p style="font-size: 18px; font-weight: 500;margin-top:-20px;">-</p>
         </div>
     </div>
- 
+  
     </div>
     <script>
      jQuery(document).ready(function($) {
-       
+        
        $(function() {
            $('input[name="daterange"]').daterangepicker({
                                      opens: 'left'
                               }, function(start, end, label) {
-                               
+                                
                           console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
             });
         });
- 
+
     });
     </script>
    <script>
@@ -337,6 +342,5 @@
     });
 </script>
 </body>
- 
+
 </html>
-</div>

@@ -35,6 +35,8 @@ class Attendance extends Component
   public $currentDate1;
   public $swiperecord;
 
+
+
   public $date2;
   public $modalTitle = '';
 
@@ -79,26 +81,16 @@ class Attendance extends Component
       $inRecord = $records->where('in_or_out', 'IN')->first();
       $outRecord = $records->where('in_or_out', 'OUT')->last();
 
-      return [$key => [
-        'in' => "IN",
-        'first_in_time' => optional($inRecord)->swipe_time,
-        'last_out_time' => optional($outRecord)->swipe_time,
-        'out' => "OUT",
-      ]];
+      // Get the current date and store it in the $currentDate property
+      $this->currentDate = date('d');
+      $this->currentWeekday = date('D');
+      $this->currentDate1 = date('d M Y');
+      $this->swiperecords = SwipeRecord::all();
+      $this->year = now()->year;
+      $this->month = now()->month;
+      $this->generateCalendar();
+      // You can change the date format as needed
     });
-
-
-
-
-    // Get the current date and store it in the $currentDate property
-    $this->currentDate = date('d');
-    $this->currentWeekday = date('D');
-    $this->currentDate1 = date('d M Y');
-    $this->swiperecords = SwipeRecord::all();
-    $this->year = now()->year;
-    $this->month = now()->month;
-    $this->generateCalendar();
-    // You can change the date format as needed
   }
   public $k, $k1;
   protected function getPublicHolidaysForMonth($year, $month)
@@ -373,4 +365,9 @@ class Attendance extends Component
     $this->calculateActualHours($swipe_records);
     return view('livewire.attendance', ['Holiday' => $this->holiday, 'Swiperecords' => $swipe_records, 'Swiperecords1' => $swipe_records1, 'data' => $data, 'CurrentDate' => $currentDate2, 'CurrentDateTwoRecord' => $this->currentDate2record, 'ChangeDate' => $this->changeDate, 'CurrentDate2recordexists' => $this->currentDate2recordexists]);
   }
+
+  // Fetch records for today's date
+  //$swipe_records = SwipeRecord::all();
+
+
 }
