@@ -19,6 +19,7 @@ use App\Livewire\RegularisationPending;
 use App\Livewire\EmployeeSwipes;
 use App\Livewire\AttendanceMusterData;
 use App\Livewire\AttendanceMuster;
+use App\Livewire\AttendenceMasterDataNew;
 use App\Livewire\EmployeeSwipesData;
 use App\Livewire\HelpDesk;
 use App\Livewire\Home;
@@ -40,6 +41,7 @@ use App\Livewire\Documents;
 use App\Livewire\Declaration;
 use App\Livewire\Downloadform;
 use App\Livewire\Documentcenter;
+use App\Livewire\DocumentCenterLetters;
 use App\Livewire\EmpList;
 use App\Livewire\Investment;
 use App\Livewire\LeaveApply;
@@ -150,16 +152,14 @@ Route::middleware(['auth:com'])->group(function () {
     Route::get('/empregister', function () {
         return view('emp-register-view');
     });
-   // Route::get('/emplist', EmpList::class)->name('emplist');
+    // Route::get('/emplist', EmpList::class)->name('emplist');
     Route::get('/emplist', function () {
         return view('emp-list-view');
     });
 
-   Route::get('/emp-update/{empId}', function ($empId) {
-    return view('emp-update-view', compact('empId'));
-})->name('emp-update');
-
-
+    Route::get('/emp-update/{empId}', function ($empId) {
+        return view('emp-update-view', compact('empId'));
+    })->name('emp-update');
 });
 
 Route::middleware(['auth:hr'])->group(function () {
@@ -176,6 +176,7 @@ Route::middleware(['auth:it'])->group(function () {
 
 
 Route::middleware(['auth:emp'])->group(function () {
+
     Route::get('/', Home::class)->name('home');
     Route::get('/LeaveBalanceAsOnADay', LeaveBalanaceAsOnADay::class);
 
@@ -189,7 +190,8 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/employee-swipes-data', EmployeeSwipesData::class)->name('employee-swipes-data');
     Route::get('/attendance-muster', AttendanceMuster::class)->name('attendance-muster');
     Route::get('/attendance-muster-data', AttendanceMusterData::class)->name('attendance-muster-data');
-
+    Route::get('/attendance-muster-data', AttendenceMasterDataNew::class)->name('attendance-muster-data');
+    Route::get('/document-center-letters', DocumentCenterLetters::class)->name('document-center-letters');
 
     Route::get('/ProfileInfo', ProfileInfo::class)->name('profile.info');
     Route::get('/Settings', Settings::class);
@@ -264,7 +266,7 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/leave-balances', LeaveBalances::class)->name('leave-balances');
     Route::get('/leave-cancel', LeaveCancel::class)->name('leave-cancel');
     Route::get('/leave-calender', LeaveCalender::class)->name('leave-calender');
-    
+
     Route::get('/leave-history/{leaveRequestId}', LeaveHistory::class)->name('leave-history');
     Route::get('/leave-pending/{leaveRequestId}', LeavePending::class)->name('leave-pending');
 
@@ -293,8 +295,8 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/leave-pending/{leaveRequestId}', LeavePending::class)->name('leave-pending');
     Route::get('/team-on-leave', TeamOnLeave::class)->name('team-on-leave');
     Route::get('/team-on-leave-chart', TeamOnLeaveChart::class)->name('team-on-leave-chart');
-    
-  
+
+
     // TODO module
     Route::get('/tasks', Tasks::class)->name('task');
     Route::get('/employees-review', EmployeesReview::class)->name('employees-review');
@@ -314,4 +316,3 @@ Route::get('/your-download-route', function () {
 Route::get('/downloadform', function () {
     return view('downloadform');
 });
-

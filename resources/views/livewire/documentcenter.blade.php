@@ -96,7 +96,7 @@
   <div style="display: flex; flex-direction: row;">
          <img src="https://th.bing.com/th/id/R.a8fbb7dd4338480fc0f29d78375994bb?rik=uovY7DoomLCYXw&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fletter-png-big-image-png-2400.png&ehk=C4gR%2bU0pBkTI5moKfEGFAQerMguNcEQaCUdK2w97iOk%3d&risl=&pid=ImgRaw&r=0" alt="Image Description" style="height: 25px; width: 25px; margin-left: 10px; margin-top: 20px;">
           <p style="margin-top: 20px; margin-left: 20px;font-size:12px">Letter</p>
-          <a class="links" href="/documents" style="margin-top: 23px; padding-left: 90px; font-size: 12px;  color: black; text-decoration: none;">
+          <a class="links" href="/document-center-letters" style="margin-top: 23px; padding-left: 90px; font-size: 12px;  color: black; text-decoration: none;">
     <span onmouseover="this.style.color='#33B3BC'; this.style.textDecoration='underline';" onmouseout="this.style.color='blue'; this.style.textDecoration='none';">
     View all
     </span>

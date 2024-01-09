@@ -572,7 +572,7 @@
                                             <a style="width:40%;font-size:0.855rem;cursor: pointer;color:blue" wire:click="open">View Swipes</a>
 
                                             <button id="signButton" style="color: white; width: 80px; height: 26px;font-size:0.795rem; background-color: rgb(2, 17, 79); border: 1px solid #CFCACA; border-radius: 5px; " wire:click="toggleSignState">
-                                                @if ($signIn)
+                                                @if ($swipes->in_or_out=="OUT")
                                                 Sign In
                                                 @else
                                                 Sign Out
