@@ -67,7 +67,9 @@ class Attendance extends Component
    
     public function mount()
     {
-      
+        
+       
+       
      $swipeRecords = SwipeRecord::where('emp_id', auth()->guard('emp')->user()->emp_id)->get();
 
   // Group the swipe records by the date part only
@@ -119,8 +121,30 @@ private function isEmployeePresentOnDate($date)
     // For example, you can query the database for swipe records on that date
     return SwipeRecord::whereDate('created_at', $date)->exists();
 }
+private function isEmployeeLeaveOnDate($date, $employeeId)
+{
+    $employeeId= auth()->guard('emp')->user()->emp_id;
+    // Check if there is a leave request that covers the given date for the specified employee
+    return LeaveRequest::where('emp_id', $employeeId)
+        ->where(function ($query) use ($date) {
+            $query->whereDate('from_date', '<=', $date)
+                ->whereDate('to_date', '>=', $date);
+        })
+        ->exists();
+}
+private function getLeaveType($date, $employeeId)
+{
+    // Replace 'your_leave_request_table' with the actual table name storing leave requests
+    $leaveType = LeaveRequest::where('emp_id', $employeeId)
+        ->whereDate('from_date', '<=', $date)
+        ->whereDate('to_date', '>=', $date)
+        ->value('leave_type');
+
+    return $leaveType;
+}
 public function generateCalendar()
 {
+    $employeeId= auth()->guard('emp')->user()->emp_id;
     $firstDay = Carbon::create($this->year, $this->month, 1);
    
     $daysInMonth = $firstDay->daysInMonth;
@@ -159,7 +183,8 @@ public function generateCalendar()
                     'isCurrentMonth' => false,
                     'isPreviousMonth' => true,
                     'backgroundColor' => '', // Initialize with an empty background color
-                    'status' => '', // Add a status property
+                    'status' => '',
+                    'onleave'=>'' // Add a status property
                 ];
             } elseif ($dayCount <= $daysInMonth) {
                 // Add the days of the current month
@@ -175,10 +200,35 @@ public function generateCalendar()
                 
                 // Check if the employee is absent
                 $isAbsent = !$this->isEmployeePresentOnDate($date);
+                $isonLeave=$this->isEmployeeLeaveOnDate($date,$employeeId);
+                $leaveType = $this->getLeaveType($date, $employeeId);
+                if ($isonLeave) {
+                    $leaveType = $this->getLeaveType($date, $employeeId);
+                    
+                    switch ($leaveType) {
+                        case 'Causal Leave Probation':
+                            $status = 'CLP'; // Casual Leave Probation
+                            break;
+                        case 'Sick Leave':
+                            $status = 'SL'; // Sick Leave
+                            break;
+                        case 'Loss Of Pay':
+                            $status = 'LOP'; // Loss of Pay
+                            break;
+                        default:
+                            $status = 'L'; // Default to 'L' if the leave type is not recognized
+                            break;
+                    }
+                } else {
+                    // Employee is not on leave, check for absence or presence
+                    $isAbsent = !$this->isEmployeePresentOnDate($date);
                 
+                    // Set the status based on presence
+                    $status = $isAbsent ? 'A' : 'P';
+                }
                 // Set the status based on presence
-                $status = $isAbsent ? 'A' : 'P';
-
+                
+                
                 $week[] = [
                     'day' => $dayCount,
                     'isToday' => $isToday,
@@ -219,6 +269,8 @@ public function updateDate($date1)
 }
 public function dateClicked($date1)
 {
+    $date1 = trim($date1);
+    $this->selectedDate = $this->year . '-' . $this->month . '-' . str_pad($date1, 2, '0', STR_PAD_LEFT);  
     $isSwipedIn = SwipeRecord::whereDate('created_at', $date1)->where('in_or_out', 'In')->exists();
     $isSwipedOut = SwipeRecord::whereDate('created_at', $date1)->where('in_or_out', 'Out')->exists();
     
@@ -348,6 +400,7 @@ private function calculateActualHours($swipe_records)
         ->whereDate('swipe_records.created_at', $today)
         ->select('swipe_records.*', 'employee_details.first_name','employee_details.last_name')
         ->get();
+         //$leave=LeaveRequest::where('emp_id',auth()->guard('emp')->user()->emp_id)->get();
          $this->holiday=HolidayCalendar::all();
          $this->leaveApplies=LeaveRequest::where('emp_id',auth()->guard('emp')->user()->emp_id)->get();
          
@@ -372,8 +425,8 @@ private function calculateActualHours($swipe_records)
         //$swipe_records = SwipeRecord::all();
            $swipe_records = SwipeRecord::where('emp_id',auth()->guard('emp')->user()->emp_id)->whereDate('created_at', $currentDate)->get();
            $swipe_records1 = SwipeRecord::where('emp_id',auth()->guard('emp')->user()->emp_id)->orderBy('created_at', 'desc')->get(); 
-            
           
+         
             // $this->calculateActualHours();
             
             $this->calculateActualHours($swipe_records);

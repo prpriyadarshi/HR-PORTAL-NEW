@@ -328,7 +328,6 @@
             /* Adjust the height of days of the week cells */
         }
         .table-1 {
-            background:yellow;
             overflow-x: hidden; /* Add horizontal scrolling if the table overflows the container */
         }
  
@@ -482,13 +481,14 @@
 
 
 
-    .calendar-date:hover {
-        background-color: rgb(2, 17, 79);
-        /* Change this to your preferred shade of blue */
-        color: white;
-        /* Add this to ensure text is visible on the blue background */
-    }
+    .attendance-calendar-date:hover {
+    background-color: #f3faff;
+}
 
+.clickable-date:active {
+    background-color: #f3faff; /* Set the desired background color when clicked */
+    border: 1px solid #c5cdd4; /* Set the desired border color */
+}
     .calendar-day {
         text-align: center;
         padding: 10px;
@@ -1207,6 +1207,9 @@
 @php
    $flag=0;
    $flag1=0;
+   $leave=0;
+   $todayDate = date('Y-m-d');
+   
 @endphp   
     
     <div>
@@ -1510,7 +1513,7 @@
                     </div>
                 </div>
                 <!-- Calendar -->
-                <div  style="background:pink;">
+                <div  style="background:#fff;">
                 <table class="table-1 table-bordered">
                         <thead>
                             <tr>
@@ -1525,19 +1528,42 @@
                         </thead>
                         <tbody id="calendar-body">
                         @foreach ($calendar as $week)
-    <tr style="background:#0099cc;">
+    <tr>
         @foreach ($week as $day)
             @php
                 $carbonDate = \Carbon\Carbon::createFromDate($year, $month, $day['day']);
                 $formattedDate = $carbonDate->format('Y-m-d');
+                $formattedDate1 = $carbonDate->format('Y-m-d');
                 $isCurrentMonth = $day['isCurrentMonth'];
                 $isWeekend = in_array($carbonDate->dayOfWeek, [0, 6]); // 0 for Sunday, 6 for Saturday
                 $isActiveDate = ($selectedDate === $carbonDate->toDateString());
             @endphp
-            <td wire:click="dateClicked('{{$formattedDate}}')"wire:model="dateclicked" class="calendar-date{{ $selectedDate === $day['day'] ? ' active-date' : '' }}" data-date="{{ $day['day'] }}"
-                style="color: {{ $isCurrentMonth ? ($isWeekend ? '#c5cdd4' : 'black') : '#c5cdd4' }};background-color: @if($day['status'] == 'A') #fcf0f0 @elseif($day['status'] == 'P') #edfaed @endif;">
-                @if ($day)
+           
+     
+                @if ($day) 
+                @if(strtotime($formattedDate) < strtotime(date('Y-m-d')))
+                   @php
+                       $flag=1;
+
+                   @endphp
+                @else
+                   @php
+                       $flag=0;
+                   @endphp
+                @endif    
+                @if($day['status']== 'CLP'||$day['status']== 'SL'||$day['status']== 'LOP')
+                    @php
+                       $leave=1;
+                    @endphp
+                @else
+                    @php
+                       $leave=0;
+                    @endphp
+                @endif
+                <td wire:click="dateClicked('{{$formattedDate}}')" wire:model="dateclicked"class="attendance-calendar-date {{ $isCurrentMonth && !$isWeekend ? 'clickable-date' : '' }}"style="color: {{ $isCurrentMonth ? ($isWeekend ? '#c5cdd4' : 'black')  : '#c5cdd4'}};background-color:  @if($isCurrentMonth && !$isWeekend && $flag==1 ) @if($day['isPublicHoliday'] ) #f3faff @elseif($leave == 1) rgb(252, 242, 255) @elseif($day['status'] == 'A') #fcf0f0 @elseif($day['status'] == 'P') #edfaed @endif @endif ;" >
                     <div>
+                        
+                          
                         @if ($day['isToday'])
                             <div style="background-color: #007bff; color: white; border-radius: 50%; width: 24px; height: 24px; text-align: center; line-height: 24px;">
                                 {{ str_pad($day['day'], 2, '0', STR_PAD_LEFT) }}
@@ -1546,31 +1572,50 @@
                             {{ str_pad($day['day'], 2, '0', STR_PAD_LEFT) }}
                         @endif
                         <div class="circle{{ $day['isPublicHoliday'] ? 'IRIS' : '' }}">
+                            
                             <!-- Render your content -->
                         </div>
-
+                          
                         <div class="{{ $isWeekend ? '' : 'circle-grey' }}">
                             <!-- Render your grey circle -->
                             @if ($isWeekend)
+                                <i class="fas fa-tv"></i>
                                 <span style="display: flex; justify-content: center; align-items: center;width:20px;height:20px;border-radius:50%;">
+                                  
+                                      
+                                   
                                      O
                                 </span>
-                            @else
+                            @elseif($isCurrentMonth)
+                              
                                 <span style="display: flex; justify-content: center; align-items: center;width:20px;height:20px;border-radius:50%;">
                                      GS
                                 </span>
+                                @if(strtotime($formattedDate) < strtotime(date('Y-m-d')))
                                 <span style="display: flex; justify-content: center; align-items: center; width: 20px; height: 20px; border-radius: 50%;">
-                                    @if($day['status'] == 'A')
-                                        <span style="color:#ff6666;">A</span>
+                                    
+                                    @if($day['isPublicHoliday'])
+                                        <span style="background-color: #f3faff;">H</span>
+                                    @elseif($day['status'] == 'CLP')   
+                                        <span style="background-color:  rgb(252, 242, 255);">CLP</span> 
+                                    @elseif($day['status'] == 'SL')   
+                                        <span style="background-color: #f3faff;">SL</span>     
+                                    @elseif($day['status'] == 'LOP')   
+                                        <span style="background-color: #f3faff;">LOP</span> 
+                                    @elseif($day['status'] == 'A')
+                                        <span style="color:#ff6666; background-color: #fcf0f0;">A</span>
                                     @elseif($day['status'] == 'P')
-                                        P
+                                        <span style="background-color: #edfaed;">P</span>
                                     @endif
+                                
                                 </span>
+                                @endif
                             @endif
                         </div>
                     </div>
                 @endif
             </td>
+            
         @endforeach
     </tr>
 @endforeach
