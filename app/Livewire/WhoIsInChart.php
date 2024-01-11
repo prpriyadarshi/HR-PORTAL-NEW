@@ -104,7 +104,7 @@ class WhoIsInChart extends Component
  
     // Set the response headers for download
     $headers = [
-        'Content-Type' => 'text/csv',
+        'Content-Type' => 'application/vnd.ms-excel',
         'Content-Disposition' => 'attachment; filename="LATE_ARRIVALS"',
     ];
  
