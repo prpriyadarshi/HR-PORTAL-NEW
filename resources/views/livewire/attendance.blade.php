@@ -1384,65 +1384,63 @@
                                     <p>Avg Last Out Time:&nbsp;&nbsp;<span style="font-weight:600;">00:00:00</span></p>
                                 </div>
 
-                                    <div style="margin-top:20px;display:flex;flex-direction:row;">
-                                       <p style="margin-left:-30px;">Avg&nbsp;First&nbsp;In&nbsp;Time:&nbsp;&nbsp;<span style="font-weight:600;">00:00:00</span></p>
-                                       <p style="border-right: 1px solid #ccc;margin-left:40px;"></p>
-                                       <p style="margin-left:50px;">Avg&nbsp;Last&nbsp;Out&nbsp;Time:&nbsp;&nbsp;<span style="font-weight:600;">00:00:00</span></p>
-                                    </div>        
-                                          
-                                </div>
-                               
-                            </div>
-                        </div>
-                    </div>  
-           
-     <a href="#" id="toggleSidebar" class="gt-overlay-toggle" style="margin-top:69px;color:rgb(2, 17, 79);margin-left:50px;">Legend</a>
-     <div class="sidebar">
-        <!-- Sidebar content goes here -->
-        <div class="sidebar-header"style="display: flex; justify-content: space-between; align-items: center;">
-           <h3 style="color: #7f8fa4;margin-left:0;font-size:20px;">Legends</h3>
-           <button style="font-size: 12px; padding: 5px 10px; margin-left: 10px; margin-top: -5px;" id="closeSidebar">&#10006;</button>
-           
 
-        </div> 
-        <div class="sidebar-content">
-          <h3 style="font-size: 16px;">Shift Codes</h3>
-         <div style="display:flex;flex-direction:row;margin-top:-10px;margin-left:8px;">
-          <div class="legend-item">
-            <i class="fas fa-caret-right" style="font-size: 24px; color: #e2b7ff;margin-left:25px;"></i>
-            <p style="display: inline-block; margin-left: -10px;margin-top:20px;">Override</p>
-        </div>
-        <div class="legend-item">
-            <i class="fas fa-caret-right" style="font-size: 24px; color: #ff9595;margin-left:25px;"></i>
-            <p style="display: inline-block; margin-left: -10px;margin-top:20px">Deduction</p>
-        </div>
-        </div>
-        <div style="display:flex;flex-direction:row;margin-top:-30px;margin-left:8px;">
-        <div class="legend-item">
-            <i class="fas fa-caret-right" style="font-size: 24px; color: #7dd4ff;margin-left:25px;"></i>
-            <p style="display: inline-block; margin-left: -10px;margin-top:20px">Alert&nbsp;for&nbsp;Deduction</p>
-        </div>
-        <div class="legend-item">
-            <i class="fas fa-caret-right" style="font-size: 24px; color: #c7c7c7;margin-left:25px;"></i>
-            <p style="display: inline-block; margin-left: -10px;margin-top:20px">Ignored</p>
-        </div>
-        </div>
-        <div style="display:flex;flex-direction:row;margin-top:-30px;margin-left:8px;">
-        <div class="legend-item">
-            <i class="fas fa-caret-right" style="font-size: 24px; color: #ffe8de;margin-left:25px;"></i>
-            <p style="display: inline-block; margin-left: -10px;margin-top:20px">Grace</p>
-        </div>
-        </div>
-          <h3 style="font-size: 16px;">Status</h3>
-          <div style="display:flex;flex-direction:row;margin-top:-10px;">
-             <div class="legend-item">
-               <i class="fas fa-circle" style=" color: #e2b7ff;margin-left:25px;"></i>
-               <p style="display: inline-block; margin-left: -10px;margin-top:20px">Holiday</p>
-             </div>
-             <div class="legend-item">
-               <i class="fas fa-circle" style=" color: #e3c82e;;margin-left:25px;"></i>
-               <p style="display: inline-block; margin-left: -10px;margin-top:20px">Overtime</p>
-             </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="sidebar">
+                <!-- Sidebar content goes here -->
+                <div class="sidebar-header" style="display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="color: #7f8fa4;margin-left:0;font-size:20px;">Legends</h3>
+                    <button style="font-size: 12px; padding: 5px 10px; margin-left: 10px; margin-top: -5px;"
+                        id="closeSidebar">&#10006;</button>
+                </div>
+                <div class="sidebar-content">
+                    <h3 style="font-size: 16px;">Shift Codes</h3>
+                    <div style="display:flex;flex-direction:row;margin-top:-10px;margin-left:8px;">
+                        <div class="legend-item">
+                            <i class="fas fa-caret-right" style="font-size: 24px; color: #e2b7ff;margin-left:25px;"></i>
+                            <p style="display: inline-block; margin-left: -10px;margin-top:20px;">Override</p>
+                        </div>
+                        <div class="legend-item">
+                            <i class="fas fa-caret-right" style="font-size: 24px; color: #ff9595;margin-left:25px;"></i>
+                            <p style="display: inline-block; margin-left: -10px;margin-top:20px">Deduction</p>
+                        </div>
+                    </div>
+                    <div style="display:flex;flex-direction:row;margin-top:-30px;margin-left:8px;">
+                        <div class="legend-item">
+                            <i class="fas fa-caret-right" style="font-size: 24px; color: #7dd4ff;margin-left:25px;"></i>
+                            <p style="display: inline-block; margin-left: -10px;margin-top:20px">
+                                Alert&nbsp;for&nbsp;Deduction</p>
+                        </div>
+                        <div class="legend-item">
+                            <i class="fas fa-caret-right" style="font-size: 24px; color: #c7c7c7;margin-left:25px;"></i>
+                            <p style="display: inline-block; margin-left: -10px;margin-top:20px">Ignored</p>
+                        </div>
+                    </div>
+                    <div style="display:flex;flex-direction:row;margin-top:-30px;margin-left:8px;">
+                        <div class="legend-item">
+                            <i class="fas fa-caret-right" style="font-size: 24px; color: #ffe8de;margin-left:25px;"></i>
+                            <p style="display: inline-block; margin-left: -10px;margin-top:20px">Grace</p>
+                        </div>
+                    </div>
+                    <h3 style="font-size: 16px;">Status</h3>
+                    <div style="display:flex;flex-direction:row;margin-top:-10px;">
+                        <div class="legend-item">
+                            <i class="fas fa-circle" style=" color: #e2b7ff;margin-left:25px;"></i>
+                            <p style="display: inline-block; margin-left: -10px;margin-top:20px">Holiday</p>
+                        </div>
+                        <div class="legend-item">
+                            <i class="fas fa-circle" style=" color: #e3c82e;;margin-left:25px;"></i>
+                            <p style="display: inline-block; margin-left: -10px;margin-top:20px">Overtime</p>
+                        </div>
 
 
                     </div>
