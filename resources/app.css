@@ -9,122 +9,6 @@
 
 /*Start of document center/letter module */
 /* Add these styles to your CSS file or style section */
-body {
-  font-family: 'Montserrat', sans-serif;
-}
-.confirmation-letter:hover{
-    background-color: rgb(122, 149, 255);
-    width: 98%;
-    margin-left: 5px;
-}
-.appointment-order:hover{
-    background-color: rgb(122, 149, 255);
-    width: 98%;
-    margin-left: 5px;
-
-}
-.container {
-  max-width: 100%;
-  padding: 0 15px;
-  margin: auto;
-}
-
-.row {
-  margin: 0;
-}
-
-.tab.active,
-.jump-to.active {
-  color: rgb(10, 35, 134);
-}
-
-.tab {
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: color 0.3s ease-in-out;
-}
-
-.tab:hover {
-  color:  rgb(122, 149, 255);
-}
-
-.jump-to {
-  cursor: pointer;
-  font-size: 0.8rem;
-  margin-top: 5px;
-  transition: color 0.3s ease-in-out;
-  border: none;
-  background-color: white;
-}
-
-.jump-to:hover {
-  color:rgb(122, 149, 255);
-}
-.jump-to.active{
-    border: none;
-    background-color: rgb(2, 17, 79);
-    border-radius: 5px;
-    color: white;
-}
-
-.button-dl {
-  width: 100%;
-  max-width: 120px;
-  font-size: 0.8rem;
-  font-family: 'Montserrat', sans-serif;
-  padding: 10px;
-  background-color: white;
-  border: none;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-.button-dl:hover{
-    background-color: rgb(122, 149, 255);
-    color:white;
-}
-.button-dl.active {
-    background-color: rgb(2, 17, 79);
-    color:white; 
-}
-
-@media (min-width: 768px) {
-  .button-dl {
-    font-size: 0.8rem;
-  }
-}
-
-@media (min-width: 992px) {
-  .button-dl {
-    font-size: 0.8rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  .button-dl {
-    font-size: 0.8rem;
-  }
-}
-
-.custom-form {
-  background-color: white;
-  border-radius: 5px;
-  padding: 20px;
-  height: auto;
-  margin-bottom: 15px;
-}
-
-@media (max-width: 575.98px) {
-  .tab,
-  .jump-to,
-  .button-dl {
-    font-size: 0.7rem;
-  }
-
-  .custom-form {
-    padding: 15px;
-  }
-}
-
 .table-start {
     font-size: 0.8rem;
     width: 100%;
@@ -177,22 +61,126 @@ body {
     color: rgb(122, 149, 255);
 }
 
+body {
+    font-family: "Montserrat", sans-serif;
+}
+
+.custom-container {
+    max-width: 600px; /* Adjust the max-width as needed */
+    margin: auto;
+}
+
+.custom-row {
+    margin-top: 10px;
+}
+
+.custom-form {
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    height: 400px;
+    margin-bottom: 15px;
+}
+.tab.active {
+    color: rgb(
+        2,
+        17,
+        79
+    ); /* Change the color as desired for the active state */
+}
+
+.jump-to.active {
+    background-color: rgb(2, 17, 79);
+    color: white;
+}
+.tab {
+    font-size: 0.9rem;
+    font-family: "Montserrat", sans-serif;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.tab:hover {
+    color: rgb(122, 149, 255);
+
+    /* Change the color as desired */
+}
+.text-danger {
+    font-size: 0.8rem;
+    color: red;
+}
+.confirmation-letter:hover {
+    margin-left: 8px;
+    margin-right: 5px;
+    width: 98%;
+    background-color: rgb(2, 17, 79);
+    color: white;
+}
+.appointment-order:hover {
+    margin-left: 8px;
+    margin-right: 5px;
+    width: 98%;
+    background-color: rgb(2, 17, 79);
+    color: white;
+}
+
+.jump-to {
+    background-color: white;
+    padding: 5px;
+    cursor: pointer;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    transition: color 0.3s ease-in-out;
+    border: none;
+    border-radius: 5px;
+}
+
+.jump-to:hover {
+    color: rgb(122, 149, 255);
+    /* Change the color as desired */
+}
+.button-dl:hover {
+    color: rgb(122, 149, 255);
+}
+.submit-for-LR:hover {
+    color: rgb(122, 149, 255);
+}
+.button-dl {
+    width: 100%;
+    max-width: 120px;
+    font-size: 0.9rem; /* Decrease the font size to 0.9rem (14.4px by default) */
+    font-family: "Montserrat", sans-serif;
+    padding: 10px;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+@media (min-width: 768px) {
+    .button-dl {
+        font-size: 0.9rem; /* Increase font size for medium-sized screens */
+    }
+}
+
+@media (min-width: 992px) {
+    .button-dl {
+        font-size: 0.9rem; /* Increase font size for large screens */
+    }
+}
+
+@media (min-width: 1200px) {
+    .button-dl {
+        font-size: 0.9rem; /* Increase font size for extra-large screens */
+    }
+}
+
+button.active {
+    background-color: rgb(2, 17, 79);
+    color: #fff;
+}
 /*End of document center/letter module */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .body {
     font-family: "Montserrat", sans-serif;

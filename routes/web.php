@@ -4,7 +4,9 @@ use App\Livewire\ApprovedDetails;
 use App\Livewire\Delegates;
 use App\Livewire\EmpLogin;
 use App\Livewire\EmployeesReview;
+use App\Livewire\Everyone;
 use App\Livewire\Feeds;
+
  
 use App\Livewire\Attendance;
 use App\Livewire\AuthChecking;
@@ -41,6 +43,7 @@ use App\Livewire\Documents;
 use App\Livewire\Declaration;
 use App\Livewire\Downloadform;
 use App\Livewire\Documentcenter;
+use App\Livewire\DocumentCenterLetters;
 use App\Livewire\EmpList;
 use App\Livewire\Investment;
 use App\Livewire\LeaveApply;
@@ -151,7 +154,7 @@ Route::middleware(['auth:com'])->group(function () {
     Route::get('/empregister', function () {
         return view('emp-register-view');
     });
-   // Route::get('/emplist', EmpList::class)->name('emplist');
+    // Route::get('/emplist', EmpList::class)->name('emplist');
     Route::get('/emplist', function () {
         return view('emp-list-view');
     });
@@ -177,6 +180,7 @@ Route::middleware(['auth:it'])->group(function () {
  
  
 Route::middleware(['auth:emp'])->group(function () {
+
     Route::get('/', Home::class)->name('home');
     Route::get('/LeaveBalanceAsOnADay', LeaveBalanaceAsOnADay::class);
  
@@ -190,15 +194,12 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/employee-swipes-data', EmployeeSwipesData::class)->name('employee-swipes-data');
     Route::get('/attendance-muster', AttendanceMuster::class)->name('attendance-muster');
     Route::get('/attendance-muster-data', AttendenceMasterDataNew::class)->name('attendance-muster-data');
- 
- 
     Route::get('/ProfileInfo', ProfileInfo::class)->name('profile.info');
     Route::get('/Settings', Settings::class);
- 
- 
+
     //Feeds Module
     Route::get('/Feeds', Feeds::class);
- 
+    Route::get('/everyone', Everyone::class);
  
     //People module
     Route::get('/PeoplesList', Peoples::class);
@@ -255,6 +256,7 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/approved-details/{leaveRequestId}', ApprovedDetails::class)->name('approved-details');
  
     Route::get('/holiday-calender', HolidayCalender::class)->name('holiday-calender');
+    Route::get('/document-center-letters', DocumentCenterLetters::class);
  
  
     Route::get('/view-pending-details', ViewPendingDetails::class)->name('view-pending-details');

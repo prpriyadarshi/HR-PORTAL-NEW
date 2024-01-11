@@ -1,5 +1,5 @@
 <?php
- 
+
 namespace App\Livewire;
 use Illuminate\Support\Facades\Auth;
 use App\Models\EmployeeDetails;
@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 use DateTime;
 use Livewire\Component;
- 
+
 class AttendenceMasterDataNew extends Component
 {
     public $currentMonth;
@@ -29,7 +29,7 @@ class AttendenceMasterDataNew extends Component
  
     public $results=[];
     public $distinctDatesMap;
- 
+
     public function searchfilter()
     {
         $searching = 1;
@@ -275,4 +275,3 @@ $distinctDatesMap = SwipeRecord::whereIn('emp_id', $employeeIds)
         return view('livewire.attendence-master-data-new',['Employees'=>$filteredEmployees,'EmployeesCount'=>$employeescount,'DistinctDatesMap'=>$distinctDatesMap,'DistinctDatesMapCount'=>$distinctDatesMapCount,'Holiday'=> $this->holiday,'ApprovedLeaveRequests1'=>$approvedLeaveRequests1 ]);
     }
 }
- 
