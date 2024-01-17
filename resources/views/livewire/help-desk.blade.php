@@ -220,7 +220,7 @@
 
             <table style="width: 100%; border-collapse: collapse;">
                 <thead>
-                    <tr style="background-color: #007BFF; color: white;">
+                    <tr style="background-color: rgb(2, 17, 79); color: white;">
                         <th style="padding: 10px;font-size:12px;text-align:center;width:120px">Request Raised By</th>
                         <th style="padding: 10px;font-size:12px;text-align:center">Category</th>
                         <th style="padding: 10px;font-size:12px;text-align:center">Subject</th>
@@ -269,7 +269,7 @@
 
             <table style="width: 100%; border-collapse: collapse;">
                 <thead>
-                    <tr style="background-color: #007BFF; color: white;">
+                    <tr style="background-color: rgb(2, 17, 79); color: white;">
                         <th style="padding: 10px;font-size:12px;text-align:center;width:120px">Request Raised By</th>
                         <th style="padding: 10px;font-size:12px;text-align:center">Category</th>
                         <th style="padding: 10px;font-size:12px;text-align:center">Subject</th>
@@ -318,7 +318,7 @@
 
             <table style="width: 100%; border-collapse: collapse;">
                 <thead>
-                    <tr style="background-color: #007BFF; color: white;">
+                    <tr style="background-color: rgb(2, 17, 79); color: white;">
                         <th style="padding: 10px;font-size:12px;text-align:center;width:120px">Request Raised By</th>
                         <th style="padding: 10px;font-size:12px;text-align:center">Category</th>
                         <th style="padding: 10px;font-size:12px;text-align:center">Subject</th>
