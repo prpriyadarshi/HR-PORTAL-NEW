@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Livewire;
-
 use Illuminate\Support\Facades\Auth;
 use App\Models\EmployeeDetails;
 use App\Models\HolidayCalendar;
@@ -18,17 +17,17 @@ class AttendenceMasterDataNew extends Component
 {
     public $currentMonth;
 
-    public $searching = 1;
+    public $searching=1;
     public  $holiday;
     public $notFound;
 
 
-
+  
     public $search;
     public $filteredEmployees;
     public $daysInMonth;
-
-    public $results = [];
+ 
+    public $results=[];
     public $distinctDatesMap;
 
     public function searchfilter()
@@ -38,99 +37,109 @@ class AttendenceMasterDataNew extends Component
         $loggedInEmpId = Auth::guard('emp')->user()->emp_id;
         $employees = EmployeeDetails::where('manager_id', $loggedInEmpId)->get();
         $nameFilter = $this->search; // Assuming $this->search contains the name filter
-        $filteredEmployees = $employees->filter(function ($employee) use ($nameFilter) {
-            return stripos($employee->first_name, $nameFilter) !== false ||
-                stripos($employee->last_name, $nameFilter) !== false ||
-                stripos($employee->emp_id, $nameFilter) !== false
-                || stripos($employee->job_title, $nameFilter) !== false
-                || stripos($employee->city, $nameFilter) !== false
-                || stripos($employee->state, $nameFilter) !== false;
-        });
+$filteredEmployees = $employees->filter(function ($employee) use ($nameFilter) {
+    return stripos($employee->first_name, $nameFilter) !== false ||
+        stripos($employee->last_name, $nameFilter) !== false ||
+        stripos($employee->emp_id, $nameFilter) !== false
+        ||stripos($employee->job_title, $nameFilter) !== false
+        ||stripos($employee->city, $nameFilter) !== false
+        ||stripos($employee->state, $nameFilter) !== false;
+});
 
-        if ($filteredEmployees->isEmpty()) {
-
-            $this->notFound = true; // Set a flag indicating that the name was not found
-        } else {
-            $this->notFound = false;
-        }
+if ($filteredEmployees->isEmpty()) {
+    
+    $this->notFound = true; // Set a flag indicating that the name was not found
+} else {
+    $this->notFound = false;
+}
+       
+       
+      
     }
     public function downloadExcel()
     {
-        // Your data to be exported to Excel
-        // Fetch employee id and name from SwipeRecord model
-        $loggedInEmpId = Auth::guard('emp')->user()->emp_id;
-        $employees = EmployeeDetails::where('manager_id', $loggedInEmpId)->select('emp_id', 'first_name', 'last_name')->get();
+         // Your data to be exported to Excel
+  // Fetch employee id and name from SwipeRecord model
+  $loggedInEmpId = Auth::guard('emp')->user()->emp_id;
+  $employees=EmployeeDetails::where('manager_id',$loggedInEmpId)->select('emp_id', 'first_name', 'last_name')->get();
+     
+ 
+    
+  
+  
+  
+
+ 
+  
+  // Your data to be exported to Excel
+  $data = [ ['List of Employees for Dec2023' ],
+      ['Employee ID', 'Name','No. of Present'],
+ 
+  ];
 
 
+$employeeIds = $employees->pluck('emp_id');
+  $distinctDatesMapCount = SwipeRecord::whereIn('swipe_records.emp_id', $employeeIds)
+  ->whereMonth('swipe_records.created_at', 12) // December
+  ->whereRaw('DAYOFWEEK(swipe_records.created_at) NOT IN (1, 7)') // Exclude Sunday (1) and Saturday (7)
+  ->join('employee_details', 'swipe_records.emp_id', '=', 'employee_details.emp_id')
+  ->selectRaw('swipe_records.emp_id, COUNT(DISTINCT DATE(swipe_records.created_at)) as date_count, employee_details.first_name, employee_details.last_name')
+  ->groupBy('swipe_records.emp_id', 'employee_details.first_name', 'employee_details.last_name')
+  ->get()
+  ->keyBy('emp_id')
+  ->toArray();
 
-
-
-
-
-
-
-        // Your data to be exported to Excel
-        $data = [
-            ['List of Employees for Dec2023'],
-            ['Employee ID', 'Name', 'No. of Present'],
-
-        ];
-
-
-        $employeeIds = $employees->pluck('emp_id');
-        $distinctDatesMapCount = SwipeRecord::whereIn('swipe_records.emp_id', $employeeIds)
-            ->whereMonth('swipe_records.created_at', 12) // December
-            ->whereRaw('DAYOFWEEK(swipe_records.created_at) NOT IN (1, 7)') // Exclude Sunday (1) and Saturday (7)
-            ->join('employee_details', 'swipe_records.emp_id', '=', 'employee_details.emp_id')
-            ->selectRaw('swipe_records.emp_id, COUNT(DISTINCT DATE(swipe_records.created_at)) as date_count, employee_details.first_name, employee_details.last_name')
-            ->groupBy('swipe_records.emp_id', 'employee_details.first_name', 'employee_details.last_name')
-            ->get()
-            ->keyBy('emp_id')
-            ->toArray();
-
-        foreach ($employees as $employee) {
-
-            foreach ($distinctDatesMapCount as $empId => $d1) {
-                if ($empId == $employee->emp_id) {
-
-
-                    $data[] = [$employee['emp_id'], $employee['first_name'] . ' ' . $employee['last_name'], $d1['date_count']];
-
-                    break;
-                }
-            }
+  foreach ($employees as $employee) {
+    
+    foreach($distinctDatesMapCount as $empId=>$d1)
+    {                           
+        if($empId ==$employee->emp_id)
+        {
+         
+         
+            $data[] = [$employee['emp_id'], $employee['first_name'] . ' ' . $employee['last_name'],$d1['date_count']];
+         
+            break;
         }
+   
+     
+       
+    }
+        
+      
+  }
 
-        // Create a temporary file
-        $tempFilePath = storage_path('app/public/' . Str::random(16) . '.csv');
+  // Create a temporary file
+  $tempFilePath = storage_path('app/public/' . Str::random(16) . '.csv');
 
-        // Open the file for writing
-        $file = fopen($tempFilePath, 'w');
+  // Open the file for writing
+  $file = fopen($tempFilePath, 'w');
 
-        // Write the data to the file
-        foreach ($data as $row) {
-            fputcsv($file, $row);
-        }
+  // Write the data to the file
+  foreach ($data as $row) {
+      fputcsv($file, $row);
+  }
 
-        // Close the file
-        fclose($file);
+  // Close the file
+  fclose($file);
 
-        // Set the response headers for download
-        $headers = [
-            'Content-Type' => 'text/csv',
-            'Content-Disposition' => 'attachment; filename="LATE_ARRIVALS"',
-        ];
+  // Set the response headers for download
+  $headers = [
+      'Content-Type' => 'text/csv',
+      'Content-Disposition' => 'attachment; filename="LATE_ARRIVALS"',
+  ];
 
-        // Return the response with the file and headers
-        return response()->stream(
-            function () use ($tempFilePath) {
-                readfile($tempFilePath);
-                // Delete the file after it has been streamed
-                File::delete($tempFilePath);
-            },
-            200,
-            $headers
-        );
+  // Return the response with the file and headers
+  return response()->stream(
+      function () use ($tempFilePath) {
+          readfile($tempFilePath);
+          // Delete the file after it has been streamed
+          File::delete($tempFilePath);
+      },
+      200,
+      $headers
+  );
+        
     }
     public function render()
     {
@@ -138,131 +147,131 @@ class AttendenceMasterDataNew extends Component
         $firstDayOfCurrentMonth = strtotime(date('Y-m-01')); // First day of the current month
         $previousMonth = strtotime('-1 month', $firstDayOfCurrentMonth); // First day of the previous month
 
-        $previousMonthName = date('F', $previousMonth);
-
+        $previousMonthName = date('F', $previousMonth); 
+      
         $currentYear1 = date('Y');
         $year = 2023;
         $this->holiday = HolidayCalendar::where('month', $previousMonthName)
             ->where('year', $year)
             ->pluck('date');
-
-
+        
+       
         // Total number of days in the current month
-        $daysInMonth1 = cal_days_in_month(CAL_GREGORIAN, $currentMonth1, $currentYear1);
-
+         $daysInMonth1= cal_days_in_month(CAL_GREGORIAN, $currentMonth1, $currentYear1);
+     
         $currentMonth = now()->format('n');
         $this->daysInMonth = now()->daysInMonth;
-
+       
         $loggedInEmpId = Auth::guard('emp')->user()->emp_id;
-        $employees = EmployeeDetails::where('manager_id', $loggedInEmpId)->select('emp_id', 'first_name', 'last_name')->get();
+        $employees=EmployeeDetails::where('manager_id',$loggedInEmpId)->select('emp_id', 'first_name', 'last_name')->get();
+       
+        
+        $employeescount=EmployeeDetails::where('manager_id',$loggedInEmpId)->count();
+      
+    // You can now loop through $attendanceRecords to access the records
+    
+  
+   
+    $managerId = $loggedInEmpId;
+// $swipes now contains $managerId = $loggedInEmpId;
+
+$employees = EmployeeDetails::where('manager_id', $managerId)
+->select('emp_id', 'first_name', 'last_name','job_title','city')
+->get();
+if($this->searching==1)
+{
+$nameFilter = $this->search; // Assuming $this->search contains the name filter
+$filteredEmployees = $employees->filter(function ($employee) use ($nameFilter) {
+    return stripos($employee->first_name, $nameFilter) !== false ||
+        stripos($employee->last_name, $nameFilter) !== false ||
+        stripos($employee->emp_id, $nameFilter) !== false;
+});
+
+if ($filteredEmployees->isEmpty()) {
+    $this->notFound = true; // Set a flag indicating that the name was not found
+} else {
+    $this->notFound = false;
+}
+}
+else
+{
+    $filteredEmployees=$employees;
+}
 
 
-        $employeescount = EmployeeDetails::where('manager_id', $loggedInEmpId)->count();
+$employeeIds = $employees->pluck('emp_id');
 
-        // You can now loop through $attendanceRecords to access the records
+$distinctDatesMap = SwipeRecord::whereIn('emp_id', $employeeIds)
+    ->whereMonth('created_at', 12) // December
+    ->selectRaw('DISTINCT emp_id, DATE(created_at) as distinct_date ')
+    ->get()
+    ->groupBy('emp_id')
+    ->map(function ($dates) {
+        return $dates->pluck('distinct_date')->toArray();
+    })
+    ->toArray();
+   
+    
 
+    
+    $distinctDatesMapCount = SwipeRecord::whereIn('swipe_records.emp_id', $employeeIds)
+    ->whereMonth('swipe_records.created_at', 12) // December
+    ->whereRaw('DAYOFWEEK(swipe_records.created_at) NOT IN (1, 7)') // Exclude Sunday (1) and Saturday (7)
+    ->join('employee_details', 'swipe_records.emp_id', '=', 'employee_details.emp_id')
+    ->selectRaw('swipe_records.emp_id, COUNT(DISTINCT DATE(swipe_records.created_at)) as date_count, employee_details.first_name, employee_details.last_name')
+    ->groupBy('swipe_records.emp_id', 'employee_details.first_name', 'employee_details.last_name')
+    ->get()
+    ->keyBy('emp_id')
+    ->toArray();
+  
+    $approvedLeaveRequests = LeaveRequest::join('employee_details', 'leave_applies.emp_id', '=', 'employee_details.emp_id')
+    ->where('leave_applies.status', 'approved')
+    ->whereIn('leave_applies.emp_id', $employees->pluck('emp_id'))
+    ->where('employee_details.manager_id', $managerId) // Add condition for manager's ID
+    ->whereDate('from_date', '>=', '2023-12-01') // Start of the current month
+    ->whereDate('to_date', '<=','2023-12-31') // End of the current month
+    ->get(['leave_applies.*', 'employee_details.first_name', 'employee_details.last_name'])
+    ->map(function ($leaveRequest) {
+        // Calculate the number of days between from_date and to_date
+        $fromDate = \Carbon\Carbon::parse($leaveRequest->from_date);
+        $toDate = \Carbon\Carbon::parse($leaveRequest->to_date);
+    
+        $leaveRequest->number_of_days = $fromDate->diffInDays($toDate) + 1; // Add 1 to include both start and end dates
+    
+        return $leaveRequest;
+    });
+    $approvedLeaveRequests1 = LeaveRequest::join('employee_details', 'leave_applies.emp_id', '=', 'employee_details.emp_id')
+    ->where('leave_applies.status', 'approved')
+    ->whereIn('leave_applies.emp_id', $employeeIds)
+    ->whereDate('from_date', '>=', '2023-12-01')
+    ->whereDate('to_date', '<=', '2023-12-31')
+    ->get(['leave_applies.*', 'employee_details.emp_id', 'employee_details.first_name', 'employee_details.last_name'])
+    ->mapWithKeys(function ($leaveRequest) {
+        $fromDate = \Carbon\Carbon::parse($leaveRequest->from_date);
+        $toDate = \Carbon\Carbon::parse($leaveRequest->to_date);
 
+        $number_of_days = $fromDate->diffInDays($toDate) + 1;
 
-        $managerId = $loggedInEmpId;
-        // $swipes now contains $managerId = $loggedInEmpId;
-
-        $employees = EmployeeDetails::where('manager_id', $managerId)
-            ->select('emp_id', 'first_name', 'last_name', 'job_title', 'city')
-            ->get();
-        if ($this->searching == 1) {
-            $nameFilter = $this->search; // Assuming $this->search contains the name filter
-            $filteredEmployees = $employees->filter(function ($employee) use ($nameFilter) {
-                return stripos($employee->first_name, $nameFilter) !== false ||
-                    stripos($employee->last_name, $nameFilter) !== false ||
-                    stripos($employee->emp_id, $nameFilter) !== false ||
-                    stripos($employee->job_title, $nameFilter) !== false ||
-                    stripos($employee->city, $nameFilter) !== false ||
-                    stripos($employee->state, $nameFilter) !== false;
-            });
-
-            if ($filteredEmployees->isEmpty()) {
-                $this->notFound = true; // Set a flag indicating that the name was not found
-            } else {
-                $this->notFound = false;
-            }
-        } else {
-            $filteredEmployees = $employees;
+        $dates = [];
+        for ($i = 0; $i < $number_of_days; $i++) {
+            $dates[] = $fromDate->copy()->addDays($i)->toDateString();
         }
 
+        return [
+            $leaveRequest->emp_id => [
+                'emp_id' => $leaveRequest->emp_id,
+              
+                'dates' => $dates,
+            ],
+        ];
+    });
 
-        $employeeIds = $employees->pluck('emp_id');
+ 
+// Merge the two collections
+ 
+// $presentEmployees now contains the list of employees present for the current month
+ 
 
-        $distinctDatesMap = SwipeRecord::whereIn('emp_id', $employeeIds)
-            ->whereMonth('created_at', 12) // December
-            ->selectRaw('DISTINCT emp_id, DATE(created_at) as distinct_date ')
-            ->get()
-            ->groupBy('emp_id')
-            ->map(function ($dates) {
-                return $dates->pluck('distinct_date')->toArray();
-            })
-            ->toArray();
-
-
-
-
-        $distinctDatesMapCount = SwipeRecord::whereIn('swipe_records.emp_id', $employeeIds)
-            ->whereMonth('swipe_records.created_at', 12) // December
-            ->whereRaw('DAYOFWEEK(swipe_records.created_at) NOT IN (1, 7)') // Exclude Sunday (1) and Saturday (7)
-            ->join('employee_details', 'swipe_records.emp_id', '=', 'employee_details.emp_id')
-            ->selectRaw('swipe_records.emp_id, COUNT(DISTINCT DATE(swipe_records.created_at)) as date_count, employee_details.first_name, employee_details.last_name')
-            ->groupBy('swipe_records.emp_id', 'employee_details.first_name', 'employee_details.last_name')
-            ->get()
-            ->keyBy('emp_id')
-            ->toArray();
-
-        $approvedLeaveRequests = LeaveRequest::join('employee_details', 'leave_applies.emp_id', '=', 'employee_details.emp_id')
-            ->where('leave_applies.status', 'approved')
-            ->whereIn('leave_applies.emp_id', $employees->pluck('emp_id'))
-            ->where('employee_details.manager_id', $managerId) // Add condition for manager's ID
-            ->whereDate('from_date', '>=', '2023-12-01') // Start of the current month
-            ->whereDate('to_date', '<=', '2023-12-31') // End of the current month
-            ->get(['leave_applies.*', 'employee_details.first_name', 'employee_details.last_name'])
-            ->map(function ($leaveRequest) {
-                // Calculate the number of days between from_date and to_date
-                $fromDate = \Carbon\Carbon::parse($leaveRequest->from_date);
-                $toDate = \Carbon\Carbon::parse($leaveRequest->to_date);
-
-                $leaveRequest->number_of_days = $fromDate->diffInDays($toDate) + 1; // Add 1 to include both start and end dates
-
-                return $leaveRequest;
-            });
-        $approvedLeaveRequests1 = LeaveRequest::join('employee_details', 'leave_applies.emp_id', '=', 'employee_details.emp_id')
-            ->where('leave_applies.status', 'approved')
-            ->whereIn('leave_applies.emp_id', $employeeIds)
-            ->whereDate('from_date', '>=', '2023-12-01')
-            ->whereDate('to_date', '<=', '2023-12-31')
-            ->get(['leave_applies.*', 'employee_details.emp_id', 'employee_details.first_name', 'employee_details.last_name'])
-            ->mapWithKeys(function ($leaveRequest) {
-                $fromDate = \Carbon\Carbon::parse($leaveRequest->from_date);
-                $toDate = \Carbon\Carbon::parse($leaveRequest->to_date);
-
-                $number_of_days = $fromDate->diffInDays($toDate) + 1;
-
-                $dates = [];
-                for ($i = 0; $i < $number_of_days; $i++) {
-                    $dates[] = $fromDate->copy()->addDays($i)->toDateString();
-                }
-
-                return [
-                    $leaveRequest->emp_id => [
-                        'emp_id' => $leaveRequest->emp_id,
-
-                        'dates' => $dates,
-                    ],
-                ];
-            });
-
-
-        // Merge the two collections
-
-        // $presentEmployees now contains the list of employees present for the current month
-
-
-        return view('livewire.attendence-master-data-new', ['Employees' => $filteredEmployees, 'EmployeesCount' => $employeescount, 'DistinctDatesMap' => $distinctDatesMap, 'DistinctDatesMapCount' => $distinctDatesMapCount, 'Holiday' => $this->holiday, 'ApprovedLeaveRequests1' => $approvedLeaveRequests1]);
+        return view('livewire.attendence-master-data-new',['Employees'=>$filteredEmployees,'EmployeesCount'=>$employeescount,'DistinctDatesMap'=>$distinctDatesMap,'DistinctDatesMapCount'=>$distinctDatesMapCount,'Holiday'=> $this->holiday,'ApprovedLeaveRequests1'=>$approvedLeaveRequests1 ]);
     }
 }
