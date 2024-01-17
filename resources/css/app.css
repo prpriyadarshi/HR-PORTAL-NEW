@@ -7,122 +7,41 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
-/*Start of document center/letter module */
-/* Add these styles to your CSS file or style section */
-body {
-  font-family: 'Montserrat', sans-serif;
-}
-.confirmation-letter:hover{
-    background-color: rgb(122, 149, 255);
-    width: 98%;
-    margin-left: 5px;
-}
-.appointment-order:hover{
-    background-color: rgb(122, 149, 255);
-    width: 98%;
-    margin-left: 5px;
-
-}
-.container {
-  max-width: 100%;
-  padding: 0 15px;
-  margin: auto;
-}
-
-.row {
-  margin: 0;
-}
-
-.tab.active,
-.jump-to.active {
-  color: rgb(10, 35, 134);
-}
-
-.tab {
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: color 0.3s ease-in-out;
-}
-
-.tab:hover {
-  color:  rgb(122, 149, 255);
-}
-
-.jump-to {
-  cursor: pointer;
-  font-size: 0.8rem;
-  margin-top: 5px;
-  transition: color 0.3s ease-in-out;
-  border: none;
-  background-color: white;
-}
-
-.jump-to:hover {
-  color:rgb(122, 149, 255);
-}
-.jump-to.active{
-    border: none;
-    background-color: rgb(2, 17, 79);
+/* Staring of auth checking module (Kumar Asapu)*/
+ .card-body {
+    background-color: white;
+    padding: 20px;
+    width: 80%;
+    margin-top: 30px;
     border-radius: 5px;
-    color: white;
 }
 
-.button-dl {
-  width: 100%;
-  max-width: 120px;
-  font-size: 0.8rem;
-  font-family: 'Montserrat', sans-serif;
-  padding: 10px;
-  background-color: white;
-  border: none;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-.button-dl:hover{
-    background-color: rgb(122, 149, 255);
-    color:white;
-}
-.button-dl.active {
+table th {
     background-color: rgb(2, 17, 79);
-    color:white; 
+    color: white;
+    padding: 10px;
 }
 
-@media (min-width: 768px) {
-  .button-dl {
-    font-size: 0.8rem;
-  }
+table td {
+    padding: 10px;
 }
 
-@media (min-width: 992px) {
-  .button-dl {
-    font-size: 0.8rem;
-  }
+table a {
+    text-decoration: none;
+    color: #007BFF;
 }
+/* Ending of auth checking module (Kumar Asapu)*/
 
-@media (min-width: 1200px) {
-  .button-dl {
-    font-size: 0.8rem;
-  }
-}
 
-.custom-form {
-  background-color: white;
-  border-radius: 5px;
-  padding: 20px;
-  height: auto;
-  margin-bottom: 15px;
-}
 
-@media (max-width: 575.98px) {
-  .tab,
-  .jump-to,
-  .button-dl {
-    font-size: 0.7rem;
-  }
 
-  .custom-form {
-    padding: 15px;
-  }
+/* Starting of letter request module (Kumar Asapu)*/
+ .custom-form {
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    height: auto;
+    margin-bottom: 15px;
 }
 
 .table-start {
@@ -134,27 +53,693 @@ body {
 .table-header {
     padding: 5px;
     background-color: rgb(2, 17, 79);
-    color: #fff; /* Text color for header */
+    color: #fff;
+    /* Text color for header */
 }
 
 .table-body tr:nth-child(even) {
-    background-color: #f2f2f2; /* Alternate row background color */
+    background-color: #f2f2f2;
+    /* Alternate row background color */
 }
-.table-header tr,th{
+
+.table-header tr,
+th {
     padding: 5px;
     text-align: center;
 }
+
 .table-body td,
-.table-body tr, 
+.table-body tr,
 .table-body th {
     padding: 10px;
     text-align: center;
-    border: 1px solid #ddd; /* Border color */
+    border: 1px solid #ddd;
+    /* Border color */
 }
 
 .table-body th {
     background-color: rgb(2, 17, 79);
-    color: #fff; /* Text color for header cells */
+    color: #fff;
+    /* Text color for header cells */
+}
+
+.button-dl {
+    width: 100%;
+    max-width: 120px;
+    font-size: 0.8rem;
+    font-family: "Montserrat", sans-serif;
+    padding: 10px;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.button-dl:hover {
+    background-color: rgb(122, 149, 255);
+    color: white;
+}
+
+.button-dl.active {
+    background-color: rgb(2, 17, 79);
+    color: white;
+}
+/* Ending of letter request module (Kumar Asapu)*/
+
+
+/* Starting of home module (Kumar Asapu,Archana Goud,Divya Bandari,Pranita Priyadarshi)*/
+ body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.left-menu {
+    width: 150px;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f0f0f0;
+    padding: auto 30px;
+
+    /* Add a vertical line to the right of the left menu */
+}
+
+.left-menu h2 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+
+th {
+    background-color: #f2f2f2;
+}
+
+.greet {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    tab-size: 4;
+    -webkit-text-size-adjust: 100%;
+    visibility: inherit;
+    font-family: Open Sans, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    box-sizing: border-box;
+    border: 0 solid;
+    --tw-shadow: 0 0 transparent;
+    --tw-ring-inset: var(--tw-empty, );
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: rgba(59, 130, 246, 0.5);
+    --tw-ring-offset-shadow: 0 0 transparent;
+    --tw-ring-shadow: 0 0 transparent;
+}
+
+.circle {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* margin: 5px; */
+}
+
+.initials {
+    color: #778899;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.banner-ad {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    tab-size: 4;
+    -webkit-text-size-adjust: 100%;
+    visibility: inherit;
+    font-family: Open Sans, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    text-align: left;
+    box-sizing: border-box;
+    border: 0 solid;
+    --tw-shadow: 0 0 transparent;
+    --tw-ring-inset: var(--tw-empty, );
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: rgba(59, 130, 246, 0.5);
+    --tw-ring-offset-shadow: 0 0 transparent;
+    --tw-ring-shadow: 0 0 transparent;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    max-width: 32rem;
+    --tw-text-opacity: 1;
+    color: rgba(103, 122, 142, var(--tw-text-opacity));
+}
+
+
+@keyframes mergeAndJumble {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    25% {
+        transform: translate(100px, 0);
+    }
+
+    50% {
+        transform: translate(100px, 100px);
+    }
+
+    75% {
+        transform: translate(0, 100px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.animate {
+    animation: mergeAndJumble 0.3s forwards;
+}
+
+.animate {
+    animation: mergeAndJumble 0.3s forwards;
+}
+
+.notify {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    align-items: center;
+}
+
+.team-Notify {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding: 5px 10px;
+}
+
+.who-is-in {
+    display: flex;
+    background: #fff;
+    margin-top: 10px;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.home-hover {
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 5px;
+}
+
+.animate {
+    animation: mergeAndJumble 0.3s forwards;
+}
+
+.notify {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    align-items: center;
+}
+
+.home-hover {
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 5px;
+}
+
+
+
+.home-hover:hover {
+    transform: scale(1.01);
+    cursor: pointer;
+
+
+    box-shadow: 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.leave-display {
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    background: #fafafa;
+    text-overflow: ellipsis;
+    border-top: 1px solid #ccc;
+    font-size: 12px;
+    gap: 15px;
+}
+
+.team-leave {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 12px;
+    gap: 12px;
+    margin-top: -10px;
+}
+
+.net-salary {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    justify-content: space-between;
+    text-overflow: ellipsis;
+}
+/* Ending of home module (Kumar Asapu,Archana Goud,Divya Bandari,Pranita Priyadarshi)*/
+
+
+
+/* Starting of settings module (Kumar Asapu)*/
+ table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+/* Ending of settings module (Kumar Asapu)*/
+
+
+/* Starting of tasks module (Kumar Asapu)*/
+ body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.task-header h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Profile Information */
+.profile-info {
+    display: none;
+    /* Initially hidden */
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Icons */
+.icon {
+    font-size: 1.25rem;
+    color: #333;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.icon:hover {
+    color: #007BFF;
+}
+
+.priority-container {
+    display: flex;
+    margin-top: 20px;
+}
+
+.priority-option {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.priority-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+/* Priority Colors */
+.priority-low {
+    background-color: #1AB89B;
+}
+
+.priority-medium {
+    background-color: #F2B13F;
+}
+
+.priority-high {
+    background-color: #F05454;
+}
+
+.selected {
+    border: 2px solid #007BFF;
+}
+
+.text-danger {
+    font-size: 12px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: rgb(2, 17, 79);
+    color: white;
+    padding: 10px;
+    font-size: 12px;
+    text-align: center;
+}
+
+td {
+    padding: 10px;
+    font-size: 12px;
+    text-align: center;
+    width: 100px;
+    color: black
+        /* Adjust this width as needed */
+}
+
+/* Style the "View File" link */
+a.view-file {
+    text-decoration: none;
+    color: #007BFF;
+}
+
+/* Style the "Close" button */
+button.close-button {
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+}
+/* Ending of tasks module (Kumar Asapu)*/
+
+
+
+/* Starting of profile info module (Kumar Asapu)*/
+.custom-nav-link {
+    color: rgb(2, 17, 79);
+    cursor: pointer;
+    margin-right:15px;
+    text-decoration: none;
+
+    /* Text color for inactive tabs */
+}
+
+
+
+.custom-nav-link.active {
+    margin-top: 5px;
+    color: white;
+    background-color: rgb(2, 17, 79);
+    border-radius: 5px;
+    padding: 5px;
+    text-decoration: none;
+    
+}
+.nav-item {
+    text-decoration: none;
+    
+}
+/* Ending of profile info module (Kumar Asapu)*/
+
+  
+/* Starting of peoples module (Kumar Asapu)*/
+.people-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.text-yellow {
+    color: yellow;
+}
+
+.text-gray {
+    color: gray;
+}
+
+.col-6 {
+    width: 250px;
+}
+/* Ending of peoples module (Kumar Asapu)*/
+
+
+/* Starting help desk module (Kumar Asapu)*/
+.card-body {
+    background-color: white;
+    padding: 20px;
+    width: 80%;
+    margin-top: 30px;
+    border-radius: 5px;
+}
+
+table th {
+    background-color: rgb(2, 17, 79);
+    color: white;
+    padding: 10px;
+}
+
+table td {
+    padding: 10px;
+}
+
+table a {
+    text-decoration: none;
+    color: #007BFF;
+}
+
+.text-danger {
+    font-size: 12px;
+}
+
+.rotate {
+    transition: transform 0.5s;
+}
+
+.rotate.rotate-180 {
+    transform: rotate(180deg);
+}
+
+.custom-button {
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.submit-button {
+    background-color: green;
+}
+
+.cancel-button {
+    background-color: red;
+}
+
+td {
+    color: black
+}
+/* Ending help desk module (Kumar Asapu)*/
+
+
+
+
+
+/* Starting document center/letters module (Kumar Asapu)*/
+body {
+    font-family: "Montserrat", sans-serif;
+}
+
+.confirmation-letter:hover {
+    background-color: rgb(122, 149, 255);
+    width: 98%;
+    margin-left: 5px;
+}
+
+.appointment-order:hover {
+    background-color: rgb(122, 149, 255);
+    width: 98%;
+    margin-left: 5px;
+}
+
+.container {
+    max-width: 100%;
+    padding: 0 15px;
+    margin: auto;
+}
+
+.row {
+    margin: 0;
+}
+
+.tab.active,
+.jump-to.active {
+    color: rgb(10, 35, 134);
+}
+
+.tab {
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.tab:hover {
+    color: rgb(122, 149, 255);
+}
+
+.jump-to {
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    transition: color 0.3s ease-in-out;
+    border: none;
+    background-color: white;
+}
+
+.jump-to:hover {
+    color: rgb(122, 149, 255);
+}
+
+.jump-to.active {
+    border: none;
+    background-color: rgb(2, 17, 79);
+    border-radius: 5px;
+    color: white;
+}
+
+.button-dl {
+    width: 100%;
+    max-width: 120px;
+    font-size: 0.8rem;
+    font-family: "Montserrat", sans-serif;
+    padding: 10px;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.button-dl:hover {
+    background-color: rgb(122, 149, 255);
+    color: white;
+}
+
+.button-dl.active {
+    background-color: rgb(2, 17, 79);
+    color: white;
+}
+
+@media (min-width: 768px) {
+    .button-dl {
+        font-size: 0.8rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .button-dl {
+        font-size: 0.8rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .button-dl {
+        font-size: 0.8rem;
+    }
+}
+
+.custom-form {
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 575.98px) {
+    .tab,
+    .jump-to,
+    .button-dl {
+        font-size: 0.7rem;
+    }
+
+    .custom-form {
+        padding: 15px;
+    }
+}
+
+.table-start {
+    font-size: 0.8rem;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-header {
+    padding: 5px;
+    background-color: rgb(2, 17, 79);
+    color: #fff;
+    /* Text color for header */
+}
+
+.table-body tr:nth-child(even) {
+    background-color: #f2f2f2;
+    /* Alternate row background color */
+}
+
+.table-header tr,
+th {
+    padding: 5px;
+    text-align: center;
+}
+
+.table-body td,
+.table-body tr,
+.table-body th {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+    /* Border color */
+}
+
+.table-body th {
+    background-color: rgb(2, 17, 79);
+    color: #fff;
+    /* Text color for header cells */
 }
 
 .text-center {
@@ -168,27 +753,18 @@ body {
     color: white;
     margin-bottom: 8px;
 }
+
 .a-back {
     color: white;
     text-decoration: none;
 }
+
 .a-back:hover {
     text-decoration: none;
     color: rgb(122, 149, 255);
 }
 
-/*End of document center/letter module */
-
-
-
-
-
-
-
-
-
-
-
+/*End of document center/letter module (Kumar Asapu) */
 
 
 

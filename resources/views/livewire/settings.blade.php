@@ -1,21 +1,5 @@
 <div>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
- 
-        th,
-        td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: center;
-        }
- 
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+
     <div class="row">
         <div wire:click="open" class="col" style="margin-left: 58%;color:rgb(2, 17, 79)">
             View Login History

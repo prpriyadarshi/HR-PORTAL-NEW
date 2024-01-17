@@ -1,33 +1,5 @@
 <div>
-    <style>
- 
- 
 
-        .custom-nav-link {
-            color: rgb(2, 17, 79);
-            cursor: pointer;
-            margin-right:15px;
-            text-decoration: none;
-
-            /* Text color for inactive tabs */
-        }
-
-
-
-        .custom-nav-link.active {
-            margin-top: 5px;
-            color: white;
-            background-color: rgb(2, 17, 79);
-            border-radius: 5px;
-            padding: 5px;
-            text-decoration: none;
-            
-        }
-        .nav-item {
-            text-decoration: none;
-            
-        }
-    </style>
     <div class="row">
 
 

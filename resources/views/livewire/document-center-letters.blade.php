@@ -106,9 +106,9 @@
             <div class="row" style="margin-top:15px;">
                 <div class="col-md-6">
                     <form wire:submit.prevent="submit" wire:loading.attr="disabled">
-                        <div class="form-group row">
-                            <label for="priority" class="col-sm-3 col-form-label">Letter Type</label>
-                            <div class="col-sm-9">
+                        <div style="margin-bottom: 8px;" class="form-group row">
+                            <label for="priority" class="col-sm-4 col-form-label">Letter Type</label>
+                            <div class="col-sm-8">
                                 <select wire:model="letter_type" style="font-size: 0.9rem;" class="form-control" id="priority" name="priority">
                                     <option value="">Select Type</option>
                                     <option value="Confirmation Letter">Confirmation Letter</option>
@@ -119,9 +119,9 @@
                             @error('letter_type') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
 
-                        <div class="form-group row">
-                            <label for="priority" class="col-sm-3 col-form-label">Priority</label>
-                            <div class="col-sm-9">
+                        <div style="margin-bottom: 8px;" class="form-group row">
+                            <label for="priority" class="col-sm-4 col-form-label">Priority</label>
+                            <div class="col-sm-8">
                                 <select wire:model="priority" style="font-size: 0.9rem;" class="form-control" id="priority" name="priority">
                                     <option value="">Select Priority</option>
                                     <option value="Low">Low</option>
@@ -132,9 +132,9 @@
                             @error('priority') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
 
-                        <div class="form-group row">
-                            <label for="reason" class="col-sm-3 col-form-label">Reason</label>
-                            <div class="col-sm-9">
+                        <div style="margin-bottom: 8px;" class="form-group row">
+                            <label for="reason" class="col-sm-4 col-form-label">Reason</label>
+                            <div class="col-sm-8">
                                 <textarea wire:model="reason" style="font-size: 0.9rem;" placeholder="Enter reason" class="form-control" id="reason" name="reason" rows="3"></textarea>
                             </div>
                             @error('reason') <span class="text-danger">{{ $message }}</span> @enderror
@@ -152,39 +152,30 @@
             </div>
             @endif
             @if($activeTab=="Pending")
-            <div style="text-align: center;justify-content:center;display:flex;align-items:center">
-                <div class="row mt-5">
-                    <img style="height: 250px" src="https://thumbs.dreamstime.com/b/biodata-isolated-vector-icon-dat-gemakkelijk-kan-wijzigen-uitgeven-166261728.jpg" alt="">
-                    <div>You don’t have any pending letter requests</div>
-                </div>
-            </div>
-            @endif
-            @if($activeTab=="History")
-            @if($allRequests)
             <div class="row">
                 <div class="table-responsive">
                     <table class="table-start">
                         <thead class="table-header">
-                            <tr >
-                                <th >Employee ID</th>
-                                <th >Letter Type</th>
-                                <th >Priority</th>
-                                <th >Reason</th>
-                                <th >Status</th>
+                            <tr>
+                                <th>Employee ID</th>
+                                <th>Letter Type</th>
+                                <th>Priority</th>
+                                <th>Reason</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody class="table-body">
-                            @forelse($allRequests as $request)
-                            <tr >
-                                <td >{{$request->emp_id}}</td>
-                                <td >{{$request->letter_type}}</td>
-                                <td >{{$request->priority}}</td>
-                                <td >{{$request->reason}}</td>
-                                <td >{{$request->status}}</td>
+                            @forelse ($allRequests->where('status', 'Pending') as $request)
+                            <tr>
+                                <td>{{$request->emp_id}}</td>
+                                <td>{{$request->letter_type}}</td>
+                                <td>{{$request->priority}}</td>
+                                <td>{{$request->reason}}</td>
+                                <td>{{$request->status}}</td>
                             </tr>
                             @empty
                             <tr>
-                                <td  colspan="5" class="text-center">No Records Found</td>
+                                <td colspan="5" class="text-center">No Records Found</td>
                             </tr>
                             @endforelse
                         </tbody>
@@ -192,15 +183,39 @@
                 </div>
 
             </div>
-            @else
-            <div style="text-align: center;justify-content:center;display:flex;align-items:center">
-                <div class="row mt-5">
-                    <img style="height: 250px" src="https://thumbs.dreamstime.com/b/biodata-isolated-vector-icon-dat-gemakkelijk-kan-wijzigen-uitgeven-166261728.jpg" alt="">
-                    <div>You have no requests in the history section</div>
-                </div>
-            </div>
-
             @endif
+            @if($activeTab=="History")
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table-start">
+                        <thead class="table-header">
+                            <tr>
+                                <th>Employee ID</th>
+                                <th>Letter Type</th>
+                                <th>Priority</th>
+                                <th>Reason</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-body">
+                            @forelse($allRequests as $request)
+                            <tr>
+                                <td>{{$request->emp_id}}</td>
+                                <td>{{$request->letter_type}}</td>
+                                <td>{{$request->priority}}</td>
+                                <td>{{$request->reason}}</td>
+                                <td>{{$request->status}}</td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="5" class="text-center">No Records Found</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
             @endif
         </div>
 

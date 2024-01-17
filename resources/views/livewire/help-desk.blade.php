@@ -6,37 +6,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <style>
-            .text-danger {
-                font-size: 12px;
-            }
-
-            .rotate {
-                transition: transform 0.5s;
-            }
-
-            .rotate.rotate-180 {
-                transform: rotate(180deg);
-            }
-
-            .custom-button {
-                border-radius: 5px;
-                padding: 5px 10px;
-                color: white;
-                cursor: pointer;
-            }
-
-            .submit-button {
-                background-color: green;
-            }
-
-            .cancel-button {
-                background-color: red;
-            }
-            td{
-                color:black
-            }
-        </style>
     </head>
 
     <body>
@@ -390,35 +359,6 @@
 
         </div>
         @endif
-
-
-
-
-
-        <style>
-            .card-body {
-                background-color: white;
-                padding: 20px;
-                width: 80%;
-                margin-top: 30px;
-                border-radius: 5px;
-            }
-
-            table th {
-                background-color: rgb(2, 17, 79);
-                color: white;
-                padding: 10px;
-            }
-
-            table td {
-                padding: 10px;
-            }
-
-            table a {
-                text-decoration: none;
-                color: #007BFF;
-            }
-        </style>
     </body>
 
     </html>

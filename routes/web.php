@@ -57,6 +57,7 @@ use App\Livewire\LeaveCancel;
 use App\Livewire\TeamOnLeave;
 use App\Livewire\HolidayCalender;
 use App\Livewire\LeaveBalanaceAsOnADay;
+use App\Livewire\LetterRequests;
 use App\Livewire\TeamOnLeaveChart;
  
 use App\Livewire\ViewDetails;
@@ -168,6 +169,7 @@ Route::middleware(['auth:com'])->group(function () {
  
 Route::middleware(['auth:hr'])->group(function () {
     Route::get('/hrPage', AuthChecking::class)->name('home');
+    Route::get('/letter-requests', LetterRequests::class)->name('letter-requests');
 });
  
 Route::middleware(['auth:finance'])->group(function () {

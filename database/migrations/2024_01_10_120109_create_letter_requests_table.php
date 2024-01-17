@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('letter_type');
             $table->string('priority');
             $table->string('reason');
-            $table->string('status')->default('Submitted');
+            $table->string('status')->default('Active');
             $table->foreign('emp_id')
                 ->references('emp_id')
                 ->on('employee_details')

@@ -1,30 +1,5 @@
 <div style="text-align:center">
 
-    <style>
-        .card-body {
-            background-color: white;
-            padding: 20px;
-            width: 80%;
-            margin-top: 30px;
-            border-radius: 5px;
-        }
-
-        table th {
-            background-color: rgb(2, 17, 79);
-            color: white;
-            padding: 10px;
-        }
-
-        table td {
-            padding: 10px;
-        }
-
-        table a {
-            text-decoration: none;
-            color: #007BFF;
-        }
-    </style>
-
     @auth('hr')
     <div class="col" style="margin-left:20%">
         <div class="card" style="width:400px;">
