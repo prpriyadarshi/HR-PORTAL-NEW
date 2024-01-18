@@ -105,7 +105,7 @@
 
             <div class="row" style="margin-top:15px;">
                 <div class="col-md-6">
-                    <form wire:submit.prevent="submit" wire:loading.attr="disabled">
+                    <form>
                         <div style="margin-bottom: 8px;" class="form-group row">
                             <label for="priority" class="col-sm-4 col-form-label">Letter Type</label>
                             <div class="col-sm-8">
@@ -141,7 +141,7 @@
                         </div>
 
                         <div style="text-align: center;">
-                            <button class="submit-for-LR" type="submit" style="background-color: rgb(2,17,79);color:white;padding:5px;border-radius:5px;border:none">Submit</button>
+                            <button class="submit-for-LR" type="button" wire:click="submitRequest" style="background-color: rgb(2,17,79);color:white;padding:5px;border-radius:5px;border:none">Submit</button>
                         </div>
                     </form>
 

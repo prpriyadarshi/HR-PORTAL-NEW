@@ -13,4 +13,9 @@
    @livewire('company-login-for-post-jobs') 
    @livewireScripts
 </body>
+<style>
+     .text-danger {
+        font-size: 12px;
+    }
+</style>
 </html>

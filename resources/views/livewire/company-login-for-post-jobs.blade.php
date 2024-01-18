@@ -1,9 +1,5 @@
 <div>
-    <style>
-    .text-danger {
-        font-size: 12px;
-    }
-    </style>
+
     <div style="text-align: center;background-color: #02134F;color:white;padding:8px;margin-bottom:10px">
         HR Login
     </div>
