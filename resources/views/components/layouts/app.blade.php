@@ -118,7 +118,7 @@
 
                                     <a class="nav-link" href="/" onclick="setActiveLink(this)">
 
-                                        <i class="fas fa-home"></i> Home
+                                        <i class="fas mr-1    fa-home"></i> Home
 
                                     </a>
 
@@ -128,7 +128,7 @@
 
                                     <a class="nav-link" href="/Feeds" onclick="setActiveLink(this)">
 
-                                        <i class="fas fa-rss"></i> Feeds
+                                        <i class="fas mr-1    fa-rss"></i> Feeds
 
                                     </a>
 
@@ -137,7 +137,7 @@
 
                                     <a class="nav-link" href="/PeoplesList" onclick="setActiveLink(this)">
 
-                                        <i class="fas fa-users"></i> People
+                                        <i class="fas mr-1    fa-users"></i> People
 
                                     </a>
 
@@ -145,7 +145,7 @@
 
                                 <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle3(item)">
                                     <a class="nav-link" onclick="toggleToDoDropdown()">
-                                        <i class="fas fa-file-alt" id="todo-icon"></i> Todo <i class="fas fa-caret-down" id="todo-caret"></i>
+                                        <i class="fas mr-1    fa-file-alt" id="todo-icon"></i> Todo <i class="fas mr-1    fa-caret-down" id="todo-caret"></i>
                                     </a>
                                     <div id="todo-options" style="display: none;">
                                         <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
@@ -169,7 +169,7 @@
 
                                 <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle12(item)">
                                     <a class="nav-link" onclick="toggleSalaryDropdown()">
-                                        <i class="fas fa-solid fa-money-bill-transfer" id="salary-icon"></i> Salary <i class="fas fa-caret-down" id="salary-caret"></i>
+                                        <i class="fas mr-1    fa-solid fa-money-bill-transfer" id="salary-icon"></i> Salary <i class="fas mr-1    fa-caret-down" id="salary-caret"></i>
                                     </a>
                                     <div id="salary-options" style="display: none;">
                                         <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
@@ -212,7 +212,7 @@
 
                                 <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5(item)">
                                     <a class="nav-link" onclick="toggleLeaveDropdown(event)">
-                                        <i class="fas fa-file-alt" id="leave-icon"></i> Leave <i class="fas fa-caret-down" id="leave-caret"></i>
+                                        <i class="fas mr-1    fa-file-alt" id="leave-icon"></i> Leave <i class="fas mr-1    fa-caret-down" id="leave-caret"></i>
                                     </a>
                                     <div id="leave-options" style="display: none;">
                                         <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
@@ -247,7 +247,7 @@
 
                                 <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle6(item)">
                                     <a class="nav-link" onclick="toggleAttendanceDropdown()">
-                                        <i class="fas fa-clock"></i> Attendance<i class="fas fa-caret-down" id="attendance-caret"></i>
+                                        <i class="fas mr-1    fa-clock"></i> Attendance<i class="fas mr-1    fa-caret-down" id="attendance-caret"></i>
                                     </a>
                                     <div id="attendance-options" style="display: none;">
                                         <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
@@ -280,7 +280,7 @@
 
                                     <a class="nav-link" href="/document" onclick="setActiveLink(this)">
 
-                                        <i class="fas fa-folder"></i> Document Center
+                                        <i class="fas mr-1    fa-folder"></i> Document Center
 
                                     </a>
 
@@ -291,7 +291,7 @@
 
                                     <a class="nav-link" href="/HelpDesk" onclick="setActiveLink(this)">
 
-                                        <i class="fas fa-headset"></i> Helpdesk
+                                        <i class="fas mr-1    fa-headset"></i> Helpdesk
 
                                     </a>
 
@@ -301,7 +301,7 @@
 
                                     <a class="nav-link" href="/delegates" onclick="setActiveLink(this)">
 
-                                        <i class="fas fa-user-friends"></i> Workflow Delegates
+                                        <i class="fas mr-1    fa-user-friends"></i> Workflow Delegates
 
                                     </a>
                                 </li>
@@ -311,8 +311,14 @@
 
                         @auth('hr')
                         <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none; margin-top: 10px" onclick="changePageTitle1()">
+                            <a class="nav-link" href="/home-dashboard" onclick="setActiveLink(this)">
+                                <i class="fas mr-1    fa-home"></i> Home
+                            </a>
+                        </li>
+
+                        <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none; margin-top: 10px" onclick="changePageTitle1()">
                             <a class="nav-link" href="/hrPage" onclick="setActiveLink(this)">
-                                <i class="fas fa-users"></i> HR Requests
+                                <i class="fas mr-1    fa-laptop"></i> HR Requests
                             </a>
                         </li>
 
@@ -320,7 +326,7 @@
 
                             <a class="nav-link" href="/letter-requests" onclick="setActiveLink(this)">
 
-                                <i class="fas fa-envelope"></i>
+                                <i class="fas mr-1    fa-envelope"></i>
                                 Letter Requests
 
                             </a>
@@ -331,7 +337,7 @@
                         @auth('it')
                         <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none; margin-top: 10px" onclick="changePageTitle1()">
                             <a class="nav-link" href="#" onclick="setActiveLink(this)">
-                                <i class="fas fa-laptop"></i> IT Requests
+                                <i class="fas mr-1    fa-laptop"></i> IT Requests
                             </a>
                         </li>
                         @endauth
@@ -339,7 +345,7 @@
                         @auth('finance')
                         <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none; margin-top: 10px" onclick="changePageTitle1()">
                             <a class="nav-link" href="#" onclick="setActiveLink(this)">
-                                <i class="fas fa-dollar-sign"></i> Finance Requests
+                                <i class="fas mr-1    fa-dollar-sign"></i> Finance Requests
                             </a>
                         </li>
                         @endauth
@@ -352,7 +358,7 @@
             <div class="col" style="height: 60px; width: auto; background-color:rgb(2, 17, 79)">
 
                 <div class="col" style="display: flex; align-items: center; margin-top:2%;justify-content: end;">
-                    <i class="fas fa-bars hideHamburger" style="color: #fff; font-size: 20px; margin: 0px 10px;; cursor: pointer;" onclick="myMenu()"></i>
+                    <i class="fas mr-1    fa-bars hideHamburger" style="color: #fff; font-size: 20px; margin: 0px 10px;; cursor: pointer;" onclick="myMenu()"></i>
 
                     @auth('emp')
 
@@ -368,22 +374,22 @@
                     </div>
                     <div class="notification-icon">
 
-                        <i style="color: white;" class="fas fa-bell"></i>
+                        <i style="color: white;" class="fas mr-1    fa-bell"></i>
 
                     </div>
                     @endauth
 
                     @if(auth('it')->check())
                     <h6 style="color: white; width: -webkit-fill-available;" id="pageTitle">
-                        <i style="color: white;" class="fas fa-laptop"></i> IT Requests
+                        <i style="color: white;" class="fas mr-1    fa-laptop"></i> IT Requests
                     </h6>
                     @elseif(auth('finance')->check())
                     <h6 style="color: white; width: -webkit-fill-available;" id="pageTitle">
-                        <i style="color: white;" class="fas fa-dollar-sign"></i> Finance Requests
+                        <i style="color: white;" class="fas mr-1    fa-dollar-sign"></i> Finance Requests
                     </h6>
                     @elseif(auth('hr')->check())
                     <h6 style="color: white; width: -webkit-fill-available;" id="pageTitle">
-                        <i style="color: white;" class="fas fa-users"></i> Requests
+                        <i style="color: white;" class="fas mr-1    fa-users"></i> Requests
                     </h6>
                     @endif
 
@@ -456,7 +462,7 @@
 
             function changePageTitle() {
 
-                var newIcon = '<i style="color: white;" class="fas fa-address-card"></i>'
+                var newIcon = '<i style="color: white;" class="fas mr-1    fa-address-card"></i>'
 
                 var newTitle = "Employee Information";
 
@@ -472,7 +478,7 @@
 
             function changePageTitle123() {
 
-                var newIcon = '<i style="color: white;" class="fas fa-cog"></i>'
+                var newIcon = '<i style="color: white;" class="fas mr-1    fa-cog"></i>'
 
                 var newTitle = "Settings";
 
@@ -491,7 +497,7 @@
 
                 var newTitle = "Home";
 
-                var newIcon = '<i style="color: white;" class="fas fa-home"></i>'
+                var newIcon = '<i style="color: white;" class="fas mr-1    fa-home"></i>'
 
                 document.getElementById("pageIcon").innerHTML = newIcon;
 
@@ -507,7 +513,7 @@
 
                 var newTitle = "Letter Requests";
 
-                var newIcon = '<i style="color: white;" class="fas fa-home"></i>'
+                var newIcon = '<i style="color: white;" class="fas mr-1    fa-home"></i>'
 
                 document.getElementById("pageIcon").innerHTML = newIcon;
 
@@ -523,7 +529,7 @@
 
             function changePageTitle2() {
 
-                var newIcon = '<i style="color: white;" class="fas fa-rss"></i>'
+                var newIcon = '<i style="color: white;" class="fas mr-1    fa-rss"></i>'
 
                 var newTitle = "Feeds";
 
@@ -539,15 +545,15 @@
 
 
             function changePageTitle3(item) {
-                var newIcon = '<i style="color: white;" class="fas fa-tasks"></i>';
+                var newIcon = '<i style="color: white;" class="fas mr-1    fa-tasks"></i>';
                 var newTitle = "To do";
 
                 if (item === 'task') {
-                    newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                    newIcon = '<i style="color: white;" class="fas mr-1    fa-file-alt"></i>';
                     newTitle = "Tasks";
                     todoDropdownClicked = true;
                 } else if (item === 'review') {
-                    newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                    newIcon = '<i style="color: white;" class="fas mr-1    fa-file-alt"></i>';
                     newTitle = "Review";
                     todoDropdownClicked = true;
                 }
@@ -562,7 +568,7 @@
 
             function changePageTitle4() {
 
-                var newIcon = '<i style="color: white;" class="fas fa-money-bill-wave"></i>'
+                var newIcon = '<i style="color: white;" class="fas mr-1    fa-money-bill-wave"></i>'
 
                 var newTitle = "Salary";
 
@@ -580,7 +586,7 @@
 
             function changePageTitle5() {
 
-                var newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>'
+                var newIcon = '<i style="color: white;" class="fas mr-1    fa-file-alt"></i>'
 
                 var newTitle = "Leave";
 
@@ -598,7 +604,7 @@
 
             function changePageTitle6() {
 
-                var newIcon = '<i style="color: white;" class="fas fa-clock"></i>'
+                var newIcon = '<i style="color: white;" class="fas mr-1    fa-clock"></i>'
 
                 var newTitle = "Attendence";
 
@@ -616,7 +622,7 @@
 
             function changePageTitle7() {
 
-                var newIcon = '<i style="color: white;" class="fas fa-folder"></i>'
+                var newIcon = '<i style="color: white;" class="fas mr-1    fa-folder"></i>'
 
                 var newTitle = "Document Center";
 
@@ -634,7 +640,7 @@
 
             function changePageTitle8() {
 
-                var newIcon = '<i style="color: white;" class="fas fa-users"></i>'
+                var newIcon = '<i style="color: white;" class="fas mr-1    fa-users"></i>'
 
                 var newTitle = "People";
 
@@ -652,7 +658,7 @@
 
             function changePageTitle9() {
 
-                var newIcon = '<i style="color: white;" class="fas fa-headset"></i>'
+                var newIcon = '<i style="color: white;" class="fas mr-1    fa-headset"></i>'
 
                 var newTitle = "Help Desk";
 
@@ -670,7 +676,7 @@
 
             function changePageTitle10() {
 
-                var newIcon = '<i style="color: white;" class="fas fa-user-friends"></i>'
+                var newIcon = '<i style="color: white;" class="fas mr-1    fa-user-friends"></i>'
 
                 var newTitle = "WorkFlow Delegates";
 
@@ -687,17 +693,17 @@
 
 
             function changePageTitle11() {
-                var newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                var newIcon = '<i style="color: white;" class="fas mr-1    fa-file-alt"></i>';
                 var newTitle = "Salary";
 
                 if (item === 'itdeclaration') {
-                    newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                    newIcon = '<i style="color: white;" class="fas mr-1    fa-file-alt"></i>';
                     newTitle = "IT Declaration";
                 } else if (item === 'itstatement') {
-                    newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                    newIcon = '<i style="color: white;" class="fas mr-1    fa-file-alt"></i>';
                     newTitle = "IT Statement";
                 } else if (item === 'slip') {
-                    newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                    newIcon = '<i style="color: white;" class="fas mr-1    fa-file-alt"></i>';
                     newTitle = "Pay Slip";
                 }
 
@@ -709,23 +715,23 @@
             }
 
             function changePageTitle5(item) {
-                var newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                var newIcon = '<i style="color: white;" class="fas mr-1    fa-file-alt"></i>';
                 var newTitle = "Leave";
 
                 if (item === 'apply') {
-                    newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                    newIcon = '<i style="color: white;" class="fas mr-1    fa-file-alt"></i>';
                     newTitle = "Leave Apply";
                 } else if (item === 'balances') {
-                    newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                    newIcon = '<i style="color: white;" class="fas mr-1    fa-file-alt"></i>';
                     newTitle = "Leave Balances";
                 } else if (item === 'calendar') {
-                    newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                    newIcon = '<i style="color: white;" class="fas mr-1    fa-file-alt"></i>';
                     newTitle = "Leave Calendar";
                 } else if (item === 'holiday') {
-                    newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                    newIcon = '<i style="color: white;" class="fas mr-1    fa-file-alt"></i>';
                     newTitle = "Holiday Calendar";
                 } else if (item === 'team') {
-                    newIcon = '<i style="color: white;" class="fas fa-file-alt"></i>';
+                    newIcon = '<i style="color: white;" class="fas mr-1    fa-file-alt"></i>';
                     newTitle = "Team on Leave";
                 }
 

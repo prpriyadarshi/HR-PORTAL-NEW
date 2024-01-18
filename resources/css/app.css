@@ -593,6 +593,7 @@ body {
 .nav-item .nav-link {
     color: black;
     text-decoration: none;
+    font-family: "Montserrat", sans-serif;
     font-weight: 500;
     font-size: 0.805rem;
     cursor: pointer;
@@ -854,3 +855,180 @@ body {
     }
 }
 /* end of app.blade */
+
+
+/* admin dashboard */
+.first {
+    background: #fcfcfc;
+    border: 1px solid #ccc;
+    color: rgb(2, 17, 79);
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .first:hover {
+    transform: scale(1.01);
+    cursor: pointer;
+    box-shadow: 1px 2px rgba(0, 0, 0, 0.2);
+  }
+  
+  .first p{
+    font-size:14px;
+    font-weight:500;
+    color:rgb(2, 17, 79);
+  }
+  .first span{
+    font-size:11px;
+    color:#778899;
+  }
+  .small-text{
+    font-size:0.625rem;
+  }
+  .card-body{
+    line-height:1.6;
+    padding:7px 0;
+    margin:0 auto;
+    text-align:start;
+  }
+  .card-text{
+    font-size:0.725rem;
+  }
+  .btn-start{
+    display: flex;
+    height: 28px;
+    color:white;
+    font-size:0.625rem;
+    padding: 5px 2px;
+    width:100px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    background:rgb(2, 17, 79);
+  }
+  /* end of admin dashboard */
+  
+  
+  /* start of add employee admin side */
+  .form-control {
+    width: 100%;
+    height: 25px;
+    font-size: 10px
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 12px;
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .form-group label {
+    font-weight: 500;
+    color: #5f6c79;
+    margin-bottom: 10px;
+  }
+  
+  a:hover {
+    color: green;
+  }
+  
+  .alert-container {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border-radius: 5px;
+    text-align: center;
+    display: none;
+    /* Initially hide the container */
+  }
+  
+  .close-btn {
+    cursor: pointer;
+    float: right;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .close-btn:hover {
+    color: #fff;
+    /* Change color on hover */
+  }
+  
+  .view-button {
+    background-color: rgb(2, 17, 79);
+    color: white;
+    border-radius: 7px;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 4px 10px;
+    font-size: 0.825rem;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .view-button:hover {
+    background-color: #0056b3;
+    color: #fff;
+  }
+  
+  .img-preview {
+    max-width: 100%;
+    height: 50px;
+    margin-top: 10px;
+  }
+  
+  
+  .text-danger {
+    font-size: 12px;
+  }
+  
+  
+  #success-message {
+    position: relative;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: center;
+  }
+  
+  #success-message .close-message {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    color: green;
+  }
+  
+  .custom-radio {
+    margin-right: 10px;
+    /* Adjust the margin to control the gap between radio buttons */
+  }
+  
+  .custom-radio input {
+    width: 10px;
+    /* Adjust the width to decrease the size of the radio buttons */
+    height: 10px;
+    /* Adjust the height to decrease the size of the radio buttons */
+  }
+  
+  .placeholder-small::placeholder {
+    font-size: 0.675rem; /* Adjust the font size as needed */
+    font-weight:normal;
+    color: #a1a1a1; /* Muted color */
+  }
+  /* end of admin add employee */
+  

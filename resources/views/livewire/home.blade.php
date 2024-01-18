@@ -54,8 +54,8 @@
                     <div class="home-col col-md-4 p-1 d-flex flex-column">
                         <div class="home-hover mb-2">
                                <div class="reviews">
-                                  <div class="bg-white rounded-border p-2" style="border: 1px solid #CFCACA;">
-                                  <div class="home-heading d-flex justify-content-between">
+                                  <div class="bg-white rounded-border" style="border: 1px solid #CFCACA;">
+                                  <div class="home-heading d-flex justify-content-between p-2">
                                        <div class="section-name rounded">
                                             Review
                                         </div>
@@ -64,14 +64,14 @@
                                         </div>
                                     </div>
                                     @if(($this->count) > 0)
-                                          <div class="notify">
+                                          <div class="notify d-flex justify-content-between mt-1 p-2">
                                                 <p style="color: black; font-size: 0.875rem; font-weight: 500;">
                                                     {{$count}} <br>
                                                     <span style="color: #778899; font-size: 0.795rem; font-weight: 500;">Things to review</span>
                                                 </p>
                                                 <img src="https://png.pngtree.com/png-vector/20190214/ourlarge/pngtree-vector-notes-icon-png-image_509622.jpg" alt="" style="height: 50px; width: 50px;">
                                             </div>
-                                            <div class="leave-display" >
+                                            <div class="leave-display d-flex border-top p-2" >
                                             @php
                                                 function getRandomColor() {
                                                     $colors = ['#FFD1DC', '#B0E57C', '#ADD8E6', '#E6E6FA', '#FFB6C1'];
@@ -86,12 +86,11 @@
                                                     $lastName = $leaveRequest->employee->last_name;
                                                     $initials = strtoupper(substr($firstName, 0, 1)) . strtoupper(substr($lastName, 0, 1));
                                                 ?>
-                                               <div class="circle-container" style="display: inline-block; margin-right: 10px;">
-                                                <div class="circle-notify" style="border-radius: 50%; background: #fcfdfe; padding: 7px 7px; border: 2px solid {{ getRandomColor() }}; display: inline-block;">
+                                               <div class="circle-container d-flex flex-column mr-3">
+                                               <div class="circle d-flex" style="border-radius: 50%;width: 35px;height: 35px;align-items: center;justify-content: center;border: 2px solid {{getRandomColor() }}">
                                                     <span style="color: #778899; font-weight: 500; font-size: 11px;">{{ $initials }}</span>
                                                 </div>
-                                                <br>
-                                                <span style="display: block; text-align: center;">Leave</span>
+                                                <span style="display: block; text-align: center;font-size:10px;">Leave</span>
                                             </div>
 
                                                 <?php
@@ -100,7 +99,7 @@
                                             @endfor
                                                
                                                 @if ($count > 4)
-                                                    <div class="circle-notify" style="color:blue;cursor:pointer; margin-top:20px;display:flex;flex-direction:column;align-items:center;">
+                                                    <div class="circle-notify d-flex flex-column mt-2" style="color:blue;cursor:pointer; align-items:center;">
                                                       <a href="#" style="color:blue;font-size:0.725rem;">+{{ $count - 4 }}</a>
                                                        <p style="font-size:0.725rem;margin-top:-5px;"><span class="remaining" >More</span></p>
                                                     </div>
