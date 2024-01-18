@@ -9,7 +9,12 @@ use Livewire\Component;
 
 class Regularisation extends Component
 {
-    public $c=false;  
+    public $c=false;
+    
+    public $isApply=0;
+
+    public $isPending=0;
+    public $isHistory=0;
     
     public $callcontainer=0;
     public $data;
@@ -65,6 +70,25 @@ class Regularisation extends Component
             }
         // Handle any additional logic when a date is selected
     }
+    public function applyButton()
+    {
+        $this->isApply=1;
+        $this->isPending=0;
+        $this->isHistory=0;
+    }
+    public function pendingButton()
+    {
+        $this->isApply=0;
+        $this->isPending=1;
+        $this->isHistory=0;
+    }
+    public function historyButton()
+    {
+        $this->isApply=0;
+        $this->isPending=0;
+        $this->isHistory=1;
+    }
+
     public function storePost()
     {
         $employeeDetails = EmployeeDetails::where('emp_id',auth()->guard('emp')->user()->emp_id)->first();
