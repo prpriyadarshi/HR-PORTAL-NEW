@@ -776,6 +776,11 @@
   </itd-plan-details>
   <!---->
 </div>
+<div class="container" style="height:60px;width:105%;background:white;margin-top:30px;margin-left:-120px">
+
+    <button style="border-radius:5px;border:1px solid #80daeb;height:30px;width:160px;margin-left:800px;margin-top:15px;"><a href="/itstatement">View IT Calculation</a> </button>
+
+</div>
 <script>
         // Get the modal and buttons
         var modal = document.getElementById("myModal");

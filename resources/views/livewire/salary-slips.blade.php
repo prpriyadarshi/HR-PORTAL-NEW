@@ -185,14 +185,16 @@
  
 <div class="container" style="width: 100%;">
 <div style="display:flex">
-   <div class="row" style="height:300px;width:250px;background:white;border:1px solid silver;border-radius:5px">
-   <p >Earnings</p>
-     
-      <p style="height:20px;margin-left:150px;margin-top:-90px;font-size:12px "class="mb-3 section-header">Amount in (₹)</p>
+   <div class="row" style="height:300px;width:300px;background:white;border:1px solid silver;border-radius:5px">
+   <p style="margin-top:15px">Earnings</p>
+    
+  
+    <p style="height:20px;margin-left:180px;margin-top:-90px;font-size:12px;width:100%" class="mb-3 section-header">Amount in (₹)</p>
+
       @foreach($salaryRevision as $employee)
-      <table style="margin-top:-100px; margin-left:10px; font-size:12px">
+      <table style="margin-top:-90px; margin-left:10px; font-size:12px">
     <tr>
-        <td style="margin-top:-40px" >BASIC</td>
+        <td style="margin-top:10px" >BASIC</td>
         <td class="cell-value">{{ number_format($employee->basic, 2) }}</td>
     </tr>
     <tr>
@@ -212,22 +214,22 @@
         <td class="cell-value">{{ number_format($employee->special, 2) }}</td>
     </tr>
     <tr>
-        <td>Total</td>
-        <td class="cell-value">{{ number_format($employee->calculateTotalAllowance(), 2) }}</td>
+        <td style="font-weight:500;"><b>Total</b></td>
+        <td class="cell-value" style="width: 100px; /* Set your desired width */"><b>{{ number_format($employee->calculateTotalAllowance(), 2) }}</b></td>
     </tr>
 </table>
  
    </div>
  
-   <div class="row" style="height:300px;width:220px;background:white;border:1px solid silver;border-radius:5px;margin-left:20px">
+   <div class="row" style="height:300px;width:250px;background:white;border:1px solid silver;border-radius:5px;margin-left:20px;">
  
-   <p  >Deductions</p>
+   <p style="margin-top:20px" >Deductions</p>
      
-      <p style="height:20px;margin-left:120px;;font-size:12px;margin-top:-100px"class="mb-3 section-header">Amount in (₹)</p>
+      <p style="height:20px;margin-left:150px;;font-size:12px;margin-top:-100px;"class="mb-3 section-header">Amount in (₹)</p>
      
-      <table style="margin-top:-100px;margin-left:10px;font-size:12px">
-  <tr>
-  <td>PFA</td>
+      <table style="margin-top:-100px;margin-left:30px;font-size:12px">
+  <tr style="margin-top:-30px">
+  <td style="margin-top:30px">PFA</td>
 <td class="cell-value">{{ number_format($employee->calculatePf(), 2) }}</td>
  
   </tr>
@@ -240,11 +242,12 @@
     <td>PROF TAX</td>
     <td class="cell-value">150.00</td>
   </tr>
- 
-  <tr>
-    <td>Total</td>
-    <td class="cell-value">{{ number_format($employee->calculateTotalDeductions(), 2) }}</td>
+
+  <tr >
+    <td><b>Total</b></td>
+    <td class="cell-value"><b>{{ number_format($employee->calculateTotalDeductions(), 2) }}</b></td>
   </tr>
+ 
 </table>
    </div>
  
@@ -252,10 +255,10 @@
 @endforeach
 @foreach($employees as $employee )
 @foreach($empBankDetails as  $employeedata)
-<div class="row" style="height:550px;width:390px;background:#FAFFDE;border:1px solid silver;border-radius:5px;margin-left:-40px;">
+<div class="row" style="height:500px;width:390px;background:#FAFFDE;border:1px solid silver;border-radius:5px;margin-left:-20px">
  
         
-          <h6 >Employee details</h6>
+          <h6 style="margin-top:20px" ><b>Employee details</b></h6>
         <div class="details" style="margin-top:-20px;">
        
         <div class="d-flex justify-content-between"style="font-weight:400; color:#7f8fa4; font-size: 12px;margin-top:-60px;">
@@ -336,7 +339,7 @@
  
  <p>Company ID</p>
 
- <p>Company  Address</p>
+ <p>PF UAN</p>
 
  </div>
  <div class="d-flex justify-content-between"style="margin-top:-15px;">

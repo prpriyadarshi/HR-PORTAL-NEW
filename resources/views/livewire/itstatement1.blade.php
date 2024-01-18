@@ -28,7 +28,7 @@
 /* Container style */
 .button-container{
           display:flex;
-          justify-content:end;
+         margin-left:700px;
         
 
         }

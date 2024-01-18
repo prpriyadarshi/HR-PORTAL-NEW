@@ -9,11 +9,5 @@ class Delegate extends Model
 {
     use HasFactory;
     protected $table = 'delegates';
-    protected $fillable = [
-        'workflow',
-        'from_date',
-        'to_date',
-        'delegate',
-
-    ];
+    protected $fillable = ['emp_id','workflow', 'from_date', 'to_date', 'delegate'];
 }

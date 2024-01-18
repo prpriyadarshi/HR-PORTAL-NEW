@@ -12,6 +12,7 @@ return new class extends Migration
     {
         Schema::create('delegates', function (Blueprint $table) {
             $table->id();
+            $table->string('emp_id');
             $table->enum('workflow', ['Delegate All Workflow', 'Attendance Regularization', 'Confirmation', 'Resignations', 'Leave', 'Leave Cancel', 'Leave Comp Off', 'Restricted Holiday Leave', 'Help Desk']);
             $table->date('from_date');
             $table->date('to_date');

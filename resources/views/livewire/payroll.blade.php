@@ -125,106 +125,53 @@
 
     <p style="margin-left: 60px;color: blue;  font-family: Open Sans, sans-serif; margin-top: 10px;font-weight:medium;font-size:16px;text-decoration:underline">Payslips</p>
 
-    <div _ngcontent-etd-c531="" class="document col-md-10 col-lg-10 ng-star-inserted">
-        <div _ngcontent-etd-c531="" class="tab-view px-2x"><gt-tabs _ngcontent-etd-c531="" class="hydrated"><gt-tab _ngcontent-etd-c531="" class="hydrated"></gt-tab><!----></gt-tabs></div><div _ngcontent-etd-c531="" class="letter-request"><!----></div><div _ngcontent-etd-c531="" class="document-body bg-white m-2x ng-star-inserted">
-            <div _ngcontent-etd-c531="" class="document-body-jump-to ng-star-inserted">
-                <p _ngcontent-etd-c531="" class="text-5 text-muted text-regular contents" style="padding-top:20px;margin-left:40px">JUMP TO</p>
-                <ul _ngcontent-etd-c531="" class="side-page-nav">
-                 <div class="side-page-nav-item gt-mb-3 side-page-nav-item-active gt-pl-2 ng-star-inserted">
-       
-                <span _ngcontent-etd-c531="" class="side-page-nav-item gt-mb-3 ng-star-inserted" style="margin-bottom:-10px;margin-left:40px">2023</span></div>
-                <!----><div _ngcontent-etd-c531="" routerlinkactive="side-page-nav-item-active" class="side-page-nav-item gt-mb-3 ng-star-inserted" style="margin-bottom:-10px;margin-left:40px"><span _ngcontent-etd-c531="" class="info text-4">2022</span></div><!----><!----></ul></div>
-            <div _ngcontent-etd-c531="" class="document-body-card ng-star-inserted">
-                <documents-card _ngcontent-etd-c531="" _nghost-etd-c530="" id="cat_2023" class="ng-star-inserted">
-                    <div class="container-2023">
-                    <div _ngcontent-etd-c530="" class="doc-card-title text-secondary text-4">2023</div>
-                            <div class="title-line"></div>
-                        <div _ngcontent-etd-c530="" class="doc-card has-selected">
-                            <!-- Remove the year below -->
-                            <!--<div _ngcontent-etd-c530="" class="doc-card-title text-secondary text-4">2023</div>-->
-                            <!-- Remove the line below -->
-                            <!--<div class="title-line"></div>-->
-                            <div _ngcontent-etd-c530="" class="card-hover ng-star-inserted" style="margin-top:20px">
-                                <div _ngcontent-etd-c530="" class="doc-card-body">
-                                    <div _ngcontent-etd-c530="" class="card-left">
-                                        <i _ngcontent-etd-c530="" class="fa fa-caret-right" onclick="togglePdf(2023, 1)"></i>
-                                    </div>
-                                    <div _ngcontent-etd-c530="" class="card-right">
-                                        <div _ngcontent-etd-c530="" class="doc-card-body-content">
-                                            <span _ngcontent-etd-c530="" class="text-black text-5 text-regular">Aug 2023</span>
-                                            <span _ngcontent-etd-c530="" class="text-secondary text-regular text-6" style="margin-left: 170px;font-size: 12px;"> Last updated on 17 Aug, 2023 </span>
-                                        </div>
-                                        <p _ngcontent-etd-c530="" class="text-secondary text-regular text-6 card-desc">Payroll for the month of Aug 2023</p>
-                                    </div>
-                                </div>
+<div _ngcontent-etd-c531="" class="document-body-card ng-star-inserted">
+    <documents-card _ngcontent-etd-c531="" _nghost-etd-c530="" id="cat_2023" class="ng-star-inserted">
+        <div class="container-2023">
+            <div _ngcontent-etd-c530="" class="doc-card-title text-secondary text-4">2023</div>
+            <div class="title-line"></div>
+
+            <!-- Loop through the last 4 months in descending order -->
+            @for ($i = 1; $i <= 4; $i++)
+                @php
+                    // Calculate the year and month dynamically
+                    $currentYear = date('Y');
+                    $lastMonth = date('m') - $i;
+                    if ($lastMonth <= 0) {
+                        $lastMonth += 12;
+                        $currentYear -= 1;
+                    }
+                @endphp
+
+                <div _ngcontent-etd-c530="" class="doc-card has-selected">
+                    <div _ngcontent-etd-c530="" class="doc-card-hover ng-star-inserted">
+                        <div _ngcontent-etd-c530="" class="doc-card-body">
+                            <div _ngcontent-etd-c530="" class="card-left">
+                                <i _ngcontent-etd-c530="" class="fa fa-caret-right" onclick="togglePdf({{ $currentYear }}, {{ $lastMonth }})"></i>
                             </div>
-                            <!-- PDF download link -->
-                            <a href="/your-download-route" id="pdfLink2023_1" class="pdf-download" download style="display: none;">Download PDF</a>
-                        </div>
-                        <div _ngcontent-etd-c530="" class="doc-card has-selected">
-                            <!--<div _ngcontent-etd-c530="" class="doc-card-title text-secondary text-4">2023</div>-->
-                            <!--<div class="title-line"></div>-->
-                            <div _ngcontent-etd-c530="" class="card-hover ng-star-inserted">
-                                <div _ngcontent-etd-c530="" class="doc-card-body">
-                                    <div _ngcontent-etd-c530="" class="card-left">
-                                        <i _ngcontent-etd-c530="" class="fa fa-caret-right" onclick="togglePdf(2023, 2)"></i>
-                                    </div>
-                                    <div _ngcontent-etd-c530="" class="card-right">
-                                        <div _ngcontent-etd-c530="" class="doc-card-body-content">
-                                            <span _ngcontent-etd-c530="" class="text-black text-5 text-regular">Sep 2023</span>
-                                            <span _ngcontent-etd-c530="" class="text-secondary text-regular text-6" style="margin-left: 170px;font-size: 12px;"> Last updated on 17 Sep, 2023 </span>
-                                        </div>
-                                        <p _ngcontent-etd-c530="" class="text-secondary text-regular text-6 card-desc">Payroll for the month of Sep 2023</p>
-                                    </div>
+                            <div _ngcontent-etd-c530="" class="card-right">
+                                <div _ngcontent-etd-c530="" class="doc-card-body-content">
+                                    <!-- Display the dynamically calculated month and year -->
+                                    <span _ngcontent-etd-c530="" class="text-black text-5 text-regular">{{ date('M Y', strtotime($currentYear . '-' . $lastMonth . '-01')) }}</span>
+                                    <span _ngcontent-etd-c530="" class="text-secondary text-regular text-6" style="margin-left: 170px; font-size: 12px;"> Last updated on {{ date('d M, Y', strtotime($currentYear . '-' . $lastMonth . '-01')) }}</span>
                                 </div>
+                                <p _ngcontent-etd-c530="" class="text-secondary text-regular text-6 card-desc">
+                                    <!-- You can customize the card description as needed -->
+                                    Payroll for the month of {{ date('M Y', strtotime($currentYear . '-' . $lastMonth . '-01')) }}
+                                </p>
                             </div>
-                            <!-- PDF download link -->
-                            <a href="/your-download-route" id="pdfLink2023_2" class="pdf-download" download style="display: none;">Download PDF</a>
-                        </div>
-                        <div _ngcontent-etd-c530="" class="doc-card has-selected">
-                            <!--<div _ngcontent-etd-c530="" class="doc-card-title text-secondary text-4">2023</div>-->
-                            <!--<div class="title-line"></div>-->
-                            <div _ngcontent-etd-c530="" class="card-hover ng-star-inserted">
-                                <div _ngcontent-etd-c530="" class="doc-card-body">
-                                    <div _ngcontent-etd-c530="" class="card-left">
-                                        <i _ngcontent-etd-c530="" class="fa fa-caret-right" onclick="togglePdf(2023, 3)"></i>
-                                    </div>
-                                    <div _ngcontent-etd-c530="" class="card-right">
-                                        <div _ngcontent-etd-c530="" class="doc-card-body-content">
-                                            <span _ngcontent-etd-c530="" class="text-black text-5 text-regular">Oct 2023</span>
-                                            <span _ngcontent-etd-c530="" class="text-secondary text-regular text-6" style="margin-left: 170px;font-size: 12px;"> Last updated on 30 Oct, 2023 </span>
-                                        </div>
-                                        <p _ngcontent-etd-c530="" class="text-secondary text-regular text-6 card-desc">Payroll for the month of Oct 2023</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- PDF download link -->
-                            <a href="/your-download-route" id="pdfLink2023_3" class="pdf-download" download style="display: none;">Download PDF</a>
-                        </div>
-                        <div _ngcontent-etd-c530="" class="doc-card has-selected">
-                            <!--<div _ngcontent-etd-c530="" class="doc-card-title text-secondary text-4">2023</div>-->
-                            <!--<div class="title-line"></div>-->
-                            <div _ngcontent-etd-c530="" class="card-hover ng-star-inserted">
-                                <div _ngcontent-etd-c530="" class="doc-card-body">
-                                    <div _ngcontent-etd-c530="" class="card-left">
-                                        <i _ngcontent-etd-c530="" class="fa fa-caret-right" onclick="togglePdf(2023, 4)"></i>
-                                    </div>
-                                    <div _ngcontent-etd-c530="" class="card-right">
-                                        <div _ngcontent-etd-c530="" class="doc-card-body-content">
-                                            <span _ngcontent-etd-c530="" class="text-black text-5 text-regular">Nov 2023</span>
-                                            <span _ngcontent-etd-c530="" class="text-secondary text-regular text-6" style="margin-left: 170px;font-size: 12px;"> Last updated on 30 Nov, 2023 </span>
-                                        </div>
-                                        <p _ngcontent-etd-c530="" class="text-secondary text-regular text-6 card-desc">Payroll for the month of Nov 2023</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- PDF download link -->
-                            <a href="/your-download-route" id="pdfLink2023_4" class="pdf-download" download style="display: none;">Download PDF</a>
                         </div>
                     </div>
-                </documents-card>
-                <!-- Continue with other document cards -->
-            </div>
+                    <!-- PDF download link -->
+                    <a href="/your-download-route" id="pdfLink{{ $currentYear }}_{{ $lastMonth }}" class="pdf-download" download style="display: none;">Download PDF</a>
+                </div>
+            @endfor
+        </div>
+    </documents-card>
+</div>
+
+
+              
         </div>
     </div>
 </div></div>
