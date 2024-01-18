@@ -99,7 +99,7 @@
 
             <div class="card displayNone" id="menu-popup" style="border-radius:0px; width: auto; background:transaparent;box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);padding:0;margin:0;">
 
-                <div class="left-card-body">
+                <div class="left-card-body" style="margin-top: 0px;padding: 0 5px;margin: 0;height: 600px;">
 
                     <ul class="nav flex-column">
 

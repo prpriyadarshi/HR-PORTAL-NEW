@@ -13,4 +13,94 @@
     @livewire('post-jobs')
     @livewireScripts
 </body>
+<style>
+     .job-posting-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+            margin-bottom: 15px;
+            font-size: 12px;
+
+        }
+
+        .job-posting-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .job-posting-form label {
+            font-weight: bold;
+        }
+
+        .job-posting-form input[type="text"],
+        .job-posting-form input[type="number"],
+        .job-posting-form select,
+        .job-posting-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+
+        .job-posting-form select {
+            height: 40px;
+        }
+
+        .job-posting-form .btn-primary {
+            background-color: rgb(2, 17, 79);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .text-danger {
+            font-size: 12px;
+        }
+
+        .job-posting-form .btn-primary:hover {
+            background-color: #002D91;
+        }
+
+        #success-message {
+            position: relative;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        #success-message .close-message {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+            color: green;
+        }
+
+        .logout {
+            background-color: rgb(2, 17, 79);
+            /* Coral color */
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            margin-top: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border: 1px solid white;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+
+        .logout:hover {
+            background-color: #fff;
+            color: black
+                /* Darker coral color on hover */
+        }
+</style>
 </html>

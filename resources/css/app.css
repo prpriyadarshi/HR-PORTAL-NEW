@@ -15,7 +15,6 @@
     margin-top: 30px;
     border-radius: 5px;
 }
-
 /* Ending of auth checking module (Kumar Asapu)*/
 
 /* Starting of letter request module (Kumar Asapu)*/
@@ -33,27 +32,14 @@
     border-collapse: collapse;
 }
 
-.table-header {
-    padding: 5px;
-    background-color: rgb(2, 17, 79);
-    color: #fff;
-    /* Text color for header */
-}
+
 
 .table-body tr:nth-child(even) {
     background-color: #f2f2f2;
     /* Alternate row background color */
 }
 
-.table-header tr,
-.table-body td,
-.table-body tr,
-.table-body th {
-    padding: 10px;
-    text-align: center;
-    border: 1px solid #ddd;
-    /* Border color */
-}
+
 
 .table-body th {
     background-color: rgb(2, 17, 79);
@@ -84,7 +70,7 @@
 }
 /* Ending of letter request module (Kumar Asapu)*/
 
-/* Starting of home module (Kumar Asapu,Archana Goud,Divya Bandari,Pranita Priyadarshi)*/
+/* Starting of home module (Kumar Asapu,Archana Goud,Divya Bandari,Pranita Priyadarshi & Siva)*/
 
 .greet {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -201,7 +187,7 @@
     text-overflow: ellipsis;
 }
 /* end of home blade */
-/* Ending of home module (Kumar Asapu,Archana Goud,Divya Bandari,Pranita Priyadarshi)*/
+/* Ending of home module (Kumar Asapu,Archana Goud,Divya Bandari,Pranita Priyadarshi & Siva)*/
 
 /* Starting of settings module (Kumar Asapu)*/
 
@@ -209,6 +195,7 @@
 
 /* Starting of tasks module (Kumar Asapu)*/
 body {
+    overflow-x: hidden;
     font-family: "Montserrat", sans-serif;
     margin: 0;
     padding: 0;
@@ -513,12 +500,6 @@ body {
     border-collapse: collapse;
 }
 
-.table-header {
-    padding: 5px;
-    background-color: rgb(2, 17, 79);
-    color: #fff;
-    /* Text color for header */
-}
 
 .table-body tr:nth-child(even) {
     background-color: #f2f2f2;
@@ -526,12 +507,12 @@ body {
 }
 
 .table-header tr,
+.table-header th,
 .table-body td,
 .table-body tr,
 .table-body th {
     padding: 10px;
     text-align: center;
-    border: 1px solid #ddd;
     /* Border color */
 }
 
@@ -565,13 +546,7 @@ body {
 
 /*End of document center/letter module (Kumar Asapu) */
 
-[5: 08 PM] Divya Bandari /* app.blade */ .left-card-body {
-    margin-top: 0px;
-    padding: 0 5px;
-    margin: 0;
-    height: 600px;
-}
-
+/* app.blade */
 .profile-container {
     display: flex;
 

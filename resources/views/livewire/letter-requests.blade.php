@@ -16,9 +16,9 @@
         <div class="row">
             <div class="table-responsive">
                 <table class="table-start">
-                    <thead class="table-header">
+                    <thead class="table-header" style="padding: 8px;background-color: rgb(2, 17, 79);color: #fff;">
                         <tr>
-                            <th>Employee ID</th>
+                            <th style="padding: 10px;">Employee ID</th>
                             <th>Letter Type</th>
                             <th>Priority</th>
                             <th>Reason</th>
