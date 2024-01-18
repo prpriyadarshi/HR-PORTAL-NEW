@@ -157,7 +157,7 @@
                     <table class="table-start">
                         <thead class="table-header">
                             <tr>
-                                <th>Employee ID</th>
+                                <th style="padding: 8px;">Employee ID</th>
                                 <th>Letter Type</th>
                                 <th>Priority</th>
                                 <th>Reason</th>
@@ -190,7 +190,7 @@
                     <table class="table-start">
                         <thead class="table-header">
                             <tr>
-                                <th>Employee ID</th>
+                                <th style="padding: 8px;">Employee ID</th>
                                 <th>Letter Type</th>
                                 <th>Priority</th>
                                 <th>Reason</th>

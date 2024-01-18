@@ -20,6 +20,103 @@
     @livewireScripts
 </body>
 <style>
+    .cc-label {
+        text-align: start;
+        font-size: 10px;
+    }
+
+    ::placeholder {
+        font-size: 10px;
+    }
+
+    .button {
+        background-color: rgb(1, 7, 79);
+        color: white;
+        border-radius: 5px;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 10px;
+
+    }
+
+
+
+    .cc-grid {
+        width: 360px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3px;
+    }
+
+    .cc-to {
+        border: 1px solid #ddd;
+        background-color: rgb(1, 7, 79);
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        text-align: start;
+        font-size: 8px;
+    }
+
+    .cc-to i {
+        cursor: pointer;
+        color: white;
+        transition: color 0.3s ease-in-out;
+    }
+
+    .cc-to i:hover {
+        color: #dc3545;
+    }
+
+
+    .error-message {
+        color: red;
+        text-align: start;
+        font-size: 10px;
+    }
+
+    .button {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 20%;
+        border: none;
+    }
+
+
+
+    .generate-password {
+        height: auto;
+        width: auto;
+        background-color: rgb(1, 7, 79);
+        color: white;
+        border-radius: 0 5px 5px 0;
+        font-size: 10px;
+    }
+
+    label {
+        display: block;
+        text-align: start;
+        margin-bottom: 10px;
+        margin-top: 5px;
+        font-size: 12px;
+        color: rgb(1, 7, 79);
+    }
+
+    input {
+        font-size: 12px;
+    }
+
+    .form {
+        padding: 5px;
+    }
+
+    .error-message {
+        font-size: 10px;
+    }
+
     #success-message,
     #error-message,
     #success-exam-message {
