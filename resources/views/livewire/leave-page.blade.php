@@ -1,10 +1,5 @@
 <div>
     <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-            overflow-y:hidden;
-        }
-
         .nav-buttons {
             font-family: Montserrat;
             text-decoration: none;
