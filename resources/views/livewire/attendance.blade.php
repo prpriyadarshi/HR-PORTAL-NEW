@@ -8,6 +8,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+   
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -483,6 +484,12 @@
 
     .attendance-calendar-date:hover {
     background-color: #f3faff;
+}
+.attendance-calendar-date.clicked {
+    background-color: #f3faff;
+    border-color: blue;
+    border: 2px solid #24a7f8;
+
 }
 
 .clickable-date:active {
@@ -1025,6 +1032,14 @@
         margin-bottom: 10px;
         /* Adjust as needed for spacing */
     }
+    .attendance-calendar-date {
+    cursor: pointer;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
 
     .custom-modal-lg {
         max-width: 90%;
@@ -1259,11 +1274,11 @@
                         Avg.&nbsp;Actual&nbsp;Work&nbsp;Hrs</h6>
                     <section class="text-center">
 
-                        <p class="text-2">02:00</p>
+                        <p class="text-2">00:00</p>
                         <div>
-                            <span class="text-success ng-star-inserted" style="font-size:10px;"> +233%
+                            <span class="text-danger ng-star-inserted" style="font-size:10px;"> -100%
                             </span>
-                            <span class="text-muted" style="font-size:10px;margin-left:0px;"> From August </span>
+                            <span class="text-muted" style="font-size:10px;margin-left:0px;"> From December </span>
                         </div>
                     </section>
                 </div>
@@ -1273,11 +1288,11 @@
                     <h6 class="text-secondary text-regular text-center" style="font-size:12px;">Avg. Work Hrs
                     </h6>
                     <section class="text-center">
-                        <p class="text-2">02:00</p>
+                        <p class="text-2">00:00</p>
                         <div>
-                            <span _ngcontent-hbw-c670="" class="text-success ng-star-inserted" style="font-size:10px;">
-                                +233% </span>
-                            <span _ngcontent-hbw-c670="" class="text-muted" style="font-size:10px;"> From August
+                            <span _ngcontent-hbw-c670="" class="text-danger ng-star-inserted" style="font-size:10px;">
+                                -100% </span>
+                            <span _ngcontent-hbw-c670="" class="text-muted" style="font-size:10px;"> From December
                             </span>
                         </div>
                     </section>
@@ -1560,7 +1575,7 @@
                        $leave=0;
                     @endphp
                 @endif
-                <td wire:click="dateClicked('{{$formattedDate}}')" wire:model="dateclicked"class="attendance-calendar-date {{ $isCurrentMonth && !$isWeekend ? 'clickable-date' : '' }}"style="color: {{ $isCurrentMonth ? ($isWeekend ? '#c5cdd4' : 'black')  : '#c5cdd4'}};background-color:  @if($isCurrentMonth && !$isWeekend && $flag==1 ) @if($day['isPublicHoliday'] ) #f3faff @elseif($leave == 1) rgb(252, 242, 255) @elseif($day['status'] == 'A') #fcf0f0 @elseif($day['status'] == 'P') #edfaed @endif @endif ;" >
+                <td wire:click="dateClicked('{{$formattedDate}}')" wire:model="dateclicked"class="attendance-calendar-date {{ $isCurrentMonth && !$isWeekend ? 'clickable-date' : '' }}"style="text-align:start;color: {{ $isCurrentMonth ? ($isWeekend ? '#c5cdd4' : 'black')  : '#c5cdd4'}};background-color:  @if($isCurrentMonth && !$isWeekend && $flag==1 ) @if($day['isPublicHoliday'] ) #f3faff @elseif($leave == 1) rgb(252, 242, 255) @elseif($day['status'] == 'A') #fcf0f0 @elseif($day['status'] == 'P') #edfaed @endif @endif ;" >
                     <div>
                         
                           
@@ -1579,35 +1594,43 @@
                         <div class="{{ $isWeekend ? '' : 'circle-grey' }}">
                             <!-- Render your grey circle -->
                             @if ($isWeekend)
-                                <i class="fas fa-tv"></i>
-                                <span style="display: flex; justify-content: center; align-items: center;width:20px;height:20px;border-radius:50%;">
-                                  
+                             <i class="fas fa-tv"style="float:right;padding-left:12px;margin-top:-15px;"></i> 
+                                
+                                <span style="text-align:center;color: #7f8fa4;  padding-left:15px;padding-right:26px;margin-left: 6px;white-space: nowrap;">
                                       
-                                   
+                                  
                                      O
                                 </span>
                             @elseif($isCurrentMonth)
                               
-                                <span style="display: flex; justify-content: center; align-items: center;width:20px;height:20px;border-radius:50%;">
-                                     GS
-                                </span>
+                              
                                 @if(strtotime($formattedDate) < strtotime(date('Y-m-d')))
-                                <span style="display: flex; justify-content: center; align-items: center; width: 20px; height: 20px; border-radius: 50%;">
+                                <span style="display: flex; justify-content: center; align-items: center; width: 20px; height: 20px; border-radius: 50%; white-space: nowrap;">
                                     
                                     @if($day['isPublicHoliday'])
-                                        <span style="background-color: #f3faff;">H</span>
+                                        <span style="background-color: #f3faff;text-align:center;color: #7f8fa4; padding-left: 16px; margin-left: 26px;white-space: nowrap;">H</span>
                                     @elseif($day['status'] == 'CLP')   
-                                        <span style="background-color:  rgb(252, 242, 255);">CLP</span> 
+                                        <span style="background-color:  rgb(252, 242, 255);color: #7f8fa4;text-align:center;padding-left: 35px;white-space: nowrap;">CLP</span> 
                                     @elseif($day['status'] == 'SL')   
-                                        <span style="background-color: #f3faff;">SL</span>     
+                                        <span style="background-color: #f3faff;color: #7f8fa4;text-align:center;padding-left: 35px;white-space: nowrap;">SL</span>     
                                     @elseif($day['status'] == 'LOP')   
-                                        <span style="background-color: #f3faff;">LOP</span> 
+                                        <span style="background-color: #f3faff;color: #7f8fa4;text-align:center;padding-left: 35px;white-space: nowrap;">LOP</span> 
                                     @elseif($day['status'] == 'A')
-                                        <span style="color:#ff6666; background-color: #fcf0f0;">A</span>
+                                        <span style="color:#ff6666; background-color: #fcf0f0;text-align:center;padding-left: 16px; margin-left: 26px;white-space: nowrap;">A</span>
                                     @elseif($day['status'] == 'P')
-                                        <span style="background-color: #edfaed;">P</span>
+                                        <span style="background-color:#edfaed; text-align:center; color: #7f8fa4; padding-left: 16px; margin-left: 26px;white-space: nowrap;">P</span>
                                     @endif
+
                                 
+                                </span>
+                                @endif
+                                @if(strtotime($formattedDate) >= strtotime(date('Y-m-d')))
+                                <span style="display: flex; text-align:end;width:20px;height:20px;border-radius:50%;padding-left: 45px; white-space: nowrap;">
+                                     <p style="color: #a3b2c7;margin-top:30px;font-weight: 400;">GS</p>
+                                </span>
+                                @elseif($isCurrentMonth)
+                                <span style="display: flex; text-align:end;width:20px;height:20px;border-radius:50%;padding-left: 45px; white-space: nowrap;">
+                                     <p style="color: #a3b2c7;padding-top:6px;font-weight: 400;">GS</p>
                                 </span>
                                 @endif
                             @endif
@@ -1759,7 +1782,7 @@
 
           </div>
           <div class="col-md-5">
-            <div class="container1">
+            <div class="container1"style="background-color:pink;">
               <!-- Content goes here -->
               <div class="row m-0">
                 <div class="col-2 pb-1 pt-1 p-0" style="border-right: 1px solid black; text-align: center;">
@@ -1825,7 +1848,7 @@
                               @if (isset($CurrentDateTwoRecord[1]) && $CurrentDateTwoRecord[1]['in_or_out'] == 'OUT')
                                           {{ substr($CurrentDateTwoRecord[1]['swipe_time'],0,5) }}
                               @elseif($flag==1)
-                                               00:00
+                                          {{ substr($record['swipe_time'], 0, 5) }}
                               @else
                                         -                 
                               @endif
@@ -1936,9 +1959,7 @@
                                 <td style="font-weight:normal;font-size:12px;">10:00 - 14:00</td>
                                 <td style="font-weight:normal;font-size:12px;">
                                     @if ($record1['in_or_out'] == 'IN')
-                                        @php
-                                           $flag1=1;
-                                        @endphp   
+                                         
                                         {{ substr($record1['swipe_time'], 0, 5) }}
                                
                                     @endif
@@ -1956,8 +1977,7 @@
                                                        
                                                        @if($recordSwipeTime>$specificTime)
                                                           +{{ sprintf('%02d:%02d', $hoursDifference, $minutesDifference) }}
-                                                       @elseif($flag1==1)
-                                                          +00:00
+                                                       
                                                        @else
                                                           +00:00   
                                                        @endif      
@@ -2783,4 +2803,18 @@
         updateCalendar();
     });
     </script>
+    <script>
+    $(document).ready(function () {
+        $('.attendance-calendar-date').click(function () {
+            // Remove the 'clicked' class from all elements
+            $('.attendance-calendar-date').removeClass('clicked');
+
+            // Add the 'clicked' class to the clicked element
+            $(this).addClass('clicked');
+        });
+    });
+    </script>
+    
+    
+
 </div>

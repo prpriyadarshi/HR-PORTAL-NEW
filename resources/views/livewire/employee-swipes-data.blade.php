@@ -54,15 +54,24 @@
       border: 1px solid #ccc;
       border-radius: 4px;
       width: 200px;
+      font-size:13px;
       /* Adjust width as needed */
     }
-    .search-icon {
+    /* .search-icon {
       position: absolute;
       top: 50%;
       right: 10px;
       color: #778899;
       transform: translateY(-50%);
       cursor: pointer;
+    } */
+    .search-icon
+    {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    color: #778899;
     }
 
     .search-icon::before {
@@ -218,10 +227,12 @@
              <label for="dateType"style="color: #666;font-size:13px;">Employee Search</label><br/>
           
              <div class="search-input"style="margin-top:-1px;">
-                    <input wire:model="search" type="text" placeholder="Search Employee" class="search-text">
-                    <button type="button" class="search-icon" wire:click="testMethod">
-                                 <i class="fa fa-search" aria-hidden="true"></i>
-                    </button>
+             <div class="search-container"style="position: relative;">
+                       <i class="fa fa-search search-icon" aria-hidden="true"style="cursor:pointer;"wire:click="testMethod"></i>
+                       <input wire:model="search" type="text" placeholder="Search Employee" class="search-text">
+                      
+              </div>
+                   
              </div>
            
     </div> 
@@ -262,9 +273,7 @@
                     </thead>
                     <tbody>
                     @if($notFound)
-                            <div style="text-align:center;">
-                                  Name not found in the list.
-                            </div>
+                         <td colspan="12" style="text-align: center;font-size:12px">Record not found</td>
                     @else
     <!-- Display the filtered collection or any other content -->
                         @foreach($SignedInEmployees as $swipe)
@@ -303,11 +312,13 @@
                 <h2 style="color: #333; margin-top: 10px; font-weight:500;font-size:15px;">Swipe Details</h2>
                 <hr style="border-top: 1px solid #666;margin-top: -5px;">
                 <p style="font-size: 14px; margin-top: 10px;color:#666;">Device Name</p>
-                <p style="font-size: 18px; font-weight: 500;margin-top:-20px;">-</p>
+                <p style="font-size: 13px; font-weight: 500;margin-top:-20px;">{{$this->status}}</p>
                 <p style="font-size: 14px; margin-top: 10px;color:#666;">Access Card</p>
                 <p style="font-size: 18px; font-weight: 500;margin-top:-20px;">-</p>
                 <p style="font-size: 14px; margin-top: 10px;color:#666;">Door/Address</p>
-                <p style="font-size: 18px; font-weight: 500;margin-top:-20px;">-</p>
+              
+                  <p style="font-size: 18px; font-weight: 500;margin-top:-20px;">-</p>
+              
                 <p style="font-size: 14px; margin-top: 10px;color:#666;">Remarks</p>
                 <p style="font-size: 18px; font-weight: 500;margin-top:-20px;">-</p>
                 <p style="font-size: 14px; margin-top: 10px;color:#666;">Device ID</p>

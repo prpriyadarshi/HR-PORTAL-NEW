@@ -17,6 +17,7 @@ class AttendenceMasterDataNew extends Component
 {
     public $currentMonth;
 
+    public $flag=0;
     public $searching=1;
     public  $holiday;
     public $notFound;
@@ -70,12 +71,21 @@ if ($filteredEmployees->isEmpty()) {
   
 
  
+  $currentMonth = 12;
+  $currentYear = 2023;
+  
+  // Total number of days in the current month
+  $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $currentMonth, $currentYear);
   
   // Your data to be exported to Excel
   $data = [ ['List of Employees for Dec2023' ],
       ['Employee ID', 'Name','No. of Present'],
  
   ];
+  for ($i = 1; $i <= $daysInMonth; $i++) {
+    $data[1][] = $i;
+}
+
 
 
 $employeeIds = $employees->pluck('emp_id');
@@ -88,28 +98,58 @@ $employeeIds = $employees->pluck('emp_id');
   ->get()
   ->keyBy('emp_id')
   ->toArray();
+  
+$distinctDatesMap = SwipeRecord::whereIn('emp_id', $employeeIds)
+->whereMonth('created_at', 12) // December
+->selectRaw('DISTINCT emp_id, DATE(created_at) as distinct_date ')
+->get()
+->groupBy('emp_id')
+->map(function ($dates) {
+    return $dates->pluck('distinct_date')->toArray();
+})
+->toArray();
 
-  foreach ($employees as $employee) {
-    
-    foreach($distinctDatesMapCount as $empId=>$d1)
-    {                           
-        if($empId ==$employee->emp_id)
-        {
-         
-         
-            $data[] = [$employee['emp_id'], $employee['first_name'] . ' ' . $employee['last_name'],$d1['date_count']];
-         
-            break;
-        }
-   
-     
-       
+ //dd($distinctDatesMap); 
+foreach ($employees as $employee) {
+    $rowData = [$employee['emp_id'], $employee['first_name'] . ' ' . $employee['last_name']];
+
+    if (isset($distinctDatesMapCount[$employee['emp_id']])) {
+        // If the employee ID exists in $distinctDatesMapCount, use the date count
+        $dateCount = $distinctDatesMapCount[$employee['emp_id']]['date_count'];
+    } else {
+        // If the employee ID is not found in $distinctDatesMapCount, set the value as 0
+        $dateCount = 0;
     }
-        
-      
-  }
 
-  // Create a temporary file
+    // Add the date count to the row
+    $rowData[] = $dateCount;
+
+    for ($i = 1; $i <= $daysInMonth; $i++) {
+        $currentDate = $currentYear . '-' . $currentMonth . '-' . $i;
+
+        // Check if the day is Saturday or Sunday
+        if (date('N', strtotime($currentDate)) == 6 || date('N', strtotime($currentDate)) == 7) {
+            $rowData[] = 'O'; // Set status as 'O' for weekends
+        } else {
+            $dateExists = false;
+            
+            foreach ($distinctDatesMap as $empId => $dates) {
+                if ($employee['emp_id'] == $empId && in_array($currentDate, $dates)) {
+                    $dateExists = true;
+                    break;
+                }
+            }
+
+            // Set status based on date existence
+            $rowData[] = $dateExists ? 'P' : 'A'; // Set status as 'A' for weekdays
+        }
+    }
+
+    // Add the row to the $data array
+    $data[] = $rowData;
+}
+
+ // Create a temporary file
   $tempFilePath = storage_path('app/public/' . Str::random(16) . '.csv');
 
   // Open the file for writing
@@ -126,7 +166,7 @@ $employeeIds = $employees->pluck('emp_id');
   // Set the response headers for download
   $headers = [
       'Content-Type' => 'text/csv',
-      'Content-Disposition' => 'attachment; filename="LATE_ARRIVALS"',
+      'Content-Disposition' => 'attachment; filename="Attendance_Report"',
   ];
 
   // Return the response with the file and headers
@@ -184,7 +224,10 @@ $nameFilter = $this->search; // Assuming $this->search contains the name filter
 $filteredEmployees = $employees->filter(function ($employee) use ($nameFilter) {
     return stripos($employee->first_name, $nameFilter) !== false ||
         stripos($employee->last_name, $nameFilter) !== false ||
-        stripos($employee->emp_id, $nameFilter) !== false;
+        stripos($employee->emp_id, $nameFilter) !== false||
+        stripos($employee->job_title, $nameFilter) !== false||
+        stripos($employee->city, $nameFilter) !== false||
+        stripos($employee->state, $nameFilter) !== false;
 });
 
 if ($filteredEmployees->isEmpty()) {

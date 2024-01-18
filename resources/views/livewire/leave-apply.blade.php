@@ -143,6 +143,7 @@
         flex-direction:row; 
         justify-content: space-between;
         padding: 15px 12px 15px 12px;
+        background-color: pink;
         border-radius: 30px; 
         align-items:center;
         width: 220px; 
@@ -321,7 +322,7 @@
                     <div>
                         <img src="https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars.png" alt="Default User Image" style="width: 40px; height: 40px; border-radius: 50%;">
                     </div>
-                    <div class="center"  >
+                    <div class="center">
                         <p id="reportToText" class="ellipsis" >{{$reportTo}}</p>
                         <p style="margin-top:-20px; color:#778899; font-size:0.69rem;" id="managerIdText"><span class="remaining" >#{{$managerId}}</span></p>
                     </div>

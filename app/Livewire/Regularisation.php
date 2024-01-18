@@ -9,23 +9,62 @@ use Livewire\Component;
 
 class Regularisation extends Component
 {
-    public $c=false;   
+    public $c=false;  
+    
+    public $callcontainer=0;
     public $data;
     public $data1;
     public $data7;
     public $data8;
     public $manager3;
+    public $selectedDates = [];
     public $employee;
     public $data4;
     public $from,$to,$reason,$date;
     public $manager1;
    
     public $data10;
-   
+    public $currentDate;
     public $currentDateTime;
-
-    
    
+    public function mount()
+    {
+        $this->currentDate = now();
+    }
+
+    public function getDaysInMonth()
+    {
+        $firstDay = new Carbon($this->currentDate->firstOfMonth());
+        $daysInMonth = $this->currentDate->daysInMonth;
+
+        return collect(range(1, $daysInMonth))->map(function ($day) use ($firstDay) {
+            return [
+                'day' => $day,
+                'date' => $firstDay->copy()->addDays($day - 1),
+                'isCurrentDate' => $day === now()->day && $firstDay->isCurrentMonth(),
+            ];
+        });
+    }
+    public function selectDate($date)
+    {
+        if($date < date('Y-m-d'))
+            {
+                
+                        if (!$this->selectedDates) {
+                            $this->selectedDates = [];
+                        }
+                    
+                        // Check if the date is already selected, remove it; otherwise, add it
+                        if (($key = array_search($date, $this->selectedDates)) !== false) {
+                            unset($this->selectedDates[$key]);
+                        } else {
+                            $this->selectedDates[] = $date;
+                        }
+                    
+                        $this->callcontainer = 1;
+            }
+        // Handle any additional logic when a date is selected
+    }
     public function storePost()
     {
         $employeeDetails = EmployeeDetails::where('emp_id',auth()->guard('emp')->user()->emp_id)->first();
@@ -48,7 +87,7 @@ class Regularisation extends Component
                 'to' => $this->to,
                 'reason'=>$this->reason,
                  'is_withdraw'=>0,
-                 'regularisation_date'=>$this->date,
+                 'regularisation_date'=>$this->selectedDate,
                 
             ]);
             session()->flash('success', 'Hurry Up! Action completed successfully');
@@ -111,6 +150,15 @@ class Regularisation extends Component
 
     public $regularisationdescription;
 
+    public function incrementMonth()
+    {
+        $this->currentDate->addMonth();
+    }
+
+    public function decrementMonth()
+    {
+        $this->currentDate->subMonth();
+    }
     public function status($id)
     {
         return redirect()->route('regularisation-history', ['id' => $id]);
@@ -153,6 +201,6 @@ class Regularisation extends Component
             
         }
         
-        return view('livewire.regularisation',['manager_report'=>$s4,'isManager1'=>$isManager,'subordinate'=>$subordinateEmployeeIds,'show'=>$this->c,'manager11'=>$manager,'count'=>$this->c,'count1'=> $this->data,'manager2'=>$this->manager3,'data2'=>$this->data1 ,'data5'=>$this->data4,'data81'=>$this->data7,'withdraw'=>$this->data8,'data11'=>$this->data10,'manager2'=>$this->manager1]);
+        return view('livewire.regularisation',['CallContainer'=>$this->callcontainer,'manager_report'=>$s4,'isManager1'=>$isManager,'daysInMonth' => $this->getDaysInMonth(),'subordinate'=>$subordinateEmployeeIds,'show'=>$this->c,'manager11'=>$manager,'count'=>$this->c,'count1'=> $this->data,'manager2'=>$this->manager3,'data2'=>$this->data1 ,'data5'=>$this->data4,'data81'=>$this->data7,'withdraw'=>$this->data8,'data11'=>$this->data10,'manager2'=>$this->manager1]);
     }
 }

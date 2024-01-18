@@ -9,6 +9,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Jenssegers\Agent\Agent;
 class EmployeeSwipesData extends Component
 {
     public $employees;
@@ -18,16 +19,37 @@ class EmployeeSwipesData extends Component
 
     public $notFound;
     public $selectedEmployee;
-    
-    public $swipes;   
+    public $deviceId;
+    public $status;
+    public $swipes; 
+    public $mobileId;  
     public $date = "01/04/2024 - 01/04/2024";
 
     public $swipeTime='';
    
+    public $loggedInEmpId1 ;
+    public function mount()
+    {
+       
+        
+        $agent = new Agent();
 
-   
-    
-   
+        if ($agent->isMobile()) {
+            // The user accessed the component from a mobile device
+            // Add your mobile-specific logic here
+            // For example: $this->emit('mobileAccess');
+            $this->status = 'Mobile';
+            
+        } else {
+            // The user accessed the component from a desktop or laptop
+            // Add your desktop-specific logic here
+            // For example: $this->emit('desktopAccess');
+            $this->status = 'Desktop';
+           
+        }
+        
+       
+    }
    
    
     public function testMethod()
@@ -63,6 +85,7 @@ class EmployeeSwipesData extends Component
     {
         $currentDate = now()->toDateString(); 
         $loggedInEmpId = Auth::guard('emp')->user()->emp_id;
+        $this->loggedInEmpId1 = EmployeeDetails::where('emp_id',Auth::guard('emp')->user()->emp_id)->get();
         $employees=EmployeeDetails::where('manager_id',$loggedInEmpId)->select('emp_id', 'first_name', 'last_name')->get();
         $this->swipes = SwipeRecord::whereIn('id', function ($query) use ($employees, $currentDate) {
             $query->selectRaw('MIN(id)')
@@ -159,6 +182,6 @@ class EmployeeSwipesData extends Component
 
         } 
        
-        return view('livewire.employee-swipes-data',['SignedInEmployees'=>$this->swipes,'SwipeTime'=>$this->swipeTime]);
+        return view('livewire.employee-swipes-data',['LoggedInEmpId1'=>$this->loggedInEmpId1,'SignedInEmployees'=>$this->swipes,'SwipeTime'=>$this->swipeTime]);
     }
 }

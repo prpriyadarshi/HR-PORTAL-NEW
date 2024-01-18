@@ -123,9 +123,11 @@ private function isEmployeePresentOnDate($date)
 }
 private function isEmployeeLeaveOnDate($date, $employeeId)
 {
-    $employeeId= auth()->guard('emp')->user()->emp_id;
-    // Check if there is a leave request that covers the given date for the specified employee
+    $employeeId = auth()->guard('emp')->user()->emp_id;
+
+    // Check if there is an approved leave request that covers the given date for the specified employee
     return LeaveRequest::where('emp_id', $employeeId)
+        ->where('status', 'approved') // Add this condition for approved status
         ->where(function ($query) use ($date) {
             $query->whereDate('from_date', '<=', $date)
                 ->whereDate('to_date', '>=', $date);
@@ -262,7 +264,13 @@ public function generateCalendar()
 }
 public function updateDate($date1)
 {
-    $this->changeDate=1;
+    $parsedDate = \Carbon\Carbon::parse($date1);
+  
+    
+
+    if ($parsedDate->format('Y-m-d') < \Carbon\Carbon::now()->format('Y-m-d')) {
+        $this->changeDate = 1;
+    }
    
     // Handle any additional logic needed when the date is updated
     // You can use $formattedDate or $this->selectedDate as needed

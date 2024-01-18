@@ -14,10 +14,13 @@
             border: 1px solid #ccc;
             margin-bottom: 0.625rem;
             border-radius:5px;
+            
             font-family: 'Montserrat', sans-serif;
         }
       .accordion:hover{
         border: 0.0625rem solid #3a9efd;
+    
+
       }
 
         .accordion-heading {
@@ -104,13 +107,14 @@
 
 </style>
 <body>
-<div class="col"  id="leavePending" style="width: 100%; padding: 0;border-radius: 5px; ">
+
+<div class="col"  id="leavePending" style="width: 100%; padding: 0;border-radius: 5px; "style="background-color:orange;">
    @if(!empty($this->leaveApplications))
         @foreach($this->leaveApplications as $leaveRequest)
             <div class="container mt-1" style="border-radius: 5px;width:100%; " >
                 <div class="accordion">
                     <div class="accordion-heading" style="border-radius: 5px; "  onclick="toggleAccordion(this)">
-                        <div class="accordion-title">
+                        <div class="accordion-title"style="background-color:pink;">
                             <!-- Display leave details here based on $leaveRequest -->
                             <div class="accordion-content">
                              <div class="accordion-profile" style="display:flex; gap:7px; margin:auto 0;align-items:center;justify-content:center;">
@@ -175,7 +179,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="accordion-body">
+                    <div class="accordion-body"style="background-color:yellow;">
                       <div style="width:100%; height:1px; border-bottom:1px solid #ccc; margin-bottom:10px;"></div>
                         <div class="content1">
                            <span style="color: #333; font-size: 0.755rem; font-weight: 500;">No. of days:</span>

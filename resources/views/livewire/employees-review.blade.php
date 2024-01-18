@@ -150,7 +150,9 @@
         <div class="tab-content" id="v-pills-tabContent" >
                 <!-- Attendace link -->
             <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+               
                 <div  style="display:flex;align-items:center;justify-content:center;">
+                
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true" >Active</a>
@@ -162,6 +164,7 @@
                 </div>
                  <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <p>hii pari</p>
                     <div style="display:flex;align-items:center;justify-content:center;">
                         <div class="leave-pending" style="margin-top:10px; background:#fff;  display:flex; width:75%;flex-direction:column; text-align:center;justify-content:center; border:1px solid #ccc; padding:20px;gap:10px;">
 
@@ -306,7 +309,9 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-leaveactive" role="tabpanel" aria-labelledby="pills-leaveactive-tab">
                         @if($this->leaveApplications)
-                            <div class="reviewList" style=" width:100%;  max-height:420px; overflow-y:auto;" >
+                           
+                            <div class="reviewList" style=" width:100%;  max-height:420px; overflow-y:auto;">
+                               
                                 @livewire('view-pending-details')
                             </div>
                         @else

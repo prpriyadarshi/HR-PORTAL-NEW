@@ -135,21 +135,28 @@ class EmployeesReview extends Component
         $employeeId = auth()->guard('emp')->user()->emp_id;
        
         $this->leaveRequests = LeaveRequest::where('status', 'Pending')->get();
+      
         $matchingLeaveApplications = [];
    
         foreach ($this->leaveRequests as $leaveRequest) {
+          
             $applyingToJson = trim($leaveRequest->applying_to);
+           
             $applyingArray = is_array($applyingToJson) ? $applyingToJson : json_decode($applyingToJson, true);
-   
+            
             $ccToJson = trim($leaveRequest->cc_to);
+         
             $ccArray = is_array($ccToJson) ? $ccToJson : json_decode($ccToJson, true);
-   
+           
+          
             $isManagerInApplyingTo = isset($applyingArray[0]['manager_id']) && $applyingArray[0]['manager_id'] == $employeeId;
+            
             $isEmpInCcTo = isset($ccArray[0]['emp_id']) && $ccArray[0]['emp_id'] == $employeeId;
-   
+            
             if ($isManagerInApplyingTo || $isEmpInCcTo) {
                 $matchingLeaveApplications[] = $leaveRequest;
             }
+          
         }
  
         $this->approvedLeaveRequests = LeaveRequest::whereIn('leave_applies.status', ['approved','rejected'])
@@ -185,7 +192,7 @@ class EmployeesReview extends Component
         $this->approvedLeaveApplicationsList = $approvedLeaveApplications;
  
         $this->leaveApplications = $matchingLeaveApplications;
- 
+        
            return view('livewire.employees-review', [
             'leaveApplications' => $this->leaveApplications,
             'approvedLeaveApplicationsList' => $this->approvedLeaveApplicationsList,

@@ -216,16 +216,29 @@
             font-size:0.795rem;
         }
         .table tbody td {
-            border-right: 1px solid #d5d5d5; /* Vertical border color and width */
+            border-right: 1px solid #d5d5d5;
+            /* Vertical border color and width */
         }
 
         /* Remove right border for the last cell in each row to avoid extra border */
         .summary .table tbody tr td:last-child {
-            border-right: none;
+            border-right: none; 
             background:#f2f2f2;
+            height:75px;
         }
+        .summary .table tbody tr td{
+           
+            
+            height:75px;
+        }
+       
         .Attendance .table tbody tr td:last-child {
             border-right: none;
+            height:75px;
+        }
+        .Attendance .table tbody tr td{
+            
+            height:75px;
         }
         .legend-item {
                 display: flex;
@@ -259,21 +272,18 @@
     <button class="custom-button"style="float:right;"wire:click="downloadExcel">
         <i class="fa fa-download" aria-hidden="true"></i>
     </button>
-
+    
     <div class="container">
         <div class="search-bar">
             <input type="text" wire:model="search"placeholder="Search..."wire:change="searchfilter">
         </div>
-        <a href="#" id="toggleSidebar" class="gt-overlay-toggle"
-                style="margin-top:69px;color:rgb(2, 17, 79);">Legend</a>
+       
         <div class="sidebar">
                 <!-- Sidebar content goes here -->
                 <div class="sidebar-header" style="display: flex; justify-content: space-between; align-items: center;">
                     <h3 style="color: #7f8fa4;margin-left:0;font-size:20px;">Legends</h3>
                     <button style="font-size: 12px; padding: 5px 10px; margin-left: 10px; margin-top: -5px;"
                         id="closeSidebar">&#10006;</button>
-
-
                 </div>
                 <div class="sidebar-content"style="overflow-y:auto">
                     <h3 style="font-size: 16px;">Actionable&nbsp;Status</h3>
@@ -385,20 +395,19 @@
                
                 </div>
 
-            </div>
-     
- 
-
-     
-  </div>
-        <div class="row" style="margin-top: 20px;">
+            </div>     
+       </div>
+       <div class="d-flex justify-content-end">
+            <a href="#" id="toggleSidebar" class="gt-overlay-toggle" style="color:rgb(2, 17, 79);font-size:14px;">Legend</a>
+       </div>
+        <div class="row" style="margin-top: 20px;margin:0;padding:0;">
             <div class="summary col-md-3">
                 <p style="background:#ebf5ff;padding:5px 15px;font-size:0.755rem;">Summary</p>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th style="width:75%;background:#ebf5ff;color:#778899;font-weight:500;line-height:2;font-size:0.825rem;">Employee Name</th>
-                            <th  style="width:25%;background:#ebf5ff;color:#778899;font-weight:500;line-height:2;font-size:0.8255rem;">P</th>
+                            <th style="height:62px;width:80%;background:#ebf5ff;color:#778899;font-weight:500;line-height:2;font-size:0.825rem;">Employee Name</th>
+                            <th style="height:62px;width:20%;background:#ebf5ff;color:#778899;font-weight:500;line-height:2;font-size:0.8255rem;">P</th>
                             <!-- Add more headers as needed -->
                         </tr>
                     </thead>
@@ -406,6 +415,7 @@
                       <tbody>
                         <!-- Add table rows and data for Summary -->
                         @if($notFound)
+                          
                         @foreach($Employees as $emp)
                           @php
                              $isFilter=1;
@@ -435,7 +445,9 @@
                           </tr>
                          @endforeach 
                          @else
+                         
                          @foreach($Employees as $emp)
+
                           <tr>
                              
                                 <td style="max-width: 200px;font-weight:400; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ucfirst($emp->first_name)}}&nbsp;{{ucfirst($emp->last_name)}}<span class="text-muted">(#{{ $emp->emp_id }})</span><br/><span class="text-muted"style="font-size:11px;">{{ucfirst($emp->job_title)}},{{ucfirst($emp->city)}}</span></td>
@@ -470,7 +482,7 @@
             </div>
             <div class="Attendance col-md-9" >
                 <p style="background:#ebf5ff; padding:5px 15px;font-size:0.755rem;">Attendance</p>
-                <table class="table">
+                <table class="table"style="background-color:pink;">
                 @php
                     // Get current month and year
                     $currentMonth = 12;
@@ -485,14 +497,16 @@
                     <tr>
                         
                         @for ($i = 1; $i <= $daysInMonth; $i++)
+                          
                             @php
                                 $timestamp = mktime(0, 0, 0, $currentMonth, $i, $currentYear);
                                 $dayName = date('D', $timestamp); // Get the abbreviated day name (e.g., Sun, Mon)
                                 $fullDate = date('Y-m-d', $timestamp); // Full date in 'YYYY-MM-DD' format
                                
                             @endphp
+                           
                             <th style="width:75%; background:#ebf5ff; color:#778899; font-weight:500; text-align:center;">
-                                <div style="font-size:0.825rem;line-height:0.8;font-weight:500;"> {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</div>
+                                <div style="font-size:0.825rem;font-weight:500;"> {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</div>
                                 <div style="margin-top:-5px; font-size:0.625rem;margin-top:1px;">{{ $dayName }}</div>
                             </th>
 
@@ -511,13 +525,13 @@
                        
                           
                         <tr style="height:14px;background-color:#fff;">
-                          
+                           
                            @for ($i = 1; $i <= $daysInMonth; $i++)
                            @php
                                 $timestamp = mktime(0, 0, 0, $currentMonth, $i, $currentYear);
                                 $dayName = date('D', $timestamp); // Get the abbreviated day name (e.g., Sun, Mon)
                                 $fullDate = date('Y-m-d', $timestamp);
-                              
+                                
                                
                                 
                                  // Full date in 'YYYY-MM-DD' format
@@ -622,8 +636,9 @@
                        </tr>
                           
                        @endforeach
-                       
-                   
+                        @if($notFound)
+                          <td colspan="20" style="text-align: center;font-size:12px">Record not found</td>
+                        @endif
                        @endif
                     </tbody>
                 </table>
