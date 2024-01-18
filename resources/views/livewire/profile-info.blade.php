@@ -1,9 +1,6 @@
 <div>
     <style>
- 
- 
-
-        .custom-nav-link {
+        .custom-nav-link-pi {
             color: rgb(2, 17, 79);
             cursor: pointer;
             margin-right:15px;
@@ -12,9 +9,7 @@
             /* Text color for inactive tabs */
         }
 
-
-
-        .custom-nav-link.active {
+        .custom-nav-link-pi.active {
             margin-top: 5px;
             color: white;
             background-color: rgb(2, 17, 79);
@@ -23,7 +18,7 @@
             text-decoration: none;
             
         }
-        .nav-item {
+        .nav-item-pi {
             text-decoration: none;
             
         }
@@ -32,21 +27,21 @@
 
 
         <div class="card" style="width: auto; margin-left: 18%;padding:5px">
-            <ul class="nav custom-nav-tabs"> <!-- Apply the custom class to the nav -->
-                <li class="nav-item flex-grow-1">
-                    <a class="custom-nav-link active" data-section="personalDetails" onclick="toggleDetails('personalDetails', this)">Personal</a>
+            <ul class="nav custom-nav-tabss"> <!-- Apply the custom class to the nav -->
+                <li class="nav-item-pi flex-grow-1">
+                    <a class="custom-nav-link-pi active" data-section="personalDetails" onclick="toggleDetails('personalDetails', this)">Personal</a>
+                </li>
+                <li class="nav-item-pi flex-grow-1">
+                    <a class="custom-nav-link-pi" data-section="accountDetails" onclick="toggleDetails('accountDetails', this)">Accounts & Statements</a>
+                </li>
+                <li class="nav-item-pi flex-grow-1">
+                    <a class="custom-nav-link-pi" data-section="familyDetails" onclick="toggleDetails('familyDetails', this)">Family</a>
+                </li>
+                <li class="nav-item-pi flex-grow-1">
+                    <a class="custom-nav-link-pi" data-section="employeeJobDetails" onclick="toggleDetails('employeeJobDetails', this)">Employment & Job</a>
                 </li>
                 <li class="nav-item flex-grow-1">
-                    <a class="custom-nav-link" data-section="accountDetails" onclick="toggleDetails('accountDetails', this)">Accounts & Statements</a>
-                </li>
-                <li class="nav-item flex-grow-1">
-                    <a class="custom-nav-link" data-section="familyDetails" onclick="toggleDetails('familyDetails', this)">Family</a>
-                </li>
-                <li class="nav-item flex-grow-1">
-                    <a class="custom-nav-link" data-section="employeeJobDetails" onclick="toggleDetails('employeeJobDetails', this)">Employment & Job</a>
-                </li>
-                <li class="nav-item flex-grow-1">
-                    <a class="custom-nav-link" data-section="assetsDetails" onclick="toggleDetails('assetsDetails', this)">Assets</a>
+                    <a class="custom-nav-link-pi" data-section="assetsDetails" onclick="toggleDetails('assetsDetails', this)">Assets</a>
                 </li>
             </ul>
         </div>
@@ -552,7 +547,7 @@
     function toggleDetails(sectionId, clickedLink) {
         const tabs = ['personalDetails', 'accountDetails', 'familyDetails', 'employeeJobDetails', 'assetsDetails'];
 
-        const links = document.querySelectorAll('.custom-nav-link');
+        const links = document.querySelectorAll('.custom-nav-link-pi');
         links.forEach(link => link.classList.remove('active'));
 
         clickedLink.classList.add('active');

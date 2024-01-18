@@ -1,21 +1,7 @@
 <!-- resources/views/livewire/people-lists.blade.php -->
 
 <div>
-    <x-loading-indicator/>
-
-    <style>
-        .text-yellow {
-            color: yellow;
-        }
-
-        .text-gray {
-            color: gray;
-        }
-
-        .col-6 {
-            width: 250px;
-        }
-    </style>
+    <x-loading-indicator />
     <div class="container">
         <div class="row" style="margin-left: 1%; width: 20%; position: relative;width:500px">
             <div class="col" style="text-align: center; border-radius: 5px; margin-right: 10px; cursor: pointer;">
@@ -62,7 +48,7 @@
                                     <img class="profile-image" src="https://th.bing.com/th/id/R.f931db21888ef3645a8356047504aa7b?rik=63HALWH%2b%2fKtaNQ&riu=http%3a%2f%2fereadcost.eu%2fwp-content%2fuploads%2f2016%2f03%2fblank_profile_female-7.jpg&ehk=atYRSw0KxmUnhESig51u5yzYBWfaD9KBO5KvdxXRCTY%3d&risl=&pid=ImgRaw&r=0" alt="Profile Image">
                                     @endif
                                     @else
-                                    <img class="profile-image" src="{{ Storage::url($people->profile) }}"alt="Profile Image">
+                                    <img class="profile-image" src="{{ Storage::url($people->profile) }}" alt="Profile Image">
                                     @endif
 
                                 </div>
@@ -91,12 +77,7 @@
                 <div class="row" style="font-size: 13px;">
                     <div class="row">
                         <style>
-                            .people-image {
-                                width: 150px;
-                                height: 150px;
-                                object-fit: cover;
-                                border-radius: 50%;
-                            }
+
                         </style>
                         <div class="col" style="margin-top: 50px;">
                             @if(empty($selectStarredPeoples->profile) || $selectStarredPeoples->profile == "")
@@ -106,7 +87,7 @@
                             <img class="people-image" src="https://th.bing.com/th/id/R.f931db21888ef3645a8356047504aa7b?rik=63HALWH%2b%2fKtaNQ&riu=http%3a%2f%2fereadcost.eu%2fwp-content%2fuploads%2f2016%2f03%2fblank_profile_female-7.jpg&ehk=atYRSw0KxmUnhESig51u5yzYBWfaD9KBO5KvdxXRCTY%3d&risl=&pid=ImgRaw&r=0" alt="Profile Image">
                             @endif
                             @else
-                            <img class="people-image" src="{{ Storage::url($selectStarredPeoples->profile) }}" alt="Profile Image">
+                            <img style="width: 150px;height: 150px;border-radius: 50%;" class="people-image" src="{{ Storage::url($selectStarredPeoples->profile) }}" alt="Profile Image">
                             @endif
 
                         </div>
@@ -136,14 +117,7 @@
                 @endphp
                 <div class="row" style="font-size: 13px;">
                     <div class="row">
-                        <style>
-                            .people-image {
-                                width: 150px;
-                                height: 150px;
-                                object-fit: cover;
-                                border-radius: 50%;
-                            }
-                        </style>
+
                         <div class="col" style="margin-top: 50px;">
                             @if(empty($firstStarredPerson->profile) || $firstStarredPerson->profile == "")
                             @if($firstStarredPerson->emp->gender == "Male")
@@ -152,7 +126,7 @@
                             <img class="people-image" src="https://th.bing.com/th/id/R.f931db21888ef3645a8356047504aa7b?rik=63HALWH%2b%2fKtaNQ&riu=http%3a%2f%2fereadcost.eu%2fwp-content%2fuploads%2f2016%2f03%2fblank_profile_female-7.jpg&ehk=atYRSw0KxmUnhESig51u5yzYBWfaD9KBO5KvdxXRCTY%3d&risl=&pid=ImgRaw&r=0" alt="Profile Image">
                             @endif
                             @else
-                            <img class="people-image" src="{{ Storage::url($firstStarredPerson->profile) }}" alt="Profile Image">
+                            <img style="width: 150px;height: 150px;border-radius: 50%;" class="people-image" src="{{ Storage::url($firstStarredPerson->profile) }}" alt="Profile Image">
                             @endif
                         </div>
                         <div class="col" style="margin-top: 50px; margin-right: 80px;">
@@ -235,14 +209,7 @@
                 @if ($selectedPerson)
                 <div class="row" style="font-size: 13px;">
                     <div class="row">
-                        <style>
-                            .people-image {
-                                width: 150px;
-                                height: 150px;
-                                object-fit: cover;
-                                border-radius: 50%;
-                            }
-                        </style>
+
                         <div class="col" style="margin-top: 50px;">
                             @if(empty($selectedPerson->image) || $selectedPerson->image == "")
                             @if($selectedPerson->gender == "Male")
@@ -251,7 +218,7 @@
                             <img class="people-image" src="https://th.bing.com/th/id/R.f931db21888ef3645a8356047504aa7b?rik=63HALWH%2b%2fKtaNQ&riu=http%3a%2f%2fereadcost.eu%2fwp-content%2fuploads%2f2016%2f03%2fblank_profile_female-7.jpg&ehk=atYRSw0KxmUnhESig51u5yzYBWfaD9KBO5KvdxXRCTY%3d&risl=&pid=ImgRaw&r=0" alt="Profile Image">
                             @endif
                             @else
-                            <img class="people-image" src="{{ Storage::url($selectedPerson->image) }}" alt="Profile Image">
+                            <img style="width: 150px;height: 150px;border-radius: 50%;" class="people-image" src="{{ Storage::url($selectedPerson->image) }}" alt="Profile Image">
                             @endif
 
                         </div>
@@ -294,16 +261,9 @@
 
                 <div class="row" style="font-size: 13px;">
                     <div class="row">
-                        <style>
-                            .people-image {
-                                width: 150px;
-                                height: 150px;
-                                object-fit: cover;
-                                border-radius: 50%;
-                            }
-                        </style>
+
                         <div class="col" style="margin-top: 50px;">
-                            <img class="people-image" src="{{ Storage::url(optional($firstPerson)->image) }}"alt="Profile Image">
+                            <img style="width: 150px;height: 150px;border-radius: 50%;" class="people-image" src="{{ Storage::url(optional($firstPerson)->image) }}" alt="Profile Image">
                         </div>
                         <div class="col" style="margin-top: 50px; margin-right: 80px;">
                             <a style="text-decoration: none;" wire:click="toggleStar('{{ optional($firstPerson)->emp_id }}')">
@@ -314,11 +274,11 @@
                             <div>{{ optional($firstPerson)->first_name }} {{ optional($firstPerson)->last_name }}</div>
                             <strong>
                                 <div>(#{{ optional($firstPerson)->emp_id }})</div>
-                        </strong>
+                            </strong>
                             <div>Contact Details <br> <strong>{{ optional($firstPerson)->mobile_number }}</strong></div>
                             <div>CATEGORY <br> <strong>{{ optional($firstPerson)->job_title }}</strong></div>
                             <div>Location <br> <strong>{{ optional($firstPerson)->job_location }}</strong></div>
-                            <div>Joining Date  <br><strong>{{ optional($firstPerson)->hire_date ? date('d M y', strtotime(optional($firstPerson)->hire_date)) : '' }}</strong></div>
+                            <div>Joining Date <br><strong>{{ optional($firstPerson)->hire_date ? date('d M y', strtotime(optional($firstPerson)->hire_date)) : '' }}</strong></div>
                             <div>Date Of Birth <br><strong>{{ optional($firstPerson)->date_of_birth ? date('d M y', strtotime(optional($firstPerson)->date_of_birth)) : '' }}</strong></div>
                         </div>
                     </div>

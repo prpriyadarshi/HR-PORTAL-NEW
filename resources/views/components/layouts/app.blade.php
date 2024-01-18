@@ -43,7 +43,7 @@
 
     <script src="{{ mix('js/app.js') }}"></script>
 
-    <link rel="stylesheet" type="text/css" href="path/to/your.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -51,7 +51,6 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
@@ -64,7 +63,6 @@
     <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script src="{{ asset('vendor/livewire/livewire.js') }}"></script>
     <!-- Add these links to your HTML -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -75,7 +73,7 @@
 
     <script src="{{ asset('livewire/livewire.js') }}" defer></script>
 
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet" data-turbolinks-track="reload">
+
     @stack('styles')
     <livewire:styles />
 
@@ -94,8 +92,6 @@
 
         <style>
             @import url('/css/app.css');
-
-          
         </style>
 
 
@@ -315,9 +311,20 @@
 
                         @auth('hr')
                         <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none; margin-top: 10px" onclick="changePageTitle1()">
-                            <a class="nav-link" href="#" onclick="setActiveLink(this)">
+                            <a class="nav-link" href="/hrPage" onclick="setActiveLink(this)">
                                 <i class="fas fa-users"></i> HR Requests
                             </a>
+                        </li>
+
+                        <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none;" onclick="changePageTitleLR()">
+
+                            <a class="nav-link" href="/letter-requests" onclick="setActiveLink(this)">
+
+                                <i class="fas fa-envelope"></i>
+                                Letter Requests
+
+                            </a>
+
                         </li>
                         @endauth
 
@@ -376,7 +383,7 @@
                     </h6>
                     @elseif(auth('hr')->check())
                     <h6 style="color: white; width: -webkit-fill-available;" id="pageTitle">
-                        <i style="color: white;" class="fas fa-users"></i> HR Requests
+                        <i style="color: white;" class="fas fa-users"></i> Requests
                     </h6>
                     @endif
 
@@ -483,6 +490,22 @@
             function changePageTitle1() {
 
                 var newTitle = "Home";
+
+                var newIcon = '<i style="color: white;" class="fas fa-home"></i>'
+
+                document.getElementById("pageIcon").innerHTML = newIcon;
+
+                document.getElementById("pageTitle").textContent = newTitle;
+
+                localStorage.setItem("pageIcon", newIcon);
+
+                localStorage.setItem("pageTitle", newTitle);
+
+            }
+
+            function changePageTitleLR() {
+
+                var newTitle = "Letter Requests";
 
                 var newIcon = '<i style="color: white;" class="fas fa-home"></i>'
 
