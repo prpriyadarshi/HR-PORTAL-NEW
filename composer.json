@@ -19,7 +19,6 @@
         "laravel/socialite": "^5.11",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.3",
-     
         "swiftmailer/swiftmailer": "^5.4"
     },
     "require-dev": {

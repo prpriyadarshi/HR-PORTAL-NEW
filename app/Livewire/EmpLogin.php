@@ -56,9 +56,9 @@ class EmpLogin extends Component
             } elseif (Auth::guard('emp')->attempt(['email' => $this->form['emp_id'], 'password' => $this->form['password']])) {
                 return redirect('/');
             } elseif (Auth::guard('hr')->attempt(['hr_emp_id' => $this->form['emp_id'], 'password' => $this->form['password']])) {
-                return redirect('/hrPage');
+                return redirect('/home-dashboard');
             } elseif (Auth::guard('hr')->attempt(['email' => $this->form['emp_id'], 'password' => $this->form['password']])) {
-                return redirect('/hrPage');
+                return redirect('/home-dashboard');
             } elseif (Auth::guard('finance')->attempt(['fi_emp_id' => $this->form['emp_id'], 'password' => $this->form['password']])) {
                 return redirect('/financePage');
             } elseif (Auth::guard('finance')->attempt(['email' => $this->form['emp_id'], 'password' => $this->form['password']])) {

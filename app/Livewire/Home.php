@@ -17,6 +17,7 @@ use App\Livewire\TeamOnLeave;
 class Home extends Component
 {
     public $currentDate;
+    public $swipes;
     public $showSalary = false;
     public $currentDay;
 
@@ -44,6 +45,14 @@ class Home extends Component
     public $showLeaveApplies;
     public $greetingImage;
     public $greetingText;
+    public $teamOnLeave;
+    public $leaveApplied;
+    public  $teamOnLeaveRequests;
+    public  $teamCount = 0;
+    public  $upcomingLeaveRequests;
+    public $holidayCount = 0;
+
+
 
     public function mount()
     {
@@ -110,7 +119,9 @@ class Home extends Component
         $this->currentDay = now()->format('l');
         $this->currentDate = now()->format('d M Y');
         $today = Carbon::now()->format('Y-m-d');
-        $this->leaveRequests = LeaveRequest::where('status', 'pending')->get();
+        $this->leaveRequests = LeaveRequest::with('employee')
+        ->where('status', 'pending')
+        ->get();
         $matchingLeaveApplications = [];
 
         foreach ($this->leaveRequests as $leaveRequest) {
@@ -169,8 +180,9 @@ class Home extends Component
         }
 
         // Get the count of matching leave applications
+        $this->leaveApplied = $matchingLeaveApplications;
+    
         $this->count = count($matchingLeaveApplications);
-
 
         //team on leave
         $currentDate = Carbon::today();
@@ -198,6 +210,8 @@ class Home extends Component
             }
         }
         $this->teamOnLeave = $teamOnLeaveApplications;
+      
+
 
         // Get the count of matching leave applications
         $this->teamCount = count($teamOnLeaveApplications);
@@ -389,8 +403,8 @@ class Home extends Component
                 }
             }
         }
-
-        $this->holidayCount = $this->calendarData;
+        
+        $this->holidayCount =$this->calendarData;
 
         $this->salaryRevision = SalaryRevision::where('emp_id', $employeeId)->get();
         $loggedInEmpId = Auth::guard('emp')->user()->emp_id;
@@ -413,6 +427,7 @@ class Home extends Component
             'salaryRevision' => $this->salaryRevision,
             'showLeaveApplies' => $this->showLeaveApplies,
             'count' => $this->count,
+            'leaveApplied' => $this->leaveApplied,
             'teamCount' => $this->teamCount,
             'teamOnLeave' => $this->teamOnLeave,
             'matchingLeaveApplications' => $matchingLeaveApplications,
@@ -428,5 +443,5 @@ class Home extends Component
 
         ]);
     }
-    public $swipes;
+   
 }
