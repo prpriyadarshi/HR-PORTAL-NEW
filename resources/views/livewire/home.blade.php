@@ -54,7 +54,7 @@
                     <div class="home-col col-md-4 p-1 d-flex flex-column">
                         <div class="home-hover mb-2">
                                <div class="reviews">
-                                  <div class="bg-white rounded-border" style="border: 1px solid #CFCACA;">
+                                  <div class="bg-white rounded" style="border: 1px solid #CFCACA;">
                                   <div class="home-heading d-flex justify-content-between p-2">
                                        <div class="section-name rounded">
                                             Review
@@ -90,7 +90,7 @@
                                                <div class="circle d-flex" style="border-radius: 50%;width: 35px;height: 35px;align-items: center;justify-content: center;border: 2px solid {{getRandomColor() }}">
                                                     <span style="color: #778899; font-weight: 500; font-size: 11px;">{{ $initials }}</span>
                                                 </div>
-                                                <span style="display: block; text-align: center;font-size:10px;">Leave</span>
+                                                <span style="display: block; text-align: center;font-size:10px;color:#778899;">Leave</span>
                                             </div>
 
                                                 <?php
@@ -225,7 +225,7 @@
                                                 <p style="color: #778899; font-size: 0.775rem; font-weight: 500; ">
                                                         Not Yet In ({{ $CountAbsentEmployees }})
                                                     </p>
-                                                <div class="team-leave d-flex flex-row mr gap-3">
+                                                <div class="team-leave d-flex flex-row gap-3">
                                                 @php
                                                   function getRandomAbsentColor() {
                                                                 $colors = ['#FFD1DC', '#D2E0FB', '#ADD8E6', '#E6E6FA', '#F1EAFF','#FFC5C5'];
