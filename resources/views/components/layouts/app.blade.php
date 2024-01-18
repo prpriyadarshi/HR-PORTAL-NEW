@@ -43,7 +43,7 @@
 
     <script src="{{ mix('js/app.js') }}"></script>
 
-    <link rel="stylesheet" type="text/css" href="path/to/your.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -51,7 +51,6 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
@@ -64,7 +63,6 @@
     <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
     <script src="{{ asset('vendor/livewire/livewire.js') }}"></script>
     <!-- Add these links to your HTML -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -75,7 +73,7 @@
 
     <script src="{{ asset('livewire/livewire.js') }}" defer></script>
 
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet" data-turbolinks-track="reload">
+
     @stack('styles')
     <livewire:styles />
 
@@ -93,438 +91,7 @@
     <div>
 
         <style>
-          .body {
-                font-family: 'Montserrat', sans-serif;
-                overflow-x: hidden;
-            }
-
-            .left-card-body {
-                margin-top: 0px;
-                padding: 0 5px;
-                margin: 0;
-                height: 600px;
-            }
-
-            .profile-container {
-
-                display: flex;
-
-                gap: 10px;
-
-                align-items: center;
-
-                padding: 10px;
-
-                background-color: rgb(2, 17, 79);
-
-                box-shadow: 2px 4px 4px 4px rgba(0, 0, 0, 0.1);
-
-                border-radius: 5px;
-
-            }
-
-
-
-            .profile-image {
-
-                height: 32px;
-
-                width: 32px;
-
-                background-color: green;
-
-                border-radius: 50%;
-
-            }
-
-
-
-            .username {
-
-                font-size: 16px;
-
-                margin: 0;
-
-            }
-
-
-
-            .nav-item {
-
-                font-size: 14px;
-
-                margin-bottom: 5px;
-
-                border-radius: 5px;
-
-            }
-
-
-
-            .nav-item-1 {
-
-                font-size: 12px;
-
-            }
-
-            .nav-item .nav-link {
-                color: black;
-                text-decoration: none;
-                font-weight: 500;
-                font-size: 0.825rem;
-                cursor: pointer;
-            }
-
-            /* Style for the active-link class */
-            .active-link a {
-                background-color: #eef2ff;
-                border-radius: 5px;
-                color: black !important;
-            }
-
-            .active-link a:hover {
-                background-color: #eef2ff;
-                border-radius: 5px;
-                color: black !important;
-            }
-
-            /* Hover effect for the nav-link class */
-            .nav-link:hover {
-                background-color: #f3f3f3;
-                border-radius: 5px;
-                color: black !important;
-            }
-
-            /* Style for the icon */
-            .nav-link i {
-                color: black;
-                /* Set the default color for the icon */
-            }
-
-            /* Style for the icon in the active state */
-            .active-link i {
-                color: black !important;
-                /* Set the active color for the icon */
-            }
-
-            .fas {
-
-                width: 30px;
-
-                color: grey;
-
-            }
-
-
-
-            .emp-name {
-                display: flex;
-                flex-direction: column;
-
-            }
-
-
-
-            .profile-image {
-
-                margin-right: 15px;
-
-            }
-
-            #todo-options a {
-                text-decoration: none;
-                color: #778899;
-                font-weight: normal;
-                cursor: pointer;
-            }
-
-            #attendance-options a {
-                text-decoration: none;
-                color: #778899;
-                cursor: pointer;
-                font-weight: normal;
-            }
-
-            #leave-options a {
-                text-decoration: none;
-                color: #778899;
-                font-weight: normal;
-                cursor: pointer;
-            }
-
-            #salary-options a {
-                text-decoration: none;
-                color: #778899;
-                cursor: pointer;
-                font-weight: normal;
-            }
-
-            /* Style for the dropdown container */
-            .dropdown {
-                position: relative;
-                display: inline-block;
-                background: transparent;
-                width: 200px;
-                margin-right: 30px;
-            }
-
-            /* Style for the dropdown button */
-            .dropdown-btn {
-                background-color: transparent;
-                color: #fff;
-                padding: 8px;
-                font-size: 0.905rem;
-                border: none;
-                cursor: pointer;
-            }
-
-            /* Style for the dropdown content */
-            .dropdown-content {
-                display: none;
-                position: absolute;
-                font-size: 0.855rem;
-                border-radius: 5px;
-                background-color: #fff;
-                min-width: 150px;
-                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-                z-index: 1;
-            }
-
-            /* Style for the arrow */
-            .dropdown-btn::after {
-                content: "▼";
-                /* Unicode for down arrow */
-                margin-left: 3px;
-                font-size: 10px;
-                line-height: 0.6;
-            }
-
-            /* Style for the dropdown links */
-            .dropdown-content a {
-                color: grey;
-                padding: 10px 14px;
-                text-decoration: none;
-                display: block;
-            }
-
-            /* Change color on hover */
-            .dropdown-content a:hover {
-                background-color: #f7f8fe;
-                border-left: 2px solid rgb(2, 17, 79);
-                color: rgb(2, 17, 79);
-                border-radius: 5px;
-            }
-
-            /* Change color on click (active state) */
-            .dropdown-content a:active {
-                background-color: #ddd;
-            }
-
-            /* Show the dropdown content when the dropdown button is hovered over */
-            .dropdown:hover .dropdown-content {
-                display: block;
-            }
-
-            /* content slot scrolling */
-            .slot {
-                margin-top: 10px;
-                max-height: 520px;
-                overflow-y: auto;
-                background: #f2f2f2;
-            }
-
-            .slot::-webkit-scrollbar {
-                width: 7px;
-                /* Set the width of the scrollbar */
-            }
-
-            .slot::-webkit-scrollbar-thumb {
-                background-color: #ccc;
-                /* Set the color of the thumb */
-                border-radius: 6px;
-                /* Set the border radius of the thumb */
-            }
-
-            .slot::-webkit-scrollbar-track {
-                background-color: #f5f5f5;
-                /* Set the color of the track */
-            }
-
-            .slot::-webkit-scrollbar-thumb:hover {
-                background-color: #555;
-                /* Set the color of the thumb on hover */
-            }
-
-
-
-            @media only screen and (max-width: 768px) {
-                .displayNone {
-                    display: none !important;
-                }
-
-                .displayBlock {
-                    display: block !important;
-                }
-
-                #menu-popup {
-                    position: absolute;
-                    background: #fff;
-                    border: 1px solid #e0dddd;
-                    border-radius: 0px;
-                    height: auto;
-                    width: fit-content;
-                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                    top: 3.8em;
-                    z-index: 1000;
-                }
-
-                /* left side menu scroll */
-                #menu-popup {
-                    overflow-y: auto;
-                    max-height: 400px;
-                    scrollbar-width: thin;
-                    /* For Firefox */
-                    scrollbar-color: #f0f0f0;
-                    /* thumb and track color */
-                }
-
-                #menu-popup::-webkit-scrollbar {
-                    width: 3px;
-                    /* Set the width of the scrollbar */
-                }
-
-                #menu-popup::-webkit-scrollbar-thumb {
-                    background-color: #fff;
-                    /* Set the color of the thumb */
-                    border-radius: 6px;
-                    /* Set the border radius of the thumb */
-                }
-
-                #menu-popup::-webkit-scrollbar-track {
-                    background-color: #f0f0f0;
-                    /* Set the color of the track */
-                }
-
-                #menu-popup::-webkit-scrollbar-thumb:hover {
-                    background-color: #555;
-                    /* Set the color of the thumb on hover */
-                }
-
-            }
-
-            @media only screen and (min-width: 769px) {
-                .hideHamburger {
-                    display: none !important;
-                }
-            }
-
-
-            @media only screen and (max-width: 768px) {
-                .displayNone {
-                    display: none !important;
-                }
-
-                .displayBlock {
-                    display: block !important;
-                }
-
-                #menu-popup {
-                    position: absolute;
-                    background: #fff;
-                    border: 1px solid #e0dddd;
-                    border-radius: 0px;
-                    height: auto;
-                    width: fit-content;
-                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                    top: 3.8em;
-                    z-index: 1000;
-                }
-
-                /* left side menu scroll */
-                #menu-popup {
-                    max-height: 400px;
-                    overflow-y: auto;
-                    scrollbar-width: thin;
-                    /* For Firefox */
-                    scrollbar-color: #f0f0f0;
-                    /* thumb and track color */
-                }
-
-                #menu-popup::-webkit-scrollbar {
-                    width: 3px;
-                    /* Set the width of the scrollbar */
-                }
-
-                #menu-popup::-webkit-scrollbar-thumb {
-                    background-color: #fff;
-                    /* Set the color of the thumb */
-                    border-radius: 6px;
-                    /* Set the border radius of the thumb */
-                }
-
-                #menu-popup::-webkit-scrollbar-track {
-                    background-color: #f0f0f0;
-                    /* Set the color of the track */
-                }
-
-                #menu-popup::-webkit-scrollbar-thumb:hover {
-                    background-color: #555;
-                    /* Set the color of the thumb on hover */
-                }
-
-            }
-
-            @media only screen and (min-width: 769px) {
-                .hideHamburger {
-                    display: none !important;
-                }
-
-                .scrollable-container {
-                    max-height: 450px;
-                    overflow-y: auto;
-                }
-
-                .scrollable-container::-webkit-scrollbar {
-                    width: 2px;
-                    /* Set the width of the scrollbar */
-                }
-
-                .scrollable-container::-webkit-scrollbar-thumb {
-                    background-color: #fff;
-                    /* Set the color of the scrollbar thumb */
-                    border-radius: 5px;
-                    /* Set the border radius of the thumb */
-                }
-
-                .scrollable-container::-webkit-scrollbar-track {
-                    background-color: #fff;
-                    /* Set the color of the scrollbar track */
-                    border-radius: 5px;
-                    /* Set the border radius of the track */
-                }
-
-
-            }
-
-            @media only screen and (min-width: 1440px) {
-
-
-                .slot {
-                    max-height: 660px;
-                    overflow-x: hidden;
-                    overflow-y: auto;
-                }
-
-                .left-card-body {
-                    width: 250px;
-                    margin-top: 0px;
-                    padding: 0 5px;
-                    margin: 0;
-                    display: flex;
-                    height: 750px;
-
-                }
-            }
+            @import url('/css/app.css');
         </style>
 
 
@@ -532,7 +99,7 @@
 
             <div class="card displayNone" id="menu-popup" style="border-radius:0px; width: auto; background:transaparent;box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);padding:0;margin:0;">
 
-                <div class="left-card-body">
+                <div class="left-card-body" style="margin-top: 0px;padding: 0 5px;margin: 0;height: 600px;">
 
                     <ul class="nav flex-column">
 
@@ -744,9 +311,20 @@
 
                         @auth('hr')
                         <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none; margin-top: 10px" onclick="changePageTitle1()">
-                            <a class="nav-link" href="#" onclick="setActiveLink(this)">
+                            <a class="nav-link" href="/hrPage" onclick="setActiveLink(this)">
                                 <i class="fas fa-users"></i> HR Requests
                             </a>
+                        </li>
+
+                        <li data-bs-toggle="modal" data-bs-target="#navigateLoader" class="nav-item" style="text-decoration: none;" onclick="changePageTitleLR()">
+
+                            <a class="nav-link" href="/letter-requests" onclick="setActiveLink(this)">
+
+                                <i class="fas fa-envelope"></i>
+                                Letter Requests
+
+                            </a>
+
                         </li>
                         @endauth
 
@@ -805,7 +383,7 @@
                     </h6>
                     @elseif(auth('hr')->check())
                     <h6 style="color: white; width: -webkit-fill-available;" id="pageTitle">
-                        <i style="color: white;" class="fas fa-users"></i> HR Requests
+                        <i style="color: white;" class="fas fa-users"></i> Requests
                     </h6>
                     @endif
 
@@ -912,6 +490,22 @@
             function changePageTitle1() {
 
                 var newTitle = "Home";
+
+                var newIcon = '<i style="color: white;" class="fas fa-home"></i>'
+
+                document.getElementById("pageIcon").innerHTML = newIcon;
+
+                document.getElementById("pageTitle").textContent = newTitle;
+
+                localStorage.setItem("pageIcon", newIcon);
+
+                localStorage.setItem("pageTitle", newTitle);
+
+            }
+
+            function changePageTitleLR() {
+
+                var newTitle = "Letter Requests";
 
                 var newIcon = '<i style="color: white;" class="fas fa-home"></i>'
 

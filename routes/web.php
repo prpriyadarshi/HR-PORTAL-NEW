@@ -57,6 +57,7 @@ use App\Livewire\LeaveCancel;
 use App\Livewire\TeamOnLeave;
 use App\Livewire\HolidayCalender;
 use App\Livewire\LeaveBalanaceAsOnADay;
+use App\Livewire\LetterRequests;
 use App\Livewire\TeamOnLeaveChart;
  
 use App\Livewire\ViewDetails;
@@ -169,6 +170,7 @@ Route::middleware(['auth:com'])->group(function () {
  
 Route::middleware(['auth:hr'])->group(function () {
     Route::get('/hrPage', AuthChecking::class)->name('home');
+    Route::get('/letter-requests', LetterRequests::class)->name('letter-requests');
 });
  
 Route::middleware(['auth:finance'])->group(function () {
@@ -195,13 +197,10 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/employee-swipes-data', EmployeeSwipesData::class)->name('employee-swipes-data');
     Route::get('/attendance-muster', AttendanceMuster::class)->name('attendance-muster');
     Route::get('/attendance-muster-data', AttendenceMasterDataNew::class)->name('attendance-muster-data');
- 
- 
     Route::get('/ProfileInfo', ProfileInfo::class)->name('profile.info');
     Route::get('/Settings', Settings::class);
  
-    Route::post('/feeds',Feeds::class);
-    Route::post('/api/store-emoji', [Emojies::class, 'store']);
+ 
     //Feeds Module
     Route::get('/Feeds', Feeds::class);
     Route::get('/everyone', Everyone::class);
@@ -261,6 +260,7 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/approved-details/{leaveRequestId}', ApprovedDetails::class)->name('approved-details');
  
     Route::get('/holiday-calender', HolidayCalender::class)->name('holiday-calender');
+    Route::get('/document-center-letters', DocumentCenterLetters::class);
  
  
     Route::get('/view-pending-details', ViewPendingDetails::class)->name('view-pending-details');

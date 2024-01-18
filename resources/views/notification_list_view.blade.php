@@ -14,4 +14,39 @@
     @livewire('notification-list', ['jobId' => $jobId])
     @livewireScripts
 </body>
+<style>
+    body {
+                font-family: Arial, sans-serif;
+            }
+
+            .card {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+                border: 1px solid #e0e0e0;
+                margin-bottom: 15px;
+            }
+
+            h6 {
+                color: #3498db;
+            }
+
+            p {
+                font-size: 16px;
+            }
+
+            ul {
+                list-style-type: disc;
+                margin-left: 20px;
+            }
+
+            a {
+                color: #3498db;
+                text-decoration: none;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+</style>
 </html>
