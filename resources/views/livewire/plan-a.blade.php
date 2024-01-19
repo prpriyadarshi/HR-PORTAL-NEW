@@ -554,10 +554,10 @@
                    
                     <div class="row" style="margin-top: -90px;">
                         <div class="col-1" style="margin-left: 30%;" >
-                            <button type="submit" class="custom-button submit-button" style="background:green;border:1px solid silver;border-radius:5px;color:white;width:80px">Submit</button>
+                            <button type="submit" class="custom-button submit-button" style="background:green;border:1px solid silver;border-radius:5px;color:white;width:80px;margin-top:10px">Submit</button>
                         </div>
                         <div class="col-2" >
-                            <button wire:click="closeIncome" class="custom-button cancel-button" style="background:red;border:1px solid silver;border-radius:5px;color:white;width:80px">Cancel</button>
+                            <button wire:click="closeIncome" class="custom-button cancel-button" style="background:red;border:1px solid silver;border-radius:5px;color:white;width:80px;margin-top:10px">Cancel</button>
                         </div>
                     </div>
                 </form>
