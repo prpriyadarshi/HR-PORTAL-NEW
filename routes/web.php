@@ -43,6 +43,7 @@ use App\Livewire\SalarySlips;
 use App\Livewire\PlanA;
 use App\Livewire\Documents;
 use App\Livewire\Declaration;
+use App\Livewire\DocForms;
 use App\Livewire\Downloadform;
 use App\Livewire\Documentcenter;
 use App\Livewire\DocumentCenterLetters;
@@ -191,6 +192,7 @@ Route::middleware(['auth:it'])->group(function () {
 Route::middleware(['auth:emp'])->group(function () {
 
     Route::get('/', Home::class)->name('home');
+    Route::get('/doc-forms', DocForms::class);
     Route::get('/LeaveBalanceAsOnADay', LeaveBalanaceAsOnADay::class);
  
     // Attendance Routes

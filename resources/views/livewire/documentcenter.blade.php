@@ -80,7 +80,7 @@
     <div class="col-md-3" style="background-color: white; border: 1px solid #D9D9D9; border-radius: 5px;display:flex;margin-left:10px">
         <img src="https://www.ucdavis.edu/sites/default/files/images/focal_link/requirements_2.png" alt="Image Description" style="height: 30px; width: 30px; margin-top: 20px; margin-left: 10px;">
         <p style="margin-top: 20px; margin-left: 10px;font-size:12px">Forms</p>
-        <a class="links" href="/documents" style="margin-top: 23px; padding-left: 40px; font-size: 12px; color: black; text-decoration: none;">
+        <a class="links" href="/doc-forms" style="margin-top: 23px; padding-left: 40px; font-size: 12px; color: black; text-decoration: none;">
   <span onmouseover="this.style.color='#33B3BC'; this.style.textDecoration='underline';" onmouseout="this.style.color='blue'; this.style.textDecoration='none';">
   View all
   </span>
