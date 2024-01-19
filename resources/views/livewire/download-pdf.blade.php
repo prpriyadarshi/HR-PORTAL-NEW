@@ -1,5 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap">
-    <style>
+<style>
         body {
             font-family: 'Montserrat', sans-serif;
             background: #f0f0f0;
@@ -9,87 +16,80 @@
             justify-content: center;
             align-items: center;
             min-height: 50vh;
-            font-size:12px;
+            font-size: 12px;
         }
- 
-        .salary-slip {
+
+        .custom-salary-slip {
             background: #fff;
             max-width: 800px;
             width: 100%;
             margin: 20px;
-            font-size:12px;
+            font-size: 12px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
             padding: 20px;
         }
- 
-        .header {
+
+        .custom-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
- 
         }
- 
-        .header img {
+
+        .custom-header img {
             height: 80px;
             width: auto;
         }
- 
+
         .company-name {
-          font-size:12px;
+            font-size: 12px;
         }
- 
-        .empDetail {
+
+        .employee-details {
             width: 100%;
-            font-size:12px;
-     
+            font-size: 12px;
         }
- 
-        .empDetail th,
-        .empDetail td {
-         
+
+        .employee-details th,
+        .employee-details td {
             padding: 8px;
-            font-size:12px;
+            font-size: 12px;
         }
- 
-        .myBackground {
+
+        .custom-background {
             background-color: white;
             font-weight: 300;
         }
- 
-        .myAlign {
+
+        .align-right {
             text-align: right;
         }
- 
-       
     </style>
- 
- 
- 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap">
- 
-<div>
-    @foreach($employees as $employeeData)
-    @foreach($empBankDetails as  $employee)
-     
-    <div class="salary-slip">
-        <table class="empDetail">
-            <tr style="background-color: white">
-                <td colspan='3'>
-                @livewire('company-logo')
-                </td>
-                <td colspan='3' >
-               <p  style="margin-left:20px;font-size:20px;font-weight:800">{{ $employeeData->company_name }}</p>
+</head>
+
+<body>
+    <div>
+        @foreach($employees as $employeeData)
+        @foreach($empBankDetails as  $employee)
+
+        <div class="custom-salary-slip">
+            <table class="employee-details">
+                <tr class="custom-background">
+                    <td colspan='3'>
+                        @livewire('company-logo')
                     </td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ $employeeData->first_name }} {{ $employeeData->last_name }}</td>
-                <th>Bank Branch</th>
-                <td>{{ $employee->bank_branch }}</td>
-                <th>Branch Name</th>
-                <td>{{ $employee->bank_name }}</td>
-            </tr>
+                    <td colspan='3'>
+                        <p style="margin-left:20px;font-size:20px;font-weight:800">{{ $employeeData->company_name }}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ $employeeData->first_name }} {{ $employeeData->last_name }}</td>
+                    <th>Bank Branch</th>
+                    <td>{{ $employee->bank_branch }}</td>
+                    <th>Branch Name</th>
+                    <td>{{ $employee->bank_name }}</td>
+                </tr>
             <tr>
                 <th>PF Number</th>
                 <td>{{ $employeeData->pf_no }}</td>
@@ -120,16 +120,16 @@
     @endforeach
     @endforeach
     @foreach($salaryRevision as $employee)
-    <div class="salary-slip">
-        <table class="empDetail">
-            <tr class="myBackground">
-                <th colspan="2">Payments</th>
-                <th>Particulars</th>
-                <th class="table-border-center">Amount (Rs.)</th>
-                <th colspan="2">Deductions</th>
-                <th>Particulars</th>
-                <th class="table-border-center">Amount (Rs.)</th>
-            </tr>
+        <div class="custom-salary-slip">
+            <table class="employee-details">
+                <tr class="custom-background">
+                    <th colspan="2">Payments</th>
+                    <th>Particulars</th>
+                    <th class="align-right">Amount (Rs.)</th>
+                    <th colspan="2">Deductions</th>
+                    <th>Particulars</th>
+                    <th class="align-right">Amount (Rs.)</th>
+                </tr>
             <tr>
                 <th colspan="2">Basic Salary</th>
                 <td></td>
@@ -177,4 +177,4 @@
     </div>
     @endforeach
 </div>
- 
+ </html>

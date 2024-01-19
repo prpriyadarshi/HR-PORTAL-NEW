@@ -1736,10 +1736,68 @@ body {
             }
         }
         /*End of DocumentCenter(Payslip) -(Archana)*/
-
+/*Start of DocumentCenter(Documents) -(Archana)*/
         .container2{
-            width:650px;height:350px;background:white;border:1px solid back;border-radius:5px;margin-top:40px;margin-left:40px
+            width:650px;
+            height:350px;background:white;border:1px solid back;border-radius:5px;margin-top:40px;margin-left:40px
             }
+/*End of DocumentCenter(Documents) -(Archana)*/
+
+
+
+/*Start of DocumentCenter(Payslip-Download PDF) -(Archana)*/
+
+      
+
+/*End of DocumentCenter(Payslip-Download PDF) -(Archana)*/
+        .custom-salary-slip {
+            background: #fff;
+            max-width: 800px;
+            width: 100%;
+            margin: 20px;
+            font-size: 12px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        .custom-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .custom-header img {
+            height: 80px;
+            width: auto;
+        }
+
+        .company-name {
+            font-size: 12px;
+        }
+
+        .employee-details {
+            width: 100%;
+            font-size: 12px;
+        }
+
+        .employee-details th,
+        .employee-details td {
+            padding: 8px;
+            font-size: 12px;
+        }
+
+        .custom-background {
+            background-color: white;
+            font-weight: 300;
+        }
+
+        .align-right {
+            text-align: right;
+        }
+
+
+
 /* app.blade */
 .profile-container {
     display: flex;
