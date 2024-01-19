@@ -45,9 +45,9 @@
   @foreach($employees as $employee)
 
     
-<h5 style="color:orange;margin-top:30px;margin-left:40px">WorkFlow Delegates</h5>
-<button wire:click="submitForm" id="show-delegate-form-button" style=" width: 120px; height: 30px; border-radius:5px;border:1px solid silver;background:silver;color:#000080;margin-left:400px;font-size:12px">Add Delegates</button>
-<div class="container" style="height:300px;width:500px;border-radius:5px;border:1px solid #80daeb;margin-top:20px;margin-left:10px">
+<h5 style="color:orange;margin-top:30px;margin-left:40px"><b>WorkFlow Delegates</b></h5>
+<button wire:click="submitForm" id="show-delegate-form-button" style=" width: 120px; height: 30px; border-radius:5px;border:1px solid silver;background:rgb(2, 17, 79);color:white;margin-left:500px;font-size:12px">Add Delegates</button>
+<div class="container" style="height:300px;width:640px;border-radius:5px;border:1px solid grey;margin-top:20px;margin-left:10px">
 <div class="row" style="height:20px;background:rgb(2, 17, 79);;margin-top:5px;width:100%;margin-left:1px ">
 <h6 style="color:white;font-size:10px">WorkFlow Delegates</h6>
 </div>
@@ -65,15 +65,19 @@
                 </thead>
                
                 @foreach ($retrievedData as $data)
-                    <tr>
-                        <td style="border: 1px solid #8D939D; padding: 5px;font-size:7px; font-family: Montserrat">{{$employee->first_name}} {{$employee->last_name}}({{$employee->emp_id}}) </td>
-                        <td style="border: 1px solid #8D939D; padding: 5px;font-size:7px; font-family: Montserrat">{{ $data->workflow }}</td>
-                        <td style="border: 1px solid #8D939D; padding: 5px;font-size:7px; font-family: Montserrat">{{ date('d M Y', strtotime($data->from_date)) }}</td>
-                        <td style="border: 1px solid #8D939D; padding: 5px;font-size:7px; font-family: Montserrat">{{ date('d M Y', strtotime($data->to_date)) }}</td>
-                        <td style="border: 1px solid #8D939D; padding: 5px;font-size:7px; font-family: Montserrat">{{ $data->delegate }}</td>
-                    </tr>
-                   
-                    @endforeach
+    @if ($data->emp_id == auth()->guard('emp')->user()->emp_id)
+        <tr style="height:auto">
+            <td style="border: 1px solid #8D939D; padding: 5px; font-size: 7px; font-family: Montserrat">
+                {{ $data->first_name }} {{ $data->last_name }} ({{ $data->emp_id }})
+            </td>
+            <td style="border: 1px solid #8D939D; padding: 5px; font-size: 7px; font-family: Montserrat">{{ $data->workflow }}</td>
+            <td style="border: 1px solid #8D939D; padding: 5px; font-size: 7px; font-family: Montserrat">{{ date('d M Y', strtotime($data->from_date)) }}</td>
+            <td style="border: 1px solid #8D939D; padding: 5px; font-size: 7px; font-family: Montserrat">{{ date('d M Y', strtotime($data->to_date)) }}</td>
+            <td style="border: 1px solid #8D939D; padding: 5px; font-size: 7px; font-family: Montserrat">{{ $data->delegate }}</td>
+        </tr>
+    @endif
+@endforeach
+
 
    
    
@@ -89,10 +93,10 @@
  
 <form wire:submit.prevent="submitForm"  style="margin-left:20px;font-size:10px">
                     <div class="form-group" style="margin-left:15px">
-                        <h2 style="font-size:12px;margin-top:20px;">Add/ Edit Work Flow Delegates</h2>
+                        <h2 style="font-size:14px;margin-top:20px;"><b>Add/ Edit Work Flow Delegates:</b></h2>
                         <div class="column" style="display:flex;font-size:8px">
-                            <h3 class="form-label" style="margin-top:30px;font-size:10px">User:</h3>
-                            <p style="margin-left:-30px;font-size:10px;font-weight:400"> {{$employee->first_name}} {{$employee->last_name}}  ({{$employee->emp_id}})</p>
+                            <h3 class="form-label" style="margin-top:30px;font-size:12px">User:</h3>
+                            <p style="margin-left:-30px;font-size:12px;font-weight:400"> {{$employee->first_name}} {{$employee->last_name}}  ({{$employee->emp_id}})</p>
                         </div>
                     </div>
                     <div class="form-group" style="color: black;margin-top:-20px">
@@ -136,8 +140,8 @@
                         </select>
                     </div>
                     <div class="form-actions">
-                    <button class="btn btn-primary submit" type="submit" style="color: white; background-color: blue">Submit</button>
-                        <button id="cancel-button" class="btn reset" type="reset">Cancel</button>
+                    <button class="btn btn-primary submit" type="submit" style="color: white; background:rgb(2, 17, 79);height:30px;font-size:12px">Submit</button>
+                        <button id="cancel-button" class="btn reset" type="reset" style="color: white; background:rgb(2, 17, 79);height:30px;font-size:12px">Cancel</button>
                     </div>
                 </form>
                
