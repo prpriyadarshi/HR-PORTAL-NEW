@@ -1,37 +1,66 @@
-<div>
-
+<div style="width:100%;">    
     <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-ezgG2veqOA/5zPBnKFVr+1tFZZHoOjHshEWbRl0Yt83QCBTZw1A+DIADKh5F9UOI" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-ezgG2veqOA/5zPBnKFVr+1tFZZHoOjHshEWbRl0Yt83QCBTZw1A+DIADKh5F9UOI" crossorigin="anonymous">
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.19.0/font/bootstrap-icons.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-ezgG2veqOA/5zPBnKFVr+1tFZZHoOjHshEWbRl0Yt83QCBTZw1A+DIADKh5F9UOI" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-ezgG2veqOA/5zPBnKFVr+1tFZZHoOjHshEWbRl0Yt83QCBTZw1A+DIADKh5F9UOI" crossorigin="anonymous">    
+        <style>
+            
+            .empTable {
+                border-collapse: collapse;
+                background-color: white;
+                border: 1px solid #e2e8f0;
+                font-size: 12px;
+                max-width:100%;
+            }
+
+            .empTable td {
+                border: 1px solid #e2e8f0;
+                padding: 0.35rem;
+                text-align: left;
+            }
+
+            .empTable th {
+                border: 1px solid #e2e8f0;
+                padding: 0.35rem;
+                text-align: center;
+                background-color: #02134F;
+                color: #f0f4f8;
+                font-weight: bold;
+                white-space: nowrap;
+            }
+
+            .empTable tbody tr:hover {
+                background-color: #f0f4f8;
+            }
+            table,thead,tbody{
+                width: 100%;
+            }
+            .whitespace-nowrap{
+                text-transform: capitalize;
+                text-align: center;
+            }
+            
+                   
+
+        </style>
     </head>
-    <div class="container-11" style="background-color: #02134F; color: white; padding:2px;height:53px">
-
-        <div style="display: flex; align-items: start; justify-content: start;">
-            <img src="{{ $hrDetails->company_logo }}" alt="Logo" style="width: 200px; height: 50px; margin-right: 10px;">
-            <h1 style="font-size: 20px; margin-left:25%;margin-top:10px">HR - {{ $hrDetails->hr_name }}</h1>
-            <div style="margin-left:25%;">
-                <button style="margin-bottom: 10px;" class="logout" style="text-align:end" wire:click="logout"> <i class="fas fa-sign-out-alt"></i> Logout</button>
-            </div>
-        </div>
-    </div>
-    <div style="margin-top:5px;margin-bottom:5px">
-        <button style="width: 230px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;margin-left:40%"><a href="/JobSeekersAppliedJobs" style="text-decoration: none;color:white">Job Seekers Applied
-                Jobs</a></button>
-        <button style="width: 100px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;"><a href="/PostJobs" style="text-decoration: none;color:white">Post Jobs</a></button>
-
-        <button style="width:200px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;"><a href="/VendorsSubmittedCVs" style="text-decoration: none;color:white">Vendors Submitted CVs</a></button>
-        <button style="width:200px; border-radius: 5px; background-color: rgb(2, 17, 79); color: white;"><a href="/empregister" style="text-decoration: none;color:white">Employee Register</a></button>
-    </div>
-    <h3 class="text-3xl font-bold mb-2 text-center">All Employee Details</h3>
-    <div style="margin-top:5px;margin-bottom:5px">
+    <div class="m-0 p-0">
+    <h4 class="text-2xl font-bold mb-2 text-center" style="color:rgb(2, 17, 79);">All Employee Details</h4>
+    <div class="d-flex mb-2 justify-content-between">
         <!-- ... other buttons ... -->
-        <input wire:change="filter" wire:model="search" type="text" placeholder="Search employees" style="width: 200px; border-radius: 5px; padding: 5px; margin-top: 10px; margin-left: 10px;">
-
-        <!-- ... other buttons ... -->
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('add-employee-details') }}">Add Employee</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Update Employee</li>
+                    </ol>
+        </nav>
+      <div>
+          <input wire:change="filter" wire:model="search" type="text" placeholder="Search employees" class="search-input" style="width: 250px;border-radius: 5px;padding: 5px;border: 1px solid #ccc;outline:none;">
+      </div>
     </div>
     <div class="table-responsive">
         @if (is_null($employees) || $employees->isEmpty())
@@ -51,8 +80,7 @@
                     <th class="whitespace-nowrapp" wire:click="sortBy('date_of_birth')">DOB</th>
                     <th class="whitespace-nowrap" wire:click="sortBy('mobile_number')">Mobile No</th>
                     <th class="whitespace-nowrap" wire:click="sortBy('employee_type')">Employee Type</th>
-                    <th class="whitespace-nowrap" wire:click="sortBy('address')">Address</th>
-                    <th class="whitespace-nowrappp">Action</th>
+                    <th class="whitespace-nowrappp" style="width:150px;">Action</th>
                     <!-- Add more table headers as needed -->
                 </tr>
             </thead>
@@ -85,14 +113,12 @@
                     <td class="whitespace-nowrap">
                         {{ ucwords(str_replace(['-', '_'], ' ', $employee->employee_type)) }}
                     </td>
-                    <td class="whitespace-nowrap">
-                        {{ $employee->address }},{{ $employee->city }},{{ $employee->state }},{{ $employee->postal_code }},{{ $employee->country }}
-                    </td>
+                  
                     <td class="whitespace-nowrappp">
                         <div class="row-md-12">
                             <div class="col-md-6">
                                 <div class="d-inline-block">
-                                    <a href="/emp-update/{{$employee->emp_id}}" class="btn btn-primary btn-xs">
+                                    <a href="{{ route('add-employee-details', ['emp_id' => $employee->emp_id]) }}" class="btn btn-primary btn-xs">
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
                                     </a>
                                 </div>
@@ -114,23 +140,14 @@
                             </div>
                         </div>
                     </td>
-
-
-
-
-
-
-
-
-
-
-
                 </tr>
                 @endforeach
             </tbody>
         </table>
 
         @endif
+    </div>
+
     </div>
 
 </div>

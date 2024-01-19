@@ -1,6 +1,8 @@
 <?php
  
 use App\Livewire\ApprovedDetails;
+use App\Livewire\AddEmployeeDetails;
+use App\Livewire\UpdateEmployeeDetails;
 use App\Livewire\Delegates;
 use App\Livewire\EmpLogin;
 use App\Livewire\EmployeesReview;
@@ -56,6 +58,7 @@ use App\Livewire\WhoIsInChart;
 use App\Livewire\LeaveCancel;
 use App\Livewire\TeamOnLeave;
 use App\Livewire\HolidayCalender;
+use App\Livewire\HomeDashboard;
 use App\Livewire\LeaveBalanaceAsOnADay;
 use App\Livewire\LetterRequests;
 use App\Livewire\TeamOnLeaveChart;
@@ -170,7 +173,10 @@ Route::middleware(['auth:com'])->group(function () {
  
 Route::middleware(['auth:hr'])->group(function () {
     Route::get('/hrPage', AuthChecking::class)->name('home');
+    Route::get('/home-dashboard', HomeDashboard::class)->name('admin-home');
     Route::get('/letter-requests', LetterRequests::class)->name('letter-requests');
+    Route::get('/add-employee-details/{employee?}', AddEmployeeDetails::class)->name('add-employee-details');
+    Route::get('/update-employee-details', UpdateEmployeeDetails::class)->name('update-employee-details');
 });
  
 Route::middleware(['auth:finance'])->group(function () {
