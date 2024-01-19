@@ -32,14 +32,10 @@
     border-collapse: collapse;
 }
 
-
-
 .table-body tr:nth-child(even) {
     background-color: #f2f2f2;
     /* Alternate row background color */
 }
-
-
 
 .table-body th {
     background-color: rgb(2, 17, 79);
@@ -383,6 +379,11 @@ body {
     width: 98%;
     margin-left: 5px;
 }
+.confirmation-letterr:hover {
+    margin: 0%;
+    padding: 0%;
+    background-color: lightgrey;
+}
 
 .appointment-order:hover {
     background-color: rgb(122, 149, 255);
@@ -430,7 +431,7 @@ body {
 
 .jump-to.active {
     border: none;
-    background-color: rgb(2, 17, 79);
+    background-color: rgb(2, 12, 53);
     border-radius: 5px;
     color: white;
 }
@@ -500,7 +501,6 @@ body {
     width: 100%;
     border-collapse: collapse;
 }
-
 
 .table-body tr:nth-child(even) {
     background-color: #f2f2f2;
@@ -856,91 +856,90 @@ body {
 }
 /* end of app.blade */
 
-
 /* admin dashboard */
 .first {
     background: #fcfcfc;
     border: 1px solid #ccc;
     color: rgb(2, 17, 79);
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .first:hover {
+    transition: transform 0.3s ease, background-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.first:hover {
     transform: scale(1.01);
     cursor: pointer;
     box-shadow: 1px 2px rgba(0, 0, 0, 0.2);
-  }
-  
-  .first p{
-    font-size:14px;
-    font-weight:500;
-    color:rgb(2, 17, 79);
-  }
-  .first span{
-    font-size:11px;
-    color:#778899;
-  }
-  .small-text{
-    font-size:0.625rem;
-  }
-  .card-body{
-    line-height:1.6;
-    padding:7px 0;
-    margin:0 auto;
-    text-align:start;
-  }
-  .card-text{
-    font-size:0.725rem;
-  }
-  .btn-start{
+}
+
+.first p {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(2, 17, 79);
+}
+.first span {
+    font-size: 11px;
+    color: #778899;
+}
+.small-text {
+    font-size: 0.625rem;
+}
+.card-body {
+    line-height: 1.6;
+    padding: 7px 0;
+    margin: 0 auto;
+    text-align: start;
+}
+.card-text {
+    font-size: 0.725rem;
+}
+.btn-start {
     display: flex;
     height: 28px;
-    color:white;
-    font-size:0.625rem;
+    color: white;
+    font-size: 0.625rem;
     padding: 5px 2px;
-    width:100px;
+    width: 100px;
     justify-content: center;
     align-items: center;
     border-radius: 4px;
-    background:rgb(2, 17, 79);
-  }
-  /* end of admin dashboard */
-  
-  
-  /* start of add employee admin side */
-  .form-control {
+    background: rgb(2, 17, 79);
+}
+/* end of admin dashboard */
+
+/* start of add employee admin side */
+.form-control {
     width: 100%;
     height: 25px;
-    font-size: 10px
-  }
-  
-  .form-group {
+    font-size: 10px;
+}
+
+.form-group {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     font-size: 12px;
-  }
-  
-  .input-group {
+}
+
+.input-group {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     margin-top: 10px;
     margin-bottom: 10px;
-  }
-  
-  .form-group label {
+}
+
+.form-group label {
     font-weight: 500;
     color: #5f6c79;
     margin-bottom: 10px;
-  }
-  
-  a:hover {
+}
+
+a:hover {
     color: green;
-  }
-  
-  .alert-container {
+}
+
+.alert-container {
     position: fixed;
     top: 0;
     left: 50%;
@@ -953,21 +952,21 @@ body {
     text-align: center;
     display: none;
     /* Initially hide the container */
-  }
-  
-  .close-btn {
+}
+
+.close-btn {
     cursor: pointer;
     float: right;
     font-weight: bold;
     font-size: 18px;
-  }
-  
-  .close-btn:hover {
+}
+
+.close-btn:hover {
     color: #fff;
     /* Change color on hover */
-  }
-  
-  .view-button {
+}
+
+.view-button {
     background-color: rgb(2, 17, 79);
     color: white;
     border-radius: 7px;
@@ -977,58 +976,608 @@ body {
     padding: 4px 10px;
     font-size: 0.825rem;
     transition: background-color 0.3s ease-in-out;
-  }
-  
-  .view-button:hover {
+}
+
+.view-button:hover {
     background-color: #0056b3;
     color: #fff;
-  }
-  
-  .img-preview {
+}
+
+.img-preview {
     max-width: 100%;
     height: 50px;
     margin-top: 10px;
-  }
-  
-  
-  .text-danger {
+}
+
+.text-danger {
     font-size: 12px;
-  }
-  
-  
-  #success-message {
+}
+
+#success-message {
     position: relative;
-    background-color: #4CAF50;
+    background-color: #4caf50;
     color: white;
     padding: 10px;
     margin: 10px 0;
     text-align: center;
-  }
-  
-  #success-message .close-message {
+}
+
+#success-message .close-message {
     position: absolute;
     top: 5px;
     right: 10px;
     cursor: pointer;
     color: green;
-  }
-  
-  .custom-radio {
+}
+
+.custom-radio {
     margin-right: 10px;
     /* Adjust the margin to control the gap between radio buttons */
-  }
-  
-  .custom-radio input {
+}
+
+.custom-radio input {
     width: 10px;
     /* Adjust the width to decrease the size of the radio buttons */
     height: 10px;
     /* Adjust the height to decrease the size of the radio buttons */
-  }
-  
-  .placeholder-small::placeholder {
+}
+
+.placeholder-small::placeholder {
     font-size: 0.675rem; /* Adjust the font size as needed */
-    font-weight:normal;
+    font-weight: normal;
     color: #a1a1a1; /* Muted color */
+}
+/* end of admin add employee */
+
+/*Starting of attendance Module(Pranita Priyadarshi)*/
+/*Starting of attendance SubModule:who is in(Pranita Priyadarshi)*/
+ 
+  .container-box-for-employee-information-who-is-in{
+    width: 82%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    margin-top: 30px;
+    margin-left: 10px;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffff;
+    border: 1px solid #ccc;
+    flex: 1;
   }
-  /* end of admin add employee */
-  
+ 
+  .field-for-employee-who-is-in{
+ 
+    text-align: center;
+    width: 100%;
+    align-items: center;
+    background-color: #ffffff;
+    border-right: 1px solid #ccc;
+    flex: 1;
+  }
+ 
+  .percentage-who-is-in {
+    font-size: 18px;
+ 
+  }
+ 
+  .employee-count-who-is-in {
+    font-size: 12px;
+ 
+  }
+ 
+  .heading-who-is-in {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 15px;
+  }
+ 
+  .heading-who-is-in i {
+    color: #778899;
+  }
+ 
+  .heading-who-is-in h3 {
+    color: #778899;
+    font-size: 14px;
+    font-weight: 500;
+  }
+ 
+  .container3-who-is-in {
+    background-color: #ffffff;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    /* Border style for the container */
+  }
+ 
+  .container5-who-is-in  {
+    /* Adjust the width as needed */
+    background-color: #FFFFFF;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    /* Border style for the container */
+  }
+ 
+ 
+  .container6-who-is-in  {
+    background-color: #FFFFFF;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    /* Border style for the container */
+  }
+ 
+  .container4-who-is-in {
+    background-color: #FFFFFF;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    /* Border style for the container */
+  }
+ 
+  .who-is-in-table{
+    border-collapse: collapse;
+    width: 100%;
+    max-height: 200px;
+    /* Set the max height you prefer */
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: block;
+ 
+  }
+ 
+  /* CSS for the table header (thead) */
+  .who-is-in-table thead {
+    background-color: rgb(2, 17, 79);
+    color: white;
+    width: 100%;
+  }
+  input::placeholder {
+  font: 0.85rem/3 sans-serif;
+   }
+  /* CSS for the table header cells (th) */
+  .who-is-in-table th {
+    padding: 5px 20px;
+    text-align: left;
+    width: 100%;
+    font-weight: normal;
+    font-size: 12px;
+  }
+ 
+  .who-is-in-table td {
+    /* Add borders to separate cells */
+    padding: 5px 20px;
+    text-align: left;
+  }
+ 
+  input[type="date"]::before {
+    content: attr(placeholder);
+    color: #778899;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: -1;
+  }
+ 
+  .date-form-who-is-in {
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    width: 200px;
+  }
+ 
+  .shift-selector-container-who-is-in {
+    position: relative;
+    width: 200px;
+   
+    margin-top:30px;/* Adjust the width as needed */
+  }
+ 
+  .shift-selector-who-is-in{
+    width: 100%;
+    height:100px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: white;
+    cursor: pointer;
+    position: relative;
+  }
+ 
+  .arrow-who-is-in{
+    position: absolute;
+    top: 10%;
+    right: 10px;
+    transform: translateY(-50%) rotate(45deg);
+    width: 10px;
+    height: 10px;
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+  .search-container-who-is-in {
+    display: flex;
+    margin-top:-90px;
+  }
+ 
+  .form-group-who-is-in {
+    margin-right: 10px;
+    /* Add spacing between search input and other elements */
+  }
+ 
+  .search-input-who-is-in {
+    border: none;
+    position: relative;
+  }
+ 
+  .search-input-who-is-in input[type="text"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+    /* Adjust width as needed */
+  }
+ 
+  .search-icon-who-is-in{
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    color: #778899;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+ 
+  .search-icon-who-is-in::before {
+    /* Unicode character for a magnifying glass */
+    font-size: 16px;
+  }
+ 
+  .filter-container1-who-is-in {
+    display: flex;
+    background: #fff;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    padding: 5px;
+    border: 1px solid #ccc;
+  }
+ 
+  .filter-group-who-is-in {
+    display: flex;
+    align-items: center;
+  }
+ 
+  /* Styles for the Font Awesome icon */
+  .fa-icon {
+    font-size: 14px;
+    color: #778899;
+    /* Add spacing between icon and text */
+  }
+ 
+  .search-results-who-is-in {
+    position: fixed;
+    background: white;
+    margin-top:-13px;
+    overflow-y: scroll;
+    max-height: 200px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 195px;
+    /* Adjust the width as needed */
+    z-index: 999;
+ 
+  }
+ 
+  .search-results-who-is-in ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+ 
+  .search-results-who-is-in li {
+    padding: 5px;
+    border-bottom: 1px solid #eee;
+  }
+  /*Ending of submodule:who is in(Pranita Priyadarshi)*/
+/*Starting of submodule:employee swipes(Pranita Priyadarshi)*/
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f4f4f4;
+   
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+ 
+}
+ 
+.container-employee-swipes {
+    display: flex;
+    justify-content: space-between;
+ 
+ 
+ 
+}
+ 
+ 
+.container-employee-swipes-right {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 40px;
+   margin-left:20px;
+   
+}
+.search-input-employee-swipes {
+border: none;
+position: relative;
+}
+ 
+.search-input-employee-swipes input[type="text"] {
+padding: 5px;
+border: 1px solid #ccc;
+border-radius: 4px;
+width: 200px;
+font-size:13px;
+/* Adjust width as needed */
+}
+/* .search-icon {
+position: absolute;
+top: 50%;
+right: 10px;
+color: #778899;
+transform: translateY(-50%);
+cursor: pointer;
+} */
+.search-icon-employee-swipes
+{
+position: absolute;
+top: 50%;
+right: 20px;
+transform: translateY(-50%);
+color: #778899;
+}
+ 
+.search-icon-employee-swipes::before {
+/* Unicode character for a magnifying glass */
+font-size: 16px;
+}
+.container4-employee-swipes
+{
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+   
+   
+    margin-top: 20px;
+    margin-bottom: 40px;
+   
+}
+ 
+.employee-swipes-table table{
+    border-collapse: collapse;
+    width: 80%;
+}
+ 
+.employee-swipes-table thead {
+    background-color: #02114f;
+    color: #fff;
+}
+ 
+.employee-swipes-table th,
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+ 
+.employee-swipes-table th {
+    font-weight: bold;
+    font-size: 12px;
+}
+ 
+.employee-swipes-table td {
+    font-size: 12px;
+}
+ 
+.container-employee-swipes-right{
+    flex-basis: 40%;
+    height: 600px;
+    /* Increase height as needed */
+    overflow-y: hidden;
+    padding: 20px;
+   
+}
+ 
+.green-section-employee-swipes {
+           height: 40%;
+           width:100%;
+           background-color:    #ECFFDC;
+           position: relative;
+           margin-top: -20px;/* Green color for half of the section */
+}
+.dropdown-container1-employee-swipes:hover .dropdown-content1-employee-swipes{
+    display: block;
+}
+.dropdown-container1-employee-swipes{
+    margin-left: 10px;
+    position: relative;
+}
+.button2
+{
+    margin-top:30px;
+    border:1px solid #ddd;
+    height:30px;
+    background-color: #fff;
+    color:#666;
+}
+ 
+.dropdown-btn1::after {
+    content: "\25BE"; /* Unicode character for a down-pointing triangle */
+    font-size: 12px; /* Adjust the size of the arrow */
+    margin-left: 5px; /* Add some spacing between the text and arrow */
+}
+ 
+.dropdown-btn1 {
+    padding: 5px 15px;
+    background-color: #fff;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius:5px;
+    width:180px;
+    cursor: pointer;
+    position: relative; /* Add relative positioning for the arrow */
+}
+.dropdown-content1-employee-swipes{
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    max-height: 200px; /* Set the maximum height for scrollable content */
+    overflow-y: scroll; /* Enable vertical scrolling if content exceeds max height */
+}
+ 
+.dropdown-content1-employee-swipes a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    color: #333;
+}
+.dropdown-content1-employee-swipes a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+.web-sign-in-box-employee-swipes{
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+ 
+@media screen and (max-width: 768px) {
+    .container-employee-swipes {
+        flex-direction: column;
+    }
+ 
+    .container-employee-swipes-right {
+        flex-basis: 100%;
+        margin-top: 0;
+    }
+}
+ 
+/*ending of attendance submodule:employee swipes(Pranita Priyadarshi)*/
+/*starting of attendance submodule:attendance muster(Pranita Priyadarshi)*/
+.search-bar-attendance-muster{
+    display:flex;
+    padding:0;
+    justify-content:start;
+    width: 250px; /* Adjust width as needed */
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    background:#fff;
+}
+/* Styling for the input */
+.search-bar-attendance-muster input[type="search"] {
+    flex: 1;
+    padding: 5px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background: transparent;
+}
+/* Styling for the search icon */
+.search-bar-attendance-muster::after {
+    content: "\f002"; /* Unicode for the search icon (font-awesome) */
+    font-family: FontAwesome; /* Use an icon font library like FontAwesome */
+    font-size: 16px;
+    padding: 5px;
+    color: #999; /* Icon color */
+    cursor: pointer;
+}
+ 
+/* Styling for the search icon (optional) */
+.search-bar-attendance-muster input[type="search"]::placeholder {
+    color: #999; /* Placeholder color */
+}
+ 
+.search-bar-attendance-muster input[type="search"]::-webkit-search-cancel-button {
+    display: none; /* Hide cancel button on Chrome */
+}
+.summary-attendance-muster{
+    border:1px solid #ccc;
+    background:#ebf5ff;
+    padding:0;
+}
+.Attendance-attendance-muster {
+    border: 1px solid #ccc;
+    background: #ebf5ff;
+    padding: 0;
+    max-width: 800px;
+    overflow-x: auto;
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #dce0e5; /* For Firefox */
+}
+ 
+/* For Webkit-based browsers (Chrome, Safari, Edge) */
+.Attendance-attendance-muster::-webkit-scrollbar {
+    width: 2px; /* Width of the scrollbar */
+    height:8px;
+}
+ 
+/* Track (the area where the scrollbar sits) */
+.Attendance-attendance-muster::-webkit-scrollbar-track {
+    background: #fff; /* Background color of the track */
+}
+ 
+/* Handle (the draggable part of the scrollbar) */
+.Attendance-attendance-muster::-webkit-scrollbar-thumb {
+    background: #dce0e5; /* Color of the scrollbar handle */
+    border-radius: 2px; /* Border radius of the handle */
+}
+ 
+/* Handle on hover */
+.Attendance-attendance-muster::-webkit-scrollbar-thumb:hover {
+    background: #dce0e5; /* Color of the scrollbar handle on hover */
+}
+ 
+.Attendance-attendance-muster th,
+.Attendance-attendance-muster td {
+    width: auto;
+    white-space: nowrap; /* Prevent content from wrapping */
+}
+.table{
+    background:#fff;
+    margin:0;
+}
+ 
+td{
+    font-size:0.795rem;
+}
+.table tbody td {
+    border-right: 1px solid #d5d5d5; /* Vertical border color and width */
+}
+ 
+/* Remove right border for the last cell in each row to avoid extra border */
+.summary-attendance-muster.table tbody tr td:last-child {
+    border-right: none;
+    background:#f2f2f2;
+}
+.Attendance-attendance-muster .table tbody tr td:last-child {
+    border-right: none;
+}
+/*ending of attendance submodule:attendance muster(Pranita Priyadarshi)*/
