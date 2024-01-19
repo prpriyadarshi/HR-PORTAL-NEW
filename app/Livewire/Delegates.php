@@ -5,6 +5,8 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Delegate;
 use App\Models\EmployeeDetails;
+use Illuminate\Support\Facades\Auth;
+
 
 class Delegates extends Component
 {
@@ -13,67 +15,65 @@ class Delegates extends Component
     public $fromDate;
     public $toDate;
     public $delegate;
-    public $retrievedData ;
+    public $retrievedData;
     public $employeeDetails;
 
-
-    public $formattedFromDate;
-    public $formattedToDate;
-    
-   
-
     protected $rules = [
-       
+     
         'workflow' => 'required',
         'fromDate' => 'required|date',
-        'toDate' => 'required|date',
+        'toDate' => 'required|date|after_or_equal:fromDate',
         'delegate' => 'required',
     ];
-    public function submitForm()
-    {
-        $this->validate();
 
-        // Assuming 'Delegate' is the correct model name
+    public function submitForm()
+{
+    try {
+      
+        $this->validate($this->rules);
+
+        // Use the correct property name to get the authenticated user's ID
+        $employeeId = auth()->guard('emp')->user()->emp_id;
+        $this->retrievedData = Delegate::where('emp_id', $employeeId)->first();
+
+        // Create a new record in the database
         Delegate::create([
+            'emp_id' => $employeeId,
             'workflow' => $this->workflow,
             'from_date' => $this->fromDate,
             'to_date' => $this->toDate,
             'delegate' => $this->delegate,
         ]);
-
-        // Retrieve and set the data to $retrievedData
-        // $this->retrievedData = Delegate::all();
-     
+       
         // Clear the form inputs
+        $this->resetForm();
+
+        // Optionally, redirect to a success page
+      
+    } catch (\Exception $e) {
+        // Log or dump the exception for debugging
+        dd($e->getMessage());
+    }
+}
+
+    
+    public function resetForm()
+    {
         $this->workflow = '';
         $this->fromDate = '';
         $this->toDate = '';
         $this->delegate = '';
     }
-    public function formatDate($field)
-    {
-        // Get the value from the date input
-        $dateValue = $this->$field;
-        
-        // Check if the date is not empty
-        if (!empty($dateValue)) {
-            // Parse the date and format it to dd/mm/yyyy
-            $formattedDate = date('d/m/Y', strtotime($dateValue));
-            
-            // Set the formatted date to the corresponding property
-            $this->formattedFromDate = $field === 'fromDate' ? $formattedDate : $this->formattedFromDate;
-            $this->formattedToDate = $field === 'toDate' ? $formattedDate : $this->formattedToDate;
-        } else {
-            // If the date is empty, set the formatted date to empty
-            $this->formattedFromDate = '';
-            $this->formattedToDate = '';
-        }
-    }
+
     public function render()
     {
         $this->retrievedData = Delegate::all();
         $employeeId = auth()->guard('emp')->user()->emp_id;
-        $this->employeeDetails =  EmployeeDetails::where('emp_id', $employeeId)->get();
-        return view('livewire.delegates', ['employees' => $this->employeeDetails], ['retrievedData' => $this->retrievedData]);
+        $this->employeeDetails = EmployeeDetails::where('emp_id', $employeeId)->get();
+
+        return view('livewire.delegates', [
+            'employees' => $this->employeeDetails,
+            'retrievedData' => $this->retrievedData
+        ]);
     }
 }

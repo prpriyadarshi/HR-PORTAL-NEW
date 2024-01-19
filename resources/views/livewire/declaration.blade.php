@@ -1,70 +1,5 @@
 <style>
-            .dropdown-container {
-            margin-left: 10px;
-            position: relative;
-        }
-
-      /* Updated styles for the dropdown button with arrow */
-        .dropdown-btn {
-            padding: 5px 15px;
-            background-color: #fff;
-            color: black;
-            border: 1px solid #ccc;
-            border-radius:5px;
-            width:180px;
-            cursor: pointer;
-            position: relative; /* Add relative positioning for the arrow */
-        }
-
-        /* Create an arrow using ::after pseudo-element */
-        .dropdown-btn::after {
-            content: "\25BE"; /* Unicode character for a down-pointing triangle */
-            font-size: 12px; /* Adjust the size of the arrow */
-            margin-left: 5px; /* Add some spacing between the text and arrow */
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            max-height: 200px; /* Set the maximum height for scrollable content */
-            overflow-y: scroll; /* Enable vertical scrolling if content exceeds max height */
-        }
-
-
-        .dropdown-content a {
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            color: #333;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #007bff;
-            color: #fff;
-        }
-        .custom-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: blue;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    border: 1px solid silver;
-    border-radius: 5px;
-    font-size: 16px;
-    margin-left: 500px;
-    margin-bottom: 50px;
-    height:38px;
-   
-}
-
-.custom-button:hover {
-    background-color: white;
-}
+          
 
     </style>
 
@@ -72,11 +7,11 @@
     <div class="container">
         <div class="row" style="display:flex">
      
-       <div class="dropdown-container" style="margin-left:10px">
-       <a href="/itdeclaration" class="custom-button" ><p style="magin-top:-40px"> Tax Planner</p></a>
+       <div class="dropdown-container4" style="margin-left:10px">
+       <a href="/itdeclaration" class="custom-button4" ><p > Tax Planner</p></a>
 
-        <button class="dropdown-btn"> 2023-2024</button>
-        <div class="dropdown-content">
+        <button class="dropdown-btn4"> 2023-2024</button>
+        <div class="dropdown-content4">
             <a href="#">Aug 2023</a>
             <a href="#">Sep 2023</a>
             <a href="#">Oct 2023</a>

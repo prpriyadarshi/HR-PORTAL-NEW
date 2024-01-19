@@ -1,8 +1,9 @@
 <?php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
- 
+
 return new class extends Migration
 {
     /**
@@ -12,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('delegates', function (Blueprint $table) {
             $table->id();
+            $table->string('emp_id');
             $table->enum('workflow', ['Delegate All Workflow', 'Attendance Regularization', 'Confirmation', 'Resignations', 'Leave', 'Leave Cancel', 'Leave Comp Off', 'Restricted Holiday Leave', 'Help Desk']);
             $table->date('from_date');
             $table->date('to_date');
@@ -19,7 +21,7 @@ return new class extends Migration
             $table->timestamps();
         });
     }
- 
+
     /**
      * Reverse the migrations.
      */
@@ -28,4 +30,3 @@ return new class extends Migration
         Schema::dropIfExists('delegates');
     }
 };
- 
