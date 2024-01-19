@@ -16,19 +16,7 @@
 
 
   /* Media query for smaller screens */
-  @media screen and (max-width:768px) {
-            .container {
-                width: 90%;
-                max-width: none;
-                margin: 10px auto;
-            }
 
-            .delegate-form-container {
-                max-width: none;
-                width: 100%;
-                margin: 10px auto;
-            }
-        }
   body {
             margin: 0;
             padding: 0;
@@ -58,7 +46,7 @@
 
     
 <h5 style="color:orange;margin-top:30px;margin-left:40px">WorkFlow Delegates</h5>
-<button id="show-delegate-form-button" style=" width: 120px; height: 30px; border-radius:5px;border:1px solid silver;background:silver;color:#000080;margin-left:400px;font-size:12px">Add Delegates</button>
+<button wire:click="submitForm" id="show-delegate-form-button" style=" width: 120px; height: 30px; border-radius:5px;border:1px solid silver;background:silver;color:#000080;margin-left:400px;font-size:12px">Add Delegates</button>
 <div class="container" style="height:300px;width:500px;border-radius:5px;border:1px solid #80daeb;margin-top:20px;margin-left:10px">
 <div class="row" style="height:20px;background:rgb(2, 17, 79);;margin-top:5px;width:100%;margin-left:1px ">
 <h6 style="color:white;font-size:10px">WorkFlow Delegates</h6>
@@ -97,9 +85,9 @@
    
  
    
-  <div id="delegate-form-container" class="delegate-form" style="width: 250px;background:white;border:1px solid silver;border-radius:5px; height: 500px;">
+  <div id="delegate-form-container"  style="width: 250px;background:white;border:1px solid silver;border-radius:5px; height: 500px;">
  
-<form wire:click="submitForm" style="margin-left:20px;font-size:10px">
+<form wire:submit.prevent="submitForm"  style="margin-left:20px;font-size:10px">
                     <div class="form-group" style="margin-left:15px">
                         <h2 style="font-size:12px;margin-top:20px;">Add/ Edit Work Flow Delegates</h2>
                         <div class="column" style="display:flex;font-size:8px">
@@ -109,7 +97,7 @@
                     </div>
                     <div class="form-group" style="color: black;margin-top:-20px">
                         <label class="form-label" style="color: black;font-size:10px">WorkFlow</label>
-                        <select class="form-control" style="width: 200px; color: black;font-size:10px" wire:model="workflow;font-size:8px">
+                        <select name="workflow"class="form-control" style="width: 200px; color: black;font-size:10px" wire:model="workflow">
                             <option style="color: black;font-size:10px" value="Delegate All Workflow">Delegate All Workflow</option>
                             <option style="color: black;font-size:10px" value="Attendance Regularization">Attendance Regularization</option>
                             <option style="color: black;font-size:10px" value="Confirmation">Confirmation</option>
@@ -148,7 +136,7 @@
                         </select>
                     </div>
                     <div class="form-actions">
-                        <button class="btn btn-primary submit" type="submit" style="color:white;background-color:blue">Submit</button>
+                    <button class="btn btn-primary submit" type="submit" style="color: white; background-color: blue">Submit</button>
                         <button id="cancel-button" class="btn reset" type="reset">Cancel</button>
                     </div>
                 </form>

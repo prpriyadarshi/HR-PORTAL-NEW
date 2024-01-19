@@ -270,7 +270,7 @@ Route::middleware(['auth:emp'])->group(function () {
  
  
     Route::get('/view-pending-details', ViewPendingDetails::class)->name('view-pending-details');
-     Route::get('/delegates', Delegates::class);
+    Route::get('/delegates', Delegates::class)->name('delegates');
  
     Route::get('/view-details/{leaveRequestId}', ViewDetails::class)->name('view-details');
  
