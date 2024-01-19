@@ -8,49 +8,14 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
     <script src="{{ asset('livewire/livewire.js') }}" defer></script>
 </head>
-<style>
-   .expand-collapse {
-        margin-left: 10px; /* Adjust margin as needed */
-    }
 
-    .expand-collapse button {
-        font-size: 14px;
-        background-color: transparent;
-        border: none;
-        text-decoration: underline;
-        color: #3b4452;
-        cursor: pointer;
-    }
-
-    .expand-collapse button:hover {
-        text-decoration: none;
-    }
-/* Container style */
-.button-container{
-          display:flex;
-         margin-left:700px;
-        
-
-        }
-        .custom-button{
-          padding: 2px;
-            margin-bottom:15px;
-            background-color:#3eb0f7;
-            color: #fff;
-            width:100px;
-            margin-right:40px;
-            height:40px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+ 
 
 
-    </style>
-<div class="container" >
+<div class="con" >
 <div style="margin-left:-40px">
 <div class="button-container"  >
-<a href="/itform" id="pdfLink2024" class="custom-button" download style="margin-left:-40px"></a>  
+<a href="/itform" id="pdfLink2024" class="cus-button" download style="margin-left:-40px"></a>  
         <i class="fa fa-download" aria-hidden="true" style="margin-left:-100px;color:white;margin-top:15px"></i>
     </a>
 </div>

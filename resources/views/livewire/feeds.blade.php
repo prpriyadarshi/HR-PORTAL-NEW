@@ -16,376 +16,11 @@
 
 
     </head>
-    <style>
-    .body {
-        font-family: 'Arial', sans-serif;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        background-color: #f4f4f4;
-    }
-
-    .emoji-drawer {
-        display: grid;
-
-        grid-template-columns: repeat(3, 1fr);
-
-        width: 100px;
-
-        margin-bottom: 32px;
-        transition: opacity 0.2s;
-    }
-
-    .hidden {
-        opacity: 0;
-    }
-
-    .emoji {
-        text-align: center;
-        font-size: 24px;
-        padding: 8px;
-    }
-
-    .emoji:hover {
-        cursor: pointer;
-    }
-
-    .search-bar {
-        display: flex;
-        align-items: center;
-        background-color: #fff;
-        border-radius: 25px;
-        height: 30px;
-        overflow: hidden;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .search-input {
-        border: none;
-        padding: 10px;
-        width: 200px;
-        font-size: 16px;
-        outline: none;
-    }
-
-    .search-button {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        padding: 10px 15px;
-        cursor: pointer;
-        border-top-right-radius: 25px;
-        border-bottom-right-radius: 25px;
-    }
-
-    #hidden-content {
-        display: none;
-        /* Initially hide the content */
-    }
-
-
-
-
-
-
-
-
-    .comments {
-        margin-top: 10px;
-    }
-
-
-    .items-center {
-        /* Center items vertically */
-        align-items: center;
-    }
-
-    .bg-white {
-        /* Background color */
-        background-color: #fff;
-    }
-
-    .rounded-md {
-        /* Rounded corners */
-        border-radius: 0.375rem;
-        /* Adjust as needed */
-    }
-
-    .h-28 {
-        /* Height */
-        height: 7rem;
-        /* Adjust as needed */
-    }
-
-
-
-    .border-1 {
-        /* Border */
-        border-width: 1px;
-    }
-
-
-
-    /* Styles for the avatar section */
-
-    /* Replace with specific styles for the avatar element */
-
-    /* Styles for the text content */
-
-    .text-base {
-        /* Font size */
-        font-size: 1.25rem;
-        /* Adjust as needed */
-    }
-
-    .font-semibold {
-        /* Font weight */
-        font-weight: 600;
-        /* Adjust as needed */
-    }
-
-
-
-
-    .leading-5 {
-        /* Line height */
-        line-height: 1.25rem;
-        /* Adjust as needed */
-    }
-
-    .text-xs {
-        /* Font size */
-        font-size: 0.75rem;
-        /* Adjust as needed */
-    }
-
-    .font-normal {
-        /* Font weight */
-        font-weight: 400;
-        /* Adjust as needed */
-    }
-
-    .leading-4 {
-        /* Line height */
-        line-height: 1rem;
-        /* Adjust as needed */
-    }
-
-    .flex {
-        display: flex;
-    }
-
-    .items-start {
-        align-items: flex-start;
-    }
-
-    /* Define styles for the avatar container */
-    .avatar {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 50px;
-        /* Set width and height for the circular avatar */
-        height: 50px;
-        border-radius: 50%;
-        margin-left: 20px;
-        /* Make the avatar circular */
-        background-color: #ccc;
-        /* Background color for the avatar */
-    }
-
-    /* Apply styles to the search bar */
-    .search-bar {
-        display: flex;
-        align-items: center;
-        max-width: 250px;
-        border-radius: 20px;
-        border: 1px solid #ccc;
-        overflow: hidden;
-        /* Hide overflowing content */
-    }
-
-    /* Sample CSS */
-    .w-full {
-        width: 100%;
-        /* Add more styles as needed */
-    }
-
-
-
-    .mt-1x {
-        margin-top: 1rem;
-        /* Adjust as per design */
-    }
-
-    .custom-button {
-        /* Styles for the button */
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        border-radius: 5px;
-        height: 30px;
-        border: 1px solid grey;
-        padding: 0.5rem;
-        /* Adjust padding */
-        /* Add more styles as needed */
-    }
-
-    .text-xs {
-        font-size: 12px;
-        /* Adjust font size */
-        /* Add more styles as needed */
-    }
-
-
-    /* Style the search input */
-    .search-bar input[type="text"] {
-        flex: 1;
-        padding: 8px;
-        border: none;
-        outline: none;
-        font-size: 16px;
-    }
-
-    /* Style the search button */
-    .search-bar button {
-        padding: 7px 7px;
-        border: none;
-        background-color: #007bff;
-        color: white;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    /* Change button background color on hover */
-
-    .dropdown-content {
-        display: none;
-        /* Add more styles as needed */
-    }
-
-    /* Show dropdown content when the arrow is open */
-    .arrow-open+.dropdown-content {
-        display: block;
-    }
-
-
-    /* Style for the icon */
-    .avatar i {
-        color: #fff;
-        margin-left: 10px;
-        /* Icon color */
-        font-size: 24px;
-        /* Adjust the icon size */
-    }
-
-    /* Hide all sections initially */
-    .section {
-        display: none;
-    }
-
-    /* Show the section based on the selected radio button */
-    #all:checked~#all-groups,
-    #appreciations:checked~#appreciations,
-    #buy-sell-rent:checked~#buy-sell-rent,
-    #company-news:checked~#company-news,
-    #events:checked~#events {
-        display: block;
-    }
-
-    .emoji {
-        color: transparent;
-        display: inline-block;
-        font-size: 18px;
-        font-style: normal;
-        height: 25px;
-        width: 25px;
-    }
-
-    .emoji::selection {
-        background-color:highlight;
-        color: transparent;
-    }
-
-    .emoji-image {
-        font-size: 14px;
-        line-height: 28px;
-    }
-
-    .emoji-button {
-        cursor: pointer;
-        margin: 5px;
-    }
-
-    .emoji-editor {
-        -moz-appearance: textfield-multiline;
-        -webkit-appearance: textarea;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-        box-sizing: border-box;
-        cursor: text;
-        font: medium -moz-fixed;
-        font: -webkit-small-control;
-        -webkit-font-smoothing: antialiased;
-        height: 100px;
-        overflow: auto;
-        padding: 5px;
-        resize: both;
-        width: 100%;
-    }
-
-    .emoji-picker {
-        background-color: #fff;
-        border: 1px solid #ccc;
-        position: absolute;
-        width: 210px;
-    }
-
-    .emoji-picker a {
-        cursor: pointer;
-        display: inline-block;
-        font-size: 20px;
-        padding: 3px;
-    }
-
-    .emoji-selector {
-        border-bottom: 1px solid #ccc;
-        display: flex;
-    }
-
-    .emoji-selector li {
-        margin: 5px;
-    }
-
-
-    .mytextarea {
-        width: 100px;
-        /* Set your desired initial width */
-        height: 30px;
-        /* Set your desired minimum height */
-        resize: none;
-        /* Disable textarea resizing by the user */
-    }
-
-    .myEmojiDiv {
-        position: absolute;
-        width: fit-content;
-        z-index: 1;
-    }
-
-    /* Styles for the gap element */
-
-    /* Replace with specific styles for the gap element */
-    </style>
-    <div class="p-4 flex justify-start items-center bg-white rounded-md h-28 mb-1.5x border-1 border-secondary-100">
-        <div class="flex flex-row" style="width: 226px; min-width: 226px;">
+   
+    <div class="p-4 flex justify-start items-center bg-white rounded-md h-25 mb-1.5x border-1 border-secondary-100">
+        <div class="flex flex-row" style="width: 256px; min-width: 256px;">
             <div class="avatar">
-                <i class="fas fa-user"></i>
+                <i class="fas fa-user" style="margin-left:15px"></i>
             </div>
 
 
@@ -460,9 +95,9 @@
             </div>
 
             <div class="w-full visible mt-1x">
-                <button type="button" class="custom-button" onclick="toggleDropdown('dropdownContent1', 'arrowSvg1')">
-                    <span class="text-xs font-semibold leading-4 text-secondary-500">Groups</span>
-                    <span class="arrow-icon" id="arrowIcon1">
+                <button type="button" class="button" onclick="toggleDropdown('dropdownContent1', 'arrowSvg1')">
+                    <span class="text-xs font-semibold leading-4 text-secondary-500" style="color:black">Groups</span>
+                    <span class="arrow-icon" id="arrowIcon1" style="color:black">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="feather feather-chevron-down h-1.2x w-1.2x text-secondary-400" id="arrowSvg1">
@@ -504,10 +139,10 @@
             </div>
 
             <div class="w-full visible mt-1x">
-                <button type="button" class="custom-button" onclick="toggleDropdown('dropdownContent2', 'arrowSvg2')">
+                <button type="button" class="button" onclick="toggleDropdown('dropdownContent2', 'arrowSvg2')">
                     <span class="text-xs font-semibold leading-4 text-secondary-500"
-                        style="overflow-y:auto;max-height:200px">Location</span>
-                    <span class="arrow-icon" id="arrowIcon2">
+                        style="overflow-y:auto;max-height:200px;color:black">Location</span>
+                    <span class="arrow-icon" id="arrowIcon2" style="color:black">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="feather feather-chevron-down h-1.2x w-1.2x text-secondary-400" id="arrowSvg2">
@@ -528,10 +163,10 @@
                 </div>
             </div>
             <div class="w-full visible mt-1x">
-                <button type="button" class="custom-button" onclick="toggleDropdown('dropdownContent3', 'arrowSvg3')">
+                <button type="button" class="button" onclick="toggleDropdown('dropdownContent3', 'arrowSvg3')">
                     <span class="text-xs font-semibold leading-4 text-secondary-500"
-                        style="overflow-y:auto;max-height:200px">Depatment</span>
-                    <span class="arrow-icon" id="arrowIcon3">
+                        style="overflow-y:auto;max-height:200px;color:black">Depatment</span>
+                    <span class="arrow-icon" id="arrowIcon3" style="color:black">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="feather feather-chevron-down h-1.2x w-1.2x text-secondary-400" id="arrowSvg2">
@@ -618,12 +253,13 @@
         <p>Selected Emoji: {{ $selectedEmoji }}</p>
     @endif
 </div>
-<a class="ml-3" style="cursor: pointer; text-decoration: none" onclick="toggleEmojiDiv(1)">
-    <span id="emojiPlaceholder_1"><i class="far fa-smile"></i></span> Reaction
-</a>
+<div>
+<a class="ml-3" style="cursor: pointer; text-decoration: none" onclick="toggleEmojiDiv({{ $index }})"><i class="far fa-smile"></i> Reaction</a>
 
-<div class="myEmojiDiv" id="myEmojiDiv_1" style="display: none;">
+<div class="myEmojiDiv" id="myEmojiDiv_{{ $index }}" style="display: none;">
     <emoji-picker></emoji-picker>
+</div>
+
 
                         </div>
 

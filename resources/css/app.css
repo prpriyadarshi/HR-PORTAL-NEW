@@ -546,6 +546,1199 @@ body {
 
 /*End of document center/letter module (Kumar Asapu) */
 
+
+
+/*start of Feeds module(Archana) */
+
+.body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.emoji-drawer {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    width: 100px;
+
+    margin-bottom: 32px;
+    transition: opacity 0.2s;
+}
+
+.hidden {
+    opacity: 0;
+}
+
+.emoji {
+    text-align: center;
+    font-size: 24px;
+    padding: 8px;
+}
+
+.emoji:hover {
+    cursor: pointer;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 25px;
+    height: 30px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-input {
+    border: none;
+    padding: 10px;
+    width: 200px;
+    font-size: 16px;
+    outline: none;
+}
+
+.search-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+#hidden-content {
+    display: none;
+    /* Initially hide the content */
+}
+
+
+
+
+
+
+
+
+.comments {
+    margin-top: 10px;
+}
+
+
+.items-center {
+    /* Center items vertically */
+    align-items: center;
+}
+
+.bg-white {
+    /* Background color */
+    background-color: #fff;
+}
+
+.rounded-md {
+    /* Rounded corners */
+    border-radius: 0.375rem;
+    /* Adjust as needed */
+}
+
+.h-28 {
+    /* Height */
+    height: 7rem;
+    /* Adjust as needed */
+}
+
+
+
+.border-1 {
+    /* Border */
+    border-width: 1px;
+}
+
+
+
+/* Styles for the avatar section */
+
+/* Replace with specific styles for the avatar element */
+
+/* Styles for the text content */
+
+.text-base {
+    /* Font size */
+    font-size: 1.25rem;
+    /* Adjust as needed */
+}
+
+.font-semibold {
+    /* Font weight */
+    font-weight: 600;
+    /* Adjust as needed */
+}
+
+
+
+
+.leading-5 {
+    /* Line height */
+    line-height: 1.25rem;
+    /* Adjust as needed */
+}
+
+.text-xs {
+    /* Font size */
+    font-size: 0.75rem;
+    /* Adjust as needed */
+}
+
+.font-normal {
+    /* Font weight */
+    font-weight: 400;
+    /* Adjust as needed */
+}
+
+.leading-4 {
+    /* Line height */
+    line-height: 1rem;
+    /* Adjust as needed */
+}
+
+.flex {
+    display: flex;
+}
+
+.items-start {
+    align-items: flex-start;
+}
+
+/* Define styles for the avatar container */
+.avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    /* Set width and height for the circular avatar */
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 20px;
+    /* Make the avatar circular */
+    background-color: #ccc;
+    /* Background color for the avatar */
+}
+
+/* Apply styles to the search bar */
+.search-bar {
+    display: flex;
+    align-items: center;
+    max-width: 250px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    /* Hide overflowing content */
+}
+
+/* Sample CSS */
+.w-full {
+    width: 100%;
+    /* Add more styles as needed */
+}
+
+
+
+.mt-1x {
+    margin-top: 1rem;
+    /* Adjust as per design */
+}
+
+.button {
+    /* Styles for the button */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-radius: 5px;
+    height: 30px;
+    border: 1px solid grey;
+    padding: 0.5rem;
+    /* Adjust padding */
+    /* Add more styles as needed */
+}
+
+.text-xs {
+    font-size: 12px;
+    /* Adjust font size */
+    /* Add more styles as needed */
+}
+
+
+/* Style the search input */
+.search-bar input[type="text"] {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+/* Style the search button */
+.search-bar button {
+    padding: 7px 7px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Change button background color on hover */
+
+.dropdown-content {
+    display: none;
+    /* Add more styles as needed */
+}
+
+/* Show dropdown content when the arrow is open */
+.arrow-open+.dropdown-content {
+    display: block;
+}
+
+
+/* Style for the icon */
+.avatar i {
+    color: #fff;
+    margin-left: 10px;
+    /* Icon color */
+    font-size: 24px;
+    /* Adjust the icon size */
+}
+
+/* Hide all sections initially */
+.section {
+    display: none;
+}
+
+/* Show the section based on the selected radio button */
+#all:checked~#all-groups,
+#appreciations:checked~#appreciations,
+#buy-sell-rent:checked~#buy-sell-rent,
+#company-news:checked~#company-news,
+#events:checked~#events {
+    display: block;
+}
+
+.emoji {
+    color: transparent;
+    display: inline-block;
+    font-size: 18px;
+    font-style: normal;
+    height: 25px;
+    width: 25px;
+}
+
+.emoji::selection {
+    background-color:highlight;
+    color: transparent;
+}
+
+.emoji-image {
+    font-size: 14px;
+    line-height: 28px;
+}
+
+.emoji-button {
+    cursor: pointer;
+    margin: 5px;
+}
+
+.emoji-editor {
+    -moz-appearance: textfield-multiline;
+    -webkit-appearance: textarea;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    cursor: text;
+    font: medium -moz-fixed;
+    font: -webkit-small-control;
+    -webkit-font-smoothing: antialiased;
+    height: 100px;
+    overflow: auto;
+    padding: 5px;
+    resize: both;
+    width: 100%;
+}
+
+.emoji-picker {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    position: absolute;
+    width: 210px;
+}
+
+.emoji-picker a {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 20px;
+    padding: 3px;
+}
+
+.emoji-selector {
+    border-bottom: 1px solid #ccc;
+    display: flex;
+}
+
+.emoji-selector li {
+    margin: 5px;
+}
+
+
+.mytextarea {
+    width: 100px;
+    /* Set your desired initial width */
+    height: 30px;
+    /* Set your desired minimum height */
+    resize: none;
+    /* Disable textarea resizing by the user */
+}
+
+.myEmojiDiv {
+    position: absolute;
+    width: fit-content;
+    z-index: 1;
+}
+#hidden-content {
+    display: none;
+    /* Initially hide the content */
+  }
+
+
+
+  .comment-icon {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    tab-size: 4;
+    -webkit-text-size-adjust: 100%;
+    font-stretch: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #3b4452;
+    visibility: inherit;
+    --tw-bg-opacity: 1;
+    --tw-border-opacity: 1;
+    box-sizing: border-box;
+    border: 0 solid;
+    --tw-shadow: 0 0 transparent;
+    --tw-ring-inset: var(--tw-empty, );
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: rgba(59, 130, 246, 0.5);
+    --tw-ring-offset-shadow: 0 0 transparent;
+    --tw-ring-shadow: 0 0 transparent;
+    cursor: pointer;
+    font-size: 1.25rem;
+    margin-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: inherit;
+    -webkit-font-smoothing: antialiased;
+    font-family: Greytip;
+    display: inline;
+    width: auto;
+    height: auto;
+    line-height: normal;
+    vertical-align: initial;
+    background-image: none;
+    background-position: 0 0;
+    background-repeat: repeat;
+    margin-top: 0;
+  }
+
+  /* Apply the CSS styles for the comment count text */
+  .comment-count {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    tab-size: 4;
+    -webkit-text-size-adjust: 100%;
+    font-family: Open Sans, sans-serif;
+    font-weight: 400;
+    text-align: left;
+    box-sizing: border-box;
+    border: 0 solid;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: rgba(59, 130, 246, 0.5);
+    --tw-ring-offset-shadow: 0 0 transparent;
+    --tw-ring-shadow: 0 0 transparent;
+    border-radius: .25rem;
+    cursor: pointer;
+    font-size: .75rem;
+    line-height: 1rem;
+    padding: 5px;
+    --tw-text-opacity: 1;
+    color: rgba(163, 179, 200, var(--tw-text-opacity));
+  }
+
+  .comment-icon {
+    cursor: pointer;
+  }
+
+  .comment-box {
+    display: none;
+  }
+
+  .comments {
+    margin-top: 10px;
+  }
+
+
+
+
+
+
+
+.p-4 {
+/* Padding */
+}
+
+
+
+.items-center {
+/* Center items vertically */
+align-items: center;
+}
+
+.bg-white {
+/* Background color */
+background-color: #fff;
+}
+
+.rounded-md {
+/* Rounded corners */
+border-radius: 0.375rem; /* Adjust as needed */
+}
+
+.h-28 {
+/* Height */
+height: 7rem; /* Adjust as needed */
+}
+
+
+
+.border-1 {
+/* Border */
+border-width: 1px;
+}
+
+
+
+/* Styles for the avatar section */
+
+/* Replace with specific styles for the avatar element */
+
+/* Styles for the text content */
+
+.text-base {
+/* Font size */
+font-size: 1.25rem; /* Adjust as needed */
+}
+
+.font-semibold {
+/* Font weight */
+font-weight: 600; /* Adjust as needed */
+}
+
+
+
+
+.leading-5 {
+/* Line height */
+line-height: 1.25rem; /* Adjust as needed */
+}
+
+.text-xs {
+/* Font size */
+font-size: 0.75rem; /* Adjust as needed */
+}
+
+.font-normal {
+/* Font weight */
+font-weight: 400; /* Adjust as needed */
+}
+
+.leading-4 {
+/* Line height */
+line-height: 1rem; /* Adjust as needed */
+}
+.flex {
+display: flex;
+}
+
+.items-start {
+align-items: flex-start;
+}
+/* Define styles for the avatar container */
+.avatar {
+display: flex;
+align-items: center;
+justify-content: center;
+width: 50px; /* Set width and height for the circular avatar */
+height: 50px;
+border-radius: 50%; 
+margin-left:20px;/* Make the avatar circular */
+background-color: #ccc; /* Background color for the avatar */
+}
+/* Apply styles to the search bar */
+.search-bar {
+display: flex;
+align-items: center;
+max-width: 250px;
+height:30px;
+border-radius: 20px;
+border: 1px solid #ccc;
+overflow: hidden; /* Hide overflowing content */
+}
+/* Sample CSS */
+.w-full {
+width: 100%;
+/* Add more styles as needed */
+}
+
+.visible {
+/* Your styles for visibility */
+}
+
+.mt-1x {
+margin-top: 1rem; /* Adjust as per design */
+}
+
+.custom-button {
+/* Styles for the button */
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 100%;
+border-radius: 5px;
+height: 30px;
+border:1px solid grey ;
+padding: 0.5rem; /* Adjust padding */
+/* Add more styles as needed */
+}
+
+.text-xs {
+font-size: 12px; /* Adjust font size */
+/* Add more styles as needed */
+}
+
+
+/* Style the search input */
+.search-bar input[type="text"] {
+flex: 1;
+padding: 8px;
+border: none;
+outline: none;
+font-size: 16px;
+}
+
+/* Style the search button */
+.search-bar button {
+padding: 7px 7px;
+border: none;
+background-color: #007bff;
+color: white;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+/* Change button background color on hover */
+.search-bar button:hover {
+background-color: #0056b3;
+}
+.dropdown-content {
+display: none;
+/* Add more styles as needed */
+}
+
+/* Show dropdown content when the arrow is open */
+.arrow-open + .dropdown-content {
+display: block;
+}
+
+
+/* Style for the icon */
+.avatar i {
+color: #fff;
+margin-left: 10px; /* Icon color */
+font-size: 24px; /* Adjust the icon size */
+}
+/* Hide all sections initially */
+.section {
+display: none;
+}
+
+/* Show the section based on the selected radio button */
+#all:checked ~ #all-groups,
+#appreciations:checked ~ #appreciations,
+#buy-sell-rent:checked ~ #buy-sell-rent,
+#company-news:checked ~ #company-news,
+#events:checked ~ #events {
+display: block;
+}
+
+/* Styles for the gap element */
+
+/* Replace with specific styles for the gap element */
+
+
+
+/*End of Feeds module(Archana) */
+
+
+
+
+/*Start of Declaration module(Archana) */
+.dropdown-container4 {
+    margin-left: 10px;
+    position: relative;
+}
+
+/* Updated styles for the dropdown button with arrow */
+.dropdown-btn4 {
+    padding: 5px 15px;
+    background-color: #fff;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius:5px;
+    width:180px;
+    cursor: pointer;
+    position: relative; /* Add relative positioning for the arrow */
+}
+
+/* Create an arrow using ::after pseudo-element */
+.dropdown-btn4::after {
+    content: "\25BE"; /* Unicode character for a down-pointing triangle */
+    font-size: 12px; /* Adjust the size of the arrow */
+    margin-left: 5px; /* Add some spacing between the text and arrow */
+}
+
+.dropdown-content4 {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    max-height: 200px; /* Set the maximum height for scrollable content */
+    overflow-y: scroll; /* Enable vertical scrolling if content exceeds max height */
+}
+
+
+.dropdown-content4 a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    color: #333;
+}
+
+.dropdown-content4 a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+.custom-button4 {
+display: inline-block;
+padding: 10px 20px;
+background-color: blue;
+color: white;
+text-align: center;
+text-decoration: none;
+border: 1px solid silver;
+border-radius: 5px;
+font-size: 16px;
+margin-left: 500px;
+margin-bottom: 50px;
+height:38px;
+width:150px;
+
+}
+
+.custom-button4:hover {
+background-color: white;
+}
+/*End of Declaration module(Archana) */
+
+
+/*start of ITDelaration module(Archana) */
+
+
+.row {
+    display: flex;
+  }
+  
+  .col-md-12 {
+    width: 100%;
+  }
+  
+  .col-md-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+  
+  .itd-plan-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .plan-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .plan-title a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .plan-title a:hover {
+    text-decoration: underline;
+  }
+  
+  .plan-options {
+    margin-left: 110px;
+  }
+  
+  .plan-options i {
+    cursor: pointer;
+  }
+  
+  .plan-body {
+    margin-top: 10px;
+  }
+  
+  .plan-values {
+    margin-bottom: 10px;
+  }
+  
+  .plan-values .gt-text-5 {
+    color: #777;
+  }
+  
+  .plan-values .gt-text-4 {
+    margin-left: 3px;
+  }
+  
+  .plan-submit {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: not-allowed;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  .text-muted {
+    color: #777;
+  }
+
+
+  
+/*End of ITDelaration module(Archana) */
+
+
+/*start of ITStatement module(Archana) */
+.expand-collapse {
+    margin-left: 10px; /* Adjust margin as needed */
+}
+
+.expand-collapse button {
+    font-size: 14px;
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    color: #3b4452;
+    cursor: pointer;
+}
+
+.expand-collapse button:hover {
+    text-decoration: none;
+}
+/* Container style */
+.button-container{
+      display:flex;
+     margin-left:700px;
+    
+
+    }
+    .cus-button{
+      padding: 2px;
+        margin-bottom:15px;
+        background-color:#3eb0f7;
+        color: #fff;
+        width:100px;
+        margin-right:40px;
+        height:40px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+/*End of ITStatement module(Archana) */
+/*Start of Payslip module(Archana) */
+body {
+ 
+    font-family: 'Open Sans', sans-serif;
+ 
+      }
+ 
+        .container1 {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            justify-content: space-between;
+            margin-top: 20px;
+          }
+ 
+        .earnings,
+        .deduction{
+            border: 2px solid #ccc;
+            padding: 10px;
+            height: 350px;
+           
+            background: #fff;
+            flex: 1; /* Equal width for both containers */
+           }
+ 
+        .Empdetails{
+            border: 2px solid #ccc;
+            padding: 10px;
+            margin-left: 100px;
+            background-color:#FAFAD2;
+           }
+       
+ 
+        .button-container {
+            text-align: center; /* Centers the buttons horizontally */
+        }
+ 
+        /* Optional styling for buttons */
+        .button-container .btn2 {
+            padding: 5px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius:5px;
+            cursor: pointer;
+        }
+           /* Optional styling for buttons */
+           .button-container .btn1 {
+            padding: 5px 15px;
+            border-radius:5px;
+            background-color: #fff;
+            color: #007bff;
+            border: 1px solid #007bff;
+            cursor: pointer;
+        }
+ 
+        .button-container button:first-child {
+            margin-right: 10px; /* Adds space between buttons */
+        }
+        .button-container1 {
+            display: flex;
+            align-items: center;
+            justify-content:end;
+            margin-right:30px;
+        }
+ 
+        .btn3 {
+            padding: 5px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius:5px;
+            cursor: pointer;
+        }
+ 
+        .dropdown-container1 {
+            margin-left: 10px;
+            position: relative;
+        }
+ 
+      /* Updated styles for the dropdown button with arrow */
+        .dropdown-btn1 {
+            padding: 5px 15px;
+            background-color: #fff;
+            color: black;
+            border: 1px solid #ccc;
+            border-radius:5px;
+            width:180px;
+            cursor: pointer;
+            position: relative; /* Add relative positioning for the arrow */
+        }
+ 
+        /* Create an arrow using ::after pseudo-element */
+        .dropdown-btn1::after {
+            content: "\25BE"; /* Unicode character for a down-pointing triangle */
+            font-size: 12px; /* Adjust the size of the arrow */
+            margin-left: 5px; /* Add some spacing between the text and arrow */
+        }
+ 
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            max-height: 200px; /* Set the maximum height for scrollable content */
+            overflow-y: scroll; /* Enable vertical scrolling if content exceeds max height */
+        }
+ 
+ 
+        .dropdown-content a {
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            color: #333;
+        }
+ 
+        .dropdown-content a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+ 
+        .dropdown-container1:hover .dropdown-content {
+            display: block;
+        }
+        #hide-button {
+            color: blue;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            float: right; /* Align to the right */
+            margin-top: -40px; /* Adjust margin as needed */
+        }
+
+/*End of Payslip Module(Archana)*/
+/*Start of Reimbursement module(Archana) */
+
+        .dropdown2 {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropbtn2 {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .dropdown-content2 {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        }
+        
+        .dropdown-content2 a {
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            color: #333;
+        }
+        
+        .dropdown-content2 a:hover {
+            background-color: #ddd;
+        }
+        
+        .dropdown2:hover .dropdown-content2 {
+            display: block;
+        }
+        .dropdown-button2{
+            height:30px;
+            width:220px;
+            border-radius:5px;
+        }
+/*End of Reimbursement module(Archana) */
+
+
+
+.dropdown3 {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn3 {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content3 {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    font-size: 12px; 
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content3 a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    color: #333;
+}
+.dropdown-button3{
+   
+    border-radius:5px;
+}
+.dropdown-content3 a:hover {
+    background-color: #ddd;
+}
+
+.dropdown3:hover .dropdown-content3 {
+    display: block;
+}
+.dropdown-icon3::after {
+    content: "▼"; /* Unicode down arrow character */
+    margin-left: 5px;
+  }
+
+
+/*End of Proofofinvestment module(Archana)*/
+        /* Container styles */
+   /*Start of DocumentCenter(Payslip) -(Archana)*/
+        .left-menu1 {
+            width: 150px;
+            background-color: #fff;
+            padding-right: 30px;
+            border-right: 1px solid #ccc; /* Add a vertical line to the right of the left menu */
+        }
+
+        /* Content styles */
+        .content {
+            padding: 20px;
+        }
+        .router-container,
+        .document,
+        .tab-view,
+        .router-container {
+            font-family: Open Sans, sans-serif;
+            font-size: 12px;
+            color: #3b4452;
+            position: relative;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        /* Container for 2023 content */
+        .container-2023 {
+            /* Add styles for the 2023 content container */
+            background-color: #ffffff;
+            padding: 20px;
+            height: 500px;
+            width: 450px;
+            margin-left: 260px;
+            border: 1px solid #D9D9D9;
+            border-radius: 5px;
+            margin-right: 10px; /* Adjust as needed */
+            margin-bottom: 20px; /* Adjust as needed */
+        }
+
+        /* Container for 2022 content */
+        .container-2022 {
+            /* Add styles for the 2022 content container */
+            background-color: #ffffff;
+            padding: 20px;
+            border: 1px solid #D9D9D9;
+            border-radius: 5px;
+            margin-right: 10px; /* Adjust as needed */
+            margin-bottom: 20px; /* Adjust as needed */
+        }
+        .letter-request {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            tab-size: 4;
+            -webkit-text-size-adjust: 100%;
+            visibility: inherit;
+            font-family: Open Sans, sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            text-align: left;
+            color: #3b4452;
+            box-sizing: border-box;
+            border: 0 solid;
+            --tw-shadow: 0 0 transparent;
+            --tw-ring-inset: var(--tw-empty, );
+            --tw-ring-offset-width: 0px;
+            --tw-ring-offset-color: #fff;
+            --tw-ring-color: rgba(59, 130, 246, 0.5);
+            --tw-ring-offset-shadow: 0 0 transparent;
+            --tw-ring-shadow: 0 0 transparent;
+            position: relative;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        /* Remove line styles */
+        .title-line {
+            display: none; /* Hide the line */
+        }
+
+        /* Add your existing styles here */
+
+        /* Document card styles */
+        .doc-card {
+            margin-bottom: 20px;
+        }
+
+        /* Arrow icon styles */
+        .fa-caret-right {
+            cursor: pointer;
+            color: #3b4452;
+        }
+        .title-line {
+            width:100%;
+    height: 1px; /* Set the height of the line */
+    background-color:  #D9D9D9; /* Set the line color */
+    margin-top: 10px; /* Adjust the margin as needed */
+    margin-bottom: 2px; /* Adjust the margin as needed */
+}
+@media screen and (max-width: 768px) {
+            .left-menu1 {
+                display: none; /* Hide the left menu on small screens */
+            }
+            .container-2023 {
+                width: 100%; /* Full width on small screens */
+                margin: 10px 0; /* Adjust margin for spacing */
+            }
+        }
+        /*End of DocumentCenter(Payslip) -(Archana)*/
+
+        .container2{
+            width:650px;height:350px;background:white;border:1px solid back;border-radius:5px;margin-top:40px;margin-left:40px
+            }
 /* app.blade */
 .profile-container {
     display: flex;
@@ -852,4 +2045,5 @@ body {
         height: 750px;
     }
 }
+
 /* end of app.blade */

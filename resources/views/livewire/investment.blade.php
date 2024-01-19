@@ -1,57 +1,11 @@
 <div style="font-size: 12px;">
-
-<style>
-     .dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropbtn {
-    background-color: #3498db;
-    color: #fff;
-    padding: 10px 15px;
-    border: none;
-    cursor: pointer;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    font-size: 12px; 
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-.dropdown-content a {
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    color: #333;
-}
-.dropdown-button{
-   
-    border-radius:5px;
-}
-.dropdown-content a:hover {
-    background-color: #ddd;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-.dropdown-icon::after {
-    content: "▼"; /* Unicode down arrow character */
-    margin-left: 5px;
-  }
-    </style>
 <div>
-  <div class="dropdown" style="margin-left:700px">
-    <button class="dropdown-button" id="yearDropdown">
+  <div class="dropdown3" style="margin-left:700px">
+    <button class="dropdown-button3" id="yearDropdown">
       2022 - 2023
-      <span class="dropdown-icon"></span>
+      <span class="dropdown-icon3"></span>
     </button>
-    <div class="dropdown-content">
+    <div class="dropdown-content3">
       <div class="dropdown-item" data-year="2023-2024">2023 - 2024</div>
       <div class="dropdown-item" data-year="2022-2023">2022 - 2023</div>
     </div>
@@ -166,7 +120,7 @@
 <a href="declaration-link" wire:click="addshowVIDeductions" style="font-size: 25px; margin-left: 550px; text-decoration: none;color:black;margin-top:-50px">&rarr; </a>
 </div>
 
-<div style="border-bottom: 1px solid silver; "></div>
+<div style="border-bottom: 1px solid silver;"></div>
 <div class="row" style="display:flex">
 <p style="width:100%;">Previous Employment</p>
 <a href="declaration-link" wire:click="addshowVIDeductions" style="font-size: 25px; margin-left: 550px; text-decoration: none;color:black;margin-top:-50px">&rarr; </a>
