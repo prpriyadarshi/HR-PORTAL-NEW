@@ -52,7 +52,7 @@ class EmpList extends Component
         $hrCompanies = Company::where('contact_email', $hrEmail)->get();
         $hrDetails = Company::where('contact_email', $hrEmail)->first();
         $this->companies = $hrCompanies;
-        $this->hrDetails = $hrDetails;
+        $this->hrDetails = $hrDetails;     
         $this->employees = EmployeeDetails::where('company_id', $hrDetails->company_id)->where(function ($query) {
             $query->where('first_name', 'like', '%' . $this->search . '%')
                 ->orWhere('last_name', 'like', '%' . $this->search . '%')

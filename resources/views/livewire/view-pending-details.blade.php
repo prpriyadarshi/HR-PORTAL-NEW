@@ -109,12 +109,13 @@
 <body>
 
 <div class="col"  id="leavePending" style="width: 100%; padding: 0;border-radius: 5px; "style="background-color:orange;">
+
    @if(!empty($this->leaveApplications))
         @foreach($this->leaveApplications as $leaveRequest)
             <div class="container mt-1" style="border-radius: 5px;width:100%; " >
                 <div class="accordion">
                     <div class="accordion-heading" style="border-radius: 5px; "  onclick="toggleAccordion(this)">
-                        <div class="accordion-title"style="background-color:pink;">
+                        <div class="accordion-title">
                             <!-- Display leave details here based on $leaveRequest -->
                             <div class="accordion-content">
                              <div class="accordion-profile" style="display:flex; gap:7px; margin:auto 0;align-items:center;justify-content:center;">

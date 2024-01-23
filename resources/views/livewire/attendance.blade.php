@@ -17,1207 +17,9 @@
     <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.js"></script>
 
 
-    <style>
-    .date-range-container12 {
-        margin-right: 62px;
-    }
-
-    .my-button {
-        padding: 5px 10px;
-        border: none;
-        border-radius: 5px;
-        color: #fff;
-        border-color: rgb(2, 17, 79);
-        background: rgb(2, 17, 79);
-        font-size: 14px;
-        font-weight: 600;
-        text-decoration: none;
-
-    }
-
-    .my-button:hover {
-        /* Styles for hover state */
-        text-decoration: none;
-        background-color: #24a7f8 !important;
-        color: #fff !important;
-        /* Remove underline on hover */
-    }
-
-    .my-button:active {
-        /* Styles for active/clicked state */
-        text-decoration: none;
-        /* Remove underline when clicked */
-    }
-
-    .topMsg {
-        border: 1px solid #ccc;
-        padding: 10px;
-        font-size: 14px;
-        background-color: #FFFFFF;
-    }
-
-
-
-
-
-
-
-    .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 500px;
-        /* Adjust the total width as needed */
-        height: 40px;
-        /* Adjust the height as needed */
-        /* Background color of the container */
-        border: 1px solid #ccc;
-        /* Border style for the container */
-        padding: 10px;
-        /* Padding inside the container */
-        font-size: 14px;
-        margin-left: 170px;
-        margin-bottom: -100px;
-        background-color: #FFFFFF;
-        /* Font size for the text */
-    }
-
-    .insight-card[_ngcontent-hbw-c670] {
-        border: 1px solid #cbd5e1;
-        border-radius: 4px;
-        /* margin-right: 15px;
-    min-height: 102px;
-    width: 170px; */
-    }
-
-    .insight-card[_ngcontent-hbw-c670] h6[_ngcontent-hbw-c670] {
-        border-bottom: 1px solid #cbd5e1;
-        margin: 0;
-        padding: 7px 20px;
-        text-transform: uppercase;
-    }
-
-    .text-regular {
-        font-weight: 400;
-    }
-
-    .arrow-icon {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        margin-left: 5px;
-        /* Adjust the margin as needed */
-    }
-
-    .arrow-icon::after {
-        content: '\2192';
-        /* Unicode right arrow character */
-        margin-left: 5px;
-        /* Adjust the margin as needed */
-    }
-
-    .text-secondary {
-        color: #7f8fa4;
-    }
-
-    .text-center {
-        text-align: center;
-    }
-
-    .info-icon-container {
-        position: relative;
-        display: inline-block;
-    }
-
-    .info-icon {
-        font-size: 14px;
-        color: blue;
-    }
-
-    .info-box {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        color: #fff;
-        transform: translateX(-50%);
-        background-color: #808080;
-        border: 1px solid #ccc;
-        padding: 10px;
-        border-radius: 5px;
-        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-        Z-index: 1
-    }
-
-    .info-icon-container:hover .info-box {
-        display: block;
-    }
-
-    .text-2 {
-        font-size: 18px;
-    }
-
-    .bg-white {
-        --tw-bg-opacity: 1;
-        background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
-    }
-
-    .text-success {
-        color: #5bc67e;
-    }
-
-    .text-muted {
-        color: #a3b2c7;
-    }
-
-    a {
-        color: #24a7f8;
-    }
-
-    .text-5 {
-        font-size: 12px;
-        margin-top: 50px;
-        margin-bottom: 0;
-    }
-
-    .btn-group {
-        position: relative;
-        display: inline-block;
-        vertical-align: middle;
-    }
-
-    .btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-    }
-
-    .btn-group .btn.icon-btn {
-        min-width: 30px;
-        padding: 0;
-    }
-
-    .btn-group .btn.active {
-        background-color: #24a7f8;
-        border: 1px solid #24a7f8;
-        color: #fff;
-    }
-
-    .btn-group>.btn:first-child {
-        margin-left: 0;
-    }
-
-    [_nghost-exg-c673] .details[_ngcontent-exg-c673] {
-        border: 1px solid #cbd5e1;
-        border-radius: 4px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-
-    .bg-white {
-        --tw-bg-opacity: 1;
-        background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
-    }
-
-    .calendar {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        /* width: 700px;
-        margin-left: 20px;
-        margin-top: 10px; */
-    }
-
-    .large-box {
-        max-width: 900px;
-        height: 220px;
-        margin: 0 auto;
-        padding: 20px;
-        margin-left: 10px;
-        margin-top: 30px;
-        overflow: auto;
-        background-color: #f0f0f0;
-    }
-
-    /* Month header */
-    .calendar-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-
-    #calendar-icon {
-        border-top-left-radius: 5px;
-        /* Adjust the value as needed */
-        border-bottom-left-radius: 5px;
-        /* Adjust the value as needed */
-    }
-
-    #bars-icon {
-        border-top-right-radius: 5px;
-        /* Adjust the value as needed */
-        border-bottom-right-radius: 5px;
-        /* Adjust the value as needed */
-    }
-
-    .calendar-weekdays {
-        display: flex;
-        justify-content: space-around;
-        color: #02114f;
-        gap: 5px;
-        padding: 5px 10px;
-        /* margin-bottom: 10px; */
-        border: 1px solid #dedede;
-    }
-    .container-leave {
-            padding: 0;
-            margin: 0;
-        }
-        .table thead{
-            border:none;
-        }
- 
-        .table th {
-            text-align: center; /* Center days of the week */
-            height: 15px;
-            border: none;       
-            /* Adjust the height of days of the week cells */
-        }
- 
-        .table td:hover {
-            background-color: #ecf7fe; /* Hover background color */
-            cursor: pointer;
-        }
- 
-        /* Add styles for the navigation buttons */
-        .nav-btn {
-            background: none;
-            border: none;
-            color:#778899;
-            font-size:0.795rem;
-            margin-top: -6px;
-            cursor: pointer;
-        }
- 
-        .nav-btn:hover {
-            color: blue;
-        }
- 
-        /* Increase the size of tbody cells and align text to top-left */
-        .table-1 tbody td {
-            width: 75px;
-            height: 80px;
-            border-color:#c5cdd4;
-            font-weight:500;
-            font-size: 13px; /* Adjust font size as needed */
-            vertical-align: top;
-            position: relative;
-            text-align: left;
-        }
-        .table-1 thead{
-            border:none;
-        }
-        .table-1 th {
-            text-align: center; /* Center days of the week */
-            height: 15px;
-            border: none;       
-            /* Adjust the height of days of the week cells */
-        }
-        .table-1 {
-            overflow-x: hidden; /* Add horizontal scrolling if the table overflows the container */
-        }
- 
-        /* Add style for the current date cell */
-        .current-date {
-            background-color: #ff0000; /* Highlight color for the current date */
-            color: #fff; /* Text color for the current date */
-            font-weight: bold;
-        }
- 
-        .calendar-heading-container {
-            background:#fff;
-            padding:10px 10px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            /* Add spacing between heading and icons */
-        }
-        .calendar-heading-container h5{
-           font-size:0.975rem;
-           color:black;
-           font-weight:500;
-        }
- 
-        .table {
-            overflow-x: hidden; /* Add horizontal scrolling if the table overflows the container */
-        }
- 
-        .tol-calendar-legend {
-            display: flex;
-            font-size: 0.875rem;
-            width: 100%;
-            justify-content:space-between;
-            font-weight: 500;
-            color: #778899;
-        }
- 
-        /* CSS for legend circles */
-        .legend-circle {
-            display: inline-block;
-            width: 15px; /* Adjust the width as needed */
-            height: 15px; /* Adjust the height as needed */
-            border-radius: 50%;
-            text-align: center;
-            line-height: 15px; /* Vertically center the text */
-            margin-right: 2px; /* Add some spacing between the circle and text */
-            font-weight: bold; /* Make the text bold */
-            color: white; /* Text color */
-        }
- 
-        .circle-pale-yellow {
-            background-color: #ffeb3b; /* Define the yellow color */
-        }
- 
-        /* CSS for the pink circle */
-        .circle-pale-pink {
-            background-color: #d29be1; /* Define the pink color */
-        }
-        .accordion {
-        border: 1px solid #ccc;
-        border-radius:5px;
-        width: 100%; /* Adjust the width as needed */
-        top: 100px;
-        overflow-x: auto;
-        left:0;/* Adjust the top position as needed */
-      /* Adjust the right position as needed */
-      }
- 
-      .accordion-heading {
-        background-color: #fff;
-        cursor: pointer;
-      }
- 
-      .accordion-body {
-        background-color: #fff;
-        padding:0;
-        display: block;
-        width: 100%; overflow: auto;
-      }
- 
-      .accordion-content {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-      }
- 
-      .accordion-title {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-      }
- 
-      .active .leave-container {
-        border-color: #3a9efd; /* Blue border when active */
-      }
- 
-      .accordion-button {
-        color: #DCDCDC;
-        border: 1px solid #DCDCDC;
-      }
- 
-      .active .accordion-button {
-        color: #3a9efd;
-        border: 1px solid #3a9efd;
-      }
- 
-      @media (max-width: 760px) {
- 
- 
-        .accordion {
-          width: 65%;
-          top: auto;
-          right: auto;
-          margin-top: 20px;
-        }
-      }
-
-    .calendar-days>div {
-        border: 1px solid #dedede;
-    }
-
-    .centered-modal {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    /* Calendar days */
-    .calendar-days {
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        /* gap: 5px; */
-        justify-items: center;
-        padding: 0px;
-    }
-
-    .calendar-date {
-        width: 100%;
-        height: 4em;
-        font-weight: normal;
-        font-size: 12px;
-        /* border-radius: 50%; */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        /* padding: 14px; */
-    }
-
-
-
-    .attendance-calendar-date:hover {
-    background-color: #f3faff;
-}
-.attendance-calendar-date.clicked {
-    background-color: #f3faff;
-    border-color: blue;
-    border: 2px solid #24a7f8;
-
-}
-
-.clickable-date:active {
-    background-color: #f3faff; /* Set the desired background color when clicked */
-    border: 1px solid #c5cdd4; /* Set the desired border color */
-}
-    .calendar-day {
-        text-align: center;
-        padding: 10px;
-        border: 1px solid #ccc;
-        background-color: white;
-    }
-
-    #prevMonth,
-    #nextMonth {
-        /* background-color: rgb(2, 17, 79);
-        color: white; */
-        border: none;
-        padding: 2px 5px;
-        border-radius: 5px;
-        font-size: 12px;
-        cursor: pointer;
-
-    }
-
-    #currentMonth {
-        font-size: 16px;
-        margin: 0;
-    }
-
-    .today {
-        background-color: rgb(2, 17, 79);
-        color: white;
-    }
-
-    /* Today's date */
-    .calendar-day.today {
-        background-color: #0099cc;
-        color: white;
-    }
-
-    .container1 {
-      /* width: 600px;  */
-      /* height: 200px; */
-      /* margin-right: 300px; */
-      background-color: #FFFFFF;
-      margin-top: 15px;
-      /* margin-top: 420px; */
-      border-radius: 10px;
-      /* float: right; */
-      border: 1px solid #ccc;
-    }
-
-    .container2 {
-        /* width: 600px;
-        /* Adjust the width as needed */
-        /* height: 140px; */ 
-        /* margin-right: 300px; */
-        background-color: #FFFFFF;
-        margin-top: 40px;
-        border-radius: 10px;
-        /* padding-bottom: -70px; */
-        /* float: right; */
-        /* Adjust the height as needed */
-        /* Background color of the container */
-        border: 1px solid #ccc;
-        /* Border style for the container */
-    }
-
-    .container1,
-    .container2,
-    .container3,
-    .container6 {
-        display: block;
-    }
-
-    .container6 {
-        /* width: 600px; */
-        /* Adjust the width as needed */
-        /* height: 45px; */
-        /* margin-right: 300px; */
-        background-color: #FFFFFF;
-        margin-top: 30px;
-        border-radius: 10px;
-        /* float: right; */
-        /* Adjust the height as needed */
-        /* Background color of the container */
-        border: 1px solid #ccc;
-        /* Border style for the container */
-    }
-
-    .container-body {
-        /* width: 600px; */
-        /* Adjust the width as needed */
-        /* height: 105px; */
-        /* margin-right: 0px; */
-        /* margin-bottom: 30px; */
-        background-color: #FFFFFF;
-        border-radius: 10px;
-        display: none;
-        /* border-radius:10px; */
-        /* float: right; */
-        /* Adjust the height as needed */
-        /* Background color of the container */
-        border: 1px solid #ccc;
-    }
-
-    /* Basic styles for the input container */
-    .date-range-container {
-        display: flex;
-        align-items: center;
-        width: 300px;
-        /* Adjust the width as needed */
-        border: 1px solid #ccc;
-        padding: 10px;
-        border-radius: 5px;
-        margin-left: 198px;
-
-        margin-top: -80px;
-    }
-
-    .chart-range-container {
-        display: flex;
-        align-items: center;
-        /* width: 600px; */
-        /* Adjust the width as needed */
-        border: 1px solid #ccc;
-        padding: 10px;
-        border-radius: 5px;
-        /* margin-left: -98px; */
-        overflow-x: auto;
-        height: 120px;
-        /* margin-top: 40px; */
-    }
-
-    /* Style for the calendar icon */
-    .calendar-icon {
-        margin-right: 10px;
-        color: #888;
-    }
-
-    /* Style for the input field */
-    .date-range-input {
-        border: none;
-        outline: none;
-        width: 100%;
-    }
-
-    .container3 {
-        /* width: 600px; */
-        /* Adjust the width as needed */
-        /* height: 180px; */
-        /* margin-right: 300px; */
-        background-color: #FFFFFF;
-        margin-top: 30px;
-        border-radius: 10px;
-        /* float: right; */
-        /* Adjust the height as needed */
-        /* Background color of the container */
-        border: 1px solid #ccc;
-        /* Border style for the container */
-    }
-
-    /* CSS for the table */
-    .large-box {
-        width: 100%;
-        overflow-x: auto;
-    }
-
-    .second-header-row th.date {
-        width: 100px;
-        /* Adjust the width of the Date column as needed */
-    }
-
-    .second-header-row th:not(.date) {
-        width: 120px;
-        /* Adjust the width of the Shift and Shift Timings columns as needed */
-    }
-
-    .large-box table {
-
-
-
-        max-width: 100%;
-        margin-top: -20px;
-        table-layout: fixed;
-        /* Fix the table layout */
-        width: auto;
-        /* Set the table to an appropriate width or it will expand to the container's full width */
-        white-space: nowrap;
-        /* Prevent table cell content from wrapping */
-        border-collapse: collapse;
-
-    }
-
-    .large-box td {
-        padding: 10px;
-        border: 1px solid #000;
-        background-color: white;
-    }
-
-    .date {
-        border-collapse: collapse;
-        border: 1px solid #000;
-        margin-left: 10px;
-
-    }
-
-    .large-box {
-        display: none;
-        height: 200px;
-    }
-
-    .large-box th {
-        background-color: rgb(2, 17, 79);
-        color: white;
-        width: 600px;
-        /* Adjust the width as needed */
-        padding-right: 50px;
-    }
-
-    /* CSS for the second header row */
-    .large-box .second-header-row {
-        background-color: rgb(2, 17, 79);
-        color: white;
-    }
-
-    .large-box .first-header-row {
-        background-color: rgb(2, 17, 79);
-        color: white;
-    }
-
-    .vertical-line {
-        border-left: 1px solid black;
-        /* Adjust the width and color as needed */
-        /* Adjust the height as needed */
-        margin-top: -68px;
-        height: 70px;
-        padding: 0;
-        margin-left: 70px;
-    }
-
-
-    .chart-column {
-        flex: 1;
-        /* Distribute available space equally among columns */
-        padding: 70px;
-        margin-top: -40px;
-        text-align: center;
-        border-right: 1px solid #ccc;
-    }
-
-    /* Remove the right border for the last column */
-    .chart-column:last-child {
-        border-right: none;
-        margin-top: -40px;
-    }
-
-    .horizontal-line {
-        width: 100%;
-        /* Set the width to the desired value */
-        border-top: 1px solid #000;
-        /* You can adjust the color and thickness */
-        margin: 0px 0;
-        /* Adjust the margin as needed */
-    }
-
-    .horizontal-line1 {
-        width: 100%;
-        /* Set the width to the desired value */
-        border-top: 1px solid #000;
-        /* You can adjust the color and thickness */
-        margin: 0px 0;
-        /* Adjust the margin as needed */
-    }
-
-    .box {
-        width: 160px;
-        height: 30px;
-        /* You can change the border color here */
-        text-align: center;
-        display: inline-block;
-        margin: 10px 8px;
-
-
-    }
-
-    .box-content {
-        margin-top: 5px;
-        /* Adjust the margin as needed to center the text vertically */
-    }
-
-
-
-
-
-
-    .horizontal-line2 {
-        width: 100%;
-        /* Set the width to the desired value */
-        border-top: 1px solid #000;
-        /* You can adjust the color and thickness */
-        margin: -10px 0;
-        /* Adjust the margin as needed */
-    }
-
-    table {
-        border-collapse: collapse;
-        width: 100%;
-
-    }
-
-    /* CSS for the table header (thead) */
-    thead {
-
-        background-color: rgb(2, 17, 79);
-        color: white;
-    }
-
-    /* CSS for the table header cells (th) */
-    th {
-        padding: 10px;
-        text-align: left;
-    }
-
-    td {
-        /* Add borders to separate cells */
-        padding: 10px;
-        text-align: left;
-    }
-
-    .toggle-box {
-        display: flex;
-        align-items: center;
-        background-color: #f0f0f0;
-
-        width: 73px;
-        /* margin-left: 850px; */
-        /* margin-top: -40px; */
-        padding: 5.5px 6px;
-        /* Adjust padding as needed */
-    }
-
-
-    .toggle-box i {
-        color: grey;
-        /* Set the icon color */
-        background-color: white;
-        /* Set the background color for icons */
-        padding: 7px 7px;
-        /* Set padding for icons */
-        margin-right: 0px;
-        /* Add spacing between icons if desired */
-    }
-
-    .toggle-box i.fas.fa-calendar {
-        /* Initial icon color */
-        /* Initial background color for icon */
-        padding: 7px 7px;
-        /* Initial padding for icon */
-        margin-right: 0px;
-        /* Initial spacing between icons */
-        border: 2px solid transparent;
-
-        /* Initial border color (transparent) */
-    }
-
-
-    .toggle-box i.fas.fa-calendar:hover {
-        color: rgb(2, 17, 79);
-        /* Icon color on hover */
-        /* Background color for icon on hover */
-        border-color: rgb(2, 17, 79);
-        /* Border color on hover */
-    }
-
-    .toggle-box i.fas.fa-bars {
-        color: grey;
-        /* Initial icon color */
-        /* Initial background color for icon */
-        padding: 7px 7px;
-        /* Initial padding for icon */
-        margin-right: 0px;
-        /* Initial spacing between icons */
-        border: 2px solid transparent;
-        /* Initial border color (transparent) */
-    }
-
-    .toggle-box i.fas.fa-bars:hover {
-        color: rgb(2, 17, 79);
-        /* Icon color on hover */
-        /* Background color for icon on hover */
-        border-color: rgb(2, 17, 79);
-        /* Border color on hover */
-    }
-
-    .toggle-box i.fas.fa-calendar.active {
-        color: white;
-        /* Icon color when active (clicked) */
-        background-color: rgb(2, 17, 79);
-        /* Background color when active (clicked) */
-    }
-
-    .toggle-box i.fas.fa-bars.active {
-        color: white;
-        /* Icon color when active (clicked) */
-        background-color: rgb(2, 17, 79);
-        /* Background color when active (clicked) */
-    }
-
-
-
-
-
-    .custom-modal .modal-header {
-        padding: 10px;
-        background-color: #e9edf1;
-        /* Decrease header padding */
-    }
-
-    .date-picker-container {
-        position: relative;
-        display: none;
-
-    }
-
-    .date-input {
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-
-    .calendar-icon1 {
-        position: absolute;
-        top: 50%;
-        right: 10px;
-        transform: translateY(-50%);
-        cursor: pointer;
-    }
-
-    #calendar4 {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background-color: white;
-        border: 1px solid #ccc;
-        z-index: 1000;
-    }
-
-    #calendar4 .calendar {
-        display: inline-block;
-        margin: 10px;
-    }
-
-
-    /* .custom-modal .modal-body {
-        padding: 100px;
-    } */
-
-    /* CSS for the icons */
-    .icon {
-        font-size: 24px;
-        margin-right: 10px;
-    }
-
-    /* Style for the row container */
-
-
-    /* Style for individual values */
-
-    /* Style for individual values */
-    .chart-value {
-        flex: 1;
-        /* Distribute available space equally among values */
-        text-align: center;
-        margin-top: 40px;
-        padding: 10px;
-
-
-    }
-
-    .chart-column>div {
-        margin: 0 auto;
-    }
-
-    /* CSS for the lines icon */
-    .lines-icon::before {
-        content: "\2630";
-        background-color: white;
-        padding-top: 5px;
-        padding-right: 12px;
-        padding-bottom: 7px;
-        margin-left: -10px;
-        /* Unicode character for the three lines icon */
-    }
-
-    .rotate-arrow {
-        transform: rotate(90deg);
-        transition: transform 0.3s ease;
-        /* Add a smooth transition effect */
-    }
-
-    /* CSS for the calendar icon */
-    .calendar-icon::before {
-        content: "\1F4C5";
-        background-color: white;
-        /* Add a blue background color */
-        color: white;
-        /* Set the text color to white */
-        padding-top: 5px;
-        padding-right: 6px;
-        padding-bottom: 6px;
-        /* Add padding for spacing */
-        /* Unicode character for the calendar icon */
-    }
-
-    .arrow-button::after {
-        content: "\25B6";
-        /* Unicode character for right-pointing triangle (arrow) */
-        font-size: 18px;
-
-    }
-
-    .modal-box {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.7);
-    }
-
-    .legend-item {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-        /* Adjust as needed for spacing */
-    }
-    .attendance-calendar-date {
-    cursor: pointer;
-    padding: 10px;
-    margin: 5px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-
-    .custom-modal-lg {
-        max-width: 90%;
-
-    }
-
-    .modal-content {
-        background-color: #fff;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    }
-
-    .fa-info-circle:hover {
-        text-decoration: underline;
-    }
-    .circle.IRIS {
-            background-color: #d29be1;
-        }
-    .container11 {
-        display: flex;
-    }
-
-    .sidebar {
-        position: fixed;
-        top: 0;
-        right: -250px;
-        /* Initially, hide the sidebar off-screen */
-        width: 250px;
-        height: 100%;
-        background-color: #fff;
-        color: #fff;
-        transition: right 0.3s ease-in-out;
-    }
-
-    .close-sidebar {
-        margin-left: 205px;
-        margin-bottom: -50px;
-    }
-
-    .content {
-        margin-right: 20px;
-
-    }
-
-    /* Existing styles for sidebar */
-
-
-    /* Styles for sidebar header */
-    .sidebar .sidebar-header {
-        background-color: #e9edf1;
-        padding: 10px;
-        text-align: center;
-    }
-
-    .sidebar .sidebar-header h2 {
-        color: #7f8fa4;
-        font-size: 24px;
-        margin: 0;
-    }
-
-    .sidebar-content h3 {
-        color: #7f8fa4;
-        margin-left: 30px;
-    }
-
-    .sidebar-content p {
-        color: #7f8fa4;
-        font-size: 12px;
-        margin-left: 30px;
-    }
-
-    /* Hover styles */
-
-    .text-overflow {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-    .accordion {
-      background-color: #dae0f7;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-  transition: 0.4s;
-  border: 1px solid #cecece;
-}
-
-.active, .accordion:hover {
-  background-color: #02114f;
-  color: #fff;
-}
-
-.panel {
-  /* padding: 0 18px; */
-  display: none;
-  background-color: white;
-  overflow: hidden;
-  border: 1px solid #cecece;
-  font-size: 14px;
-}
-.accordion:after {
-  content: '\02795'; /* Unicode character for "plus" sign (+) */
-  font-size: 13px;
-  color: #fff;
-  float: right;
-  margin-left: 5px;
-}
-
-.active:after {
-  content: "\2796"; /* Unicode character for "minus" sign (-) */
-}
-
-.legendsIcon{
-  padding: 1px 6px;
-  font-weight: 500;
-}
-.presentIcon{
-  background-color: #edfaed;
-}
-.absentIcon {
-  background-color: #fcf0f0;
-  color: #ff6666;
-}
-.offDayIcon {
-  background-color: #f7f7f7;
-}
-.leaveIcon {
-  background-color: #fcf2ff;
-}
-.onDutyIcon {
-  background-color: #fff7eb;
-}
-.holidayIcon {
-  background-color: #f2feff;
-}
-.alertForDeIcon {
-  background-color: #edf3ff;
-}
-.deductionIcon {
-  background-color: #fcd2ca;
-}
-.down-arrow-reg { 
-  width: 0;
-  height: 0;
-  /* border-left: 20px solid transparent; */
-  border-right: 17px solid transparent;
-  border-bottom: 17px solid #f09541;
-  margin-right: 5px;
-} 
-.down-arrow-gra { 
-  width: 0;
-  height: 0;
-  /* border-left: 20px solid transparent; */
-  border-right: 17px solid transparent;
-  border-bottom: 17px solid #5473e3;
-  margin-right: 5px;
-} 
-.down-arrow-ign { 
-  width: 0;
-  height: 0;
-  /* border-left: 20px solid transparent; */
-  border-right: 17px solid transparent;
-  border-bottom: 17px solid #677a8e;
-  margin-right: 5px;
-} 
-
-.emptyday {
-    color: #aeadad;
-    pointer-events: none;
-}
-
+<style>
+    
+  
 </style>
 @php
    $flag=0;
@@ -1230,13 +32,13 @@
     <div>
         <div class="row m-0" style="text-align: end;">
             <div class="col-md-12">
-                <a href="/regularisation" class="btn btn-primary mb-3 my-button" id="myButton">My Regularisations</a>
+                <a href="/regularisation" class="btn btn-primary mb-3 my-button-attendance-info" id="myButton">My Regularisations</a>
             </div>
         </div>
         <div class="row m-0" style="text-align: center;">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <div class="row m-0 topMsg">
+                <div class="row m-0 topMsg-attendance-info">
                     <div class="col-2">
                         <!-- Red info icon on the left -->
                         <i class="fa fa-info-circle mr-2" aria-hidden="true" style="font-size: 24px; color: red;"></i>
@@ -1247,10 +49,10 @@
                     </div>
 
                     <!-- Blue info icon on the right -->
-                    <div class="info-icon-container col-2">
+                    <div class="info-icon-container-attendance-info col-2">
 
                         <i class="fa fa-info-circle" aria-hidden="true" style="font-size: 14px; color: blue;"></i>
-                        <div class="info-box">
+                        <div class="info-box-attendance-info">
                             Contact administrator to get access card assigned.
                         </div>
                     </div>
@@ -1311,9 +113,9 @@
 
 
                 <div class="modal-dialog custom-modal-lg centered-modal custom-modal" role="document">
-                    <div class="modal-content">
+                    <div class="modal-content-attendance-info">
 
-                        <div class="modal-header" style="background-color: #a3b2c7;">
+                        <div class="modal-header-attendance-info" style="background-color: #a3b2c7;">
 
                             <h5 class="modal-title" id="exampleModalLabel">
                                 Insights for Attendance Period 01 Oct - 01 Oct</h5>
@@ -1410,96 +212,7 @@
             </div>
 
             
-            <div class="sidebar">
-                <!-- Sidebar content goes here -->
-                <div class="sidebar-header" style="display: flex; justify-content: space-between; align-items: center;">
-                    <h3 style="color: #7f8fa4;margin-left:0;font-size:20px;">Legends</h3>
-                    <button style="font-size: 12px; padding: 5px 10px; margin-left: 10px; margin-top: -5px;"
-                        id="closeSidebar">&#10006;</button>
-                </div>
-                <div class="sidebar-content">
-                    <h3 style="font-size: 16px;">Shift Codes</h3>
-                    <div style="display:flex;flex-direction:row;margin-top:-10px;margin-left:8px;">
-                        <div class="legend-item">
-                            <i class="fas fa-caret-right" style="font-size: 24px; color: #e2b7ff;margin-left:25px;"></i>
-                            <p style="display: inline-block; margin-left: -10px;margin-top:20px;">Override</p>
-                        </div>
-                        <div class="legend-item">
-                            <i class="fas fa-caret-right" style="font-size: 24px; color: #ff9595;margin-left:25px;"></i>
-                            <p style="display: inline-block; margin-left: -10px;margin-top:20px">Deduction</p>
-                        </div>
-                    </div>
-                    <div style="display:flex;flex-direction:row;margin-top:-30px;margin-left:8px;">
-                        <div class="legend-item">
-                            <i class="fas fa-caret-right" style="font-size: 24px; color: #7dd4ff;margin-left:25px;"></i>
-                            <p style="display: inline-block; margin-left: -10px;margin-top:20px">
-                                Alert&nbsp;for&nbsp;Deduction</p>
-                        </div>
-                        <div class="legend-item">
-                            <i class="fas fa-caret-right" style="font-size: 24px; color: #c7c7c7;margin-left:25px;"></i>
-                            <p style="display: inline-block; margin-left: -10px;margin-top:20px">Ignored</p>
-                        </div>
-                    </div>
-                    <div style="display:flex;flex-direction:row;margin-top:-30px;margin-left:8px;">
-                        <div class="legend-item">
-                            <i class="fas fa-caret-right" style="font-size: 24px; color: #ffe8de;margin-left:25px;"></i>
-                            <p style="display: inline-block; margin-left: -10px;margin-top:20px">Grace</p>
-                        </div>
-                    </div>
-                    <h3 style="font-size: 16px;">Status</h3>
-                    <div style="display:flex;flex-direction:row;margin-top:-10px;">
-                        <div class="legend-item">
-                            <i class="fas fa-circle" style=" color: #e2b7ff;margin-left:25px;"></i>
-                            <p style="display: inline-block; margin-left: -10px;margin-top:20px">Holiday</p>
-                        </div>
-                        <div class="legend-item">
-                            <i class="fas fa-circle" style=" color: #e3c82e;;margin-left:25px;"></i>
-                            <p style="display: inline-block; margin-left: -10px;margin-top:20px">Overtime</p>
-                        </div>
-
-
-                    </div>
-                    <div style="display:flex;flex-direction:row;margin-top:-30px;">
-                        <div class="legend-item">
-                            <i class="fas fa-circle" style="color: #eae929;margin-left:25px;"></i>
-                            <p style="display: inline-block; margin-left: -10px;margin-top:20px">
-                                Restricted&nbsp;Holiday</p>
-                        </div>
-                        <div class="legend-item">
-                            <p style=" color: #f66;margin-left:10px;margin-top:20px;">A</p>
-                            <p style="display: inline-block; margin-left: 10px;margin-top:20px">Absent</p>
-                        </div>
-                    </div>
-                    <div style="display:flex;flex-direction:row;margin-top:-30px;margin-left:20px;">
-                        <div class="legend-item">
-                            <p style=" color: #a3b2c7;;margin-left:10px;margin-top:20px;">R</p>
-                            <p style="display: inline-block; margin-left: 10px;margin-top:20px">Rest&nbsp;Day</p>
-                        </div>
-                        <div class="legend-item">
-                            <p style=" color:#a3b2c7;;margin-left:10px;margin-top:20px;">P</p>
-                            <p style="display: inline-block; margin-left: 10px;margin-top:20px">Present</p>
-                        </div>
-                    </div>
-                    <div style="display:flex;flex-direction:row;margin-top:-30px;margin-left:20px;">
-                        <div class="legend-item">
-                            <p style=" color: #a3b2c7;;margin-left:10px;margin-top:20px;">O</p>
-                            <p style="display: inline-block; margin-left: 10px;margin-top:20px">Off&nbsp;Day</p>
-                        </div>
-                        <div class="legend-item">
-                            <p style=" color: #a3b2c7;;margin-left:10px;margin-top:20px;">L</p>
-                            <p style="display: inline-block; margin-left: 10px;margin-top:20px">Leave</p>
-                        </div>
-                    </div>
-                    <div style="display:flex;flex-direction:row;margin-top:-30px;margin-left:20px;">
-                        <div class="legend-item">
-                            <p style=" color: #a3b2c7;;margin-left:10px;margin-top:20px;">?</p>
-                            <p style="display: inline-block; margin-left: 10px;margin-top:20px">Status Unknown</p>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
+            
 
 
         </div>
@@ -1510,7 +223,7 @@
                 style="margin-top:69px;color:rgb(2, 17, 79); display: none">Legend</a>
           </div>
           <div class="col-6" style="text-align: -webkit-right;">
-            <div class="toggle-box">
+            <div class="toggle-box-attendance-info">
               <i class="fas fa-calendar" id="calendar-icon" onclick="showCalendar()"></i>
               <i class="fas fa-bars" id="bars-icon" onclick="showMessage()"></i>
             </div>
@@ -1610,11 +323,11 @@
                                     @if($day['isPublicHoliday'])
                                         <span style="background-color: #f3faff;text-align:center;color: #7f8fa4; padding-left: 16px; margin-left: 26px;white-space: nowrap;">H</span>
                                     @elseif($day['status'] == 'CLP')   
-                                        <span style="background-color:  rgb(252, 242, 255);color: #7f8fa4;text-align:center;padding-left: 35px;white-space: nowrap;">CLP</span> 
+                                        <span style="background-color:  rgb(252, 242, 255);color: #7f8fa4;text-align:center; padding-left: 16px; margin-left: 26px;white-space: nowrap;">CLP</span> 
                                     @elseif($day['status'] == 'SL')   
-                                        <span style="background-color: #f3faff;color: #7f8fa4;text-align:center;padding-left: 35px;white-space: nowrap;">SL</span>     
+                                        <span style="background-color:  rgb(252, 242, 255);color: #7f8fa4;text-align:center; padding-left: 16px; margin-left: 26px;white-space: nowrap;">SL</span>     
                                     @elseif($day['status'] == 'LOP')   
-                                        <span style="background-color: #f3faff;color: #7f8fa4;text-align:center;padding-left: 35px;white-space: nowrap;">LOP</span> 
+                                        <span style="background-color:  rgb(252, 242, 255);color: #7f8fa4;text-align:center; padding-left: 16px; margin-left: 26px;white-space: nowrap;">LOP</span> 
                                     @elseif($day['status'] == 'A')
                                         <span style="color:#ff6666; background-color: #fcf0f0;text-align:center;padding-left: 16px; margin-left: 26px;white-space: nowrap;">A</span>
                                     @elseif($day['status'] == 'P')
@@ -1728,7 +441,7 @@
                 </div>
                 <div class="col-md-3 mb-2 pe-0" style="display: flex">
                   <p class="me-2 mb-0">
-                    <div class="down-arrow-ign"></div>
+                    <div class="down-arrow-ign-attendance-info"></div>
                   </p>
                   <p class="m-0">Ignored</p>
                 </div>
@@ -1782,7 +495,7 @@
 
           </div>
           <div class="col-md-5">
-            <div class="container1"style="background-color:pink;">
+            <div class="container1"style="background-color:white;">
               <!-- Content goes here -->
               <div class="row m-0">
                 <div class="col-2 pb-1 pt-1 p-0" style="border-right: 1px solid black; text-align: center;">
@@ -1807,13 +520,13 @@
               </div>
 
 
-              <div class="horizontal-line"></div>
+              <div class="horizontal-line-attendance-info"></div>
               @if($ChangeDate==1)
                  <div class="text-muted" style="margin-left:20px;font-weight: 400;font-size: 12px;">Processed On {{ \Carbon\Carbon::parse($CurrentDate)->format('jS M') }}</div>
               @else
                  <div class="text-muted" style="margin-left:20px;font-weight: 400;font-size: 12px;">Processed On</div>
               @endif   
-              <div class="horizontal-line1"></div>
+              <div class="horizontal-line1-attendance-info"></div>
               <div style=" overflow-x: auto; max-width: 100%;">
                   <table>
                       <thead>
@@ -2139,8 +852,8 @@
                 <div wire:ignore.self class="modal fade" id="viewStudentModal" tabindex="-1" data-backdrop="static"
                     data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
+                        <div class="modal-content-attendance-info">
+                            <div class="modal-header-attendance-info">
                                 <h5 class="modal-title">Swipe Details</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span wire:click="close" aria-hidden="true">&times;</span>
@@ -2215,7 +928,7 @@
 
 
 
-    <div class="large-box">
+    <div class="large-box-attendance-info">
         <div class="table-container" style=" width: 100%;
     overflow-x: auto;">
             <table>
@@ -2233,9 +946,9 @@
                     <th></th>
                     <th></th>
                     <th style="font-weight:normal;font-size:12px;padding-top:16px;">Session&nbsp;1<span
-                            class="arrow-icon">&#x2192;</span></th>
+                            class="arrow-icon-attendance-info">&#x2192;</span></th>
                     <th style="font-weight:normal;font-size:12px;padding-top:16px;">Session&nbsp;2<span
-                            class="arrow-icon">&#x2192;</span></th>
+                            class="arrow-icon-attendance-info">&#x2192;</span></th>
 
 
                 </tr>
@@ -2354,8 +1067,8 @@
     <div class="modal fade" id="largeBoxModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog"
         aria-labelledby="modelTitleId" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content" style="width:100%">
-                <div class="modal-header">
+            <div class="modal-content-attendance-info" style="width:100%">
+                <div class="modal-header-attendance-info">
                     <h5 class="modal-title">Swipe Details</h5>
                     <button type="button" class="close" aria-label="Close" wire:click="closeViewStudentModal">
                         <span aria-hidden="true">&times;</span>
@@ -2432,53 +1145,53 @@
 
     <div id="box-container" style="display: none;margin-left:300px;">
 
-        <div class="box">
-            <div class="box-content" style="background-color: rgba(237,250,237,1);color: #7f8fa4;">
+        <div class="box-attendance-info">
+            <div class="box-content-attendance-info" style="background-color: rgba(237,250,237,1);color: #7f8fa4;">
                 Present:&nbsp;{{$presentCount}}
             </div>
         </div>
-        <div class="box">
-            <div class="box-content" style="background-color: 	#F88379;color: #7f8fa4;">
+        <div class="box-attendance-info">
+            <div class="box-content-attendance-info" style="background-color: 	#F88379;color: #7f8fa4;">
                 Absent:&nbsp;{{$absentCount}}
             </div>
         </div>
-        <div class="box" style="background-color:	#7DF9FF;color: #7f8fa4;">
-            <div class="box-content">
+        <div class="box-attendance-info" style="background-color:	#7DF9FF;color: #7f8fa4;">
+            <div class="box-content-attendance-info">
                 Holiday:&nbsp;{{ $holidayCount }}
             </div>
         </div>
-        <div class="box">
-            <div class="box-content" style="background-color: rgb(217, 218, 213);margin-top:-2px;color: #7f8fa4;">
+        <div class="box-attendance-info">
+            <div class="box-content-attendance-info" style="background-color: rgb(217, 218, 213);margin-top:-2px;color: #7f8fa4;">
                 Off&nbsp;Day:&nbsp;{{ $offCount }}
             </div>
         </div>
-        <div class="box">
-            <div class="box-content" style="background-color: #E6E6FA;color: #7f8fa4;margin-top:-2px;">
+        <div class="box-attendance-info">
+            <div class="box-content-attendance-info" style="background-color: #E6E6FA;color: #7f8fa4;margin-top:-2px;">
                 Leave:&nbsp;0
             </div>
         </div>
-        <div class="box">
-            <div class="box-content" style="background-color: rgb(217, 218, 213);color: #7f8fa4;margin-top:-2px;">
+        <div class="box-attendance-info">
+            <div class="box-content-attendance-info" style="background-color: rgb(217, 218, 213);color: #7f8fa4;margin-top:-2px;">
                 Rest&nbsp;Day:&nbsp;0
             </div>
         </div>
-        <div class="box">
-            <div class="box-content" style="background-color: #FFFDD0;margin-top:-2px;color: #7f8fa4;">
+        <div class="box-attendance-info">
+            <div class="box-content-attendance-info" style="background-color: #FFFDD0;margin-top:-2px;color: #7f8fa4;">
                 On&nbsp;Duty:&nbsp;0
             </div>
         </div>
-        <div class="box">
-            <div class="box-content" style="background-color: #FDDA0D;margin-top:-2px;color: #7f8fa4;">
+        <div class="box-attendance-info">
+            <div class="box-content-attendance-info" style="background-color: #FDDA0D;margin-top:-2px;color: #7f8fa4;">
                 ShutDown:&nbsp;0
             </div>
         </div>
-        <div class="box">
-            <div class="box-content" style="background-color: 	#7DF9FF;margin-top:-2px;color: #7f8fa4;">
+        <div class="box-attendance-info">
+            <div class="box-content-attendance-info" style="background-color: 	#7DF9FF;margin-top:-2px;color: #7f8fa4;">
                 Restricted&nbsp;Holiday:&nbsp;0
             </div>
         </div>
-        <div class="box">
-            <div class="box-content" style="background-color: #F88379;margin-top:-2px;color: #7f8fa4;">
+        <div class="box-attendance-info">
+            <div class="box-content-attendance-info" style="background-color: #F88379;margin-top:-2px;color: #7f8fa4;">
                 Status&nbsp;Unknown:&nbsp;0
             </div>
         </div>
@@ -2578,7 +1291,7 @@
         document.querySelector('.container2').style.display = 'block';
         document.querySelector('.container3').style.display = 'block';
         document.querySelector('.container6').style.display = 'block';
-        document.querySelector('.large-box').style.display = 'none';
+        document.querySelector('.large-box-attendance-info').style.display = 'none';
         document.querySelector('.date-picker-container').style.dispaly = 'none';
 
     }
@@ -2594,7 +1307,7 @@
         document.querySelector('.container2').style.display = 'none';
         document.querySelector('.container3').style.display = 'none';
         document.querySelector('.container6').style.display = 'none';
-        document.querySelector('.large-box').style.display = 'block';
+        document.querySelector('.large-box-attendance-info').style.display = 'block';
         document.querySelector('.date-picker-container').style.dispaly = 'block';
     }
     </script>

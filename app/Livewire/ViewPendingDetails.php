@@ -3,6 +3,7 @@
 namespace App\Livewire;
 use App\Models\LeaveRequest;
 use App\Models\EmployeeDetails;
+use App\Models\Regularisations;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -15,6 +16,8 @@ class ViewPendingDetails extends Component
     public $employeeId;
     public $leaveRequests;
     public $count;
+
+    public $regularisationRequests;
     public $applying_to= [];
     public $matchingLeaveApplications = [];
     public $leaveRequest;
@@ -23,7 +26,9 @@ class ViewPendingDetails extends Component
 
     public function mount()
     {
+            
             $employeeId = auth()->guard('emp')->user()->emp_id;
+          
             $this->leaveRequests = LeaveRequest::where('leave_applies.status', 'pending')
             ->where(function ($query) use ($employeeId) {
                 $query->whereJsonContains('applying_to', [['manager_id' => $employeeId]])

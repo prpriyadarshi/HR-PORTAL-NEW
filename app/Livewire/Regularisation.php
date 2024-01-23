@@ -15,7 +15,8 @@ class Regularisation extends Component
 
     public $isPending=0;
     public $isHistory=0;
-    
+
+    public $defaultApply=0;
     public $callcontainer=0;
     public $data;
     public $data1;
@@ -72,18 +73,21 @@ class Regularisation extends Component
     }
     public function applyButton()
     {
+        $this->defaultApply=0;
         $this->isApply=1;
         $this->isPending=0;
         $this->isHistory=0;
     }
     public function pendingButton()
     {
+        $this->defaultApply=1;
         $this->isApply=0;
         $this->isPending=1;
         $this->isHistory=0;
     }
     public function historyButton()
     {
+        $this->defaultApply=1;
         $this->isApply=0;
         $this->isPending=0;
         $this->isHistory=1;

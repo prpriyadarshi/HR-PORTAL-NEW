@@ -16,6 +16,7 @@
         "sass": "^1.56.1"
     },
     "dependencies": {
+        "alpinejs": "^3.13.3",
         "apexcharts": "^3.44.0",
         "dom-to-pdf": "^0.3.2",
         "font-awesome": "^4.7.0"

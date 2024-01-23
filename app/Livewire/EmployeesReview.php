@@ -3,6 +3,7 @@
 namespace App\Livewire;
 use App\Models\EmployeeDetails;
 use App\Models\LeaveRequest;
+use App\Models\Regularisations;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -190,11 +191,16 @@ class EmployeesReview extends Component
             }
         }
         $this->approvedLeaveApplicationsList = $approvedLeaveApplications;
- 
+       
+        $loggedInEmpId=auth()->guard('emp')->user()->emp_id;
+        $employees=EmployeeDetails::where('manager_id',$loggedInEmpId)->select('emp_id')->get();
+    
+        $regularisationRequests = Regularisations::whereIn('emp_id', $employees)->where('status', 'pending')->get();
         $this->leaveApplications = $matchingLeaveApplications;
         
            return view('livewire.employees-review', [
             'leaveApplications' => $this->leaveApplications,
+            'regularisationRequests'=>$regularisationRequests,
             'approvedLeaveApplicationsList' => $this->approvedLeaveApplicationsList,
         ]);
     }

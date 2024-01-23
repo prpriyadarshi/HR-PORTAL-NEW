@@ -164,14 +164,22 @@
                 </div>
                  <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                    <p>hii pari</p>
+                  
                     <div style="display:flex;align-items:center;justify-content:center;">
+                        @if($regularisationRequests)
+                        <div style="display:flex;flex-direction:column;">
+                         
+                             @livewire('view-pending-regularisation')
+                         
+                        </div>  
+                        @else   
                         <div class="leave-pending" style="margin-top:10px; background:#fff;  display:flex; width:75%;flex-direction:column; text-align:center;justify-content:center; border:1px solid #ccc; padding:20px;gap:10px;">
 
                             <img src="/images/pending.png" alt="Pending Image" style="width:60%; margin:0 auto;">
 
                             <p style="color:#969ea9; font-size:13px; font-weight:400; ">Hey, you have no regularization records to view</p>
                         </div>
+                        @endif
                      </div>
                     </div>
                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">

@@ -594,59 +594,100 @@ thead th:nth-child(2) {
     <button class="my-button apply-button" wire:click="applyButton">Apply</button>
     <button class="my-button pending-button"wire:click="pendingButton">Pending</button>
     <button class="my-button history-button"wire:click="historyButton">History</button>
-    
+  
+    @if($this->defaultApply==0)
+    <div class="calendar-box">
+  
+  <div class="calendar-header">
+    <button id="prevMonth">&lt;&nbsp;Prev</button>
+    <h2 id="currentMonth"style="margin-top:5px;"></h2>
+    <button id="nextMonth">Next&nbsp;&gt;</button>
+  </div>
+
+<!-- Calendar Weekdays -->
+<div class="calendar-weekdays">
+    <div class="weekday">Sun</div>
+    <div class="weekday">Mon</div>
+    <div class="weekday">Tue</div>
+    <div class="weekday">Wed</div>
+    <div class="weekday">Thu</div>
+    <div class="weekday">Fri</div>
+    <div class="weekday">Sat</div>
+</div>
+
+<!-- Calendar Dates -->
+  <div class="calendar-dates">
+        @foreach($daysInMonth as $day)
+        <div 
+            class="calendar-date {{ $day['isCurrentDate'] ? 'current-date' : '' }} {{ in_array($day['date']->toDateString(), $selectedDates) ? 'selected-date' : '' }}" 
+            wire:click="selectDate('{{ $day['date']->toDateString() }}')"
+        >
+            {{ $day['day'] }}
+        </div>
+        @endforeach
+  </div>
+  <div class="calendar-footer" id="calendarFooter">
+
+      No exception days to regularize
+  </div>
+</div>
+     @endif
 
 @if($this->isApply==1 && $this->isPending==0 &&  $this->isHistory==0 )
+  
+    @if($this->defaultApply==1)
+    <div class="calendar-box">
+  
+  <div class="calendar-header">
+    <button id="prevMonth">&lt;&nbsp;Prev</button>
+    <h2 id="currentMonth"style="margin-top:5px;"></h2>
+    <button id="nextMonth">Next&nbsp;&gt;</button>
+  </div>
 
-     <p>hii Pari</p>
+<!-- Calendar Weekdays -->
+<div class="calendar-weekdays">
+    <div class="weekday">Sun</div>
+    <div class="weekday">Mon</div>
+    <div class="weekday">Tue</div>
+    <div class="weekday">Wed</div>
+    <div class="weekday">Thu</div>
+    <div class="weekday">Fri</div>
+    <div class="weekday">Sat</div>
+</div>
 
+<!-- Calendar Dates -->
+  <div class="calendar-dates">
+        @foreach($daysInMonth as $day)
+        <div 
+            class="calendar-date {{ $day['isCurrentDate'] ? 'current-date' : '' }} {{ in_array($day['date']->toDateString(), $selectedDates) ? 'selected-date' : '' }}" 
+            wire:click="selectDate('{{ $day['date']->toDateString() }}')"
+        >
+            {{ $day['day'] }}
+        </div>
+        @endforeach
+  </div>
+  <div class="calendar-footer" id="calendarFooter">
+
+      No exception days to regularize
+  </div>
+</div>
+    @endif   
+     
 @elseif($this->isApply==0 && $this->isPending==1 &&  $this->isHistory==0 )
-
-    <div class="hidden-pending-box">
-        <img src="https://gt-linckia.s3.amazonaws.com/static-ess-v6.3.0-prod-144/review-list-empty.svg"style="margin-top:80px;">
-        <p style="color: #a3b2c7;font-weight:400;font-size: 20px;margin-top:20px;">Hey, you have no regularization records to view</p>
-    </div>    
+ 
+    <div class="pending" style="background-color:#fff; margin-bottom:20px; border:1px solid #7f8fa4;">
+           <img src="https://gt-linckia.s3.amazonaws.com/static-ess-v6.3.0-prod-144/review-list-empty.svg">
+           <p style="color: #a3b2c7;font-weight:400;font-size: 20px;margin-top:20px;">Hey, you have no regularization records to view.</p>
+    </div> 
 @elseif($this->isApply==0 && $this->isPending==0 &&  $this->isHistory==1 )
-<img src="https://gt-linckia.s3.amazonaws.com/static-ess-v6.3.0-prod-144/review-list-empty.svg"style="margin-top:80px;">
-         <p style="color: #a3b2c7;font-weight:400;font-size: 20px;margin-top:20px;">Hey, you have no regularization records to view.Thank you for your time</p>
+     <div class="history" style="background-color:#fff; margin-bottom:20px; border:1px solid #7f8fa4;">
+           <img src="https://gt-linckia.s3.amazonaws.com/static-ess-v6.3.0-prod-144/review-list-empty.svg"style="margin-top:80px;">
+           <p style="color: #a3b2c7;font-weight:400;font-size: 20px;margin-top:20px;">Hey, you have no regularization records to view.Thank you for your time</p>
+       </div>
 @endif    
 
      
-    <div class="calendar-box">
-  
-      <div class="calendar-header">
-        <button id="prevMonth">&lt;&nbsp;Prev</button>
-        <h2 id="currentMonth"style="margin-top:5px;"></h2>
-        <button id="nextMonth">Next&nbsp;&gt;</button>
-      </div>
-
-    <!-- Calendar Weekdays -->
-    <div class="calendar-weekdays">
-        <div class="weekday">Sun</div>
-        <div class="weekday">Mon</div>
-        <div class="weekday">Tue</div>
-        <div class="weekday">Wed</div>
-        <div class="weekday">Thu</div>
-        <div class="weekday">Fri</div>
-        <div class="weekday">Sat</div>
-    </div>
-
-    <!-- Calendar Dates -->
-      <div class="calendar-dates">
-            @foreach($daysInMonth as $day)
-            <div 
-                class="calendar-date {{ $day['isCurrentDate'] ? 'current-date' : '' }} {{ in_array($day['date']->toDateString(), $selectedDates) ? 'selected-date' : '' }}" 
-                wire:click="selectDate('{{ $day['date']->toDateString() }}')"
-            >
-                {{ $day['day'] }}
-            </div>
-            @endforeach
-      </div>
-      <div class="calendar-footer" id="calendarFooter">
-   
-          No exception days to regularize
-      </div>
-    </div>
+    
     
 
     

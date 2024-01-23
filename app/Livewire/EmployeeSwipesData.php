@@ -7,50 +7,84 @@ use App\Models\EmployeeDetails;
 use Carbon\Carbon;
 use Livewire\Component;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Jenssegers\Agent\Agent;
 class EmployeeSwipesData extends Component
 {
     public $employees;
+   
     
     public $search;
-
-
+  
+   
+    
     public $notFound;
     public $selectedEmployee;
     public $deviceId;
     public $status;
     public $swipes; 
     public $mobileId;  
-    public $date = "01/04/2024 - 01/04/2024";
+   
 
     public $swipeTime='';
    
     public $loggedInEmpId1 ;
-    public function mount()
+       public function mount()
     {
        
         
-        $agent = new Agent();
+        $today = now()->startOfDay(); // Carbon instance representing the start of today
+        $userSwipesToday = SwipeRecord::where('emp_id',Auth::guard('emp')->user()->emp_id )
+            ->where('created_at', '>=', $today)
+            ->where('created_at', '<', $today->copy()->endOfDay())
+            ->exists();
+        if($userSwipesToday)
+        {
+              $agent = new Agent();
 
-        if ($agent->isMobile()) {
-            // The user accessed the component from a mobile device
-            // Add your mobile-specific logic here
-            // For example: $this->emit('mobileAccess');
-            $this->status = 'Mobile';
-            
-        } else {
-            // The user accessed the component from a desktop or laptop
-            // Add your desktop-specific logic here
-            // For example: $this->emit('desktopAccess');
-            $this->status = 'Desktop';
-           
+                 if ($agent->isMobile()) {
+                         // The user accessed the component from a mobile device
+                         // Add your mobile-specific logic here
+                          // For example: $this->emit('mobileAccess');
+                     $this->status = 'Mobile';
+                 } elseif ($agent->isDesktop()) {
+                         // The user accessed the component from a desktop or laptop
+                          // Add your desktop-specific logic here
+                         // For example: $this->emit('desktopAccess');
+                     $this->status = 'Desktop';
+                 } else {
+                          // Default case if neither mobile nor desktop
+                     $this->status = '-';
+                 }
         }
+        
+       
+        
+        else {
+        // User hasn't swiped in today or is not authenticated
+        // Add your logic for this case if needed
+        $this->status = '-';
+        }
+        
+
+    
         
        
     }
    
+    
+    public function updatedDateRange($value)
+    {
+        // Handle the date range change logic if needed
+        list($startDate, $endDate) = explode(' - ', $value);
+        // You can update other properties or perform additional actions here
+
+        // For demonstration purposes, I'm emitting an event with the selected date range
+        $this->emit('dateRangeUpdated', ['start' => $startDate, 'end' => $endDate]);
+    }
+
    
     public function testMethod()
     {
