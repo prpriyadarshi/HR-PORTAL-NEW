@@ -8,7 +8,6 @@
             </div>
             <div class="col-md-7 mb-3" style="text-align: center; margin: auto;">
             <h1 style="font-size: 21px;">Job Seeker - {{ optional($user)->full_name }}</h1>
-
             </div>
             <div class="col-md-1 mb-3" style="text-align: center; margin: auto;">
                 <a href="/AllNotifications" style="text-decoration: none; color: white">

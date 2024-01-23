@@ -167,11 +167,11 @@
                 </div>
             </div>
             <div class="row" style="margin-top: 20px;">
-                <div class="col-1" style="margin-left: 30%;">
-                    <button type="button"  wire:click="submitsec80" class="custom-button submit-button" style="background:green;border:1px solid silver;border-radius:5px;color:white">Submit</button>
+                <div class="col-1">
+                    <button type="button"  wire:click="submitsec80" class="custom-button submit-button" style="background:green;border:1px solid silver;border-radius:5px;color:white;margin-left:10px;width:80px;height:30px;">Submit</button>
                 </div>
                 <div class="col-2" style="margin-left: 10%;">
-                    <button wire:click="closeSec80C" class="custom-button cancel-button" style="background:red;border:1px solid silver;border-radius:5px;color:white">Cancel</button>
+                    <button wire:click="closeSec80C" class="custom-button cancel-button"  style="background:red;border:1px solid silver;border-radius:5px;color:white;margin-left:10px;width:80px;height:30px;">Cancel</button>
                 </div>
                 </div>
                
@@ -345,10 +345,10 @@
             </div>
             <div class="row" style="margin-top: 20px;">
                 <div class="col-1" style="margin-left: 30%;">
-                    <button wire:click="submitotherdeductions" class="custom-button submit-button" style="background:green;border:1px solid silver;border-radius:5px;color:white">Submit</button>
+                    <button wire:click="submitotherdeductions" class="custom-button submit-button" style="background:green;border:1px solid silver;border-radius:5px;color:white;margin-left:-200px;width:80px;height:30px;">Submit</button>
                 </div>
                 <div class="col-2" style="margin-left: 10%;">
-                    <button wire:click="closeshowVIDeductions" class="custom-button cancel-button" style="background:red;border:1px solid silver;border-radius:5px;color:white">Cancel</button>
+                    <button wire:click="closeshowVIDeductions" class="custom-button cancel-button" style="background:red;border:1px solid silver;border-radius:5px;color:white;margin-left:-190px;width:80px;height:30px">Cancel</button>
                 </div>
                 @if($totaldeductions)
         <p>Total Value: {{ $totaldeductions }}</p>
@@ -451,10 +451,10 @@
        
         <div class="row" style="margin-top: -10px;">
             <div class="col-1" style="margin-left: 30%;">
-                <button type="button" wire:click="submitmedical" class="custom-button submit-button" style="background:green;border:1px solid silver;border-radius:5px;color:white">Submit</button>
+                <button type="button" wire:click="submitmedical" class="custom-button submit-button" style="background:green;border:1px solid silver;border-radius:5px;color:white;margin-left:-100px;width:80px;">Submit</button>
             </div>
             <div class="col-2" style="margin-left: 10%;">
-                <button wire:click="closeMedical" class="custom-button cancel-button" style="background:red;border:1px solid silver;border-radius:5px;color:white">Cancel</button>
+                <button wire:click="closeMedical" class="custom-button cancel-button" style="background:red;border:1px solid silver;border-radius:5px;color:white;margin-left:-70px;width:80px;">Cancel</button>
             </div>
         </div>
     </form>
@@ -469,10 +469,7 @@
  
          
 </div>
-          <!-- Card 2 -->
        
- 
-          <!-- Add more cards here as needed -->
  
         </div>
         <div _ngcontent-whw-c468="" class="itd-plan-details-content ng-star-inserted">
@@ -490,10 +487,10 @@
             <div class="modal-dialog modal-dialog-centered" role="document" >
  
                 <div class="modal-content" style="width: 800px">
-                <div class="modal-header" style="background-color: rgb(2, 17, 79); height: 80px; width: 800px">
-                <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title"><b>Income/loss from House Property</b></h5>
+                <div class="modal-header" style="background-color:#D4D2D2 ;height: 60px; width: 800px">
+                <h5 style="padding:5px; color:black; font-size: 15px;" class="modal-title"><b>Income/loss from House Property</b></h5>
                 <button wire:click="closeIncome" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" style="color: white;">×</span>
+                    <span aria-hidden="true" style="color: black;">×</span>
                 </button>
             </div>
             <div class="modal-body" style="max-height: auto;overflow-y:auto">
@@ -555,12 +552,12 @@
                     </div>
            
                    
-                    <div class="row" style="margin-top: -10px;">
-                        <div class="col-1" style="margin-left: 30%;">
-                            <button type="submit" class="custom-button submit-button" style="background:green;border:1px solid silver;border-radius:5px;color:white">Submit</button>
+                    <div class="row" style="margin-top: -90px;">
+                        <div class="col-1" style="margin-left: 30%;" >
+                            <button type="submit" class="custom-button submit-button" style="background:green;border:1px solid silver;border-radius:5px;color:white;width:80px;margin-top:10px">Submit</button>
                         </div>
-                        <div class="col-2" style="margin-left: 10%;">
-                            <button wire:click="closeIncome" class="custom-button cancel-button" style="background:red;border:1px solid silver;border-radius:5px;color:white">Cancel</button>
+                        <div class="col-2" >
+                            <button wire:click="closeIncome" class="custom-button cancel-button" style="background:red;border:1px solid silver;border-radius:5px;color:white;width:80px;margin-top:10px">Cancel</button>
                         </div>
                     </div>
                 </form>
@@ -591,10 +588,10 @@
             <div class="modal-dialog modal-dialog-centered" role="document" >
  
                 <div class="modal-content" style="width: 800px">
-                <div class="modal-header" style="background-color: rgb(2, 17, 79); height: 80px; width: 800px">
-                <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title"><b>Other Income</b></h5>
+                <div class="modal-header" style="background-color: #D4D2D2; height: 60px; width: 800px">
+                <h5 style="padding: 5px;  font-size: 15px;" class="modal-title"><b>Other Income</b></h5>
                 <button wire:click="closeshowOtherIncome" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" style="color: white;">×</span>
+                    <span aria-hidden="true" style="color: black;">×</span>
                 </button>
             </div>
             <div class="modal-body" style="max-height: auto;">
@@ -649,11 +646,11 @@
                               </div>
                             </div>
                             <div class="row" style="margin-top: -10px;">
-                        <div class="col-1" style="margin-left: 30%;">
-                            <button type="submit" class="custom-button submit-button" style="background:green;border:1px solid silver;border-radius:5px;color:white">Submit</button>
+                        <div class="col-1" >
+                            <button type="submit" class="custom-button submit-button" style="background:green;border:1px solid silver;border-radius:5px;color:white;margin-left:10px;width:80px;">Submit</button>
                         </div>
                         <div class="col-2" style="margin-left: 10%;">
-                            <button wire:click="closeshowOtherIncome" class="custom-button cancel-button" style="background:red;border:1px solid silver;border-radius:5px;color:white">Cancel</button>
+                            <button wire:click="closeshowOtherIncome" class="custom-button cancel-button" style="background:red;border:1px solid silver;border-radius:5px;color:white;margin-left:10px">Cancel</button>
                         </div>
                     </div>
                 </form>
@@ -685,10 +682,10 @@
             <div class="modal-dialog modal-dialog-centered" role="document" >
  
                 <div class="modal-content" style="width: 800px">
-                <div class="modal-header" style="background-color: rgb(2, 17, 79); height: 80px; width: 800px">
-                <h5 style="padding: 5px; color: white; font-size: 15px;" class="modal-title"><b>Other Income</b></h5>
+                <div class="modal-header" style="background-color: #D4D2D2; height: 60px; width: 800px">
+                <h5 style="padding: 5px;  font-size: 15px;" class="modal-title"><b>Salary Allowance</b></h5>
                 <button wire:click="closeSalayAllowance" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" style="color: white;">×</span>
+                    <span aria-hidden="true" >×</span>
                 </button>
             </div>
             <div class="modal-body" style="max-height: auto;">
@@ -738,11 +735,11 @@
                               </div>
                             </div>
                             <div class="row" style="margin-top: -10px;">
-                        <div class="col-1" style="margin-left: 30%;">
-                            <button type="submit" class="custom-button submit-button" style="background:green;border:1px solid silver;border-radius:5px;color:white">Submit</button>
+                        <div class="col-1">
+                            <button type="submit" class="custom-button submit-button" style="background:green;border:1px solid silver;border-radius:5px;color:white;margin-left:10px;width:80px">Submit</button>
                         </div>
-                        <div class="col-2" style="margin-left: 10%;">
-                            <button wire:click="closeSalayAllowance" class="custom-button cancel-button" style="background:red;border:1px solid silver;border-radius:5px;color:white">Cancel</button>
+                        <div class="col-2" style= "margin-left:10%">
+                            <button wire:click="closeSalayAllowance" class="custom-button cancel-button" style="background:red;border:1px solid silver;border-radius:5px;color:white;margin-left:120x;width:80px">Cancel</button>
                         </div>
                     </div>
                 </form>
@@ -775,6 +772,11 @@
     </div>
   </itd-plan-details>
   <!---->
+</div>
+<div class="container" style="height:60px;width:105%;background:white;margin-top:30px;margin-left:-120px">
+
+    <button style="border-radius:5px;border:1px solid #80daeb;height:30px;width:160px;margin-left:800px;margin-top:15px;"><a href="/itstatement">View IT Calculation</a> </button>
+
 </div>
 <script>
         // Get the modal and buttons

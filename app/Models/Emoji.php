@@ -4,14 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Livewire\Feeds;
 
-class Comment extends Model
+class Emoji extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'emp_id',
-        'first_name',
-        'last_name',
-        'comment',
-    ];
+ // Replace 'your_table' with the actual table name
+
+    protected $fillable = ['selected_emoji'];
 }

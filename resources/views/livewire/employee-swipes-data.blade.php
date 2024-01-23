@@ -1,37 +1,42 @@
 <div>
+<div>
 <!DOCTYPE html>
 <html lang="en">
-
+ 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
+ 
 <!-- Moment.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-
+ 
 <!-- DateRangePicker CSS and JS -->
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker@3.1.0/daterangepicker.css" />
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker@3.1.0/daterangepicker.min.js"></script>
     
 </head>
-
+ 
 <body>
 <div>
     <div style="display:flex;flex-direction:row;">
     <div class="dropdown-container1-employee-swipes">
+    <div class="dropdown-container1-employee-swipes">
           <label for="dateType"style="color: #666;font-size:13px;">Select Dates<span style="color: red;">*</span>:</label><br/>
           <input type="text" name="daterange" wire:model="date" value="01/04/2024 - 01/04/2024" style="font-size: 13px;" wire:change="dateRange($event.target.value)" />
-          
+         
      </div>
+     <div class="dropdown-container1-employee-swipes">
      <div class="dropdown-container1-employee-swipes">
           <label for="dateType"style="color: #666;font-size:13px;">Date Type<span style="color: red;">*</span>:</label><br/>
           <button class="dropdown-btn1"style="font-size: 13px;">Swipe Date</button>
+          <div class="dropdown-content1-employee-swipes">
           <div class="dropdown-content1-employee-swipes">
            
           </div>
      </div>
        
+     <div class="dropdown-container1-employee-swipes">
      <div class="dropdown-container1-employee-swipes">
              <label for="dateType"style="color: #666;font-size:13px;">Employee Search</label><br/>
           
@@ -61,13 +66,14 @@
             </button>
                
         </div>  
-      
+     
 </div>
 
     <div class="container-employee-swipes">
         
         <div class="container4-employee-swipes">
             <div style="overflow-x:auto;">
+                <table class="employee-swipes-table">
                 <table class="employee-swipes-table">
                     <thead>
                         <tr>
@@ -83,14 +89,15 @@
                     <tbody>
                     @if($notFound)
                          <td colspan="12" style="text-align: center;font-size:12px">Record not found</td>
+                         <td colspan="12" style="text-align: center;font-size:12px">Record not found</td>
                     @else
     <!-- Display the filtered collection or any other content -->
                         @foreach($SignedInEmployees as $swipe)
         <!-- Display swipe details -->
-                       <tr> 
+                       <tr>
                               <td style=" white-space: nowrap;font-size:12px;">
                                         <input type="checkbox" name="employeeCheckbox[]"style="margin-left:-10px;height:10px;" value="{{ $swipe->emp_id }}">
-
+ 
                                                    {{ucfirst($swipe->first_name)}} {{ucfirst($swipe->last_name)}}<br />
                                                <span class="text-muted"style="font-size:10px;margin-left:6px;">#{{$swipe->emp_id}}</span>
                               </td>
@@ -100,7 +107,7 @@
                               <td style=" white-space: nowrap;">{{$swipe->swipe_time}}<br /><span class="text-muted"style="font-size:10px;"> {{ \Carbon\Carbon::parse($swipe->created_at)->format('d M, Y') }}</span></td>
                               <td>-</td>
                               <td>-</td>
-                        </tr>     
+                        </tr>    
                         @endforeach
                     @endif
                     </tbody>
@@ -122,6 +129,7 @@
                 <hr style="border-top: 1px solid #666;margin-top: -5px;">
                 <p style="font-size: 14px; margin-top: 10px;color:#666;">Device Name</p>
                 <p style="font-size: 13px; font-weight: 500;margin-top:-20px;">{{$this->status}}</p>
+                <p style="font-size: 13px; font-weight: 500;margin-top:-20px;">{{$this->status}}</p>
                 <p style="font-size: 14px; margin-top: 10px;color:#666;">Access Card</p>
                 <p style="font-size: 18px; font-weight: 500;margin-top:-20px;">-</p>
                 <p style="font-size: 14px; margin-top: 10px;color:#666;">Door/Address</p>
@@ -136,31 +144,25 @@
                 <p style="font-size: 18px; font-weight: 500;margin-top:-20px;">-</p>
         </div>
     </div>
-  
+ 
     </div>
     <script>
      jQuery(document).ready(function($) {
-        
+       
        $(function() {
            $('input[name="daterange"]').daterangepicker({
                                      opens: 'left'
                               }, function(start, end, label) {
-                                
+                               
                           console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
             });
         });
-
+ 
     });
     </script>
-   <script>
-    document.addEventListener('livewire:load', function () {
-        Livewire.hook('message.processed', (message, component) => {
-            if (message.updateQueue.hasOwnProperty('date')) {
-                @this.call('dateRange');
-            }
-        });
-    });
-</script>
+ 
 </body>
-
+ 
 </html>
+ 
+</div>

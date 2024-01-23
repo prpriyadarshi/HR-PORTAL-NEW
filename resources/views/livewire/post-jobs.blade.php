@@ -1,11 +1,11 @@
 <div>
-            <div class="container-11" style="background-color: #02134F; color: white; padding:2px;height:53px">
+    <div class="container-11" style="background-color: #02134F; color: white; padding:2px;height:53px">
         <div style="display: flex; align-items: start; justify-content: start;">
             <img src="{{$hrDetails->company_logo}}" alt="Logo" style="width: 200px;height:50px;margin-right: 10px;">
             <h1 style="font-size: 20px; margin-left:25%;margin-top:10px">HR - {{$hrDetails->hr_name}}</h1>
 
             <div style="margin-left:25%;">
-                <button style="margin-bottom: 10px;" class="logout" style="text-align:end" wire:click="logout"> <i class="fas fa-sign-out-alt" ></i> Logout</button>
+                <button style="margin-bottom: 10px;" class="logout" style="text-align:end" wire:click="logout"> <i class="fas fa-sign-out-alt"></i> Logout</button>
             </div>
         </div>
     </div>

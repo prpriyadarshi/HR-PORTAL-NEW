@@ -8,13 +8,15 @@
         $count=0;
         $flag=0;
     @endphp  
-    
+   
     <div class="container">
+        <div class="search-bar-attendance-muster">
         <div class="search-bar-attendance-muster">
             <input type="search" placeholder="Search...">
         </div>
-
+ 
         <div class="row" style="margin-top: 20px;">
+            <div class="summary-attendance-muster col-md-3">
             <div class="summary-attendance-muster col-md-3">
                 <p style="background:#ebf5ff;padding:5px 15px;font-size:0.755rem;">Summary</p>
                 <table class="table">
@@ -25,7 +27,7 @@
                             <!-- Add more headers as needed -->
                         </tr>
                     </thead>
-                    
+                   
                       <tbody>
                         <!-- Add table rows and data for Summary -->
                         @foreach($Employees as $emp)
@@ -34,30 +36,31 @@
                                 <td>{{ucfirst($emp->first_name)}}&nbsp;{{ucfirst($emp->last_name)}}<br/>#{{ $emp->emp_id }}</td>
                                @foreach($DistinctDatesMapCount as $empId=>$d1)
                                    @if($empId ==$emp->emp_id)
-                                      
+                                     
                                       <td>{{$d1['date_count']}}</td>
-                                      
+                                     
                                    @endif
-
-                                  
-                               @endforeach 
-                                
+ 
+                                 
+                               @endforeach
+                               
                           </tr>
-                         @endforeach 
+                         @endforeach
                         <!-- Add more rows as needed -->
                      </tbody>
                    
                 </table>
             </div>
             <div class="Attendance-attendance-muster col-md-9" >
+            <div class="Attendance-attendance-muster col-md-9" >
                 <p style="background:#ebf5ff; padding:5px 15px;font-size:0.755rem;">Attendance</p>
                 <table class="table">
                 @php
                     // Get current month and year
                     $currentMonth =12;
-                    
+                   
                     $currentYear = 2023;
-                    
+                   
                     // Total number of days in the current month
                     $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $currentMonth, $currentYear);
                 @endphp
@@ -75,20 +78,20 @@
                                 <div style="font-size:0.825rem;line-height:0.8;font-weight:500;">{{ $i }}</div>
                                 <div style="margin-top:-5px; font-size:0.625rem;margin-top:1px;">{{ $dayName }}</div>
                             </th>
-
+ 
                         @endfor
                     </tr>
                 </thead>
-              
+             
                     <tbody>
                         <!-- Add table rows and data for Attendance -->
-                        
+                       
                         @while ($EmployeesCount > 0)
                         @foreach($Employees as $e)
-                            
-                          
+                           
+                         
                         <tr style="height:64px;background-color:pink;">
-                          
+                         
                            @for ($i = 1; $i <= $daysInMonth; $i++)
                            @php
                                 $timestamp = mktime(0, 0, 0, $currentMonth, $i, $currentYear);
@@ -101,7 +104,7 @@
                          
                           @foreach ($DistinctDatesMap  as $empId => $distinctDates)
                             @if($empId==$e->emp_id)
-                            @php 
+                            @php
                              
                                foreach ($distinctDates as $distinctDate) {
                             // Extract date part from created_at and distinctDate
@@ -112,7 +115,7 @@
                             // Your logic for each distinct date
                               if ($distinctDate === $fullDate) {
                                 $present=1;
-                                
+                               
                               }
                             }
                             @endphp
@@ -122,35 +125,35 @@
                                     <p style="color:#666;font-weight:500;">O</p>
                                   @elseif ($Holiday->contains('date',$createdAtDate))
                                     <p style="color: #666; font-weight: 500;">H</p>
-                                        
+                                       
                                   @elseif($present==1)
-                                    <p style=" color:#666;font-weight:500;">P</p> 
-                                
-                                  
+                                    <p style=" color:#666;font-weight:500;">P</p>
+                               
+                                 
                                   @else
                                     <p style=" color: #f66;font-weight:500;">A</p>    
                                   @endif
                         </td>
-                            
+                           
                           @php
                              $present=0;
-                          @endphp   
+                          @endphp  
                          @endfor
                          @php
                              $EmployeesCount--;
                            
                          @endphp
-                        
-                        
-                        
+                       
+                       
+                       
                        </tr>
                        @endforeach
                        @endwhile
-                        
+                       
                     </tbody>
                 </table>
             </div>
         </div>
-
+ 
     </div>
 </div>

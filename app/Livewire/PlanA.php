@@ -214,25 +214,7 @@ public $fieldsmedical = [
         'Health Checkup' => null,
         'Dependant Parents' => null,
 ];
-public function submitmedical()
-    {
-        $this->validate([
-            'fieldsmedical.medical' => 'numeric',
-            'fieldsmedical.Health Checkup' => 'numeric',
-            'fieldsmedical.Dependant Parents' => 'numeric',
-        ]);
 
-        // Calculate the total or perform other operations if needed
-
-        $this->totalmedical = array_sum($this->fieldsmedical);
-   
-        medical::create($this->fieldsmedical);
-
-        // Reset the form or take any necessary actions
-  
-
-        // Optionally, you can add a success message or redirect
-    }
 
     public function render()
     {

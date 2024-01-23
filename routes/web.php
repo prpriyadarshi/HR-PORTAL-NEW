@@ -1,6 +1,8 @@
 <?php
  
 use App\Livewire\ApprovedDetails;
+use App\Livewire\AddEmployeeDetails;
+use App\Livewire\UpdateEmployeeDetails;
 use App\Livewire\Delegates;
 use App\Livewire\EmpLogin;
 use App\Livewire\EmployeesReview;
@@ -41,6 +43,7 @@ use App\Livewire\SalarySlips;
 use App\Livewire\PlanA;
 use App\Livewire\Documents;
 use App\Livewire\Declaration;
+use App\Livewire\DocForms;
 use App\Livewire\Downloadform;
 use App\Livewire\Documentcenter;
 use App\Livewire\DocumentCenterLetters;
@@ -56,6 +59,7 @@ use App\Livewire\WhoIsInChart;
 use App\Livewire\LeaveCancel;
 use App\Livewire\TeamOnLeave;
 use App\Livewire\HolidayCalender;
+use App\Livewire\HomeDashboard;
 use App\Livewire\LeaveBalanaceAsOnADay;
 use App\Livewire\LetterRequests;
 use App\Livewire\TeamOnLeaveChart;
@@ -67,6 +71,7 @@ use App\Livewire\RegularisationHistory;
 use App\Livewire\TeamOnAttendance;
 use App\Livewire\TeamOnAttendanceChart;
 use App\Livewire\ViewPendingDetails;
+use App\Livewire\Emojies;
 use Illuminate\Support\Facades\Route;
  
  
@@ -97,7 +102,7 @@ Route::get('/Login&Register', function () {
     return view('login_and_register_view');
 });
  
- 
+Route::post('/store-emoji', [Emojies::class, 'store']);
  
 Route::middleware(['auth:web'])->group(function () {
     Route::get('/CreateCV', function () {
@@ -169,7 +174,10 @@ Route::middleware(['auth:com'])->group(function () {
  
 Route::middleware(['auth:hr'])->group(function () {
     Route::get('/hrPage', AuthChecking::class)->name('home');
+    Route::get('/home-dashboard', HomeDashboard::class)->name('admin-home');
     Route::get('/letter-requests', LetterRequests::class)->name('letter-requests');
+    Route::get('/add-employee-details/{employee?}', AddEmployeeDetails::class)->name('add-employee-details');
+    Route::get('/update-employee-details', UpdateEmployeeDetails::class)->name('update-employee-details');
 });
  
 Route::middleware(['auth:finance'])->group(function () {
@@ -184,6 +192,7 @@ Route::middleware(['auth:it'])->group(function () {
 Route::middleware(['auth:emp'])->group(function () {
 
     Route::get('/', Home::class)->name('home');
+    Route::get('/doc-forms', DocForms::class);
     Route::get('/LeaveBalanceAsOnADay', LeaveBalanaceAsOnADay::class);
  
     // Attendance Routes
@@ -198,7 +207,8 @@ Route::middleware(['auth:emp'])->group(function () {
     Route::get('/attendance-muster-data', AttendenceMasterDataNew::class)->name('attendance-muster-data');
     Route::get('/ProfileInfo', ProfileInfo::class)->name('profile.info');
     Route::get('/Settings', Settings::class);
-
+ 
+ 
     //Feeds Module
     Route::get('/Feeds', Feeds::class);
     Route::get('/everyone', Everyone::class);
@@ -262,7 +272,7 @@ Route::middleware(['auth:emp'])->group(function () {
  
  
     Route::get('/view-pending-details', ViewPendingDetails::class)->name('view-pending-details');
-    Route::get('/delegates', Delegates::class);
+    Route::get('/delegates', Delegates::class)->name('delegates');
  
     Route::get('/view-details/{leaveRequestId}', ViewDetails::class)->name('view-details');
  

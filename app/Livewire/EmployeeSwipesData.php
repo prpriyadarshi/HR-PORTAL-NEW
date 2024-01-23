@@ -1,5 +1,5 @@
 <?php
-
+ 
 namespace App\Livewire;
 use Illuminate\Support\Facades\Auth;
 use App\Models\SwipeRecord;
@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Jenssegers\Agent\Agent;
 use Jenssegers\Agent\Agent;
 class EmployeeSwipesData extends Component
 {
@@ -88,8 +89,8 @@ class EmployeeSwipesData extends Component
    
     public function testMethod()
     {
-        
-        $currentDate = now()->toDateString(); 
+       
+        $currentDate = now()->toDateString();
         $loggedInEmpId = Auth::guard('emp')->user()->emp_id;
         $employees=EmployeeDetails::where('manager_id',$loggedInEmpId)->select('emp_id', 'first_name', 'last_name')->get();
         $this->swipes = SwipeRecord::whereIn('id', function ($query) use ($employees, $currentDate) {
@@ -108,7 +109,7 @@ class EmployeeSwipesData extends Component
             })
             ->select('swipe_records.*', 'employee_details.first_name', 'employee_details.last_name')
             ->get();
-
+ 
     }
     public function showEmployeeDetails($empId)
     {
@@ -117,8 +118,9 @@ class EmployeeSwipesData extends Component
     }
     public function downloadFileforSwipes()
     {
-        $currentDate = now()->toDateString(); 
+        $currentDate = now()->toDateString();
         $loggedInEmpId = Auth::guard('emp')->user()->emp_id;
+        $this->loggedInEmpId1 = EmployeeDetails::where('emp_id',Auth::guard('emp')->user()->emp_id)->get();
         $this->loggedInEmpId1 = EmployeeDetails::where('emp_id',Auth::guard('emp')->user()->emp_id)->get();
         $employees=EmployeeDetails::where('manager_id',$loggedInEmpId)->select('emp_id', 'first_name', 'last_name')->get();
         $this->swipes = SwipeRecord::whereIn('id', function ($query) use ($employees, $currentDate) {
@@ -134,7 +136,7 @@ class EmployeeSwipesData extends Component
         $data = [
             ['LIST OF PRESENT EMPLOYEES'],
             ['Employee ID','Employee Name', 'Swipe Date', 'Swipe Time','Shift','In/Out','Door/Address','Status'],
-            
+           
         ];
         $employees1=$this->swipes;
         foreach ($employees1 as $employee) {
@@ -143,24 +145,24 @@ class EmployeeSwipesData extends Component
         }
         // Create a temporary file
         $tempFilePath = storage_path('app/public/' . Str::random(16) . '.csv');
-    
+   
         // Open the file for writing
         $file = fopen($tempFilePath, 'w');
-    
+   
         // Write the data to the file
         foreach ($data as $row) {
             fputcsv($file, $row);
         }
-    
+   
         // Close the file
         fclose($file);
-    
+   
         // Set the response headers for download
         $headers = [
             'Content-Type' => 'text/csv',
             'Content-Disposition' => 'attachment; filename="TODAY_PRESENT_EMPLOYEES"',
         ];
-    
+   
         // Return the response with the file and headers
         return response()->stream(
             function () use ($tempFilePath) {
@@ -174,14 +176,14 @@ class EmployeeSwipesData extends Component
     }
     public function render()
     {
-        
-        $currentDate = now()->toDateString(); 
+       
+        $currentDate = now()->toDateString();
         $loggedInEmpId = Auth::guard('emp')->user()->emp_id;
         $employees=EmployeeDetails::where('manager_id',$loggedInEmpId)->select('emp_id', 'first_name', 'last_name')->get();
-        
        
        
-          
+       
+         
        
             $this->swipes = SwipeRecord::whereIn('id', function ($query) use ($employees, $currentDate) {
                 $query->selectRaw('MIN(id)')
@@ -203,19 +205,21 @@ class EmployeeSwipesData extends Component
                 $this->notFound = false;
             }
        
-        
+       
         $todaySwipeIN = SwipeRecord::where('emp_id',auth()->guard('emp')->user()->emp_id)->whereDate('created_at', $currentDate)
         ->where('in_or_out', 'IN')
         ->first();
-        
+       
         if ($todaySwipeIN) {
             // Swipe IN time for today
-          
+         
             $this->swipeTime = $todaySwipeIN->swipe_time;
-          
-
-        } 
+         
+ 
+        }
        
+        return view('livewire.employee-swipes-data',['LoggedInEmpId1'=>$this->loggedInEmpId1,'SignedInEmployees'=>$this->swipes,'SwipeTime'=>$this->swipeTime]);
         return view('livewire.employee-swipes-data',['LoggedInEmpId1'=>$this->loggedInEmpId1,'SignedInEmployees'=>$this->swipes,'SwipeTime'=>$this->swipeTime]);
     }
 }
+ 

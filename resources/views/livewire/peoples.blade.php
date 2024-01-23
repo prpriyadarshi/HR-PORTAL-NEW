@@ -76,9 +76,7 @@
                 <!-- Code to display details when $selectStarredPeoples is set -->
                 <div class="row" style="font-size: 13px;">
                     <div class="row">
-                        <style>
-
-                        </style>
+                      
                         <div class="col" style="margin-top: 50px;">
                             @if(empty($selectStarredPeoples->profile) || $selectStarredPeoples->profile == "")
                             @if($selectStarredPeoples->emp->gender == "Male")

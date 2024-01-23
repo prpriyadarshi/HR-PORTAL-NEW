@@ -12,20 +12,28 @@
   $isLateBy10AM = $swipeTime->format('H:i') > '10:00';
   $isEarlyBy10AM= $swipeTime->format('H:i') < '10:00' ; @endphp @if($isLateBy10AM) @php $notyetin++; $lateArrival++; @endphp @endif @if($isEarlyBy10AM) @php $onTime++; @endphp @endif @endforeach @php $CalculatePresentOnTime=($EarlySwipesCount/$TotalEmployees)*100; $CalculatePresentButLate=($LateSwipesCount/$TotalEmployees)*100; @endphp
 <div class="date-form-who-is-in">
+<div class="date-form-who-is-in">
     <input type="date" wire:model="from_date" wire:change="updateDate"class="form-control" id="fromDate" name="fromDate" style="color: #778899;">
 </div>
  
 <div class="shift-selector-container-who-is-in">
   <input type="text" class="shift-selector-who-is-in" placeholder="Select Shifts">
   <div class="arrow-who-is-in"></div>
+<div class="shift-selector-container-who-is-in">
+  <input type="text" class="shift-selector-who-is-in" placeholder="Select Shifts">
+  <div class="arrow-who-is-in"></div>
 </div>
 <div class="cont" style="display:flex; justify-content: space-between; margin-top:50px;">
+  <div class="search-container-who-is-in" style="margin-left: auto;">
   <div class="search-container-who-is-in" style="margin-left: auto;">
    
        
         <div class="form-group-who-is-in">
             <div class="search-input-who-is-in"style="margin-top:50px;">
+        <div class="form-group-who-is-in">
+            <div class="search-input-who-is-in"style="margin-top:50px;">
                 <input wire:model="search" type="text" placeholder="Search Employee" class="search-text">
+                <div class="search-icon-who-is-in" wire:click="searchFilters">
                 <div class="search-icon-who-is-in" wire:click="searchFilters">
                     <i class="fa fa-search" aria-hidden="true"></i>
                 </div>
@@ -49,13 +57,18 @@
  
   <div class="filter-container1-who-is-in" style="margin-top:-40px">
     <div class="filter-group-who-is-in" style="margin-top:0px">
+  <div class="filter-container1-who-is-in" style="margin-top:-40px">
+    <div class="filter-group-who-is-in" style="margin-top:0px">
       <i class="fa-icon fas fa-filter"></i> <!-- Font Awesome filter icon -->
       <gt-filter-group-who-is-in>
+      <gt-filter-group-who-is-in>
         <!-- Add more content as needed -->
+      </gt-filter-group-who-is-in>
       </gt-filter-group-who-is-in>
     </div>
   </div>
 </div>
+<div class="container-box-for-employee-information-who-is-in">
 <div class="container-box-for-employee-information-who-is-in">
   <!-- Your content goes here -->
   <div style="margin-top:5px;display:flex;align-items:center; text-align:center;justify-content:center;padding:0;">
@@ -71,12 +84,21 @@
     <div class="col-md-3 field-for-employee-who-is-in">
       <div class="percentage-who-is-in"style="font-weight: 500;font-size:0.895rem; ">{{number_format($CalculatePresentButLate,2)}}%</div>
       <div class="employee-count-who-is-in">{{$LateSwipesCount}}&nbsp;Employee(s)&nbsp;are&nbsp;Late&nbsp;In</div>
+    <div class="col-md-3 field-for-employee-who-is-in">
+      <div class="percentage-who-is-in"style="font-weight: 500;font-size:0.895rem; ">{{number_format($CalculatePresentButLate,2)}}%</div>
+      <div class="employee-count-who-is-in">{{$LateSwipesCount}}&nbsp;Employee(s)&nbsp;are&nbsp;Late&nbsp;In</div>
  
     </div>
     <div class="col-md-3 field-for-employee-who-is-in">
       <div class="percentage-who-is-in"style="font-weight: 500;font-size:0.895rem;">{{number_format($CalculatePresentOnTime,2)}}%</div>
       <div class="employee-count-who-is-in">{{$EarlySwipesCount}}&nbsp;Employee(s)&nbsp;are&nbsp;On&nbsp;Time</div>
+    <div class="col-md-3 field-for-employee-who-is-in">
+      <div class="percentage-who-is-in"style="font-weight: 500;font-size:0.895rem;">{{number_format($CalculatePresentOnTime,2)}}%</div>
+      <div class="employee-count-who-is-in">{{$EarlySwipesCount}}&nbsp;Employee(s)&nbsp;are&nbsp;On&nbsp;Time</div>
     </div>
+    <div class="col-md-3 field-for-employee-who-is-in">
+      <div class="percentage-who-is-in"style="font-weight: 500;font-size:0.895rem;">{{number_format($CalculateApprovedLeaves,2)}}%</div>
+      <div class="employee-count-who-is-in">{{$ApprovedLeaveRequestsCount}}&nbsp;Employee(s)&nbsp;are&nbsp;On&nbsp;Leave</div>
     <div class="col-md-3 field-for-employee-who-is-in">
       <div class="percentage-who-is-in"style="font-weight: 500;font-size:0.895rem;">{{number_format($CalculateApprovedLeaves,2)}}%</div>
       <div class="employee-count-who-is-in">{{$ApprovedLeaveRequestsCount}}&nbsp;Employee(s)&nbsp;are&nbsp;On&nbsp;Leave</div>
@@ -89,12 +111,15 @@
   <div class="col-md-6">
     <div class="container3-who-is-in">
       <div class="heading-who-is-in">
+    <div class="container3-who-is-in">
+      <div class="heading-who-is-in">
         <h3>Absent&nbsp;({{ str_pad($employeesCount1, 2, '0', STR_PAD_LEFT) }}) </h3>
        
              <i class="fas fa-download"wire:click="downloadExcelForAbsent"style="cursor:pointer;"></i>
          
       </div>
       <div>
+        <table class="who-is-in-table"style="margin-top:-10px">
         <table class="who-is-in-table"style="margin-top:-10px">
           <thead>
             <tr>
@@ -136,12 +161,15 @@
   <div class="col-md-6">
     <div class="container4-who-is-in">
       <div class="heading-who-is-in">
+    <div class="container4-who-is-in">
+      <div class="heading-who-is-in">
         <h3>Late&nbsp;Arrivals&nbsp;({{ str_pad($lateArrival, 2, '0', STR_PAD_LEFT) }})</h3>
        
              <i class="fas fa-download"wire:click="downloadExcelForLateArrivals"style="cursor:pointer;"></i>
            
       </div>
       <div>
+        <table class="who-is-in-table" style="margin-top:-10px">
         <table class="who-is-in-table" style="margin-top:-10px">
           <thead>
             <tr>
@@ -186,8 +214,11 @@
   </div>
 </div>
 <div class="content">
+<div class="content">
   <!-- third col -->
   <div class="col-md-6">
+    <div class="container5-who-is-in">
+      <div class="heading-who-is-in">
     <div class="container5-who-is-in">
       <div class="heading-who-is-in">
         <h3>On&nbsp;Time&nbsp;({{ str_pad($onTime, 2, '0', STR_PAD_LEFT) }})</h3>
@@ -197,6 +228,7 @@
       </div>
  
       <div>
+        <table class="who-is-in-table"style="margin-top:-10px">
         <table class="who-is-in-table"style="margin-top:-10px">
           <thead>
             <tr>
@@ -233,6 +265,8 @@
   <div class="col-md-6">
     <div class="container6-who-is-in">
       <div class="heading-who-is-in">
+    <div class="container6-who-is-in">
+      <div class="heading-who-is-in">
         <h3>On&nbsp;Leave&nbsp;({{ str_pad($ApprovedLeaveRequestsCount, 2, '0', STR_PAD_LEFT) }})</h3>
              
                     <i class="fas fa-download"wire:click="downloadExcelForLeave" style="cursor: pointer;"></i>
@@ -241,6 +275,7 @@
  
  
       <div>
+        <table class="who-is-in-table" style="margin-top:-10px">
         <table class="who-is-in-table" style="margin-top:-10px">
           <thead>
             <tr>
