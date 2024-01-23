@@ -156,7 +156,7 @@
                 <div class="table-responsive">
                     <table class="table-start">
                         <thead class="table-header">
-                            <tr>
+                            <tr style="background-color: rgb(2,17,79);color:white;padding:8px">
                                 <th style="padding: 8px;">Employee ID</th>
                                 <th>Letter Type</th>
                                 <th>Priority</th>
@@ -189,7 +189,7 @@
                 <div class="table-responsive">
                     <table class="table-start">
                         <thead class="table-header">
-                            <tr>
+                            <tr style="background-color: rgb(2,17,79);color:white;padding:8px">
                                 <th style="padding: 8px;">Employee ID</th>
                                 <th>Letter Type</th>
                                 <th>Priority</th>
